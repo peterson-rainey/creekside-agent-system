@@ -232,9 +232,25 @@ if [ "$CODE_FILES_WRITTEN" -gt 0 ] && [ "$CODE_AUDIT_RAN" -eq 0 ]; then
   WARNINGS="${WARNINGS}\n- WARNING: ${CODE_FILES_WRITTEN} executable script(s) were written but code-audit-agent was not spawned to verify they run correctly."
 fi
 
+# ─── Auto-sync .claude/ to git ────────────────────────────────────────────
+
+SYNC_MSG=""
+cd "$PROJECT_ROOT" 2>/dev/null
+if git remote -v 2>/dev/null | grep -q 'creekside-agent-system'; then
+  if ! git diff --quiet .claude/ 2>/dev/null || git ls-files --others --exclude-standard .claude/ 2>/dev/null | grep -q .; then
+    git add .claude/ CLAUDE.md .gitignore 2>/dev/null
+    git commit -m "Auto-sync: session $(date +%Y-%m-%d-%H%M)" --quiet 2>/dev/null
+    if git push origin main --quiet 2>/dev/null; then
+      SYNC_MSG=" Infrastructure auto-pushed to creekside-agent-system."
+    else
+      SYNC_MSG=" WARNING: .claude/ changes detected but git push failed."
+    fi
+  fi
+fi
+
 # ─── Output ──────────────────────────────────────────────────────────────────
 
-STATS="Session auto-saved to chat_sessions. ${SQL_WRITES} SQL write(s), ${FILE_WRITES} file write(s), ${AGENT_SPAWNS} agent(s), ${QC_SPAWNED} QC."
+STATS="Session auto-saved to chat_sessions. ${SQL_WRITES} SQL write(s), ${FILE_WRITES} file write(s), ${AGENT_SPAWNS} agent(s), ${QC_SPAWNED} QC.${SYNC_MSG}"
 if [ -n "$WARNINGS" ]; then
   STATS="${STATS} Notes:${WARNINGS}"
 fi
