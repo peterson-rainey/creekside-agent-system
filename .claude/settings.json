@@ -1,0 +1,203 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/killswitch-check.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/block-destructive-ops.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/block-protected-files.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__claude_ai_Supabase__execute_sql",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Review this SQL query for contextual risk. The query is: $ARGUMENTS. ALLOW if it is: a SELECT query, an INSERT into any table, or an UPDATE/DELETE with a WHERE clause targeting specific records (by id, name, or title). BLOCK ONLY if it: (1) runs UPDATE or DELETE without any WHERE clause, (2) uses DROP/TRUNCATE, (3) modifies RLS policies or permissions, or (4) deletes from any table affecting more than 10 rows. When in doubt, ALLOW — the deterministic hooks handle destructive operations. Respond with JSON: {\"decision\": \"allow\"} or {\"decision\": \"block\", \"reason\": \"explanation\"}.",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|Bash|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/suggest-compact.sh",
+            "timeout": 3
+          }
+        ]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/correction-inject.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/cost-guard.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/pre-compact.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/audit-log.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/snapshot-writes.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/agent-edit-monitor.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|Bash|Agent|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/track-session-state.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/deploy-verify.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|Bash|Agent|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/qc-enforce.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"decision\": \"allow\"}'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/load-config.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/surface-admin-questions.sh",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/session-init.sh",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/compliance-check.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "defaultMode": "dontAsk",
+    "allow": [
+      "Edit(.claude/agents/**)",
+      "Write(.claude/agents/**)",
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write"
+    ]
+  }
+}

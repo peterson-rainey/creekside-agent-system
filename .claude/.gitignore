@@ -1,0 +1,7 @@
+# Never push files containing API keys or secrets
+settings.local.json
+plans/
+*.log
+
+# Ignore git-internal directories from nested repos
+.git/

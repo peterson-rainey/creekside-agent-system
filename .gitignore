@@ -1,0 +1,15 @@
+# Only track .claude/ infrastructure — everything else is local
+*
+!.gitignore
+!CLAUDE.md
+!.claude/
+!.claude/**
+
+# Never push secrets or old git data
+.claude/settings.local.json
+.claude/ADMIN_MODE
+.claude/.git-old/
+
+# Temp/logs
+*.log
+plans/
