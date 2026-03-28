@@ -93,6 +93,32 @@ For each classified email, call gmail_modify with:
 
 Never add TRASH or SPAM labels. Max 50 label operations per run.
 
+## STEP 3b: QUEUE DRAFTS FOR HIGH-PRIORITY EMAILS
+
+For every email labeled "For Peterson" or "To Review", insert into the draft queue so the intelligence agent can create a draft reply:
+
+```sql
+INSERT INTO draft_queue (message_id, thread_id, sender_email, sender_name, subject, entity_type, entity_name, gps_label)
+VALUES ('msg_id', 'thread_id', 'sender@email.com', 'Sender Name', 'Subject line', 'client', 'Entity Name', 'For Peterson');
+```
+
+Do NOT queue emails that are purely informational (ChatGPT updates, CC'd conversations with no action needed).
+
+## STEP 3c: TRACK SENDERS
+
+For every email processed (including Done), upsert the sender into the tracking table:
+
+```sql
+INSERT INTO email_sender_tracking (sender_email, sender_name, entity_type, last_seen)
+VALUES (lower('sender@email.com'), 'Sender Name', 'client', now())
+ON CONFLICT (sender_email) DO UPDATE SET
+  times_seen = email_sender_tracking.times_seen + 1,
+  last_seen = now(),
+  entity_type = COALESCE(EXCLUDED.entity_type, email_sender_tracking.entity_type);
+```
+
+If a sender has `times_seen >= 3` and `entity_type = 'unknown'`, mention them in your log as a potential lead.
+
 ## STEP 4: AWAITING RESPONSES CHECK (once per run)
 
 Search: `from:peterson@creeksidemarketingpros.com newer_than:7d`
