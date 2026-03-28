@@ -63,7 +63,7 @@ Enforced by deterministic hooks — these cannot be overridden:
 
 **Kill switch:** Create `KILLSWITCH.md` in project root to freeze all operations. Delete to resume.
 
-**Always:** Never include `char_count` in `raw_content` INSERTs (generated column). Query `agent_knowledge` before building something new.
+**Always:** Never include `char_count` in `raw_content` INSERTs (generated column). Before creating any new table, view, function, or agent, run `SELECT validate_new_entry('type', 'name')` — if BLOCKED or WARNING, stop and review. Before inserting into `agent_knowledge`, run `SELECT validate_new_knowledge('type', 'title', ARRAY['tags'])` — if BLOCKED, UPDATE instead. After any structural creation, register it in `system_registry`.
 
 ## Session Closure (Mandatory)
 

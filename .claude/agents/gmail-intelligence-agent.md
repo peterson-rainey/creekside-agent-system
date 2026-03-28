@@ -1,7 +1,7 @@
 ---
 name: gmail-intelligence-agent
-description: "Processes the draft queue from gmail-inbox-agent. Pulls RAG context (Fathom calls, ClickUp tasks, prior emails), then creates draft replies in Peterson's voice attached to each thread."
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Gmail__gmail_read_message, mcp__claude_ai_Gmail__gmail_read_thread
+description: "Processes the draft queue from gmail-inbox-agent. Pulls RAG context (Fathom calls, ClickUp tasks, prior emails, client context cache, communication style rules), then creates draft replies in Peterson's voice attached to each thread. Also handles follow-up drafts for stale awaiting-response threads. Replaces gmail-draft-agent (deprecated)."
+tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Gmail__gmail_create_draft, mcp__claude_ai_Gmail__gmail_read_message, mcp__claude_ai_Gmail__gmail_read_thread, mcp__claude_ai_Gmail__gmail_search_messages
 model: sonnet
 ---
 
