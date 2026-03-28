@@ -93,7 +93,17 @@ For each classified email, call gmail_modify with:
 
 Never add TRASH or SPAM labels. Max 50 label operations per run.
 
-## STEP 4: LOG RESULTS
+## STEP 4: AWAITING RESPONSES CHECK (once per run)
+
+Search: `from:peterson@creeksidemarketingpros.com newer_than:7d`
+
+For each thread found, read the thread to check if Peterson's message is the most recent. If yes and it has been 3+ business days with no reply:
+- Apply the Awaiting Reply label
+- Do NOT follow up on threads Cyndi/VA initiated (check if the original sender was a team member)
+- Do NOT follow up on threads where a meeting is already booked with the recipient
+- Skip threads that already have the Awaiting Reply label
+
+## STEP 5: LOG RESULTS
 
 After applying all labels, run one SQL insert:
 

@@ -16,20 +16,20 @@ STATE_FILE="$STATE_DIR/$SESSION.state"
 # No state file → no writes yet → allow
 [ ! -f "$STATE_FILE" ] && exit 0
 
-# Count writes
-SQL_WRITES=$(grep -c "^SQL_WRITE=" "$STATE_FILE" 2>/dev/null || echo "0")
-FILE_WRITES=$(grep -c "^FILE_WRITE=" "$STATE_FILE" 2>/dev/null || echo "0")
+# Count writes (grep -c exits 1 when count is 0; use default to avoid || echo double-output bug)
+SQL_WRITES=$(grep -c "^SQL_WRITE=" "$STATE_FILE" 2>/dev/null); SQL_WRITES=${SQL_WRITES:-0}
+FILE_WRITES=$(grep -c "^FILE_WRITE=" "$STATE_FILE" 2>/dev/null); FILE_WRITES=${FILE_WRITES:-0}
 TOTAL_WRITES=$((SQL_WRITES + FILE_WRITES))
 
 # Under threshold → allow (agent needs room to do initial work)
 [ "$TOTAL_WRITES" -lt 5 ] && exit 0
 
 # Check if QC was spawned
-QC_SPAWNED=$(grep -cE "AGENT_SPAWN=.*\|(qc-reviewer-agent|expert-review-agent)" "$STATE_FILE" 2>/dev/null || echo "0")
+QC_SPAWNED=$(grep -cE "AGENT_SPAWN=.*\|(qc-reviewer-agent|expert-review-agent)" "$STATE_FILE" 2>/dev/null); QC_SPAWNED=${QC_SPAWNED:-0}
 
 # Check if code-audit was spawned (if scripts written)
-CODE_WRITTEN=$(grep -cE "FILE_WRITE=.*\.(py|sh|js)$" "$STATE_FILE" 2>/dev/null || echo "0")
-CODE_AUDIT_SPAWNED=$(grep -cE "AGENT_SPAWN=.*code-audit-agent" "$STATE_FILE" 2>/dev/null || echo "0")
+CODE_WRITTEN=$(grep -cE "FILE_WRITE=.*\.(py|sh|js)$" "$STATE_FILE" 2>/dev/null); CODE_WRITTEN=${CODE_WRITTEN:-0}
+CODE_AUDIT_SPAWNED=$(grep -cE "AGENT_SPAWN=.*code-audit-agent" "$STATE_FILE" 2>/dev/null); CODE_AUDIT_SPAWNED=${CODE_AUDIT_SPAWNED:-0}
 
 # If QC spawned and (no code written OR code-audit spawned) → allow
 if [ "$QC_SPAWNED" -gt 0 ]; then
