@@ -1,7 +1,7 @@
 ---
 name: gmail-inbox-agent
 description: "Reads, classifies, and applies GPS labels to Peterson's Gmail inbox. Replaces gmail-triage-agent (read-only) and gmail-organizer-agent (never ran). Runs every 5 minutes during business hours."
-tools: mcp__claude_ai_Supabase__execute_sql
+tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Gmail__gmail_search_messages, mcp__claude_ai_Gmail__gmail_read_message, mcp__claude_ai_Gmail__gmail_read_thread
 model: haiku
 db_record: pending
 ---
