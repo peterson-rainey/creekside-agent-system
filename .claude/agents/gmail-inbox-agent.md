@@ -104,6 +104,11 @@ VALUES ('msg_id', 'thread_id', 'sender@email.com', 'Sender Name', 'Subject line'
 
 Do NOT queue emails that are purely informational (ChatGPT updates, CC'd conversations with no action needed).
 
+If you queued any drafts, trigger the intelligence agent to process them immediately:
+```sql
+UPDATE scheduled_agents SET trigger_now = true WHERE name = 'gmail-intelligence';
+```
+
 ## STEP 3c: TRACK SENDERS
 
 For every email processed (including Done), upsert the sender into the tracking table:
