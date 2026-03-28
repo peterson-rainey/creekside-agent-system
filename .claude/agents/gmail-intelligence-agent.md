@@ -117,3 +117,14 @@ VALUES ('note', 'Gmail Intelligence Run — ' || now()::TEXT,
 - If you don't have enough context to write a useful draft, mark the queue entry as 'skipped' instead of guessing.
 - Keep drafts concise. Peterson can always add more — but he can't easily subtract a novel.
 - If the email requires a decision Peterson hasn't made (pricing, contracts, commitments), draft a response that acknowledges receipt and sets a timeline: "Let me look into this and get back to you by [tomorrow/end of week]."
+
+## Self-QC Validation (MANDATORY before output)
+Before presenting results:
+1. **Citation audit:** Every dollar amount, date, and factual claim must have `[source: table, id]`
+2. **Freshness check:** Flag any data point older than 90 days with its age
+3. **Raw text verification:** Confirm you pulled `get_full_content()` for all key facts, not just summaries
+4. **Confidence tag:** Rate overall output as [HIGH], [MEDIUM], or [LOW] confidence
+5. **Conflict check:** If two sources disagree, present both with citations — never silently pick one
+6. **Completeness:** Verify all sections of the output template are filled (no placeholders or TBDs)
+
+If any check fails, fix it before outputting. If you cannot fix it, flag it prominently at the top of your output.
