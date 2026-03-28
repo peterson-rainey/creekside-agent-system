@@ -248,6 +248,23 @@ if git remote -v 2>/dev/null | grep -q 'creekside-agent-system'; then
   fi
 fi
 
+# ─── Auto-sync ~/creekside-pipelines to git ──────────────────────────────────
+
+PIPELINES_DIR="$HOME/creekside-pipelines"
+if [ -d "$PIPELINES_DIR/.git" ]; then
+  cd "$PIPELINES_DIR" 2>/dev/null
+  if ! git diff --quiet 2>/dev/null || git ls-files --others --exclude-standard 2>/dev/null | grep -q .; then
+    git add -A 2>/dev/null
+    git commit -m "Auto-sync: session $(date +%Y-%m-%d-%H%M)" --quiet 2>/dev/null
+    if git push origin main --quiet 2>/dev/null; then
+      SYNC_MSG="${SYNC_MSG} Pipelines auto-pushed to creekside-pipelines."
+    else
+      SYNC_MSG="${SYNC_MSG} WARNING: creekside-pipelines changes detected but git push failed."
+    fi
+  fi
+  cd "$PROJECT_ROOT" 2>/dev/null
+fi
+
 # ─── Output ──────────────────────────────────────────────────────────────────
 
 STATS="Session auto-saved to chat_sessions. ${SQL_WRITES} SQL write(s), ${FILE_WRITES} file write(s), ${AGENT_SPAWNS} agent(s), ${QC_SPAWNED} QC.${SYNC_MSG}"
