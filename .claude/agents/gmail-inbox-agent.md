@@ -84,14 +84,28 @@ Every email gets TWO labels: (1) GPS folder label + (2) client/entity label if i
 - **For Peterson** and **To Review**: STAY in inbox
 - **Done**, **Info**, **VA Handling**: REMOVE from inbox (removeLabelIds: ["INBOX"])
 
-## STEP 3: APPLY LABELS
+## STEP 3: QUEUE LABEL ACTIONS
 
-For each classified email, call gmail_modify with:
-- `message_id`: the email's message ID
-- `addLabelIds`: [GPS_label_id, client_label_id] (omit client_label_id if null)
-- `removeLabelIds`: ["INBOX"] only if GPS label is Done, Info/*, or VA Handling
+For each classified email, INSERT into the label action queue. A separate Python script (gmail_label_executor.py) will read these and apply labels via the Gmail API.
 
-Never add TRASH or SPAM labels. Max 50 label operations per run.
+```sql
+INSERT INTO gmail_label_actions (message_id, thread_id, add_labels, remove_labels, gps_label, reason)
+VALUES (
+  'message_id_here',
+  'thread_id_here',
+  ARRAY['GPS_label_id', 'client_label_id'],  -- omit client_label_id if null
+  ARRAY['INBOX'],  -- only include if GPS label is Done, Info/*, or VA Handling
+  'GPS Label Name',
+  'Brief reason for classification'
+);
+```
+
+Rules:
+- Never add TRASH or SPAM to add_labels
+- Max 50 inserts per run
+- For emails that STAY in inbox (For Peterson, To Review): do NOT include 'INBOX' in remove_labels
+- For emails that leave inbox (Done, Info/*, VA Handling): include 'INBOX' in remove_labels
+- Use the label IDs from gmail_get_label_map(), not human-readable names, in add_labels/remove_labels
 
 ## STEP 3b: QUEUE DRAFTS FOR HIGH-PRIORITY EMAILS
 
