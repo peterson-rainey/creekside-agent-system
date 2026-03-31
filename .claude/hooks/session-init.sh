@@ -1,5 +1,6 @@
 #!/bin/bash
 # SessionStart hook: Fetch the startup guide + correction titles from agent_knowledge.
+# Also identifies the current user from .claude/user-role.conf and injects their identity.
 # Two API calls. Guide content is maintained in the database so any chat can update it.
 # Critical record ID: 83308752-50a8-42cd-bb15-54bfa04e7764 (see agent_knowledge 873e2c75 for docs)
 # Fails silently on any error — never blocks session start.
@@ -10,6 +11,47 @@ KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 # Skip if no key or jq unavailable
 [ -z "$KEY" ] && exit 0
 command -v jq >/dev/null 2>&1 || exit 0
+
+# --- 0. Identify current user from user-role.conf ---
+USER_IDENTITY=""
+ROLE_FILE="$CLAUDE_PROJECT_DIR/.claude/user-role.conf"
+if [ -f "$ROLE_FILE" ]; then
+  USER_ROLE=$(grep -E '^role=' "$ROLE_FILE" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
+  USER_EMAIL=$(grep -E '^email=' "$ROLE_FILE" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
+
+  if [ -n "$USER_EMAIL" ] && [ -n "$USER_ROLE" ]; then
+    # Look up system_users record by email
+    USER_DATA=$(curl -s --max-time 5 \
+      "${SUPABASE_URL}/system_users?email=eq.${USER_EMAIL}&select=id,name,role&is_active=eq.true&limit=1" \
+      -H "apikey: ${KEY}" \
+      -H "Authorization: Bearer ${KEY}" 2>/dev/null)
+
+    USER_ID=$(echo "$USER_DATA" | jq -r '.[0].id // empty' 2>/dev/null)
+    USER_NAME=$(echo "$USER_DATA" | jq -r '.[0].name // empty' 2>/dev/null)
+    DB_ROLE=$(echo "$USER_DATA" | jq -r '.[0].role // empty' 2>/dev/null)
+
+    if [ -n "$USER_ID" ] && [ -n "$USER_NAME" ]; then
+      if [ "$DB_ROLE" = "contractor" ]; then
+        USER_IDENTITY="### Current User Identity
+You are operating as **${USER_NAME}** (${USER_EMAIL}), role: **contractor**, system_users ID: \`${USER_ID}\`.
+
+**CRITICAL**: For EVERY INSERT statement you write, you MUST include \`created_by_user_id = '${USER_ID}'\` in the VALUES. This is how the database tracks who created each row. Without it, the row will have no attribution.
+
+Example:
+\`\`\`sql
+INSERT INTO agent_knowledge (type, title, content, tags, created_by_user_id)
+VALUES ('note', 'My title', 'My content', ARRAY['tag'], '${USER_ID}');
+\`\`\`
+
+Contractor restrictions apply: you cannot modify admin-created data, system tables, or agent definitions. Your inserts are automatically flagged as unverified."
+      elif [ "$DB_ROLE" = "admin" ]; then
+        USER_IDENTITY="### Current User Identity
+You are operating as **${USER_NAME}** (${USER_EMAIL}), role: **admin**, system_users ID: \`${USER_ID}\`.
+For INSERT statements, include \`created_by_user_id = '${USER_ID}'\` to track ownership."
+      fi
+    fi
+  fi
+fi
 
 # --- 1. Fetch the startup guide (single record) ---
 GUIDE=$(curl -s --max-time 8 \
@@ -42,6 +84,13 @@ ${CORR_LIST}
 Query full content: SELECT title, content FROM agent_knowledge WHERE type='correction' ORDER BY created_at DESC;"
 else
   FULL_MSG="$CONTENT"
+fi
+
+# Append user identity if resolved
+if [ -n "$USER_IDENTITY" ]; then
+  FULL_MSG="${FULL_MSG}
+
+${USER_IDENTITY}"
 fi
 
 ESCAPED=$(echo "$FULL_MSG" | python3 -c 'import sys,json; print(json.dumps({"systemMessage": sys.stdin.read().strip()}))' 2>/dev/null)
