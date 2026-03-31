@@ -76,8 +76,9 @@ For each row from the queue:
 Every email gets TWO labels: (1) GPS folder label + (2) client/entity label if identified. Use the gmail_label_id from the entity lookup. If no client label exists for this entity, apply GPS label only.
 
 ### Inbox Behavior
-- **For Peterson** and **To Review**: STAY in inbox
-- **Done**, **Info**, **VA Handling**: REMOVE from inbox (removeLabelIds: ["INBOX"])
+- **ALL emails**: REMOVE from inbox (removeLabelIds: ["INBOX"])
+- The inbox should always be completely clear. If something is in the inbox, it means the VA hasn't handled it yet.
+- Peterson checks his "For Peterson" and "To Review" labels directly — not the inbox.
 
 ## STEP 3: WRITE ALL LABEL ACTIONS (batch)
 
@@ -92,8 +93,7 @@ VALUES
 
 Rules:
 - Never add TRASH or SPAM to add_labels
-- For emails that STAY in inbox (For Peterson, To Review): use empty remove_labels array
-- For emails that leave inbox (Done, Info/*, VA Handling): include 'INBOX' in remove_labels
+- ALWAYS include 'INBOX' in remove_labels — every email gets removed from inbox after labeling
 - Use the label IDs from gmail_get_label_map(), not human-readable names
 
 ## STEP 3b: QUEUE DRAFTS FOR HIGH-PRIORITY EMAILS
