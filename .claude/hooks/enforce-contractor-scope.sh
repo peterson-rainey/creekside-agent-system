@@ -12,6 +12,9 @@
 #
 # If role=admin or file doesn't exist, everything is allowed.
 
+# Ensure jq is available (fail-open if missing — RLS is the real enforcement layer)
+command -v jq >/dev/null 2>&1 || exit 0
+
 # --- LOAD USER ROLE ---
 ROLE_FILE="$CLAUDE_PROJECT_DIR/.claude/user-role.conf"
 [ ! -f "$ROLE_FILE" ] && exit 0
@@ -21,26 +24,27 @@ ROLE=$(grep -E '^role=' "$ROLE_FILE" 2>/dev/null | cut -d= -f2 | tr -d '[:space:
 
 # --- CONTRACTOR RESTRICTIONS ---
 INPUT=$(cat)
-TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
-CMD=$(echo "$INPUT" | jq -r '.tool_input.command // .tool_input.query // empty')
+TOOL=$(printf '%s' "$INPUT" | jq -r '.tool_name // empty')
+CMD=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // .tool_input.query // empty')
 
 # Block apply_migration entirely for contractors
-if echo "$TOOL" | grep -qi 'apply_migration'; then
+if printf '%s' "$TOOL" | grep -qi 'apply_migration'; then
   echo "BLOCKED: Contractors cannot run database migrations. Contact Peterson or Cade for schema changes." >&2
   exit 2
 fi
 
 # Only check SQL tools from here
-echo "$TOOL" | grep -qi 'execute_sql' || exit 0
+printf '%s' "$TOOL" | grep -qi 'execute_sql' || exit 0
 
 # Skip if no query
 [ -z "$CMD" ] && exit 0
 
-# Normalize to uppercase for pattern matching
-CMD_UPPER=$(echo "$CMD" | tr '[:lower:]' '[:upper:]')
+# Collapse newlines, strip double-quotes (prevent quoted identifier bypass),
+# and normalize to uppercase for pattern matching
+CMD_UPPER=$(printf '%s' "$CMD" | tr '\n' ' ' | tr -d '"' | tr '[:lower:]' '[:upper:]')
 
 # Protected tables that contractors cannot write to
-PROTECTED_TABLES="agent_definitions|system_users|system_registry|scheduled_agents|prompt_config|api_cost_limits|api_cost_breaches|api_cost_tracking"
+PROTECTED_TABLES="AGENT_DEFINITIONS|SYSTEM_USERS|SYSTEM_REGISTRY|SCHEDULED_AGENTS|PROMPT_CONFIG|API_COST_LIMITS|API_COST_BREACHES|API_COST_TRACKING"
 
 # Check for INSERT/UPDATE/DELETE on protected tables
 if echo "$CMD_UPPER" | grep -qE "(INSERT\s+INTO|UPDATE|DELETE\s+FROM)\s+($PROTECTED_TABLES)"; then
