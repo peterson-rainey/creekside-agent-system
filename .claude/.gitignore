@@ -5,3 +5,4 @@ plans/
 
 # Ignore git-internal directories from nested repos
 .git/
+user-role.conf
