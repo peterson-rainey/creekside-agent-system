@@ -32,9 +32,15 @@ Apply every correction rule returned by gmail_get_corrections() — these overri
 
 ## STEP 2: CLASSIFY ALL QUEUED EMAILS IN ONE PASS
 
+**EFFICIENCY RULES (you have a max of 20 turns — use them wisely):**
+- Read ALL email snippets from the queue data you already have. The `snippet` field contains pre-fetched body text (up to 2000 chars).
+- Do NOT call `gmail_read_message` unless the snippet is empty. Most emails have enough body text in the snippet to classify.
+- Classify ALL emails mentally first, then write ALL label actions in ONE SQL call (multi-row INSERT).
+- Do NOT process emails one at a time (read → classify → write → repeat). That wastes turns.
+- Target: 4-6 turns total for any batch size (1. check queue, 2. load context, 3. classify + write labels, 4. write drafts + mark complete, 5. log).
+
 For each row from the queue:
 - The `snippet` field contains the pre-fetched email body (up to 2000 chars). Use this for classification.
-- Only call `gmail_read_message(message_id)` if the snippet is empty or insufficient for a confident classification.
 - The `escalation_reason` tells you WHY the Python classifier couldn't handle it — use this as context.
 - The `confidence` field tells you how the sender was matched: high (exact email), medium (domain), low (unknown).
 
