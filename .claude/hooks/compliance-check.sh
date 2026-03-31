@@ -10,6 +10,11 @@
 # 3. Save to raw_content for embedding generation
 # 4. Report QC compliance status
 
+# ─── Read session context from stdin ─────────────────────────────────────────
+
+INPUT=$(cat)
+SESSION=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
+
 # ─── Config ──────────────────────────────────────────────────────────────────
 
 STATE_DIR="/tmp/claude-session-state"
@@ -30,8 +35,8 @@ fi
 # ─── Find session state ──────────────────────────────────────────────────────
 
 LATEST_STATE=""
-if [ -d "$STATE_DIR" ]; then
-  LATEST_STATE=$(ls -t "$STATE_DIR"/*.state 2>/dev/null | head -1)
+if [ -d "$STATE_DIR" ] && [ "$SESSION" != "unknown" ]; then
+  LATEST_STATE="$STATE_DIR/$SESSION.state"
 fi
 
 if [ -z "$LATEST_STATE" ] || [ ! -f "$LATEST_STATE" ]; then
@@ -264,6 +269,10 @@ if [ -d "$PIPELINES_DIR/.git" ]; then
   fi
   cd "$PROJECT_ROOT" 2>/dev/null
 fi
+
+# ─── Clean up stale state files (older than 24h) ────────────────────────────
+
+find "$STATE_DIR" -name "*.state" -mtime +1 -delete 2>/dev/null
 
 # ─── Output ──────────────────────────────────────────────────────────────────
 
