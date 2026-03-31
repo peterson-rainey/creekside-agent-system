@@ -20,9 +20,13 @@ if [ -f "$ROLE_FILE" ]; then
   USER_EMAIL=$(grep -E '^email=' "$ROLE_FILE" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
 
   if [ -n "$USER_EMAIL" ] && [ -n "$USER_ROLE" ]; then
+    # URL-encode the email to handle + and special characters
+    ENCODED_EMAIL=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$USER_EMAIL" 2>/dev/null)
+    [ -z "$ENCODED_EMAIL" ] && ENCODED_EMAIL="$USER_EMAIL"
+
     # Look up system_users record by email
     USER_DATA=$(curl -s --max-time 5 \
-      "${SUPABASE_URL}/system_users?email=eq.${USER_EMAIL}&select=id,name,role&is_active=eq.true&limit=1" \
+      "${SUPABASE_URL}/system_users?email=eq.${ENCODED_EMAIL}&is_active=eq.true&select=id,name,role&limit=1" \
       -H "apikey: ${KEY}" \
       -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
@@ -60,7 +64,15 @@ GUIDE=$(curl -s --max-time 8 \
   -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
 CONTENT=$(echo "$GUIDE" | jq -r '.[0].content // empty' 2>/dev/null)
-[ -z "$CONTENT" ] && exit 0
+
+# If guide is empty but we have user identity, still inject identity
+if [ -z "$CONTENT" ] && [ -z "$USER_IDENTITY" ]; then
+  exit 0
+elif [ -z "$CONTENT" ]; then
+  ESCAPED=$(echo "$USER_IDENTITY" | python3 -c 'import sys,json; print(json.dumps({"systemMessage": sys.stdin.read().strip()}))' 2>/dev/null)
+  [ -n "$ESCAPED" ] && echo "$ESCAPED"
+  exit 0
+fi
 
 # --- 2. Fetch correction titles (lightweight — titles only, not full content) ---
 CORRECTIONS=$(curl -s --max-time 5 \
