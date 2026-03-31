@@ -46,9 +46,9 @@ fi
 
 # ─── Parse session activity ──────────────────────────────────────────────────
 
-SQL_WRITES=$(grep -c "^SQL_WRITE=" "$LATEST_STATE" 2>/dev/null || echo "0")
-FILE_WRITES=$(grep -c "^FILE_WRITE=" "$LATEST_STATE" 2>/dev/null || echo "0")
-AGENT_SPAWNS=$(grep -c "^AGENT_SPAWN=" "$LATEST_STATE" 2>/dev/null || echo "0")
+SQL_WRITES=$(grep -c "^SQL_WRITE=" "$LATEST_STATE" 2>/dev/null) || SQL_WRITES=0
+FILE_WRITES=$(grep -c "^FILE_WRITE=" "$LATEST_STATE" 2>/dev/null) || FILE_WRITES=0
+AGENT_SPAWNS=$(grep -c "^AGENT_SPAWN=" "$LATEST_STATE" 2>/dev/null) || AGENT_SPAWNS=0
 QC_SPAWNED=$(grep -E "AGENT_SPAWN=.*\|(qc-reviewer-agent|code-audit-agent|data-quality-agent|expert-review-agent|security-audit-agent)" "$LATEST_STATE" 2>/dev/null | wc -l | tr -d ' ')
 
 # Skip if no writes at all
