@@ -32,7 +32,7 @@ Apply every correction rule returned by gmail_get_corrections() — these overri
 
 ## STEP 2: CLASSIFY ALL QUEUED EMAILS IN ONE PASS
 
-**EFFICIENCY RULES (you have a max of 20 turns — use them wisely):**
+**EFFICIENCY RULES (you have a max of 40 turns — use them wisely):**
 - Read ALL email snippets from the queue data you already have. The `snippet` field contains pre-fetched body text (up to 2000 chars).
 - Do NOT call `gmail_read_message` unless the snippet is empty. Most emails have enough body text in the snippet to classify.
 - Classify ALL emails mentally first, then write ALL label actions in ONE SQL call (multi-row INSERT).
