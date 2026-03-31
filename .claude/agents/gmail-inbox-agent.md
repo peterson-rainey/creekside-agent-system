@@ -112,6 +112,22 @@ If you queued any drafts, trigger the intelligence agent:
 UPDATE scheduled_agents SET trigger_now = true WHERE name = 'gmail-intelligence';
 ```
 
+## STEP 3c: FLAG POTENTIAL AUTO-FILTERS
+
+For emails you classified as Done, Info, or VA Handling that seem like they could be safely auto-filtered by the Python noise filter in the future (e.g., recurring notifications, newsletters, system alerts that Peterson doesn't need to see), flag them:
+
+```sql
+UPDATE gmail_ai_queue SET potential_auto_filter = true
+WHERE id IN ('id_of_candidate_1', 'id_of_candidate_2');
+```
+
+Only flag emails where you're confident the sender+type combination is ALWAYS low-value. Don't flag:
+- Client emails (even routine ones — content varies)
+- Team member emails (context-dependent)
+- Anything that required reading the body to classify
+
+Good candidates: recurring notifications, newsletters Peterson hasn't opted out of, platform digests, automated reports.
+
 ## STEP 4: MARK ALL QUEUE ITEMS COMPLETED (batch)
 
 ```sql
