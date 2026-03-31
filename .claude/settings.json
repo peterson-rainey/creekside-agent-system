@@ -179,13 +179,8 @@
           },
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/surface-admin-questions.sh",
-            "timeout": 15
-          },
-          {
-            "type": "command",
             "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/session-init.sh",
-            "timeout": 20
+            "timeout": 10
           }
         ]
       }
