@@ -76,7 +76,7 @@ For each row from the queue:
 6. **Lead/prospect email** → For Peterson (respond within 2 hours)
 7. **Platform invitation** (FB Business, Google Tag Manager, GMB transfer, Drive access) → VA Handling, remove from inbox
 8. **Calendar cancellation from team member** → Done (informational, no action needed)
-9. **Unsure** → To Review + client label if identifiable. Stay in inbox.
+9. **Unsure** → To Review + client label if identifiable. Remove from inbox.
 
 ### Double-Tag Rule (MANDATORY)
 Every email gets TWO labels: (1) GPS folder label + (2) client/entity label if identified. Use the gmail_label_id from the entity lookup. If no client label exists for this entity, apply GPS label only.
@@ -94,7 +94,7 @@ For ALL classified emails, INSERT into gmail_label_actions. Do this efficiently 
 INSERT INTO gmail_label_actions (message_id, thread_id, add_labels, remove_labels, gps_label, reason)
 VALUES
   ('msg_id_1', 'thread_id_1', ARRAY['label_id'], ARRAY['INBOX'], 'Done', 'reason1'),
-  ('msg_id_2', 'thread_id_2', ARRAY['label_id'], ARRAY[]::text[], 'For Peterson', 'reason2');
+  ('msg_id_2', 'thread_id_2', ARRAY['label_id'], ARRAY['INBOX'], 'For Peterson', 'reason2');
 ```
 
 Rules:
