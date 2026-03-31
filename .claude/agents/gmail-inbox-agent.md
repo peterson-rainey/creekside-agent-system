@@ -127,6 +127,56 @@ VALUES ('note',
   'verified');
 ```
 
+## STEP 5b: AMNESIA PREVENTION (end of every run)
+
+For each unknown sender you classified (entity_type = 'unknown' or 'lead'), write a discovery note so the system learns:
+
+```sql
+INSERT INTO agent_knowledge (type, title, content, tags, confidence)
+VALUES ('note',
+  'New sender discovered: [sender_email]',
+  'Sender: [sender_name] <[sender_email]>. Subject: [subject]. Classified as: [gps_label]. Reason: [reason]. Entity type: [entity_type]. Potential lead: [yes/no based on subject content].',
+  ARRAY['gmail-inbox', 'sender-discovery', 'amnesia-prevention'],
+  'verified')
+ON CONFLICT DO NOTHING;
+```
+
+If you discover a new entity-to-email mapping (e.g., a sender you matched to a client by reading email content, but who wasn't in the preprocess_entities lookup), write a configuration entry:
+
+```sql
+INSERT INTO agent_knowledge (type, title, content, tags, confidence)
+VALUES ('configuration',
+  'Email mapping: [sender_email] → [entity_name]',
+  'Discovered that [sender_email] ([sender_name]) is associated with [entity_name] ([entity_type]). Match method: content reading. Should be added to entity_data.py for deterministic matching.',
+  ARRAY['gmail-inbox', 'entity-match', 'amnesia-prevention'],
+  'verified');
+```
+
+## STEP 5c: CORRECTION SUBMISSION PROMPT
+
+If Peterson has moved an email from one GPS folder to another (indicating a routing error), and you notice this during processing, write a correction:
+
+```sql
+INSERT INTO agent_knowledge (type, title, content, tags, confidence)
+VALUES ('correction',
+  'Routing correction: [sender/pattern] should be [correct_label] not [wrong_label]',
+  'Original routing: [wrong_label]. Corrected to: [correct_label]. Pattern: [sender_email or subject pattern]. Rule: [plain-English rule for future routing].',
+  ARRAY['gmail-inbox', 'correction', 'routing'],
+  'verified');
+```
+
+## Self-QC Validation (MANDATORY before output)
+
+Before presenting results:
+1. **Corrections applied:** Confirm gmail_get_corrections() rules were checked and applied
+2. **Entity coverage:** Every email has an entity_type assigned (even if 'unknown')
+3. **Double-tag rule:** Every label action has GPS label + client label (if client matched)
+4. **URGENT routing:** Tony/Aura Displays flagged as URGENT
+5. **Peterson list discipline:** Only emails requiring Peterson's judgment routed to For Peterson
+6. **No internal leakage:** No drafts contain internal discussion or agent system details
+
+If any check fails, fix it before completing the run.
+
 ## RULES
 
 - You ONLY process emails from gmail_ai_queue. Do NOT search the inbox directly.

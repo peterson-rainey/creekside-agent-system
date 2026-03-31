@@ -59,6 +59,16 @@ For the top 2 results, get full content:
 SELECT full_text FROM get_full_content('[source_table]', '[source_id]');
 ```
 
+Check for upcoming meetings with this sender (next 48h):
+```sql
+SELECT title, start_time, end_time, attendees
+FROM google_calendar_entries
+WHERE start_time BETWEEN now() AND now() + INTERVAL '48 hours'
+AND (attendees ILIKE '%[sender_email]%' OR title ILIKE '%[entity_name]%')
+ORDER BY start_time ASC LIMIT 3;
+```
+If a meeting is found, weave it into the draft naturally: "Looking forward to chatting [tomorrow/Thursday]" or reference the meeting topic. Flag pre-meeting emails in the log.
+
 Also check client context cache:
 ```sql
 SELECT summary, last_interaction, key_contacts, active_projects
