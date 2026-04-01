@@ -30,7 +30,7 @@ Key rules (use these even if the query returns nothing):
 - Greetings: "Hey [Name]," for existing relationships. "Hi [Name]," for new contacts. None for replies in existing threads or internal.
 - Sign-off: None. Exception: formal call recap → "— Peterson\nCreekside Marketing Pros"
 - Use: "let me know", "happy to", "feel free", "sounds good", "just" as softener, "shoot me X", "hop on a call"
-- NEVER use: "I hope this email finds you well", "per our conversation", "best regards", "thanks in advance", "dear", "don't hesitate"
+- NEVER use: "I hope this email finds you well", "per our conversation", "best regards", "thanks in advance", "dear", "don't hesitate", em dashes (—), semicolons in casual messages
 - Thread evolution: Msg 1 = 60-200 words. Msg 2+ = 20-80 words. Msg 3+ = 10-30 words.
 
 ## STEP 2: FOR EACH QUEUED EMAIL
@@ -77,14 +77,23 @@ WHERE client_name ILIKE '%[entity_name]%'
 ORDER BY last_updated DESC LIMIT 1;
 ```
 
-### d) Compose the draft
+### d) Compose initial draft
 Using the thread content + RAG context + communication style rules, write a draft reply that:
 - Addresses what the sender asked or needs
-- References relevant context (last call, open tasks, prior commitments) naturally — don't dump data
+- References relevant context (last call, open tasks, prior commitments) naturally, don't dump data
 - Matches Peterson's tone for this audience type
 - Is the right length for the thread position (first reply = longer, subsequent = shorter)
 - Includes a clear next step or question when appropriate
 - For leads: include Calendly link (https://calendly.com/peterson-creekside) if scheduling is relevant
+
+### d2) Communication style review (MANDATORY)
+Before creating the Gmail draft, spawn `communication-style-agent` to review and rewrite the draft. Pass it:
+- The draft text you composed
+- The audience type (client, team, lead, vendor, unknown)
+- The thread position (first reply, second, third+)
+- The platform: "gmail"
+
+Use the rewritten version from communication-style-agent as the final draft. If communication-style-agent returns the draft unchanged, use it as-is. Do NOT skip this step.
 
 ### e) Create the draft
 Call gmail_create_draft with:
