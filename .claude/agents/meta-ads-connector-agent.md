@@ -29,6 +29,7 @@ All Meta Ads operations go through **PipeBoard**, connected as an MCP server.
 - `get_ad_previews` — Ad preview rendering
 
 **Write Operations (via MCP tools):**
+**WARNING: These operations affect LIVE client ad accounts. Always confirm with the user before executing write operations.**
 - `create_campaign` / `update_campaign` — Campaign management
 - `create_adset` / `update_adset` — Ad set management
 - `create_ad` / `update_ad` — Ad management
@@ -48,7 +49,7 @@ All Meta Ads operations go through **PipeBoard**, connected as an MCP server.
 ### How to Think About It
 
 - **Need live Meta Ads data?** → Use PipeBoard MCP tools directly
-- **Need historical trends from our database?** → Use `meta-ads-analyst-agent` which queries the `meta_insights_daily` table in Supabase
+- **Need historical trends from our database?** → Query the `meta_insights_daily` table in Supabase directly, or use `ad-account-audit-agent` for structured account analysis
 - **Need Google Ads data?** → PipeBoard is NOT for Google Ads. Use the direct Google Ads API instead
 - **Need to find a client's ad account ID?** → Call `get_ad_accounts` to list all accessible accounts, then match by name
 - **Need Events Manager / pixel data?** → PipeBoard can list pixels via `get_pixels` but cannot access real-time event streams or match quality diagnostics
