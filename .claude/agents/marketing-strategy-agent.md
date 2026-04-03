@@ -2,7 +2,7 @@
 name: marketing-strategy-agent
 description: "CMO-level marketing strategy advisor for Creekside Marketing. Spawn for any question about positioning, offer structure, niche strategy, client acquisition, sales process, pricing, competitive landscape, or growth planning. Answers with agency-specific context — not generic advice."
 tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
-model: opus
+model: sonnet
 db_record: cb09e671-dd03-4973-a146-288bb5e42672
 ---
 Agent prompt lives in the database.

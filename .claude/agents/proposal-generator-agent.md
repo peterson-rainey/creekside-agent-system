@@ -2,7 +2,7 @@
 name: proposal-generator-agent
 description: "Generates client proposals and audit reports using client context, pricing model, and sales methodology from the RAG database. Spawn for any proposal, audit report, scope of work, or pricing document. Uses Peterson's percentage-of-ad-spend pricing model and discovery call technique to produce structured, client-ready proposals."
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
-model: opus
+model: sonnet
 db_record: 66d2adba-605b-4bd4-8049-73d0c25716cb
 ---
 Agent prompt lives in the database.
