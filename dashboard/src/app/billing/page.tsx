@@ -26,7 +26,7 @@ interface UnpaidInvoice {
   amount: number;
   invoice_number: string;
   source_timestamp: string;
-  days_outstanding: number;
+  days_outstanding: number | null;
 }
 
 interface FailedPayment {
@@ -199,8 +199,8 @@ export default function BillingPage() {
                     <td className="py-3 px-4 text-sm text-slate-600">#{inv.invoice_number}</td>
                     <td className="py-3 px-4 text-sm text-slate-700 text-right">{formatCurrency(inv.amount)}</td>
                     <td className="py-3 px-4 text-sm text-slate-600">{formatDate(inv.source_timestamp)}</td>
-                    <td className={`py-3 px-4 text-sm text-right ${daysColor(inv.days_outstanding)}`}>
-                      {inv.days_outstanding}d
+                    <td className={`py-3 px-4 text-sm text-right ${inv.days_outstanding != null ? daysColor(inv.days_outstanding) : 'text-slate-300'}`}>
+                      {inv.days_outstanding != null ? `${inv.days_outstanding}d` : '--'}
                     </td>
                   </tr>
                 ))}

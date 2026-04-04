@@ -137,9 +137,9 @@ export async function GET() {
       amount: (row.amount_cents ?? 0) / 100,
       invoice_number: parseInvoiceNumber(row.title ?? ''),
       source_timestamp: row.source_timestamp,
-      days_outstanding: Math.floor(
-        (now.getTime() - new Date(row.source_timestamp).getTime()) / (1000 * 60 * 60 * 24)
-      ),
+      days_outstanding: row.source_timestamp
+        ? Math.floor((now.getTime() - new Date(row.source_timestamp).getTime()) / (1000 * 60 * 60 * 24))
+        : null,
     }));
 
     // Failed payments
