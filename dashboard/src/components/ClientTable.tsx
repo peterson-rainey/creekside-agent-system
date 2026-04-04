@@ -1,0 +1,1003 @@
+'use client';
+
+import { useEffect, useState, useMemo, useCallback, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import FilterBar from './FilterBar';
+
+interface Client {
+  id: string;
+  client_name: string;
+  platform: string;
+  ad_account_id: string | null;
+  ad_account_name: string | null;
+  monthly_budget: number | null;
+  monthly_revenue: number | null;
+  priority: string | null;
+  account_manager: string | null;
+  platform_operator: string | null;
+  status: string;
+  [key: string]: unknown;
+}
+
+interface ClientGroup {
+  clientName: string;
+  rows: Client[];
+}
+
+interface ConversionEntry {
+  type: string;
+  label: string;
+  count: number;
+}
+
+interface LiveAccountData {
+  spend: number;
+  conversions: number;
+  costPerConversion: number;
+  conversionBreakdown: ConversionEntry[];
+  error?: string;
+}
+
+type SortKey = 'client_name' | 'platform' | 'monthly_budget' | 'est_revenue' | 'priority' | 'account_manager' | 'platform_operator' | 'status';
+
+// ── Fee tier calculator ─────────────────────────────────────────────────
+// Creekside charges % of ad spend: 20% ($0-15k), 15% ($15-30k), 10% ($30-45k), 5% ($45k+)
+// Minimums: $1,000/platform; $2,000 when managing both Google + Meta
+function calcExpectedFee(totalAdSpend: number, platformCount: number): number {
+  if (totalAdSpend <= 0) return 0;
+
+  let fee = 0;
+  let remaining = totalAdSpend;
+
+  // Tier 1: 0-15k at 20%
+  const t1 = Math.min(remaining, 15000);
+  fee += t1 * 0.20;
+  remaining -= t1;
+
+  // Tier 2: 15k-30k at 15%
+  if (remaining > 0) {
+    const t2 = Math.min(remaining, 15000);
+    fee += t2 * 0.15;
+    remaining -= t2;
+  }
+
+  // Tier 3: 30k-45k at 10%
+  if (remaining > 0) {
+    const t3 = Math.min(remaining, 15000);
+    fee += t3 * 0.10;
+    remaining -= t3;
+  }
+
+  // Tier 4: 45k+ at 5%
+  if (remaining > 0) {
+    fee += remaining * 0.05;
+  }
+
+  // Enforce minimums
+  const minimum = platformCount >= 2 ? 2000 : 1000;
+  return Math.max(fee, minimum);
+}
+
+const PARTNER_NOTES: Record<string, string> = {
+  'Chris Ideson Meal Prep': 'via Bottle.com',
+  'Punch Drunk Chef Meal Prep': 'via Bottle.com',
+  'Unrefined Meal Prep': 'via Bottle.com',
+  'Tilly Mill Auto Center': 'via FirstUp Marketing',
+  'Polaris Dentistry': 'via FirstUp Marketing',
+};
+
+const PRIORITY_ORDER: Record<string, number> = { high: 0, medium: 1, low: 2 };
+const COOLDOWN_SECONDS = 300; // 5 minutes
+
+function formatCurrency(value: number): string {
+  return `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function formatInteger(value: number): string {
+  return Math.round(value).toLocaleString();
+}
+
+function PlatformBadge({ platform }: { platform: string }) {
+  const isMeta = platform?.toLowerCase() === 'meta';
+  return (
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold ${
+      isMeta
+        ? 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-600/20'
+        : 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20'
+    }`}>
+      <span className={`w-1.5 h-1.5 rounded-full ${isMeta ? 'bg-blue-500' : 'bg-emerald-500'}`} />
+      {isMeta ? 'Meta' : 'Google'}
+    </span>
+  );
+}
+
+function PriorityBadge({ priority }: { priority: string | null }) {
+  if (!priority) return <span className="text-slate-300 text-sm">--</span>;
+  const lower = priority.toLowerCase();
+  const styles: Record<string, string> = {
+    high: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20',
+    medium: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20',
+    low: 'bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-500/20',
+  };
+  return (
+    <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold capitalize ${styles[lower] || styles.low}`}>
+      {priority}
+    </span>
+  );
+}
+
+function StatusDot({ status }: { status: string }) {
+  const lower = status?.toLowerCase() ?? '';
+  const dotColor = lower === 'active' ? 'bg-emerald-500' : lower === 'paused' ? 'bg-amber-500' : lower === 'churned' ? 'bg-red-500' : 'bg-slate-300';
+  const textColor = lower === 'active' ? 'text-emerald-700' : lower === 'paused' ? 'text-amber-700' : lower === 'churned' ? 'text-red-700' : 'text-slate-500';
+  return (
+    <span className={`inline-flex items-center gap-2 text-sm font-medium capitalize ${textColor}`}>
+      <span className={`w-2 h-2 rounded-full ${dotColor}`} />
+      {status}
+    </span>
+  );
+}
+
+function InlineTableSelect({
+  clientId,
+  field,
+  value,
+  options,
+  placeholder,
+  onSaved,
+}: {
+  clientId: string;
+  field: string;
+  value: string | null;
+  options: { value: string; label: string }[];
+  placeholder: string;
+  onSaved: (clientId: string, field: string, value: string) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.stopPropagation();
+    const newValue = e.target.value;
+    setSaving(true);
+    try {
+      const res = await fetch('/api/clients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: clientId, [field]: newValue }),
+      });
+      if (res.ok) onSaved(clientId, field, newValue);
+    } catch { /* ignore */ }
+    setSaving(false);
+    setEditing(false);
+  };
+
+  if (editing) {
+    return (
+      <select
+        autoFocus
+        defaultValue={value ?? ''}
+        onChange={handleChange}
+        onBlur={(e) => { e.stopPropagation(); setEditing(false); }}
+        onClick={(e) => e.stopPropagation()}
+        className="text-xs border border-slate-200 rounded px-1.5 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] max-w-[140px]"
+      >
+        <option value="">--</option>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>{opt.label}</option>
+        ))}
+      </select>
+    );
+  }
+
+  return (
+    <span
+      onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+      className={`cursor-pointer hover:text-[var(--creekside-blue)] transition-colors ${
+        value ? 'border-b border-dashed border-transparent hover:border-[var(--creekside-blue)]' : 'text-slate-300 hover:text-[var(--creekside-blue)]'
+      }`}
+      title={`Click to change`}
+    >
+      {saving ? '...' : value || placeholder}
+    </span>
+  );
+}
+
+function InlinePrioritySelect({
+  clientId,
+  value,
+  onSaved,
+}: {
+  clientId: string;
+  value: string | null;
+  onSaved: (clientId: string, field: string, value: string) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.stopPropagation();
+    const newValue = e.target.value;
+    setSaving(true);
+    try {
+      const res = await fetch('/api/clients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: clientId, priority: newValue }),
+      });
+      if (res.ok) onSaved(clientId, 'priority', newValue);
+    } catch { /* ignore */ }
+    setSaving(false);
+    setEditing(false);
+  };
+
+  if (editing) {
+    return (
+      <select
+        autoFocus
+        defaultValue={value ?? ''}
+        onChange={handleChange}
+        onBlur={(e) => { e.stopPropagation(); setEditing(false); }}
+        onClick={(e) => e.stopPropagation()}
+        className="text-xs border border-slate-200 rounded px-1.5 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)]"
+      >
+        <option value="">None</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    );
+  }
+
+  if (saving) return <span className="text-xs text-slate-400">...</span>;
+
+  return (
+    <span onClick={(e) => { e.stopPropagation(); setEditing(true); }} className="cursor-pointer">
+      <PriorityBadge priority={value} />
+    </span>
+  );
+}
+
+function InlineStatusSelect({
+  clientId,
+  value,
+  onSaved,
+}: {
+  clientId: string;
+  value: string;
+  onSaved: (clientId: string, field: string, value: string) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.stopPropagation();
+    const newValue = e.target.value;
+    setSaving(true);
+    try {
+      const res = await fetch('/api/clients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: clientId, status: newValue }),
+      });
+      if (res.ok) onSaved(clientId, 'status', newValue);
+    } catch { /* ignore */ }
+    setSaving(false);
+    setEditing(false);
+  };
+
+  if (editing) {
+    return (
+      <select
+        autoFocus
+        defaultValue={value}
+        onChange={handleChange}
+        onBlur={(e) => { e.stopPropagation(); setEditing(false); }}
+        onClick={(e) => e.stopPropagation()}
+        className="text-xs border border-slate-200 rounded px-1.5 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)]"
+      >
+        <option value="active">Active</option>
+        <option value="paused">Paused</option>
+        <option value="churned">Churned</option>
+      </select>
+    );
+  }
+
+  if (saving) return <span className="text-xs text-slate-400">...</span>;
+
+  return (
+    <span onClick={(e) => { e.stopPropagation(); setEditing(true); }} className="cursor-pointer">
+      <StatusDot status={value} />
+    </span>
+  );
+}
+
+function SortHeader({ label, sortKey: key, currentKey, direction, onSort }: {
+  label: string;
+  sortKey: SortKey;
+  currentKey: SortKey;
+  direction: 'asc' | 'desc';
+  onSort: (key: SortKey) => void;
+}) {
+  const isActive = currentKey === key;
+  return (
+    <th
+      onClick={() => onSort(key)}
+      className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6 cursor-pointer select-none hover:text-slate-900 transition-colors group"
+    >
+      <span className="inline-flex items-center gap-1">
+        {label}
+        <svg className={`w-3.5 h-3.5 transition-all ${isActive ? 'text-slate-700' : 'text-slate-300 group-hover:text-slate-400'}`} viewBox="0 0 14 14" fill="currentColor">
+          {isActive && direction === 'asc' ? (
+            <path d="M7 3l5 8H2z" />
+          ) : isActive && direction === 'desc' ? (
+            <path d="M7 11L2 3h10z" />
+          ) : (
+            <>
+              <path d="M7 3l4 5H3z" opacity="0.4" />
+              <path d="M7 11L3 6h8z" opacity="0.4" />
+            </>
+          )}
+        </svg>
+      </span>
+    </th>
+  );
+}
+
+// ── Meta response parsing ──────────────────────────────────────────────
+
+function unwrapPipeboardResponse(json: Record<string, unknown>): Record<string, unknown> {
+  // PipeBoard returns MCP JSON-RPC format: { content: [{ text: "{...}" }], structuredContent: { result: "{...}" } }
+  if (json.structuredContent) {
+    const sc = json.structuredContent as Record<string, unknown>;
+    if (typeof sc.result === 'string') {
+      try { return JSON.parse(sc.result); } catch { /* fall through */ }
+    }
+  }
+  if (Array.isArray(json.content) && json.content.length > 0) {
+    const first = json.content[0] as Record<string, unknown>;
+    if (typeof first.text === 'string') {
+      try { return JSON.parse(first.text); } catch { /* fall through */ }
+    }
+  }
+  // Already unwrapped or direct format
+  return json;
+}
+
+// Human-readable labels for Meta action types
+// Only track actual business outcomes — no funnel events (add to cart, checkout, etc.)
+// Removed duplicates: 'lead' and 'onsite_conversion.lead_grouped' duplicate fb_pixel_lead;
+// 'contact_total' duplicates fb_pixel_contact
+const META_CONVERSION_LABELS: Record<string, string> = {
+  'offsite_conversion.fb_pixel_purchase': 'Purchase',
+  'offsite_conversion.fb_pixel_lead': 'Lead',
+  'offsite_conversion.fb_pixel_complete_registration': 'Registration',
+  'offsite_conversion.fb_pixel_schedule': 'Schedule',
+  'offsite_conversion.fb_pixel_contact': 'Contact',
+  'offsite_conversion.fb_pixel_submit_application': 'Application',
+  'offsite_conversion.fb_pixel_subscribe': 'Subscribe',
+  'offsite_conversion.fb_pixel_custom': 'Custom Event',
+  'onsite_conversion.messaging_first_reply': 'Messaging Reply',
+  'submit_form': 'Form Submit',
+};
+
+const META_CONVERSION_TYPES = new Set(Object.keys(META_CONVERSION_LABELS));
+
+function parseMetaInsights(rawJson: Record<string, unknown>): { spend: number; conversions: number; conversionBreakdown: ConversionEntry[] } {
+  const json = unwrapPipeboardResponse(rawJson) as { data?: Array<Record<string, unknown>> };
+  let totalSpend = 0;
+  const breakdownMap: Record<string, number> = {};
+
+  const rows = json?.data ?? [];
+  for (const row of rows) {
+    totalSpend += parseFloat((row.spend as string) ?? '0');
+
+    const actions = (row.actions ?? []) as Array<{ action_type: string; value: string }>;
+    for (const action of actions) {
+      const t = action.action_type ?? '';
+      if (META_CONVERSION_TYPES.has(t)) {
+        const count = parseInt(action.value, 10) || 0;
+        breakdownMap[t] = (breakdownMap[t] ?? 0) + count;
+      }
+    }
+  }
+
+  const conversionBreakdown: ConversionEntry[] = Object.entries(breakdownMap)
+    .map(([type, count]) => ({ type, label: META_CONVERSION_LABELS[type] || type, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const totalConversions = conversionBreakdown.reduce((sum, e) => sum + e.count, 0);
+
+  return { spend: totalSpend, conversions: totalConversions, conversionBreakdown };
+}
+
+// ── Google response parsing ────────────────────────────────────────────
+
+function parseGoogleInsights(json: {
+  data?: Array<{ cost?: number; conversions?: number }>;
+  conversionBreakdown?: Array<{ name: string; conversions: number }>;
+}): { spend: number; conversions: number; conversionBreakdown: ConversionEntry[] } {
+  let totalSpend = 0;
+  let totalConversions = 0;
+
+  const rows = json?.data ?? [];
+  for (const row of rows) {
+    totalSpend += row.cost ?? 0;
+    totalConversions += row.conversions ?? 0;
+  }
+
+  const conversionBreakdown: ConversionEntry[] = (json?.conversionBreakdown ?? [])
+    .map(cb => ({ type: cb.name, label: cb.name, count: cb.conversions }))
+    .sort((a, b) => b.count - a.count);
+
+  return { spend: totalSpend, conversions: totalConversions, conversionBreakdown };
+}
+
+// ── Main component ─────────────────────────────────────────────────────
+
+export default function ClientTable() {
+  const router = useRouter();
+  const [clients, setClients] = useState<Client[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [selectedPlatform, setSelectedPlatform] = useState('');
+  const [selectedManager, setSelectedManager] = useState('');
+  const [selectedPriority, setSelectedPriority] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('active');
+
+  const [sortKey, setSortKey] = useState<SortKey>('client_name');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+
+  // Live data states
+  const [liveData, setLiveData] = useState<Record<string, LiveAccountData>>({});
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; breakdown: ConversionEntry[] } | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
+  const [cooldownRemaining, setCooldownRemaining] = useState(0);
+  const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Team members for inline selects
+  const [teamMembers, setTeamMembers] = useState<{id: string; name: string; role: string}[]>([]);
+
+  useEffect(() => {
+    fetch('/api/team')
+      .then(res => res.json())
+      .then(data => setTeamMembers(data))
+      .catch(() => {});
+  }, []);
+
+  const handleFieldSaved = useCallback((clientId: string, field: string, value: string) => {
+    setClients(prev => prev.map(c =>
+      c.id === clientId ? { ...c, [field]: value } : c
+    ));
+  }, []);
+
+  // Cooldown timer
+  useEffect(() => {
+    if (cooldownRemaining <= 0) {
+      if (cooldownRef.current) {
+        clearInterval(cooldownRef.current);
+        cooldownRef.current = null;
+      }
+      return;
+    }
+
+    cooldownRef.current = setInterval(() => {
+      setCooldownRemaining(prev => {
+        if (prev <= 1) {
+          if (cooldownRef.current) clearInterval(cooldownRef.current);
+          cooldownRef.current = null;
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      if (cooldownRef.current) {
+        clearInterval(cooldownRef.current);
+        cooldownRef.current = null;
+      }
+    };
+  }, [cooldownRemaining > 0]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Fetch client list
+  useEffect(() => {
+    async function fetchClients() {
+      try {
+        const res = await fetch('/api/clients');
+        if (!res.ok) throw new Error('Failed to fetch clients');
+        const data = await res.json();
+        setClients(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchClients();
+  }, []);
+
+  // ── Refresh live data ───────────────────────────────────────────────
+
+  const refreshData = useCallback(async () => {
+    if (refreshing || cooldownRemaining > 0) return;
+    setRefreshing(true);
+
+    // Deduplicate accounts by platform + ad_account_id
+    const metaAccounts = new Set<string>();
+    const googleAccounts = new Set<string>();
+
+    for (const c of clients) {
+      const accountId = c.ad_account_id;
+      if (!accountId) continue;
+      const platform = c.platform?.toLowerCase();
+      if (platform === 'meta') metaAccounts.add(accountId);
+      else if (platform === 'google') googleAccounts.add(accountId);
+    }
+
+    // Build fetch promises
+    const fetches: Array<{ accountId: string; platform: 'meta' | 'google'; promise: Promise<Response> }> = [];
+
+    for (const accountId of metaAccounts) {
+      fetches.push({
+        accountId,
+        platform: 'meta',
+        promise: fetch(`/api/meta/insights?account_id=${encodeURIComponent(accountId)}&level=account&time_range=last_30d`),
+      });
+    }
+
+    for (const customerId of googleAccounts) {
+      fetches.push({
+        accountId: customerId,
+        platform: 'google',
+        promise: fetch(`/api/google/insights?customer_id=${encodeURIComponent(customerId)}&level=account&date_range=LAST_30_DAYS`),
+      });
+    }
+
+    // Execute all in parallel
+    const results = await Promise.allSettled(fetches.map(f => f.promise));
+
+    const newLiveData: Record<string, LiveAccountData> = {};
+
+    for (let i = 0; i < fetches.length; i++) {
+      const { accountId, platform } = fetches[i];
+      const result = results[i];
+
+      if (result.status === 'rejected') {
+        newLiveData[accountId] = { spend: 0, conversions: 0, costPerConversion: 0, conversionBreakdown: [], error: 'Network error' };
+        continue;
+      }
+
+      const response = result.value;
+      if (!response.ok) {
+        let errMsg = `HTTP ${response.status}`;
+        try {
+          const errBody = await response.json();
+          errMsg = errBody.error || errMsg;
+        } catch { /* ignore parse errors */ }
+        newLiveData[accountId] = { spend: 0, conversions: 0, costPerConversion: 0, conversionBreakdown: [], error: errMsg };
+        continue;
+      }
+
+      try {
+        const json = await response.json();
+        let spend: number;
+        let conversions: number;
+        let conversionBreakdown: ConversionEntry[];
+
+        if (platform === 'meta') {
+          const parsed = parseMetaInsights(json);
+          spend = parsed.spend;
+          conversions = parsed.conversions;
+          conversionBreakdown = parsed.conversionBreakdown;
+        } else {
+          const parsed = parseGoogleInsights(json);
+          spend = parsed.spend;
+          conversions = parsed.conversions;
+          conversionBreakdown = parsed.conversionBreakdown;
+        }
+
+        newLiveData[accountId] = {
+          spend,
+          conversions,
+          costPerConversion: conversions > 0 ? spend / conversions : 0,
+          conversionBreakdown,
+        };
+      } catch {
+        newLiveData[accountId] = { spend: 0, conversions: 0, costPerConversion: 0, conversionBreakdown: [], error: 'Parse error' };
+      }
+    }
+
+    setLiveData(newLiveData);
+    setRefreshing(false);
+    setLastRefreshed(new Date());
+    setCooldownRemaining(COOLDOWN_SECONDS);
+  }, [clients, refreshing, cooldownRemaining]);
+
+  // ── Derived data ────────────────────────────────────────────────────
+
+  const platforms = useMemo(() => [...new Set(clients.map(c => c.platform).filter(Boolean))].sort(), [clients]);
+  const managers = useMemo(() => [...new Set(clients.map(c => c.account_manager).filter(Boolean))] as string[], [clients]);
+
+  const filtered = useMemo(() => {
+    return clients.filter(c => {
+      if (selectedPlatform && c.platform?.toLowerCase() !== selectedPlatform.toLowerCase()) return false;
+      if (selectedManager && c.account_manager !== selectedManager) return false;
+      if (selectedPriority && c.priority?.toLowerCase() !== selectedPriority.toLowerCase()) return false;
+      if (selectedStatus && c.status?.toLowerCase() !== selectedStatus.toLowerCase()) return false;
+      // Hide churned clients from main view when no status filter is applied
+      if (!selectedStatus && c.status?.toLowerCase() === 'churned') return false;
+      return true;
+    });
+  }, [clients, selectedPlatform, selectedManager, selectedPriority, selectedStatus]);
+
+  // Estimated revenue per client (calculated from fee tiers)
+  const clientRevenue = useMemo(() => {
+    const revenueMap: Record<string, number> = {};
+    const budgetsByClient: Record<string, { total: number; platforms: number }> = {};
+    for (const c of clients) {
+      if (!budgetsByClient[c.client_name]) {
+        budgetsByClient[c.client_name] = { total: 0, platforms: 0 };
+      }
+      budgetsByClient[c.client_name].total += Number(c.monthly_budget ?? 0);
+      budgetsByClient[c.client_name].platforms += 1;
+    }
+    for (const [name, data] of Object.entries(budgetsByClient)) {
+      revenueMap[name] = data.total > 0 ? calcExpectedFee(data.total, data.platforms) : 0;
+    }
+    return revenueMap;
+  }, [clients]);
+
+  const sorted = useMemo(() => {
+    const arr = [...filtered];
+    arr.sort((a, b) => {
+      const nameCompare = (a.client_name ?? '').localeCompare(b.client_name ?? '');
+      if (sortKey === 'client_name') {
+        return sortDir === 'asc' ? nameCompare : -nameCompare;
+      }
+      let cmp = 0;
+      if (sortKey === 'priority') {
+        const pa = PRIORITY_ORDER[a.priority?.toLowerCase() ?? ''] ?? 3;
+        const pb = PRIORITY_ORDER[b.priority?.toLowerCase() ?? ''] ?? 3;
+        cmp = pa - pb;
+      } else if (sortKey === 'monthly_budget') {
+        cmp = (a.monthly_budget ?? 0) - (b.monthly_budget ?? 0);
+      } else if (sortKey === 'est_revenue') {
+        cmp = (clientRevenue[a.client_name] ?? 0) - (clientRevenue[b.client_name] ?? 0);
+      } else {
+        const va = (a[sortKey] as string) ?? '';
+        const vb = (b[sortKey] as string) ?? '';
+        cmp = va.localeCompare(vb);
+      }
+      cmp = sortDir === 'asc' ? cmp : -cmp;
+      return cmp !== 0 ? cmp : nameCompare;
+    });
+    return arr;
+  }, [filtered, sortKey, sortDir, clientRevenue]);
+
+  // Group by client name
+  const grouped = useMemo((): ClientGroup[] => {
+    const groups: ClientGroup[] = [];
+    let currentGroup: ClientGroup | null = null;
+    for (const row of sorted) {
+      if (!currentGroup || currentGroup.clientName !== row.client_name) {
+        currentGroup = { clientName: row.client_name, rows: [row] };
+        groups.push(currentGroup);
+      } else {
+        currentGroup.rows.push(row);
+      }
+    }
+    return groups;
+  }, [sorted]);
+
+  const handleSort = useCallback((key: SortKey) => {
+    if (sortKey === key) {
+      setSortDir(d => d === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(key);
+      setSortDir('asc');
+    }
+  }, [sortKey]);
+
+  // Summary stats
+  const stats = useMemo(() => {
+    const uniqueClients = new Set(filtered.map(c => c.client_name)).size;
+    const googleCount = filtered.filter(c => c.platform === 'google').length;
+    const metaCount = filtered.filter(c => c.platform === 'meta').length;
+    const totalEstRevenue = [...new Set(filtered.map(c => c.client_name))]
+      .reduce((sum, name) => sum + (clientRevenue[name] ?? 0), 0);
+    return { uniqueClients, googleCount, metaCount, total: filtered.length, totalEstRevenue };
+  }, [filtered, clientRevenue]);
+
+  // ── Render helpers ──────────────────────────────────────────────────
+
+  function renderLiveCell(client: Client, field: 'spend' | 'conversions' | 'costPerConversion') {
+    const accountId = client.ad_account_id;
+    if (!accountId || !liveData[accountId]) {
+      return <span className="text-slate-300">--</span>;
+    }
+
+    const data = liveData[accountId];
+    if (data.error) {
+      return (
+        <span className="text-red-400 text-xs" title={data.error}>
+          err
+        </span>
+      );
+    }
+
+    if (field === 'spend') return formatCurrency(data.spend);
+    if (field === 'conversions') {
+      if (data.conversions === 0 && data.conversionBreakdown.length === 0) {
+        return <span className="text-slate-300">0</span>;
+      }
+      return (
+        <span
+          className="cursor-help"
+          onMouseEnter={(e) => {
+            if (data.conversionBreakdown.length > 0) {
+              setTooltip({ x: e.clientX, y: e.clientY, breakdown: data.conversionBreakdown });
+            }
+          }}
+          onMouseLeave={() => setTooltip(null)}
+        >
+          <span className="border-b border-dashed border-slate-300">{formatInteger(data.conversions)}</span>
+        </span>
+      );
+    }
+    // costPerConversion
+    if (data.conversions === 0) return <span className="text-slate-300">--</span>;
+    return formatCurrency(data.costPerConversion);
+  }
+
+  // ── Loading / Error states ──────────────────────────────────────────
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="flex flex-col items-center gap-3">
+          <div className="animate-spin rounded-full h-8 w-8 border-2 border-slate-200 border-t-[var(--creekside-blue)]" />
+          <span className="text-sm text-slate-500">Loading clients...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-50 border border-red-200 text-red-700 p-6 rounded-xl">
+        <p className="font-semibold">Error loading clients</p>
+        <p className="text-sm mt-1 text-red-600">{error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Summary Stats */}
+      <div className="grid grid-cols-4 gap-4">
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
+          <p className="text-sm font-medium text-slate-500">Active Clients</p>
+          <p className="text-3xl font-bold text-slate-900 mt-1">{stats.uniqueClients}</p>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
+          <p className="text-sm font-medium text-slate-500">Google Ads Accounts</p>
+          <p className="text-3xl font-bold text-emerald-600 mt-1">{stats.googleCount}</p>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
+          <p className="text-sm font-medium text-slate-500">Meta Ads Accounts</p>
+          <p className="text-3xl font-bold text-blue-600 mt-1">{stats.metaCount}</p>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
+          <p className="text-sm font-medium text-slate-500">Est. Monthly Revenue</p>
+          <p className="text-3xl font-bold text-emerald-600 mt-1">{formatCurrency(stats.totalEstRevenue)}</p>
+        </div>
+      </div>
+
+      {/* Refresh bar */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {lastRefreshed && (
+            <span className="text-xs text-slate-400">
+              Last refreshed: {lastRefreshed.toLocaleTimeString()}
+            </span>
+          )}
+          {refreshing && (
+            <span className="text-xs text-blue-500 animate-pulse">Fetching live data...</span>
+          )}
+        </div>
+        <button
+          onClick={refreshData}
+          disabled={refreshing || cooldownRemaining > 0}
+          className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+            refreshing || cooldownRemaining > 0
+              ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+              : 'bg-[var(--creekside-blue)] text-white hover:bg-blue-700 shadow-sm shadow-blue-500/20 hover:shadow-md active:scale-[0.98]'
+          }`}
+        >
+          {refreshing ? 'Refreshing...' : cooldownRemaining > 0 ? `Wait ${Math.ceil(cooldownRemaining / 60)}m ${cooldownRemaining % 60}s` : 'Refresh Data'}
+        </button>
+      </div>
+
+      {/* Filters */}
+      <FilterBar
+        platforms={platforms}
+        managers={managers}
+        selectedPlatform={selectedPlatform}
+        selectedManager={selectedManager}
+        selectedPriority={selectedPriority}
+        selectedStatus={selectedStatus}
+        onPlatformChange={setSelectedPlatform}
+        onManagerChange={setSelectedManager}
+        onPriorityChange={setSelectedPriority}
+        onStatusChange={setSelectedStatus}
+      />
+
+      {/* Table */}
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden relative">
+        {/* Loading progress bar */}
+        {refreshing && (
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-slate-100 overflow-hidden z-10">
+            <div className="h-full bg-[var(--creekside-blue)] animate-[progress_1.5s_ease-in-out_infinite]"
+              style={{ width: '40%', animation: 'progress 1.5s ease-in-out infinite' }} />
+          </div>
+        )}
+        <style>{`
+          @keyframes progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+          }
+        `}</style>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-200 bg-slate-50/80">
+                <SortHeader label="Client" sortKey="client_name" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Platform</th>
+                <SortHeader label="Budget" sortKey="monthly_budget" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <SortHeader label="Est. Revenue" sortKey="est_revenue" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Proj. Cost</th>
+                <SortHeader label="Priority" sortKey="priority" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <SortHeader label="Manager" sortKey="account_manager" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <SortHeader label="Operator" sortKey="platform_operator" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <SortHeader label="Status" sortKey="status" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Spend</th>
+                <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Conv.</th>
+                <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Cost/Conv</th>
+              </tr>
+            </thead>
+            <tbody>
+              {grouped.length === 0 ? (
+                <tr>
+                  <td colSpan={12} className="text-center text-slate-400 py-16 text-sm">
+                    No clients match the current filters.
+                  </td>
+                </tr>
+              ) : (
+                grouped.map((group, groupIdx) => (
+                  group.rows.map((client, rowIdx) => {
+                    const isFirstInGroup = rowIdx === 0;
+                    return (
+                      <tr
+                        key={client.id}
+                        onClick={() => router.push(`/client/${client.id}`)}
+                        className={`cursor-pointer transition-colors duration-150 hover:bg-blue-50/50 ${
+                          isFirstInGroup && groupIdx > 0 ? 'border-t border-slate-200' : ''
+                        } ${!isFirstInGroup ? 'border-t border-slate-100' : ''}`}
+                      >
+                        {/* Client Name — only show for first row in group */}
+                        <td className="py-4 px-6">
+                          {isFirstInGroup ? (
+                            <div>
+                              <span className="text-sm font-semibold text-slate-900">{client.client_name}</span>
+                              {PARTNER_NOTES[client.client_name] && (
+                                <span className="block text-[11px] text-slate-400 font-normal mt-0.5">{PARTNER_NOTES[client.client_name]}</span>
+                              )}
+                            </div>
+                          ) : null}
+                        </td>
+                        <td className="py-4 px-6">
+                          <PlatformBadge platform={client.platform} />
+                        </td>
+                        <td className="py-4 px-6 text-sm text-slate-700 font-medium">
+                          {client.monthly_budget != null
+                            ? `$${Number(client.monthly_budget).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
+                            : <span className="text-slate-300">--</span>}
+                        </td>
+                        {/* Est. Revenue — show once per client group */}
+                        <td className="py-4 px-6 text-right text-sm font-medium text-emerald-700">
+                          {isFirstInGroup && (clientRevenue[client.client_name] ?? 0) > 0
+                            ? formatCurrency(clientRevenue[client.client_name])
+                            : isFirstInGroup ? <span className="text-slate-300">--</span> : null}
+                        </td>
+                        {/* Proj. Cost — placeholder until time tracking + hourly rates populated */}
+                        <td className="py-4 px-6 text-right text-sm font-medium text-slate-500">
+                          {isFirstInGroup ? <span className="text-slate-300">--</span> : null}
+                        </td>
+                        <td className="py-4 px-6" onClick={(e) => e.stopPropagation()}>
+                          {isFirstInGroup ? (
+                            <InlinePrioritySelect
+                              clientId={client.id}
+                              value={client.priority}
+                              onSaved={handleFieldSaved}
+                            />
+                          ) : null}
+                        </td>
+                        <td className="py-4 px-6 text-sm text-slate-600" onClick={(e) => e.stopPropagation()}>
+                          {isFirstInGroup ? (
+                            <InlineTableSelect
+                              clientId={client.id}
+                              field="account_manager"
+                              value={client.account_manager}
+                              options={teamMembers.map(t => ({ value: t.name, label: t.name }))}
+                              placeholder="--"
+                              onSaved={handleFieldSaved}
+                            />
+                          ) : null}
+                        </td>
+                        <td className="py-4 px-6 text-sm text-slate-600" onClick={(e) => e.stopPropagation()}>
+                          <InlineTableSelect
+                            clientId={client.id}
+                            field="platform_operator"
+                            value={client.platform_operator}
+                            options={teamMembers.map(t => ({ value: t.name, label: t.name }))}
+                            placeholder="--"
+                            onSaved={handleFieldSaved}
+                          />
+                        </td>
+                        <td className="py-4 px-6" onClick={(e) => e.stopPropagation()}>
+                          {isFirstInGroup ? (
+                            <InlineStatusSelect
+                              clientId={client.id}
+                              value={client.status}
+                              onSaved={handleFieldSaved}
+                            />
+                          ) : null}
+                        </td>
+                        <td className="py-4 px-6 text-right text-sm font-medium text-slate-700">
+                          {renderLiveCell(client, 'spend')}
+                        </td>
+                        <td className="py-4 px-6 text-right text-sm font-medium text-slate-700">
+                          {renderLiveCell(client, 'conversions')}
+                        </td>
+                        <td className="py-4 px-6 text-right text-sm font-medium text-slate-700">
+                          {renderLiveCell(client, 'costPerConversion')}
+                        </td>
+                      </tr>
+                    );
+                  })
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-6 py-4 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between">
+          <span className="text-sm text-slate-500">
+            {stats.uniqueClients} clients &middot; {stats.total} accounts
+          </span>
+        </div>
+      </div>
+
+      {/* Conversion breakdown tooltip — rendered outside table overflow */}
+      {tooltip && (
+        <div
+          className="fixed z-[9999] pointer-events-none"
+          style={{ left: tooltip.x, top: tooltip.y - 12, transform: 'translate(-50%, -100%)' }}
+        >
+          <div className="bg-slate-900 text-white text-xs rounded-lg py-3 px-4 whitespace-nowrap shadow-xl">
+            <div className="font-semibold text-slate-300 mb-1.5 text-[10px] uppercase tracking-wider">Conversion Breakdown</div>
+            {tooltip.breakdown.map((entry) => (
+              <div key={entry.type} className="flex items-center justify-between gap-6 py-0.5">
+                <span className="text-slate-300">{entry.label}</span>
+                <span className="font-semibold tabular-nums">{entry.count.toLocaleString()}</span>
+              </div>
+            ))}
+          </div>
+          <div className="w-2 h-2 bg-slate-900 rotate-45 mx-auto -mt-1" />
+        </div>
+      )}
+    </div>
+  );
+}

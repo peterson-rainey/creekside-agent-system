@@ -1,9 +1,11 @@
-# Only track .claude/ infrastructure — everything else is local
+# Only track .claude/ infrastructure and dashboard — everything else is local
 *
 !.gitignore
 !CLAUDE.md
 !.claude/
 !.claude/**
+!dashboard/
+!dashboard/**
 
 # Never push secrets or old git data
 .claude/settings.local.json
