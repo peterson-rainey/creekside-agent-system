@@ -193,8 +193,10 @@ function InlineTableSelect({
   return (
     <span
       onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-      className={`cursor-pointer hover:text-[var(--creekside-blue)] transition-colors ${
-        value ? 'border-b border-dashed border-transparent hover:border-[var(--creekside-blue)]' : 'text-slate-300 hover:text-[var(--creekside-blue)]'
+      className={`cursor-pointer inline-flex items-center min-w-[60px] min-h-[28px] px-1.5 py-0.5 rounded transition-colors ${
+        value
+          ? 'hover:text-[var(--creekside-blue)] border-b border-dashed border-transparent hover:border-[var(--creekside-blue)]'
+          : 'text-slate-300 hover:text-[var(--creekside-blue)] hover:bg-slate-50'
       }`}
       title={`Click to change`}
     >
