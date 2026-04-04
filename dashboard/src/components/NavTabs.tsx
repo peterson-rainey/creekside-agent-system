@@ -7,6 +7,8 @@ const tabs = [
   { label: 'Clients', href: '/' },
   { label: 'Team', href: '/team' },
   { label: 'Archive', href: '/archive' },
+  { label: 'Billing', href: '/billing' },
+  { label: 'Scorecard', href: '/scorecard' },
   { label: 'Negative Keywords', href: '/tools/negative-keywords' },
 ];
 
