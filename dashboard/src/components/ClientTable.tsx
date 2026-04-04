@@ -458,7 +458,7 @@ export default function ClientTable() {
   const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Team members for inline selects
-  const [teamMembers, setTeamMembers] = useState<{id: string; name: string; role: string}[]>([]);
+  const [teamMembers, setTeamMembers] = useState<{id: string; name: string; short_name: string; role: string}[]>([]);
 
   useEffect(() => {
     fetch('/api/team')
@@ -931,7 +931,7 @@ export default function ClientTable() {
                               clientId={client.id}
                               field="account_manager"
                               value={client.account_manager}
-                              options={teamMembers.map(t => ({ value: t.name, label: t.name }))}
+                              options={teamMembers.map(t => ({ value: t.short_name, label: t.short_name }))}
                               placeholder="--"
                               onSaved={handleFieldSaved}
                             />
@@ -942,7 +942,7 @@ export default function ClientTable() {
                             clientId={client.id}
                             field="platform_operator"
                             value={client.platform_operator}
-                            options={teamMembers.map(t => ({ value: t.name, label: t.name }))}
+                            options={teamMembers.map(t => ({ value: t.short_name, label: t.short_name }))}
                             placeholder="--"
                             onSaved={handleFieldSaved}
                           />
