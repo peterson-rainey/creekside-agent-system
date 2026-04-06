@@ -334,6 +334,7 @@ export default function NegativeKeywordAnalyzer() {
   const [negativeListText, setNegativeListText] = useState('');
   const [negativeListFile, setNegativeListFile] = useState('');
   const [businessDescription, setBusinessDescription] = useState('');
+  const [websiteUrl, setWebsiteUrl] = useState('');
   const [competitors, setCompetitors] = useState('');
 
   // UI state
@@ -395,6 +396,30 @@ export default function NegativeKeywordAnalyzer() {
         .map((c) => c.trim())
         .filter(Boolean);
 
+      // Optional: scrape website for additional business context
+      let siteDescription = businessDescription.trim();
+      if (websiteUrl.trim() && !siteDescription) {
+        try {
+          const scrapeRes = await fetch('/api/tools/negative-keywords/scrape', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: websiteUrl.trim() }),
+          });
+          if (scrapeRes.ok) {
+            const scrapeData = await scrapeRes.json();
+            const parts = [
+              scrapeData.businessName,
+              scrapeData.description,
+              scrapeData.services?.length ? `Services: ${scrapeData.services.join(', ')}` : '',
+              scrapeData.industry ? `Industry: ${scrapeData.industry}` : '',
+            ].filter(Boolean);
+            siteDescription = parts.join('. ');
+          }
+        } catch {
+          // Website scrape is best-effort — continue without it
+        }
+      }
+
       const res = await fetch('/api/tools/negative-keywords/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -402,7 +427,7 @@ export default function NegativeKeywordAnalyzer() {
           searchTermText: searchTermText.trim(),
           keywordListText: keywordListText.trim() || undefined,
           negativeListText: negativeListText.trim() || undefined,
-          businessDescription: businessDescription.trim() || undefined,
+          businessDescription: siteDescription || undefined,
           competitors: competitorList.length > 0 ? competitorList : undefined,
         }),
       });
@@ -592,12 +617,30 @@ export default function NegativeKeywordAnalyzer() {
             </div>
 
             {/* Options Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {/* Website URL */}
+              <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-5">
+                <label className="text-sm font-medium text-[var(--text-secondary)] block mb-2">
+                  Website URL{' '}
+                  <span className="text-[var(--text-muted)] font-normal">(optional)</span>
+                </label>
+                <input
+                  type="url"
+                  value={websiteUrl}
+                  onChange={(e) => setWebsiteUrl(e.target.value)}
+                  placeholder="https://yourbusiness.com"
+                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent"
+                />
+                <p className="text-xs text-[var(--text-muted)] mt-1.5">
+                  We&apos;ll scan your site for business context to improve the analysis.
+                </p>
+              </div>
+
               {/* Business Description */}
               <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-5">
                 <label className="text-sm font-medium text-[var(--text-secondary)] block mb-2">
-                  Describe your business in a few sentences{' '}
-                  <span className="text-[var(--text-muted)] font-normal">(optional — helps the AI understand your context)</span>
+                  Business Description{' '}
+                  <span className="text-[var(--text-muted)] font-normal">(optional)</span>
                 </label>
                 <textarea
                   value={businessDescription}
