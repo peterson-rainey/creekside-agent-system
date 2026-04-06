@@ -1,27 +1,14 @@
 import type { Metadata } from 'next';
+import NavTabs from '@/components/NavTabs';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Free Marketing Tools | Creekside Marketing',
-    template: '%s | Creekside Marketing',
+    default: 'Creekside Internal Dashboard',
+    template: '%s | Creekside Dashboard',
   },
-  description:
-    'Free marketing tools for business owners. ROAS calculators, ad account graders, and more — built by Creekside Marketing.',
-  openGraph: {
-    title: 'Free Marketing Tools | Creekside Marketing',
-    description:
-      'Free marketing tools for business owners. ROAS calculators, ad account graders, and more.',
-    type: 'website',
-    siteName: 'Creekside Marketing',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Free Marketing Tools | Creekside Marketing',
-    description:
-      'Free marketing tools for business owners. Built by Creekside Marketing.',
-  },
-  robots: { index: true, follow: true },
+  description: 'Internal client tracker for Creekside Marketing.',
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -31,7 +18,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <div className="min-h-screen bg-[var(--bg-primary)]">
+          <nav className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">CM</span>
+                </div>
+                <span className="text-[var(--text-primary)] font-semibold hidden sm:inline">
+                  Creekside Dashboard
+                </span>
+              </div>
+              <NavTabs />
+            </div>
+          </nav>
+          <main className="px-4 sm:px-6 py-6">
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
   );
 }
