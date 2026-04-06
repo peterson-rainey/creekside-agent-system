@@ -31,13 +31,14 @@ export interface SearchTermAnalysis {
 
 // Auto-detect if the uploaded text is a search term report or a negative keyword list
 export function detectUploadType(text: string): 'search_terms' | 'negative_keywords' {
-  // Check first 5 lines for report-style headers (Google Ads may have metadata rows before headers)
-  const lines = text.split('\n').slice(0, 5);
+  // Check first 10 lines for report-style headers
+  const lines = text.split('\n').slice(0, 10);
   for (const line of lines) {
     const lower = line.toLowerCase();
-    if (lower.includes('search term') || lower.includes('impr.') ||
+    // Require multiple column headers on the same line (avoids matching "Search terms report" title)
+    if (lower.includes('impr.') || lower.includes('impressions') ||
         (lower.includes('clicks') && lower.includes('cost')) ||
-        (lower.includes('impressions') && lower.includes('conversions'))) {
+        (lower.includes('search term,') && lower.includes('clicks'))) {
       return 'search_terms';
     }
   }
@@ -50,13 +51,24 @@ export function detectUploadType(text: string): 'search_terms' | 'negative_keywo
   return 'negative_keywords';
 }
 
-// Find the actual header row, skipping Google Ads metadata rows (report title, date range)
+// Find the actual header row, skipping Google Ads metadata rows (report title, date range).
+// Requires multiple column-header keywords on the same line to avoid matching the report title
+// (e.g. "Search terms report" is NOT the header; "Search term,Match type,Clicks,..." IS).
 function findHeaderRow(lines: string[]): number {
-  for (let i = 0; i < Math.min(lines.length, 5); i++) {
+  for (let i = 0; i < Math.min(lines.length, 10); i++) {
     const lower = lines[i].toLowerCase();
-    if (lower.includes('search term') || lower.includes('search query') ||
-        lower.includes('impr.') || lower.includes('impressions') ||
-        (lower.includes('clicks') && (lower.includes('cost') || lower.includes('conv')))) {
+    // Count how many known column headers appear on this line
+    const markers = [
+      'clicks', 'impr.', 'impressions', 'cost', 'ctr',
+      'conversions', 'conv.', 'match type', 'avg. cpc',
+    ];
+    const matchCount = markers.filter(m => lower.includes(m)).length;
+    // A real header row contains at least 3 of these
+    if (matchCount >= 3) return i;
+
+    // Fallback: "search term" as a comma/tab-delimited column (not just in the title)
+    if ((lower.includes('search term,') || lower.includes('search term\t') || lower.includes('search query,') || lower.includes('search query\t'))
+        && (lower.includes('clicks') || lower.includes('impr'))) {
       return i;
     }
   }
