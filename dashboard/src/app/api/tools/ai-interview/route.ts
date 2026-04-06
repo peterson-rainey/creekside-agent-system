@@ -171,7 +171,29 @@ export async function POST(request: NextRequest) {
 
     // ── Per-email cost cap ($10) ──────────────────────────────────────
     const userEmail = typeof email === 'string' ? email.slice(0, MAX_NAME_LENGTH).toLowerCase() : ip;
-    const currentCostCents = costLedger.get(userEmail) ?? 0;
+
+    // Check persistent cost from DB first, fall back to in-memory ledger
+    let currentCostCents = costLedger.get(userEmail) ?? 0;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey);
+        const { data } = await supabase
+          .from('tool_interviews')
+          .select('cost_cents')
+          .eq('email', userEmail)
+          .order('cost_cents', { ascending: false })
+          .limit(1)
+          .single();
+        if (data?.cost_cents) {
+          currentCostCents = Math.max(currentCostCents, data.cost_cents);
+          costLedger.set(userEmail, currentCostCents);
+        }
+      } catch {
+        // Fall back to in-memory ledger if DB query fails
+      }
+    }
 
     if (currentCostCents >= COST_LIMIT_CENTS) {
       return new Response(JSON.stringify({
@@ -209,8 +231,6 @@ export async function POST(request: NextRequest) {
     costLedger.set(userEmail, currentCostCents + costCents);
 
     // ── Persist to Supabase (best-effort) ───────────────────────────
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (supabaseUrl && supabaseKey && sessionId && typeof sessionId === 'string') {
       try {
         const supabase = createClient(supabaseUrl, supabaseKey);
