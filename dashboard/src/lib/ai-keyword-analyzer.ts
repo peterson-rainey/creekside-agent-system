@@ -137,13 +137,13 @@ export async function analyzeWithAI(opts: {
     ? `\n\nKNOWN COMPETITORS: ${competitors.join(', ')}`
     : '';
 
-  const prompt = `You are a Google Ads expert analyzing a search term report. Your job is to classify each search term and recommend negative keywords.
+  const prompt = `You are a Google Ads expert analyzing a search term report. Identify problematic search terms and recommend negative keywords.
 
 ACCOUNT STATS:
 - Total terms: ${accountStats.totalTerms}
 - Total spend: $${accountStats.totalSpend.toFixed(2)}
 - Total conversions: ${accountStats.totalConversions}
-- Avg CPA: $${accountStats.avgCpa.toFixed(2)}
+- Avg CPA: ${accountStats.avgCpa > 0 ? '$' + accountStats.avgCpa.toFixed(2) : 'N/A (zero conversions)'}
 - Avg CTR: ${accountStats.avgCtr.toFixed(1)}%
 - Avg conversion rate: ${accountStats.avgConversionRate.toFixed(1)}%
 - Non-converting spend: $${accountStats.nonConvertingSpend.toFixed(2)} (${accountStats.nonConvertingTermCount} terms)
@@ -154,16 +154,17 @@ ${termsBlock}${keywordsBlock}${negativesBlock}${businessBlock}${competitorsBlock
 INSTRUCTIONS:
 1. Use the target keywords (if provided) to understand what the business WANTS to attract.
 2. Use conversion data to identify what's actually working vs what's wasting money.
-3. A term is "wasteful" if it has spend but is clearly irrelevant to the business intent, OR if it has significant spend with zero conversions and no plausible path to conversion.
-4. A term is "underperforming" if it's somewhat relevant but has a CPA 2x+ the account average.
-5. A term is "good" if it converts at or below the account average CPA.
-6. For negative keywords, suggest the most protective match type: Exact for specific phrases, Phrase for patterns, Broad only for single generic words.
-7. If existing negatives are provided, flag any that might be blocking relevant traffic (matching target keywords or converting search terms).
+3. If the account has ZERO conversions across all terms, focus on identifying terms that are clearly irrelevant to the business intent. Do not classify zero-conversion terms as "good" just because everything has zero conversions.
+4. A term is "wasteful" if it is clearly irrelevant to the business intent (job seekers, DIY, competitors, wrong industry, wrong geography, informational queries).
+5. A term is "underperforming" if it is somewhat relevant but has poor metrics (very low CTR, high spend with no conversions despite being relevant).
+6. Only list terms you are flagging as wasteful or underperforming. Do NOT list acceptable or good terms — they are determined automatically from whatever you don't flag.
+7. For negative keywords, suggest the most protective match type: Exact for specific phrases, Phrase for patterns, Broad only for single generic words.
+8. If existing negatives are provided, flag any that might be blocking relevant traffic.
 
 Respond in this exact JSON format:
 {
-  "classifiedTerms": [
-    {"term": "...", "classification": "wasteful|underperforming|acceptable|good", "reason": "...", "category": "Job Seekers|DIY/Free|Competitor|Irrelevant|Low Intent|Geographic Mismatch|Negative Sentiment|Underperforming|Good Traffic", "priority": "high|medium|low", "suggestedAction": "add_negative|monitor|keep|optimize", "suggestedMatchType": "Broad|Phrase|Exact"}
+  "flaggedTerms": [
+    {"term": "exact term from the list above", "classification": "wasteful|underperforming", "reason": "...", "category": "Job Seekers|DIY/Free|Competitor|Irrelevant|Low Intent|Geographic Mismatch|Negative Sentiment|Underperforming", "priority": "high|medium|low", "suggestedAction": "add_negative|monitor", "suggestedMatchType": "Broad|Phrase|Exact"}
   ],
   "negativeRecommendations": [
     {"keyword": "...", "matchType": "Broad|Phrase|Exact", "reason": "...", "category": "...", "priority": "high|medium|low", "source": "search_terms|pattern|industry"}
@@ -171,20 +172,17 @@ Respond in this exact JSON format:
   "existingNegativeIssues": [
     {"keyword": "...", "matchType": "...", "issue": "unnecessary|wrong_match_type|too_broad|too_narrow", "reason": "...", "severity": "critical|warning|info", "suggestedFix": "..."}
   ],
-  "healthScore": 0-100,
   "summary": "2-3 sentence overview of the account's search term health",
   "keyInsights": ["insight 1", "insight 2", "insight 3"]
 }
 
-Health score guide: 90-100 = excellent (minimal waste), 70-89 = good (some optimization needed), 50-69 = needs work (significant waste), 0-49 = critical (major waste problem).
-
-Classify ALL provided search terms. For negativeRecommendations, include both terms from the report that should be negated AND common industry patterns you'd recommend based on the business context. Be specific and actionable.`;
+Be thorough — flag ALL wasteful and underperforming terms, not just a sample. For negativeRecommendations, include terms from the report that should be negated AND common industry patterns. Be specific and actionable.`;
 
   const client = new Anthropic({ apiKey });
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-20250514',
-    max_tokens: 4096,
+    max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }],
   });
 
@@ -196,25 +194,69 @@ Classify ALL provided search terms. For negativeRecommendations, include both te
     throw new Error('AI analysis returned invalid format');
   }
 
-  const parsed = JSON.parse(jsonMatch[0]);
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonMatch[0]);
+  } catch {
+    throw new Error('AI analysis returned malformed JSON. Please try again.');
+  }
 
-  // Calculate wasted spend from classified terms
-  const wastefulTerms = (parsed.classifiedTerms || []).filter(
-    (t: ClassifiedTerm) => t.classification === 'wasteful' || t.classification === 'underperforming'
-  );
-  const totalWastedSpend = wastefulTerms.reduce((s: number, t: ClassifiedTerm) => {
-    const match = searchTerms.find(st => st.term === t.term);
-    return s + (match?.cost ?? 0);
-  }, 0);
+  // Build a lookup of flagged terms by name
+  const flaggedByTerm = new Map<string, { classification: string; reason: string; category: string; priority: string; suggestedAction: string; suggestedMatchType: string }>();
+  for (const ft of (parsed.flaggedTerms || [])) {
+    flaggedByTerm.set(ft.term?.toLowerCase(), ft);
+  }
+
+  // Build full classified terms list by joining AI flags with parsed performance data
+  const classifiedTerms: ClassifiedTerm[] = topTerms.map(st => {
+    const flagged = flaggedByTerm.get(st.term.toLowerCase());
+    if (flagged) {
+      return {
+        term: st.term,
+        classification: flagged.classification as ClassifiedTerm['classification'],
+        reason: flagged.reason || '',
+        category: flagged.category || 'Flagged',
+        priority: (flagged.priority || 'medium') as ClassifiedTerm['priority'],
+        suggestedAction: (flagged.suggestedAction || 'add_negative') as ClassifiedTerm['suggestedAction'],
+        suggestedMatchType: (flagged.suggestedMatchType || 'Phrase') as ClassifiedTerm['suggestedMatchType'],
+        cost: st.cost,
+        clicks: st.clicks,
+        conversions: st.conversions,
+      };
+    }
+    // Unflagged: classify based on conversion data
+    const isGood = st.conversions > 0;
+    return {
+      term: st.term,
+      classification: isGood ? 'good' as const : 'acceptable' as const,
+      reason: isGood ? 'Generating conversions' : 'Not flagged as problematic',
+      category: isGood ? 'Good Traffic' : 'Acceptable',
+      priority: 'low' as const,
+      suggestedAction: 'keep' as const,
+      suggestedMatchType: 'Phrase' as const,
+      cost: st.cost,
+      clicks: st.clicks,
+      conversions: st.conversions,
+    };
+  });
+
+  // Calculate wasted spend from flagged terms using actual parsed data
+  const totalWastedSpend = classifiedTerms
+    .filter(t => t.classification === 'wasteful' || t.classification === 'underperforming')
+    .reduce((s, t) => s + t.cost, 0);
   const wastePercentage = accountStats.totalSpend > 0
     ? (totalWastedSpend / accountStats.totalSpend) * 100
     : 0;
 
+  // Deterministic health score from actual waste ratio
+  // 0% waste = 100, 15% waste = 78, 30% waste = 55, 50% waste = 25, 67%+ waste = 0
+  const healthScore = Math.max(0, Math.min(100, Math.round(100 - wastePercentage * 1.5)));
+
   return {
-    classifiedTerms: parsed.classifiedTerms || [],
+    classifiedTerms,
     negativeRecommendations: parsed.negativeRecommendations || [],
     existingNegativeIssues: parsed.existingNegativeIssues || [],
-    healthScore: parsed.healthScore ?? 50,
+    healthScore,
     totalWastedSpend: Math.round(totalWastedSpend * 100) / 100,
     wastePercentage: Math.round(wastePercentage * 10) / 10,
     summary: parsed.summary || '',
