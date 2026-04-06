@@ -25,6 +25,12 @@ TODAY=$(date -u +%Y-%m-%d)
 NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 WARNINGS=""
 
+# ─── Read user identity (persisted by session-init.sh) ───────────────────────
+CURRENT_USER_ID=""
+if [ -f "$STATE_DIR/current-user-id" ]; then
+  CURRENT_USER_ID=$(cat "$STATE_DIR/current-user-id" 2>/dev/null | tr -d '[:space:]')
+fi
+
 # ─── Action 1: Auto-clean ADMIN_MODE ─────────────────────────────────────────
 
 if [ -f "$PROJECT_ROOT/.claude/ADMIN_MODE" ]; then
@@ -146,8 +152,14 @@ fi
 # Escape summary for JSON
 SUMMARY_ESC=$(echo "$SUMMARY" | sed 's/"/\\"/g' | tr '\n' ' ')
 
+USER_ID_FIELD=""
+if [ -n "$CURRENT_USER_ID" ]; then
+  USER_ID_FIELD="\"created_by_user_id\": \"$CURRENT_USER_ID\","
+fi
+
 BODY=$(cat <<EOF
 {
+  ${USER_ID_FIELD}
   "title": "Session $TODAY — ${SQL_WRITES} SQL writes, ${FILE_WRITES} file writes, ${AGENT_SPAWNS} agents",
   "session_date": "$TODAY",
   "summary": "$SUMMARY_ESC",
