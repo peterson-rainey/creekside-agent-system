@@ -2,81 +2,49 @@
 
 import { useState, useRef, useCallback } from 'react';
 import { ToolModeToggle } from '@/components/ai-interview/ToolModeToggle';
+import type {
+  AIAnalysisResult,
+  ClassifiedTerm,
+  NegativeRecommendation,
+  ExistingNegativeIssue,
+  AccountStats,
+} from '@/lib/ai-keyword-analyzer';
+import {
+  generateGoogleAdsCSV,
+  generateGoogleAdsEditorCSV,
+} from '@/lib/negative-keyword-analyzer';
 
-// ── Types ──────────────────────────────────────────────────────────────────
+// ── Extended types with UI state ─────────────────────────────────────────
 
-type UploadType = 'search_terms' | 'negative_keywords';
-
-interface MissingKeyword {
-  keyword: string;
-  matchType: string;
-  category: string;
-  reason: string;
-  priority: 'high' | 'medium' | 'low';
+interface CheckableClassifiedTerm extends ClassifiedTerm {
   checked: boolean;
 }
 
-interface UnnecessaryKeyword {
-  keyword: string;
-  matchType: string;
-  reason: string;
-  severity: 'critical' | 'warning' | 'info';
+interface CheckableNegativeRec extends NegativeRecommendation {
   checked: boolean;
 }
 
-interface MatchTypeRec {
-  keyword: string;
-  currentMatchType: string;
-  suggestedMatchType: string;
-  reason: string;
-}
-
-interface WastefulTerm {
-  searchTerm: string;
-  category: string;
-  priority: 'high' | 'medium' | 'low';
-  cost: number;
-  clicks: number;
-  reason: string;
-  suggestedMatchType: string;
-  checked: boolean;
-}
-
-interface ClaudeInsights {
-  summary: string;
-  warnings?: string[];
-  industryTips?: string[];
-  businessSpecificNegatives?: { keyword: string; matchType: string; reason: string; checked: boolean }[];
-}
-
-interface NegativeKeywordResult {
-  mode: 'negative_keywords';
+interface AnalysisResultWithUI {
+  classifiedTerms: CheckableClassifiedTerm[];
+  negativeRecommendations: CheckableNegativeRec[];
+  existingNegativeIssues: ExistingNegativeIssue[];
   healthScore: number;
-  totalAnalyzed: number;
-  issuesFound: number;
-  detectedIndustry: string;
-  claudeInsights?: ClaudeInsights;
-  parsedKeywords?: { keyword: string; matchType: string }[];
-  missing: MissingKeyword[];
-  unnecessary: UnnecessaryKeyword[];
-  matchTypeChanges: MatchTypeRec[];
-}
-
-interface SearchTermResult {
-  mode: 'search_terms';
-  healthScore: number;
-  termCount: number;
-  totalSpendAnalyzed: number;
   totalWastedSpend: number;
   wastePercentage: number;
-  detectedIndustry: string;
-  claudeInsights?: ClaudeInsights;
-  wastefulTerms: WastefulTerm[];
+  summary: string;
+  keyInsights: string[];
+  accountStats: AccountStats;
+  wasLimited: boolean;
 }
 
-type AnalysisResult = NegativeKeywordResult | SearchTermResult;
+// ── Helpers ──────────────────────────────────────────────────────────────
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+function classificationColor(c: string) {
+  if (c === 'wasteful') return 'bg-red-100 text-red-700 border-red-200';
+  if (c === 'underperforming') return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+  if (c === 'good') return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+  return 'bg-blue-100 text-blue-700 border-blue-200'; // acceptable
+}
 
 function priorityColor(p: string) {
   if (p === 'high') return 'bg-red-100 text-red-700 border-red-200';
@@ -88,6 +56,14 @@ function severityColor(s: string) {
   if (s === 'critical') return 'bg-red-100 text-red-700 border-red-200';
   if (s === 'warning') return 'bg-yellow-100 text-yellow-700 border-yellow-200';
   return 'bg-blue-100 text-blue-700 border-blue-200';
+}
+
+function issueLabel(issue: string) {
+  if (issue === 'unnecessary') return 'Unnecessary';
+  if (issue === 'wrong_match_type') return 'Wrong Match Type';
+  if (issue === 'too_broad') return 'Too Broad';
+  if (issue === 'too_narrow') return 'Too Narrow';
+  return issue;
 }
 
 function healthScoreColor(score: number) {
@@ -106,7 +82,7 @@ function formatCurrency(n: number) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
 }
 
-// ── Collapsible Section ────────────────────────────────────────────────────
+// ── Collapsible Section ──────────────────────────────────────────────────
 
 function CollapsibleSection({
   title,
@@ -147,7 +123,7 @@ function CollapsibleSection({
   );
 }
 
-// ── Email Gate Modal ───────────────────────────────────────────────────────
+// ── Email Gate Modal ─────────────────────────────────────────────────────
 
 function EmailGateModal({
   onSubmit,
@@ -210,7 +186,7 @@ function EmailGateModal({
   );
 }
 
-// ── Spinner ────────────────────────────────────────────────────────────────
+// ── Spinner ──────────────────────────────────────────────────────────────
 
 function Spinner() {
   return (
@@ -221,7 +197,7 @@ function Spinner() {
   );
 }
 
-// ── Download Icon ──────────────────────────────────────────────────────────
+// ── Download Icon ────────────────────────────────────────────────────────
 
 function DownloadIcon() {
   return (
@@ -231,57 +207,145 @@ function DownloadIcon() {
   );
 }
 
-// ── Main Page ──────────────────────────────────────────────────────────────
+// ── File Upload Zone ─────────────────────────────────────────────────────
+
+function FileUploadZone({
+  label,
+  sublabel,
+  placeholder,
+  value,
+  fileName,
+  onTextChange,
+  onFile,
+  required,
+}: {
+  label: string;
+  sublabel?: string;
+  placeholder: string;
+  value: string;
+  fileName: string;
+  onTextChange: (text: string) => void;
+  onFile: (file: File) => void;
+  required?: boolean;
+}) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [dragOver, setDragOver] = useState(false);
+
+  const handleFile = useCallback((file: File) => {
+    if (!file.name.endsWith('.csv') && !file.name.endsWith('.txt')) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      onFile(file);
+      onTextChange(e.target?.result as string);
+    };
+    reader.readAsText(file);
+  }, [onFile, onTextChange]);
+
+  return (
+    <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-5 space-y-3">
+      <div>
+        <label className="text-sm font-medium text-[var(--text-secondary)]">
+          {label}
+          {required && <span className="text-red-400 ml-1">*</span>}
+        </label>
+        {sublabel && (
+          <p className="text-xs text-[var(--text-muted)] mt-0.5">{sublabel}</p>
+        )}
+      </div>
+
+      {/* Drop zone */}
+      <div
+        onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDragOver(false);
+          if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+        }}
+        onClick={() => fileRef.current?.click()}
+        className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors ${
+          dragOver
+            ? 'border-[var(--accent)] bg-[var(--accent-glow)]'
+            : 'border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-tertiary)]'
+        }`}
+      >
+        <input
+          ref={fileRef}
+          type="file"
+          accept=".csv,.txt"
+          className="hidden"
+          onChange={(e) => {
+            if (e.target.files?.length) handleFile(e.target.files[0]);
+          }}
+        />
+        <svg
+          className="w-6 h-6 mx-auto text-[var(--text-muted)] mb-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.5}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+          />
+        </svg>
+        {fileName ? (
+          <p className="text-xs text-[var(--text-secondary)] font-medium">{fileName}</p>
+        ) : (
+          <>
+            <p className="text-xs text-[var(--text-secondary)]">
+              Drop <span className="font-medium text-[var(--text-primary)]">.csv</span> or{' '}
+              <span className="font-medium text-[var(--text-primary)]">.txt</span> here
+            </p>
+            <p className="text-[10px] text-[var(--text-muted)] mt-0.5">or click to browse</p>
+          </>
+        )}
+      </div>
+
+      <div className="flex items-center gap-3">
+        <div className="flex-1 h-px bg-[var(--border)]" />
+        <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">or paste</span>
+        <div className="flex-1 h-px bg-[var(--border)]" />
+      </div>
+
+      <textarea
+        value={value}
+        onChange={(e) => onTextChange(e.target.value)}
+        rows={5}
+        placeholder={placeholder}
+        className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-3 py-2.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent resize-y"
+      />
+    </div>
+  );
+}
+
+// ── Main Page ────────────────────────────────────────────────────────────
 
 export default function NegativeKeywordAnalyzer() {
-  const [uploadType, setUploadType] = useState<UploadType>('search_terms');
-  const [keywordText, setKeywordText] = useState('');
-  const [url, setUrl] = useState('');
+  // Input state
+  const [searchTermText, setSearchTermText] = useState('');
+  const [searchTermFile, setSearchTermFile] = useState('');
+  const [keywordListText, setKeywordListText] = useState('');
+  const [keywordListFile, setKeywordListFile] = useState('');
+  const [negativeListText, setNegativeListText] = useState('');
+  const [negativeListFile, setNegativeListFile] = useState('');
+  const [businessDescription, setBusinessDescription] = useState('');
   const [competitors, setCompetitors] = useState('');
-  const [manualDescription, setManualDescription] = useState('');
-  const [showManualDescription, setShowManualDescription] = useState(false);
-  const [fileName, setFileName] = useState('');
+
+  // UI state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [result, setResult] = useState<AnalysisResult | null>(null);
-  const [dragOver, setDragOver] = useState(false);
+  const [result, setResult] = useState<AnalysisResultWithUI | null>(null);
+  const [exportGuideOpen, setExportGuideOpen] = useState(false);
   const [instructionsOpen, setInstructionsOpen] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [pendingDownload, setPendingDownload] = useState<(() => void) | null>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
-
-  // ── File handling ──
-
-  const handleFile = useCallback((file: File) => {
-    if (!file.name.endsWith('.csv') && !file.name.endsWith('.txt')) {
-      setError('Please upload a .csv or .txt file');
-      return;
-    }
-    setFileName(file.name);
-    setError('');
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setKeywordText(e.target?.result as string);
-    };
-    reader.readAsText(file);
-  }, []);
-
-  const onDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      setDragOver(false);
-      if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-    },
-    [handleFile]
-  );
-
-  const onFileInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files?.length) handleFile(e.target.files[0]);
-    },
-    [handleFile]
-  );
+  const [activeTermTab, setActiveTermTab] = useState<'wasteful' | 'underperforming' | 'good'>('wasteful');
 
   // ── Email gate wrapper ──
 
@@ -298,17 +362,14 @@ export default function NegativeKeywordAnalyzer() {
     setUserEmail(email);
     setShowEmailModal(false);
 
-    // Capture lead (non-blocking — don't delay the download)
     fetch('/api/tools/negative-keywords/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
-        industry: result && 'detectedIndustry' in result ? result.detectedIndustry : null,
-        uploadType: result && 'mode' in result ? result.mode : null,
         healthScore: result?.healthScore ?? null,
       }),
-    }).catch(() => {}); // silently ignore failures
+    }).catch(() => {});
 
     if (pendingDownload) {
       pendingDownload();
@@ -319,100 +380,56 @@ export default function NegativeKeywordAnalyzer() {
   // ── Analysis ──
 
   const analyze = async () => {
-    if (!keywordText.trim()) {
-      setError(
-        uploadType === 'search_terms'
-          ? 'Please provide your search term report'
-          : 'Please provide your negative keyword list'
-      );
-      return;
-    }
-    if (!url.trim()) {
-      setError('Please enter your website URL');
+    if (!searchTermText.trim()) {
+      setError('Please upload or paste your search term report');
       return;
     }
 
     setLoading(true);
     setError('');
     setResult(null);
-    setShowManualDescription(false);
 
     try {
-      // Step 1: Scrape website
-      const scrapeRes = await fetch('/api/tools/negative-keywords/scrape', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: url.trim() }),
-      });
-
-      let scrapeData = null;
-      if (!scrapeRes.ok) {
-        const body = await scrapeRes.json().catch(() => null);
-        // If scrape fails, show manual description fallback instead of hard-erroring
-        if (!manualDescription.trim()) {
-          setShowManualDescription(true);
-          setLoading(false);
-          setError(body?.error || 'We couldn\'t read your website. Please describe your business below so we can still analyze your keywords.');
-          return;
-        }
-      } else {
-        scrapeData = await scrapeRes.json();
-
-        // Check if scrape returned too few keywords (< 5)
-        const extractedCount = scrapeData?.keywords?.length ?? 0;
-        if (extractedCount < 5 && !manualDescription.trim()) {
-          setShowManualDescription(true);
-          setLoading(false);
-          setError('We couldn\'t fully read your website. Please describe your business below for better results.');
-          return;
-        }
-      }
-
-      // Step 2: Analyze
       const competitorList = competitors
         .split(',')
         .map((c) => c.trim())
         .filter(Boolean);
 
-      const analyzeRes = await fetch('/api/tools/negative-keywords/analyze', {
+      const res = await fetch('/api/tools/negative-keywords/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          keywords: keywordText.trim(),
-          siteContext: scrapeData,
+          searchTermText: searchTermText.trim(),
+          keywordListText: keywordListText.trim() || undefined,
+          negativeListText: negativeListText.trim() || undefined,
+          businessDescription: businessDescription.trim() || undefined,
           competitors: competitorList.length > 0 ? competitorList : undefined,
-          manualDescription: manualDescription.trim() || undefined,
-          uploadType,
         }),
       });
 
-      if (!analyzeRes.ok) {
-        const body = await analyzeRes.json().catch(() => null);
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
         throw new Error(body?.error || 'Analysis failed. Please try again.');
       }
 
-      const data = await analyzeRes.json();
+      const data: AIAnalysisResult & { wasLimited?: boolean } = await res.json();
 
-      // Initialize checkbox state based on response mode
-      data.mode = data.uploadType || (data.wastefulTerms ? 'search_terms' : 'negative_keywords');
-      if (data.mode === 'search_terms') {
-        data.wastefulTerms = data.wastefulTerms.map((t: WastefulTerm) => ({ ...t, checked: true }));
-        if (data.claudeInsights?.businessSpecificNegatives) {
-          data.claudeInsights.businessSpecificNegatives = data.claudeInsights.businessSpecificNegatives.map(
-            (n: { keyword: string; matchType: string; reason: string }) => ({ ...n, checked: true })
-          );
-        }
-      } else {
-        data.missing = (data.missing || []).map((k: MissingKeyword) => ({ ...k, checked: true }));
-        data.unnecessary = (data.unnecessary || []).map((k: UnnecessaryKeyword) => ({ ...k, checked: false }));
-        if (data.claudeInsights?.businessSpecificNegatives) {
-          data.claudeInsights.businessSpecificNegatives = data.claudeInsights.businessSpecificNegatives.map(
-            (n: { keyword: string; matchType: string; reason: string }) => ({ ...n, checked: true })
-          );
-        }
-      }
+      // Add checkbox state
+      const uiResult: AnalysisResultWithUI = {
+        ...data,
+        wasLimited: data.wasLimited ?? false,
+        classifiedTerms: (data.classifiedTerms || []).map((t) => ({
+          ...t,
+          checked: t.classification === 'wasteful' || t.classification === 'underperforming',
+        })),
+        negativeRecommendations: (data.negativeRecommendations || []).map((r) => ({
+          ...r,
+          checked: true,
+        })),
+        existingNegativeIssues: data.existingNegativeIssues || [],
+      };
 
-      setResult(data);
+      setResult(uiResult);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -422,202 +439,44 @@ export default function NegativeKeywordAnalyzer() {
 
   // ── Toggle helpers ──
 
-  const toggleWasteful = (idx: number) => {
-    if (!result || result.mode !== 'search_terms') return;
-    const updated = [...result.wastefulTerms];
+  const toggleTerm = (idx: number) => {
+    if (!result) return;
+    const updated = [...result.classifiedTerms];
     updated[idx] = { ...updated[idx], checked: !updated[idx].checked };
-    setResult({ ...result, wastefulTerms: updated });
+    setResult({ ...result, classifiedTerms: updated });
   };
 
-  const toggleMissing = (idx: number) => {
-    if (!result || result.mode !== 'negative_keywords') return;
-    const updated = [...result.missing];
+  const toggleRec = (idx: number) => {
+    if (!result) return;
+    const updated = [...result.negativeRecommendations];
     updated[idx] = { ...updated[idx], checked: !updated[idx].checked };
-    setResult({ ...result, missing: updated });
-  };
-
-  const toggleUnnecessary = (idx: number) => {
-    if (!result || result.mode !== 'negative_keywords') return;
-    const updated = [...result.unnecessary];
-    updated[idx] = { ...updated[idx], checked: !updated[idx].checked };
-    setResult({ ...result, unnecessary: updated });
-  };
-
-  const toggleAiNegative = (idx: number) => {
-    if (!result || !result.claudeInsights?.businessSpecificNegatives) return;
-    const updated = [...result.claudeInsights.businessSpecificNegatives];
-    updated[idx] = { ...updated[idx], checked: !updated[idx].checked };
-    setResult({
-      ...result,
-      claudeInsights: { ...result.claudeInsights, businessSpecificNegatives: updated },
-    });
+    setResult({ ...result, negativeRecommendations: updated });
   };
 
   // ── CSV downloads ──
 
-  // Extract just the keyword from each line, handling multi-column CSV and TSV formats
-  const extractKeyword = (line: string): string => {
-    // Handle Google Ads Editor TSV format: Campaign\tAd Group\tKeyword\tCriterion Type
-    if (line.includes('\t')) {
-      const parts = line.split('\t').map(p => p.trim());
-      // Find the keyword column — it's the one before Criterion Type, or the second-to-last meaningful column
-      const criterionIdx = parts.findIndex(p => /^negative (broad|phrase|exact)$/i.test(p));
-      if (criterionIdx > 0) {
-        const kw = parts[criterionIdx - 1];
-        return kw.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
-      }
-      // Fallback: if no criterion type column, take column with most word-like content
-      const kw = parts.find(p => p.length > 0 && !/^(negative |campaign|ad group)/i.test(p)) || parts[0];
-      return kw.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
-    }
-    // Handle CSV rows with commas
-    if (line.includes(',')) {
-      const first = line.split(',')[0].trim();
-      return first.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
-    }
-    // Plain text format
-    return line.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
+  const getSelectedNegatives = (): { keyword: string; matchType: 'Broad' | 'Phrase' | 'Exact' }[] => {
+    if (!result) return [];
+    const fromTerms = result.classifiedTerms
+      .filter((t) => t.checked && (t.classification === 'wasteful' || t.classification === 'underperforming'))
+      .map((t) => ({ keyword: t.term, matchType: t.suggestedMatchType }));
+    const fromRecs = result.negativeRecommendations
+      .filter((r) => r.checked)
+      .map((r) => ({ keyword: r.keyword, matchType: r.matchType }));
+    return [...fromTerms, ...fromRecs];
   };
-
-  const parseExistingKeywords = (): string[] => {
-    return keywordText
-      .split('\n')
-      .map((l) => l.trim())
-      .filter((l) => l && !/^(keyword|criteria|campaign|ad group|account|match type|criterion type|negative|report|date range)/i.test(l));
-  };
-
-  const getAiNegatives = (): { keyword: string; matchType: string }[] => {
-    if (!result?.claudeInsights?.businessSpecificNegatives) return [];
-    return result.claudeInsights.businessSpecificNegatives
-      .filter((n) => n.checked)
-      .map((n) => ({ keyword: n.keyword, matchType: n.matchType }));
-  };
-
-  // -- Search Term mode downloads --
-
-  const downloadSearchTermGoogleAdsCsv = () => {
-    if (!result || result.mode !== 'search_terms') return;
-
-    const checked = result.wastefulTerms.filter((t) => t.checked);
-    const aiNegs = getAiNegatives();
-
-    const lines = checked.map((t) => {
-      if (t.suggestedMatchType === 'Exact') return `[${t.searchTerm}]`;
-      if (t.suggestedMatchType === 'Phrase') return `"${t.searchTerm}"`;
-      return t.searchTerm;
-    });
-
-    const aiLines = aiNegs.map((n) => {
-      if (n.matchType === 'Exact') return `[${n.keyword}]`;
-      if (n.matchType === 'Phrase') return `"${n.keyword}"`;
-      return n.keyword;
-    });
-
-    const csv = 'Keyword\n' + [...lines, ...aiLines].join('\n');
-    downloadBlob(csv, 'negative_keywords_from_search_terms.csv', 'text/csv');
-  };
-
-  const downloadSearchTermEditorCsv = () => {
-    if (!result || result.mode !== 'search_terms') return;
-
-    const checked = result.wastefulTerms.filter((t) => t.checked);
-    const aiNegs = getAiNegatives();
-
-    const header = 'Campaign\tAd Group\tKeyword\tCriterion Type';
-    const rows = checked.map((t) => {
-      const mt = t.suggestedMatchType || 'Broad';
-      return `\t\t${t.searchTerm}\tNegative ${mt.toLowerCase()}`;
-    });
-
-    const aiRows = aiNegs.map((n) => {
-      const mt = n.matchType || 'Broad';
-      return `\t\t${n.keyword}\tNegative ${mt.toLowerCase()}`;
-    });
-
-    const csv = header + '\n' + [...rows, ...aiRows].join('\n');
-    downloadBlob(csv, 'negative_keywords_editor_from_search_terms.csv', 'text/csv');
-  };
-
-  // -- Negative Keyword mode downloads --
 
   const downloadGoogleAdsCsv = () => {
-    if (!result || result.mode !== 'negative_keywords') return;
-    const existing = parseExistingKeywords();
-
-    const toRemove = new Set(
-      result.unnecessary.filter((k) => k.checked).map((k) => k.keyword.toLowerCase())
-    );
-    const kept = existing.filter((kw) => {
-      const clean = extractKeyword(kw).toLowerCase();
-      return !toRemove.has(clean);
-    });
-
-    const toAdd = result.missing
-      .filter((k) => k.checked)
-      .map((k) => {
-        if (k.matchType === 'Exact') return `[${k.keyword}]`;
-        if (k.matchType === 'Phrase') return `"${k.keyword}"`;
-        return k.keyword;
-      });
-
-    const aiNegs = getAiNegatives().map((n) => {
-      if (n.matchType === 'Exact') return `[${n.keyword}]`;
-      if (n.matchType === 'Phrase') return `"${n.keyword}"`;
-      return n.keyword;
-    });
-
-    const all = [...kept, ...toAdd, ...aiNegs];
-    const csv = 'Keyword\n' + all.join('\n');
-    downloadBlob(csv, 'negative_keywords_updated.csv', 'text/csv');
+    const negatives = getSelectedNegatives();
+    if (negatives.length === 0) return;
+    const csv = generateGoogleAdsCSV(negatives);
+    downloadBlob(csv, 'negative_keywords_google_ads.csv', 'text/csv');
   };
 
   const downloadEditorCsv = () => {
-    if (!result || result.mode !== 'negative_keywords') return;
-    const existing = parseExistingKeywords();
-
-    const toRemove = new Set(
-      result.unnecessary.filter((k) => k.checked).map((k) => k.keyword.toLowerCase())
-    );
-    const kept = existing.filter((kw) => {
-      const clean = extractKeyword(kw).toLowerCase();
-      return !toRemove.has(clean);
-    });
-
-    const toAdd = result.missing
-      .filter((k) => k.checked)
-      .map((k) => {
-        const mt = k.matchType || 'Broad';
-        return `${k.keyword}\t${mt}`;
-      });
-
-    const aiNegs = getAiNegatives().map((n) => {
-      const mt = n.matchType || 'Broad';
-      return `${n.keyword}\t${mt}`;
-    });
-
-    const header = 'Campaign\tAd Group\tKeyword\tCriterion Type';
-    const rows = kept.map((kw) => {
-      let matchType = 'Broad';
-      const clean = extractKeyword(kw);
-      if (kw.startsWith('[') || kw.split(',')[0].trim().startsWith('[')) {
-        matchType = 'Exact';
-      } else if (kw.startsWith('"') || kw.split(',')[0].trim().startsWith('"')) {
-        matchType = 'Phrase';
-      }
-      return `\t\t${clean}\tNegative ${matchType.toLowerCase()}`;
-    });
-
-    const addRows = toAdd.map((line) => {
-      const [kw, mt] = line.split('\t');
-      return `\t\t${kw}\tNegative ${mt.toLowerCase()}`;
-    });
-
-    const aiRows = aiNegs.map((line) => {
-      const [kw, mt] = line.split('\t');
-      return `\t\t${kw}\tNegative ${mt.toLowerCase()}`;
-    });
-
-    const csv = header + '\n' + [...rows, ...addRows, ...aiRows].join('\n');
+    const negatives = getSelectedNegatives();
+    if (negatives.length === 0) return;
+    const csv = generateGoogleAdsEditorCSV(negatives);
     downloadBlob(csv, 'negative_keywords_editor.csv', 'text/csv');
   };
 
@@ -630,28 +489,32 @@ export default function NegativeKeywordAnalyzer() {
     URL.revokeObjectURL(a.href);
   };
 
-  // ── Upload type labels ──
+  // ── Filtered term lists ──
 
-  const uploadLabel =
-    uploadType === 'search_terms' ? 'Search Term Report' : 'Negative Keyword List';
-  const uploadPlaceholder =
-    uploadType === 'search_terms'
-      ? `Paste your search term report data here...\nSearch term, Clicks, Cost, Conversions\nfree lawn care tips, 45, 23.50, 0\ncheap landscaping near me, 32, 18.75, 0`
-      : `One keyword per line, e.g.:\nfree\n[cheap services]\n"discount coupon"`;
-  const dropZoneLabel =
-    uploadType === 'search_terms'
-      ? 'search term report'
-      : 'negative keyword list';
+  const termsByClassification = (classification: string) =>
+    result?.classifiedTerms.filter((t) => t.classification === classification) ?? [];
 
-  // ── Render ───────────────────────────────────────────────────────────────
+  const wastefulTerms = termsByClassification('wasteful');
+  const underperformingTerms = termsByClassification('underperforming');
+  const goodTerms = [
+    ...termsByClassification('good'),
+    ...termsByClassification('acceptable'),
+  ];
+
+  const recsBySource = (source: string) =>
+    result?.negativeRecommendations.filter((r) => r.source === source) ?? [];
+
+  const selectedCount = result
+    ? result.classifiedTerms.filter((t) => t.checked).length +
+      result.negativeRecommendations.filter((r) => r.checked).length
+    : 0;
+
+  // ── Render ─────────────────────────────────────────────────────────────
 
   const toolContext = result ? {
-    uploadType,
-    healthScore: 'healthScore' in result ? result.healthScore : undefined,
-    detectedIndustry: result.detectedIndustry,
-    issuesFound: 'issuesFound' in result ? result.issuesFound : undefined,
-    termCount: 'termCount' in result ? result.termCount : undefined,
-    wastePercentage: 'wastePercentage' in result ? result.wastePercentage : undefined,
+    healthScore: result.healthScore,
+    wastePercentage: result.wastePercentage,
+    termCount: result.accountStats.totalTerms,
   } : undefined;
 
   return (
@@ -689,132 +552,64 @@ export default function NegativeKeywordAnalyzer() {
           <div>
             <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Negative Keyword Analyzer</h2>
             <p className="text-sm text-[var(--text-muted)] mt-1">
-              Upload a Search Term Report to find wasteful spend, or upload your existing negative keyword
-              list for a health check. We&apos;ll analyze it using your website context and recommend
-              improvements.
+              Upload your Search Term Report and we&apos;ll use AI to classify every term, find wasted spend,
+              and recommend negative keywords to add.
             </p>
           </div>
 
-          {/* Upload Type Toggle */}
-          <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-1.5 inline-flex">
-            <button
-              onClick={() => {
-                setUploadType('search_terms');
-                setResult(null);
-                setError('');
-              }}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
-                uploadType === 'search_terms'
-                  ? 'bg-[var(--accent)] text-white shadow-sm'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
-              }`}
-            >
-              Search Term Report
-            </button>
-            <button
-              onClick={() => {
-                setUploadType('negative_keywords');
-                setResult(null);
-                setError('');
-              }}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
-                uploadType === 'negative_keywords'
-                  ? 'bg-[var(--accent)] text-white shadow-sm'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
-              }`}
-            >
-              Negative Keyword List
-            </button>
-          </div>
-
-          {/* Input Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left: File Upload / Paste */}
-            <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6 space-y-4">
-              <label className="text-sm font-medium text-[var(--text-secondary)]">{uploadLabel}</label>
-
-              {/* Drop zone */}
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setDragOver(true);
-                }}
-                onDragLeave={() => setDragOver(false)}
-                onDrop={onDrop}
-                onClick={() => fileRef.current?.click()}
-                className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-                  dragOver
-                    ? 'border-[var(--accent)] bg-[var(--accent-glow)]'
-                    : 'border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-tertiary)]'
-                }`}
-              >
-                <input
-                  ref={fileRef}
-                  type="file"
-                  accept=".csv,.txt"
-                  className="hidden"
-                  onChange={onFileInput}
-                />
-                <svg
-                  className="w-8 h-8 mx-auto text-[var(--text-muted)] mb-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                  />
-                </svg>
-                {fileName ? (
-                  <p className="text-sm text-[var(--text-secondary)] font-medium">{fileName}</p>
-                ) : (
-                  <>
-                    <p className="text-sm text-[var(--text-secondary)]">
-                      Drag & drop your <span className="font-medium text-[var(--text-primary)]">{dropZoneLabel}</span>{' '}
-                      (<span className="font-medium text-[var(--text-primary)]">.csv</span> or <span className="font-medium text-[var(--text-primary)]">.txt</span>)
-                    </p>
-                    <p className="text-xs text-[var(--text-muted)] mt-1">or click to browse</p>
-                  </>
-                )}
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="flex-1 h-px bg-[var(--border)]" />
-                <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider">or paste below</span>
-                <div className="flex-1 h-px bg-[var(--border)]" />
-              </div>
-
-              <textarea
-                value={keywordText}
-                onChange={(e) => {
-                  setKeywordText(e.target.value);
-                  setFileName('');
-                }}
-                rows={8}
-                placeholder={uploadPlaceholder}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent resize-y"
+          {/* Input Section — 3 upload zones + options */}
+          <div className="space-y-6">
+            {/* Upload Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <FileUploadZone
+                label="Search Term Report"
+                sublabel="Required"
+                placeholder={`Paste your search term report here...\nSearch term, Clicks, Cost, Conversions\nfree lawn care tips, 45, 23.50, 0\ncheap landscaping near me, 32, 18.75, 0`}
+                value={searchTermText}
+                fileName={searchTermFile}
+                onTextChange={(text) => { setSearchTermText(text); if (!text) setSearchTermFile(''); }}
+                onFile={(file) => setSearchTermFile(file.name)}
+                required
+              />
+              <FileUploadZone
+                label="What are you bidding on?"
+                sublabel="Optional"
+                placeholder={`Paste your keyword list here...\nlawn care service\nlandscaping near me\ntree trimming`}
+                value={keywordListText}
+                fileName={keywordListFile}
+                onTextChange={(text) => { setKeywordListText(text); if (!text) setKeywordListFile(''); }}
+                onFile={(file) => setKeywordListFile(file.name)}
+              />
+              <FileUploadZone
+                label="Current negatives"
+                sublabel="Optional"
+                placeholder={`Paste your negative keyword list here...\nfree\n[cheap services]\n"discount coupon"`}
+                value={negativeListText}
+                fileName={negativeListFile}
+                onTextChange={(text) => { setNegativeListText(text); if (!text) setNegativeListFile(''); }}
+                onFile={(file) => setNegativeListFile(file.name)}
               />
             </div>
 
-            {/* Right: URL + Competitors + Analyze */}
-            <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6 flex flex-col">
-              <label className="text-sm font-medium text-[var(--text-secondary)] mb-2">Website URL</label>
-              <input
-                type="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://yourwebsite.com"
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent"
-              />
-              <p className="text-xs text-[var(--text-muted)] mt-2">
-                We&apos;ll scan your site to understand your business and tailor our recommendations.
-              </p>
+            {/* Options Row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Business Description */}
+              <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-5">
+                <label className="text-sm font-medium text-[var(--text-secondary)] block mb-2">
+                  Describe your business in a few sentences{' '}
+                  <span className="text-[var(--text-muted)] font-normal">(optional — helps the AI understand your context)</span>
+                </label>
+                <textarea
+                  value={businessDescription}
+                  onChange={(e) => setBusinessDescription(e.target.value)}
+                  rows={3}
+                  placeholder="e.g. We're a residential landscaping company in Austin, TX. We focus on lawn maintenance, tree trimming, and landscape design for homeowners."
+                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent resize-y"
+                />
+              </div>
 
-              {/* Competitor Brands */}
-              <div className="mt-4">
+              {/* Competitors + Analyze */}
+              <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-5 flex flex-col">
                 <label className="text-sm font-medium text-[var(--text-secondary)] mb-2 block">
                   Competitor Brands <span className="text-[var(--text-muted)] font-normal">(optional)</span>
                 </label>
@@ -828,443 +623,487 @@ export default function NegativeKeywordAnalyzer() {
                 <p className="text-xs text-[var(--text-muted)] mt-1.5">
                   Comma-separated. We&apos;ll flag search terms containing these brands.
                 </p>
-              </div>
 
-              {/* Manual Description Fallback */}
-              {showManualDescription && (
-                <div className="mt-4">
-                  <label className="text-sm font-medium text-[var(--text-secondary)] mb-2 block">
-                    Describe Your Business
-                  </label>
-                  <textarea
-                    value={manualDescription}
-                    onChange={(e) => setManualDescription(e.target.value)}
-                    rows={4}
-                    placeholder="We couldn't fully read your website. Please describe what your business does, the services you offer, and your target customers..."
-                    className="w-full rounded-lg border border-amber-700 bg-amber-950/30 px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent resize-y"
-                  />
+                <div className="mt-auto pt-4">
+                  {error && (
+                    <div className="mb-3 p-3 rounded-lg bg-red-950/30 border border-red-800 text-sm text-red-400">
+                      {error}
+                    </div>
+                  )}
+                  <button
+                    onClick={analyze}
+                    disabled={loading}
+                    className="w-full py-3 px-6 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-light)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <Spinner />
+                        Analyzing...
+                      </>
+                    ) : (
+                      'Analyze'
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Export Guide */}
+            <div className="bg-[var(--bg-tertiary)] rounded-lg overflow-hidden">
+              <button
+                onClick={() => setExportGuideOpen(!exportGuideOpen)}
+                className="w-full flex items-center gap-2 px-4 py-3 text-left hover:bg-[var(--border)] transition-colors"
+              >
+                <svg
+                  className={`w-4 h-4 text-[var(--text-secondary)] transition-transform ${exportGuideOpen ? 'rotate-90' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+                <span className="text-sm font-medium text-[var(--text-secondary)]">
+                  How to export a search term report from Google Ads
+                </span>
+              </button>
+              {exportGuideOpen && (
+                <div className="border-t border-[var(--border)] px-4 py-4">
+                  <ol className="space-y-2 text-xs text-[var(--text-secondary)] list-decimal list-inside">
+                    <li>
+                      Sign in to{' '}
+                      <span className="font-medium text-[var(--text-primary)]">ads.google.com</span>
+                    </li>
+                    <li>
+                      In the left menu, click{' '}
+                      <span className="font-medium text-[var(--text-primary)]">Insights &amp; reports</span>, then{' '}
+                      <span className="font-medium text-[var(--text-primary)]">Search terms</span>
+                    </li>
+                    <li>
+                      Set your date range (we recommend at least 30 days for best results)
+                    </li>
+                    <li>
+                      Click the{' '}
+                      <span className="font-medium text-[var(--text-primary)]">Download</span>{' '}
+                      icon (arrow pointing down) in the toolbar above the table
+                    </li>
+                    <li>
+                      Select <span className="font-medium text-[var(--text-primary)]">.csv</span> as the format
+                    </li>
+                    <li>Upload or paste the downloaded file here</li>
+                  </ol>
                 </div>
               )}
-
-              <div className="mt-auto pt-6">
-                {error && (
-                  <div className="mb-4 p-3 rounded-lg bg-red-950/30 border border-red-800 text-sm text-red-400">
-                    {error}
-                  </div>
-                )}
-                <button
-                  onClick={analyze}
-                  disabled={loading}
-                  className="w-full py-3 px-6 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-light)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <>
-                      <Spinner />
-                      Analyzing...
-                    </>
-                  ) : (
-                    'Analyze'
-                  )}
-                </button>
-              </div>
             </div>
           </div>
 
           {/* ── Results ── */}
           {result && (
             <div className="space-y-6">
+              {/* Was Limited Banner */}
+              {result.wasLimited && (
+                <div className="p-4 rounded-xl bg-amber-950/30 border border-amber-800 flex items-start gap-3">
+                  <svg className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                  </svg>
+                  <p className="text-sm text-amber-300">
+                    Your report had more than 500 terms. We analyzed the top 500 by spend. Try the AI Interview for a complete analysis.
+                  </p>
+                </div>
+              )}
+
               {/* Summary Card */}
               <div className={`rounded-xl border p-6 ${healthScoreBg(result.healthScore)}`}>
-                {result.mode === 'search_terms' ? (
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-6">
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Health Score</p>
-                      <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Terms Analyzed</p>
-                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.termCount}</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Wasted Spend</p>
-                      <p className="text-4xl font-bold text-red-500">{formatCurrency(result.totalWastedSpend)}</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Waste %</p>
-                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.wastePercentage}%</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Industry</p>
-                      <p className="text-lg font-semibold text-[var(--text-primary)] mt-2">{result.detectedIndustry}</p>
-                    </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-6">
+                  <div className="text-center">
+                    <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Health Score</p>
+                    <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
                   </div>
-                ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Health Score</p>
-                      <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Keywords Analyzed</p>
-                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.totalAnalyzed}</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Issues Found</p>
-                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.issuesFound}</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Detected Industry</p>
-                      <p className="text-lg font-semibold text-[var(--text-primary)] mt-2">{result.detectedIndustry}</p>
-                    </div>
+                  <div className="text-center">
+                    <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Total Spend</p>
+                    <p className="text-4xl font-bold text-[var(--text-primary)]">{formatCurrency(result.accountStats.totalSpend)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Wasted Spend</p>
+                    <p className="text-4xl font-bold text-red-500">{formatCurrency(result.totalWastedSpend)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Waste %</p>
+                    <p className="text-4xl font-bold text-[var(--text-primary)]">{result.wastePercentage}%</p>
+                  </div>
+                </div>
+
+                {/* AI Summary */}
+                {result.summary && (
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                    {result.summary}
+                  </p>
+                )}
+
+                {/* Key Insights */}
+                {result.keyInsights && result.keyInsights.length > 0 && (
+                  <div className="space-y-2">
+                    {result.keyInsights.map((insight, i) => (
+                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[var(--accent-glow)] border border-teal-800">
+                        <svg className="w-4 h-4 text-[var(--accent)] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                        </svg>
+                        <p className="text-sm text-teal-300">{insight}</p>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
 
-              {/* Claude Insights */}
-              {result.claudeInsights && (
-                <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-hidden">
-                  <div className="px-6 py-4 border-b border-[var(--border)] flex items-center gap-2">
-                    <svg className="w-5 h-5 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                    </svg>
-                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">AI Analysis</h3>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    {/* Summary */}
-                    {result.claudeInsights.summary && (
-                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                        {result.claudeInsights.summary}
-                      </p>
-                    )}
-
-                    {/* Warnings */}
-                    {result.claudeInsights.warnings && result.claudeInsights.warnings.length > 0 && (
-                      <div className="space-y-2">
-                        {result.claudeInsights.warnings.map((w, i) => (
-                          <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-amber-950/30 border border-amber-800">
-                            <svg className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                            </svg>
-                            <p className="text-sm text-amber-300">{w}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Industry Tips */}
-                    {result.claudeInsights.industryTips && result.claudeInsights.industryTips.length > 0 && (
-                      <div className="space-y-2">
-                        {result.claudeInsights.industryTips.map((tip, i) => (
-                          <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[var(--accent-glow)] border border-teal-800">
-                            <svg className="w-4 h-4 text-[var(--accent)] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                            </svg>
-                            <p className="text-sm text-teal-300">{tip}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* AI-Recommended Negatives */}
-                    {result.claudeInsights.businessSpecificNegatives &&
-                      result.claudeInsights.businessSpecificNegatives.length > 0 && (
-                        <div className="mt-4">
-                          <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">AI-Recommended Negatives</h4>
-                          <div className="divide-y divide-[var(--border)] border border-[var(--border)] rounded-lg overflow-hidden">
-                            {result.claudeInsights.businessSpecificNegatives.map((neg, i) => (
-                              <div key={i} className="px-4 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
-                                <input
-                                  type="checkbox"
-                                  checked={neg.checked}
-                                  onChange={() => toggleAiNegative(i)}
-                                  className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
-                                />
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-sm font-medium text-[var(--text-primary)]">{neg.keyword}</span>
-                                    <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
-                                      {neg.matchType}
-                                    </span>
-                                  </div>
-                                  <p className="text-xs text-[var(--text-muted)] mt-1">{neg.reason}</p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                  </div>
+              {/* Classified Terms */}
+              <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-hidden">
+                <div className="px-6 py-4 border-b border-[var(--border)]">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">Classified Search Terms</h3>
+                  <p className="text-xs text-[var(--text-muted)] mt-1">
+                    {result.accountStats.totalTerms} terms analyzed. Select wasteful and underperforming terms to add as negatives.
+                  </p>
                 </div>
-              )}
 
-              {/* ── Search Term Mode Results ── */}
-              {result.mode === 'search_terms' && (
-                <CollapsibleSection title="Wasteful Search Terms" count={result.wastefulTerms.length}>
-                  {result.wastefulTerms.length === 0 ? (
-                    <p className="px-6 py-4 text-sm text-[var(--text-muted)]">No wasteful search terms found.</p>
-                  ) : (
+                {/* Tab bar */}
+                <div className="flex border-b border-[var(--border)]">
+                  <button
+                    onClick={() => setActiveTermTab('wasteful')}
+                    className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                      activeTermTab === 'wasteful'
+                        ? 'text-red-400 border-b-2 border-red-400 bg-red-950/10'
+                        : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                    }`}
+                  >
+                    Wasteful ({wastefulTerms.length})
+                  </button>
+                  <button
+                    onClick={() => setActiveTermTab('underperforming')}
+                    className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                      activeTermTab === 'underperforming'
+                        ? 'text-yellow-400 border-b-2 border-yellow-400 bg-yellow-950/10'
+                        : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                    }`}
+                  >
+                    Underperforming ({underperformingTerms.length})
+                  </button>
+                  <button
+                    onClick={() => setActiveTermTab('good')}
+                    className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                      activeTermTab === 'good'
+                        ? 'text-emerald-400 border-b-2 border-emerald-400 bg-emerald-950/10'
+                        : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                    }`}
+                  >
+                    Good ({goodTerms.length})
+                  </button>
+                </div>
+
+                {/* Select All bar (wasteful/underperforming only) */}
+                {(activeTermTab === 'wasteful' || activeTermTab === 'underperforming') && (
+                  <div className="px-6 py-2 bg-[var(--bg-tertiary)] flex items-center gap-4 border-b border-[var(--border)]">
+                    <button
+                      onClick={() => {
+                        if (!result) return;
+                        const targetClass = activeTermTab;
+                        const updated = result.classifiedTerms.map((t) =>
+                          t.classification === targetClass ? { ...t, checked: true } : t
+                        );
+                        setResult({ ...result, classifiedTerms: updated });
+                      }}
+                      className="text-xs font-medium text-[var(--accent)] hover:underline"
+                    >
+                      Select All {activeTermTab === 'wasteful' ? 'Wasteful' : 'Underperforming'}
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!result) return;
+                        const targetClass = activeTermTab;
+                        const updated = result.classifiedTerms.map((t) =>
+                          t.classification === targetClass ? { ...t, checked: false } : t
+                        );
+                        setResult({ ...result, classifiedTerms: updated });
+                      }}
+                      className="text-xs font-medium text-[var(--text-muted)] hover:underline"
+                    >
+                      Deselect All
+                    </button>
+                    <span className="text-xs text-[var(--text-muted)] ml-auto">
+                      {result.classifiedTerms.filter(
+                        (t) => t.classification === activeTermTab && t.checked
+                      ).length}{' '}
+                      selected
+                    </span>
+                  </div>
+                )}
+
+                {/* Terms list */}
+                {(() => {
+                  const terms =
+                    activeTermTab === 'wasteful'
+                      ? wastefulTerms
+                      : activeTermTab === 'underperforming'
+                      ? underperformingTerms
+                      : goodTerms;
+
+                  if (terms.length === 0) {
+                    return (
+                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">
+                        No {activeTermTab} terms found.
+                      </p>
+                    );
+                  }
+
+                  return (
                     <>
-                      {/* Select All / Deselect All */}
-                      <div className="px-6 py-2 bg-[var(--bg-tertiary)] flex items-center gap-4 border-b border-[var(--border)]">
-                        <button
-                          onClick={() => {
-                            const updated = result.wastefulTerms.map((t) => ({ ...t, checked: true }));
-                            setResult({ ...result, wastefulTerms: updated });
-                          }}
-                          className="text-xs font-medium text-[var(--accent)] hover:underline"
-                        >
-                          Select All
-                        </button>
-                        <button
-                          onClick={() => {
-                            const updated = result.wastefulTerms.map((t) => ({ ...t, checked: false }));
-                            setResult({ ...result, wastefulTerms: updated });
-                          }}
-                          className="text-xs font-medium text-[var(--text-muted)] hover:underline"
-                        >
-                          Deselect All
-                        </button>
-                        <span className="text-xs text-[var(--text-muted)] ml-auto">
-                          {result.wastefulTerms.filter((t) => t.checked).length} selected
-                        </span>
-                      </div>
-
                       {/* Table header */}
                       <div className="hidden sm:grid grid-cols-12 gap-2 px-6 py-2 bg-[var(--bg-tertiary)] text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider border-b border-[var(--border)]">
-                        <div className="col-span-1" />
-                        <div className="col-span-3">Search Term</div>
+                        {(activeTermTab === 'wasteful' || activeTermTab === 'underperforming') && (
+                          <div className="col-span-1" />
+                        )}
+                        <div className={activeTermTab === 'good' ? 'col-span-3' : 'col-span-2'}>Term</div>
+                        <div className="col-span-1">Badge</div>
                         <div className="col-span-2">Category</div>
-                        <div className="col-span-1">Priority</div>
                         <div className="col-span-1 text-right">Cost</div>
                         <div className="col-span-1 text-right">Clicks</div>
-                        <div className="col-span-3">Reason</div>
+                        <div className="col-span-1 text-right">Conv.</div>
+                        <div className={activeTermTab === 'good' ? 'col-span-3' : 'col-span-3'}>Reason</div>
                       </div>
 
-                      <div className="divide-y divide-[var(--border)]">
-                        {result.wastefulTerms.map((term, i) => (
-                          <div key={i} className="px-6 py-3 hover:bg-[var(--bg-tertiary)]">
-                            {/* Desktop row */}
-                            <div className="hidden sm:grid grid-cols-12 gap-2 items-start">
-                              <div className="col-span-1">
-                                <input
-                                  type="checkbox"
-                                  checked={term.checked}
-                                  onChange={() => toggleWasteful(i)}
-                                  className="mt-0.5 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
-                                />
-                              </div>
-                              <div className="col-span-3">
-                                <span className="text-sm font-medium text-[var(--text-primary)]">{term.searchTerm}</span>
-                              </div>
-                              <div className="col-span-2">
-                                <span className="text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2 py-0.5 rounded">{term.category}</span>
-                              </div>
-                              <div className="col-span-1">
-                                <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(term.priority)}`}>
-                                  {term.priority}
-                                </span>
-                              </div>
-                              <div className="col-span-1 text-right">
-                                <span className="text-sm text-[var(--text-secondary)]">{formatCurrency(term.cost)}</span>
-                              </div>
-                              <div className="col-span-1 text-right">
-                                <span className="text-sm text-[var(--text-secondary)]">{term.clicks}</span>
-                              </div>
-                              <div className="col-span-3">
-                                <p className="text-xs text-[var(--text-muted)]">{term.reason}</p>
-                              </div>
-                            </div>
+                      <div className="divide-y divide-[var(--border)] max-h-[500px] overflow-y-auto">
+                        {terms.map((term) => {
+                          const globalIdx = result!.classifiedTerms.indexOf(term);
+                          const showCheckbox = activeTermTab === 'wasteful' || activeTermTab === 'underperforming';
 
-                            {/* Mobile row */}
-                            <div className="sm:hidden flex items-start gap-3">
-                              <input
-                                type="checkbox"
-                                checked={term.checked}
-                                onChange={() => toggleWasteful(i)}
-                                className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
-                              />
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-2 flex-wrap">
-                                  <span className="text-sm font-medium text-[var(--text-primary)]">{term.searchTerm}</span>
-                                  <span className="text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2 py-0.5 rounded">{term.category}</span>
-                                  <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(term.priority)}`}>
-                                    {term.priority}
+                          return (
+                            <div key={globalIdx} className="px-6 py-3 hover:bg-[var(--bg-tertiary)]">
+                              {/* Desktop row */}
+                              <div className="hidden sm:grid grid-cols-12 gap-2 items-start">
+                                {showCheckbox && (
+                                  <div className="col-span-1">
+                                    <input
+                                      type="checkbox"
+                                      checked={term.checked}
+                                      onChange={() => toggleTerm(globalIdx)}
+                                      className="mt-0.5 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                                    />
+                                  </div>
+                                )}
+                                <div className={showCheckbox ? 'col-span-2' : 'col-span-3'}>
+                                  <span className="text-sm font-medium text-[var(--text-primary)]">{term.term}</span>
+                                </div>
+                                <div className="col-span-1">
+                                  <span className={`text-xs font-medium px-2 py-0.5 rounded border ${classificationColor(term.classification)}`}>
+                                    {term.classification}
                                   </span>
                                 </div>
-                                <div className="flex items-center gap-3 mt-1">
-                                  <span className="text-xs text-[var(--text-muted)]">Cost: {formatCurrency(term.cost)}</span>
-                                  <span className="text-xs text-[var(--text-muted)]">Clicks: {term.clicks}</span>
+                                <div className="col-span-2">
+                                  <span className="text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2 py-0.5 rounded">
+                                    {term.category}
+                                  </span>
                                 </div>
-                                <p className="text-xs text-[var(--text-muted)] mt-1">{term.reason}</p>
+                                <div className="col-span-1 text-right">
+                                  <span className="text-sm text-[var(--text-secondary)]">{formatCurrency(term.cost)}</span>
+                                </div>
+                                <div className="col-span-1 text-right">
+                                  <span className="text-sm text-[var(--text-secondary)]">{term.clicks}</span>
+                                </div>
+                                <div className="col-span-1 text-right">
+                                  <span className="text-sm text-[var(--text-secondary)]">{term.conversions}</span>
+                                </div>
+                                <div className="col-span-3">
+                                  <p className="text-xs text-[var(--text-muted)]">{term.reason}</p>
+                                </div>
+                              </div>
+
+                              {/* Mobile row */}
+                              <div className="sm:hidden flex items-start gap-3">
+                                {showCheckbox && (
+                                  <input
+                                    type="checkbox"
+                                    checked={term.checked}
+                                    onChange={() => toggleTerm(globalIdx)}
+                                    className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                                  />
+                                )}
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-sm font-medium text-[var(--text-primary)]">{term.term}</span>
+                                    <span className={`text-xs font-medium px-2 py-0.5 rounded border ${classificationColor(term.classification)}`}>
+                                      {term.classification}
+                                    </span>
+                                    <span className="text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2 py-0.5 rounded">
+                                      {term.category}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-3 mt-1">
+                                    <span className="text-xs text-[var(--text-muted)]">Cost: {formatCurrency(term.cost)}</span>
+                                    <span className="text-xs text-[var(--text-muted)]">Clicks: {term.clicks}</span>
+                                    <span className="text-xs text-[var(--text-muted)]">Conv: {term.conversions}</span>
+                                  </div>
+                                  <p className="text-xs text-[var(--text-muted)] mt-1">{term.reason}</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </>
-                  )}
+                  );
+                })()}
+              </div>
+
+              {/* Negative Recommendations */}
+              {result.negativeRecommendations.length > 0 && (
+                <CollapsibleSection title="Negative Keyword Recommendations" count={result.negativeRecommendations.length}>
+                  {/* Group: From Search Terms */}
+                  {(() => {
+                    const fromSearch = recsBySource('search_terms');
+                    const fromPattern = [...recsBySource('pattern'), ...recsBySource('industry')];
+
+                    return (
+                      <div className="divide-y divide-[var(--border)]">
+                        {fromSearch.length > 0 && (
+                          <div>
+                            <div className="px-6 py-2 bg-[var(--bg-tertiary)] border-b border-[var(--border)]">
+                              <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                                From Your Search Terms
+                              </span>
+                            </div>
+                            <div className="divide-y divide-[var(--border)]">
+                              {fromSearch.map((rec) => {
+                                const globalIdx = result.negativeRecommendations.indexOf(rec);
+                                return (
+                                  <div key={globalIdx} className="px-6 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
+                                    <input
+                                      type="checkbox"
+                                      checked={rec.checked}
+                                      onChange={() => toggleRec(globalIdx)}
+                                      className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                                    />
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center gap-2 flex-wrap">
+                                        <span className="text-sm font-medium text-[var(--text-primary)]">{rec.keyword}</span>
+                                        <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                          {rec.matchType}
+                                        </span>
+                                        <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                          {rec.category}
+                                        </span>
+                                        <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(rec.priority)}`}>
+                                          {rec.priority}
+                                        </span>
+                                      </div>
+                                      <p className="text-xs text-[var(--text-muted)] mt-1">{rec.reason}</p>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {fromPattern.length > 0 && (
+                          <div>
+                            <div className="px-6 py-2 bg-[var(--bg-tertiary)] border-b border-[var(--border)]">
+                              <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                                Industry Patterns
+                              </span>
+                            </div>
+                            <div className="divide-y divide-[var(--border)]">
+                              {fromPattern.map((rec) => {
+                                const globalIdx = result.negativeRecommendations.indexOf(rec);
+                                return (
+                                  <div key={globalIdx} className="px-6 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
+                                    <input
+                                      type="checkbox"
+                                      checked={rec.checked}
+                                      onChange={() => toggleRec(globalIdx)}
+                                      className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                                    />
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center gap-2 flex-wrap">
+                                        <span className="text-sm font-medium text-[var(--text-primary)]">{rec.keyword}</span>
+                                        <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                          {rec.matchType}
+                                        </span>
+                                        <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                          {rec.category}
+                                        </span>
+                                        <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(rec.priority)}`}>
+                                          {rec.priority}
+                                        </span>
+                                      </div>
+                                      <p className="text-xs text-[var(--text-muted)] mt-1">{rec.reason}</p>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </CollapsibleSection>
               )}
 
-              {/* ── Negative Keyword Mode Results ── */}
-              {result.mode === 'negative_keywords' && (
-                <>
-                  {/* Missing Negative Keywords */}
-                  <CollapsibleSection title="Missing Negative Keywords" count={result.missing.length}>
-                    {result.missing.length === 0 ? (
-                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">No missing keywords found.</p>
-                    ) : (
-                      <div className="divide-y divide-[var(--border)]">
-                        {result.missing.map((kw, i) => (
-                          <div key={i} className="px-6 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
-                            <input
-                              type="checkbox"
-                              checked={kw.checked}
-                              onChange={() => toggleMissing(i)}
-                              className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-sm font-medium text-[var(--text-primary)]">{kw.keyword}</span>
-                                <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
-                                  {kw.matchType}
-                                </span>
-                                <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
-                                  {kw.category}
-                                </span>
-                                <span
-                                  className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(kw.priority)}`}
-                                >
-                                  {kw.priority}
-                                </span>
-                              </div>
-                              <p className="text-xs text-[var(--text-muted)] mt-1">{kw.reason}</p>
-                            </div>
-                          </div>
-                        ))}
+              {/* Existing Negative Issues */}
+              {result.existingNegativeIssues.length > 0 && (
+                <CollapsibleSection title="Issues with Current Negatives" count={result.existingNegativeIssues.length}>
+                  <div className="divide-y divide-[var(--border)]">
+                    {result.existingNegativeIssues.map((issue, i) => (
+                      <div key={i} className="px-6 py-3 hover:bg-[var(--bg-tertiary)]">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm font-medium text-[var(--text-primary)]">{issue.keyword}</span>
+                          <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                            {issue.matchType}
+                          </span>
+                          <span className={`text-xs font-medium px-2 py-0.5 rounded border ${severityColor(issue.severity)}`}>
+                            {issue.severity}
+                          </span>
+                          <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                            {issueLabel(issue.issue)}
+                          </span>
+                        </div>
+                        <p className="text-xs text-[var(--text-muted)] mt-1">{issue.reason}</p>
+                        {issue.suggestedFix && (
+                          <p className="text-xs text-emerald-400 mt-1">
+                            Suggested fix: {issue.suggestedFix}
+                          </p>
+                        )}
                       </div>
-                    )}
-                  </CollapsibleSection>
-
-                  {/* Potentially Unnecessary Keywords */}
-                  <CollapsibleSection
-                    title="Potentially Unnecessary Keywords"
-                    count={result.unnecessary.length}
-                  >
-                    {result.unnecessary.length === 0 ? (
-                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">
-                        No unnecessary keywords detected.
-                      </p>
-                    ) : (
-                      <div className="divide-y divide-[var(--border)]">
-                        {result.unnecessary.map((kw, i) => (
-                          <div key={i} className="px-6 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
-                            <input
-                              type="checkbox"
-                              checked={kw.checked}
-                              onChange={() => toggleUnnecessary(i)}
-                              className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-sm font-medium text-[var(--text-primary)]">{kw.keyword}</span>
-                                <span
-                                  className={`text-xs font-medium px-2 py-0.5 rounded border ${severityColor(kw.severity)}`}
-                                >
-                                  {kw.severity}
-                                </span>
-                              </div>
-                              <p className="text-xs text-[var(--text-muted)] mt-1">{kw.reason}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </CollapsibleSection>
-
-                  {/* Match Type Recommendations */}
-                  <CollapsibleSection
-                    title="Match Type Recommendations"
-                    count={result.matchTypeChanges.length}
-                  >
-                    {result.matchTypeChanges.length === 0 ? (
-                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">No match type changes suggested.</p>
-                    ) : (
-                      <div className="divide-y divide-[var(--border)]">
-                        {result.matchTypeChanges.map((rec, i) => (
-                          <div key={i} className="px-6 py-3 hover:bg-[var(--bg-tertiary)]">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-sm font-medium text-[var(--text-primary)]">{rec.keyword}</span>
-                              <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
-                                {rec.currentMatchType}
-                              </span>
-                              <svg
-                                className="w-4 h-4 text-[var(--text-muted)]"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                />
-                              </svg>
-                              <span className="text-xs font-medium text-emerald-400 bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-800">
-                                {rec.suggestedMatchType}
-                              </span>
-                            </div>
-                            <p className="text-xs text-[var(--text-muted)] mt-1">{rec.reason}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </CollapsibleSection>
-                </>
+                    ))}
+                  </div>
+                </CollapsibleSection>
               )}
 
               {/* Download Actions */}
               <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6">
-                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">
-                  {result.mode === 'search_terms' ? 'Download Negative Keywords' : 'Download Updated List'}
-                </h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+                    Download Selected Negatives
+                  </h3>
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {selectedCount} keywords selected
+                  </span>
+                </div>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  {result.mode === 'search_terms' ? (
-                    <>
-                      <button
-                        onClick={() => gatedDownload(downloadSearchTermGoogleAdsCsv)}
-                        className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--accent)] text-white text-sm font-medium hover:bg-[var(--accent-light)] transition-colors flex items-center justify-center gap-2"
-                      >
-                        <DownloadIcon />
-                        Download Negative Keywords (Google Ads)
-                      </button>
-                      <button
-                        onClick={() => gatedDownload(downloadSearchTermEditorCsv)}
-                        className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--accent)] text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent-glow)] transition-colors flex items-center justify-center gap-2"
-                      >
-                        <DownloadIcon />
-                        Download for Google Ads Editor
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => gatedDownload(downloadGoogleAdsCsv)}
-                        className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--accent)] text-white text-sm font-medium hover:bg-[var(--accent-light)] transition-colors flex items-center justify-center gap-2"
-                      >
-                        <DownloadIcon />
-                        Download Updated List (Google Ads)
-                      </button>
-                      <button
-                        onClick={() => gatedDownload(downloadEditorCsv)}
-                        className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--accent)] text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent-glow)] transition-colors flex items-center justify-center gap-2"
-                      >
-                        <DownloadIcon />
-                        Download for Google Ads Editor
-                      </button>
-                    </>
-                  )}
+                  <button
+                    onClick={() => gatedDownload(downloadGoogleAdsCsv)}
+                    disabled={selectedCount === 0}
+                    className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--accent)] text-white text-sm font-medium hover:bg-[var(--accent-light)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                  >
+                    <DownloadIcon />
+                    Download Selected Negatives (Google Ads)
+                  </button>
+                  <button
+                    onClick={() => gatedDownload(downloadEditorCsv)}
+                    disabled={selectedCount === 0}
+                    className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--accent)] text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent-glow)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                  >
+                    <DownloadIcon />
+                    Download for Google Ads Editor
+                  </button>
                 </div>
               </div>
 

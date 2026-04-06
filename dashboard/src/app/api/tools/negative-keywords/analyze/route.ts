@@ -1,128 +1,96 @@
+/**
+ * Negative keyword analysis API route.
+ *
+ * Flow: Parse uploads → compute stats → AI classifies → format response.
+ * Code handles parsing/formatting. AI handles classification.
+ *
+ * CANNOT: classify terms without AI, access external APIs beyond Claude.
+ */
 import { NextRequest, NextResponse } from 'next/server';
-import { analyzeNegativeKeywords, parseNegativeKeywordList } from '@/lib/negative-keyword-analyzer';
-import { parseSearchTermReport, analyzeSearchTerms, detectUploadType } from '@/lib/search-term-analyzer';
-import { getClaudeAnalysis } from '@/lib/claude-analysis';
+import { parseSearchTermReport } from '@/lib/search-term-analyzer';
+import { parseNegativeKeywordList } from '@/lib/negative-keyword-analyzer';
+import { analyzeWithAI, computeAccountStats } from '@/lib/ai-keyword-analyzer';
+import { checkRateLimit } from '@/lib/utils/rate-limiter';
+
+const MAX_TERMS = 500; // Limit for free tool; larger reports → AI interview upsell
 
 export async function POST(request: NextRequest) {
+  // Rate limit
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  const rateCheck = checkRateLimit(ip, 'insights');
+  if (!rateCheck.allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please wait a moment.' },
+      { status: 429 },
+    );
+  }
+
   try {
     const body = await request.json();
 
-    const rawText = body.rawKeywordText || body.keywords;
-    const businessKeywords = body.businessKeywords || body.siteContext?.keywords || [];
-    const services = body.services || body.siteContext?.services || [];
-    const industry = body.industry || body.siteContext?.industry || null;
-    const businessName = body.businessName || body.siteContext?.businessName || 'Unknown';
-    const businessDescription = body.businessDescription || body.siteContext?.description || '';
-    const competitors: string[] = body.competitors || [];
-    const manualDescription = body.manualDescription || '';
+    // ── Parse inputs ──────────────────────────────────────────────────
+    const searchTermText: string = body.searchTermText || body.keywords || '';
+    const keywordListText: string = body.keywordListText || '';
+    const negativeListText: string = body.negativeListText || '';
+    const businessDescription: string = body.businessDescription || body.manualDescription || '';
+    const competitors: string[] = (body.competitors || []).filter(Boolean);
 
-    if (!rawText || typeof rawText !== 'string') {
-      return NextResponse.json({ error: 'Keyword list or search term report is required' }, { status: 400 });
+    if (!searchTermText.trim() && !negativeListText.trim()) {
+      return NextResponse.json(
+        { error: 'Please upload a search term report or negative keyword list.' },
+        { status: 400 },
+      );
     }
 
-    // Use manual description to supplement business context if provided
-    const effectiveServices = manualDescription
-      ? [...services, ...manualDescription.toLowerCase().split(/[,.\n]+/).map((s: string) => s.trim()).filter(Boolean)]
-      : services;
-    const effectiveDescription = manualDescription || businessDescription;
+    // ── Parse search terms ────────────────────────────────────────────
+    let searchTerms = searchTermText.trim()
+      ? parseSearchTermReport(searchTermText)
+      : [];
 
-    // Auto-detect upload type
-    const uploadType = body.uploadType || detectUploadType(rawText);
-
-    let result;
-
-    if (uploadType === 'search_terms') {
-      // Parse and analyze search term report
-      const searchTerms = parseSearchTermReport(rawText);
-
-      if (searchTerms.length === 0) {
-        return NextResponse.json({
-          error: 'Could not parse search term report. Please check the file format — it should include columns like Search term, Clicks, Cost, etc.'
-        }, { status: 400 });
-      }
-
-      const searchAnalysis = analyzeSearchTerms(searchTerms, businessKeywords, effectiveServices, industry, competitors);
-
-      // Also run Claude analysis in parallel (non-blocking)
-      const claudePromise = getClaudeAnalysis({
-        businessName,
-        businessDescription: effectiveDescription,
-        industry,
-        services: effectiveServices,
-        keywords: searchTerms.map(t => t.term),
-        competitors,
-        uploadType,
-      });
-
-      const claudeInsights = await claudePromise;
-
-      // Remap field names for frontend consumption
-      const remappedTerms = searchAnalysis.wastefulTerms.map(t => ({
-        searchTerm: t.term,
-        category: t.category,
-        priority: t.priority,
-        cost: t.wastedSpend,
-        clicks: t.clicks,
-        impressions: t.impressions,
-        conversions: t.conversions,
-        reason: t.reason,
-        suggestedMatchType: t.suggestedMatchType,
-      }));
-
-      result = {
-        uploadType: 'search_terms',
-        wastefulTerms: remappedTerms,
-        totalSpendAnalyzed: searchAnalysis.totalSpendAnalyzed,
-        totalWastedSpend: searchAnalysis.totalWastedSpend,
-        wastePercentage: Math.round(searchAnalysis.wastePercentage * 10) / 10,
-        termCount: searchAnalysis.termCount,
-        healthScore: Math.max(0, Math.round(100 - searchAnalysis.wastePercentage * 1.5)),
-        detectedIndustry: industry || 'Not detected',
-        claudeInsights,
-      };
-    } else {
-      // Existing negative keyword list analysis
-      const parsedKeywords = parseNegativeKeywordList(rawText);
-      const analysis = analyzeNegativeKeywords(parsedKeywords, businessKeywords, effectiveServices, industry);
-
-      // Generate competitor negatives
-      const competitorNegatives = competitors.flatMap(comp => {
-        const lower = comp.toLowerCase().trim();
-        if (!lower) return [];
-        return [
-          { keyword: lower, matchType: 'Phrase' as const, reason: `Competitor brand: ${comp}`, category: 'Competitor Brands', priority: 'medium' as const },
-          { keyword: `${lower} reviews`, matchType: 'Phrase' as const, reason: `Competitor review search: ${comp}`, category: 'Competitor Brands', priority: 'medium' as const },
-          { keyword: `${lower} pricing`, matchType: 'Phrase' as const, reason: `Competitor pricing search: ${comp}`, category: 'Competitor Brands', priority: 'low' as const },
-          { keyword: `${lower} vs`, matchType: 'Phrase' as const, reason: `Competitor comparison: ${comp}`, category: 'Competitor Brands', priority: 'low' as const },
-        ].filter(neg => !parsedKeywords.some(pk => pk.keyword.toLowerCase() === neg.keyword));
-      });
-
-      // Run Claude analysis
-      const claudeInsights = await getClaudeAnalysis({
-        businessName,
-        businessDescription: effectiveDescription,
-        industry,
-        services: effectiveServices,
-        keywords: parsedKeywords.map(k => k.keyword),
-        competitors,
-        uploadType,
-      });
-
-      result = {
-        uploadType: 'negative_keywords',
-        parsedKeywords,
-        missing: [...analysis.missing, ...competitorNegatives],
-        unnecessary: analysis.unnecessary,
-        matchTypeChanges: analysis.matchTypeChanges,
-        healthScore: analysis.summary.healthScore,
-        totalAnalyzed: analysis.summary.totalAnalyzed,
-        issuesFound: analysis.summary.missingCount + analysis.summary.unnecessaryCount + analysis.summary.matchTypeChangeCount + competitorNegatives.length,
-        detectedIndustry: analysis.summary.detectedIndustry || 'Not detected',
-        claudeInsights,
-      };
+    if (searchTermText.trim() && searchTerms.length === 0) {
+      return NextResponse.json(
+        { error: 'Could not parse search term report. Please check the format — it should include columns like Search term, Clicks, Cost, etc.' },
+        { status: 400 },
+      );
     }
 
-    return NextResponse.json(result);
+    // Cap for free tool
+    const wasLimited = searchTerms.length > MAX_TERMS;
+    if (wasLimited) {
+      // Keep the highest-spend terms for the most useful analysis
+      searchTerms = searchTerms.sort((a, b) => b.cost - a.cost).slice(0, MAX_TERMS);
+    }
+
+    // ── Parse keyword list (optional) ─────────────────────────────────
+    const keywordList = keywordListText.trim()
+      ? keywordListText.split('\n').map(l => l.trim()).filter(Boolean).slice(0, 500)
+      : undefined;
+
+    // ── Parse existing negatives (optional) ───────────────────────────
+    const existingNegatives = negativeListText.trim()
+      ? parseNegativeKeywordList(negativeListText)
+      : undefined;
+
+    // ── Compute account stats ─────────────────────────────────────────
+    const accountStats = computeAccountStats(searchTerms);
+
+    // ── AI classification ─────────────────────────────────────────────
+    const analysis = await analyzeWithAI({
+      searchTerms,
+      keywordList,
+      existingNegatives,
+      businessDescription,
+      competitors,
+      accountStats,
+    });
+
+    // ── Format response ───────────────────────────────────────────────
+    return NextResponse.json({
+      ...analysis,
+      wasLimited,
+      maxTerms: MAX_TERMS,
+      originalTermCount: wasLimited ? undefined : searchTerms.length,
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Analysis failed';
     return NextResponse.json({ error: message }, { status: 500 });
