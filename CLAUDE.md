@@ -65,6 +65,26 @@ Enforced by deterministic hooks — these cannot be overridden:
 
 **Always:** Never include `char_count` in `raw_content` INSERTs (generated column). Before creating any new table, view, function, or agent, run `SELECT validate_new_entry('type', 'name')` — if BLOCKED or WARNING, stop and review. Before inserting into `agent_knowledge`, run `SELECT validate_new_knowledge('type', 'title', ARRAY['tags'])` — if BLOCKED, UPDATE instead. After any structural creation, register it in `system_registry`.
 
+## Coding Standards (All Code, All Users)
+
+These 10 rules apply to every file written or modified in this system:
+
+1. **Design for the reader.** 10-second skim test. JSDoc headers, section dividers, consistent structure.
+2. **Constrain before you build.** Define what a module CANNOT do in its JSDoc header.
+3. **Make the implicit explicit.** No `select('*')`, no `Record<string, any>`, no hidden dependencies.
+4. **Build layers, not features.** Route → Service → Repo → DB. Route handlers max 30 lines.
+5. **Delete before you add.** Extract hooks at ~15 useState. Move logic to services.
+6. **Fail loudly.** Never empty `catch {}`. Use `logError(context, error, metadata)`.
+7. **Quarantine side effects.** Secondary concerns get separate try/catch, never block the response.
+8. **One-way dependencies.** Service never imports NextRequest. Repo never imported by client.
+9. **Predictability over cleverness.** Same file type = same structure. Literal unions, not enums.
+10. **Whitelists, not blocklists.** `ALLOWED_UPDATE_FIELDS` for every update. Return null on not-found.
+
+For full examples, anti-patterns, and review checklists:
+```sql
+SELECT content FROM agent_knowledge WHERE title = 'Coding Standards Reference';
+```
+
 ## Session Closure (Mandatory)
 
 Before ending any session with meaningful work:
