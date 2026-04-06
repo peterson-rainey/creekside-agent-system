@@ -64,8 +64,8 @@ export default async function ToolsHub() {
       title: 'Ad Budget Calculator',
       description:
         'Find out how much you should be spending on ads based on your revenue goals and industry.',
-      href: '#',
-      status: 'coming-soon',
+      href: '/tools/ad-budget-calculator',
+      status: 'live',
     },
     {
       title: 'Negative Keyword Builder',
