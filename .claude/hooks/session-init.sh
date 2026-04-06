@@ -35,6 +35,11 @@ if [ -f "$ROLE_FILE" ]; then
     DB_ROLE=$(echo "$USER_DATA" | jq -r '.[0].role // empty' 2>/dev/null)
 
     if [ -n "$USER_ID" ] && [ -n "$USER_NAME" ]; then
+      # Persist user ID for compliance-check.sh to read at session end
+      STATE_DIR="/tmp/claude-session-state"
+      mkdir -p "$STATE_DIR"
+      echo "$USER_ID" > "$STATE_DIR/current-user-id"
+
       if [ "$DB_ROLE" = "contractor" ]; then
         USER_IDENTITY="### Current User Identity
 You are operating as **${USER_NAME}** (${USER_EMAIL}), role: **contractor**, system_users ID: \`${USER_ID}\`.
