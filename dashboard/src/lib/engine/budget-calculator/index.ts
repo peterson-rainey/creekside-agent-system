@@ -8,4 +8,7 @@ export type {
   BudgetTier,
   RevenueTimeframe,
   SpendAssessment,
+  PlatformSplit,
+  BudgetLimitation,
+  SpendLevelRow,
 } from './types';

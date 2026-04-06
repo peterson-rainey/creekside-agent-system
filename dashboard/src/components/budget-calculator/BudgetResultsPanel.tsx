@@ -31,7 +31,7 @@ export function BudgetResultsPanel() {
     );
   }
 
-  const { recommendations, budgetBreakdown, spendAssessment, industryAvgBudgetPercent } = results;
+  const { recommendations, budgetBreakdown, spendAssessment, industryAvgBudgetPercent, platformSplit, budgetLimitations, spendLevelTable, costPerLead, costPerCustomer } = results;
   const moderate = recommendations.moderate;
 
   const breakdownData = [
@@ -178,6 +178,133 @@ export function BudgetResultsPanel() {
             </p>
           </div>
         </div>
+
+        {/* Cost Per Lead vs Cost Per Customer */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
+            <h3 className="text-[var(--text-muted)] text-xs uppercase tracking-wider mb-2">Cost Per Lead</h3>
+            <p className="text-2xl font-bold text-[var(--text-primary)]">{formatCurrency(costPerLead)}</p>
+            <p className="text-xs text-[var(--text-muted)] mt-1">What you pay for each person who contacts you</p>
+          </div>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
+            <h3 className="text-[var(--text-muted)] text-xs uppercase tracking-wider mb-2">Cost Per Customer</h3>
+            <p className="text-2xl font-bold text-[var(--text-primary)]">{formatCurrency(costPerCustomer)}</p>
+            <p className="text-xs text-[var(--text-muted)] mt-1">
+              What you actually pay to acquire a paying customer ({Math.round(state.conversionRate * 100)}% of leads convert)
+            </p>
+          </div>
+        </div>
+
+        {/* What You Get at Each Spend Level */}
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
+          <h3 className="text-[var(--text-primary)] font-semibold mb-4">What You Get at Each Spend Level</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[var(--border)]">
+                  <th className="text-left text-[var(--text-muted)] text-xs uppercase tracking-wider py-2 pr-4">Level</th>
+                  <th className="text-right text-[var(--text-muted)] text-xs uppercase tracking-wider py-2 px-3">Monthly</th>
+                  <th className="text-right text-[var(--text-muted)] text-xs uppercase tracking-wider py-2 px-3">Daily</th>
+                  <th className="text-right text-[var(--text-muted)] text-xs uppercase tracking-wider py-2 px-3">Leads/mo</th>
+                  <th className="text-right text-[var(--text-muted)] text-xs uppercase tracking-wider py-2 px-3">Customers/mo</th>
+                  <th className="text-right text-[var(--text-muted)] text-xs uppercase tracking-wider py-2 pl-3">Cost/Customer</th>
+                </tr>
+              </thead>
+              <tbody>
+                {spendLevelTable.map((row) => (
+                  <tr
+                    key={row.label}
+                    className={`border-b border-[var(--border)]/50 ${
+                      row.isRecommended ? 'bg-[var(--accent)]/5' : row.isCurrentSpend ? 'bg-yellow-900/10' : ''
+                    }`}
+                  >
+                    <td className="py-2.5 pr-4">
+                      <div className="flex items-center gap-2">
+                        <span className={`text-[var(--text-primary)] font-medium ${row.isRecommended ? 'text-[var(--accent)]' : ''}`}>
+                          {row.label}
+                        </span>
+                        {row.isCurrentSpend && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-yellow-900/30 text-yellow-400">YOU</span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="text-right py-2.5 px-3 text-[var(--text-primary)]">{formatCurrency(row.monthlyBudget)}</td>
+                    <td className="text-right py-2.5 px-3 text-[var(--text-secondary)]">{formatCurrency(row.dailyBudget)}/day</td>
+                    <td className="text-right py-2.5 px-3 text-[var(--text-primary)]">{formatNumber(row.expectedLeads)}</td>
+                    <td className="text-right py-2.5 px-3 text-[var(--text-primary)] font-medium">{formatNumber(row.expectedCustomers)}</td>
+                    <td className="text-right py-2.5 pl-3 text-[var(--text-secondary)]">{row.costPerCustomer > 0 ? formatCurrency(row.costPerCustomer) : '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Platform Split Recommendation */}
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
+          <h3 className="text-[var(--text-primary)] font-semibold mb-4">Where to Run Ads</h3>
+          <div className="flex gap-2 mb-4 h-4 rounded-full overflow-hidden">
+            <div className="bg-[#4285F4] rounded-l-full" style={{ width: `${platformSplit.google}%` }} />
+            <div className="bg-[#1877F2]" style={{ width: `${platformSplit.meta}%` }} />
+            <div className="bg-[var(--text-muted)] rounded-r-full" style={{ width: `${platformSplit.other}%` }} />
+          </div>
+          <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#4285F4]" />
+                <span className="text-sm text-[var(--text-primary)] font-medium">Google</span>
+              </div>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{platformSplit.google}%</p>
+              <p className="text-xs text-[var(--text-muted)]">{formatCurrency(Math.round(moderate.monthlyBudget * platformSplit.google / 100))}/mo</p>
+            </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#1877F2]" />
+                <span className="text-sm text-[var(--text-primary)] font-medium">Meta</span>
+              </div>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{platformSplit.meta}%</p>
+              <p className="text-xs text-[var(--text-muted)]">{formatCurrency(Math.round(moderate.monthlyBudget * platformSplit.meta / 100))}/mo</p>
+            </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <div className="w-2.5 h-2.5 rounded-full bg-[var(--text-muted)]" />
+                <span className="text-sm text-[var(--text-primary)] font-medium">Other</span>
+              </div>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{platformSplit.other}%</p>
+              <p className="text-xs text-[var(--text-muted)]">{formatCurrency(Math.round(moderate.monthlyBudget * platformSplit.other / 100))}/mo</p>
+            </div>
+          </div>
+          <p className="text-sm text-[var(--text-secondary)] bg-[var(--bg-tertiary)] rounded-lg p-3">
+            {platformSplit.rationale}
+          </p>
+        </div>
+
+        {/* Budget Limitations */}
+        {budgetLimitations.length > 0 && (
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
+            <h3 className="text-[var(--text-primary)] font-semibold mb-3">What to Know at This Budget Level</h3>
+            <div className="space-y-3">
+              {budgetLimitations.map((lim, i) => (
+                <div key={i} className={`flex gap-3 p-3 rounded-lg text-sm ${
+                  lim.icon === 'block' ? 'bg-red-950/20 border border-red-800/30' :
+                  lim.icon === 'warning' ? 'bg-yellow-950/20 border border-yellow-800/30' :
+                  'bg-[var(--bg-tertiary)] border border-[var(--border)]'
+                }`}>
+                  <span className="shrink-0 mt-0.5">
+                    {lim.icon === 'block' ? (
+                      <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                    ) : lim.icon === 'warning' ? (
+                      <svg className="w-4 h-4 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    )}
+                  </span>
+                  <span className="text-[var(--text-secondary)]">{lim.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Budget Breakdown Chart + Current Spend Comparison */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

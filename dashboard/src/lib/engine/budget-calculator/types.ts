@@ -40,6 +40,29 @@ export interface SpendAssessment {
   message: string;
 }
 
+export interface PlatformSplit {
+  google: number;
+  meta: number;
+  other: number;
+  rationale: string;
+}
+
+export interface BudgetLimitation {
+  icon: 'warning' | 'info' | 'block';
+  text: string;
+}
+
+export interface SpendLevelRow {
+  label: string;
+  monthlyBudget: number;
+  dailyBudget: number;
+  expectedLeads: number;
+  expectedCustomers: number;
+  costPerCustomer: number;
+  isCurrentSpend?: boolean;
+  isRecommended?: boolean;
+}
+
 export interface BudgetCalculatorResults {
   monthlyRevenueGoal: number;
   customersNeeded: number;
@@ -50,4 +73,9 @@ export interface BudgetCalculatorResults {
   budgetBreakdown: BudgetBreakdown;
   spendAssessment: SpendAssessment | null;
   industryMinBudget: number;
+  platformSplit: PlatformSplit;
+  budgetLimitations: BudgetLimitation[];
+  spendLevelTable: SpendLevelRow[];
+  costPerLead: number;
+  costPerCustomer: number;
 }
