@@ -1,49 +1,27 @@
 @import "tailwindcss";
-@source "../components/**/*.tsx";
-@source "../app/**/*.tsx";
-@source "./**/*.tsx";
 
 :root {
-  --creekside-navy: #0F1729;
-  --creekside-navy-light: #1B2A4A;
-  --creekside-blue: #2563EB;
-  --creekside-light-blue: #3B82F6;
-  --creekside-green: #10B981;
-  --creekside-yellow: #F59E0B;
-  --creekside-red: #EF4444;
-  --creekside-gray: #F3F4F6;
-  --creekside-dark-gray: #1F2937;
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --card: #FFFFFF;
-  --border: #E2E8F0;
-  --muted: #94A3B8;
-}
-
-* {
-  box-sizing: border-box;
+  --bg-primary: #0B0F1A;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1F2937;
+  --border: #374151;
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --accent: #14B8A6;
+  --accent-light: #2DD4BF;
+  --accent-glow: rgba(20,184,166,0.15);
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --chart-low: #EF4444;
+  --chart-bench: #3B82F6;
+  --chart-high: #10B981;
+  --chart-fill: rgba(59,130,246,0.08);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Smooth scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
 }

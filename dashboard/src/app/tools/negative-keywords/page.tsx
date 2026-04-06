@@ -96,9 +96,9 @@ function healthScoreColor(score: number) {
 }
 
 function healthScoreBg(score: number) {
-  if (score >= 80) return 'bg-emerald-50 border-emerald-200';
-  if (score >= 60) return 'bg-yellow-50 border-yellow-200';
-  return 'bg-red-50 border-red-200';
+  if (score >= 80) return 'bg-emerald-950/30 border-emerald-800';
+  if (score >= 60) return 'bg-yellow-950/30 border-yellow-800';
+  return 'bg-red-950/30 border-red-800';
 }
 
 function formatCurrency(n: number) {
@@ -120,14 +120,14 @@ function CollapsibleSection({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="bg-white rounded-xl border border-[var(--border)] overflow-hidden">
+    <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-slate-50 transition-colors"
+        className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-[var(--bg-tertiary)] transition-colors"
       >
         <div className="flex items-center gap-3">
           <svg
-            className={`w-4 h-4 text-slate-400 transition-transform ${open ? 'rotate-90' : ''}`}
+            className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${open ? 'rotate-90' : ''}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -135,9 +135,9 @@ function CollapsibleSection({
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
-          <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+          <h3 className="text-sm font-semibold text-[var(--text-primary)]">{title}</h3>
         </div>
-        <span className="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">
+        <span className="text-xs font-medium bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2.5 py-1 rounded-full">
           {count}
         </span>
       </button>
@@ -170,12 +170,12 @@ function EmailGateModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white rounded-xl border border-[var(--border)] shadow-xl max-w-md w-full p-6 space-y-4">
+      <div className="relative bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] shadow-xl max-w-md w-full p-6 space-y-4">
         <div className="text-center">
-          <svg className="w-10 h-10 mx-auto text-[var(--creekside-blue)] mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <svg className="w-10 h-10 mx-auto text-[var(--accent)] mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
           </svg>
-          <h3 className="text-lg font-semibold text-slate-900">
+          <h3 className="text-lg font-semibold text-[var(--text-primary)]">
             Enter your email to download your customized negative keyword list
           </h3>
         </div>
@@ -189,7 +189,7 @@ function EmailGateModal({
             }}
             onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
             placeholder="you@company.com"
-            className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent"
+            className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent"
           />
           {emailError && (
             <p className="text-xs text-red-600 mt-1">{emailError}</p>
@@ -197,11 +197,11 @@ function EmailGateModal({
         </div>
         <button
           onClick={handleSubmit}
-          className="w-full py-3 px-6 rounded-lg bg-[var(--creekside-blue)] text-white text-sm font-semibold hover:bg-[var(--creekside-light-blue)] transition-colors"
+          className="w-full py-3 px-6 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-light)] transition-colors"
         >
           Download
         </button>
-        <p className="text-xs text-slate-400 text-center">
+        <p className="text-xs text-[var(--text-muted)] text-center">
           Your email is only used to deliver your report.
         </p>
       </div>
@@ -454,14 +454,27 @@ export default function NegativeKeywordAnalyzer() {
 
   // ── CSV downloads ──
 
-  // Extract just the keyword from each line, handling multi-column CSV formats
+  // Extract just the keyword from each line, handling multi-column CSV and TSV formats
   const extractKeyword = (line: string): string => {
-    // If it looks like a CSV row with commas, take the first column
+    // Handle Google Ads Editor TSV format: Campaign\tAd Group\tKeyword\tCriterion Type
+    if (line.includes('\t')) {
+      const parts = line.split('\t').map(p => p.trim());
+      // Find the keyword column — it's the one before Criterion Type, or the second-to-last meaningful column
+      const criterionIdx = parts.findIndex(p => /^negative (broad|phrase|exact)$/i.test(p));
+      if (criterionIdx > 0) {
+        const kw = parts[criterionIdx - 1];
+        return kw.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
+      }
+      // Fallback: if no criterion type column, take column with most word-like content
+      const kw = parts.find(p => p.length > 0 && !/^(negative |campaign|ad group)/i.test(p)) || parts[0];
+      return kw.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
+    }
+    // Handle CSV rows with commas
     if (line.includes(',')) {
       const first = line.split(',')[0].trim();
-      // Strip Google Ads match type delimiters
       return first.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
     }
+    // Plain text format
     return line.replace(/^\[|\]$/g, '').replace(/^"|"$/g, '');
   };
 
@@ -469,7 +482,7 @@ export default function NegativeKeywordAnalyzer() {
     return keywordText
       .split('\n')
       .map((l) => l.trim())
-      .filter((l) => l && !/^(keyword|criteria|campaign|ad group|account|match type|negative)/i.test(l));
+      .filter((l) => l && !/^(keyword|criteria|campaign|ad group|account|match type|criterion type|negative|report|date range)/i.test(l));
   };
 
   const getAiNegatives = (): { keyword: string; matchType: string }[] => {
@@ -512,12 +525,12 @@ export default function NegativeKeywordAnalyzer() {
     const header = 'Campaign\tAd Group\tKeyword\tCriterion Type';
     const rows = checked.map((t) => {
       const mt = t.suggestedMatchType || 'Broad';
-      return `\t\t${t.searchTerm}\tNegative ${mt}`;
+      return `\t\t${t.searchTerm}\tNegative ${mt.toLowerCase()}`;
     });
 
     const aiRows = aiNegs.map((n) => {
       const mt = n.matchType || 'Broad';
-      return `\t\t${n.keyword}\tNegative ${mt}`;
+      return `\t\t${n.keyword}\tNegative ${mt.toLowerCase()}`;
     });
 
     const csv = header + '\n' + [...rows, ...aiRows].join('\n');
@@ -590,17 +603,17 @@ export default function NegativeKeywordAnalyzer() {
       } else if (kw.startsWith('"') || kw.split(',')[0].trim().startsWith('"')) {
         matchType = 'Phrase';
       }
-      return `\t\t${clean}\tNegative ${matchType}`;
+      return `\t\t${clean}\tNegative ${matchType.toLowerCase()}`;
     });
 
     const addRows = toAdd.map((line) => {
       const [kw, mt] = line.split('\t');
-      return `\t\t${kw}\tNegative ${mt}`;
+      return `\t\t${kw}\tNegative ${mt.toLowerCase()}`;
     });
 
     const aiRows = aiNegs.map((line) => {
       const [kw, mt] = line.split('\t');
-      return `\t\t${kw}\tNegative ${mt}`;
+      return `\t\t${kw}\tNegative ${mt.toLowerCase()}`;
     });
 
     const csv = header + '\n' + [...rows, ...addRows, ...aiRows].join('\n');
@@ -632,695 +645,714 @@ export default function NegativeKeywordAnalyzer() {
   // ── Render ───────────────────────────────────────────────────────────────
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto">
-      {/* Email Gate Modal */}
-      {showEmailModal && (
-        <EmailGateModal
-          onSubmit={handleEmailSubmit}
-          onClose={() => {
-            setShowEmailModal(false);
-            setPendingDownload(null);
-          }}
-        />
-      )}
-
-      {/* Header */}
-      <div>
-        <h2 className="text-2xl font-semibold text-slate-900">Negative Keyword Analyzer</h2>
-        <p className="text-sm text-slate-500 mt-1">
-          Upload a Search Term Report to find wasteful spend, or upload your existing negative keyword
-          list for a health check. We&apos;ll analyze it using your website context and recommend
-          improvements.
-        </p>
-      </div>
-
-      {/* Upload Type Toggle */}
-      <div className="bg-white rounded-xl border border-[var(--border)] p-1.5 inline-flex">
-        <button
-          onClick={() => {
-            setUploadType('search_terms');
-            setResult(null);
-            setError('');
-          }}
-          className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
-            uploadType === 'search_terms'
-              ? 'bg-[var(--creekside-blue)] text-white shadow-sm'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-          }`}
+    <div className="min-h-screen bg-[var(--bg-primary)]">
+      <nav className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
+        <a href="/" className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="text-sm">All Tools</span>
+        </a>
+        <a
+          href="https://calendar.app.google/4ierPN3nNxLMMTAz7"
+          className="text-sm text-[var(--accent)] hover:text-[var(--accent-light)] transition-colors font-medium"
         >
-          Search Term Report
-        </button>
-        <button
-          onClick={() => {
-            setUploadType('negative_keywords');
-            setResult(null);
-            setError('');
-          }}
-          className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
-            uploadType === 'negative_keywords'
-              ? 'bg-[var(--creekside-blue)] text-white shadow-sm'
-              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-          }`}
-        >
-          Negative Keyword List
-        </button>
-      </div>
+          Book a Strategy Call
+        </a>
+      </nav>
 
-      {/* Input Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Left: File Upload / Paste */}
-        <div className="bg-white rounded-xl border border-[var(--border)] p-6 space-y-4">
-          <label className="text-sm font-medium text-slate-700">{uploadLabel}</label>
-
-          {/* Drop zone */}
-          <div
-            onDragOver={(e) => {
-              e.preventDefault();
-              setDragOver(true);
-            }}
-            onDragLeave={() => setDragOver(false)}
-            onDrop={onDrop}
-            onClick={() => fileRef.current?.click()}
-            className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-              dragOver
-                ? 'border-[var(--creekside-blue)] bg-blue-50'
-                : 'border-slate-200 hover:border-slate-300 bg-slate-50'
-            }`}
-          >
-            <input
-              ref={fileRef}
-              type="file"
-              accept=".csv,.txt"
-              className="hidden"
-              onChange={onFileInput}
+      <main className="px-4 sm:px-6 py-8 sm:py-12">
+        <div className="space-y-8 max-w-5xl mx-auto">
+          {/* Email Gate Modal */}
+          {showEmailModal && (
+            <EmailGateModal
+              onSubmit={handleEmailSubmit}
+              onClose={() => {
+                setShowEmailModal(false);
+                setPendingDownload(null);
+              }}
             />
-            <svg
-              className="w-8 h-8 mx-auto text-slate-400 mb-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-            {fileName ? (
-              <p className="text-sm text-slate-700 font-medium">{fileName}</p>
-            ) : (
-              <>
-                <p className="text-sm text-slate-600">
-                  Drag & drop your <span className="font-medium">{dropZoneLabel}</span>{' '}
-                  (<span className="font-medium">.csv</span> or <span className="font-medium">.txt</span>)
-                </p>
-                <p className="text-xs text-slate-400 mt-1">or click to browse</p>
-              </>
-            )}
-          </div>
+          )}
 
-          <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-slate-200" />
-            <span className="text-xs text-slate-400 uppercase tracking-wider">or paste below</span>
-            <div className="flex-1 h-px bg-slate-200" />
-          </div>
-
-          <textarea
-            value={keywordText}
-            onChange={(e) => {
-              setKeywordText(e.target.value);
-              setFileName('');
-            }}
-            rows={8}
-            placeholder={uploadPlaceholder}
-            className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent resize-y"
-          />
-        </div>
-
-        {/* Right: URL + Competitors + Analyze */}
-        <div className="bg-white rounded-xl border border-[var(--border)] p-6 flex flex-col">
-          <label className="text-sm font-medium text-slate-700 mb-2">Website URL</label>
-          <input
-            type="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://yourwebsite.com"
-            className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent"
-          />
-          <p className="text-xs text-slate-400 mt-2">
-            We&apos;ll scan your site to understand your business and tailor our recommendations.
-          </p>
-
-          {/* Competitor Brands */}
-          <div className="mt-4">
-            <label className="text-sm font-medium text-slate-700 mb-2 block">
-              Competitor Brands <span className="text-slate-400 font-normal">(optional)</span>
-            </label>
-            <input
-              type="text"
-              value={competitors}
-              onChange={(e) => setCompetitors(e.target.value)}
-              placeholder="e.g. CompetitorA, CompetitorB, CompetitorC"
-              className="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent"
-            />
-            <p className="text-xs text-slate-400 mt-1.5">
-              Comma-separated. We&apos;ll flag search terms containing these brands.
+          {/* Header */}
+          <div>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Negative Keyword Analyzer</h2>
+            <p className="text-sm text-[var(--text-muted)] mt-1">
+              Upload a Search Term Report to find wasteful spend, or upload your existing negative keyword
+              list for a health check. We&apos;ll analyze it using your website context and recommend
+              improvements.
             </p>
           </div>
 
-          {/* Manual Description Fallback */}
-          {showManualDescription && (
-            <div className="mt-4">
-              <label className="text-sm font-medium text-slate-700 mb-2 block">
-                Describe Your Business
-              </label>
-              <textarea
-                value={manualDescription}
-                onChange={(e) => setManualDescription(e.target.value)}
-                rows={4}
-                placeholder="We couldn't fully read your website. Please describe what your business does, the services you offer, and your target customers..."
-                className="w-full rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent resize-y"
-              />
-            </div>
-          )}
-
-          <div className="mt-auto pt-6">
-            {error && (
-              <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
-                {error}
-              </div>
-            )}
+          {/* Upload Type Toggle */}
+          <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-1.5 inline-flex">
             <button
-              onClick={analyze}
-              disabled={loading}
-              className="w-full py-3 px-6 rounded-lg bg-[var(--creekside-blue)] text-white text-sm font-semibold hover:bg-[var(--creekside-light-blue)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              onClick={() => {
+                setUploadType('search_terms');
+                setResult(null);
+                setError('');
+              }}
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                uploadType === 'search_terms'
+                  ? 'bg-[var(--accent)] text-white shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
+              }`}
             >
-              {loading ? (
-                <>
-                  <Spinner />
-                  Analyzing...
-                </>
-              ) : (
-                'Analyze'
-              )}
+              Search Term Report
+            </button>
+            <button
+              onClick={() => {
+                setUploadType('negative_keywords');
+                setResult(null);
+                setError('');
+              }}
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                uploadType === 'negative_keywords'
+                  ? 'bg-[var(--accent)] text-white shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
+              }`}
+            >
+              Negative Keyword List
             </button>
           </div>
-        </div>
-      </div>
 
-      {/* ── Results ── */}
-      {result && (
-        <div className="space-y-6">
-          {/* Summary Card */}
-          <div className={`rounded-xl border p-6 ${healthScoreBg(result.healthScore)}`}>
-            {result.mode === 'search_terms' ? (
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-6">
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Health Score</p>
-                  <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Terms Analyzed</p>
-                  <p className="text-4xl font-bold text-slate-800">{result.termCount}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Wasted Spend</p>
-                  <p className="text-4xl font-bold text-red-600">{formatCurrency(result.totalWastedSpend)}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Waste %</p>
-                  <p className="text-4xl font-bold text-slate-800">{result.wastePercentage}%</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Industry</p>
-                  <p className="text-lg font-semibold text-slate-800 mt-2">{result.detectedIndustry}</p>
-                </div>
+          {/* Input Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left: File Upload / Paste */}
+            <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6 space-y-4">
+              <label className="text-sm font-medium text-[var(--text-secondary)]">{uploadLabel}</label>
+
+              {/* Drop zone */}
+              <div
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setDragOver(true);
+                }}
+                onDragLeave={() => setDragOver(false)}
+                onDrop={onDrop}
+                onClick={() => fileRef.current?.click()}
+                className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
+                  dragOver
+                    ? 'border-[var(--accent)] bg-[var(--accent-glow)]'
+                    : 'border-[var(--border)] hover:border-[var(--accent)] bg-[var(--bg-tertiary)]'
+                }`}
+              >
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept=".csv,.txt"
+                  className="hidden"
+                  onChange={onFileInput}
+                />
+                <svg
+                  className="w-8 h-8 mx-auto text-[var(--text-muted)] mb-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                  />
+                </svg>
+                {fileName ? (
+                  <p className="text-sm text-[var(--text-secondary)] font-medium">{fileName}</p>
+                ) : (
+                  <>
+                    <p className="text-sm text-[var(--text-secondary)]">
+                      Drag & drop your <span className="font-medium text-[var(--text-primary)]">{dropZoneLabel}</span>{' '}
+                      (<span className="font-medium text-[var(--text-primary)]">.csv</span> or <span className="font-medium text-[var(--text-primary)]">.txt</span>)
+                    </p>
+                    <p className="text-xs text-[var(--text-muted)] mt-1">or click to browse</p>
+                  </>
+                )}
               </div>
-            ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Health Score</p>
-                  <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Keywords Analyzed</p>
-                  <p className="text-4xl font-bold text-slate-800">{result.totalAnalyzed}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Issues Found</p>
-                  <p className="text-4xl font-bold text-slate-800">{result.issuesFound}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Detected Industry</p>
-                  <p className="text-lg font-semibold text-slate-800 mt-2">{result.detectedIndustry}</p>
-                </div>
+
+              <div className="flex items-center gap-3">
+                <div className="flex-1 h-px bg-[var(--border)]" />
+                <span className="text-xs text-[var(--text-muted)] uppercase tracking-wider">or paste below</span>
+                <div className="flex-1 h-px bg-[var(--border)]" />
               </div>
-            )}
+
+              <textarea
+                value={keywordText}
+                onChange={(e) => {
+                  setKeywordText(e.target.value);
+                  setFileName('');
+                }}
+                rows={8}
+                placeholder={uploadPlaceholder}
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent resize-y"
+              />
+            </div>
+
+            {/* Right: URL + Competitors + Analyze */}
+            <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6 flex flex-col">
+              <label className="text-sm font-medium text-[var(--text-secondary)] mb-2">Website URL</label>
+              <input
+                type="url"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="https://yourwebsite.com"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent"
+              />
+              <p className="text-xs text-[var(--text-muted)] mt-2">
+                We&apos;ll scan your site to understand your business and tailor our recommendations.
+              </p>
+
+              {/* Competitor Brands */}
+              <div className="mt-4">
+                <label className="text-sm font-medium text-[var(--text-secondary)] mb-2 block">
+                  Competitor Brands <span className="text-[var(--text-muted)] font-normal">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  value={competitors}
+                  onChange={(e) => setCompetitors(e.target.value)}
+                  placeholder="e.g. CompetitorA, CompetitorB, CompetitorC"
+                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent"
+                />
+                <p className="text-xs text-[var(--text-muted)] mt-1.5">
+                  Comma-separated. We&apos;ll flag search terms containing these brands.
+                </p>
+              </div>
+
+              {/* Manual Description Fallback */}
+              {showManualDescription && (
+                <div className="mt-4">
+                  <label className="text-sm font-medium text-[var(--text-secondary)] mb-2 block">
+                    Describe Your Business
+                  </label>
+                  <textarea
+                    value={manualDescription}
+                    onChange={(e) => setManualDescription(e.target.value)}
+                    rows={4}
+                    placeholder="We couldn't fully read your website. Please describe what your business does, the services you offer, and your target customers..."
+                    className="w-full rounded-lg border border-amber-700 bg-amber-950/30 px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent resize-y"
+                  />
+                </div>
+              )}
+
+              <div className="mt-auto pt-6">
+                {error && (
+                  <div className="mb-4 p-3 rounded-lg bg-red-950/30 border border-red-800 text-sm text-red-400">
+                    {error}
+                  </div>
+                )}
+                <button
+                  onClick={analyze}
+                  disabled={loading}
+                  className="w-full py-3 px-6 rounded-lg bg-[var(--accent)] text-white text-sm font-semibold hover:bg-[var(--accent-light)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <Spinner />
+                      Analyzing...
+                    </>
+                  ) : (
+                    'Analyze'
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Claude Insights */}
-          {result.claudeInsights && (
-            <div className="bg-white rounded-xl border border-[var(--border)] overflow-hidden">
-              <div className="px-6 py-4 border-b border-[var(--border)] flex items-center gap-2">
-                <svg className="w-5 h-5 text-[var(--creekside-blue)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                </svg>
-                <h3 className="text-sm font-semibold text-slate-900">AI Analysis</h3>
+          {/* ── Results ── */}
+          {result && (
+            <div className="space-y-6">
+              {/* Summary Card */}
+              <div className={`rounded-xl border p-6 ${healthScoreBg(result.healthScore)}`}>
+                {result.mode === 'search_terms' ? (
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-6">
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Health Score</p>
+                      <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Terms Analyzed</p>
+                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.termCount}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Wasted Spend</p>
+                      <p className="text-4xl font-bold text-red-500">{formatCurrency(result.totalWastedSpend)}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Waste %</p>
+                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.wastePercentage}%</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Industry</p>
+                      <p className="text-lg font-semibold text-[var(--text-primary)] mt-2">{result.detectedIndustry}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Health Score</p>
+                      <p className={`text-4xl font-bold ${healthScoreColor(result.healthScore)}`}>{result.healthScore}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Keywords Analyzed</p>
+                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.totalAnalyzed}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Issues Found</p>
+                      <p className="text-4xl font-bold text-[var(--text-primary)]">{result.issuesFound}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Detected Industry</p>
+                      <p className="text-lg font-semibold text-[var(--text-primary)] mt-2">{result.detectedIndustry}</p>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="p-6 space-y-4">
-                {/* Summary */}
-                {result.claudeInsights.summary && (
-                  <p className="text-sm text-slate-700 leading-relaxed">
-                    {result.claudeInsights.summary}
-                  </p>
-                )}
 
-                {/* Warnings */}
-                {result.claudeInsights.warnings && result.claudeInsights.warnings.length > 0 && (
-                  <div className="space-y-2">
-                    {result.claudeInsights.warnings.map((w, i) => (
-                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-200">
-                        <svg className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                        </svg>
-                        <p className="text-sm text-amber-800">{w}</p>
-                      </div>
-                    ))}
+              {/* Claude Insights */}
+              {result.claudeInsights && (
+                <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-hidden">
+                  <div className="px-6 py-4 border-b border-[var(--border)] flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                    </svg>
+                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">AI Analysis</h3>
                   </div>
-                )}
+                  <div className="p-6 space-y-4">
+                    {/* Summary */}
+                    {result.claudeInsights.summary && (
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                        {result.claudeInsights.summary}
+                      </p>
+                    )}
 
-                {/* Industry Tips */}
-                {result.claudeInsights.industryTips && result.claudeInsights.industryTips.length > 0 && (
-                  <div className="space-y-2">
-                    {result.claudeInsights.industryTips.map((tip, i) => (
-                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
-                        <svg className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                        </svg>
-                        <p className="text-sm text-blue-800">{tip}</p>
+                    {/* Warnings */}
+                    {result.claudeInsights.warnings && result.claudeInsights.warnings.length > 0 && (
+                      <div className="space-y-2">
+                        {result.claudeInsights.warnings.map((w, i) => (
+                          <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-amber-950/30 border border-amber-800">
+                            <svg className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                            <p className="text-sm text-amber-300">{w}</p>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    )}
 
-                {/* AI-Recommended Negatives */}
-                {result.claudeInsights.businessSpecificNegatives &&
-                  result.claudeInsights.businessSpecificNegatives.length > 0 && (
-                    <div className="mt-4">
-                      <h4 className="text-sm font-semibold text-slate-800 mb-3">AI-Recommended Negatives</h4>
-                      <div className="divide-y divide-slate-100 border border-[var(--border)] rounded-lg overflow-hidden">
-                        {result.claudeInsights.businessSpecificNegatives.map((neg, i) => (
-                          <div key={i} className="px-4 py-3 flex items-start gap-3 hover:bg-slate-50">
-                            <input
-                              type="checkbox"
-                              checked={neg.checked}
-                              onChange={() => toggleAiNegative(i)}
-                              className="mt-1 h-4 w-4 rounded border-slate-300 text-[var(--creekside-blue)] focus:ring-[var(--creekside-blue)]"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-sm font-medium text-slate-900">{neg.keyword}</span>
-                                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                                  {neg.matchType}
+                    {/* Industry Tips */}
+                    {result.claudeInsights.industryTips && result.claudeInsights.industryTips.length > 0 && (
+                      <div className="space-y-2">
+                        {result.claudeInsights.industryTips.map((tip, i) => (
+                          <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-[var(--accent-glow)] border border-teal-800">
+                            <svg className="w-4 h-4 text-[var(--accent)] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                            </svg>
+                            <p className="text-sm text-teal-300">{tip}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* AI-Recommended Negatives */}
+                    {result.claudeInsights.businessSpecificNegatives &&
+                      result.claudeInsights.businessSpecificNegatives.length > 0 && (
+                        <div className="mt-4">
+                          <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">AI-Recommended Negatives</h4>
+                          <div className="divide-y divide-[var(--border)] border border-[var(--border)] rounded-lg overflow-hidden">
+                            {result.claudeInsights.businessSpecificNegatives.map((neg, i) => (
+                              <div key={i} className="px-4 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
+                                <input
+                                  type="checkbox"
+                                  checked={neg.checked}
+                                  onChange={() => toggleAiNegative(i)}
+                                  className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-sm font-medium text-[var(--text-primary)]">{neg.keyword}</span>
+                                    <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                      {neg.matchType}
+                                    </span>
+                                  </div>
+                                  <p className="text-xs text-[var(--text-muted)] mt-1">{neg.reason}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                  </div>
+                </div>
+              )}
+
+              {/* ── Search Term Mode Results ── */}
+              {result.mode === 'search_terms' && (
+                <CollapsibleSection title="Wasteful Search Terms" count={result.wastefulTerms.length}>
+                  {result.wastefulTerms.length === 0 ? (
+                    <p className="px-6 py-4 text-sm text-[var(--text-muted)]">No wasteful search terms found.</p>
+                  ) : (
+                    <>
+                      {/* Select All / Deselect All */}
+                      <div className="px-6 py-2 bg-[var(--bg-tertiary)] flex items-center gap-4 border-b border-[var(--border)]">
+                        <button
+                          onClick={() => {
+                            const updated = result.wastefulTerms.map((t) => ({ ...t, checked: true }));
+                            setResult({ ...result, wastefulTerms: updated });
+                          }}
+                          className="text-xs font-medium text-[var(--accent)] hover:underline"
+                        >
+                          Select All
+                        </button>
+                        <button
+                          onClick={() => {
+                            const updated = result.wastefulTerms.map((t) => ({ ...t, checked: false }));
+                            setResult({ ...result, wastefulTerms: updated });
+                          }}
+                          className="text-xs font-medium text-[var(--text-muted)] hover:underline"
+                        >
+                          Deselect All
+                        </button>
+                        <span className="text-xs text-[var(--text-muted)] ml-auto">
+                          {result.wastefulTerms.filter((t) => t.checked).length} selected
+                        </span>
+                      </div>
+
+                      {/* Table header */}
+                      <div className="hidden sm:grid grid-cols-12 gap-2 px-6 py-2 bg-[var(--bg-tertiary)] text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider border-b border-[var(--border)]">
+                        <div className="col-span-1" />
+                        <div className="col-span-3">Search Term</div>
+                        <div className="col-span-2">Category</div>
+                        <div className="col-span-1">Priority</div>
+                        <div className="col-span-1 text-right">Cost</div>
+                        <div className="col-span-1 text-right">Clicks</div>
+                        <div className="col-span-3">Reason</div>
+                      </div>
+
+                      <div className="divide-y divide-[var(--border)]">
+                        {result.wastefulTerms.map((term, i) => (
+                          <div key={i} className="px-6 py-3 hover:bg-[var(--bg-tertiary)]">
+                            {/* Desktop row */}
+                            <div className="hidden sm:grid grid-cols-12 gap-2 items-start">
+                              <div className="col-span-1">
+                                <input
+                                  type="checkbox"
+                                  checked={term.checked}
+                                  onChange={() => toggleWasteful(i)}
+                                  className="mt-0.5 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                                />
+                              </div>
+                              <div className="col-span-3">
+                                <span className="text-sm font-medium text-[var(--text-primary)]">{term.searchTerm}</span>
+                              </div>
+                              <div className="col-span-2">
+                                <span className="text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2 py-0.5 rounded">{term.category}</span>
+                              </div>
+                              <div className="col-span-1">
+                                <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(term.priority)}`}>
+                                  {term.priority}
                                 </span>
                               </div>
-                              <p className="text-xs text-slate-500 mt-1">{neg.reason}</p>
+                              <div className="col-span-1 text-right">
+                                <span className="text-sm text-[var(--text-secondary)]">{formatCurrency(term.cost)}</span>
+                              </div>
+                              <div className="col-span-1 text-right">
+                                <span className="text-sm text-[var(--text-secondary)]">{term.clicks}</span>
+                              </div>
+                              <div className="col-span-3">
+                                <p className="text-xs text-[var(--text-muted)]">{term.reason}</p>
+                              </div>
+                            </div>
+
+                            {/* Mobile row */}
+                            <div className="sm:hidden flex items-start gap-3">
+                              <input
+                                type="checkbox"
+                                checked={term.checked}
+                                onChange={() => toggleWasteful(i)}
+                                className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <span className="text-sm font-medium text-[var(--text-primary)]">{term.searchTerm}</span>
+                                  <span className="text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] px-2 py-0.5 rounded">{term.category}</span>
+                                  <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(term.priority)}`}>
+                                    {term.priority}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-3 mt-1">
+                                  <span className="text-xs text-[var(--text-muted)]">Cost: {formatCurrency(term.cost)}</span>
+                                  <span className="text-xs text-[var(--text-muted)]">Clicks: {term.clicks}</span>
+                                </div>
+                                <p className="text-xs text-[var(--text-muted)] mt-1">{term.reason}</p>
+                              </div>
                             </div>
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </>
                   )}
-              </div>
-            </div>
-          )}
+                </CollapsibleSection>
+              )}
 
-          {/* ── Search Term Mode Results ── */}
-          {result.mode === 'search_terms' && (
-            <CollapsibleSection title="Wasteful Search Terms" count={result.wastefulTerms.length}>
-              {result.wastefulTerms.length === 0 ? (
-                <p className="px-6 py-4 text-sm text-slate-500">No wasteful search terms found.</p>
-              ) : (
+              {/* ── Negative Keyword Mode Results ── */}
+              {result.mode === 'negative_keywords' && (
                 <>
-                  {/* Select All / Deselect All */}
-                  <div className="px-6 py-2 bg-slate-50 flex items-center gap-4 border-b border-slate-100">
-                    <button
-                      onClick={() => {
-                        const updated = result.wastefulTerms.map((t) => ({ ...t, checked: true }));
-                        setResult({ ...result, wastefulTerms: updated });
-                      }}
-                      className="text-xs font-medium text-[var(--creekside-blue)] hover:underline"
-                    >
-                      Select All
-                    </button>
-                    <button
-                      onClick={() => {
-                        const updated = result.wastefulTerms.map((t) => ({ ...t, checked: false }));
-                        setResult({ ...result, wastefulTerms: updated });
-                      }}
-                      className="text-xs font-medium text-slate-500 hover:underline"
-                    >
-                      Deselect All
-                    </button>
-                    <span className="text-xs text-slate-400 ml-auto">
-                      {result.wastefulTerms.filter((t) => t.checked).length} selected
-                    </span>
-                  </div>
-
-                  {/* Table header */}
-                  <div className="hidden sm:grid grid-cols-12 gap-2 px-6 py-2 bg-slate-50 text-xs font-medium text-slate-500 uppercase tracking-wider border-b border-slate-100">
-                    <div className="col-span-1" />
-                    <div className="col-span-3">Search Term</div>
-                    <div className="col-span-2">Category</div>
-                    <div className="col-span-1">Priority</div>
-                    <div className="col-span-1 text-right">Cost</div>
-                    <div className="col-span-1 text-right">Clicks</div>
-                    <div className="col-span-3">Reason</div>
-                  </div>
-
-                  <div className="divide-y divide-slate-100">
-                    {result.wastefulTerms.map((term, i) => (
-                      <div key={i} className="px-6 py-3 hover:bg-slate-50">
-                        {/* Desktop row */}
-                        <div className="hidden sm:grid grid-cols-12 gap-2 items-start">
-                          <div className="col-span-1">
+                  {/* Missing Negative Keywords */}
+                  <CollapsibleSection title="Missing Negative Keywords" count={result.missing.length}>
+                    {result.missing.length === 0 ? (
+                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">No missing keywords found.</p>
+                    ) : (
+                      <div className="divide-y divide-[var(--border)]">
+                        {result.missing.map((kw, i) => (
+                          <div key={i} className="px-6 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
                             <input
                               type="checkbox"
-                              checked={term.checked}
-                              onChange={() => toggleWasteful(i)}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[var(--creekside-blue)] focus:ring-[var(--creekside-blue)]"
+                              checked={kw.checked}
+                              onChange={() => toggleMissing(i)}
+                              className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
                             />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="text-sm font-medium text-[var(--text-primary)]">{kw.keyword}</span>
+                                <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                  {kw.matchType}
+                                </span>
+                                <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                  {kw.category}
+                                </span>
+                                <span
+                                  className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(kw.priority)}`}
+                                >
+                                  {kw.priority}
+                                </span>
+                              </div>
+                              <p className="text-xs text-[var(--text-muted)] mt-1">{kw.reason}</p>
+                            </div>
                           </div>
-                          <div className="col-span-3">
-                            <span className="text-sm font-medium text-slate-900">{term.searchTerm}</span>
-                          </div>
-                          <div className="col-span-2">
-                            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">{term.category}</span>
-                          </div>
-                          <div className="col-span-1">
-                            <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(term.priority)}`}>
-                              {term.priority}
-                            </span>
-                          </div>
-                          <div className="col-span-1 text-right">
-                            <span className="text-sm text-slate-700">{formatCurrency(term.cost)}</span>
-                          </div>
-                          <div className="col-span-1 text-right">
-                            <span className="text-sm text-slate-700">{term.clicks}</span>
-                          </div>
-                          <div className="col-span-3">
-                            <p className="text-xs text-slate-500">{term.reason}</p>
-                          </div>
-                        </div>
+                        ))}
+                      </div>
+                    )}
+                  </CollapsibleSection>
 
-                        {/* Mobile row */}
-                        <div className="sm:hidden flex items-start gap-3">
-                          <input
-                            type="checkbox"
-                            checked={term.checked}
-                            onChange={() => toggleWasteful(i)}
-                            className="mt-1 h-4 w-4 rounded border-slate-300 text-[var(--creekside-blue)] focus:ring-[var(--creekside-blue)]"
-                          />
-                          <div className="flex-1 min-w-0">
+                  {/* Potentially Unnecessary Keywords */}
+                  <CollapsibleSection
+                    title="Potentially Unnecessary Keywords"
+                    count={result.unnecessary.length}
+                  >
+                    {result.unnecessary.length === 0 ? (
+                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">
+                        No unnecessary keywords detected.
+                      </p>
+                    ) : (
+                      <div className="divide-y divide-[var(--border)]">
+                        {result.unnecessary.map((kw, i) => (
+                          <div key={i} className="px-6 py-3 flex items-start gap-3 hover:bg-[var(--bg-tertiary)]">
+                            <input
+                              type="checkbox"
+                              checked={kw.checked}
+                              onChange={() => toggleUnnecessary(i)}
+                              className="mt-1 h-4 w-4 rounded border-[var(--border)] text-[var(--accent)] focus:ring-[var(--accent)]"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="text-sm font-medium text-[var(--text-primary)]">{kw.keyword}</span>
+                                <span
+                                  className={`text-xs font-medium px-2 py-0.5 rounded border ${severityColor(kw.severity)}`}
+                                >
+                                  {kw.severity}
+                                </span>
+                              </div>
+                              <p className="text-xs text-[var(--text-muted)] mt-1">{kw.reason}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </CollapsibleSection>
+
+                  {/* Match Type Recommendations */}
+                  <CollapsibleSection
+                    title="Match Type Recommendations"
+                    count={result.matchTypeChanges.length}
+                  >
+                    {result.matchTypeChanges.length === 0 ? (
+                      <p className="px-6 py-4 text-sm text-[var(--text-muted)]">No match type changes suggested.</p>
+                    ) : (
+                      <div className="divide-y divide-[var(--border)]">
+                        {result.matchTypeChanges.map((rec, i) => (
+                          <div key={i} className="px-6 py-3 hover:bg-[var(--bg-tertiary)]">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-sm font-medium text-slate-900">{term.searchTerm}</span>
-                              <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">{term.category}</span>
-                              <span className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(term.priority)}`}>
-                                {term.priority}
+                              <span className="text-sm font-medium text-[var(--text-primary)]">{rec.keyword}</span>
+                              <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-2 py-0.5 rounded">
+                                {rec.currentMatchType}
+                              </span>
+                              <svg
+                                className="w-4 h-4 text-[var(--text-muted)]"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                />
+                              </svg>
+                              <span className="text-xs font-medium text-emerald-400 bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-800">
+                                {rec.suggestedMatchType}
                               </span>
                             </div>
-                            <div className="flex items-center gap-3 mt-1">
-                              <span className="text-xs text-slate-500">Cost: {formatCurrency(term.cost)}</span>
-                              <span className="text-xs text-slate-500">Clicks: {term.clicks}</span>
-                            </div>
-                            <p className="text-xs text-slate-500 mt-1">{term.reason}</p>
+                            <p className="text-xs text-[var(--text-muted)] mt-1">{rec.reason}</p>
                           </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    )}
+                  </CollapsibleSection>
                 </>
               )}
-            </CollapsibleSection>
-          )}
 
-          {/* ── Negative Keyword Mode Results ── */}
-          {result.mode === 'negative_keywords' && (
-            <>
-              {/* Missing Negative Keywords */}
-              <CollapsibleSection title="Missing Negative Keywords" count={result.missing.length}>
-                {result.missing.length === 0 ? (
-                  <p className="px-6 py-4 text-sm text-slate-500">No missing keywords found.</p>
-                ) : (
-                  <div className="divide-y divide-slate-100">
-                    {result.missing.map((kw, i) => (
-                      <div key={i} className="px-6 py-3 flex items-start gap-3 hover:bg-slate-50">
-                        <input
-                          type="checkbox"
-                          checked={kw.checked}
-                          onChange={() => toggleMissing(i)}
-                          className="mt-1 h-4 w-4 rounded border-slate-300 text-[var(--creekside-blue)] focus:ring-[var(--creekside-blue)]"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-sm font-medium text-slate-900">{kw.keyword}</span>
-                            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                              {kw.matchType}
-                            </span>
-                            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                              {kw.category}
-                            </span>
-                            <span
-                              className={`text-xs font-medium px-2 py-0.5 rounded border ${priorityColor(kw.priority)}`}
-                            >
-                              {kw.priority}
-                            </span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-1">{kw.reason}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </CollapsibleSection>
-
-              {/* Potentially Unnecessary Keywords */}
-              <CollapsibleSection
-                title="Potentially Unnecessary Keywords"
-                count={result.unnecessary.length}
-              >
-                {result.unnecessary.length === 0 ? (
-                  <p className="px-6 py-4 text-sm text-slate-500">
-                    No unnecessary keywords detected.
-                  </p>
-                ) : (
-                  <div className="divide-y divide-slate-100">
-                    {result.unnecessary.map((kw, i) => (
-                      <div key={i} className="px-6 py-3 flex items-start gap-3 hover:bg-slate-50">
-                        <input
-                          type="checkbox"
-                          checked={kw.checked}
-                          onChange={() => toggleUnnecessary(i)}
-                          className="mt-1 h-4 w-4 rounded border-slate-300 text-[var(--creekside-blue)] focus:ring-[var(--creekside-blue)]"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-sm font-medium text-slate-900">{kw.keyword}</span>
-                            <span
-                              className={`text-xs font-medium px-2 py-0.5 rounded border ${severityColor(kw.severity)}`}
-                            >
-                              {kw.severity}
-                            </span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-1">{kw.reason}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </CollapsibleSection>
-
-              {/* Match Type Recommendations */}
-              <CollapsibleSection
-                title="Match Type Recommendations"
-                count={result.matchTypeChanges.length}
-              >
-                {result.matchTypeChanges.length === 0 ? (
-                  <p className="px-6 py-4 text-sm text-slate-500">No match type changes suggested.</p>
-                ) : (
-                  <div className="divide-y divide-slate-100">
-                    {result.matchTypeChanges.map((rec, i) => (
-                      <div key={i} className="px-6 py-3 hover:bg-slate-50">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-sm font-medium text-slate-900">{rec.keyword}</span>
-                          <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                            {rec.currentMatchType}
-                          </span>
-                          <svg
-                            className="w-4 h-4 text-slate-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M13 7l5 5m0 0l-5 5m5-5H6"
-                            />
-                          </svg>
-                          <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                            {rec.suggestedMatchType}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-500 mt-1">{rec.reason}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </CollapsibleSection>
-            </>
-          )}
-
-          {/* Download Actions */}
-          <div className="bg-white rounded-xl border border-[var(--border)] p-6">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">
-              {result.mode === 'search_terms' ? 'Download Negative Keywords' : 'Download Updated List'}
-            </h3>
-            <div className="flex flex-col sm:flex-row gap-3">
-              {result.mode === 'search_terms' ? (
-                <>
-                  <button
-                    onClick={() => gatedDownload(downloadSearchTermGoogleAdsCsv)}
-                    className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--creekside-blue)] text-white text-sm font-medium hover:bg-[var(--creekside-light-blue)] transition-colors flex items-center justify-center gap-2"
-                  >
-                    <DownloadIcon />
-                    Download Negative Keywords (Google Ads)
-                  </button>
-                  <button
-                    onClick={() => gatedDownload(downloadSearchTermEditorCsv)}
-                    className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--creekside-blue)] text-[var(--creekside-blue)] text-sm font-medium hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
-                  >
-                    <DownloadIcon />
-                    Download for Google Ads Editor
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    onClick={() => gatedDownload(downloadGoogleAdsCsv)}
-                    className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--creekside-blue)] text-white text-sm font-medium hover:bg-[var(--creekside-light-blue)] transition-colors flex items-center justify-center gap-2"
-                  >
-                    <DownloadIcon />
-                    Download Updated List (Google Ads)
-                  </button>
-                  <button
-                    onClick={() => gatedDownload(downloadEditorCsv)}
-                    className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--creekside-blue)] text-[var(--creekside-blue)] text-sm font-medium hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
-                  >
-                    <DownloadIcon />
-                    Download for Google Ads Editor
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* How to Upload Instructions */}
-          <div className="bg-white rounded-xl border border-[var(--border)] overflow-hidden">
-            <button
-              onClick={() => setInstructionsOpen(!instructionsOpen)}
-              className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-slate-50 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <svg
-                  className={`w-4 h-4 text-slate-400 transition-transform ${instructionsOpen ? 'rotate-90' : ''}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-                <h3 className="text-sm font-semibold text-slate-900">
-                  How to Upload to Google Ads
+              {/* Download Actions */}
+              <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] p-6">
+                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">
+                  {result.mode === 'search_terms' ? 'Download Negative Keywords' : 'Download Updated List'}
                 </h3>
-              </div>
-            </button>
-            {instructionsOpen && (
-              <div className="border-t border-[var(--border)] px-6 py-5 space-y-6">
-                <div>
-                  <h4 className="text-sm font-semibold text-slate-800 mb-3">
-                    Option 1: Google Ads Web Interface
-                  </h4>
-                  <ol className="space-y-2 text-sm text-slate-600 list-decimal list-inside">
-                    <li>
-                      Sign in to your Google Ads account at{' '}
-                      <span className="font-medium text-slate-800">ads.google.com</span>
-                    </li>
-                    <li>
-                      Click <span className="font-medium text-slate-800">Tools &amp; Settings</span>{' '}
-                      (wrench icon) in the top navigation
-                    </li>
-                    <li>
-                      Under <span className="font-medium text-slate-800">Shared Library</span>,
-                      select{' '}
-                      <span className="font-medium text-slate-800">Negative keyword lists</span>
-                    </li>
-                    <li>
-                      Click the <span className="font-medium text-slate-800">+</span> button to
-                      create a new list, or select an existing list to edit
-                    </li>
-                    <li>
-                      Click <span className="font-medium text-slate-800">Upload</span> and choose
-                      the downloaded CSV file
-                    </li>
-                    <li>
-                      Review the keywords, then click{' '}
-                      <span className="font-medium text-slate-800">Save</span>
-                    </li>
-                    <li>
-                      Apply the list to your campaigns by selecting the list and clicking{' '}
-                      <span className="font-medium text-slate-800">Apply to campaigns</span>
-                    </li>
-                  </ol>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-slate-800 mb-3">
-                    Option 2: Google Ads Editor
-                  </h4>
-                  <ol className="space-y-2 text-sm text-slate-600 list-decimal list-inside">
-                    <li>
-                      Open{' '}
-                      <span className="font-medium text-slate-800">Google Ads Editor</span> and
-                      download your latest account data
-                    </li>
-                    <li>
-                      Go to{' '}
-                      <span className="font-medium text-slate-800">
-                        Account &gt; Import &gt; Import from file
-                      </span>
-                    </li>
-                    <li>
-                      Select the{' '}
-                      <span className="font-medium text-slate-800">
-                        &quot;Download for Google Ads Editor&quot;
-                      </span>{' '}
-                      CSV you downloaded
-                    </li>
-                    <li>Review the proposed changes in the editor</li>
-                    <li>
-                      Click <span className="font-medium text-slate-800">Post</span> to push
-                      changes to your account
-                    </li>
-                  </ol>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {result.mode === 'search_terms' ? (
+                    <>
+                      <button
+                        onClick={() => gatedDownload(downloadSearchTermGoogleAdsCsv)}
+                        className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--accent)] text-white text-sm font-medium hover:bg-[var(--accent-light)] transition-colors flex items-center justify-center gap-2"
+                      >
+                        <DownloadIcon />
+                        Download Negative Keywords (Google Ads)
+                      </button>
+                      <button
+                        onClick={() => gatedDownload(downloadSearchTermEditorCsv)}
+                        className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--accent)] text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent-glow)] transition-colors flex items-center justify-center gap-2"
+                      >
+                        <DownloadIcon />
+                        Download for Google Ads Editor
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => gatedDownload(downloadGoogleAdsCsv)}
+                        className="flex-1 py-2.5 px-4 rounded-lg bg-[var(--accent)] text-white text-sm font-medium hover:bg-[var(--accent-light)] transition-colors flex items-center justify-center gap-2"
+                      >
+                        <DownloadIcon />
+                        Download Updated List (Google Ads)
+                      </button>
+                      <button
+                        onClick={() => gatedDownload(downloadEditorCsv)}
+                        className="flex-1 py-2.5 px-4 rounded-lg border border-[var(--accent)] text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent-glow)] transition-colors flex items-center justify-center gap-2"
+                      >
+                        <DownloadIcon />
+                        Download for Google Ads Editor
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
-            )}
-          </div>
+
+              {/* How to Upload Instructions */}
+              <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-hidden">
+                <button
+                  onClick={() => setInstructionsOpen(!instructionsOpen)}
+                  className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-[var(--bg-tertiary)] transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg
+                      className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${instructionsOpen ? 'rotate-90' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+                      How to Upload to Google Ads
+                    </h3>
+                  </div>
+                </button>
+                {instructionsOpen && (
+                  <div className="border-t border-[var(--border)] px-6 py-5 space-y-6">
+                    <div>
+                      <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">
+                        Option 1: Google Ads Web Interface
+                      </h4>
+                      <ol className="space-y-2 text-sm text-[var(--text-secondary)] list-decimal list-inside">
+                        <li>
+                          Sign in to your Google Ads account at{' '}
+                          <span className="font-medium text-[var(--text-primary)]">ads.google.com</span>
+                        </li>
+                        <li>
+                          Click <span className="font-medium text-[var(--text-primary)]">Tools &amp; Settings</span>{' '}
+                          (wrench icon) in the top navigation
+                        </li>
+                        <li>
+                          Under <span className="font-medium text-[var(--text-primary)]">Shared Library</span>,
+                          select{' '}
+                          <span className="font-medium text-[var(--text-primary)]">Negative keyword lists</span>
+                        </li>
+                        <li>
+                          Click the <span className="font-medium text-[var(--text-primary)]">+</span> button to
+                          create a new list, or select an existing list to edit
+                        </li>
+                        <li>
+                          Click <span className="font-medium text-[var(--text-primary)]">Upload</span> and choose
+                          the downloaded CSV file
+                        </li>
+                        <li>
+                          Review the keywords, then click{' '}
+                          <span className="font-medium text-[var(--text-primary)]">Save</span>
+                        </li>
+                        <li>
+                          Apply the list to your campaigns by selecting the list and clicking{' '}
+                          <span className="font-medium text-[var(--text-primary)]">Apply to campaigns</span>
+                        </li>
+                      </ol>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">
+                        Option 2: Google Ads Editor
+                      </h4>
+                      <ol className="space-y-2 text-sm text-[var(--text-secondary)] list-decimal list-inside">
+                        <li>
+                          Open{' '}
+                          <span className="font-medium text-[var(--text-primary)]">Google Ads Editor</span> and
+                          download your latest account data
+                        </li>
+                        <li>
+                          Go to{' '}
+                          <span className="font-medium text-[var(--text-primary)]">
+                            Account &gt; Import &gt; Import from file
+                          </span>
+                        </li>
+                        <li>
+                          Select the{' '}
+                          <span className="font-medium text-[var(--text-primary)]">
+                            &quot;Download for Google Ads Editor&quot;
+                          </span>{' '}
+                          CSV you downloaded
+                        </li>
+                        <li>Review the proposed changes in the editor</li>
+                        <li>
+                          Click <span className="font-medium text-[var(--text-primary)]">Post</span> to push
+                          changes to your account
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </main>
     </div>
   );
 }

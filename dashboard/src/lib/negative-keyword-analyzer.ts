@@ -151,24 +151,50 @@ export function parseNegativeKeywordList(text: string): NegativeKeyword[] {
   const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
   const keywords: NegativeKeyword[] = [];
 
-  for (const line of lines) {
-    // Skip header rows
-    if (line.toLowerCase().startsWith('keyword') || line.toLowerCase().startsWith('criteria') || line.toLowerCase().startsWith('account')) continue;
+  // Skip header/metadata rows common in Google Ads exports
+  const headerPatterns = /^(keyword|criteria|campaign|ad group|account|match type|criterion type|negative|report|date range|level|level name)/i;
 
-    // Handle CSV format (might have columns)
-    const parts = line.split(',').map(p => p.trim().replace(/^["']|["']$/g, ''));
+  for (const line of lines) {
+    if (headerPatterns.test(line)) continue;
+    // Skip total/summary rows
+    if (line.toLowerCase().startsWith('total') || line.startsWith('--')) continue;
+
+    // Detect delimiter: tab (Google Ads Editor) or comma (CSV)
+    const delimiter = line.includes('\t') ? '\t' : ',';
+    const parts = line.split(delimiter).map(p => p.trim().replace(/^["']|["']$/g, ''));
     let keyword = parts[0];
     let matchType: 'Broad' | 'Phrase' | 'Exact' = 'Broad';
 
-    // Check for match type in CSV columns
+    // Check for match type in columns — handle Google Ads Editor "Criterion Type" format
+    // Values: "Negative broad", "Negative phrase", "Negative exact", or bare "Broad"/"Phrase"/"Exact"
     if (parts.length > 1) {
-      const typeCol = parts.find(p => /^(broad|phrase|exact)$/i.test(p));
-      if (typeCol) {
-        matchType = typeCol.charAt(0).toUpperCase() + typeCol.slice(1).toLowerCase() as 'Broad' | 'Phrase' | 'Exact';
+      for (const p of parts) {
+        const lower = p.toLowerCase().trim();
+        if (lower === 'exact' || lower === 'negative exact' || lower.includes('exact match')) {
+          matchType = 'Exact'; break;
+        }
+        if (lower === 'phrase' || lower === 'negative phrase' || lower.includes('phrase match')) {
+          matchType = 'Phrase'; break;
+        }
+        if (lower === 'broad' || lower === 'negative broad' || lower.includes('broad match')) {
+          matchType = 'Broad'; break;
+        }
+      }
+
+      // For Google Ads Editor format: Campaign | Ad Group | Keyword | Criterion Type
+      // The keyword may not be in the first column
+      if (parts.length >= 3) {
+        const criterionIdx = parts.findIndex(p =>
+          /^negative (broad|phrase|exact)$/i.test(p.trim())
+        );
+        if (criterionIdx > 0) {
+          // Keyword is typically the column before Criterion Type
+          keyword = parts[criterionIdx - 1];
+        }
       }
     }
 
-    // Check for Google Ads format: [exact], "phrase", broad
+    // Check for Google Ads plain text format: [exact], "phrase", broad
     if (keyword.startsWith('[') && keyword.endsWith(']')) {
       keyword = keyword.slice(1, -1);
       matchType = 'Exact';
@@ -177,7 +203,7 @@ export function parseNegativeKeywordList(text: string): NegativeKeyword[] {
       matchType = 'Phrase';
     }
 
-    if (keyword && keyword.length > 0 && !/^(keyword|criteria|campaign|ad group|account|match type|negative)/i.test(keyword)) {
+    if (keyword && keyword.length > 0 && !headerPatterns.test(keyword)) {
       keywords.push({ keyword: keyword.toLowerCase(), matchType });
     }
   }
@@ -372,11 +398,14 @@ export function generateGoogleAdsCSV(keywords: NegativeKeyword[]): string {
 }
 
 export function generateGoogleAdsEditorCSV(keywords: NegativeKeyword[], campaignName?: string): string {
-  const lines = ['Campaign,Keyword,Match Type'];
+  // Google Ads Editor expects tab-separated values with "Criterion Type" column
+  // Values must be "Negative broad", "Negative phrase", or "Negative exact"
+  const lines = ['Campaign\tAd Group\tKeyword\tCriterion Type'];
 
   for (const kw of keywords) {
     const campaign = campaignName || '';
-    lines.push(`${campaign},${kw.keyword},${kw.matchType}`);
+    const criterionType = `Negative ${kw.matchType.toLowerCase()}`;
+    lines.push(`${campaign}\t\t${kw.keyword}\t${criterionType}`);
   }
 
   return lines.join('\n');

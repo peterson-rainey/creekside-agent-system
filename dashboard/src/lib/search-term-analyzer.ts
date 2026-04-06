@@ -31,15 +31,17 @@ export interface SearchTermAnalysis {
 
 // Auto-detect if the uploaded text is a search term report or a negative keyword list
 export function detectUploadType(text: string): 'search_terms' | 'negative_keywords' {
-  const firstLine = text.split('\n')[0].toLowerCase();
-  // Search term reports have headers with spend/click/impression columns
-  if (firstLine.includes('search term') || firstLine.includes('clicks') ||
-      firstLine.includes('impressions') || firstLine.includes('cost') ||
-      firstLine.includes('conversions') || firstLine.includes('ctr')) {
-    return 'search_terms';
+  // Check first 5 lines for report-style headers (Google Ads may have metadata rows before headers)
+  const lines = text.split('\n').slice(0, 5);
+  for (const line of lines) {
+    const lower = line.toLowerCase();
+    if (lower.includes('search term') || lower.includes('impr.') ||
+        (lower.includes('clicks') && lower.includes('cost')) ||
+        (lower.includes('impressions') && lower.includes('conversions'))) {
+      return 'search_terms';
+    }
   }
   // Check if multiple lines have numeric columns (looks like a report)
-  const lines = text.split('\n').slice(0, 5);
   const hasNumericColumns = lines.filter(l => {
     const parts = l.split(/[,\t]/);
     return parts.length >= 4 && parts.some(p => /^\$?[\d,.]+%?$/.test(p.trim()));
@@ -48,27 +50,44 @@ export function detectUploadType(text: string): 'search_terms' | 'negative_keywo
   return 'negative_keywords';
 }
 
-// Parse search term report from Google Ads (handles both CSV and TSV, multiple column orders)
+// Find the actual header row, skipping Google Ads metadata rows (report title, date range)
+function findHeaderRow(lines: string[]): number {
+  for (let i = 0; i < Math.min(lines.length, 5); i++) {
+    const lower = lines[i].toLowerCase();
+    if (lower.includes('search term') || lower.includes('search query') ||
+        lower.includes('impr.') || lower.includes('impressions') ||
+        (lower.includes('clicks') && (lower.includes('cost') || lower.includes('conv')))) {
+      return i;
+    }
+  }
+  return 0; // Fallback to first line
+}
+
+// Parse search term report from Google Ads (handles CSV, TSV, metadata rows, currency formatting)
 export function parseSearchTermReport(text: string): SearchTerm[] {
   const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
   if (lines.length < 2) return [];
 
-  // Detect delimiter
-  const delimiter = lines[0].includes('\t') ? '\t' : ',';
+  // Find actual header row (skip metadata)
+  const headerIndex = findHeaderRow(lines);
+
+  // Detect delimiter from the header row
+  const delimiter = lines[headerIndex].includes('\t') ? '\t' : ',';
 
   // Parse header to find column indices
-  const headerParts = lines[0].split(delimiter).map(h => h.trim().toLowerCase().replace(/['"]/g, ''));
+  const headerParts = lines[headerIndex].split(delimiter).map(h => h.trim().toLowerCase().replace(/['"]/g, ''));
 
   const colMap: Record<string, number> = {};
   headerParts.forEach((h, i) => {
     if (h.includes('search term') || h === 'keyword' || h === 'search query') colMap.term = i;
-    if (h === 'match type' || h.includes('match')) colMap.matchType = i;
+    if (h === 'match type') colMap.matchType = i;
     if (h === 'clicks' || h === 'click') colMap.clicks = i;
     if (h === 'impr.' || h === 'impressions' || h === 'impr') colMap.impressions = i;
-    if (h === 'cost' || h.includes('cost') || h.includes('spend')) colMap.cost = i;
+    if ((h === 'cost' || h.includes('spend')) && !h.includes('conv') && !h.includes('/')) colMap.cost = i;
     if (h === 'conversions' || h === 'conv.' || h === 'conv') colMap.conversions = i;
     if (h === 'ctr' || h.includes('click-through') || h.includes('click through')) colMap.ctr = i;
     if (h.includes('conv. rate') || h.includes('conversion rate') || h === 'conv rate') colMap.conversionRate = i;
+    if (h === 'avg. cpc' || h === 'avg cpc' || h === 'average cpc') colMap.avgCpc = i;
   });
 
   // If no term column found, try first column
@@ -76,10 +95,14 @@ export function parseSearchTermReport(text: string): SearchTerm[] {
 
   const terms: SearchTerm[] = [];
 
-  for (let i = 1; i < lines.length; i++) {
+  for (let i = headerIndex + 1; i < lines.length; i++) {
     const line = lines[i];
-    // Skip summary/total rows
-    if (line.toLowerCase().startsWith('total') || line.startsWith('--')) continue;
+    const lineLower = line.toLowerCase();
+
+    // Skip summary/total rows and trailing metadata
+    if (lineLower.startsWith('total') || line.startsWith('--') ||
+        lineLower.startsWith('report') || lineLower.startsWith('date range') ||
+        lineLower.startsWith('note:')) continue;
 
     // Handle CSV with quoted fields containing commas
     const parts: string[] = [];
@@ -97,18 +120,28 @@ export function parseSearchTermReport(text: string): SearchTerm[] {
     }
     parts.push(current.trim());
 
+    // Parse numeric values, stripping $, commas, %, and quotes
     const parseNum = (idx: number | undefined): number => {
       if (idx === undefined || idx >= parts.length) return 0;
-      const val = parts[idx].replace(/[$,%'"]/g, '').trim();
+      const val = parts[idx].replace(/[$,%'"]/g, '').replace(/,/g, '').trim();
       return parseFloat(val) || 0;
     };
 
     const term = parts[colMap.term]?.replace(/^["']|["']$/g, '').trim();
     if (!term || term.length === 0) continue;
 
+    // Normalize match type from Google Ads format
+    // Google Ads exports: "Broad match", "Exact match", "Phrase match",
+    // "Exact match (close variant)", "Phrase match (close variant)", "AI Max", "Performance Max"
+    let rawMatchType = colMap.matchType !== undefined ? parts[colMap.matchType]?.replace(/['"]/g, '').trim() || '' : '';
+    let matchType = 'Broad';
+    if (rawMatchType.toLowerCase().includes('exact')) matchType = 'Exact';
+    else if (rawMatchType.toLowerCase().includes('phrase')) matchType = 'Phrase';
+    else if (rawMatchType.toLowerCase().includes('broad')) matchType = 'Broad';
+
     terms.push({
       term,
-      matchType: colMap.matchType !== undefined ? parts[colMap.matchType]?.replace(/['"]/g, '') || 'Broad' : 'Broad',
+      matchType,
       clicks: parseNum(colMap.clicks),
       impressions: parseNum(colMap.impressions),
       cost: parseNum(colMap.cost),
