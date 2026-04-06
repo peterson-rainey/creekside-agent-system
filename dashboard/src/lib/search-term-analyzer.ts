@@ -90,8 +90,13 @@ export function parseSearchTermReport(text: string): SearchTerm[] {
   const headerParts = lines[headerIndex].split(delimiter).map(h => h.trim().toLowerCase().replace(/['"]/g, ''));
 
   const colMap: Record<string, number> = {};
+  // First pass: find the Search Term column specifically
   headerParts.forEach((h, i) => {
-    if (h.includes('search term') || h === 'keyword' || h === 'search query') colMap.term = i;
+    if (h.includes('search term') || h === 'search query') colMap.term = i;
+  });
+  headerParts.forEach((h, i) => {
+    // Only use "keyword" as term column if no "search term" column was found
+    if (colMap.term === undefined && h === 'keyword') colMap.term = i;
     if (h === 'match type') colMap.matchType = i;
     if (h === 'clicks' || h === 'click') colMap.clicks = i;
     if (h === 'impr.' || h === 'impressions' || h === 'impr') colMap.impressions = i;
