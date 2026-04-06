@@ -396,9 +396,9 @@ export default function NegativeKeywordAnalyzer() {
         .map((c) => c.trim())
         .filter(Boolean);
 
-      // Optional: scrape website for additional business context
+      // Optional: scrape website for additional business context (always runs when URL provided)
       let siteDescription = businessDescription.trim();
-      if (websiteUrl.trim() && !siteDescription) {
+      if (websiteUrl.trim()) {
         try {
           const scrapeRes = await fetch('/api/tools/negative-keywords/scrape', {
             method: 'POST',
@@ -413,7 +413,11 @@ export default function NegativeKeywordAnalyzer() {
               scrapeData.services?.length ? `Services: ${scrapeData.services.join(', ')}` : '',
               scrapeData.industry ? `Industry: ${scrapeData.industry}` : '',
             ].filter(Boolean);
-            siteDescription = parts.join('. ');
+            const scraped = parts.join('. ');
+            // Combine manual description with scraped context
+            siteDescription = siteDescription
+              ? `${siteDescription}\n\nFrom website: ${scraped}`
+              : scraped;
           }
         } catch {
           // Website scrape is best-effort — continue without it
