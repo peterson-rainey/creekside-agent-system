@@ -3,7 +3,7 @@
 import { useBudgetCalculator } from '@/lib/context/budget-context';
 import { KpiCard } from '@/components/ui/KpiCard';
 import { formatCurrency, formatPercent, formatNumber } from '@/lib/utils/formatters';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area, LineChart, Line, CartesianGrid, ReferenceLine } from 'recharts';
 import type { BudgetTier } from '@/lib/engine/budget-calculator';
 
 const TIER_LABELS: Record<BudgetTier, string> = {
@@ -31,7 +31,7 @@ export function BudgetResultsPanel() {
     );
   }
 
-  const { recommendations, budgetBreakdown, spendAssessment, industryAvgBudgetPercent, platformSplit, budgetLimitations, spendLevelTable, costPerLead, costPerCustomer } = results;
+  const { recommendations, budgetBreakdown, spendAssessment, industryAvgBudgetPercent, platformSplit, budgetLimitations, spendLevelTable, costPerLead, costPerCustomer, diminishingReturns } = results;
   const moderate = recommendations.moderate;
 
   const breakdownData = [
@@ -239,6 +239,162 @@ export function BudgetResultsPanel() {
             </table>
           </div>
         </div>
+
+        {/* Diminishing Returns Chart */}
+        {diminishingReturns.length > 0 && (
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
+            <h3 className="text-[var(--text-primary)] font-semibold mb-1">Diminishing Returns on Ad Spend</h3>
+            <p className="text-xs text-[var(--text-muted)] mb-4">
+              Each additional dollar spent buys fewer leads. Early dollars capture high-intent, cheap clicks. As you scale, you compete for more expensive placements and less interested audiences.
+            </p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* CPA Curve: Average vs Marginal */}
+              <div>
+                <p className="text-xs text-[var(--text-muted)] mb-2 uppercase tracking-wider">Cost Per Lead as You Scale</p>
+                <ResponsiveContainer width="100%" height={220}>
+                  <LineChart data={diminishingReturns}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                    <XAxis
+                      dataKey="monthlyBudget"
+                      tick={{ fill: 'var(--text-muted)', fontSize: 10 }}
+                      axisLine={false}
+                      tickLine={false}
+                      tickFormatter={(v) => formatCurrency(v)}
+                    />
+                    <YAxis
+                      tick={{ fill: 'var(--text-muted)', fontSize: 10 }}
+                      axisLine={false}
+                      tickLine={false}
+                      tickFormatter={(v) => `$${v}`}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        background: 'var(--bg-secondary)',
+                        border: '1px solid var(--border)',
+                        borderRadius: '8px',
+                        fontSize: '12px',
+                      }}
+                      formatter={(value, name) => [
+                        `$${value}`,
+                        name === 'effectiveCpa' ? 'Avg Cost/Lead' : 'Marginal Cost/Lead',
+                      ]}
+                      labelFormatter={(label) => `Budget: ${formatCurrency(label as number)}`}
+                    />
+                    <ReferenceLine
+                      x={moderate.monthlyBudget}
+                      stroke="var(--accent)"
+                      strokeDasharray="4 4"
+                      strokeWidth={1}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="effectiveCpa"
+                      stroke="var(--accent)"
+                      strokeWidth={2}
+                      dot={false}
+                      name="effectiveCpa"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="marginalCpa"
+                      stroke="#EF4444"
+                      strokeWidth={2}
+                      dot={false}
+                      strokeDasharray="6 3"
+                      name="marginalCpa"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+                <div className="flex items-center justify-center gap-4 mt-2 text-xs text-[var(--text-muted)]">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-0.5 bg-[var(--accent)]" />
+                    <span>Avg Cost/Lead</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-0.5 bg-[#EF4444]" style={{ borderTop: '2px dashed #EF4444' }} />
+                    <span>Marginal Cost/Lead</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Efficiency Curve */}
+              <div>
+                <p className="text-xs text-[var(--text-muted)] mb-2 uppercase tracking-wider">Spend Efficiency</p>
+                <ResponsiveContainer width="100%" height={220}>
+                  <AreaChart data={diminishingReturns}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                    <XAxis
+                      dataKey="monthlyBudget"
+                      tick={{ fill: 'var(--text-muted)', fontSize: 10 }}
+                      axisLine={false}
+                      tickLine={false}
+                      tickFormatter={(v) => formatCurrency(v)}
+                    />
+                    <YAxis
+                      tick={{ fill: 'var(--text-muted)', fontSize: 10 }}
+                      axisLine={false}
+                      tickLine={false}
+                      tickFormatter={(v) => `${v}%`}
+                      domain={[0, 110]}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        background: 'var(--bg-secondary)',
+                        border: '1px solid var(--border)',
+                        borderRadius: '8px',
+                        fontSize: '12px',
+                      }}
+                      formatter={(value) => [`${value}%`, 'Efficiency']}
+                      labelFormatter={(label) => `Budget: ${formatCurrency(label as number)}`}
+                    />
+                    <ReferenceLine
+                      x={moderate.monthlyBudget}
+                      stroke="var(--accent)"
+                      strokeDasharray="4 4"
+                      strokeWidth={1}
+                    />
+                    <defs>
+                      <linearGradient id="efficiencyGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="var(--accent)" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="var(--accent)" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <Area
+                      type="monotone"
+                      dataKey="efficiency"
+                      stroke="var(--accent)"
+                      strokeWidth={2}
+                      fill="url(#efficiencyGradient)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+                <p className="text-xs text-[var(--text-muted)] text-center mt-2">
+                  100% = every dollar works as hard as your first. Lower % = diminishing returns.
+                </p>
+              </div>
+            </div>
+
+            {/* Key insight callout */}
+            <div className="mt-4 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg p-3 text-sm text-[var(--text-secondary)]">
+              {(() => {
+                const atDouble = diminishingReturns.find(p => p.monthlyBudget >= moderate.monthlyBudget * 1.9);
+                const atRecommended = diminishingReturns.find(p => p.monthlyBudget >= moderate.monthlyBudget * 0.9);
+                if (atDouble && atRecommended) {
+                  const leadLift = atRecommended.leads > 0 ? Math.round(((atDouble.leads / atRecommended.leads) - 1) * 100) : 0;
+                  return (
+                    <>
+                      <span className="text-[var(--accent)] font-medium">Key insight:</span> Doubling your budget from {formatCurrency(moderate.monthlyBudget)} to {formatCurrency(moderate.monthlyBudget * 2)} would increase leads by ~{leadLift}%, not 100%.
+                      Your marginal cost per lead rises from {formatCurrency(atRecommended.marginalCpa)} to {formatCurrency(atDouble.marginalCpa)}.
+                      {leadLift < 60 && ' Consider optimizing conversion rates and landing pages before doubling spend.'}
+                    </>
+                  );
+                }
+                return null;
+              })()}
+            </div>
+          </div>
+        )}
 
         {/* Platform Split Recommendation */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">

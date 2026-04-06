@@ -8,6 +8,7 @@ import type {
   PlatformSplit,
   BudgetLimitation,
   SpendLevelRow,
+  DiminishingReturnsPoint,
 } from './types';
 import { INDUSTRY_BENCHMARKS } from '../benchmarks';
 import { BUDGET_BENCHMARKS } from './budget-benchmarks';
@@ -108,16 +109,25 @@ export function calculateBudget(inputs: BudgetCalculatorInputs): BudgetCalculato
   // Budget limitations based on the recommended (moderate) tier
   const budgetLimitations = getBudgetLimitations(tiers.moderate.monthlyBudget, industryBench.recommendedMinBudget, businessType);
 
-  // "What you get at each spend level" table
+  // Decay factor for diminishing returns (also used in spend level table)
+  const decayFactor = industryBench.riskLevel === 'low' ? 0.85 : industryBench.riskLevel === 'high' ? 0.70 : 0.78;
+
+  // "What you get at each spend level" table (with diminishing returns baked in)
   const spendLevelTable = buildSpendLevelTable(
     cpaMid, effectiveConversion, avgDealValue, currentMonthlySpend,
     tiers.conservative.monthlyBudget, tiers.moderate.monthlyBudget, tiers.aggressive.monthlyBudget,
-    industryBench.recommendedMinBudget,
+    industryBench.recommendedMinBudget, decayFactor,
   );
 
   // Cost per lead vs cost per customer (the distinction prospects ask about)
   const costPerLead = Math.round(cpaMid);
   const costPerCustomer = effectiveConversion > 0 ? Math.round(cpaMid / effectiveConversion) : 0;
+
+  // Diminishing returns curve
+  const diminishingReturns = buildDiminishingReturnsCurve(
+    cpaMid, effectiveConversion, avgDealValue,
+    tiers.moderate.monthlyBudget, industryBench.riskLevel,
+  );
 
   return {
     monthlyRevenueGoal,
@@ -134,6 +144,7 @@ export function calculateBudget(inputs: BudgetCalculatorInputs): BudgetCalculato
     spendLevelTable,
     costPerLead,
     costPerCustomer,
+    diminishingReturns,
   };
 }
 
@@ -214,13 +225,16 @@ function getBudgetLimitations(monthlyBudget: number, industryMin: number, busine
 function buildSpendLevelTable(
   cpaMid: number, conversionRate: number, avgDealValue: number,
   currentSpend: number, conservativeBudget: number, moderateBudget: number, aggressiveBudget: number,
-  industryMin: number,
+  industryMin: number, decayFactor: number,
 ): SpendLevelRow[] {
   const levels: SpendLevelRow[] = [];
+  const baseLeads = moderateBudget / cpaMid; // leads at recommended with linear CPA
 
-  // Helper to build a row
+  // Helper to build a row with diminishing returns
   const makeRow = (label: string, budget: number, isCurrentSpend = false, isRecommended = false): SpendLevelRow => {
-    const leads = budget > 0 ? Math.round(budget / cpaMid) : 0;
+    const multiplier = moderateBudget > 0 ? budget / moderateBudget : 0;
+    // Apply diminishing returns: leads scale as multiplier^decayFactor
+    const leads = budget > 0 ? Math.round(baseLeads * Math.pow(multiplier, decayFactor)) : 0;
     const customers = Math.round(leads * conversionRate);
     const costPerCust = customers > 0 ? Math.round(budget / customers) : 0;
     return { label, monthlyBudget: budget, dailyBudget: Math.round(budget / 30), expectedLeads: leads, expectedCustomers: customers, costPerCustomer: costPerCust, isCurrentSpend, isRecommended };
@@ -291,4 +305,78 @@ function buildTier(
     expectedRoas: Math.round(expectedRoas * 10) / 10,
     monthsToBreakEven,
   };
+}
+
+/**
+ * Models diminishing returns on ad spend using a power-law curve.
+ *
+ * At low spend, you capture cheap high-intent clicks. As spend increases,
+ * you bid on more competitive terms, reach less interested audiences,
+ * and saturate your addressable market — CPA rises, ROAS falls.
+ *
+ * Model: effectiveLeads = baseleadsRate * spend^decayFactor
+ * where decayFactor < 1 means each dollar buys fewer incremental leads.
+ *
+ * decayFactor varies by risk level:
+ *   low-risk (dental, food): 0.85 — more headroom before saturation
+ *   medium-risk (home services, ecom): 0.78 — moderate saturation
+ *   high-risk (legal, mortgage, SaaS): 0.70 — expensive, competitive, saturates fast
+ */
+function buildDiminishingReturnsCurve(
+  baseCpa: number,
+  conversionRate: number,
+  avgDealValue: number,
+  recommendedBudget: number,
+  riskLevel: string,
+): DiminishingReturnsPoint[] {
+  // Decay factor: how quickly returns diminish (lower = faster decay)
+  const decayFactor = riskLevel === 'low' ? 0.85 : riskLevel === 'high' ? 0.70 : 0.78;
+
+  // Generate 10 points from 20% of recommended to 400% of recommended
+  const points: DiminishingReturnsPoint[] = [];
+  const steps = [0.2, 0.4, 0.6, 0.8, 1.0, 1.25, 1.5, 2.0, 3.0, 4.0];
+
+  // Baseline: at recommended budget with linear (no-decay) CPA
+  const baseLeadsAtRecommended = recommendedBudget / baseCpa;
+
+  for (const multiplier of steps) {
+    const budget = Math.round(recommendedBudget * multiplier);
+
+    // Linear leads (what you'd get if CPA stayed constant)
+    const linearLeads = budget / baseCpa;
+
+    // Diminished leads: power-law decay
+    // Normalized so at 1.0x we get exactly the baseline leads
+    const diminishedLeads = baseLeadsAtRecommended * Math.pow(multiplier, decayFactor);
+
+    // Effective CPA at this spend level
+    const effectiveCpa = diminishedLeads > 0 ? budget / diminishedLeads : 0;
+
+    // Marginal CPA: cost of the NEXT incremental lead at this level
+    // Derivative of spend/leads gives the marginal cost
+    const epsilon = 0.01;
+    const leadsAtSlightlyMore = baseLeadsAtRecommended * Math.pow(multiplier + epsilon, decayFactor);
+    const marginalSpend = recommendedBudget * epsilon;
+    const marginalLeads = leadsAtSlightlyMore - diminishedLeads;
+    const marginalCpa = marginalLeads > 0 ? marginalSpend / marginalLeads : effectiveCpa * 2;
+
+    const customers = Math.round(diminishedLeads * conversionRate);
+    const revenue = customers * avgDealValue;
+    const roas = budget > 0 ? Math.round((revenue / budget) * 10) / 10 : 0;
+
+    // Efficiency: how close to linear returns (100% = no decay)
+    const efficiency = linearLeads > 0 ? Math.round((diminishedLeads / linearLeads) * 100) : 100;
+
+    points.push({
+      monthlyBudget: budget,
+      effectiveCpa: Math.round(effectiveCpa),
+      marginalCpa: Math.round(marginalCpa),
+      leads: Math.round(diminishedLeads),
+      customers,
+      roas,
+      efficiency,
+    });
+  }
+
+  return points;
 }

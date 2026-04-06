@@ -11,4 +11,5 @@ export type {
   PlatformSplit,
   BudgetLimitation,
   SpendLevelRow,
+  DiminishingReturnsPoint,
 } from './types';

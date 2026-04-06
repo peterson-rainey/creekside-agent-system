@@ -63,6 +63,16 @@ export interface SpendLevelRow {
   isRecommended?: boolean;
 }
 
+export interface DiminishingReturnsPoint {
+  monthlyBudget: number;
+  effectiveCpa: number;
+  marginalCpa: number;
+  leads: number;
+  customers: number;
+  roas: number;
+  efficiency: number; // 0-100%, where 100% = linear returns
+}
+
 export interface BudgetCalculatorResults {
   monthlyRevenueGoal: number;
   customersNeeded: number;
@@ -78,4 +88,5 @@ export interface BudgetCalculatorResults {
   spendLevelTable: SpendLevelRow[];
   costPerLead: number;
   costPerCustomer: number;
+  diminishingReturns: DiminishingReturnsPoint[];
 }
