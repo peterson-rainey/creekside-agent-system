@@ -12,7 +12,7 @@
         ]
       },
       {
-        "matcher": "Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "matcher": "Bash|mcp__.*execute_sql|mcp__.*apply_migration",
         "hooks": [
           {
             "type": "command",
@@ -37,7 +37,7 @@
         ]
       },
       {
-        "matcher": "mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__claude_ai_Supabase__execute_sql",
+        "matcher": "mcp__.*execute_sql",
         "hooks": [
           {
             "type": "prompt",
@@ -72,7 +72,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "matcher": "Write|Edit|Bash|mcp__.*execute_sql|mcp__.*apply_migration",
         "hooks": [
           {
             "type": "command",
@@ -96,7 +96,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Write|Edit|Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "matcher": "Write|Edit|Bash|mcp__.*execute_sql|mcp__.*apply_migration",
         "hooks": [
           {
             "type": "command",
@@ -106,7 +106,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|Bash|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "matcher": "Write|Edit|Bash|mcp__.*execute_sql|mcp__.*apply_migration",
         "hooks": [
           {
             "type": "command",
@@ -126,7 +126,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|Bash|Agent|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "matcher": "Write|Edit|Bash|Agent|mcp__.*execute_sql|mcp__.*apply_migration",
         "hooks": [
           {
             "type": "command",
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|Bash|Agent|mcp__7c860add-956e-4545-88cb-019135cf046f__execute_sql|mcp__7c860add-956e-4545-88cb-019135cf046f__apply_migration|mcp__claude_ai_Supabase__execute_sql|mcp__claude_ai_Supabase__apply_migration",
+        "matcher": "Write|Edit|Bash|Agent|mcp__.*execute_sql|mcp__.*apply_migration",
         "hooks": [
           {
             "type": "command",
