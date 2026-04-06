@@ -27,6 +27,7 @@ export function AIInterviewPanel({ tool, toolContext, toolLabel }: AIInterviewPa
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
   const [sessionId] = useState(generateSessionId);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -73,10 +74,16 @@ export function AIInterviewPanel({ tool, toolContext, toolLabel }: AIInterviewPa
           tool,
           toolContext,
           sessionId,
+          email,
         }),
       });
       const data = await res.json();
-      setMessages([openingMessage, { role: 'assistant', content: data.message }]);
+      if (data.limitReached) {
+        setLimitReached(true);
+        setMessages([openingMessage, { role: 'assistant', content: data.error }]);
+      } else {
+        setMessages([openingMessage, { role: 'assistant', content: data.message }]);
+      }
     } catch {
       setMessages([openingMessage, { role: 'assistant', content: "Thanks for your interest! Let's get started — tell me about your business and what's working and what's not." }]);
     } finally {
@@ -85,9 +92,9 @@ export function AIInterviewPanel({ tool, toolContext, toolLabel }: AIInterviewPa
   };
 
   const sendMessage = async () => {
-    if (!input.trim() || loading) return;
+    if (!input.trim() || loading || limitReached) return;
 
-    const userMessage: Message = { role: 'user', content: input.trim() };
+    const userMessage: Message = { role: 'user', content: input.trim().slice(0, 5000) };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
     setInput('');
@@ -102,10 +109,18 @@ export function AIInterviewPanel({ tool, toolContext, toolLabel }: AIInterviewPa
           tool,
           toolContext,
           sessionId,
+          email,
         }),
       });
       const data = await res.json();
-      setMessages([...newMessages, { role: 'assistant', content: data.message }]);
+      if (data.limitReached) {
+        setLimitReached(true);
+        setMessages([...newMessages, { role: 'assistant', content: data.error }]);
+      } else if (data.error && res.status === 429) {
+        setMessages([...newMessages, { role: 'assistant', content: data.error }]);
+      } else {
+        setMessages([...newMessages, { role: 'assistant', content: data.message }]);
+      }
     } catch {
       setMessages([...newMessages, { role: 'assistant', content: "I'm sorry, I had trouble processing that. Could you try again?" }]);
     } finally {
@@ -278,29 +293,45 @@ export function AIInterviewPanel({ tool, toolContext, toolLabel }: AIInterviewPa
 
       {/* Input */}
       <div className="px-6 py-4 border-t border-[var(--border)] bg-[var(--bg-secondary)]">
-        <div className="flex gap-3">
-          <textarea
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Type your response..."
-            rows={1}
-            className="flex-1 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
-          />
-          <button
-            onClick={sendMessage}
-            disabled={!input.trim() || loading}
-            className="px-4 py-3 bg-[var(--accent)] text-white rounded-xl font-medium text-sm hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-          </button>
-        </div>
-        <p className="text-xs text-[var(--text-muted)] mt-2 text-center">
-          Press Enter to send. The more detail you share, the better your custom analysis.
-        </p>
+        {limitReached ? (
+          <div className="text-center py-2">
+            <p className="text-sm text-[var(--text-secondary)] mb-3">
+              You've reached the analysis limit. Ready to go deeper?
+            </p>
+            <a
+              href="https://calendar.app.google/4ierPN3nNxLMMTAz7"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-[var(--accent)] rounded-lg hover:brightness-110 transition-all"
+            >
+              Book a Free Strategy Call
+            </a>
+          </div>
+        ) : (
+          <>
+            <div className="flex gap-3">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type your response..."
+                rows={1}
+                className="flex-1 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
+              />
+              <button
+                onClick={sendMessage}
+                disabled={!input.trim() || loading}
+                className="px-4 py-3 bg-[var(--accent)] text-white rounded-xl font-medium text-sm hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </div>
+            <p className="text-xs text-[var(--text-muted)] mt-2 text-center">
+              Press Enter to send. The more detail you share, the better your custom analysis.
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

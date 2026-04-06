@@ -1,7 +1,49 @@
 import { NextRequest } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { createClient } from '@supabase/supabase-js';
+import { checkRateLimit } from '@/lib/utils/rate-limiter';
 
+// ── Cost tracking ──────────────────────────────────────────────────────────
+// Sonnet pricing: $3/M input, $15/M output tokens
+// $10 budget ≈ 600K output tokens or 3.3M input tokens
+// We track estimated cost per email and cut off at $10.
+const COST_LIMIT_CENTS = 1000; // $10.00 in cents
+const INPUT_COST_PER_TOKEN = 3 / 1_000_000;   // $3/M
+const OUTPUT_COST_PER_TOKEN = 15 / 1_000_000;  // $15/M
+
+// In-memory cost ledger per email (persists across requests within a serverless instance)
+const costLedger = new Map<string, number>();
+
+// Max conversation length (prevents unbounded context growth)
+const MAX_MESSAGES = 30;
+const MAX_MESSAGE_LENGTH = 5000;
+const MAX_NAME_LENGTH = 200;
+
+// ── Allowed toolContext keys per tool ──────────────────────────────────────
+const ALLOWED_CONTEXT_KEYS: Record<string, string[]> = {
+  'roas-calculator': ['businessType', 'industry', 'totalBudget', 'duration', 'spendModel', 'roasAssumptions', 'totalRevenue', 'totalProfit', 'avgCac', 'breakEvenMonth'],
+  'ad-budget-calculator': ['industry', 'businessType', 'revenueGoal', 'revenueTimeframe', 'avgDealValue', 'conversionRate', 'currentMonthlySpend', 'recommendedBudget', 'expectedCpa', 'leadsNeeded'],
+  'negative-keywords': ['uploadType', 'healthScore', 'detectedIndustry', 'issuesFound', 'termCount', 'wastePercentage'],
+};
+
+function sanitizeToolContext(tool: string, raw: unknown): Record<string, unknown> | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const allowed = ALLOWED_CONTEXT_KEYS[tool];
+  if (!allowed) return null;
+  const sanitized: Record<string, unknown> = {};
+  for (const key of allowed) {
+    if (key in (raw as Record<string, unknown>)) {
+      const val = (raw as Record<string, unknown>)[key];
+      // Only allow primitives and plain objects (no functions, no symbols)
+      if (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean' || (typeof val === 'object' && val !== null)) {
+        sanitized[key] = val;
+      }
+    }
+  }
+  return Object.keys(sanitized).length > 0 ? sanitized : null;
+}
+
+// ── Tool-specific system prompts ──────────────────────────────────────────
 const TOOL_PROMPTS: Record<string, string> = {
   'roas-calculator': `You are an expert digital advertising strategist conducting a discovery interview to build a custom ROAS projection for a business owner. Your goal is to understand their business deeply enough to give them a personalized projection they can't get from the free calculator.
 
@@ -85,6 +127,19 @@ IMPORTANT:
 - End the analysis with a clear call-to-action to book a strategy call for implementation help.`;
 
 export async function POST(request: NextRequest) {
+  // ── Rate limit by IP ──────────────────────────────────────────────────
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  const rateCheck = checkRateLimit(ip, 'insights');
+  if (!rateCheck.allowed) {
+    return new Response(JSON.stringify({
+      error: 'Too many requests. Please wait a moment before sending another message.',
+      retryAfter: rateCheck.retryAfter,
+    }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': String(rateCheck.retryAfter ?? 60) },
+    });
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'AI service unavailable' }), {
@@ -94,49 +149,89 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { messages, tool, toolContext, sessionId } = await request.json();
+    const body = await request.json();
+    const { messages, tool, toolContext, sessionId, email } = body;
 
-    if (!messages || !tool || !TOOL_PROMPTS[tool]) {
+    // ── Input validation ──────────────────────────────────────────────
+    if (!messages || !Array.isArray(messages) || !tool || !TOOL_PROMPTS[tool]) {
       return new Response(JSON.stringify({ error: 'Invalid request' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    const toolPrompt = TOOL_PROMPTS[tool];
-    const contextBlock = toolContext
-      ? `\n\nThe user has already been using the free ${tool} tool. Here is the context from their session:\n${JSON.stringify(toolContext, null, 2)}\n\nUse this to personalize your questions — you already know some things about them. Don't re-ask what you already know.`
+    // Cap message array to prevent unbounded context growth
+    const cappedMessages = messages.slice(-MAX_MESSAGES);
+
+    // Validate and truncate individual messages
+    const validatedMessages = cappedMessages.map((m: { role: string; content: string }) => ({
+      role: (m.role === 'assistant' ? 'assistant' : 'user') as 'user' | 'assistant',
+      content: typeof m.content === 'string' ? m.content.slice(0, MAX_MESSAGE_LENGTH) : '',
+    }));
+
+    // ── Per-email cost cap ($10) ──────────────────────────────────────
+    const userEmail = typeof email === 'string' ? email.slice(0, MAX_NAME_LENGTH).toLowerCase() : ip;
+    const currentCostCents = costLedger.get(userEmail) ?? 0;
+
+    if (currentCostCents >= COST_LIMIT_CENTS) {
+      return new Response(JSON.stringify({
+        error: 'You\'ve reached the usage limit for the free AI analysis. Book a strategy call for a deeper dive into your business.',
+        limitReached: true,
+      }), {
+        status: 429,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // ── Sanitize toolContext ──────────────────────────────────────────
+    const safeContext = sanitizeToolContext(tool, toolContext);
+    const contextBlock = safeContext
+      ? `\n\nThe user has already been using the free ${tool} tool. Here is the context from their session:\n${JSON.stringify(safeContext, null, 2)}\n\nUse this to personalize your questions — you already know some things about them. Don't re-ask what you already know.`
       : '';
 
+    // ── Call Claude ──────────────────────────────────────────────────
     const client = new Anthropic({ apiKey });
 
     const response = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 2048,
-      system: `${SYSTEM_BASE}\n\n${toolPrompt}${contextBlock}`,
-      messages: messages.map((m: { role: string; content: string }) => ({
-        role: m.role as 'user' | 'assistant',
-        content: m.content,
-      })),
+      system: `${SYSTEM_BASE}\n\n${TOOL_PROMPTS[tool]}${contextBlock}`,
+      messages: validatedMessages,
     });
 
     const assistantMessage = response.content[0].type === 'text' ? response.content[0].text : '';
 
-    // Save interview session to Supabase
+    // ── Track cost ──────────────────────────────────────────────────
+    const inputTokens = response.usage?.input_tokens ?? 0;
+    const outputTokens = response.usage?.output_tokens ?? 0;
+    const costDollars = (inputTokens * INPUT_COST_PER_TOKEN) + (outputTokens * OUTPUT_COST_PER_TOKEN);
+    const costCents = Math.ceil(costDollars * 100);
+    costLedger.set(userEmail, currentCostCents + costCents);
+
+    // ── Persist to Supabase (best-effort) ───────────────────────────
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (supabaseUrl && supabaseKey && sessionId) {
-      const supabase = createClient(supabaseUrl, supabaseKey);
-      await supabase.from('tool_interviews').upsert({
-        session_id: sessionId,
-        tool,
-        messages: [...messages, { role: 'assistant', content: assistantMessage }],
-        tool_context: toolContext,
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'session_id' });
+    if (supabaseUrl && supabaseKey && sessionId && typeof sessionId === 'string') {
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey);
+        await supabase.from('tool_interviews').upsert({
+          session_id: sessionId.slice(0, 100),
+          tool,
+          messages: [...validatedMessages, { role: 'assistant', content: assistantMessage }],
+          tool_context: safeContext,
+          email: userEmail,
+          cost_cents: currentCostCents + costCents,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'session_id' });
+      } catch {
+        // Best-effort persistence — don't break the interview if DB is down
+      }
     }
 
-    return new Response(JSON.stringify({ message: assistantMessage }), {
+    return new Response(JSON.stringify({
+      message: assistantMessage,
+      usage: { costCents: currentCostCents + costCents, limitCents: COST_LIMIT_CENTS },
+    }), {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch {
