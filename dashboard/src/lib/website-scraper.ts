@@ -205,6 +205,40 @@ function validateUrl(url: string): void {
   }
 }
 
+/** Find the best "about" and "services" pages by scanning nav links on the homepage. */
+function findKeyPages($: cheerio.CheerioAPI, baseUrl: string): { aboutUrl: string | null; servicesUrl: string | null } {
+  const aboutPatterns = /\b(about|about-us|about_us|who-we-are|our-story|our-team|company)\b/i;
+  const servicesPatterns = /\b(services|our-services|what-we-do|solutions|offerings|products|practice-areas|specialties)\b/i;
+
+  let aboutUrl: string | null = null;
+  let servicesUrl: string | null = null;
+
+  // Scan all links on the page, prioritizing nav links
+  const selectors = ['nav a', 'header a', '.nav a', '.menu a', '#menu a', 'a'];
+  for (const selector of selectors) {
+    $(selector).each((_, el) => {
+      const href = $(el).attr('href');
+      if (!href) return;
+
+      try {
+        const resolved = new URL(href, baseUrl).href;
+        // Only follow same-origin links
+        if (!resolved.startsWith(baseUrl)) return;
+        const path = new URL(resolved).pathname.toLowerCase();
+
+        if (!aboutUrl && aboutPatterns.test(path)) aboutUrl = resolved;
+        if (!servicesUrl && servicesPatterns.test(path)) servicesUrl = resolved;
+      } catch {
+        // Skip malformed URLs
+      }
+    });
+    // Stop once we've found both
+    if (aboutUrl && servicesUrl) break;
+  }
+
+  return { aboutUrl, servicesUrl };
+}
+
 export async function scrapeWebsite(url: string): Promise<BusinessContext> {
   // Normalize URL
   let normalizedUrl = url.trim();
@@ -219,30 +253,38 @@ export async function scrapeWebsite(url: string): Promise<BusinessContext> {
     throw new Error('Please enter a valid public website URL');
   }
 
-  // Fetch homepage and key pages in parallel
-  const baseUrl = new URL(normalizedUrl).origin;
-  const [homepageHtml, aboutHtml, servicesHtml] = await Promise.all([
-    fetchPage(normalizedUrl),
-    fetchPage(`${baseUrl}/about`),
-    fetchPage(`${baseUrl}/services`),
-  ]);
-
+  // Step 1: Fetch homepage
+  const homepageHtml = await fetchPage(normalizedUrl);
   if (!homepageHtml) {
     throw new Error('Could not fetch website. Please check the URL and try again.');
   }
 
   const $ = cheerio.load(homepageHtml);
+  const baseUrl = new URL(normalizedUrl).origin;
 
-  // Also parse about/services pages if available
+  // Step 2: Find the best about/services pages from actual nav links
+  const { aboutUrl, servicesUrl } = findKeyPages($, baseUrl);
+
+  // Step 3: Fetch discovered pages in parallel (skip if not found)
+  const pagesToFetch: Promise<string | null>[] = [];
+  if (aboutUrl) pagesToFetch.push(fetchPage(aboutUrl));
+  if (servicesUrl) pagesToFetch.push(fetchPage(servicesUrl));
+  const extraPages = await Promise.all(pagesToFetch);
+
+  // Step 4: Combine text from all pages
   let combinedText = extractText($);
-  if (aboutHtml) {
-    const $about = cheerio.load(aboutHtml);
-    combinedText += ' ' + extractText($about);
+  let combinedServices = extractServices($);
+
+  for (const pageHtml of extraPages) {
+    if (pageHtml) {
+      const $page = cheerio.load(pageHtml);
+      combinedText += ' ' + extractText($page);
+      combinedServices = [...combinedServices, ...extractServices($page)];
+    }
   }
-  if (servicesHtml) {
-    const $services = cheerio.load(servicesHtml);
-    combinedText += ' ' + extractText($services);
-  }
+
+  // Deduplicate services
+  combinedServices = [...new Set(combinedServices)];
 
   const businessName = $('title').first().text().trim().split('|')[0].split('-')[0].trim() || 'Unknown';
   const metaDescription = $('meta[name="description"]').attr('content') || '';
@@ -252,7 +294,7 @@ export async function scrapeWebsite(url: string): Promise<BusinessContext> {
     businessName,
     description,
     keywords: extractKeywords(combinedText),
-    services: extractServices($),
+    services: combinedServices,
     location: extractLocation(combinedText),
     industry: detectIndustry(combinedText),
     rawText: combinedText.slice(0, 5000),

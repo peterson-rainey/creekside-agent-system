@@ -152,14 +152,15 @@ SEARCH TERMS (sorted by spend, format: term | clicks | cost | conversions | ctr)
 ${termsBlock}${keywordsBlock}${negativesBlock}${businessBlock}${competitorsBlock}
 
 INSTRUCTIONS:
-1. Use the target keywords (if provided) to understand what the business WANTS to attract.
+1. Use the target keywords (if provided) to understand what the business WANTS to attract. Use the business description (if provided) to understand the business context — what they sell, who they serve, and what's relevant to them.
 2. Use conversion data to identify what's actually working vs what's wasting money.
-3. If the account has ZERO conversions across all terms, focus on identifying terms that are clearly irrelevant to the business intent. Do not classify zero-conversion terms as "good" just because everything has zero conversions.
-4. A term is "wasteful" if it is clearly irrelevant to the business intent (job seekers, DIY, competitors, wrong industry, wrong geography, informational queries).
-5. A term is "underperforming" if it is somewhat relevant but has poor metrics (very low CTR, high spend with no conversions despite being relevant).
+3. If the account has ZERO conversions across all terms, focus on identifying terms that are clearly irrelevant to the business intent. Do not classify zero-conversion terms as underperforming just because they have no conversions — focus on RELEVANCE to the business, not conversion metrics.
+4. A term is "wasteful" if it is clearly irrelevant to the business intent (job seekers, DIY, competitors, wrong industry, wrong geography, informational queries that will never convert like "what is..." or "definition of...").
+5. A term is "underperforming" ONLY if it meets ALL of these criteria: (a) it has 5+ clicks, (b) it has meaningful spend (more than $10 or more than the average CPA), AND (c) it has zero conversions despite being somewhat relevant. Do NOT flag terms with 1-4 clicks as underperforming — there is not enough data to judge. Do NOT flag low CTR as a problem by itself — CTR depends heavily on match type and competition, not relevance.
 6. Only list terms you are flagging as wasteful or underperforming. Do NOT list acceptable or good terms — they are determined automatically from whatever you don't flag.
 7. For negative keywords, suggest the most protective match type: Exact for specific phrases, Phrase for patterns, Broad only for single generic words.
 8. If existing negatives are provided, flag any that might be blocking relevant traffic.
+9. When writing reasons, reference actual dollar amounts and metrics from the data. Do NOT say "low CTR" unless the CTR is genuinely low relative to the account average. Do NOT say "high cost" unless the cost is meaningfully high relative to the account's average CPA or total spend.
 
 Respond in this exact JSON format:
 {
