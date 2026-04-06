@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import { ToolModeToggle } from '@/components/ai-interview/ToolModeToggle';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -644,7 +645,17 @@ export default function NegativeKeywordAnalyzer() {
 
   // ── Render ───────────────────────────────────────────────────────────────
 
+  const toolContext = result ? {
+    uploadType,
+    healthScore: 'healthScore' in result ? result.healthScore : undefined,
+    detectedIndustry: result.detectedIndustry,
+    issuesFound: 'issuesFound' in result ? result.issuesFound : undefined,
+    termCount: 'termCount' in result ? result.termCount : undefined,
+    wastePercentage: 'wastePercentage' in result ? result.wastePercentage : undefined,
+  } : undefined;
+
   return (
+    <ToolModeToggle tool="negative-keywords" toolLabel="negative keyword strategy" toolContext={toolContext}>
     <div className="min-h-screen bg-[var(--bg-primary)]">
       <nav className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
         <a href="/" className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
@@ -1354,5 +1365,6 @@ export default function NegativeKeywordAnalyzer() {
         </div>
       </main>
     </div>
+    </ToolModeToggle>
   );
 }
