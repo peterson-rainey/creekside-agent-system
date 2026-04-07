@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 interface TeamMember {
   id: string;
@@ -11,6 +11,13 @@ interface TeamMember {
   status: string;
   notes: string | null;
   specialties: string[] | null;
+}
+
+interface ClientRow {
+  client_name: string;
+  account_manager: string | null;
+  platform_operator: string | null;
+  monthly_revenue: number | null;
 }
 
 function StatusDot({ status }: { status: string }) {
@@ -171,20 +178,72 @@ function NotesCell({
 
 export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
+  const [clientData, setClientData] = useState<ClientRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [typeFilter, setTypeFilter] = useState<string>('all');
 
-  const fetchMembers = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     try {
-      const res = await fetch('/api/team/members');
-      const data = await res.json();
-      if (Array.isArray(data)) setMembers(data);
+      const [membersRes, clientsRes] = await Promise.all([
+        fetch('/api/team/members'),
+        fetch('/api/clients'),
+      ]);
+      const membersData = await membersRes.json();
+      const clientsData = await clientsRes.json();
+      if (Array.isArray(membersData)) setMembers(membersData);
+      if (Array.isArray(clientsData)) setClientData(clientsData);
     } finally {
       setLoading(false);
     }
   }, []);
 
-  useEffect(() => { fetchMembers(); }, [fetchMembers]);
+  useEffect(() => { fetchData(); }, [fetchData]);
+
+  // Calculate revenue contribution per team member (from clients they manage or operate)
+  const memberRevenue = useMemo(() => {
+    const revenueMap: Record<string, number> = {};
+    // Group client revenue by client_name (sum across platforms)
+    const clientRevByName: Record<string, number> = {};
+    for (const c of clientData) {
+      if (c.monthly_revenue != null) {
+        clientRevByName[c.client_name] = (clientRevByName[c.client_name] ?? 0) + Number(c.monthly_revenue);
+      }
+    }
+    // Attribute revenue to managers
+    const clientManagerSeen = new Set<string>();
+    for (const c of clientData) {
+      if (c.account_manager && !clientManagerSeen.has(c.client_name)) {
+        clientManagerSeen.add(c.client_name);
+        const rev = clientRevByName[c.client_name] ?? 0;
+        const shortName = c.account_manager;
+        revenueMap[shortName] = (revenueMap[shortName] ?? 0) + rev;
+      }
+    }
+    return revenueMap;
+  }, [clientData]);
+
+  // Estimated monthly cost per team member
+  const memberCost = useMemo(() => {
+    const costMap: Record<string, { cost: number; note: string }> = {};
+    for (const m of members) {
+      const firstName = m.name.split(' ')[0];
+      if (m.employment_type === 'owner') {
+        costMap[firstName] = { cost: 8500, note: '$8,500/mo' };
+      } else if (m.hourly_rate) {
+        // Estimate: contractors ~20hrs/week, full-time based on notes
+        const notesStr = m.notes ?? '';
+        const monthlyMatch = notesStr.match(/\$([0-9,]+)\/month/);
+        if (monthlyMatch) {
+          costMap[firstName] = { cost: parseFloat(monthlyMatch[1].replace(',', '')), note: `${monthlyMatch[0]}` };
+        } else if (notesStr.includes('44 hours/week')) {
+          costMap[firstName] = { cost: m.hourly_rate * 44 * 4.33, note: `$${m.hourly_rate}/hr × 44hrs/wk` };
+        } else {
+          costMap[firstName] = { cost: 0, note: `$${m.hourly_rate}/hr` };
+        }
+      }
+    }
+    return costMap;
+  }, [members]);
 
   const filtered = members.filter((m) => {
     // Only show active team members
@@ -243,7 +302,9 @@ export default function TeamPage() {
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Name</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Role</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Type</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Hourly Rate</th>
+                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Rate</th>
+                  <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Est. Monthly Cost</th>
+                  <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Revenue Contribution</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Notes</th>
                 </tr>
               </thead>
@@ -261,6 +322,25 @@ export default function TeamPage() {
                     </td>
                     <td className="py-3 px-4">
                       <InlineRateEditor member={member} onSaved={handleRateSaved} />
+                    </td>
+                    <td className="py-3 px-4 text-right text-sm text-slate-600">
+                      {(() => {
+                        const firstName = member.name.split(' ')[0];
+                        const cost = memberCost[firstName];
+                        if (!cost) return <span className="text-slate-300">--</span>;
+                        if (cost.cost > 0) return `$${cost.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+                        return <span className="text-slate-400" title={cost.note}>{cost.note}</span>;
+                      })()}
+                    </td>
+                    <td className="py-3 px-4 text-right text-sm font-medium text-emerald-700">
+                      {(() => {
+                        const firstName = member.name.split(' ')[0];
+                        // Check common short names used in reporting_clients
+                        const nameVariants = [firstName, member.name.split(' ').map(n => n[0] + n.slice(1)).join(' ')];
+                        const rev = nameVariants.reduce((found, n) => found || memberRevenue[n], 0 as number | undefined);
+                        if (rev && rev > 0) return `$${rev.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+                        return <span className="text-slate-300">--</span>;
+                      })()}
                     </td>
                     <td className="py-3 px-4">
                       <NotesCell member={member} onSaved={handleNotesSaved} />
