@@ -311,6 +311,70 @@ export default function TeamPage() {
     return costMap;
   }, [members]);
 
+  // Utilization: estimated_hours_per_month / capacity
+  const getUtilization = useCallback((member: TeamMember): { pct: number; color: string; label: string } | null => {
+    if (member.employment_type === 'owner') return null;
+    if (member.estimated_hours_per_month == null) return null;
+    const capacity = member.employment_type === 'full_time' ? 173 : 160;
+    const pct = (member.estimated_hours_per_month / capacity) * 100;
+    let color: string;
+    let label: string;
+    if (pct > 90) { color = 'text-red-600'; label = 'Overloaded'; }
+    else if (pct >= 70) { color = 'text-emerald-600'; label = 'Healthy'; }
+    else if (pct >= 50) { color = 'text-amber-600'; label = 'Under'; }
+    else { color = 'text-red-600'; label = 'Low'; }
+    return { pct, color, label };
+  }, []);
+
+  // Client counts per team member (by first name match on platform_operator or account_manager)
+  const memberClientCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    // Deduplicate clients by client_name (multiple platform rows per client)
+    const clientsByManager: Record<string, Set<string>> = {};
+    for (const c of clientData) {
+      for (const role of [c.account_manager, c.platform_operator]) {
+        if (role) {
+          if (!clientsByManager[role]) clientsByManager[role] = new Set();
+          clientsByManager[role].add(c.client_name);
+        }
+      }
+    }
+    for (const [name, clients] of Object.entries(clientsByManager)) {
+      counts[name] = clients.size;
+    }
+    return counts;
+  }, [clientData]);
+
+  // Summary stats
+  const summaryStats = useMemo(() => {
+    let totalCost = 0;
+    let totalRevenue = 0;
+    for (const m of members) {
+      if (m.status !== 'active') continue;
+      const firstName = m.name.split(' ')[0];
+      if (m.estimated_hours_per_month != null && m.hourly_rate != null) {
+        totalCost += m.hourly_rate * m.estimated_hours_per_month;
+      } else {
+        const cost = memberCost[firstName];
+        if (cost && cost.cost > 0) totalCost += cost.cost;
+      }
+    }
+    // Sum unique client revenue
+    const clientRevByName: Record<string, number> = {};
+    for (const c of clientData) {
+      if (c.monthly_revenue != null) {
+        clientRevByName[c.client_name] = (clientRevByName[c.client_name] ?? 0) + Number(c.monthly_revenue);
+      }
+    }
+    totalRevenue = Object.values(clientRevByName).reduce((sum, v) => sum + v, 0);
+    const laborRatio = totalRevenue > 0 ? (totalCost / totalRevenue) * 100 : 0;
+    let ratioColor: string;
+    if (laborRatio < 50) ratioColor = 'text-emerald-600';
+    else if (laborRatio <= 65) ratioColor = 'text-amber-600';
+    else ratioColor = 'text-red-600';
+    return { totalCost, totalRevenue, laborRatio, ratioColor };
+  }, [members, clientData, memberCost]);
+
   const filtered = members.filter((m) => {
     // Only show active team members
     if (m.status !== 'active') return false;
@@ -360,6 +424,30 @@ export default function TeamPage() {
         </div>
       </div>
 
+      {/* Utilization Summary */}
+      {!loading && (
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Team Cost / Mo</p>
+            <p className="text-xl font-bold text-slate-900 mt-1">
+              ${summaryStats.totalCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+            </p>
+          </div>
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Revenue / Mo</p>
+            <p className="text-xl font-bold text-slate-900 mt-1">
+              ${summaryStats.totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+            </p>
+          </div>
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Labor Ratio</p>
+            <p className={`text-xl font-bold mt-1 ${summaryStats.ratioColor}`}>
+              {summaryStats.laborRatio.toFixed(1)}%
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Table */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {loading ? (
@@ -376,6 +464,8 @@ export default function TeamPage() {
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Type</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Rate</th>
                   <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Est. Hours/Mo</th>
+                  <th className="text-center py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Utilization</th>
+                  <th className="text-center py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Clients</th>
                   <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Est. Monthly Cost</th>
                   <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Revenue Contribution</th>
                   <th className="text-center py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Pre-work Sheet</th>
@@ -399,6 +489,24 @@ export default function TeamPage() {
                     </td>
                     <td className="py-3 px-4 text-right">
                       <InlineHoursEditor member={member} onSaved={handleHoursSaved} />
+                    </td>
+                    <td className="py-3 px-4 text-center text-sm">
+                      {(() => {
+                        const util = getUtilization(member);
+                        if (!util) return <span className="text-slate-300">--</span>;
+                        return (
+                          <span className={`font-medium ${util.color}`} title={util.label}>
+                            {util.pct.toFixed(0)}%
+                          </span>
+                        );
+                      })()}
+                    </td>
+                    <td className="py-3 px-4 text-center text-sm text-slate-700">
+                      {(() => {
+                        const firstName = member.name.split(' ')[0];
+                        const count = memberClientCounts[firstName] ?? 0;
+                        return count > 0 ? count : <span className="text-slate-300">--</span>;
+                      })()}
                     </td>
                     <td className="py-3 px-4 text-right text-sm text-slate-600">
                       {(() => {
