@@ -894,6 +894,9 @@ export default function ClientTable() {
                           {isFirstInGroup ? (
                             <div>
                               <span className="text-sm font-semibold text-slate-900">{client.client_name}</span>
+                              {(client.contact_name as string) && (
+                                <span className="block text-xs text-slate-400 font-normal mt-0.5">{client.contact_name as string}</span>
+                              )}
                               {PARTNER_NOTES[client.client_name] && (
                                 <span className="block text-[11px] text-slate-400 font-normal mt-0.5">{PARTNER_NOTES[client.client_name]}</span>
                               )}

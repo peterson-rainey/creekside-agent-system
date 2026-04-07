@@ -33,11 +33,27 @@ export async function GET() {
   try {
     const supabase = createServiceClient();
 
-    const { data, error } = await supabase
-      .from('reporting_clients')
-      .select('*')
-      .order('priority', { ascending: true }) // high sorts first alphabetically
-      .order('client_name', { ascending: true });
+    // Fetch reporting_clients and contact names in parallel
+    const [rcResult, contactsResult] = await Promise.all([
+      supabase
+        .from('reporting_clients')
+        .select('*')
+        .order('priority', { ascending: true })
+        .order('client_name', { ascending: true }),
+      supabase
+        .from('clients')
+        .select('id, name, primary_contact_name')
+        .eq('status', 'active'),
+    ]);
+
+    const { data, error } = rcResult;
+    const contactMap = new Map<string, string>();
+    for (const c of contactsResult.data ?? []) {
+      if (c.primary_contact_name) {
+        contactMap.set(c.id, c.primary_contact_name);
+        contactMap.set(c.name, c.primary_contact_name);
+      }
+    }
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
@@ -52,7 +68,15 @@ export async function GET() {
       return (a.client_name ?? '').localeCompare(b.client_name ?? '');
     });
 
-    return NextResponse.json(sorted);
+    // Attach contact names
+    const enriched = sorted.map((row) => ({
+      ...row,
+      contact_name: (row.client_id && contactMap.get(row.client_id))
+        || contactMap.get(row.client_name)
+        || null,
+    }));
+
+    return NextResponse.json(enriched);
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : 'Unknown error' },
