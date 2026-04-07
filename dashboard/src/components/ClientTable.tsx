@@ -348,6 +348,26 @@ function StatusDot({ status }: { status: string }) {
   );
 }
 
+function LastContactBadge({ daysAgo, source }: { daysAgo: number; source: string }) {
+  const sourceLabel = source === 'email' ? 'Email' : source === 'call' ? 'Call' : source === 'chat' ? 'Chat' : source;
+  let colorClasses: string;
+  if (daysAgo >= 30) {
+    colorClasses = 'bg-red-100 text-red-800 ring-1 ring-inset ring-red-600/20';
+  } else if (daysAgo >= 21) {
+    colorClasses = 'bg-yellow-50 text-yellow-800 ring-1 ring-inset ring-yellow-500/20';
+  } else {
+    colorClasses = 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20';
+  }
+  return (
+    <span
+      className={`inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold tabular-nums ${colorClasses}`}
+      title={`Last contact: ${daysAgo}d ago via ${sourceLabel}`}
+    >
+      {daysAgo}d
+    </span>
+  );
+}
+
 function InlineTableSelect({
   clientId,
   field,
@@ -677,10 +697,19 @@ export default function ClientTable() {
   // Team members for inline selects
   const [teamMembers, setTeamMembers] = useState<{id: string; name: string; short_name: string; role: string}[]>([]);
 
+  // Last contact data per client
+  const [lastContact, setLastContact] = useState<Record<string, { last_contact_date: string; days_ago: number; source: string }>>({});
+
   useEffect(() => {
     fetch('/api/team')
       .then(res => res.json())
       .then(data => setTeamMembers(data))
+      .catch(() => {});
+    fetch('/api/clients/last-contact')
+      .then(res => res.json())
+      .then(data => {
+        if (data && !data.error) setLastContact(data);
+      })
       .catch(() => {});
   }, []);
 
@@ -949,6 +978,40 @@ export default function ClientTable() {
     return { uniqueClients, googleCount, metaCount, total: filtered.length, totalEstRevenue };
   }, [filtered, clientRevenue]);
 
+  // Revenue concentration alert
+  const concentrationAlert = useMemo(() => {
+    const totalRevenue = stats.totalEstRevenue;
+    if (totalRevenue <= 0) return { level: 'green' as const, message: 'Revenue concentration healthy' };
+
+    // Get unique client names with their revenue, sorted descending
+    const clientNames = [...new Set(filtered.map(c => c.client_name))];
+    const clientsByRevenue = clientNames
+      .map(name => ({ name, revenue: clientRevenue[name] ?? 0, pct: ((clientRevenue[name] ?? 0) / totalRevenue) * 100 }))
+      .sort((a, b) => b.revenue - a.revenue);
+
+    // RED: any single client > 25%
+    const redClient = clientsByRevenue.find(c => c.pct > 25);
+    if (redClient) {
+      return {
+        level: 'red' as const,
+        message: `Revenue Risk: ${redClient.name} represents ${redClient.pct.toFixed(1)}% of total revenue`,
+      };
+    }
+
+    // YELLOW: top 3 clients > 60%
+    const top3 = clientsByRevenue.slice(0, 3);
+    const top3Pct = top3.reduce((sum, c) => sum + c.pct, 0);
+    if (top3Pct > 60) {
+      const names = top3.map(c => c.name).join(', ');
+      return {
+        level: 'yellow' as const,
+        message: `Top 3 clients (${names}) represent ${top3Pct.toFixed(1)}% of total revenue`,
+      };
+    }
+
+    return { level: 'green' as const, message: 'Revenue concentration healthy' };
+  }, [filtered, clientRevenue, stats.totalEstRevenue]);
+
   // ── Render helpers ──────────────────────────────────────────────────
 
   function renderLiveCell(client: Client, field: 'spend' | 'conversions' | 'costPerConversion') {
@@ -1032,6 +1095,32 @@ export default function ClientTable() {
           <p className="text-sm font-medium text-slate-500">Est. Monthly Revenue</p>
           <p className="text-3xl font-bold text-emerald-600 mt-1">{formatCurrency(stats.totalEstRevenue)}</p>
         </div>
+      </div>
+
+      {/* Revenue Concentration Alert */}
+      <div className={`rounded-xl border px-6 py-4 flex items-center gap-3 ${
+        concentrationAlert.level === 'red'
+          ? 'bg-red-50 border-red-200'
+          : concentrationAlert.level === 'yellow'
+            ? 'bg-amber-50 border-amber-200'
+            : 'bg-emerald-50 border-emerald-200'
+      }`}>
+        <span className={`flex-shrink-0 w-2.5 h-2.5 rounded-full ${
+          concentrationAlert.level === 'red'
+            ? 'bg-red-500'
+            : concentrationAlert.level === 'yellow'
+              ? 'bg-amber-500'
+              : 'bg-emerald-500'
+        }`} />
+        <p className={`text-sm font-medium ${
+          concentrationAlert.level === 'red'
+            ? 'text-red-700'
+            : concentrationAlert.level === 'yellow'
+              ? 'text-amber-700'
+              : 'text-emerald-700'
+        }`}>
+          {concentrationAlert.message}
+        </p>
       </div>
 
       {/* Refresh bar */}
@@ -1126,7 +1215,15 @@ export default function ClientTable() {
                         <td className="py-4 px-6">
                           {isFirstInGroup ? (
                             <div>
-                              <span className="text-sm font-semibold text-slate-900">{client.client_name}</span>
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm font-semibold text-slate-900">{client.client_name}</span>
+                                {!!client.client_id && lastContact[client.client_id as string] && (
+                                  <LastContactBadge
+                                    daysAgo={lastContact[client.client_id as string].days_ago}
+                                    source={lastContact[client.client_id as string].source}
+                                  />
+                                )}
+                              </div>
                               {(client.contact_name as string) && (
                                 <span className="block text-xs text-slate-400 font-normal mt-0.5">{client.contact_name as string}</span>
                               )}
