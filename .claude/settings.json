@@ -214,5 +214,7 @@
       "Edit",
       "Write"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["pipeboard-meta-ads"]
 }
