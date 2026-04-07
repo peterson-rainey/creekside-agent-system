@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { callPipeboard } from '@/lib/pipeboard';
+import { createServiceClient } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = request.nextUrl;
 
     const account_id = searchParams.get('account_id');
-    if (!account_id) {
+    if (!account_id || account_id === 'null' || account_id === 'undefined' || account_id.trim() === '') {
       return NextResponse.json(
-        { error: 'account_id query parameter is required' },
+        { error: 'Invalid ad account ID' },
         { status: 400 }
       );
     }
@@ -31,9 +32,27 @@ export async function GET(request: NextRequest) {
       pipeboardArgs.time_range = time_range;
     }
 
-    const result = await callPipeboard('get_insights', pipeboardArgs);
+    try {
+      const result = await callPipeboard('get_insights', pipeboardArgs);
+      return NextResponse.json(result);
+    } catch (pipeboardError) {
+      // PipeBoard failed — fall back to cached data in meta_insights_daily
+      const supabase = createServiceClient();
+      const { data: cachedData, error: dbError } = await supabase
+        .from('meta_insights_daily')
+        .select('*')
+        .eq('account_id', account_id)
+        .order('date', { ascending: false });
 
-    return NextResponse.json(result);
+      if (dbError || !cachedData || cachedData.length === 0) {
+        // Both PipeBoard and DB fallback failed — return the original error
+        const message = pipeboardError instanceof Error ? pipeboardError.message : 'Unknown error';
+        const status = message.includes('not configured') ? 500 : 502;
+        return NextResponse.json({ error: message }, { status });
+      }
+
+      return NextResponse.json({ data: cachedData, source: 'cache' });
+    }
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     const status = message.includes('not configured') ? 500 : 502;

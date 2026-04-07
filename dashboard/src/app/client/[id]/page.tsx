@@ -4,7 +4,18 @@ import PerformanceGoals from '@/components/PerformanceGoals';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-function QuickLink({ href, label, icon }: { href: string; label: string; icon: string }) {
+function QuickLink({ href, label, icon, disabled }: { href: string | null; label: string; icon: string; disabled?: boolean }) {
+  if (disabled || !href) {
+    return (
+      <span
+        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-100 rounded-lg text-sm font-medium text-slate-300 cursor-not-allowed select-none"
+        title={`No ${label} link available`}
+      >
+        <span>{icon}</span>
+        {label}
+      </span>
+    );
+  }
   return (
     <a
       href={href}
@@ -41,12 +52,13 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
     primary_contact_name: string | null;
     primary_contact_email: string | null;
     website: string | null;
+    gchat_url: string | null;
   } | null = null;
 
   if (client.client_id) {
     const { data } = await supabase
       .from('clients')
-      .select('gdrive_folder_id, clickup_folder_id, contract_url, primary_contact_name, primary_contact_email, website')
+      .select('gdrive_folder_id, clickup_folder_id, contract_url, primary_contact_name, primary_contact_email, website, gchat_url')
       .eq('id', client.client_id)
       .single();
     clientMeta = data;
@@ -55,7 +67,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
     const baseName = client.client_name.replace(/ —.*$/, '');
     const { data } = await supabase
       .from('clients')
-      .select('gdrive_folder_id, clickup_folder_id, contract_url, primary_contact_name, primary_contact_email, website')
+      .select('gdrive_folder_id, clickup_folder_id, contract_url, primary_contact_name, primary_contact_email, website, gchat_url')
       .eq('name', baseName)
       .limit(1)
       .single();
@@ -84,9 +96,10 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
 
         {/* Quick Links */}
         <div className="flex items-center gap-2">
-          {driveUrl && <QuickLink href={driveUrl} label="Google Drive" icon="📁" />}
-          {clickupUrl && <QuickLink href={clickupUrl} label="ClickUp" icon="📋" />}
-          {clientMeta?.contract_url && <QuickLink href={clientMeta.contract_url} label="Contract" icon="📄" />}
+          <QuickLink href={clientMeta?.contract_url ?? null} label="Contract" icon="📄" />
+          <QuickLink href={driveUrl} label="Google Drive" icon="📁" />
+          <QuickLink href={clickupUrl} label="ClickUp" icon="📋" />
+          <QuickLink href={clientMeta?.gchat_url ?? null} label="Google Chat" icon="💬" />
           {clientMeta?.website && <QuickLink href={clientMeta.website.startsWith('http') ? clientMeta.website : `https://${clientMeta.website}`} label="Website" icon="🌐" />}
         </div>
       </div>

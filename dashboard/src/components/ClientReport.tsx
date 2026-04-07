@@ -18,7 +18,7 @@ interface ReportingClient {
   id: string;
   client_name: string;
   platform: 'meta' | 'google';
-  ad_account_id: string;
+  ad_account_id: string | null;
   ad_account_name: string | null;
   monthly_budget: number | null;
   monthly_revenue: number | null;
@@ -693,6 +693,13 @@ export default function ClientReport({ client }: { client: ReportingClient }) {
   // ── Data fetching ────────────────────────────────────────────────────
 
   const fetchData = useCallback(async () => {
+    // Guard: skip API calls if no ad account is linked
+    if (!client.ad_account_id) {
+      setLoading(false);
+      setError('No Meta ad account linked');
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {
