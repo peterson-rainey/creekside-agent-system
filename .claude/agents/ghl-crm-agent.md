@@ -696,7 +696,7 @@ Suggested action: [what to try next]
 | 401 Unauthorized | "GHL API key is invalid or expired. Verify `GHL_API_KEY` env var is set correctly." |
 | 400 Bad Request | Show the full GHL error response body — it usually identifies the missing or malformed field. |
 | 404 Not Found | "Record not found in GHL. Confirm the ID is correct and belongs to location ${GHL_LOCATION_ID}." |
-| 429 Rate Limited | Implement backoff (Step 0 of each curl call). Surface remaining attempt count to user. |
+| 429 Rate Limited | Implement exponential backoff (see Rate Limits section). Surface remaining attempt count to user. |
 | Empty results | Confirm `locationId` is set. Try broadening the search. Verify the record exists in GHL UI. |
 | Contract status not in Documents API | Query custom fields on the contact or opportunity — contract status is often stored there. |
 | No conversation for contact | Contact may have no communication history, or messages may be in a different channel. Check all conversation types. |
