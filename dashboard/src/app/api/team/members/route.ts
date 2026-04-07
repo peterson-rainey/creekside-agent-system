@@ -8,6 +8,7 @@ const ALLOWED_UPDATE_FIELDS = [
   'employment_type',
   'status',
   'specialties',
+  'estimated_hours_per_month',
 ];
 
 export async function GET() {
@@ -16,7 +17,7 @@ export async function GET() {
 
     const { data, error } = await supabase
       .from('team_members')
-      .select('id, name, role, employment_type, hourly_rate, status, notes, specialties')
+      .select('id, name, role, employment_type, hourly_rate, status, notes, specialties, prework_spreadsheet_id, estimated_hours_per_month')
       .order('name', { ascending: true });
 
     if (error) {

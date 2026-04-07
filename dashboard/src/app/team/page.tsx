@@ -11,6 +11,8 @@ interface TeamMember {
   status: string;
   notes: string | null;
   specialties: string[] | null;
+  prework_spreadsheet_id: string | null;
+  estimated_hours_per_month: number | null;
 }
 
 interface ClientRow {
@@ -20,7 +22,7 @@ interface ClientRow {
   monthly_revenue: number | null;
 }
 
-function StatusDot({ status }: { status: string }) {
+function _StatusDot({ status }: { status: string }) {
   const lower = status?.toLowerCase() ?? '';
   const dotColor = lower === 'active' ? 'bg-emerald-500' : 'bg-slate-300';
   const textColor = lower === 'active' ? 'text-emerald-700' : 'text-slate-500';
@@ -176,6 +178,70 @@ function NotesCell({
   );
 }
 
+function InlineHoursEditor({
+  member,
+  onSaved,
+}: {
+  member: TeamMember;
+  onSaved: (id: string, hours: number) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [value, setValue] = useState(member.estimated_hours_per_month?.toString() ?? '');
+  const [saving, setSaving] = useState(false);
+
+  const save = async () => {
+    const parsed = parseFloat(value);
+    if (isNaN(parsed) || parsed === member.estimated_hours_per_month) {
+      setEditing(false);
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const res = await fetch('/api/team/members', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: member.id, estimated_hours_per_month: parsed }),
+      });
+      if (res.ok) {
+        onSaved(member.id, parsed);
+      }
+    } finally {
+      setSaving(false);
+      setEditing(false);
+    }
+  };
+
+  if (editing) {
+    return (
+      <input
+        type="number"
+        step="1"
+        className="w-20 px-2 py-1 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={save}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') save();
+          if (e.key === 'Escape') setEditing(false);
+        }}
+        autoFocus
+        disabled={saving}
+      />
+    );
+  }
+
+  return (
+    <button
+      onClick={() => setEditing(true)}
+      className="text-sm text-slate-700 hover:text-[var(--creekside-blue)] cursor-pointer transition-colors"
+      title="Click to edit"
+    >
+      {member.estimated_hours_per_month != null ? member.estimated_hours_per_month : '--'}
+    </button>
+  );
+}
+
 export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [clientData, setClientData] = useState<ClientRow[]>([]);
@@ -264,6 +330,12 @@ export default function TeamPage() {
     );
   };
 
+  const handleHoursSaved = (id: string, hours: number) => {
+    setMembers((prev) =>
+      prev.map((m) => (m.id === id ? { ...m, estimated_hours_per_month: hours } : m))
+    );
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -303,8 +375,10 @@ export default function TeamPage() {
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Role</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Type</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Rate</th>
+                  <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Est. Hours/Mo</th>
                   <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Est. Monthly Cost</th>
                   <th className="text-right py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Revenue Contribution</th>
+                  <th className="text-center py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Pre-work Sheet</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Notes</th>
                 </tr>
               </thead>
@@ -323,8 +397,16 @@ export default function TeamPage() {
                     <td className="py-3 px-4">
                       <InlineRateEditor member={member} onSaved={handleRateSaved} />
                     </td>
+                    <td className="py-3 px-4 text-right">
+                      <InlineHoursEditor member={member} onSaved={handleHoursSaved} />
+                    </td>
                     <td className="py-3 px-4 text-right text-sm text-slate-600">
                       {(() => {
+                        // Prefer estimated_hours_per_month * hourly_rate when both are set
+                        if (member.estimated_hours_per_month != null && member.hourly_rate != null) {
+                          const cost = member.hourly_rate * member.estimated_hours_per_month;
+                          return `$${cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+                        }
                         const firstName = member.name.split(' ')[0];
                         const cost = memberCost[firstName];
                         if (!cost) return <span className="text-slate-300">--</span>;
@@ -341,6 +423,23 @@ export default function TeamPage() {
                         if (rev && rev > 0) return `$${rev.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
                         return <span className="text-slate-300">--</span>;
                       })()}
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      {member.prework_spreadsheet_id ? (
+                        <a
+                          href={`https://docs.google.com/spreadsheets/d/${member.prework_spreadsheet_id}/edit`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-[var(--creekside-blue)] hover:text-blue-800 transition-colors"
+                          title="Open pre-work spreadsheet"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      ) : (
+                        <span className="text-slate-300">--</span>
+                      )}
                     </td>
                     <td className="py-3 px-4">
                       <NotesCell member={member} onSaved={handleNotesSaved} />
