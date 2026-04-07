@@ -705,19 +705,26 @@ export default function ClientTable() {
     });
   }, [clients, selectedPlatform, selectedManager, selectedPriority]);
 
-  // Estimated revenue per client (calculated from fee tiers)
+  // Revenue per client: use monthly_revenue if set, otherwise fall back to fee tier formula
   const clientRevenue = useMemo(() => {
     const revenueMap: Record<string, number> = {};
-    const budgetsByClient: Record<string, { total: number; platforms: number }> = {};
+    const budgetsByClient: Record<string, { total: number; platforms: number; manualRevenue: number; hasManual: boolean }> = {};
     for (const c of clients) {
       if (!budgetsByClient[c.client_name]) {
-        budgetsByClient[c.client_name] = { total: 0, platforms: 0 };
+        budgetsByClient[c.client_name] = { total: 0, platforms: 0, manualRevenue: 0, hasManual: false };
       }
       budgetsByClient[c.client_name].total += Number(c.monthly_budget ?? 0);
       budgetsByClient[c.client_name].platforms += 1;
+      if (c.monthly_revenue != null) {
+        budgetsByClient[c.client_name].manualRevenue += Number(c.monthly_revenue);
+        budgetsByClient[c.client_name].hasManual = true;
+      }
     }
     for (const [name, data] of Object.entries(budgetsByClient)) {
-      revenueMap[name] = data.total > 0 ? calcExpectedFee(data.total, data.platforms) : 0;
+      // Use actual revenue when set, otherwise estimate from fee tiers
+      revenueMap[name] = data.hasManual
+        ? data.manualRevenue
+        : (data.total > 0 ? calcExpectedFee(data.total, data.platforms) : 0);
     }
     return revenueMap;
   }, [clients]);
