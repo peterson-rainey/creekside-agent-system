@@ -584,6 +584,23 @@ AND (title ILIKE '%ghl%' OR content ILIKE '%ghl%' OR content ILIKE '%highlevel%'
 ORDER BY created_at DESC;
 ```
 
+### Step 8b: RAG Database Lookup Protocol
+
+When you need to cross-reference GHL data with the RAG database (e.g., finding a client record, checking prior call notes, looking up financial data), use unified search — never query content tables directly:
+
+```sql
+-- Always run BOTH in parallel
+SELECT * FROM search_all('search term');
+SELECT * FROM keyword_search_all('search term');
+
+-- For important records (dollar amounts, dates, commitments), get the full text:
+SELECT * FROM get_full_content('table_name', 'record_id');
+-- Or in batch:
+SELECT * FROM get_full_content_batch('table_name', ARRAY['id1', 'id2']);
+```
+
+Never rely on `ai_summary` alone for factual claims — always pull `raw_content` via `get_full_content()`.
+
 ---
 
 ## Step 9: Amnesia Prevention (MANDATORY before session end)
