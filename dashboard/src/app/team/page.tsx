@@ -172,7 +172,6 @@ function NotesCell({
 export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState<string>('active');
   const [typeFilter, setTypeFilter] = useState<string>('all');
 
   const fetchMembers = useCallback(async () => {
@@ -188,7 +187,8 @@ export default function TeamPage() {
   useEffect(() => { fetchMembers(); }, [fetchMembers]);
 
   const filtered = members.filter((m) => {
-    if (statusFilter !== 'all' && m.status !== statusFilter) return false;
+    // Only show active team members
+    if (m.status !== 'active') return false;
     if (typeFilter !== 'all' && m.employment_type !== typeFilter) return false;
     return true;
   });
@@ -214,18 +214,6 @@ export default function TeamPage() {
 
       {/* Filters */}
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-slate-600">Status</label>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="text-sm border border-slate-200 rounded-lg px-3 py-1.5 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent"
-          >
-            <option value="all">All</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
         <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-slate-600">Type</label>
           <select
@@ -256,7 +244,6 @@ export default function TeamPage() {
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Role</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Type</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Hourly Rate</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
                   <th className="text-left py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Notes</th>
                 </tr>
               </thead>
@@ -274,9 +261,6 @@ export default function TeamPage() {
                     </td>
                     <td className="py-3 px-4">
                       <InlineRateEditor member={member} onSaved={handleRateSaved} />
-                    </td>
-                    <td className="py-3 px-4">
-                      <StatusDot status={member.status} />
                     </td>
                     <td className="py-3 px-4">
                       <NotesCell member={member} onSaved={handleNotesSaved} />

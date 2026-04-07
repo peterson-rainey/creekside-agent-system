@@ -38,7 +38,7 @@ interface LiveAccountData {
   error?: string;
 }
 
-type SortKey = 'client_name' | 'platform' | 'monthly_budget' | 'est_revenue' | 'priority' | 'account_manager' | 'platform_operator' | 'status';
+type SortKey = 'client_name' | 'platform' | 'monthly_budget' | 'est_revenue' | 'priority' | 'account_manager' | 'platform_operator';
 
 // ── Fee tier calculator ─────────────────────────────────────────────────
 // Creekside charges % of ad spend: 20% ($0-15k), 15% ($15-30k), 10% ($30-45k), 5% ($45k+)
@@ -446,8 +446,6 @@ export default function ClientTable() {
   const [selectedPlatform, setSelectedPlatform] = useState('');
   const [selectedManager, setSelectedManager] = useState('');
   const [selectedPriority, setSelectedPriority] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('active');
-
   const [sortKey, setSortKey] = useState<SortKey>('client_name');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
 
@@ -628,12 +626,11 @@ export default function ClientTable() {
       if (selectedPlatform && c.platform?.toLowerCase() !== selectedPlatform.toLowerCase()) return false;
       if (selectedManager && c.account_manager !== selectedManager) return false;
       if (selectedPriority && c.priority?.toLowerCase() !== selectedPriority.toLowerCase()) return false;
-      if (selectedStatus && c.status?.toLowerCase() !== selectedStatus.toLowerCase()) return false;
-      // Hide churned clients from main view when no status filter is applied
-      if (!selectedStatus && c.status?.toLowerCase() === 'churned') return false;
+      // Hide churned clients — they show in the Archive tab
+      if (c.status?.toLowerCase() === 'churned') return false;
       return true;
     });
-  }, [clients, selectedPlatform, selectedManager, selectedPriority, selectedStatus]);
+  }, [clients, selectedPlatform, selectedManager, selectedPriority]);
 
   // Estimated revenue per client (calculated from fee tiers)
   const clientRevenue = useMemo(() => {
@@ -830,11 +827,9 @@ export default function ClientTable() {
         selectedPlatform={selectedPlatform}
         selectedManager={selectedManager}
         selectedPriority={selectedPriority}
-        selectedStatus={selectedStatus}
         onPlatformChange={setSelectedPlatform}
         onManagerChange={setSelectedManager}
         onPriorityChange={setSelectedPriority}
-        onStatusChange={setSelectedStatus}
       />
 
       {/* Table */}
@@ -864,7 +859,6 @@ export default function ClientTable() {
                 <SortHeader label="Priority" sortKey="priority" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <SortHeader label="Manager" sortKey="account_manager" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <SortHeader label="Operator" sortKey="platform_operator" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
-                <SortHeader label="Status" sortKey="status" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Spend</th>
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Conv.</th>
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Cost/Conv</th>
@@ -951,15 +945,6 @@ export default function ClientTable() {
                             placeholder="--"
                             onSaved={handleFieldSaved}
                           />
-                        </td>
-                        <td className="py-4 px-6" onClick={(e) => e.stopPropagation()}>
-                          {isFirstInGroup ? (
-                            <InlineStatusSelect
-                              clientId={client.id}
-                              value={client.status}
-                              onSaved={handleFieldSaved}
-                            />
-                          ) : null}
                         </td>
                         <td className="py-4 px-6 text-right text-sm font-medium text-slate-700">
                           {renderLiveCell(client, 'spend')}

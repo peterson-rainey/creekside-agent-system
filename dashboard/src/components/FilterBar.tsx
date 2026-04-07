@@ -6,11 +6,9 @@ interface FilterBarProps {
   selectedPlatform: string;
   selectedManager: string;
   selectedPriority: string;
-  selectedStatus: string;
   onPlatformChange: (value: string) => void;
   onManagerChange: (value: string) => void;
   onPriorityChange: (value: string) => void;
-  onStatusChange: (value: string) => void;
 }
 
 export default function FilterBar({
@@ -19,15 +17,12 @@ export default function FilterBar({
   selectedPlatform,
   selectedManager,
   selectedPriority,
-  selectedStatus,
   onPlatformChange,
   onManagerChange,
   onPriorityChange,
-  onStatusChange,
 }: FilterBarProps) {
   const platformOptions = ['All', ...platforms];
   const priorityOptions = ['All', 'High', 'Medium', 'Low'];
-  const statusOptions = ['active', 'paused', 'all'];
 
   const pillBase = 'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer';
   const pillActive = 'bg-[var(--creekside-navy)] text-white shadow-sm';
@@ -89,21 +84,6 @@ export default function FilterBar({
           <option value="">All</option>
           {managers.map((m) => (
             <option key={m} value={m}>{m}</option>
-          ))}
-        </select>
-      </div>
-
-      {/* Status */}
-      <div className="flex items-center gap-2">
-        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</span>
-        <select
-          value={selectedStatus || 'all'}
-          onChange={(e) => onStatusChange(e.target.value === 'all' ? '' : e.target.value)}
-          className="text-sm font-medium border border-slate-200 rounded-lg px-4 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent appearance-none pr-8 cursor-pointer"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394A3B8' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
-        >
-          {statusOptions.map((s) => (
-            <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
           ))}
         </select>
       </div>
