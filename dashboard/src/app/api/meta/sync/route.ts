@@ -6,8 +6,8 @@ import { createServiceClient } from '@/lib/supabase';
 
 function isAuthorized(request: NextRequest): boolean {
   const expectedKey = process.env.SYNC_API_KEY;
-  // Skip auth if SYNC_API_KEY is not configured
-  if (!expectedKey) return true;
+  // Deny access if SYNC_API_KEY is not configured — set this env var to enable the sync endpoint
+  if (!expectedKey) return false;
 
   const authHeader = request.headers.get('Authorization');
   if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
@@ -21,7 +21,7 @@ function isAuthorized(request: NextRequest): boolean {
 export async function POST(request: NextRequest) {
   if (!isAuthorized(request)) {
     return NextResponse.json(
-      { error: 'Unauthorized' },
+      { error: 'Unauthorized. Ensure SYNC_API_KEY is set in environment variables.' },
       { status: 401 }
     );
   }

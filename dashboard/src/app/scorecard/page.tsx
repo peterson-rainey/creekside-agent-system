@@ -1,8 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // ── Types ──────────────────────────────────────────────────────────────
+
+interface ChurnRiskEntry {
+  score: number;
+  level: 'LOW' | 'MEDIUM' | 'HIGH';
+  factors: string[];
+  client_name: string;
+}
 
 interface ScorecardData {
   activeClients: number;
@@ -71,6 +78,7 @@ function marginBarBg(margin: number): string {
 export default function ScorecardPage() {
   const [data, setData] = useState<ScorecardData | null>(null);
   const [pnlData, setPnlData] = useState<PnlData | null>(null);
+  const [churnData, setChurnData] = useState<Record<string, ChurnRiskEntry> | null>(null);
   const [loading, setLoading] = useState(true);
   const [pnlLoading, setPnlLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -103,8 +111,20 @@ export default function ScorecardPage() {
       }
     }
 
+    async function loadChurn() {
+      try {
+        const res = await fetch('/api/clients/churn-risk');
+        if (!res.ok) return;
+        const json = await res.json();
+        if (json && !json.error) setChurnData(json);
+      } catch {
+        // Non-critical — section shows empty state
+      }
+    }
+
     load();
     loadPnl();
+    loadChurn();
   }, []);
 
   if (loading) {
@@ -193,6 +213,66 @@ export default function ScorecardPage() {
           </p>
         </div>
       </div>
+
+      {/* ── Churn Risk Summary ─────────────────────────────────────────── */}
+      {churnData && (() => {
+        const entries = Object.values(churnData);
+        const highRisk = entries.filter(e => e.level === 'HIGH').sort((a, b) => b.score - a.score);
+        const mediumRisk = entries.filter(e => e.level === 'MEDIUM').sort((a, b) => b.score - a.score);
+        const totalAtRisk = highRisk.length + mediumRisk.length;
+
+        if (totalAtRisk === 0) return null;
+
+        return (
+          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-semibold text-slate-900">Churn Risk</h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  {highRisk.length > 0
+                    ? `${highRisk.length} client${highRisk.length !== 1 ? 's' : ''} at high risk`
+                    : `${mediumRisk.length} client${mediumRisk.length !== 1 ? 's' : ''} at medium risk`}
+                </p>
+              </div>
+              {highRisk.length > 0 && (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20">
+                  {highRisk.length} High Risk
+                </span>
+              )}
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-100 bg-slate-50">
+                    <th className="text-left py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Client</th>
+                    <th className="text-center py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Risk</th>
+                    <th className="text-right py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Score</th>
+                    <th className="text-left py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Factors</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[...highRisk, ...mediumRisk].map((entry) => (
+                    <tr key={entry.client_name} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+                      <td className="py-3 px-5 text-sm font-medium text-slate-900">{entry.client_name}</td>
+                      <td className="py-3 px-5 text-center">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${
+                          entry.level === 'HIGH'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-amber-100 text-amber-800'
+                        }`}>
+                          {entry.level}
+                        </span>
+                      </td>
+                      <td className="py-3 px-5 text-sm text-slate-600 text-right tabular-nums">{entry.score}</td>
+                      <td className="py-3 px-5 text-xs text-slate-500">{entry.factors.join(' / ')}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ── P&L Section ─────────────────────────────────────────────────── */}
       {pnlLoading ? (
@@ -321,9 +401,8 @@ export default function ScorecardPage() {
                     const expenses = pnlData.expensesByMonth[m.monthDate] ?? [];
                     const labor = pnlData.laborByMonth[m.monthDate] ?? [];
                     return (
-                      <>
+                      <React.Fragment key={m.monthDate}>
                         <tr
-                          key={m.monthDate}
                           className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors cursor-pointer"
                           onClick={() => setExpandedMonth(isExpanded ? null : m.monthDate)}
                         >
@@ -410,7 +489,7 @@ export default function ScorecardPage() {
                             </td>
                           </tr>
                         )}
-                      </>
+                      </React.Fragment>
                     );
                   })}
                 </tbody>

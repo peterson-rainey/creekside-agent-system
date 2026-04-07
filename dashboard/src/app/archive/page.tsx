@@ -244,18 +244,22 @@ export default function ArchivePage() {
     if (!confirm(`Reactivate ${clientName}? This will move them back to the active client list.`)) return;
     setReactivating(clientName);
     try {
-      await Promise.all(rows.map(row =>
+      const responses = await Promise.all(rows.map(row =>
         fetch('/api/clients', {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: row.id, status: 'active' }),
         })
       ));
-      setClients(prev => prev.map(c =>
-        rows.some(r => r.id === c.id)
-          ? { ...c, status: 'active', churned_date: null, churn_reason: null }
-          : c
-      ));
+      if (responses.every(r => r.ok)) {
+        setClients(prev => prev.map(c =>
+          rows.some(r => r.id === c.id)
+            ? { ...c, status: 'active', churned_date: null, churn_reason: null }
+            : c
+        ));
+      } else {
+        console.error('Some reactivation requests failed');
+      }
     } catch (err) { console.error('Failed to reactivate:', err); }
     setReactivating(null);
   };

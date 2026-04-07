@@ -35,18 +35,25 @@ export async function GET() {
           .from('gmail_messages')
           .select('client_id, date')
           .not('client_id', 'is', null)
-          .order('date', { ascending: false }),
+          .order('date', { ascending: false })
+          .limit(1000),
         supabase
           .from('fathom_entries')
           .select('client_id, call_date')
           .not('client_id', 'is', null)
-          .order('call_date', { ascending: false }),
+          .order('call_date', { ascending: false })
+          .limit(1000),
         supabase
           .from('gchat_summaries')
           .select('client_id, summary_date')
           .not('client_id', 'is', null)
-          .order('summary_date', { ascending: false }),
+          .order('summary_date', { ascending: false })
+          .limit(1000),
       ]);
+
+      if (gmailRes.error) console.error('[last-contact] gmail_messages query error:', gmailRes.error.message);
+      if (fathomRes.error) console.error('[last-contact] fathom_entries query error:', fathomRes.error.message);
+      if (gchatRes.error) console.error('[last-contact] gchat_summaries query error:', gchatRes.error.message);
 
       // Build a map: client_id -> { date, source }
       const contactMap: Record<string, { date: string; source: string }> = {};

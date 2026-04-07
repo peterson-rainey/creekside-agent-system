@@ -274,12 +274,15 @@ export async function GET(request: NextRequest) {
         });
 
         // -------------------------------------------------------------------
-        // 4. Update team_members with calculated estimate
+        // 4. Optionally persist calculated estimate to team_members
+        //    Use ?persist=true query param to write; otherwise this is read-only.
         // -------------------------------------------------------------------
-        await supabase
-          .from('team_members')
-          .update({ estimated_hours_per_month: monthlyEstimate })
-          .eq('id', member.id);
+        if (searchParams.get('persist') === 'true') {
+          await supabase
+            .from('team_members')
+            .update({ estimated_hours_per_month: monthlyEstimate })
+            .eq('id', member.id);
+        }
       } catch (sheetErr) {
         // Don't let one bad spreadsheet block the rest
         results.push({
