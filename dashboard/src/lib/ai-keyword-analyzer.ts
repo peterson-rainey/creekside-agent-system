@@ -119,8 +119,19 @@ export async function analyzeWithAI(opts: {
   const sorted = [...searchTerms].sort((a, b) => b.cost - a.cost);
   const topTerms = sorted.slice(0, 300);
 
-  const baselineCvr = accountStats.avgConversionRate / 100;
-  const targetCpa = accountStats.avgCpa > 0 ? accountStats.avgCpa : accountStats.totalSpend / Math.max(accountStats.totalTerms, 1);
+  // Baseline CVR: use account data if available, fall back to 2% (typical Google Search CVR)
+  const baselineCvr = accountStats.avgConversionRate > 0
+    ? accountStats.avgConversionRate / 100
+    : 0.02;
+
+  // Target CPA: use account average if available, fall back to reasonable estimates
+  // For zero-conversion accounts, use total spend / 10 as a rough "what would CPA be
+  // if 10% of terms converted" — gives a practical threshold without being arbitrary
+  const targetCpa = accountStats.avgCpa > 0
+    ? accountStats.avgCpa
+    : accountStats.totalSpend > 0
+    ? Math.max(accountStats.totalSpend / Math.max(accountStats.totalClicks, 1) * 10, 25)
+    : 50;
 
   const statResults = topTerms.map(st => ({
     ...st,

@@ -46,18 +46,17 @@ export function evaluateSearchTerm(
   targetCpa: number,
 ): StatisticalAssessment {
   // ── Layer 1: Data sufficiency ───────────────────────────────────────
-  // Minimum clicks needed to have any statistical power at this CVR
-  // Rough heuristic: need at least 1/CVR clicks (20 at 5% CVR, 100 at 1%)
-  // Floor at 15 clicks regardless — below that, no test is meaningful
-  const minClicks = Math.max(15, Math.ceil(1 / Math.max(baselineCvr, 0.01)));
+  // 5 clicks minimum — below that, there is no meaningful signal.
+  // The CPA heuristic (Layer 2) handles the "spent enough money" check
+  // independently, so we don't need a huge click threshold here.
+  const minClicks = 5;
 
   if (clicks < minClicks) {
-    // Not enough data for any statistical conclusion
     const bayesian = bayesianEstimate(clicks, conversions, baselineCvr);
     return {
       verdict: 'INSUFFICIENT_DATA',
       confidence: 'low',
-      reason: `Only ${clicks} click${clicks === 1 ? '' : 's'} — need at least ${minClicks} to assess performance at a ${(baselineCvr * 100).toFixed(1)}% conversion rate`,
+      reason: `Only ${clicks} click${clicks === 1 ? '' : 's'} — need at least ${minClicks} to assess performance`,
       details: {
         dataQuality: `${clicks}/${minClicks} clicks needed`,
         bayesianEstimate: bayesian.mean,
@@ -68,14 +67,15 @@ export function evaluateSearchTerm(
   }
 
   // ── Layer 2: CPA heuristic for zero-conversion terms ────────────────
-  if (conversions === 0 && targetCpa > 0 && spend >= targetCpa * 2) {
+  // Pause candidate if spent 1.5x the target/average CPA with zero conversions
+  if (conversions === 0 && targetCpa > 0 && spend >= targetCpa * 1.5) {
     const multiplier = spend / targetCpa;
     return {
       verdict: 'PAUSE_CANDIDATE',
-      confidence: 'medium',
-      reason: `Spent $${spend.toFixed(2)} (${multiplier.toFixed(1)}x your CPA target) with zero conversions across ${clicks} clicks`,
+      confidence: multiplier >= 2.5 ? 'high' : 'medium',
+      reason: `Spent $${spend.toFixed(2)} (${multiplier.toFixed(1)}x target CPA of $${targetCpa.toFixed(2)}) with zero conversions across ${clicks} clicks`,
       details: {
-        dataQuality: 'Sufficient spend',
+        dataQuality: multiplier >= 2.5 ? 'Strong signal' : 'Sufficient spend',
         spendVsCpa: `${multiplier.toFixed(1)}x CPA`,
       },
     };
@@ -90,7 +90,7 @@ export function evaluateSearchTerm(
     return {
       verdict: 'UNDERPERFORMING',
       confidence: 'high',
-      reason: `Converting at ${(actualCvr * 100).toFixed(1)}% vs ${(baselineCvr * 100).toFixed(1)}% account average (statistically significant, p=${pValue.toFixed(3)})`,
+      reason: `Converting at ${(actualCvr * 100).toFixed(1)}% vs ${(baselineCvr * 100).toFixed(1)}% baseline (p=${pValue.toFixed(3)})`,
       details: {
         dataQuality: 'Statistically significant',
       },
@@ -100,12 +100,14 @@ export function evaluateSearchTerm(
   // ── Layer 4: Bayesian soft estimate ─────────────────────────────────
   const bayesian = bayesianEstimate(clicks, conversions, baselineCvr);
 
-  // If >75% probability that true CVR is below half the baseline
-  if (bayesian.probBelowHalfBaseline > 0.75) {
+  // If >75% probability that true CVR is below 40% of baseline
+  // (40% is more practical than 50% — catches terms that are meaningfully worse,
+  // not just slightly below average)
+  if (bayesian.probBelowThreshold > 0.75) {
     return {
       verdict: 'LIKELY_UNDERPERFORMING',
       confidence: 'medium',
-      reason: `Estimated conversion rate ${(bayesian.mean * 100).toFixed(1)}% — ${Math.round(bayesian.probBelowHalfBaseline * 100)}% chance it's below half the account average`,
+      reason: `Estimated CVR ${(bayesian.mean * 100).toFixed(1)}% — ${Math.round(bayesian.probBelowThreshold * 100)}% probability it's significantly below baseline`,
       details: {
         dataQuality: 'Moderate data',
         bayesianEstimate: bayesian.mean,
@@ -172,32 +174,30 @@ function logCombination(n: number, k: number): number {
 
 /**
  * Bayesian Beta-Binomial estimate of the true conversion rate.
- * Uses a weakly informative prior centered on the account baseline.
+ * Uses a weak prior (~5 pseudo-observations) so real data dominates quickly.
  */
 function bayesianEstimate(clicks: number, conversions: number, baselineCvr: number) {
-  // Prior: Beta(alpha, beta) where mean = baselineCvr
-  // Use a weak prior equivalent to ~10 pseudo-observations
-  const priorStrength = 10;
+  // Weak prior equivalent to ~5 pseudo-observations — responsive to real data
+  const priorStrength = 5;
   const priorAlpha = Math.max(0.5, baselineCvr * priorStrength);
   const priorBeta = Math.max(0.5, (1 - baselineCvr) * priorStrength);
 
-  // Posterior after observing data
   const postAlpha = priorAlpha + conversions;
   const postBeta = priorBeta + (clicks - conversions);
 
   const mean = postAlpha / (postAlpha + postBeta);
 
-  // Approximate 95% credible interval using normal approximation to Beta
   const variance = (postAlpha * postBeta) / ((postAlpha + postBeta) ** 2 * (postAlpha + postBeta + 1));
   const sd = Math.sqrt(variance);
   const ciLow = Math.max(0, mean - 1.96 * sd);
   const ciHigh = Math.min(1, mean + 1.96 * sd);
 
-  // P(true CVR < baseline/2) using Beta CDF approximation
-  const cutoff = baselineCvr * 0.5;
-  const probBelowHalfBaseline = betaCdf(cutoff, postAlpha, postBeta);
+  // P(true CVR < 40% of baseline) — catches terms that are meaningfully worse,
+  // not just slightly below average. More practical than 50% for low-CVR accounts.
+  const cutoff = baselineCvr * 0.4;
+  const probBelowThreshold = betaCdf(cutoff, postAlpha, postBeta);
 
-  return { mean, ciLow, ciHigh, probBelowHalfBaseline };
+  return { mean, ciLow, ciHigh, probBelowThreshold };
 }
 
 /**
