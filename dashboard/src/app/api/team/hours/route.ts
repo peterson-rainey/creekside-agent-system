@@ -8,7 +8,8 @@
  *
  * Requires:
  *   - npm install googleapis
- *   - GOOGLE_SERVICE_ACCOUNT_KEY env var (JSON string of the service account key)
+ *   - GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_REFRESH_TOKEN env vars
+ *     (reuses the same OAuth credentials as the GDrive pipeline)
  *   - team_members rows with prework_spreadsheet_id set to the Google Sheet ID
  *
  * Sheet structure:
@@ -46,46 +47,24 @@ interface SheetTab {
 // ---------------------------------------------------------------------------
 
 /**
- * Parse the service account key from the env var.
- * Supports both raw JSON and base64-encoded JSON.
- */
-function getServiceAccountKey(): Record<string, string> | null {
-  const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
-  if (!raw) return null;
-
-  try {
-    // Try raw JSON first
-    return JSON.parse(raw);
-  } catch {
-    try {
-      // Try base64-decoded JSON
-      return JSON.parse(Buffer.from(raw, 'base64').toString('utf-8'));
-    } catch {
-      return null;
-    }
-  }
-}
-
-/**
- * Build an authenticated Google Sheets client using googleapis.
- * Returns null if the package is not installed or credentials are missing.
+ * Build an authenticated Google Sheets client using OAuth2 credentials.
+ * Reuses the same OAuth credentials + refresh token as the GDrive pipeline.
+ * Returns null if credentials are missing or googleapis is not installed.
  */
 async function getSheetsClient() {
-  const key = getServiceAccountKey();
-  if (!key) return null;
+  const clientId = process.env.GOOGLE_OAUTH_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_OAUTH_REFRESH_TOKEN;
+
+  if (!clientId || !clientSecret || !refreshToken) return null;
 
   try {
-    // Dynamic import — fails gracefully if googleapis is not installed
     const { google } = await import('googleapis');
 
-    const auth = new google.auth.JWT(
-      key.client_email,
-      undefined,
-      key.private_key,
-      ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-    );
+    const oauth2 = new google.auth.OAuth2(clientId, clientSecret);
+    oauth2.setCredentials({ refresh_token: refreshToken });
 
-    return google.sheets({ version: 'v4', auth });
+    return google.sheets({ version: 'v4', auth: oauth2 });
   } catch {
     return null;
   }
@@ -248,8 +227,8 @@ export async function GET(request: NextRequest) {
         {
           error:
             'Google Sheets API not configured. ' +
-            'Set GOOGLE_SERVICE_ACCOUNT_KEY env var (service account JSON) ' +
-            'and install googleapis: npm install googleapis',
+            'Set GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, and ' +
+            'GOOGLE_OAUTH_REFRESH_TOKEN env vars, and install googleapis.',
         },
         { status: 503 },
       );
