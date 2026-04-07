@@ -135,13 +135,16 @@ function InlineNotes({
   value: string;
   onSaved: (id: string, field: string, val: string) => void;
 }) {
-  const [editing, setEditing] = useState(false);
-  const [text, setText] = useState(value);
+  const [editingIdx, setEditingIdx] = useState<number | null>(null);
+  const [editText, setEditText] = useState('');
   const [saving, setSaving] = useState(false);
 
-  const save = async () => {
-    if (text === value) {
-      setEditing(false);
+  const notes = value ? value.split('\n').filter(n => n.trim()) : [];
+
+  const saveNotes = async (updatedNotes: string[]) => {
+    const newValue = updatedNotes.filter(n => n.trim()).join('\n');
+    if (newValue === value) {
+      setEditingIdx(null);
       return;
     }
     setSaving(true);
@@ -149,53 +152,88 @@ function InlineNotes({
       const res = await fetch('/api/clients', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: clientId, notes: text }),
+        body: JSON.stringify({ id: clientId, notes: newValue || null }),
       });
-      if (res.ok) onSaved(clientId, 'notes', text);
+      if (res.ok) onSaved(clientId, 'notes', newValue);
     } finally {
       setSaving(false);
-      setEditing(false);
+      setEditingIdx(null);
     }
   };
 
-  if (editing) {
-    return (
-      <textarea
-        className="w-full mt-1 px-2 py-1 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent resize-y min-h-[40px]"
-        rows={3}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        onBlur={save}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); save(); }
-          if (e.key === 'Escape') { setText(value); setEditing(false); }
-        }}
-        autoFocus
-        disabled={saving}
-        onClick={(e) => e.stopPropagation()}
-      />
-    );
-  }
+  const startEdit = (idx: number, text: string) => {
+    setEditingIdx(idx);
+    setEditText(text);
+  };
 
-  if (!value) {
-    return (
-      <button
-        onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-        className="mt-1 text-[11px] text-slate-300 hover:text-slate-500 cursor-pointer transition-colors"
-      >
-        + Add note
-      </button>
-    );
-  }
+  const startAdd = () => {
+    setEditingIdx(notes.length);
+    setEditText('');
+  };
+
+  const handleSave = () => {
+    if (editingIdx === null) return;
+    const updated = [...notes];
+    if (editText.trim()) {
+      updated[editingIdx] = editText.trim();
+    } else if (editingIdx < notes.length) {
+      updated.splice(editingIdx, 1);
+    }
+    saveNotes(updated);
+  };
 
   return (
-    <button
-      onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-      className="block mt-1 text-xs text-amber-700 bg-amber-50 rounded px-2 py-1 max-w-[320px] whitespace-pre-wrap text-left font-normal cursor-pointer hover:bg-amber-100 transition-colors"
-      title="Click to edit"
-    >
-      {value}
-    </button>
+    <div className="mt-1 max-w-[320px]" onClick={(e) => e.stopPropagation()}>
+      {notes.map((note, idx) => (
+        <div key={idx}>
+          {editingIdx === idx ? (
+            <textarea
+              className="w-full px-2 py-1 text-xs text-slate-900 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent resize-y"
+              rows={2}
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              onBlur={handleSave}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSave(); }
+                if (e.key === 'Escape') setEditingIdx(null);
+              }}
+              autoFocus
+              disabled={saving}
+            />
+          ) : (
+            <button
+              onClick={() => startEdit(idx, note)}
+              className="block w-full text-xs text-amber-700 bg-amber-50 rounded px-2 py-1 mb-0.5 whitespace-pre-wrap text-left font-normal cursor-pointer hover:bg-amber-100 transition-colors"
+            >
+              {note}
+            </button>
+          )}
+        </div>
+      ))}
+      {editingIdx === notes.length ? (
+        <textarea
+          className="w-full px-2 py-1 text-xs text-slate-900 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent resize-y"
+          rows={2}
+          value={editText}
+          onChange={(e) => setEditText(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSave(); }
+            if (e.key === 'Escape') setEditingIdx(null);
+          }}
+          autoFocus
+          disabled={saving}
+          placeholder="Type a note..."
+        />
+      ) : (
+        <button
+          onClick={startAdd}
+          className="text-[11px] text-slate-300 hover:text-slate-500 cursor-pointer transition-colors"
+        >
+          + Add note
+        </button>
+      )}
+    </div>
   );
 }
 
