@@ -4,9 +4,25 @@ import PerformanceGoals from '@/components/PerformanceGoals';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+function QuickLink({ href, label, icon }: { href: string; label: string; icon: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+    >
+      <span>{icon}</span>
+      {label}
+    </a>
+  );
+}
+
 export default async function ClientDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = createServiceClient();
+
+  // Fetch reporting_clients row
   const { data: client } = await supabase
     .from('reporting_clients')
     .select('*')
@@ -17,17 +33,73 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
     notFound();
   }
 
+  // Fetch linked clients table data for Drive/ClickUp/contact info
+  let clientMeta: {
+    gdrive_folder_id: string | null;
+    clickup_folder_id: string | null;
+    primary_contact_name: string | null;
+    primary_contact_email: string | null;
+    website: string | null;
+  } | null = null;
+
+  if (client.client_id) {
+    const { data } = await supabase
+      .from('clients')
+      .select('gdrive_folder_id, clickup_folder_id, primary_contact_name, primary_contact_email, website')
+      .eq('id', client.client_id)
+      .single();
+    clientMeta = data;
+  } else {
+    // Fallback: match by name
+    const { data } = await supabase
+      .from('clients')
+      .select('gdrive_folder_id, clickup_folder_id, primary_contact_name, primary_contact_email, website')
+      .eq('name', client.client_name)
+      .limit(1)
+      .single();
+    clientMeta = data;
+  }
+
+  const driveUrl = clientMeta?.gdrive_folder_id
+    ? `https://drive.google.com/drive/folders/${clientMeta.gdrive_folder_id}`
+    : null;
+  const clickupUrl = clientMeta?.clickup_folder_id
+    ? `https://app.clickup.com/9017100244/v/f/${clientMeta.clickup_folder_id}`
+    : null;
+
   return (
     <div className="space-y-4">
-      <Link
-        href="/"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-[var(--creekside-blue)] transition-colors group"
-      >
-        <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-        </svg>
-        Back to all clients
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-[var(--creekside-blue)] transition-colors group"
+        >
+          <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Back to all clients
+        </Link>
+
+        {/* Quick Links */}
+        <div className="flex items-center gap-2">
+          {driveUrl && <QuickLink href={driveUrl} label="Google Drive" icon="📁" />}
+          {clickupUrl && <QuickLink href={clickupUrl} label="ClickUp" icon="📋" />}
+          {clientMeta?.website && <QuickLink href={clientMeta.website.startsWith('http') ? clientMeta.website : `https://${clientMeta.website}`} label="Website" icon="🌐" />}
+        </div>
+      </div>
+
+      {/* Contact Info */}
+      {clientMeta?.primary_contact_name && (
+        <div className="flex items-center gap-4 text-sm text-slate-500">
+          <span>Contact: <strong className="text-slate-700">{clientMeta.primary_contact_name}</strong></span>
+          {clientMeta.primary_contact_email && (
+            <a href={`mailto:${clientMeta.primary_contact_email}`} className="text-[var(--creekside-blue)] hover:underline">
+              {clientMeta.primary_contact_email}
+            </a>
+          )}
+        </div>
+      )}
+
       <ClientReport client={client} />
       <PerformanceGoals clientName={client.client_name} />
     </div>
