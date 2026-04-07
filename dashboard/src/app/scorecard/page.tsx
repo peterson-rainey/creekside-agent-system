@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+// ── Types ──────────────────────────────────────────────────────────────
+
 interface ScorecardData {
   activeClients: number;
   totalAccounts: number;
@@ -15,6 +17,29 @@ interface ScorecardData {
   budgetCoverage: { withBudget: number; total: number };
 }
 
+interface PnlMonth {
+  monthDate: string;
+  month: string;
+  totalRevenue: number;
+  totalExpenses: number;
+  netProfit: number;
+  profitMarginPct: number;
+  laborCost: number;
+  softwareCost: number;
+  processingFees: number;
+  marketingCost: number;
+  advertisingCost: number;
+  transactionCount: number;
+}
+
+interface PnlData {
+  pnl: PnlMonth[];
+  expensesByMonth: Record<string, { category: string; total: number }[]>;
+  laborByMonth: Record<string, { name: string; cost: number }[]>;
+}
+
+// ── Formatters ─────────────────────────────────────────────────────────
+
 function fmt(n: number): string {
   return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
 }
@@ -27,10 +52,29 @@ function fmtPct(n: number): string {
   return n.toFixed(1) + '%';
 }
 
+/** Returns tailwind text color class based on profit margin threshold */
+function marginColor(margin: number): string {
+  if (margin > 15) return 'text-emerald-600';
+  if (margin >= 5) return 'text-amber-600';
+  return 'text-red-600';
+}
+
+/** Returns tailwind bg color class for the bar chart based on profit margin */
+function marginBarBg(margin: number): string {
+  if (margin > 15) return 'bg-emerald-500';
+  if (margin >= 5) return 'bg-amber-400';
+  return 'bg-red-400';
+}
+
+// ── Page Component ─────────────────────────────────────────────────────
+
 export default function ScorecardPage() {
   const [data, setData] = useState<ScorecardData | null>(null);
+  const [pnlData, setPnlData] = useState<PnlData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [pnlLoading, setPnlLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [expandedMonth, setExpandedMonth] = useState<string | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -45,7 +89,22 @@ export default function ScorecardPage() {
         setLoading(false);
       }
     }
+
+    async function loadPnl() {
+      try {
+        const res = await fetch('/api/scorecard/pnl');
+        if (!res.ok) throw new Error('Failed to load P&L data');
+        const json = await res.json();
+        setPnlData(json);
+      } catch {
+        // P&L section shows its own error state; don't block the main scorecard
+      } finally {
+        setPnlLoading(false);
+      }
+    }
+
     load();
+    loadPnl();
   }, []);
 
   if (loading) {
@@ -90,6 +149,12 @@ export default function ScorecardPage() {
 
   const hasConcentrationRisk = data.topClients.some((c) => c.pctOfMRR > 20);
 
+  // ── P&L derived values ─────────────────────────────────────────────
+  const pnlMonths = pnlData?.pnl ?? [];
+  const currentMonth = pnlMonths.length > 0 ? pnlMonths[pnlMonths.length - 1] : null;
+  const priorMonth = pnlMonths.length > 1 ? pnlMonths[pnlMonths.length - 2] : null;
+  const maxRevenue = Math.max(...pnlMonths.map((m) => m.totalRevenue), 1);
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -98,7 +163,7 @@ export default function ScorecardPage() {
         <p className="text-sm text-slate-500 mt-1">Agency performance at a glance</p>
       </div>
 
-      {/* Row 1 — Primary KPIs */}
+      {/* Row 1 -- Primary KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white rounded-xl border border-slate-200 p-5">
           <p className="text-sm font-medium text-slate-500">Active Clients</p>
@@ -129,7 +194,237 @@ export default function ScorecardPage() {
         </div>
       </div>
 
-      {/* Row 2 — Operational Health */}
+      {/* ── P&L Section ─────────────────────────────────────────────────── */}
+      {pnlLoading ? (
+        <div className="bg-white rounded-xl border border-slate-200 p-12 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-6 w-6 border-2 border-slate-200 border-t-[var(--creekside-blue)]" />
+        </div>
+      ) : pnlData && pnlMonths.length > 0 ? (
+        <>
+          {/* P&L Summary Cards — Current vs Prior Month */}
+          {currentMonth && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-white rounded-xl border border-slate-200 p-5">
+                <p className="text-sm font-medium text-slate-500">Revenue ({currentMonth.month})</p>
+                <p className="text-3xl font-bold text-slate-900 mt-1">{fmtDollar(currentMonth.totalRevenue)}</p>
+                {priorMonth && (
+                  <p className={`text-xs mt-1 ${currentMonth.totalRevenue >= priorMonth.totalRevenue ? 'text-emerald-600' : 'text-red-600'}`}>
+                    {currentMonth.totalRevenue >= priorMonth.totalRevenue ? '+' : ''}
+                    {fmtDollar(currentMonth.totalRevenue - priorMonth.totalRevenue)} vs {priorMonth.month}
+                  </p>
+                )}
+              </div>
+
+              <div className="bg-white rounded-xl border border-slate-200 p-5">
+                <p className="text-sm font-medium text-slate-500">Expenses ({currentMonth.month})</p>
+                <p className="text-3xl font-bold text-slate-900 mt-1">{fmtDollar(currentMonth.totalExpenses)}</p>
+                {priorMonth && (
+                  <p className={`text-xs mt-1 ${currentMonth.totalExpenses <= priorMonth.totalExpenses ? 'text-emerald-600' : 'text-red-600'}`}>
+                    {currentMonth.totalExpenses > priorMonth.totalExpenses ? '+' : ''}
+                    {fmtDollar(currentMonth.totalExpenses - priorMonth.totalExpenses)} vs {priorMonth.month}
+                  </p>
+                )}
+              </div>
+
+              <div className="bg-white rounded-xl border border-slate-200 p-5">
+                <p className="text-sm font-medium text-slate-500">Net Profit ({currentMonth.month})</p>
+                <p className={`text-3xl font-bold mt-1 ${currentMonth.netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                  {fmtDollar(currentMonth.netProfit)}
+                </p>
+                {priorMonth && (
+                  <p className={`text-xs mt-1 ${currentMonth.netProfit >= priorMonth.netProfit ? 'text-emerald-600' : 'text-red-600'}`}>
+                    {currentMonth.netProfit >= priorMonth.netProfit ? '+' : ''}
+                    {fmtDollar(currentMonth.netProfit - priorMonth.netProfit)} vs {priorMonth.month}
+                  </p>
+                )}
+              </div>
+
+              <div className="bg-white rounded-xl border border-slate-200 p-5">
+                <p className="text-sm font-medium text-slate-500">Profit Margin ({currentMonth.month})</p>
+                <p className={`text-3xl font-bold mt-1 ${marginColor(currentMonth.profitMarginPct)}`}>
+                  {fmtPct(currentMonth.profitMarginPct)}
+                </p>
+                {priorMonth && (
+                  <p className={`text-xs mt-1 ${currentMonth.profitMarginPct >= priorMonth.profitMarginPct ? 'text-emerald-600' : 'text-red-600'}`}>
+                    {currentMonth.profitMarginPct >= priorMonth.profitMarginPct ? '+' : ''}
+                    {(currentMonth.profitMarginPct - priorMonth.profitMarginPct).toFixed(1)}pp vs {priorMonth.month}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* P&L Trend — Bar Chart + Table */}
+          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100">
+              <h3 className="text-sm font-semibold text-slate-900">Monthly P&L Trend</h3>
+              <p className="text-xs text-slate-500 mt-0.5">Revenue, expenses, and profit for the last 6 months</p>
+            </div>
+
+            {/* Visual bar chart */}
+            <div className="px-5 py-4 border-b border-slate-100">
+              <div className="flex items-end gap-2 h-40">
+                {pnlMonths.map((m) => {
+                  const revHeight = (m.totalRevenue / maxRevenue) * 100;
+                  const expHeight = (m.totalExpenses / maxRevenue) * 100;
+                  return (
+                    <div key={m.monthDate} className="flex-1 flex flex-col items-center gap-1">
+                      <div className="w-full flex items-end justify-center gap-0.5" style={{ height: '120px' }}>
+                        {/* Revenue bar */}
+                        <div
+                          className="w-[40%] bg-blue-400 rounded-t transition-all duration-500"
+                          style={{ height: `${Math.max(revHeight, 2)}%` }}
+                          title={`Revenue: ${fmtDollar(m.totalRevenue)}`}
+                        />
+                        {/* Expense bar */}
+                        <div
+                          className="w-[40%] bg-slate-300 rounded-t transition-all duration-500"
+                          style={{ height: `${Math.max(expHeight, 2)}%` }}
+                          title={`Expenses: ${fmtDollar(m.totalExpenses)}`}
+                        />
+                      </div>
+                      <span className="text-[10px] text-slate-500 truncate w-full text-center">
+                        {m.month.length > 3 ? m.month.slice(0, 3) : m.month}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex items-center justify-center gap-6 mt-2">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3 h-3 bg-blue-400 rounded-sm" />
+                  <span className="text-xs text-slate-500">Revenue</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3 h-3 bg-slate-300 rounded-sm" />
+                  <span className="text-xs text-slate-500">Expenses</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Data table */}
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-100 bg-slate-50">
+                    <th className="text-left py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Month</th>
+                    <th className="text-right py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Revenue</th>
+                    <th className="text-right py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Expenses</th>
+                    <th className="text-right py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Profit</th>
+                    <th className="text-right py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Margin</th>
+                    <th className="text-right py-3 px-5 text-xs font-semibold text-slate-500 uppercase tracking-wider">Txns</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[...pnlMonths].reverse().map((m) => {
+                    const isExpanded = expandedMonth === m.monthDate;
+                    const expenses = pnlData.expensesByMonth[m.monthDate] ?? [];
+                    const labor = pnlData.laborByMonth[m.monthDate] ?? [];
+                    return (
+                      <>
+                        <tr
+                          key={m.monthDate}
+                          className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors cursor-pointer"
+                          onClick={() => setExpandedMonth(isExpanded ? null : m.monthDate)}
+                        >
+                          <td className="py-3 px-5 text-sm font-medium text-slate-900">
+                            <span className="mr-1.5 text-slate-400 text-xs">{isExpanded ? '[-]' : '[+]'}</span>
+                            {m.month}
+                          </td>
+                          <td className="py-3 px-5 text-sm text-slate-600 text-right">{fmtDollar(m.totalRevenue)}</td>
+                          <td className="py-3 px-5 text-sm text-slate-600 text-right">{fmtDollar(m.totalExpenses)}</td>
+                          <td className={`py-3 px-5 text-sm font-medium text-right ${m.netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                            {fmtDollar(m.netProfit)}
+                          </td>
+                          <td className="py-3 px-5 text-right">
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${marginBarBg(m.profitMarginPct)} text-white`}>
+                              {fmtPct(m.profitMarginPct)}
+                            </span>
+                          </td>
+                          <td className="py-3 px-5 text-sm text-slate-500 text-right">{fmt(m.transactionCount)}</td>
+                        </tr>
+                        {/* Expanded detail row */}
+                        {isExpanded && (
+                          <tr key={`${m.monthDate}-detail`} className="bg-slate-50/80">
+                            <td colSpan={6} className="px-5 py-4">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {/* Expense breakdown */}
+                                <div>
+                                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Expense Breakdown</p>
+                                  <div className="space-y-1.5">
+                                    {[
+                                      { label: 'Labor', value: m.laborCost },
+                                      { label: 'Software', value: m.softwareCost },
+                                      { label: 'Processing Fees', value: m.processingFees },
+                                      { label: 'Marketing', value: m.marketingCost },
+                                      { label: 'Advertising', value: m.advertisingCost },
+                                    ]
+                                      .filter((e) => e.value > 0)
+                                      .map((e) => {
+                                        const pct = m.totalExpenses > 0 ? (e.value / m.totalExpenses) * 100 : 0;
+                                        return (
+                                          <div key={e.label} className="flex items-center gap-2">
+                                            <span className="text-xs text-slate-600 w-28 shrink-0">{e.label}</span>
+                                            <div className="flex-1 h-4 bg-slate-200 rounded overflow-hidden">
+                                              <div className="h-full bg-slate-500 rounded" style={{ width: `${pct}%` }} />
+                                            </div>
+                                            <span className="text-xs text-slate-700 font-medium w-20 text-right">{fmtDollar(e.value)}</span>
+                                          </div>
+                                        );
+                                      })}
+                                  </div>
+                                  {/* Category breakdown from expense_breakdown view */}
+                                  {expenses.length > 0 && (
+                                    <div className="mt-3 pt-2 border-t border-slate-200">
+                                      <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">By Category</p>
+                                      {expenses.map((e) => (
+                                        <div key={e.category} className="flex justify-between text-xs text-slate-500 py-0.5">
+                                          <span>{e.category}</span>
+                                          <span className="font-medium">{fmtDollar(e.total)}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                                {/* Labor by team member */}
+                                {labor.length > 0 && (
+                                  <div>
+                                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Top Labor Costs</p>
+                                    <div className="space-y-1.5">
+                                      {labor.map((l) => {
+                                        const pct = m.laborCost > 0 ? (l.cost / m.laborCost) * 100 : 0;
+                                        return (
+                                          <div key={l.name} className="flex items-center gap-2">
+                                            <span className="text-xs text-slate-600 w-28 shrink-0 truncate" title={l.name}>{l.name}</span>
+                                            <div className="flex-1 h-4 bg-slate-200 rounded overflow-hidden">
+                                              <div className="h-full bg-blue-400 rounded" style={{ width: `${pct}%` }} />
+                                            </div>
+                                            <span className="text-xs text-slate-700 font-medium w-20 text-right">{fmtDollar(l.cost)}</span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="bg-white rounded-xl border border-slate-200 p-8 text-center text-sm text-slate-400">
+          P&L data unavailable
+        </div>
+      )}
+
+      {/* Row 2 -- Operational Health */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl border border-slate-200 p-5">
           <p className="text-sm font-medium text-slate-500">Platform Split</p>
@@ -180,7 +475,7 @@ export default function ScorecardPage() {
         </div>
       </div>
 
-      {/* Row 3 — Revenue Concentration */}
+      {/* Row 3 -- Revenue Concentration */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <div>
@@ -240,7 +535,7 @@ export default function ScorecardPage() {
         </div>
       </div>
 
-      {/* Row 4 — Budget Distribution */}
+      {/* Row 4 -- Budget Distribution */}
       <div className="bg-white rounded-xl border border-slate-200 p-5">
         <h3 className="text-sm font-semibold text-slate-900">Budget Distribution</h3>
         <p className="text-xs text-slate-500 mt-0.5 mb-4">Clients grouped by total monthly ad spend</p>

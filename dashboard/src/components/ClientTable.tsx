@@ -700,6 +700,9 @@ export default function ClientTable() {
   // Last contact data per client
   const [lastContact, setLastContact] = useState<Record<string, { last_contact_date: string; days_ago: number; source: string }>>({});
 
+  // Actual Square revenue per client (keyed by client_id)
+  const [squareRevenue, setSquareRevenue] = useState<Record<string, { avg_monthly: number; last_month: number; trend: 'up' | 'down' | 'flat' }>>({});
+
   useEffect(() => {
     fetch('/api/team')
       .then(res => res.json())
@@ -709,6 +712,12 @@ export default function ClientTable() {
       .then(res => res.json())
       .then(data => {
         if (data && !data.error) setLastContact(data);
+      })
+      .catch(() => {});
+    fetch('/api/clients/revenue')
+      .then(res => res.json())
+      .then(data => {
+        if (data && !data.error) setSquareRevenue(data);
       })
       .catch(() => {});
   }, []);
@@ -900,6 +909,18 @@ export default function ClientTable() {
     }
     return revenueMap;
   }, [clients]);
+
+  // Map client_name -> Square actual revenue (via client_id)
+  const squareByName = useMemo(() => {
+    const map: Record<string, { avg_monthly: number; last_month: number; trend: 'up' | 'down' | 'flat' }> = {};
+    for (const c of clients) {
+      const cid = c.client_id as string | null;
+      if (cid && squareRevenue[cid] && !map[c.client_name]) {
+        map[c.client_name] = squareRevenue[cid];
+      }
+    }
+    return map;
+  }, [clients, squareRevenue]);
 
   // Track which clients have confirmed vs estimated revenue
   const isEstimatedRevenue = useMemo(() => {
@@ -1246,23 +1267,44 @@ export default function ClientTable() {
                             )}
                           </div>
                         </td>
-                        {/* Est. Revenue — editable per row via monthly_revenue */}
+                        {/* Est. Revenue — editable per row via monthly_revenue, with Square actual below */}
                         <td className={`py-4 px-6 text-right text-sm font-medium ${
                           isEstimatedRevenue[client.client_name] ? 'text-red-500' : 'text-emerald-700'
                         }`} onClick={(e) => e.stopPropagation()}>
                           {isFirstInGroup ? (
-                            <InlineCurrencyInput
-                              clientId={client.id}
-                              field="monthly_revenue"
-                              value={client.monthly_revenue}
-                              onSaved={handleFieldSaved}
-                              placeholder={
-                                clientRevenue[client.client_name] != null
-                                  ? `~${formatCurrency(clientRevenue[client.client_name])}`
-                                  : '--'
-                              }
-                              className={isEstimatedRevenue[client.client_name] ? 'text-red-500' : 'text-emerald-700'}
-                            />
+                            <div>
+                              <InlineCurrencyInput
+                                clientId={client.id}
+                                field="monthly_revenue"
+                                value={client.monthly_revenue}
+                                onSaved={handleFieldSaved}
+                                placeholder={
+                                  clientRevenue[client.client_name] != null
+                                    ? `~${formatCurrency(clientRevenue[client.client_name])}`
+                                    : '--'
+                                }
+                                className={isEstimatedRevenue[client.client_name] ? 'text-red-500' : 'text-emerald-700'}
+                              />
+                              {(() => {
+                                const sq = squareByName[client.client_name];
+                                if (!sq) return null;
+                                const manual = clientRevenue[client.client_name] ?? 0;
+                                const actual = sq.avg_monthly;
+                                const diff = manual > 0 ? Math.abs(actual - manual) / manual : 1;
+                                // Show Square actual when it differs by >15% or when no manual estimate exists
+                                if (diff < 0.15 && manual > 0) return null;
+                                const trendIcon = sq.trend === 'up' ? '\u2191' : sq.trend === 'down' ? '\u2193' : '';
+                                const trendColor = sq.trend === 'up' ? 'text-emerald-500' : sq.trend === 'down' ? 'text-red-400' : 'text-slate-400';
+                                const formatted = actual >= 1000
+                                  ? `$${(actual / 1000).toFixed(1).replace(/\.0$/, '')}K`
+                                  : `$${Math.round(actual)}`;
+                                return (
+                                  <div className="text-[11px] text-slate-400 mt-0.5 font-normal" title={`Square avg: $${actual.toLocaleString(undefined, { minimumFractionDigits: 2 })} / mo (last 3 months)`}>
+                                    <span className={trendColor}>{trendIcon}</span> ~{formatted} actual
+                                  </div>
+                                );
+                              })()}
+                            </div>
                           ) : null}
                         </td>
                         {/* Proj. Cost — placeholder until time tracking + hourly rates populated */}
