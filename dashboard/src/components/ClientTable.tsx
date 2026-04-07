@@ -115,14 +115,87 @@ function PriorityBadge({ priority }: { priority: string | null }) {
   if (!priority) return <span className="text-slate-300 text-sm">--</span>;
   const lower = priority.toLowerCase();
   const styles: Record<string, string> = {
-    high: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20',
-    medium: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20',
+    high: 'bg-red-100 text-red-900 ring-1 ring-inset ring-red-700/30',
+    medium: 'bg-yellow-50 text-yellow-700 ring-1 ring-inset ring-yellow-500/20',
     low: 'bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-500/20',
   };
   return (
     <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold capitalize ${styles[lower] || styles.low}`}>
       {priority}
     </span>
+  );
+}
+
+function InlineNotes({
+  clientId,
+  value,
+  onSaved,
+}: {
+  clientId: string;
+  value: string;
+  onSaved: (id: string, field: string, val: string) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(value);
+  const [saving, setSaving] = useState(false);
+
+  const save = async () => {
+    if (text === value) {
+      setEditing(false);
+      return;
+    }
+    setSaving(true);
+    try {
+      const res = await fetch('/api/clients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: clientId, notes: text }),
+      });
+      if (res.ok) onSaved(clientId, 'notes', text);
+    } finally {
+      setSaving(false);
+      setEditing(false);
+    }
+  };
+
+  if (editing) {
+    return (
+      <textarea
+        className="w-full mt-1 px-2 py-1 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent resize-y min-h-[40px]"
+        rows={3}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onBlur={save}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); save(); }
+          if (e.key === 'Escape') { setText(value); setEditing(false); }
+        }}
+        autoFocus
+        disabled={saving}
+        onClick={(e) => e.stopPropagation()}
+      />
+    );
+  }
+
+  if (!value) {
+    return (
+      <button
+        onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+        className="mt-1 text-[11px] text-slate-300 hover:text-slate-500 cursor-pointer transition-colors"
+      >
+        + Add note
+      </button>
+    );
+  }
+
+  return (
+    <button
+      onClick={(e) => { e.stopPropagation(); setEditing(true); }}
+      className="block mt-1 text-xs text-amber-700 bg-amber-50 rounded px-2 py-1 max-w-[320px] whitespace-pre-wrap text-left font-normal cursor-pointer hover:bg-amber-100 transition-colors"
+      title="Click to edit"
+    >
+      {value}
+    </button>
   );
 }
 
@@ -894,11 +967,11 @@ export default function ClientTable() {
                               {PARTNER_NOTES[client.client_name] && (
                                 <span className="block text-[11px] text-slate-400 font-normal mt-0.5">{PARTNER_NOTES[client.client_name]}</span>
                               )}
-                              {(client.notes as string) && (
-                                <span className="block text-xs text-amber-600 bg-amber-50 rounded px-2 py-0.5 mt-1 max-w-[280px] truncate font-normal" title={client.notes as string}>
-                                  {client.notes as string}
-                                </span>
-                              )}
+                              <InlineNotes
+                                clientId={client.id}
+                                value={(client.notes as string) ?? ''}
+                                onSaved={handleFieldSaved}
+                              />
                             </div>
                           ) : null}
                         </td>
