@@ -721,12 +721,27 @@ export default function ClientTable() {
       }
     }
     for (const [name, data] of Object.entries(budgetsByClient)) {
-      // Use actual revenue when set, otherwise estimate from fee tiers
       revenueMap[name] = data.hasManual
         ? data.manualRevenue
         : (data.total > 0 ? calcExpectedFee(data.total, data.platforms) : 0);
     }
     return revenueMap;
+  }, [clients]);
+
+  // Track which clients have confirmed vs estimated revenue
+  const isEstimatedRevenue = useMemo(() => {
+    const estimatedMap: Record<string, boolean> = {};
+    const seen: Record<string, boolean> = {};
+    for (const c of clients) {
+      if (!seen[c.client_name]) {
+        seen[c.client_name] = true;
+        estimatedMap[c.client_name] = true; // assume estimated
+      }
+      if (c.monthly_revenue != null) {
+        estimatedMap[c.client_name] = false; // confirmed
+      }
+    }
+    return estimatedMap;
   }, [clients]);
 
   const sorted = useMemo(() => {
@@ -995,10 +1010,14 @@ export default function ClientTable() {
                             ? `$${Number(client.monthly_budget).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
                             : <span className="text-slate-300">--</span>}
                         </td>
-                        {/* Est. Revenue — show once per client group */}
-                        <td className="py-4 px-6 text-right text-sm font-medium text-emerald-700">
+                        {/* Est. Revenue — show once per client group, red if estimated */}
+                        <td className={`py-4 px-6 text-right text-sm font-medium ${
+                          isEstimatedRevenue[client.client_name] ? 'text-red-500' : 'text-emerald-700'
+                        }`}>
                           {isFirstInGroup && (clientRevenue[client.client_name] ?? 0) > 0
-                            ? formatCurrency(clientRevenue[client.client_name])
+                            ? <span title={isEstimatedRevenue[client.client_name] ? 'Estimated — not confirmed' : 'Confirmed revenue'}>
+                                {formatCurrency(clientRevenue[client.client_name])}
+                              </span>
                             : isFirstInGroup ? <span className="text-slate-300">--</span> : null}
                         </td>
                         {/* Proj. Cost — placeholder until time tracking + hourly rates populated */}
