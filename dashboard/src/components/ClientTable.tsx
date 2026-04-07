@@ -894,6 +894,11 @@ export default function ClientTable() {
                               {PARTNER_NOTES[client.client_name] && (
                                 <span className="block text-[11px] text-slate-400 font-normal mt-0.5">{PARTNER_NOTES[client.client_name]}</span>
                               )}
+                              {(client.notes as string) && (
+                                <span className="block text-xs text-amber-600 bg-amber-50 rounded px-2 py-0.5 mt-1 max-w-[280px] truncate font-normal" title={client.notes as string}>
+                                  {client.notes as string}
+                                </span>
+                              )}
                             </div>
                           ) : null}
                         </td>

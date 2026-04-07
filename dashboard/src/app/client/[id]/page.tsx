@@ -37,6 +37,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
   let clientMeta: {
     gdrive_folder_id: string | null;
     clickup_folder_id: string | null;
+    contract_url: string | null;
     primary_contact_name: string | null;
     primary_contact_email: string | null;
     website: string | null;
@@ -45,16 +46,17 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
   if (client.client_id) {
     const { data } = await supabase
       .from('clients')
-      .select('gdrive_folder_id, clickup_folder_id, primary_contact_name, primary_contact_email, website')
+      .select('gdrive_folder_id, clickup_folder_id, contract_url, primary_contact_name, primary_contact_email, website')
       .eq('id', client.client_id)
       .single();
     clientMeta = data;
   } else {
-    // Fallback: match by name
+    // Fallback: match by name — strip segment suffix for grouped clients like Perfect Parking
+    const baseName = client.client_name.replace(/ —.*$/, '');
     const { data } = await supabase
       .from('clients')
-      .select('gdrive_folder_id, clickup_folder_id, primary_contact_name, primary_contact_email, website')
-      .eq('name', client.client_name)
+      .select('gdrive_folder_id, clickup_folder_id, contract_url, primary_contact_name, primary_contact_email, website')
+      .eq('name', baseName)
       .limit(1)
       .single();
     clientMeta = data;
@@ -84,6 +86,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
         <div className="flex items-center gap-2">
           {driveUrl && <QuickLink href={driveUrl} label="Google Drive" icon="📁" />}
           {clickupUrl && <QuickLink href={clickupUrl} label="ClickUp" icon="📋" />}
+          {clientMeta?.contract_url && <QuickLink href={clientMeta.contract_url} label="Contract" icon="📄" />}
           {clientMeta?.website && <QuickLink href={clientMeta.website.startsWith('http') ? clientMeta.website : `https://${clientMeta.website}`} label="Website" icon="🌐" />}
         </div>
       </div>
