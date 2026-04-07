@@ -5,13 +5,15 @@ export async function GET() {
   try {
     const supabase = createServiceClient();
 
-    // Get current MRR from reporting_clients
+    // Auto-generate current week's snapshot via DB function
+    await supabase.rpc('generate_weekly_snapshot');
+
+    // Get current MRR from reporting_clients for goal tracking
     const { data: clients } = await supabase
       .from('reporting_clients')
       .select('client_name, platform, monthly_budget')
       .eq('status', 'active');
 
-    // Calculate current MRR using fee tiers
     const clientBudgets: Record<string, { total: number; platforms: Set<string> }> = {};
     for (const row of clients ?? []) {
       if (!clientBudgets[row.client_name]) {
@@ -37,8 +39,7 @@ export async function GET() {
     const mrrGap = targetMRR - currentMRR;
     const mrrNeededPerWeek = weeksRemaining > 0 ? mrrGap / weeksRemaining : 0;
 
-    // Weekly scorecard data from weekly_scorecard table (if it exists)
-    // For now, return empty weeks — data entry will come from Google Sheets sync or manual input
+    // Fetch last 12 weeks of scorecard data
     const { data: weeklyData } = await supabase
       .from('weekly_scorecard')
       .select('*')
@@ -47,6 +48,8 @@ export async function GET() {
 
     const weeks = (weeklyData ?? []).map((w: Record<string, unknown>) => ({
       weekOf: w.week_of as string,
+      currentClients: (w.current_clients as number) ?? 0,
+      projectedMRR: (w.projected_mrr as number) ?? 0,
       newMRR: (w.new_mrr as number) ?? 0,
       lostMRR: (w.lost_mrr as number) ?? 0,
       netNewMRR: (w.net_new_mrr as number) ?? 0,
@@ -68,7 +71,7 @@ export async function GET() {
         currentMRR: Math.round(currentMRR),
         mrrNeededPerWeek: Math.round(Math.max(0, mrrNeededPerWeek)),
         weeksRemaining,
-        onTrack: mrrNeededPerWeek <= 2000, // on track if needed pace is under $2K/week
+        onTrack: currentMRR >= targetMRR || mrrNeededPerWeek <= 2000,
       },
       weeks,
     });
