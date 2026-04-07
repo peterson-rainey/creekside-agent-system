@@ -727,6 +727,12 @@ export default function ClientTable() {
   // Churn risk scores per client_id
   const [churnRisk, setChurnRisk] = useState<Record<string, { score: number; level: 'LOW' | 'MEDIUM' | 'HIGH'; factors: string[]; client_name: string }>>({});
 
+  // Per-client profitability data
+  const [profitability, setProfitability] = useState<{
+    clients: Record<string, { revenue: number; operator_cost: number; profit: number; margin_pct: number }>;
+    totals: { revenue: number; operator_cost: number; profit: number; margin_pct: number };
+  } | null>(null);
+
   useEffect(() => {
     fetch('/api/team')
       .then(res => res.json())
@@ -748,6 +754,12 @@ export default function ClientTable() {
       .then(res => res.json())
       .then(data => {
         if (data && !data.error) setChurnRisk(data);
+      })
+      .catch(() => {});
+    fetch('/api/clients/profitability')
+      .then(res => res.json())
+      .then(data => {
+        if (data && !data.error && data.clients) setProfitability(data);
       })
       .catch(() => {});
   }, []);
@@ -1135,16 +1147,45 @@ export default function ClientTable() {
           <p className="text-3xl font-bold text-slate-900 mt-1">{stats.uniqueClients}</p>
         </div>
         <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
-          <p className="text-sm font-medium text-slate-500">Google Ads Accounts</p>
-          <p className="text-3xl font-bold text-emerald-600 mt-1">{stats.googleCount}</p>
-        </div>
-        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
-          <p className="text-sm font-medium text-slate-500">Meta Ads Accounts</p>
-          <p className="text-3xl font-bold text-blue-600 mt-1">{stats.metaCount}</p>
-        </div>
-        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
           <p className="text-sm font-medium text-slate-500">Est. Monthly Revenue</p>
           <p className="text-3xl font-bold text-emerald-600 mt-1">{formatCurrency(stats.totalEstRevenue)}</p>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
+          <p className="text-sm font-medium text-slate-500">Operator Costs</p>
+          <p className="text-3xl font-bold text-slate-700 mt-1">
+            {profitability ? formatCurrency(profitability.totals.operator_cost) : <span className="text-slate-300">--</span>}
+          </p>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-4">
+          <p className="text-sm font-medium text-slate-500">Profit / Margin</p>
+          <p className={`text-3xl font-bold mt-1 ${
+            profitability
+              ? profitability.totals.margin_pct >= 30
+                ? 'text-emerald-600'
+                : profitability.totals.margin_pct >= 15
+                  ? 'text-amber-600'
+                  : 'text-red-600'
+              : 'text-slate-300'
+          }`}>
+            {profitability ? (
+              <>
+                {formatCurrency(profitability.totals.profit)}
+                <span className="text-lg font-semibold ml-1.5">({profitability.totals.margin_pct}%)</span>
+              </>
+            ) : '--'}
+          </p>
+        </div>
+      </div>
+
+      {/* Platform breakdown (compact) */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-3 flex items-center justify-between">
+          <p className="text-sm font-medium text-slate-500">Google Ads Accounts</p>
+          <p className="text-xl font-bold text-emerald-600">{stats.googleCount}</p>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 px-6 py-3 flex items-center justify-between">
+          <p className="text-sm font-medium text-slate-500">Meta Ads Accounts</p>
+          <p className="text-xl font-bold text-blue-600">{stats.metaCount}</p>
         </div>
       </div>
 
@@ -1344,9 +1385,30 @@ export default function ClientTable() {
                             </div>
                           ) : null}
                         </td>
-                        {/* Proj. Cost — placeholder until time tracking + hourly rates populated */}
+                        {/* Proj. Cost — operator hourly_rate x estimated hours for this client */}
                         <td className="py-4 px-6 text-right text-sm font-medium text-slate-500">
-                          {isFirstInGroup ? <span className="text-slate-300">--</span> : null}
+                          {isFirstInGroup ? (() => {
+                            const prof = profitability?.clients[client.client_name];
+                            if (!prof || prof.operator_cost === 0) {
+                              return <span className="text-slate-300">--</span>;
+                            }
+                            const marginColor = prof.margin_pct >= 30
+                              ? 'text-emerald-600'
+                              : prof.margin_pct >= 15
+                                ? 'text-amber-600'
+                                : 'text-red-600';
+                            const costStr = prof.operator_cost >= 1000
+                              ? `$${(prof.operator_cost / 1000).toFixed(1).replace(/\.0$/, '')}K`
+                              : `$${Math.round(prof.operator_cost)}`;
+                            return (
+                              <div title={`Cost: ${formatCurrency(prof.operator_cost)} | Profit: ${formatCurrency(prof.profit)} | Margin: ${prof.margin_pct}%`}>
+                                <span className="text-slate-700">{costStr}</span>
+                                <div className={`text-[11px] font-semibold ${marginColor}`}>
+                                  {prof.margin_pct}%
+                                </div>
+                              </div>
+                            );
+                          })() : null}
                         </td>
                         <td className="py-4 px-6" onClick={(e) => e.stopPropagation()}>
                           {isFirstInGroup ? (
