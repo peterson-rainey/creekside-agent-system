@@ -903,7 +903,12 @@ export default function ClientTable() {
                           ) : null}
                         </td>
                         <td className="py-4 px-6">
-                          <PlatformBadge platform={client.platform} />
+                          <div className="flex items-center gap-2">
+                            <PlatformBadge platform={client.platform} />
+                            {(client.segment_name as string) && (
+                              <span className="text-xs text-slate-500 font-medium">{client.segment_name as string}</span>
+                            )}
+                          </div>
                         </td>
                         <td className="py-4 px-6 text-sm text-slate-700 font-medium">
                           {client.monthly_budget != null
@@ -935,7 +940,9 @@ export default function ClientTable() {
                               clientId={client.id}
                               field="account_manager"
                               value={client.account_manager}
-                              options={teamMembers.map(t => ({ value: t.short_name, label: t.short_name }))}
+                              options={teamMembers
+                                .filter(t => ['Cade', 'Peterson', 'Scott', 'Lindsey', 'Baran'].some(n => t.short_name?.includes(n) || t.name?.includes(n)))
+                                .map(t => ({ value: t.short_name, label: t.short_name }))}
                               placeholder="--"
                               onSaved={handleFieldSaved}
                             />
@@ -946,7 +953,9 @@ export default function ClientTable() {
                             clientId={client.id}
                             field="platform_operator"
                             value={client.platform_operator}
-                            options={teamMembers.map(t => ({ value: t.short_name, label: t.short_name }))}
+                            options={teamMembers
+                              .filter(t => !['Jordan', 'Cindy', 'Cyndelsa', 'Queenie', 'Melvin'].some(n => t.short_name?.includes(n) || t.name?.includes(n)))
+                              .map(t => ({ value: t.short_name, label: t.short_name }))}
                             placeholder="--"
                             onSaved={handleFieldSaved}
                           />
