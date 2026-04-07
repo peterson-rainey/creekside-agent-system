@@ -237,6 +237,105 @@ function InlineNotes({
   );
 }
 
+function InlineCurrencyInput({
+  clientId,
+  field,
+  value,
+  onSaved,
+  placeholder = '--',
+  className = '',
+}: {
+  clientId: string;
+  field: string;
+  value: number | null;
+  onSaved: (clientId: string, field: string, val: string) => void;
+  placeholder?: string;
+  className?: string;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [editValue, setEditValue] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  const startEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditValue(value != null ? String(value) : '');
+    setEditing(true);
+    setSaved(false);
+  };
+
+  const handleSave = async () => {
+    const numValue = editValue.trim() === '' ? null : parseFloat(editValue.replace(/[^0-9.]/g, ''));
+    if (numValue === value || (numValue === null && value === null)) {
+      setEditing(false);
+      return;
+    }
+    setSaving(true);
+    try {
+      const res = await fetch('/api/clients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: clientId, [field]: numValue }),
+      });
+      if (res.ok) {
+        onSaved(clientId, field, numValue as unknown as string);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 1500);
+      }
+    } catch { /* ignore */ }
+    setSaving(false);
+    setEditing(false);
+  };
+
+  if (editing) {
+    return (
+      <div className="inline-flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+        <span className="text-slate-400 text-sm">$</span>
+        <input
+          type="text"
+          autoFocus
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') { e.preventDefault(); handleSave(); }
+            if (e.key === 'Escape') setEditing(false);
+          }}
+          disabled={saving}
+          className="w-24 px-1.5 py-0.5 text-sm border border-slate-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[var(--creekside-blue)] focus:border-transparent text-right tabular-nums"
+        />
+      </div>
+    );
+  }
+
+  const displayValue = value != null
+    ? `$${Number(value).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
+    : null;
+
+  return (
+    <span
+      onClick={startEdit}
+      className={`cursor-pointer inline-flex items-center gap-1 group/edit rounded px-1 -mx-1 transition-colors hover:bg-slate-50 ${className}`}
+      title="Click to edit"
+    >
+      {saving ? (
+        <span className="text-slate-400 text-sm">...</span>
+      ) : saved ? (
+        <span className="text-emerald-500 text-sm">&#10003;</span>
+      ) : displayValue ? (
+        <>
+          <span>{displayValue}</span>
+          <svg className="w-3 h-3 text-slate-300 opacity-0 group-hover/edit:opacity-100 transition-opacity flex-shrink-0" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M12.15 2.85a1.2 1.2 0 0 1 1.7 1.7l-8.5 8.5-2.5.7.7-2.5 8.6-8.4z" />
+          </svg>
+        </>
+      ) : (
+        <span className="text-slate-300 group-hover/edit:text-[var(--creekside-blue)] transition-colors">{placeholder}</span>
+      )}
+    </span>
+  );
+}
+
 function StatusDot({ status }: { status: string }) {
   const lower = status?.toLowerCase() ?? '';
   const dotColor = lower === 'active' ? 'bg-emerald-500' : lower === 'paused' ? 'bg-amber-500' : lower === 'churned' ? 'bg-red-500' : 'bg-slate-300';
@@ -304,7 +403,7 @@ function InlineTableSelect({
   return (
     <span
       onClick={(e) => { e.stopPropagation(); setEditing(true); }}
-      className={`cursor-pointer inline-flex items-center min-w-[60px] min-h-[28px] px-1.5 py-0.5 rounded transition-colors ${
+      className={`cursor-pointer inline-flex items-center gap-1 group/edit min-w-[60px] min-h-[28px] px-1.5 py-0.5 rounded transition-colors ${
         value
           ? 'hover:text-[var(--creekside-blue)] border-b border-dashed border-transparent hover:border-[var(--creekside-blue)]'
           : 'text-slate-300 hover:text-[var(--creekside-blue)] hover:bg-slate-50'
@@ -312,6 +411,9 @@ function InlineTableSelect({
       title={`Click to change`}
     >
       {saving ? '...' : value || placeholder}
+      <svg className="w-3 h-3 text-slate-300 opacity-0 group-hover/edit:opacity-100 transition-opacity flex-shrink-0" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M12.15 2.85a1.2 1.2 0 0 1 1.7 1.7l-8.5 8.5-2.5.7.7-2.5 8.6-8.4z" />
+      </svg>
     </span>
   );
 }
@@ -365,12 +467,16 @@ function InlinePrioritySelect({
   if (saving) return <span className="text-xs text-slate-400">...</span>;
 
   return (
-    <span onClick={(e) => { e.stopPropagation(); setEditing(true); }} className="cursor-pointer">
+    <span onClick={(e) => { e.stopPropagation(); setEditing(true); }} className="cursor-pointer inline-flex items-center gap-1 group/edit">
       <PriorityBadge priority={value} />
+      <svg className="w-3 h-3 text-slate-300 opacity-0 group-hover/edit:opacity-100 transition-opacity flex-shrink-0" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M12.15 2.85a1.2 1.2 0 0 1 1.7 1.7l-8.5 8.5-2.5.7.7-2.5 8.6-8.4z" />
+      </svg>
     </span>
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function InlineStatusSelect({
   clientId,
   value,
@@ -986,12 +1092,12 @@ export default function ClientTable() {
               <tr className="border-b border-slate-200 bg-slate-50/80">
                 <SortHeader label="Client" sortKey="client_name" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Platform</th>
-                <SortHeader label="Budget" sortKey="monthly_budget" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <SortHeader label="Est. Revenue" sortKey="est_revenue" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Proj. Cost</th>
                 <SortHeader label="Priority" sortKey="priority" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <SortHeader label="Manager" sortKey="account_manager" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <SortHeader label="Operator" sortKey="platform_operator" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
+                <SortHeader label="Budget" sortKey="monthly_budget" currentKey={sortKey} direction={sortDir} onSort={handleSort} />
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Spend</th>
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Conv.</th>
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider py-4 px-6">Cost/Conv</th>
@@ -1043,20 +1149,24 @@ export default function ClientTable() {
                             )}
                           </div>
                         </td>
-                        <td className="py-4 px-6 text-sm text-slate-700 font-medium">
-                          {client.monthly_budget != null
-                            ? `$${Number(client.monthly_budget).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
-                            : <span className="text-slate-300">--</span>}
-                        </td>
-                        {/* Est. Revenue — show once per client group, red if estimated */}
+                        {/* Est. Revenue — editable per row via monthly_revenue */}
                         <td className={`py-4 px-6 text-right text-sm font-medium ${
                           isEstimatedRevenue[client.client_name] ? 'text-red-500' : 'text-emerald-700'
-                        }`}>
-                          {isFirstInGroup && (clientRevenue[client.client_name] ?? 0) > 0
-                            ? <span title={isEstimatedRevenue[client.client_name] ? 'Estimated — not confirmed' : 'Confirmed revenue'}>
-                                {formatCurrency(clientRevenue[client.client_name])}
-                              </span>
-                            : isFirstInGroup ? <span className="text-slate-300">--</span> : null}
+                        }`} onClick={(e) => e.stopPropagation()}>
+                          {isFirstInGroup ? (
+                            <InlineCurrencyInput
+                              clientId={client.id}
+                              field="monthly_revenue"
+                              value={client.monthly_revenue}
+                              onSaved={handleFieldSaved}
+                              placeholder={
+                                clientRevenue[client.client_name] != null
+                                  ? `~${formatCurrency(clientRevenue[client.client_name])}`
+                                  : '--'
+                              }
+                              className={isEstimatedRevenue[client.client_name] ? 'text-red-500' : 'text-emerald-700'}
+                            />
+                          ) : null}
                         </td>
                         {/* Proj. Cost — placeholder until time tracking + hourly rates populated */}
                         <td className="py-4 px-6 text-right text-sm font-medium text-slate-500">
@@ -1097,8 +1207,37 @@ export default function ClientTable() {
                             onSaved={handleFieldSaved}
                           />
                         </td>
-                        <td className="py-4 px-6 text-right text-sm font-medium text-slate-700">
-                          {renderLiveCell(client, 'spend')}
+                        <td className="py-4 px-6 text-sm text-slate-700 font-medium" onClick={(e) => e.stopPropagation()}>
+                          <InlineCurrencyInput
+                            clientId={client.id}
+                            field="monthly_budget"
+                            value={client.monthly_budget}
+                            onSaved={handleFieldSaved}
+                          />
+                        </td>
+                        <td className="py-4 px-6 text-right text-sm font-medium">
+                          {(() => {
+                            const accountId = client.ad_account_id;
+                            const budget = client.monthly_budget;
+                            const live = accountId ? liveData[accountId] : null;
+                            const spend = live && !live.error ? live.spend : null;
+
+                            // Determine color: red if >10% over or under budget, green if within range
+                            let colorClass = 'text-slate-700'; // default when no data
+                            if (spend != null && budget != null && budget > 0) {
+                              if (spend > budget * 1.10 || spend < budget * 0.90) {
+                                colorClass = 'text-red-600';
+                              } else {
+                                colorClass = 'text-emerald-600';
+                              }
+                            }
+
+                            return (
+                              <span className={colorClass}>
+                                {renderLiveCell(client, 'spend')}
+                              </span>
+                            );
+                          })()}
                         </td>
                         <td className="py-4 px-6 text-right text-sm font-medium text-slate-700">
                           {renderLiveCell(client, 'conversions')}

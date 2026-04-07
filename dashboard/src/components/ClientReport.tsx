@@ -320,7 +320,7 @@ function PlatformBadge({ platform }: { platform: string }) {
   );
 }
 
-function PriorityBadge({ priority }: { priority: string | null }) {
+function _PriorityBadge({ priority }: { priority: string | null }) {
   if (!priority) return null;
   const lower = priority.toLowerCase();
   const styles: Record<string, string> = {
@@ -861,7 +861,6 @@ export default function ClientReport({ client }: { client: ReportingClient }) {
     } finally {
       setLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [client.platform, client.ad_account_id, dateRangeIndex]);
 
   const startCooldown = () => {
