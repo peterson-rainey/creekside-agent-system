@@ -25,16 +25,13 @@ ORDER BY created_at DESC LIMIT 10;
 ```
 
 ### Step 3: Capture Screenshots
-Run the Playwright navigator:
+Run the capture script (uses system browser — already authenticated):
 ```bash
-cd "/Users/petersonrainey/C-Code - Rag database/scripts/google-ads-audit" && npx tsx navigate.ts ACCOUNT_ID
+"/Users/petersonrainey/C-Code - Rag database/scripts/google-ads-audit/capture.sh" ACCOUNT_ID
 ```
-This produces screenshots in `/tmp/audit/ACCOUNT_ID/`.
+This opens each Google Ads screen in Chrome and captures screenshots to `/tmp/audit/ACCOUNT_ID/`.
 
-If it fails with a session error, tell the user to run:
-```bash
-cd "/Users/petersonrainey/C-Code - Rag database/scripts/google-ads-audit" && npm run auth
-```
+Optional: pass a second arg for wait time (default 4s): `capture.sh ACCOUNT_ID 6`
 
 ### Step 4: Analyze Screenshots
 Use the Read tool to view each screenshot image file. For each one, evaluate the relevant checklist items below.
@@ -49,7 +46,7 @@ Read screenshots in this order (each maps to specific checklist sections):
 7. `07-search-terms.png` → Search Terms: waste, irrelevant terms, brand spend
 8. `08-negative-keywords.png` → Negative Keywords: lists, structure, coverage
 9. `09-audiences.png` → Audiences: remarketing, custom intent, observation
-10. `10-demographics.png` + `10b-demographics-gender.png` → Demographics
+10. `10-demographics-age.png` + `10b-demographics-gender.png` → Demographics
 11. `11-locations.png` → Location: geo targeting, presence settings
 12. `12-landing-pages.png` → Landing Pages: URLs, conversion rates
 13. `13-conversions.png` → Conversions: actions, tracking, attribution
@@ -57,7 +54,10 @@ Read screenshots in this order (each maps to specific checklist sections):
 15. `15-recommendations.png` → Misc: auto-apply, optimization score
 16. `16-auction-insights.png` → Misc: competitive landscape
 17. `17-settings.png` → Campaign Settings: account-level settings
-18. `campaign-*-settings.png` → Per-campaign: bid strategy, targeting, networks
+For per-campaign settings, open individual campaign URLs as needed:
+```bash
+open "https://ads.google.com/aw/accounts/ACCOUNT_ID/campaigns/CAMPAIGN_ID/settings" && sleep 4 && screencapture -x "/tmp/audit/ACCOUNT_ID/campaign-CAMPAIGN_ID-settings.png"
+```
 
 ### Step 5: Score Each Checklist Item
 For each item assign: `2` (Excellent), `1` (Could Be Better), `0` (Missing/Critical), or `N/A`.
