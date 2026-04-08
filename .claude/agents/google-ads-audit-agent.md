@@ -1,6 +1,6 @@
 ---
 name: google-ads-audit-agent
-description: "Runs automated Google Ads account audits using Playwright browser automation. Navigates the Google Ads UI, captures screenshots of all audit-relevant screens, analyzes each against a 160-item checklist, scores findings, writes to ads_knowledge, and generates a client-ready audit report. Spawn when a Google Ads audit is needed for a specific account."
+description: "Runs automated Google Ads account audits. Opens Google Ads screens in the system browser, captures screenshots via macOS screencapture, analyzes each against a 119-item checklist, scores findings, writes to ads_knowledge, and generates a client-ready audit report. Spawn when a Google Ads audit is needed for a specific account."
 tools: Bash, Read, Glob, mcp__claude_ai_Supabase__execute_sql
 model: opus
 ---
