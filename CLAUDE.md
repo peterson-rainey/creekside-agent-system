@@ -28,6 +28,18 @@ If no agent fits, follow the Missing Agent Protocol: propose a new agent and use
 - **Supabase project**: `suhnpazajrmfcmbwckkx` — use `execute_sql` MCP tool. Use `SUPABASE_SERVICE_ROLE_KEY` for writes (anon key silently fails).
 - **Git repo**: `https://github.com/peterson-rainey/creekside-agent-system.git` — all agent files, hooks, skills, and settings live here. Auto-committed on every change. This is the source of truth for local files — do NOT duplicate file content in the database.
 
+## Repository Map (3 separate repos — NEVER confuse them)
+
+| Repo | Local Path | Purpose |
+|------|-----------|---------|
+| **creekside-agent-system** | `/Users/petersonrainey/C-Code - Rag database/` | RAG database, agents, hooks, skills, pipelines config, CLAUDE.md. This is the current working directory. |
+| **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `peterson-rainey/creekside-dashboard` |
+| **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
+
+**creekside-tools** (`~/creekside-tools/`) is the PUBLIC free marketing tools site — completely separate. NEVER add internal features there.
+
+When Peterson says "dashboard" or "internal dashboard", he means **creekside-dashboard** at `~/creekside-dashboard/`. NOT anything in the current working directory.
+
 ## Core Rules (Every Agent, Every Turn)
 
 1. **Summaries find, raw text answers.** Always call `get_full_content(table, id)` or `get_full_content_batch(table, ids[])` before answering questions with dollar amounts, dates, commitments, or action items.

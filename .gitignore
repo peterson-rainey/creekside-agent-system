@@ -1,12 +1,11 @@
-# Only track .claude/ infrastructure and dashboard — everything else is local
+# Only track .claude/ infrastructure — everything else is local
+# creekside-tools and creekside-dashboard are separate repos outside this directory
 *
 !.gitignore
 !CLAUDE.md
 !README.md
 !.claude/
 !.claude/**
-!dashboard/
-!dashboard/**
 
 # Never push secrets or old git data
 .claude/settings.local.json
