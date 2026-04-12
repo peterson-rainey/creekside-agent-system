@@ -35,8 +35,11 @@ If no agent fits, follow the Missing Agent Protocol: propose a new agent and use
 | **creekside-agent-system** | `/Users/petersonrainey/C-Code - Rag database/` | RAG database, agents, hooks, skills, pipelines config, CLAUDE.md. This is the current working directory. |
 | **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `peterson-rainey/creekside-dashboard` |
 | **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
+| **creekside-website** | `/Users/petersonrainey/creekside-website/` | Live website (creeksidemarketingpros.com). Astro 5 + Tailwind 4. Hosted by web designer Jonathan. GitHub: `drybonez235/creekside` |
 
 **creekside-tools** (`~/creekside-tools/`) is the PUBLIC free marketing tools site — completely separate. NEVER add internal features there.
+
+When Peterson says "website" or "creeksidemarketingpros", he means **creekside-website** at `~/creekside-website/`. GitHub repo is `drybonez235/creekside` (Jonathan's account).
 
 When Peterson says "dashboard" or "internal dashboard", he means **creekside-dashboard** at `~/creekside-dashboard/`. NOT anything in the current working directory.
 
