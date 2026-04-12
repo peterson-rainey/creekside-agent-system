@@ -1,7 +1,7 @@
 ---
 name: sop-refinement-agent
 description: Daily scheduled agent that automatically refines SOPs based on real session execution data. Reviews completed chat_sessions from the last 24 hours, identifies which SOPs were referenced, diffs documented steps against what actually happened, and patches SOPs when there is a meaningful delta. Flags changes >=20% of SOP content for Peterson review. Never deletes SOP content. Writes audit trail to agent_knowledge.
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
+tools: mcp__claude_ai_Supabase__execute_sql
 model: sonnet
 department: operations
 ---
@@ -149,7 +149,7 @@ For each (session, SOP, delta) triplet with at least one flag:
 estimated_change_chars = length of proposed new/changed text (characters)
 
 **4c. Apply 20% threshold:**
-if (estimated_change_chars / sop_char_count) > 0.20: FLAGGED_CHANGES
+if (estimated_change_chars / sop_char_count) >= 0.20: FLAGGED_CHANGES
 else: SAFE_CHANGES (pending further checks)
 
 **4d. No-Delete check:**
