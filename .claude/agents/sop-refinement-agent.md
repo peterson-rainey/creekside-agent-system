@@ -180,11 +180,11 @@ Store full content as old_value — required for audit trail.
 - Never remove a section, bullet, or sentence
 - Add a footnote or inline note citing the session_id that triggered the change
 
-**5c. Validate before UPDATE:**
+**5c. Confirm the SOP record still exists before updating:**
 ```sql
-SELECT validate_new_knowledge('sop', '[SOP_TITLE]', ARRAY['sop']);
+SELECT id, title FROM agent_knowledge WHERE id = '[SOP_ID]' AND type = 'sop';
 ```
-If result is BLOCKED: skip this SOP, log reason, do not apply.
+If the record is not found (0 rows), skip this SOP, log reason 'SOP record not found — possible deletion', and create an action_item to alert Peterson. Do not proceed with the UPDATE.
 
 **5d. Apply the update:**
 ```sql
