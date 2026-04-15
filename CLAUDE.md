@@ -54,6 +54,7 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 7. **Conflicts: show both.** When sources disagree, present both with citations. Never silently pick one.
 8. **Save discoveries.** Before ending, write important findings to `client_context_cache` or `agent_knowledge`. Never let context die with the session.
 9. **Flag stale data.** Anything >90 days old gets flagged with its age.
+10. **MCP fallback on empty results.** When `search_all()` AND `keyword_search_all()` both return zero results for a query, agents **with MCP tool access** MUST search relevant MCP connections before reporting "not found." Fallback order: Google Drive (`google_drive_search`) → Gmail (`gmail_search_messages`) → ClickUp (`clickup_search` / `clickup_filter_tasks`) → Slack (`slack_search_public`) → Google Calendar (`gcal_list_events`). Skip sources clearly irrelevant to the query type. Only report "not found" after exhausting both database AND applicable MCP sources. Tag MCP-sourced answers as `[SOURCE: MCP/<service>]` with `[MEDIUM]` confidence. Agents without MCP access should report empty results normally and suggest the operations manager search MCP sources. Full SOP: `SELECT content FROM agent_knowledge WHERE title = 'SOP: MCP Fallback Search on Empty Database Results';`
 
 ## QC Pattern (Mandatory)
 
