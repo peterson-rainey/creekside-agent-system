@@ -188,6 +188,7 @@ INSERT INTO reporting_clients (
   '{platform_operator}',
   'active',
   'active',
+  NULL,
   '{goal_type}',
   {goal_target},
   '{fee_config_json}'
@@ -317,6 +318,12 @@ Present a summary:
 - leads: {linked/not applicable}
 - auto_link: ran — {X} records linked across {Y} tables
 
+**Citation and confidence rules for this output:**
+- Tag each created record with `[source: {table_name}, {returned_id}]`
+- Tag the overall onboarding as `[HIGH]` confidence (you just created these records)
+- Tag any auto-populated fields from Fathom/email/GHL as `[MEDIUM]` confidence (derived from search)
+- Tag any fields Peterson provided directly as `[HIGH]` confidence
+
 **Still Needs Manual Setup:**
 - [ ] Google Drive folder → set `drive_folder_id` / `gdrive_folder_id`
 - [ ] ClickUp folder → set `clickup_folder_id` / `clickup_url`
@@ -325,6 +332,8 @@ Present a summary:
 - [ ] Square customer → set `square_customer_id`
 - [ ] Contract URL → set `contract_url`
 - [ ] Slack channel (if applicable) → set `slack_channel_id`
+- [ ] Assigned team members → set `assigned_team_ids` on clients table
+- [ ] Additional contacts (billing, secondary) → update `contacts` JSONB on clients table
 
 **Next Steps:**
 1. Set up integration IDs above as they become available
