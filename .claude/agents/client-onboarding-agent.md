@@ -246,6 +246,8 @@ SET converted_client_id = '{client_id}',
 WHERE id = '{lead_id}';
 ```
 
+**GHL Note:** If the client came through GHL CRM, spawn `ghl-crm-agent` to move the opportunity to "Closed Won" and add an "active-client" tag. This is not automated in this agent — trigger it as a follow-up step.
+
 ### Phase 7: Insert `raw_content` for Embedding
 
 This ensures `search_all()` can find the new client semantically.
