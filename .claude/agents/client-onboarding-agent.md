@@ -170,6 +170,7 @@ INSERT INTO reporting_clients (
   platform_operator,
   status,
   client_category,
+  segment_name,
   goal_type,
   goal_target,
   fee_config
