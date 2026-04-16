@@ -15,19 +15,21 @@ INSERT INTO agent_definitions (
   read_only,      -- true if agent should never modify data
   model,          -- 'sonnet', 'haiku', or 'opus'
   source,         -- 'custom' or 'voltagent'
+  status,         -- 'active', 'inactive', or 'deprecated'
   version,        -- Starts at 1
   updated_at
-)VALUES (
+)
+VALUES (
   'AGENT_NAME',
   'DISPLAY_NAME',
   'DESCRIPTION',
   'DEPARTMENT',
   'TYPE',
   'FULL_SYSTEM_PROMPT',
-  ARRAY['tool1', 'tool2'],
-  READ_ONLY_BOOL,
+  ARRAY['tool1', 'tool2'],  READ_ONLY_BOOL,
   'MODEL',
   'SOURCE',
+  'active',
   1,
   now()
 )
@@ -42,5 +44,6 @@ DO UPDATE SET
   read_only = EXCLUDED.read_only,
   model = EXCLUDED.model,
   source = EXCLUDED.source,
+  status = EXCLUDED.status,
   version = agent_definitions.version + 1,
   updated_at = now();

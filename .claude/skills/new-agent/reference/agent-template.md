@@ -8,9 +8,7 @@ Every agent file lives in `.claude/agents/[agent-name].md` and follows this stru
 ---
 name: agent-name-here
 description: "One-line purpose of this agent"
-tools:
-  - Tool1
-  - Tool2
+tools: Read, Grep, Glob, execute_sql
 model: sonnet
 read_only: true  # Optional: set for agents that should never modify data
 ---

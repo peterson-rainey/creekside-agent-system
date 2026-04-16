@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(git rev-parse --show-toplevel 2>/dev/null || echo '.')"
 # Check if KILLSWITCH.md exists in project root
 # Usage: Run before any autonomous agent invocation
 if [ -f "KILLSWITCH.md" ]; then
