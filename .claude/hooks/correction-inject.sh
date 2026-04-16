@@ -11,14 +11,14 @@ TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty' 2>/dev/null)
 [ "$TOOL" != "Agent" ] && exit 0
 
 # Query recent corrections from agent_knowledge
-SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
+SUPABASE_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
 SUPA_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 
 [ -z "$SUPA_KEY" ] && exit 0
 
 # Fetch top 5 corrections by usage (most-used first, then most recent)
 CORRECTIONS=$(curl -s --max-time 5 \
-  "${SUPA_URL}/agent_knowledge?type=eq.correction&order=usage_count.desc.nullslast,created_at.desc&limit=5&select=id,title,content" \
+  "${SUPABASE_URL}/agent_knowledge?type=eq.correction&order=usage_count.desc.nullslast,created_at.desc&limit=5&select=id,title,content" \
   -H "apikey: ${SUPA_KEY}" \
   -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
 
@@ -34,13 +34,13 @@ if [ "$COUNT" != "null" ] && [ "$COUNT" -gt 0 ]; then
     [ -z "$CID" ] && continue
     # Read current count, increment, PATCH back
     CURRENT=$(curl -s --max-time 3 \
-      "${SUPA_URL}/agent_knowledge?id=eq.${CID}&select=usage_count" \
+      "${SUPABASE_URL}/agent_knowledge?id=eq.${CID}&select=usage_count" \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null \
       | jq -r '.[0].usage_count // 0' 2>/dev/null)
     NEW_COUNT=$(( ${CURRENT:-0} + 1 ))
     curl -s --max-time 3 \
-      "${SUPA_URL}/agent_knowledge?id=eq.${CID}" \
+      "${SUPABASE_URL}/agent_knowledge?id=eq.${CID}" \
       -X PATCH \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" \

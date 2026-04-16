@@ -23,7 +23,7 @@ SESSION=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
 
 STATE_DIR="/tmp/claude-session-state"
 PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
+SUPABASE_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
 SUPA_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 TODAY=$(date -u +%Y-%m-%d)
 NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
@@ -87,7 +87,7 @@ if [ "$SESSION_ALREADY_SAVED" -gt 0 ]; then
   if [ -n "$SUPA_KEY" ]; then
     # Get the most recent session saved today
     RECENT_RESP=$(curl -s --max-time 10 \
-      "${SUPA_URL}/chat_sessions?session_date=eq.${TODAY}&order=created_at.desc&limit=1&select=id,items_completed" \
+      "${SUPABASE_URL}/chat_sessions?session_date=eq.${TODAY}&order=created_at.desc&limit=1&select=id,items_completed" \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
 
@@ -97,7 +97,7 @@ if [ "$SESSION_ALREADY_SAVED" -gt 0 ]; then
     CLOSE_MSG=""
     if [ "$RECENT_COUNT" -gt 0 ]; then
       CLOSE_RESP=$(curl -s --max-time 15 \
-        "${SUPA_URL}/rpc/auto_close_action_items" \
+        "${SUPABASE_URL}/rpc/auto_close_action_items" \
         -H "apikey: ${SUPA_KEY}" \
         -H "Authorization: Bearer ${SUPA_KEY}" \
         -H "Content-Type: application/json" \
@@ -269,7 +269,7 @@ THIRTY_MIN_AGO=$(date -u -v-30M +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -d '3
 EXISTING_SESSION_ID=""
 if [ -n "$THIRTY_MIN_AGO" ] && [ -n "$SUPA_KEY" ]; then
   DEDUP_RESP=$(curl -s --max-time 10 \
-    "${SUPA_URL}/chat_sessions?tags=cs.%7B%22auto-saved%22%7D&created_at=gte.${THIRTY_MIN_AGO}&order=created_at.desc&limit=1&select=id" \
+    "${SUPABASE_URL}/chat_sessions?tags=cs.%7B%22auto-saved%22%7D&created_at=gte.${THIRTY_MIN_AGO}&order=created_at.desc&limit=1&select=id" \
     -H "apikey: ${SUPA_KEY}" \
     -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
   EXISTING_SESSION_ID=$(echo "$DEDUP_RESP" | jq -r '.[0].id // empty' 2>/dev/null)
@@ -294,7 +294,7 @@ SESSION_ID=""
 if [ -n "$EXISTING_SESSION_ID" ]; then
   # UPDATE existing session (merge/patch) instead of creating a duplicate
   RESPONSE=$(curl -s --max-time 10 \
-    "${SUPA_URL}/chat_sessions?id=eq.${EXISTING_SESSION_ID}" \
+    "${SUPABASE_URL}/chat_sessions?id=eq.${EXISTING_SESSION_ID}" \
     -X PATCH \
     -H "apikey: ${SUPA_KEY}" \
     -H "Authorization: Bearer ${SUPA_KEY}" \
@@ -306,7 +306,7 @@ if [ -n "$EXISTING_SESSION_ID" ]; then
 else
   # INSERT new session
   RESPONSE=$(curl -s --max-time 10 \
-    "${SUPA_URL}/chat_sessions" \
+    "${SUPABASE_URL}/chat_sessions" \
     -H "apikey: ${SUPA_KEY}" \
     -H "Authorization: Bearer ${SUPA_KEY}" \
     -H "Content-Type: application/json" \
@@ -331,7 +331,7 @@ EOF
   if [ "$SAVE_MODE" = "updated" ]; then
     # Update existing raw_content entry for this session
     curl -s --max-time 10 \
-      "${SUPA_URL}/raw_content?source_table=eq.chat_sessions&source_id=eq.${SESSION_ID}" \
+      "${SUPABASE_URL}/raw_content?source_table=eq.chat_sessions&source_id=eq.${SESSION_ID}" \
       -X PATCH \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" \
@@ -340,7 +340,7 @@ EOF
       -d "{\"full_text\": \"$SUMMARY_ESC\"}" 2>/dev/null
   else
     curl -s --max-time 10 \
-      "${SUPA_URL}/raw_content" \
+      "${SUPABASE_URL}/raw_content" \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" \
       -H "Content-Type: application/json" \
@@ -356,7 +356,7 @@ fi
 if [ -n "$SESSION_ID" ]; then
   # Fetch the items_completed from the just-saved session
   ITEMS_RESP=$(curl -s --max-time 10 \
-    "${SUPA_URL}/chat_sessions?id=eq.${SESSION_ID}&select=items_completed" \
+    "${SUPABASE_URL}/chat_sessions?id=eq.${SESSION_ID}&select=items_completed" \
     -H "apikey: ${SUPA_KEY}" \
     -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
 
@@ -366,7 +366,7 @@ if [ -n "$SESSION_ID" ]; then
   if [ "$ITEMS_COUNT" -gt 0 ]; then
     # Call auto_close_action_items RPC
     CLOSE_RESP=$(curl -s --max-time 15 \
-      "${SUPA_URL}/rpc/auto_close_action_items" \
+      "${SUPABASE_URL}/rpc/auto_close_action_items" \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" \
       -H "Content-Type: application/json" \
