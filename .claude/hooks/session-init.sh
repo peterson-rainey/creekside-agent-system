@@ -5,7 +5,7 @@
 # Critical record ID: 83308752-50a8-42cd-bb15-54bfa04e7764 (see agent_knowledge 873e2c75 for docs)
 # Fails silently on any error — never blocks session start.
 
-SUPABASE_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
+SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
 KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 
 # Skip if no key or jq unavailable
@@ -26,7 +26,7 @@ if [ -f "$ROLE_FILE" ]; then
 
     # Look up system_users record by email
     USER_DATA=$(curl -s --max-time 5 \
-      "${SUPABASE_URL}/system_users?email=eq.${ENCODED_EMAIL}&is_active=eq.true&select=id,name,role&limit=1" \
+      "${SUPA_URL}/system_users?email=eq.${ENCODED_EMAIL}&is_active=eq.true&select=id,name,role&limit=1" \
       -H "apikey: ${KEY}" \
       -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
@@ -64,7 +64,7 @@ fi
 
 # --- 1. Fetch the startup guide (single record) ---
 GUIDE=$(curl -s --max-time 8 \
-  "${SUPABASE_URL}/agent_knowledge?id=eq.83308752-50a8-42cd-bb15-54bfa04e7764&select=content" \
+  "${SUPA_URL}/agent_knowledge?id=eq.83308752-50a8-42cd-bb15-54bfa04e7764&select=content" \
   -H "apikey: ${KEY}" \
   -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
@@ -81,7 +81,7 @@ fi
 
 # --- 2. Fetch top 5 corrections by usage (self-tuning — most-referenced first) ---
 CORRECTIONS=$(curl -s --max-time 5 \
-  "${SUPABASE_URL}/agent_knowledge?type=eq.correction&order=usage_count.desc.nullslast,created_at.desc&limit=5&select=title,content" \
+  "${SUPA_URL}/agent_knowledge?type=eq.correction&order=usage_count.desc.nullslast,created_at.desc&limit=5&select=title,content" \
   -H "apikey: ${KEY}" \
   -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
@@ -114,7 +114,7 @@ fi
 FOUR_HOURS_AGO=$(date -u -v-4H '+%Y-%m-%dT%H:%M:%S' 2>/dev/null || date -u -d '4 hours ago' '+%Y-%m-%dT%H:%M:%S' 2>/dev/null || echo "")
 if [ -n "$FOUR_HOURS_AGO" ] && [ -n "$KEY" ]; then
   RECENT_WORK=$(curl -s --max-time 5 \
-    "${SUPABASE_URL}/chat_sessions?created_at=gte.${FOUR_HOURS_AGO}&summary=not.is.null&order=created_at.desc&limit=5&select=title,summary" \
+    "${SUPA_URL}/chat_sessions?created_at=gte.${FOUR_HOURS_AGO}&summary=not.is.null&order=created_at.desc&limit=5&select=title,summary" \
     -H "apikey: ${KEY}" \
     -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
