@@ -412,7 +412,7 @@ Present a summary:
 **Database Records Created:**
 - clients table: id = {client_id}
 - reporting_clients: {count} row(s) — {platforms}
-- client_health_scores: seeded (score: 30, risk: high — new client)
+- client_health_scores: seeded (score: 30, risk: at_risk — new client)
 - raw_content: embedding record created
 - client_context_cache: overview section initialized
 - leads: {linked/not applicable}
