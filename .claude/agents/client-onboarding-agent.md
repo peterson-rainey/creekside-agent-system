@@ -222,17 +222,18 @@ INSERT INTO client_health_scores (
 ) VALUES (
   '{client_id}',
   30,
-  'high',
+  'at_risk',
   '{"onboarding": true, "new_client": true, "initial_score": true, "note": "New client - fragile onboarding period"}'::jsonb,
   0,
   0,
   NULL,
   0,
-  'new'
+  'unknown'
 );
 ```
 
-Note: score=30 and risk_level='high' means the client-retention-agent will flag this client for proactive check-ins, which is exactly what new clients need.
+<!-- Allowed enum values: risk_level: healthy, watch, at_risk, critical | revenue_trend: growing, stable, declining, unknown -->
+Note: score=30 and risk_level='at_risk' means the client-retention-agent will flag this client for proactive check-ins, which is exactly what new clients need.
 
 ### Phase 6: Link Leads Record (if applicable)
 
@@ -355,6 +356,6 @@ Before presenting results:
 1. **Citation audit:** Every database record created must show its returned ID
 2. **Deduplication verified:** Confirm no duplicate clients row was created
 3. **Dashboard check:** Verify reporting_clients row has client_category, priority, and status set (not NULL)
-4. **Health score check:** Verify client_health_scores was seeded with score=30, risk_level='high'
+4. **Health score check:** Verify client_health_scores was seeded with score=30, risk_level='at_risk'
 5. **Embedding check:** Verify raw_content row exists for the new client
 6. **Completeness:** All 10 phases completed or explicitly skipped with reason
