@@ -6,7 +6,11 @@
 #
 # Actions:
 # 1. Auto-clean ADMIN_MODE if still active
-# 2. Save detailed session summary to chat_sessions (always, if writes occurred)
+# 2. Save detailed session summary to chat_sessions (always, if meaningful work occurred)
+#    - Meaningful titles derived from actual work (tables, projects, agents)
+#    - Deduplication: updates recent session if one exists within 30 minutes
+#    - Skips empty/noise sessions (filters /tmp/ and .claude/hooks/ writes)
+#    - Meaningful summaries describing what was accomplished
 # 3. Save to raw_content for embedding generation
 # 4. Report QC compliance status
 
@@ -57,9 +61,21 @@ FILE_WRITES=$(grep -c "^FILE_WRITE=" "$LATEST_STATE" 2>/dev/null) || FILE_WRITES
 AGENT_SPAWNS=$(grep -c "^AGENT_SPAWN=" "$LATEST_STATE" 2>/dev/null) || AGENT_SPAWNS=0
 QC_SPAWNED=$(grep -E "AGENT_SPAWN=.*\|(qc-reviewer-agent|code-audit-agent|data-quality-agent|expert-review-agent|security-audit-agent)" "$LATEST_STATE" 2>/dev/null | wc -l | tr -d ' ')
 
-# Skip if no writes at all
-if [ "$SQL_WRITES" -eq 0 ] && [ "$FILE_WRITES" -eq 0 ] && [ "$AGENT_SPAWNS" -eq 0 ]; then
-  echo '{"systemMessage": "Read-only session — no summary needed."}'
+# ─── Filter out noise: /tmp/ paths and .claude/hooks/ don't count ───────────
+
+MEANINGFUL_FILE_WRITES=$(grep "^FILE_WRITE=" "$LATEST_STATE" 2>/dev/null \
+  | grep -v '|/tmp/' \
+  | grep -v '|.*/\.claude/hooks/' \
+  | wc -l | tr -d ' ')
+
+# Boilerplate-only agent spawns (just QC with no other agents) don't count
+MEANINGFUL_AGENT_SPAWNS=$(grep "^AGENT_SPAWN=" "$LATEST_STATE" 2>/dev/null \
+  | grep -v '|\(qc-reviewer-agent\|expert-review-agent\)$' \
+  | wc -l | tr -d ' ')
+
+# Skip if no meaningful work at all
+if [ "$SQL_WRITES" -eq 0 ] && [ "$MEANINGFUL_FILE_WRITES" -eq 0 ] && [ "$MEANINGFUL_AGENT_SPAWNS" -eq 0 ]; then
+  echo '{"systemMessage": "Read-only session — no summary needed (only noise/boilerplate activity filtered out)."}'
   exit 0
 fi
 
@@ -102,8 +118,12 @@ fi
 
 # ─── Build detailed session data ─────────────────────────────────────────────
 
-# Collect all files changed (deduplicated, paths only)
-FILES_LIST=$(grep "^FILE_WRITE=" "$LATEST_STATE" 2>/dev/null | sed 's/^FILE_WRITE=[^|]*|//' | sort -u)
+# Collect all meaningful files changed (deduplicated, paths only — exclude noise)
+FILES_LIST=$(grep "^FILE_WRITE=" "$LATEST_STATE" 2>/dev/null \
+  | sed 's/^FILE_WRITE=[^|]*|//' \
+  | grep -v '^/tmp/' \
+  | grep -v '\.claude/hooks/' \
+  | sort -u)
 FILES_JSON="[]"
 if [ -n "$FILES_LIST" ]; then
   FILES_JSON=$(echo "$FILES_LIST" | head -30 | jq -R -s 'split("\n") | map(select(. != ""))')
@@ -116,22 +136,106 @@ SQL_OPS=$(grep "^SQL_WRITE=" "$LATEST_STATE" 2>/dev/null | sed 's/^SQL_WRITE=[^|
 AGENTS_LIST=$(grep "^AGENT_SPAWN=" "$LATEST_STATE" 2>/dev/null | sed 's/^AGENT_SPAWN=[^|]*|//' | sort -u)
 AGENTS_DISPLAY=$(echo "$AGENTS_LIST" | tr '\n' ', ' | sed 's/,$//')
 
-# Build the summary text
-SUMMARY="Session activity: ${SQL_WRITES} SQL write(s), ${FILE_WRITES} file write(s), ${AGENT_SPAWNS} agent(s) spawned (${QC_SPAWNED} QC)."
+# ─── Derive meaningful title from actual work ────────────────────────────────
 
-if [ -n "$FILES_LIST" ]; then
-  FILES_DISPLAY=$(echo "$FILES_LIST" | tr '\n' ', ' | sed 's/,$//')
-  SUMMARY="${SUMMARY} Files modified: ${FILES_DISPLAY}."
-fi
+TITLE_PARTS=""
 
-if [ -n "$AGENTS_DISPLAY" ]; then
-  SUMMARY="${SUMMARY} Agents used: ${AGENTS_DISPLAY}."
-fi
-
+# Extract SQL table names that were written to
 if [ -n "$SQL_OPS" ]; then
-  SQL_DISPLAY=$(echo "$SQL_OPS" | tr '\n' '; ' | sed 's/;$//' | head -c 1000)
-  SUMMARY="${SUMMARY} SQL operations: ${SQL_DISPLAY}."
+  SQL_TABLES=$(echo "$SQL_OPS" \
+    | grep -oiE '(INSERT INTO|UPDATE|DELETE FROM|UPSERT INTO)\s+[a-z_]+' \
+    | sed -E 's/(INSERT INTO|UPDATE|DELETE FROM|UPSERT INTO)\s+//i' \
+    | sort -u | tr '\n' ', ' | sed 's/,$//')
+  if [ -n "$SQL_TABLES" ]; then
+    TITLE_PARTS="DB: ${SQL_TABLES}"
+  fi
 fi
+
+# Group file paths by project
+if [ -n "$FILES_LIST" ]; then
+  FILE_PROJECTS=""
+  if echo "$FILES_LIST" | grep -q 'creekside-pipelines'; then
+    FILE_PROJECTS="${FILE_PROJECTS}creekside-pipelines, "
+  fi
+  if echo "$FILES_LIST" | grep -q 'creekside-dashboard'; then
+    FILE_PROJECTS="${FILE_PROJECTS}creekside-dashboard, "
+  fi
+  if echo "$FILES_LIST" | grep -q 'creekside-website'; then
+    FILE_PROJECTS="${FILE_PROJECTS}creekside-website, "
+  fi
+  if echo "$FILES_LIST" | grep -q 'creekside-tools'; then
+    FILE_PROJECTS="${FILE_PROJECTS}creekside-tools, "
+  fi
+  if echo "$FILES_LIST" | grep -q 'C-Code - Rag database'; then
+    FILE_PROJECTS="${FILE_PROJECTS}agent-system, "
+  fi
+  # Fallback: list individual filenames if no project matched
+  if [ -z "$FILE_PROJECTS" ]; then
+    FILE_PROJECTS=$(echo "$FILES_LIST" | xargs -I{} basename {} | sort -u | head -5 | tr '\n' ', ')
+  fi
+  FILE_PROJECTS=$(echo "$FILE_PROJECTS" | sed 's/, $//')
+  if [ -n "$FILE_PROJECTS" ]; then
+    [ -n "$TITLE_PARTS" ] && TITLE_PARTS="${TITLE_PARTS}; "
+    TITLE_PARTS="${TITLE_PARTS}Files: ${FILE_PROJECTS}"
+  fi
+fi
+
+# Add named agents (skip QC boilerplate)
+NAMED_AGENTS=$(echo "$AGENTS_LIST" 2>/dev/null \
+  | grep -v '^$' \
+  | grep -v 'qc-reviewer-agent' \
+  | grep -v 'expert-review-agent' \
+  | sort -u | tr '\n' ', ' | sed 's/,$//')
+if [ -n "$NAMED_AGENTS" ]; then
+  [ -n "$TITLE_PARTS" ] && TITLE_PARTS="${TITLE_PARTS}; "
+  TITLE_PARTS="${TITLE_PARTS}Agents: ${NAMED_AGENTS}"
+fi
+
+# Final title — truncate to 200 chars for safety
+if [ -z "$TITLE_PARTS" ]; then
+  TITLE_PARTS="Session ${TODAY} — misc activity"
+fi
+SESSION_TITLE=$(echo "$TITLE_PARTS" | head -c 200)
+
+# ─── Build meaningful summary ────────────────────────────────────────────────
+
+SUMMARY_PARTS=""
+
+# Describe SQL work
+if [ -n "$SQL_OPS" ] && [ "$SQL_WRITES" -gt 0 ]; then
+  SQL_TABLES_FULL=$(echo "$SQL_OPS" \
+    | grep -oiE '(INSERT INTO|UPDATE|DELETE FROM|UPSERT INTO)\s+[a-z_]+' \
+    | sed -E 's/(INSERT INTO|UPDATE|DELETE FROM|UPSERT INTO)\s+//i' \
+    | sort | uniq -c | sort -rn \
+    | awk '{print $2 " (" $1 " ops)"}' | tr '\n' ', ' | sed 's/,$//')
+  if [ -n "$SQL_TABLES_FULL" ]; then
+    SUMMARY_PARTS="Database writes: ${SQL_TABLES_FULL}."
+  else
+    SUMMARY_PARTS="Executed ${SQL_WRITES} SQL write(s)."
+  fi
+fi
+
+# Describe file work
+if [ -n "$FILES_LIST" ]; then
+  FILE_COUNT=$(echo "$FILES_LIST" | wc -l | tr -d ' ')
+  FILES_DISPLAY=$(echo "$FILES_LIST" | head -10 | xargs -I{} basename {} | sort -u | tr '\n' ', ' | sed 's/,$//')
+  SUMMARY_PARTS="${SUMMARY_PARTS} Modified ${FILE_COUNT} file(s): ${FILES_DISPLAY}."
+fi
+
+# Describe agent work
+if [ -n "$NAMED_AGENTS" ]; then
+  SUMMARY_PARTS="${SUMMARY_PARTS} Used agents: ${NAMED_AGENTS}."
+fi
+if [ "$QC_SPAWNED" -gt 0 ]; then
+  SUMMARY_PARTS="${SUMMARY_PARTS} QC: ${QC_SPAWNED} review(s) run."
+fi
+
+# Fallback if somehow empty
+if [ -z "$SUMMARY_PARTS" ]; then
+  SUMMARY_PARTS="Session activity: ${SQL_WRITES} SQL write(s), ${FILE_WRITES} file write(s), ${AGENT_SPAWNS} agent(s) spawned."
+fi
+
+SUMMARY="$SUMMARY_PARTS"
 
 # Build tags from agents used
 TAGS='["auto-saved"]'
@@ -142,7 +246,7 @@ fi
 # Build items_pending — include any pending action items context
 PENDING='["Review auto-saved session for additional context"]'
 
-# ─── Save to chat_sessions ───────────────────────────────────────────────────
+# ─── Save to chat_sessions (with deduplication) ─────────────────────────────
 
 if [ -z "$SUPA_KEY" ]; then
   echo '{"systemMessage": "WARNING: Cannot auto-save session — SUPABASE_SERVICE_ROLE_KEY not set."}'
@@ -150,17 +254,31 @@ if [ -z "$SUPA_KEY" ]; then
 fi
 
 # Escape summary for JSON
-SUMMARY_ESC=$(echo "$SUMMARY" | sed 's/"/\\"/g' | tr '\n' ' ')
+SUMMARY_ESC=$(echo "$SUMMARY" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | tr '\n' ' ')
+TITLE_ESC=$(echo "$SESSION_TITLE" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | tr '\n' ' ')
 
 USER_ID_FIELD=""
 if [ -n "$CURRENT_USER_ID" ]; then
   USER_ID_FIELD="\"created_by_user_id\": \"$CURRENT_USER_ID\","
 fi
 
+# ─── Deduplication: check for auto-saved session within the last 30 minutes ─
+
+THIRTY_MIN_AGO=$(date -u -v-30M +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -d '30 minutes ago' +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo "")
+
+EXISTING_SESSION_ID=""
+if [ -n "$THIRTY_MIN_AGO" ] && [ -n "$SUPA_KEY" ]; then
+  DEDUP_RESP=$(curl -s --max-time 10 \
+    "${SUPA_URL}/chat_sessions?tags=cs.{auto-saved}&created_at=gte.${THIRTY_MIN_AGO}&order=created_at.desc&limit=1&select=id" \
+    -H "apikey: ${SUPA_KEY}" \
+    -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
+  EXISTING_SESSION_ID=$(echo "$DEDUP_RESP" | jq -r '.[0].id // empty' 2>/dev/null)
+fi
+
 BODY=$(cat <<EOF
 {
   ${USER_ID_FIELD}
-  "title": "Session $TODAY — ${SQL_WRITES} SQL writes, ${FILE_WRITES} file writes, ${AGENT_SPAWNS} agents",
+  "title": "$TITLE_ESC",
   "session_date": "$TODAY",
   "summary": "$SUMMARY_ESC",
   "items_completed": [],
@@ -171,16 +289,32 @@ BODY=$(cat <<EOF
 EOF
 )
 
-# Insert and get the ID back
-RESPONSE=$(curl -s --max-time 10 \
-  "${SUPA_URL}/chat_sessions" \
-  -H "apikey: ${SUPA_KEY}" \
-  -H "Authorization: Bearer ${SUPA_KEY}" \
-  -H "Content-Type: application/json" \
-  -H "Prefer: return=representation" \
-  -d "$BODY" 2>/dev/null)
+SESSION_ID=""
 
-SESSION_ID=$(echo "$RESPONSE" | jq -r '.[0].id // empty' 2>/dev/null)
+if [ -n "$EXISTING_SESSION_ID" ]; then
+  # UPDATE existing session (merge/patch) instead of creating a duplicate
+  RESPONSE=$(curl -s --max-time 10 \
+    "${SUPA_URL}/chat_sessions?id=eq.${EXISTING_SESSION_ID}" \
+    -X PATCH \
+    -H "apikey: ${SUPA_KEY}" \
+    -H "Authorization: Bearer ${SUPA_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Prefer: return=representation" \
+    -d "$BODY" 2>/dev/null)
+  SESSION_ID=$(echo "$RESPONSE" | jq -r '.[0].id // empty' 2>/dev/null)
+  SAVE_MODE="updated"
+else
+  # INSERT new session
+  RESPONSE=$(curl -s --max-time 10 \
+    "${SUPA_URL}/chat_sessions" \
+    -H "apikey: ${SUPA_KEY}" \
+    -H "Authorization: Bearer ${SUPA_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Prefer: return=representation" \
+    -d "$BODY" 2>/dev/null)
+  SESSION_ID=$(echo "$RESPONSE" | jq -r '.[0].id // empty' 2>/dev/null)
+  SAVE_MODE="created"
+fi
 
 # ─── Save to raw_content for embeddings ──────────────────────────────────────
 
@@ -194,13 +328,25 @@ if [ -n "$SESSION_ID" ]; then
 EOF
 )
 
-  curl -s --max-time 10 \
-    "${SUPA_URL}/raw_content" \
-    -H "apikey: ${SUPA_KEY}" \
-    -H "Authorization: Bearer ${SUPA_KEY}" \
-    -H "Content-Type: application/json" \
-    -H "Prefer: return=minimal" \
-    -d "$RAW_BODY" 2>/dev/null
+  if [ "$SAVE_MODE" = "updated" ]; then
+    # Update existing raw_content entry for this session
+    curl -s --max-time 10 \
+      "${SUPA_URL}/raw_content?source_table=eq.chat_sessions&source_id=eq.${SESSION_ID}" \
+      -X PATCH \
+      -H "apikey: ${SUPA_KEY}" \
+      -H "Authorization: Bearer ${SUPA_KEY}" \
+      -H "Content-Type: application/json" \
+      -H "Prefer: return=minimal" \
+      -d "{\"full_text\": \"$SUMMARY_ESC\"}" 2>/dev/null
+  else
+    curl -s --max-time 10 \
+      "${SUPA_URL}/raw_content" \
+      -H "apikey: ${SUPA_KEY}" \
+      -H "Authorization: Bearer ${SUPA_KEY}" \
+      -H "Content-Type: application/json" \
+      -H "Prefer: return=minimal" \
+      -d "$RAW_BODY" 2>/dev/null
+  fi
 fi
 
 # ─── Action: Auto-close matching action items ────────────────────────────────
@@ -288,7 +434,7 @@ find "$STATE_DIR" -name "*.state" -mtime +1 -delete 2>/dev/null
 
 # ─── Output ──────────────────────────────────────────────────────────────────
 
-STATS="Session auto-saved to chat_sessions. ${SQL_WRITES} SQL write(s), ${FILE_WRITES} file write(s), ${AGENT_SPAWNS} agent(s), ${QC_SPAWNED} QC.${SYNC_MSG}"
+STATS="Session ${SAVE_MODE} in chat_sessions (${SESSION_TITLE}). ${SQL_WRITES} SQL, ${MEANINGFUL_FILE_WRITES} file(s), ${AGENT_SPAWNS} agent(s), ${QC_SPAWNED} QC.${SYNC_MSG}"
 if [ -n "$WARNINGS" ]; then
   STATS="${STATS} Notes:${WARNINGS}"
 fi

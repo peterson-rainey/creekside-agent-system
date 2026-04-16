@@ -79,26 +79,26 @@ elif [ -z "$CONTENT" ]; then
   exit 0
 fi
 
-# --- 2. Fetch correction titles (lightweight — titles only, not full content) ---
+# --- 2. Fetch top 5 corrections by usage (self-tuning — most-referenced first) ---
 CORRECTIONS=$(curl -s --max-time 5 \
-  "${SUPABASE_URL}/agent_knowledge?type=eq.correction&order=created_at.desc&limit=20&select=title" \
+  "${SUPABASE_URL}/agent_knowledge?type=eq.correction&order=usage_count.desc.nullslast,created_at.desc&limit=5&select=title,content" \
   -H "apikey: ${KEY}" \
   -H "Authorization: Bearer ${KEY}" 2>/dev/null)
 
 CORR_LIST=""
 CORR_COUNT=$(echo "$CORRECTIONS" | jq -r 'length' 2>/dev/null || echo "0")
 if [ "$CORR_COUNT" -gt 0 ] 2>/dev/null; then
-  CORR_LIST=$(echo "$CORRECTIONS" | jq -r '[.[].title] | join("; ")' 2>/dev/null)
+  CORR_LIST=$(echo "$CORRECTIONS" | jq -r '.[] | "- **\(.title)**: \(.content[0:150])..."' 2>/dev/null)
 fi
 
 # --- 3. Build and inject system message ---
 if [ -n "$CORR_LIST" ]; then
   FULL_MSG="${CONTENT}
 
-### Active Corrections (${CORR_COUNT} — MUST check before producing output)
+### Top Corrections (${CORR_COUNT} by usage — apply every session)
 ${CORR_LIST}
 
-Query full content: SELECT title, content FROM agent_knowledge WHERE type='correction' ORDER BY created_at DESC;"
+Query all: SELECT title, content FROM agent_knowledge WHERE type='correction' ORDER BY usage_count DESC NULLS LAST;"
 else
   FULL_MSG="$CONTENT"
 fi
@@ -108,6 +108,24 @@ if [ -n "$USER_IDENTITY" ]; then
   FULL_MSG="${FULL_MSG}
 
 ${USER_IDENTITY}"
+fi
+
+# --- 4. Fetch recent work (last 4 hours) to prevent duplicate effort ---
+FOUR_HOURS_AGO=$(date -u -v-4H '+%Y-%m-%dT%H:%M:%S' 2>/dev/null || date -u -d '4 hours ago' '+%Y-%m-%dT%H:%M:%S' 2>/dev/null || echo "")
+if [ -n "$FOUR_HOURS_AGO" ] && [ -n "$KEY" ]; then
+  RECENT_WORK=$(curl -s --max-time 5 \
+    "${SUPABASE_URL}/chat_sessions?created_at=gte.${FOUR_HOURS_AGO}&summary=not.is.null&order=created_at.desc&limit=5&select=title,summary" \
+    -H "apikey: ${KEY}" \
+    -H "Authorization: Bearer ${KEY}" 2>/dev/null)
+
+  RECENT_COUNT=$(echo "$RECENT_WORK" | jq 'length' 2>/dev/null || echo "0")
+  if [ "$RECENT_COUNT" != "null" ] && [ "$RECENT_COUNT" -gt 0 ] 2>/dev/null; then
+    RECENT_LIST=$(echo "$RECENT_WORK" | jq -r '.[] | "- **\(.title)**: \(.summary[0:120])..."' 2>/dev/null)
+    FULL_MSG="${FULL_MSG}
+
+### RECENT WORK (last 4hrs) — check for overlap before starting
+${RECENT_LIST}"
+  fi
 fi
 
 ESCAPED=$(echo "$FULL_MSG" | python3 -c 'import sys,json; print(json.dumps({"systemMessage": sys.stdin.read().strip()}))' 2>/dev/null)
