@@ -269,7 +269,7 @@ THIRTY_MIN_AGO=$(date -u -v-30M +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -d '3
 EXISTING_SESSION_ID=""
 if [ -n "$THIRTY_MIN_AGO" ] && [ -n "$SUPA_KEY" ]; then
   DEDUP_RESP=$(curl -s --max-time 10 \
-    "${SUPA_URL}/chat_sessions?tags=cs.{auto-saved}&created_at=gte.${THIRTY_MIN_AGO}&order=created_at.desc&limit=1&select=id" \
+    "${SUPA_URL}/chat_sessions?tags=cs.%7B%22auto-saved%22%7D&created_at=gte.${THIRTY_MIN_AGO}&order=created_at.desc&limit=1&select=id" \
     -H "apikey: ${SUPA_KEY}" \
     -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
   EXISTING_SESSION_ID=$(echo "$DEDUP_RESP" | jq -r '.[0].id // empty' 2>/dev/null)

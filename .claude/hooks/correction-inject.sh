@@ -5,7 +5,7 @@
 # Always exits 0 (informational injection, never blocks).
 
 INPUT=$(cat)
-TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
+TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty' 2>/dev/null)
 
 # Only fire on Agent tool
 [ "$TOOL" != "Agent" ] && exit 0
@@ -28,18 +28,27 @@ if [ "$COUNT" != "null" ] && [ "$COUNT" -gt 0 ]; then
   TITLES=$(echo "$CORRECTIONS" | jq -r '.[].title' 2>/dev/null | head -5 | tr '\n' '; ' | sed 's/;$//')
   echo "{\"systemMessage\": \"CORRECTIONS LOADED (${COUNT}): Inject these into the spawned agent prompt — ${TITLES}. Query agent_knowledge WHERE type='correction' for full details.\"}"
 
-  # Increment usage_count atomically via execute_sql (background, non-blocking)
-  IDS=$(echo "$CORRECTIONS" | jq -r '.[].id' 2>/dev/null | sed "s/.*/'&'/" | paste -sd ',' -)
-  if [ -n "$IDS" ]; then
+  # Increment usage_count for each injected correction (background, non-blocking)
+  echo "$CORRECTIONS" | jq -c '.[]' 2>/dev/null | while read -r ROW; do
+    CID=$(echo "$ROW" | jq -r '.id' 2>/dev/null)
+    [ -z "$CID" ] && continue
+    # Read current count, increment, PATCH back
+    CURRENT=$(curl -s --max-time 3 \
+      "${SUPA_URL}/agent_knowledge?id=eq.${CID}&select=usage_count" \
+      -H "apikey: ${SUPA_KEY}" \
+      -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null \
+      | jq -r '.[0].usage_count // 0' 2>/dev/null)
+    NEW_COUNT=$(( ${CURRENT:-0} + 1 ))
     curl -s --max-time 3 \
-      "https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1/rpc/execute_sql" \
-      -X POST \
+      "${SUPA_URL}/agent_knowledge?id=eq.${CID}" \
+      -X PATCH \
       -H "apikey: ${SUPA_KEY}" \
       -H "Authorization: Bearer ${SUPA_KEY}" \
       -H "Content-Type: application/json" \
-      -d "{\"query\": \"UPDATE agent_knowledge SET usage_count = COALESCE(usage_count, 0) + 1 WHERE id IN (${IDS})\"}" \
-      >/dev/null 2>&1 &
-  fi
+      -H "Prefer: return=minimal" \
+      -d "{\"usage_count\": ${NEW_COUNT}}" \
+      >/dev/null 2>&1
+  done &
 fi
 
 exit 0

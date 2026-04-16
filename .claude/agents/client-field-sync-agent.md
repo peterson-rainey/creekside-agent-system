@@ -84,12 +84,14 @@ For each client with gaps, search in priority order. Use the client's `name`, `d
 
 **For `contract_url`:**
 ```sql
-SELECT id, file_name, document_type, ai_summary
+SELECT id, file_name, document_type, ai_summary, web_view_link
 FROM gdrive_operations
 WHERE (file_name ILIKE '%{client_name}%' OR ai_summary ILIKE '%{client_name}%')
 AND document_type = 'contract'
 ORDER BY created_at DESC LIMIT 3;
 ```
+Use `web_view_link` as the `contract_url` value — this is the actual Google Drive URL. Do NOT construct a URL from the gdrive_operations table ID.
+
 Before writing contract_url, call `get_full_content('gdrive_operations', id)` to verify the document is actually a signed contract for this client.
 
 **For `gdrive_folder_id`:**
@@ -164,11 +166,11 @@ WHERE name ILIKE '%{assignee}%' OR '{assignee}' = ANY(display_names);
 
 Source 1 — ClickUp task assignees (structured):
 ```sql
-SELECT assignees FROM clickup_entries
+SELECT assignees, task_name, date_created FROM clickup_entries
 WHERE client_id = '{client_id}'
 AND space_name = 'Client Management'
 AND date_created > NOW() - INTERVAL '30 days'
-ORDER BY date_created DESC LIMIT 5;
+ORDER BY date_created DESC LIMIT 10;
 ```
 
 Source 2 — ClickUp chat/comment mentions (unstructured):
@@ -217,6 +219,23 @@ ORDER BY date DESC LIMIT 3;
 
 **For `gmail_label_id`:**
 This typically requires Gmail API access. Log as still-missing — cannot be extracted from database alone.
+
+### 2f: Parent-Child Field Inheritance
+
+For child clients (where `parent_client_id IS NOT NULL`), check if the parent has values the child is missing:
+
+```sql
+SELECT p.website, p.business_phone, p.square_customer_id, p.gchat_url,
+       p.clickup_folder_id, p.gdrive_folder_id, p.contract_url, p.gmail_label_id
+FROM clients c
+JOIN clients p ON c.parent_client_id = p.id
+WHERE c.id = '{child_client_id}'
+AND c.parent_client_id IS NOT NULL;
+```
+
+If the parent has a value and the child has NULL for the same field, inherit it — these are typically shared across brands under the same owner (same phone number, same Drive folder, same Square customer).
+
+**Exception:** Do NOT inherit `website` if the child brand has a different domain (e.g., Fusion Aesthetics may eventually have its own website distinct from fusiondentalimplants.com). Only inherit website if no other website candidate was found in any source.
 
 ## Step 3: Apply Updates (with safeguards)
 
