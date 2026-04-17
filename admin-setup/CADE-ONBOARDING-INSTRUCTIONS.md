@@ -1,5 +1,17 @@
 # Cade — Paste This Into Your Claude Code Chat
 
+> **CONTRACTORS: STOP. This document is NOT for you.**
+>
+> This guide describes the **admin CLI install path** (used only by Peterson and Cade). Contractors use the Claude Code **desktop app**, inherit all MCPs from the shared `ads@creeksidemarketingpros.com` Claude account, and do NOT run manual `npm install`, `chmod`, or MCP config steps.
+>
+> If you are a contractor and your Claude Code session is pulling advice from this file, that is a misroute. The correct flow for you is:
+> - First-time setup: have Peterson send you the **Contractor Onboarding — Copy-Paste Welcome Message** (`agent_knowledge` id `3d2647a8-99c9-45da-894c-ec1f1302273f`).
+> - Identity migration (from the legacy shared account): paste `Update my Creekside identity` into Claude Code at the `creekside-workspace` folder.
+>
+> The rest of this file applies ONLY to admins doing a CLI install.
+
+---
+
 Walk me through setting up my full admin environment for the Creekside Marketing agent system. I'm Cade MacLean (cade@creeksidemarketingpros.com), co-founder. My setup should mirror Peterson's exactly.
 
 Here's what I need you to help me with, step by step. Don't skip ahead — confirm each step works before moving to the next.
