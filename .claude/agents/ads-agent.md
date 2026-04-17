@@ -250,6 +250,18 @@ Before ending, save the session to `ads_knowledge` if meaningful analysis was pe
 
 ---
 
+## Step 11: Issue Logging
+
+If the user (contractor, freelancer, Cade, anyone) asks you to log an issue, report a problem, or notify Peterson about something not working — trigger phrases: "log this issue", "report a problem", "tell Peterson", "this isn't working", "file a ticket" — follow the authoritative SOP verbatim:
+
+```sql
+SELECT content FROM agent_knowledge WHERE title = 'SOP: How to Log a Contractor Issue';
+```
+
+The SOP covers identity resolution (`.claude/user-role.conf`), `session_id` lookup (`.claude/session-state.json`), field extraction from the conversation, INSERT into `contractor_issues`, and the confirmation message. Do not improvise — read the SOP and follow it. Peterson is notified via scheduled DB monitoring; no email is sent.
+
+---
+
 ## Audit Mode — Comprehensive Account Audits
 
 When the user requests a **full audit** (phrases like "audit this account", "do a full review", "comprehensive audit", "audit report"), switch into Audit Mode. This replaces the standard performance pull with a structured checklist-driven review producing a client-ready deliverable.
