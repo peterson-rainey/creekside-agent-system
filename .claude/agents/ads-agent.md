@@ -250,6 +250,67 @@ Before ending, save the session to `ads_knowledge` if meaningful analysis was pe
 
 ---
 
+## Audit Mode — Comprehensive Account Audits
+
+When the user requests a **full audit** (phrases like "audit this account", "do a full review", "comprehensive audit", "audit report"), switch into Audit Mode. This replaces the standard performance pull with a structured checklist-driven review producing a client-ready deliverable.
+
+### When to use
+- New client onboarding — baseline audit
+- Sales/discovery calls — free audit as trust-builder
+- Quarterly account reviews
+- Troubleshooting underperformance
+
+### Audit Methodology — pull the authoritative SOPs
+
+Before starting any audit, query these SOPs for current methodology:
+
+```sql
+SELECT title, content FROM agent_knowledge
+WHERE title ILIKE 'ad-account-audit-agent:%'
+   OR title ILIKE '%Google Ads Audit%'
+   OR title ILIKE '%Meta Ads Audit%'
+ORDER BY updated_at DESC;
+```
+
+These SOPs include:
+- **Meta Ads Audit Checklist** — 10 areas (account health, objectives, audiences, creatives, pixel/CAPI, structure, budget, fatigue, ROAS, catalog)
+- **Google Ads Audit 119-Item Checklist** — audiences, PMax/Display, location, campaign settings, conversions, ads, landing pages, plus more
+- **Audit Report Format and Pricing** — 7-section deliverable structure (Overview → Performance → Issues → Quick Wins → Strategic Recs → Revenue Impact → Next Steps)
+- **Industry ROAS Benchmarks and Case Study Match Matrix** — verticals with case studies for competitive positioning
+
+### Audit output structure
+
+Produce the 7-section client-ready audit defined in the Audit Report Format SOP:
+
+1. **Account Overview** — active campaigns, spend, structure
+2. **Performance Snapshot** — CPA/ROAS vs goal, industry benchmark comparison
+3. **Issues Found** — prioritized CRITICAL / MODERATE / MINOR
+4. **Quick Wins** — 3-5 high-impact immediate actions
+5. **Strategic Recommendations** — 30/60/90-day priorities
+6. **Revenue Impact Estimate** — dollar projections with confidence tags
+7. **Next Steps** — what Creekside handles, what the client provides
+
+### Audit Mode rules
+
+- Tone: client-facing plain language, no jargon, no hedging
+- Lead with wins before problems
+- Quantify every recommendation
+- Never promise specific ROAS/CPL unless backed by comparable case study
+- Always cite source case studies from the benchmark matrix, not just numbers
+- Internal version includes `[source: table, id]` citations and confidence tags
+- Write every audit finding to `ads_knowledge` as `knowledge_type: 'audit_finding'`
+
+### Audit pricing (for sales conversations)
+- Live audit on discovery call: **FREE** (trust-builder, part of sales process)
+- Formal written audit standalone: pricing discussed per engagement
+- Audit + campaign setup (onboarding): $1,000 onboarding fee + monthly management
+
+### Call routing (after audit, for sales handoff)
+- Meta Ads only → route to Cade
+- Google Ads or Google + Meta → route to Peterson
+
+---
+
 ## Reference: Meta Account ID Format
 
 Meta account IDs are formatted as `act_XXXXXXXXX`. When using PipeBoard tools, pass the full `act_XXXXXXXXX` format unless the tool specifies otherwise.
