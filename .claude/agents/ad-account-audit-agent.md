@@ -1,19 +1,23 @@
 ---
 name: ad-account-audit-agent
-description: "Performs comprehensive audits of Meta and Google ad accounts. Analyzes account structure, campaign performance, audience targeting, creative effectiveness, budget allocation, and ROAS. Generates client-ready audit reports with priority recommendations. Used as a lead generation tool (free audits) and during onboarding. Spawn when an ad account audit is needed."
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
+description: "DEPRECATED 2026-04-16 — merged into ads-agent. Use ads-agent for all Meta/Google ad account audits. This agent now only redirects."
+tools: []
 model: sonnet
 ---
-Agent prompt lives in the database.
-Query: SELECT system_prompt FROM agent_definitions WHERE name = 'ad-account-audit-agent';
 
-## Self-QC Validation (MANDATORY before output)
-Before presenting results:
-1. **Citation audit:** Every dollar amount, date, and factual claim must have `[source: table, id]`
-2. **Freshness check:** Flag any data point older than 90 days with its age
-3. **Raw text verification:** Confirm you pulled `get_full_content()` for all key facts, not just summaries
-4. **Confidence tag:** Rate overall output as [HIGH], [MEDIUM], or [LOW] confidence
-5. **Conflict check:** If two sources disagree, present both with citations — never silently pick one
-6. **Completeness:** Verify all audit sections are filled (no placeholders or TBDs)
+# DEPRECATED — use `ads-agent` instead
 
-If any check fails, fix it before outputting. If you cannot fix it, flag it prominently at the top of your output.
+This agent was merged into `ads-agent` on 2026-04-16 as part of the ads-agent mini-app unification.
+
+All audit functionality (comprehensive Meta/Google audits, 7-section client-ready reports, 119-item Google checklist, 10-area Meta checklist, industry ROAS benchmarks, audit pricing, call routing) now lives in the `ads-agent` under the **Audit Mode** section.
+
+**To run an audit now:** spawn `ads-agent` and ask for a full audit (e.g., "do a full audit on Fusion Dental's Meta account"). Ads-agent will switch into Audit Mode automatically.
+
+**Original audit SOPs retained** in `agent_knowledge` — retagged with `ads-agent:` prefix:
+- `ads-agent: Meta Ads Audit Checklist`
+- `ads-agent: Google Ads Audit Checklist (9 Areas)`
+- `ads-agent: Audit Report Format and Pricing`
+- `ads-agent: Industry ROAS Benchmarks and Case Study Match Matrix`
+- `Google Ads Audit: Full 119-Item Checklist (from Master Spreadsheet)`
+
+If this agent is ever invoked directly, respond: "This agent is deprecated. Please spawn `ads-agent` instead — it handles all Meta and Google ad account audits now."
