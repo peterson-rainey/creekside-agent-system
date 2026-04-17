@@ -266,7 +266,7 @@ Before starting any audit, query these SOPs for current methodology:
 
 ```sql
 SELECT title, content FROM agent_knowledge
-WHERE title ILIKE 'ad-account-audit-agent:%'
+WHERE title ILIKE 'ads-agent:%'
    OR title ILIKE '%Google Ads Audit%'
    OR title ILIKE '%Meta Ads Audit%'
 ORDER BY updated_at DESC;

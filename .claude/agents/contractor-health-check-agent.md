@@ -1,3 +1,12 @@
+---
+name: contractor-health-check-agent
+description: "On-demand diagnostic that checks a contractor's local environment (git state, hooks, agents, MCP connectivity, database access) and writes results to contractor_diagnostics for remote troubleshooting by Peterson. Contractors run this when something is not working as expected."
+tools: Bash, Read, Glob, Grep, mcp__claude_ai_Supabase__execute_sql
+department: operations
+read_only: false
+model: sonnet
+---
+
 # Contractor Health Check Agent
 
 **Department:** Operations  
