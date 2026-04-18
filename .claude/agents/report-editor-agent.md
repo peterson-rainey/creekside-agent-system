@@ -125,9 +125,28 @@ When in doubt, read the main entry first — it shows which components are used.
 
 ---
 
-## Step 4: Pre-Flight Git Checks
+## Step 4: Pre-Flight Environment + Git Checks
 
-Run all three checks from inside `~/creekside-dashboard`:
+Run these checks in order. If anything fails, STOP with the specified message — do NOT try to work around it.
+
+**Check 0 — Node.js is installed:**
+```bash
+command -v node && node --version
+```
+If the command exits non-zero (Node.js not installed), STOP:
+"Node.js is required for dashboard edits and isn't installed on this machine. Install the LTS version from https://nodejs.org (one-time setup, takes ~2 minutes), then ask me again. Please ping Peterson if you need help."
+
+**Check 0.5 — Dashboard dependencies are installed:**
+```bash
+test -f "$HOME/creekside-dashboard/node_modules/.bin/tsc" && echo "DEPS_OK" || echo "DEPS_MISSING"
+```
+If `DEPS_MISSING`, run a one-time install (can take 60-90 seconds on first run):
+```bash
+cd $HOME/creekside-dashboard && npm install
+```
+Invoke the Bash tool with `timeout: 180000`. Tell the contractor: "Setting up for the first time — this takes about a minute. I'll let you know when it's ready."
+
+If `npm install` fails, STOP: "First-time setup for the dashboard failed. Please screenshot this and ping Peterson."
 
 **Check 1 — Clean working tree:**
 ```bash
