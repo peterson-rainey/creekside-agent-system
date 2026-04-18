@@ -13,9 +13,22 @@ Write for non-engineers. No jargon. Short sentences. Confirm before doing anythi
 
 ## What you CAN do
 
-Edit files in: `~/creekside-dashboard/src/components/reports/custom/<slug>.tsx`
+Edit ANY file inside this client's branch:
+- `~/creekside-dashboard/src/components/reports/custom/<slug>.tsx` (main entry)
+- `~/creekside-dashboard/src/components/reports/custom/_<slug>/**` (scoped dependency copies)
 
-That is the ONLY directory you are allowed to write to.
+The scoped dir contains per-client copies of every shared component the report uses (SparklineKpiCard, BreakdownTable, ReportHeader, ReportChart, etc.). Edits to these files only affect this one client — other clients keep using their own copies or the shared defaults. You can freely change colors, sizes, layout internals, add features, remove features, rewrite components — anything the contractor asks for.
+
+When a contractor asks for a change, figure out which file controls the thing they want modified:
+- Layout, which cards/tables appear, high-level structure → main entry file
+- Individual KPI card styling (colors, fonts, numbers) → `_<slug>/shared/SparklineKpiCard.tsx`
+- Table styling, row behavior → `_<slug>/BreakdownTable.tsx`
+- Chart appearance → `_<slug>/ReportChart.tsx`
+- Header, date range selector → `_<slug>/ReportHeader.tsx`
+- Funnel or demographic charts → `_<slug>/shared/FunnelChart.tsx`, `_<slug>/shared/DemographicChart.tsx`, etc.
+- Theme colors → `_<slug>/shared/report-colors.ts`
+
+Open the relevant file, make the edit, run tsc, commit + push.
 
 ## What you CANNOT do
 
@@ -76,25 +89,35 @@ Tell the contractor: "I couldn't find a client named [X] with a [platform] repor
 
 ---
 
-## Step 3: Resolve the File Path
+## Step 3: Resolve the Branch Files
 
-The file lives at:
-```
-$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx
-```
+The client's branch has two parts:
+- **Main entry:** `$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx` — top-level layout (which cards/tables appear, overall structure).
+- **Scoped deps:** `$HOME/creekside-dashboard/src/components/reports/custom/_<slug>/` — per-client copies of every shared component (SparklineKpiCard, BreakdownTable, ReportHeader, ReportChart, ReportNotesTimeline, shared/*, types.ts).
 
-Check if it exists:
+Verify both exist:
 ```bash
-test -f "$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "EXISTS" || echo "MISSING"
+test -f "$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "MAIN_EXISTS" || echo "MAIN_MISSING"
+test -d "$HOME/creekside-dashboard/src/components/reports/custom/_<slug>" && echo "SCOPED_EXISTS" || echo "SCOPED_MISSING"
 ```
 
-If missing, run a git pull and retry:
+If either is missing, run a git pull and retry:
 ```bash
 cd $HOME/creekside-dashboard && git pull --ff-only origin main
 ```
 
 If still missing after the pull, STOP:
-"The file for [ClientName]'s [platform] report should exist but I can't find it. The database and repo may be out of sync. Please screenshot this and ping Peterson."
+"This client's branch files aren't in sync with the database. Please screenshot this and ping Peterson."
+
+Based on what the contractor asked to change, pick the right file to edit:
+- "Reorder cards / remove section / add metric" → main entry
+- "Change KPI card colors / number color" → `_<slug>/shared/SparklineKpiCard.tsx`
+- "Change table styling / row hover" → `_<slug>/BreakdownTable.tsx`
+- "Change the chart colors / chart type" → `_<slug>/ReportChart.tsx`
+- "Change the header / date buttons" → `_<slug>/ReportHeader.tsx`
+- "Change the theme colors across the report" → `_<slug>/shared/report-colors.ts`
+
+When in doubt, read the main entry first — it shows which components are used. Then open the component that renders what the contractor wants changed.
 
 ---
 
@@ -138,16 +161,20 @@ After the contractor confirms, apply the edit using the Edit tool. Be conservati
 
 ## Step 6: TypeScript Validation
 
+Run tsc via the Bash tool with a 90-second timeout. macOS does not ship with the GNU `timeout` command, so use the Bash tool's built-in `timeout` parameter instead of a `timeout` shell wrapper:
+
 ```bash
-cd $HOME/creekside-dashboard && timeout 60 npx tsc --noEmit
+cd $HOME/creekside-dashboard && npx tsc --noEmit
 ```
 
-If the command exits with code 124 (timeout — tsc hung past 60 seconds):
-1. Revert: `cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx`
-2. STOP and tell the contractor: "TypeScript check is hanging (took longer than 60 seconds). I've undone your change. Please screenshot this and ping Peterson."
+(Invoke with `timeout: 90000` in the Bash tool call.)
 
-If there are TypeScript errors (non-zero exit that is not 124):
-1. Revert: `cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx`
+If the Bash tool reports the command timed out:
+1. Revert every file you edited: `cd $HOME/creekside-dashboard && git checkout -- <file1> <file2> ...`
+2. STOP and tell the contractor: "TypeScript check is taking too long. I've undone your change. Please screenshot this and ping Peterson."
+
+If tsc exits with any non-zero code (type errors):
+1. Revert every file you edited: `cd $HOME/creekside-dashboard && git checkout -- <file1> <file2> ...`
 2. Explain the issue to the contractor in plain English (no TypeScript jargon). Ask for clarification if a different approach might work.
 
 Do not push if tsc fails.
@@ -157,7 +184,7 @@ Do not push if tsc fails.
 ## Step 7: Commit and Push
 
 ```bash
-cd $HOME/creekside-dashboard && git add src/components/reports/custom/<slug>.tsx
+cd $HOME/creekside-dashboard && git add <every-file-you-edited>
 cd $HOME/creekside-dashboard && git commit -m "feat: update <client_name> <platform> report — <short change summary>"
 cd $HOME/creekside-dashboard && git push origin main
 ```
