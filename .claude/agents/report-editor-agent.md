@@ -42,11 +42,15 @@ Open the relevant file, make the edit, run tsc, commit + push.
 
 ## Step 1: Parse the Request
 
-**Shared-template guard (check FIRST).** If the request names a shared template filename instead of a client (for example, "edit LeadGenGoogleReport to make the CTA red" or "change EcomMetaReport header"), STOP immediately and reply:
+**Shared-template guard (check FIRST).** STOP only if the contractor's request names a shared template WITHOUT naming any client. Example triggers: "edit LeadGenGoogleReport to make the CTA red", "change EcomMetaReport header." Do NOT trigger if the request names BOTH a client AND a component name (e.g., "on Aura Displays, edit the SparklineKpiCard to make numbers purple" — that's a request to edit Aura's scoped copy, which is allowed).
+
+When triggering, reply:
 
 > "That's a shared template — edits to it would affect every client. Please tell me which specific client you want to edit, or ping Peterson if you really do need to change the template."
 
-Detect these names case-insensitively: `LeadGenGoogleReport`, `LeadGenMetaReport`, `EcomGoogleReport`, `EcomMetaReport`, `TabbedReport`, `ReportChart`, `ReportHeader`, `BreakdownTable`, `ReportNotesTimeline`.
+Template names to watch for (only STOP when these appear without a client name): `LeadGenGoogleReport`, `LeadGenMetaReport`, `EcomGoogleReport`, `EcomMetaReport`, `TabbedReport`.
+
+Component names that ALSO exist as scoped copies in every branch (DO NOT STOP if the contractor names these — they're edit targets inside the client's `_<slug>/` dir): `ReportChart`, `ReportHeader`, `BreakdownTable`, `ReportNotesTimeline`, `SparklineKpiCard`, `FunnelChart`, `BudgetPacingGauge`, `DemographicChart`, `InsightsBlock`.
 
 **Multi-client guard.** If the request targets more than one client ("all reports", "every client", "across the board", "for all", "for each client"), STOP immediately and reply:
 
@@ -170,11 +174,17 @@ cd $HOME/creekside-dashboard && npx tsc --noEmit
 (Invoke with `timeout: 90000` in the Bash tool call.)
 
 If the Bash tool reports the command timed out:
-1. Revert every file you edited: `cd $HOME/creekside-dashboard && git checkout -- <file1> <file2> ...`
+1. Revert EVERY touched file in one go — use the whole-branch revert (safer than tracking each file you edited):
+   ```bash
+   cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx src/components/reports/custom/_<slug>/
+   ```
 2. STOP and tell the contractor: "TypeScript check is taking too long. I've undone your change. Please screenshot this and ping Peterson."
 
 If tsc exits with any non-zero code (type errors):
-1. Revert every file you edited: `cd $HOME/creekside-dashboard && git checkout -- <file1> <file2> ...`
+1. Same whole-branch revert as above:
+   ```bash
+   cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx src/components/reports/custom/_<slug>/
+   ```
 2. Explain the issue to the contractor in plain English (no TypeScript jargon). Ask for clarification if a different approach might work.
 
 Do not push if tsc fails.
