@@ -23,13 +23,23 @@ That is the ONLY directory you are allowed to write to.
 - NEVER run `branch-report` — that needs the Supabase service role key. Tell the contractor to ping Peterson.
 - NEVER use `git push --force`, `git reset --hard` except inside the rollback path described below.
 - NEVER skip the TypeScript check.
-- NEVER touch: `scripts/`, `.github/`, `package.json`, `tsconfig.json`, `next.config.ts`, `src/lib/supabase.ts`, `src/app/api/**`, `src/middleware.ts`. These are restricted paths. If the contractor asks for a change that requires touching them, stop and say "This change touches a restricted file. Please ping Peterson."
+- NEVER touch: `scripts/`, `.github/`, `package.json`, `package-lock.json`, `tsconfig.json`, `next.config.ts`, `src/lib/supabase.ts`, `src/app/api/**`, `src/middleware.ts`, `src/components/reports/LeadGenGoogleReport.tsx`, `src/components/reports/LeadGenMetaReport.tsx`, `src/components/reports/EcomGoogleReport.tsx`, `src/components/reports/EcomMetaReport.tsx`, `src/components/reports/TabbedReport.tsx`, `src/components/reports/types.ts`. These are restricted paths. If the contractor asks for a change that requires touching them, stop and say "This change touches a restricted file. Please ping Peterson."
 
 ---
 
 ## Step 1: Parse the Request
 
-Extract from the contractor's message:
+**Shared-template guard (check FIRST).** If the request names a shared template filename instead of a client (for example, "edit LeadGenGoogleReport to make the CTA red" or "change EcomMetaReport header"), STOP immediately and reply:
+
+> "That's a shared template — edits to it would affect every client. Please tell me which specific client you want to edit, or ping Peterson if you really do need to change the template."
+
+Detect these names case-insensitively: `LeadGenGoogleReport`, `LeadGenMetaReport`, `EcomGoogleReport`, `EcomMetaReport`, `TabbedReport`, `ReportChart`, `ReportHeader`, `BreakdownTable`, `ReportNotesTimeline`.
+
+**Multi-client guard.** If the request targets more than one client ("all reports", "every client", "across the board", "for all", "for each client"), STOP immediately and reply:
+
+> "I can only edit one client's report at a time. Which client do you want to start with?"
+
+Otherwise, extract from the contractor's message:
 - **Client name** (string, may be fuzzy)
 - **Platform** (`google` or `meta`)
 - **Change description** (what they want edited)
@@ -60,7 +70,7 @@ Tell the contractor: "I couldn't find a client named [X] with a [platform] repor
 **Multiple matches:** List them and ask the contractor to pick one.
 
 **Single match, `report_mode = 'default'`:** STOP. Tell the contractor:
-"[ClientName]'s [platform] report hasn't been set up for custom editing yet. Please ping Peterson and ask him to run `npm run branch-report` for this client, then come back and I can help you."
+"[ClientName]'s [platform] report isn't set up for custom editing yet. Please ping Peterson to get it ready, then come back and I can help you."
 
 **Single match, `report_mode = 'custom'`:** Proceed. Note the `custom_report_slug` value. Cite: `[source: reporting_clients, <id>]` [HIGH].
 
@@ -70,17 +80,17 @@ Tell the contractor: "I couldn't find a client named [X] with a [platform] repor
 
 The file lives at:
 ```
-/Users/petersonrainey/creekside-dashboard/src/components/reports/custom/<slug>.tsx
+$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx
 ```
 
 Check if it exists:
 ```bash
-test -f "/Users/petersonrainey/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "EXISTS" || echo "MISSING"
+test -f "$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "EXISTS" || echo "MISSING"
 ```
 
 If missing, run a git pull and retry:
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git pull --ff-only origin main
+cd $HOME/creekside-dashboard && git pull --ff-only origin main
 ```
 
 If still missing after the pull, STOP:
@@ -94,19 +104,19 @@ Run all three checks from inside `~/creekside-dashboard`:
 
 **Check 1 — Clean working tree:**
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git status --porcelain
+cd $HOME/creekside-dashboard && git status --porcelain
 ```
 If output is not empty, STOP: "There are unsaved changes in the dashboard folder. This might be a sync issue. Please screenshot this and ping Peterson."
 
 **Check 2 — On main branch:**
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git rev-parse --abbrev-ref HEAD
+cd $HOME/creekside-dashboard && git rev-parse --abbrev-ref HEAD
 ```
-If not `main`, STOP: "The dashboard is on the wrong branch. Please screenshot this and ping Peterson."
+If not `main`, STOP: "The dashboard folder is pointing at the wrong version. Please screenshot this and ping Peterson."
 
 **Check 3 — Pull latest:**
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git pull --ff-only origin main
+cd $HOME/creekside-dashboard && git pull --ff-only origin main
 ```
 If this fails, STOP with the error message and "Please screenshot this and ping Peterson."
 
@@ -129,12 +139,15 @@ After the contractor confirms, apply the edit using the Edit tool. Be conservati
 ## Step 6: TypeScript Validation
 
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && npx tsc --noEmit
+cd $HOME/creekside-dashboard && timeout 60 npx tsc --noEmit
 ```
-Timeout: 60 seconds.
 
-If there are TypeScript errors:
-1. Revert: `cd /Users/petersonrainey/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx`
+If the command exits with code 124 (timeout — tsc hung past 60 seconds):
+1. Revert: `cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx`
+2. STOP and tell the contractor: "TypeScript check is hanging (took longer than 60 seconds). I've undone your change. Please screenshot this and ping Peterson."
+
+If there are TypeScript errors (non-zero exit that is not 124):
+1. Revert: `cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx`
 2. Explain the issue to the contractor in plain English (no TypeScript jargon). Ask for clarification if a different approach might work.
 
 Do not push if tsc fails.
@@ -144,17 +157,17 @@ Do not push if tsc fails.
 ## Step 7: Commit and Push
 
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git add src/components/reports/custom/<slug>.tsx
-cd /Users/petersonrainey/creekside-dashboard && git commit -m "feat: update <client_name> <platform> report — <short change summary>"
-cd /Users/petersonrainey/creekside-dashboard && git push origin main
+cd $HOME/creekside-dashboard && git add src/components/reports/custom/<slug>.tsx
+cd $HOME/creekside-dashboard && git commit -m "feat: update <client_name> <platform> report — <short change summary>"
+cd $HOME/creekside-dashboard && git push origin main
 ```
 
 If push fails:
-1. Try rebase: `cd /Users/petersonrainey/creekside-dashboard && git pull --rebase origin main`
-2. Retry push: `cd /Users/petersonrainey/creekside-dashboard && git push origin main`
+1. Try rebase: `cd $HOME/creekside-dashboard && git pull --rebase origin main`
+2. Retry push: `cd $HOME/creekside-dashboard && git push origin main`
 3. If still fails, revert and STOP:
    ```bash
-   cd /Users/petersonrainey/creekside-dashboard && git reset --hard HEAD~1
+   cd $HOME/creekside-dashboard && git reset --hard HEAD~1
    ```
    Tell the contractor: "The change was saved locally but I couldn't push it live. I've undone the change so nothing is broken. Please screenshot this and ping Peterson."
 
@@ -167,7 +180,7 @@ Tell the contractor in plain language:
 
 Get and include the short commit SHA:
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git rev-parse --short HEAD
+cd $HOME/creekside-dashboard && git rev-parse --short HEAD
 ```
 
 ---
