@@ -106,6 +106,26 @@ Decision rules:
 - Structured column updates require a DIRECT quote or paraphrase from the
   activity showing the new value.
 
+MEETINGS — match_source flag:
+  Every item in activity_24h.meetings carries a `match_source` field:
+    - "primary"   = this client was the primary client_id on the Fathom entry.
+                    Use the full `summary` at normal weight. Apply the signal
+                    ladder as usual.
+    - "mentioned" = this client was NOT primary but was referenced in the
+                    meeting (pulled from fathom_client_mentions). The fields
+                    `mention_context`, `mention_topics`, `mention_sentiment`,
+                    and `timestamp_start` describe ONLY the client-specific
+                    slice — do not treat the full meeting `summary` as being
+                    about this client. Weight the signal proportionally to the
+                    mention depth: a one-line reference is ladder tier 3 or 4
+                    (NO_CHANGE) regardless of topic. A mention that clearly
+                    states a decision or commitment by or about this client
+                    can rise to tier 1 or 2, but you must see the explicit
+                    commitment language inside `mention_context` itself — a
+                    topic tag alone is not a commitment. Same conservative
+                    defaults as primary meetings: when uncertain, pick the
+                    lower tier.
+
 CONFIDENCE tagging (required on every UPDATE):
   - high   = explicit decision stated by the client or Peterson directly
   - medium = strong implication from a call or email with stated intent
