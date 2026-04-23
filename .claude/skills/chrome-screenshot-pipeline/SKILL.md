@@ -111,12 +111,14 @@ Every pipeline run that created tabs MUST close them. Skipping this leaves orpha
 # 1. List current tabs
 mcp__Claude_in_Chrome__tabs_context_mcp   (no args)
 
-# 2. Close each returned tabId one at a time
+# 2. Close each returned tabId one at a time, SEQUENTIALLY (one tool message per close)
 mcp__Claude_in_Chrome__tabs_close_mcp  tabId=<id>
 
 # 3. Chrome auto-removes the group when the last tab closes.
 #    No separate "delete group" call is needed.
 ```
+
+**Do NOT parallelize close calls.** Closing multiple tabIds in a single parallel tool-call message causes a race: the first close can trigger auto-removal before the second close lands, and the second returns `This session's tab group no longer exists`. Same rule as navigate+screenshot: sequential messages only.
 
 Run this in the success path AND in any error-handling path. If a run errors mid-way, the agent should still attempt to close any tabs it created before reporting the error.
 
@@ -125,6 +127,7 @@ Run this in the success path AND in any error-handling path. If a run errors mid
 - 3-tab group: closed middle tab → group persisted with 2 remaining. Closed out of order (last, then first) → group auto-removed when the final tab went
 - Idempotency: closing an already-closed `tabId` returns a clear error (`Tab <id> no longer exists`) — caller must catch, no crash
 - Rapid create/close cycles: each `tabs_context_mcp createIfEmpty:true` after a teardown returned a fresh `tabGroupId` (no reuse across cycles); zero residue between runs
+- Parallel-close race: two `tabs_close_mcp` calls in one tool message for different tabIds → first succeeds, second errors with `tab group no longer exists`. Must close sequentially.
 
 ## Measured reliability (2026-04-22)
 
