@@ -97,6 +97,7 @@ Priority order from the gap register:
 - **Don't use macOS screencapture.** It returns wallpaper silently when permissions aren't granted.
 - **Don't trust a single capture of an animated page.** Always retry on loader detection.
 - **Don't assume the extractor's PASS verdict is correct without spot-checking.** Especially on borderline variance values (280-320).
+- **Don't skip teardown.** Every run must close every MCP tab it opened (Step 4 in SKILL.md). Otherwise tab groups pile up across sessions.
 
 ## One-line summary for whoever picks this up
 

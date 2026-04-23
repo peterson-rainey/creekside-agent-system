@@ -103,6 +103,29 @@ python3 /Users/petersonrainey/scripts/screenshot_pipeline/capture_pipeline.py pi
 
 Writes a `manifest.json` with PASS/FAIL per capture. FAIL verdicts mean re-capture that URL.
 
+### Step 4 — Teardown (MANDATORY — close every tab in the MCP group)
+
+Every pipeline run that created tabs MUST close them. Skipping this leaves orphan tab groups that accumulate across sessions, clutter the user's Chrome, and break the "tab group per conversation" contract.
+
+```
+# 1. List current tabs
+mcp__Claude_in_Chrome__tabs_context_mcp   (no args)
+
+# 2. Close each returned tabId one at a time
+mcp__Claude_in_Chrome__tabs_close_mcp  tabId=<id>
+
+# 3. Chrome auto-removes the group when the last tab closes.
+#    No separate "delete group" call is needed.
+```
+
+Run this in the success path AND in any error-handling path. If a run errors mid-way, the agent should still attempt to close any tabs it created before reporting the error.
+
+**Stress-tested 2026-04-22:**
+- 1-tab group: close last tab → `Group is now empty (auto-removed)` → subsequent `tabs_context_mcp` returned `No tab group exists for this session`
+- 3-tab group: closed middle tab → group persisted with 2 remaining. Closed out of order (last, then first) → group auto-removed when the final tab went
+- Idempotency: closing an already-closed `tabId` returns a clear error (`Tab <id> no longer exists`) — caller must catch, no crash
+- Rapid create/close cycles: each `tabs_context_mcp createIfEmpty:true` after a teardown returned a fresh `tabGroupId` (no reuse across cycles); zero residue between runs
+
 ## Measured reliability (2026-04-22)
 
 | Scenario | Rate |

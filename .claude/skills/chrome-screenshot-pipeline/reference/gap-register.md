@@ -14,6 +14,7 @@ Known issues and open work, ranked by priority. Last updated: 2026-04-23.
 | Retry-on-loader pattern | 8/8 Google Ads pages captured cleanly within 3 retries |
 | Sequential tool-call pattern (navigate / poll / capture in separate messages) | Zero race conditions when followed |
 | **Multi-tab ambiguity detection (Gap 3 FIXED 2026-04-23)** | Three-case return (`ACTIVATED` / `NOT_FOUND` / `AMBIGUOUS`) tested end-to-end; all 3 paths verified against live Chrome |
+| **MCP tab group teardown (added 2026-04-22)** | Stress-tested with 4 scenarios: 1-tab close (auto-removes group), 3-tab group with partial + out-of-order close (group persists until last tab), close-already-closed (returns clear error, caller must catch), rapid create/close cycles (fresh `tabGroupId` each time, zero residue). Step 4 documented as mandatory in SKILL.md and README.md. |
 
 ## P0 — Will break in production
 
