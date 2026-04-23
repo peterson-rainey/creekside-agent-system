@@ -54,42 +54,42 @@ Each substep is its OWN tool-call message. No parallelism.
 mcp__Claude_in_Chrome__navigate → target URL
 ```
 
-**(b) Wait + poll DOM readiness**
-Wait 15 seconds for heavy SPA pages (Google Ads needs ~20s total before splash clears).
+**(b) Wait the configured settle time, then inject `ready_check.js`**
 
-Then inject this via `mcp__Claude_in_Chrome__javascript_tool`:
-```javascript
-(function domReady() {
-  if (document.readyState !== "complete") return {ready: false};
-  var spinners = ['svg.la-b', 'svg.la-g', 'svg.la-b-t',
-                  'mat-progress-bar[mode="indeterminate"]',
-                  '[aria-busy="true"]', '[class*="shimmer"]:not([hidden])'];
-  for (var i=0; i<spinners.length; i++) {
-    var els = document.querySelectorAll(spinners[i]);
-    for (var j=0; j<els.length; j++) {
-      var el = els[j], s = window.getComputedStyle(el);
-      if (el.offsetWidth > 0 && el.offsetHeight > 0 && s.display !== "none" && parseFloat(s.opacity) > 0.01) {
-        // Walk up for ancestor opacity
-        var p = el.parentElement, hidden = false;
-        while (p) { var ps = window.getComputedStyle(p);
-          if (parseFloat(ps.opacity) < 0.05 || ps.display === 'none') { hidden = true; break; }
-          p = p.parentElement;
-        }
-        if (!hidden) return {ready: false, reason: spinners[i]};
-      }
-    }
-  }
-  return {ready: true};
-})();
+The agent does NOT decide settle times or ready signals — those come from the deterministic config. Inject `/Users/petersonrainey/scripts/screenshot_pipeline/ready_check.js` via `javascript_tool`.
+
+The IIFE returns:
+```json
+{
+  "app": "google-ads" | "meta-ads-manage" | "meta-ads-audiences" | "generic",
+  "ready": true | false,
+  "reason": "...",            // only when ready=false
+  "ready_signal": "...",      // only when a button-text match was required
+  "url": "...",
+  "cold_settle_ms": 15000,    // wait this long on first navigate in fresh tab
+  "warm_settle_ms": 3000,     // wait this long on subsequent route changes
+  "max_retries": 3,
+  "retry_wait_ms": 5000
+}
 ```
+
+**Agent pattern:**
+1. Navigate
+2. Read the per-app `cold_settle_ms` from a previous `ready_check` response, or use `5000` as a conservative default for the first navigate
+3. Wait that long
+4. Inject `ready_check.js`
+5. If `ready=false` → wait `retry_wait_ms` and re-inject, up to `max_retries`
+6. If `ready=true` → screenshot
+
+To update settle times or add a new app: edit `capture_config.json`, then run `python3 build_ready_check.py` — which regenerates the CAPTURE_CONFIG block embedded in `ready_check.js`. Never edit the embedded block directly.
 
 **(c) Screenshot** — separate message, no parallel navigate
 ```
 mcp__Claude_in_Chrome__computer action=screenshot tabId=<id> save_to_disk=true
 ```
 
-**(d) If the capture looks like a loader, retry up to 3 times**
-After each attempt: if the returned image is a loader (the pipeline's verification step catches this), wait 5 seconds, re-capture.
+**(d) If the capture looks like a loader, the pipeline's post-capture verifier catches it**
+`capture_pipeline.py` (Step 3) flags variance<300 or size<30KB as FAIL. Re-capture those URLs. The `ready_check.js` first gate + variance verifier second gate together produced 100% classification accuracy across Google Ads and Meta runs to date.
 
 ### Step 3 — Extract + verify (once at end of session)
 
@@ -120,7 +120,17 @@ mcp__Claude_in_Chrome__tabs_close_mcp  tabId=<id>
 
 **Do NOT parallelize close calls.** Closing multiple tabIds in a single parallel tool-call message causes a race: the first close can trigger auto-removal before the second close lands, and the second returns `This session's tab group no longer exists`. Same rule as navigate+screenshot: sequential messages only.
 
-Run this in the success path AND in any error-handling path. If a run errors mid-way, the agent should still attempt to close any tabs it created before reporting the error.
+**Always wrap each close in error-tolerance.** Even sequential close calls can see `tab group no longer exists` — Chrome sometimes auto-removes the whole group as soon as the last-visible tab closes, even if the per-call response said "N tab(s) remain." The documented `Tab <id> no longer exists` and `tab group no longer exists` errors are NOT failures — they mean teardown is already complete. Swallow them and move on.
+
+Simplest robust pattern:
+```
+for each tabId:
+  call tabs_close_mcp(tabId)
+  if response.error contains "no longer exists": treat as success, break loop
+  else if response.error: log and continue
+```
+
+Run teardown in the success path AND in any error-handling path. If a run errors mid-way, the agent should still attempt to close any tabs it created before reporting the error.
 
 **Stress-tested 2026-04-22:**
 - 1-tab group: close last tab → `Group is now empty (auto-removed)` → subsequent `tabs_context_mcp` returned `No tab group exists for this session`
@@ -188,6 +198,19 @@ The per-app sections below document OBSERVED loading patterns and recommended *s
 - Most striking Meta data point: `/audiences` mid-load spinner frame had variance=6 (vs threshold 300) and size=17KB (vs threshold 30KB) — a 362-point gap below threshold. The variance verifier catches Meta's spinner state more decisively than Google Ads' splash.
 - Test output: `~/Desktop/meta_stress_test_2026_04_23/` (15 jpgs + manifest.json).
 
+### 2026-04-23 — Deterministic ready_check.js (per-app config lookup)
+Replaced AI-inferred settle times and ready signals with `capture_config.json` + URL-aware `ready_check.js`. The agent no longer has to remember "Meta /manage/* uses Review-and-publish; /audiences uses Create-audience; Google Ads needs 15s."
+
+Live validation — 4/4 tests PASS:
+- Google Ads experiments URL → `app=google-ads, ready=true, cold_settle_ms=15000`
+- Meta `/manage/campaigns` → `app=meta-ads-manage, ready=true, ready_signal="Updated", cold_settle_ms=5000`
+- Meta `/audiences` → `app=meta-ads-audiences, ready=true, ready_signal="Create audience"`
+- `https://example.com` → `app=generic, ready=false, reason="text length 129 < 200"` (fallback + fail path both work)
+
+Code audit PASS (2 LOW WARNs addressed: added `document` existence guard; noted `svg.la-*` selector age as fail-safe).
+
+Teardown note: observed another variant of the tab-group auto-removal cascade — even SEQUENTIAL close calls can see `tab group no longer exists` on the final tab because Chrome sometimes auto-removes the whole group once the last "activity" tab closes, not strictly on the last open tab. Updated Step 4 to require error-tolerant close loops (swallow `no longer exists` responses as success).
+
 ## Reference docs
 
 - `reference/gap-register.md` — open issues, priority ranking, what still needs work
@@ -197,8 +220,11 @@ The per-app sections below document OBSERVED loading patterns and recommended *s
 
 ## Key files
 
-- `/Users/petersonrainey/scripts/screenshot_pipeline/activate_chrome.scpt`
-- `/Users/petersonrainey/scripts/screenshot_pipeline/dom_ready_check.js`
-- `/Users/petersonrainey/scripts/screenshot_pipeline/strip_banner.js` (mostly superseded by crop-bottom)
-- `/Users/petersonrainey/scripts/screenshot_pipeline/capture_pipeline.py`
+- `/Users/petersonrainey/scripts/screenshot_pipeline/capture_config.json` — **canonical deterministic config**: per-app URL patterns, settle times, ready signals, retry params. Edit this file when adding a new app.
+- `/Users/petersonrainey/scripts/screenshot_pipeline/ready_check.js` — **generated** from `capture_config.json`; the agent injects this via Chrome MCP `javascript_tool` to get a deterministic `{app, ready, reason, cold_settle_ms, ...}` verdict
+- `/Users/petersonrainey/scripts/screenshot_pipeline/build_ready_check.py` — sync script: reads `capture_config.json`, regenerates the embedded `CAPTURE_CONFIG` block in `ready_check.js`. Run after any config edit.
+- `/Users/petersonrainey/scripts/screenshot_pipeline/capture_pipeline.py` — post-capture extract + variance+size verify + manifest
+- `/Users/petersonrainey/scripts/screenshot_pipeline/activate_chrome.scpt` — fallback for activating tabs outside the MCP group (rarely needed now that `tabs_create_mcp` is preferred)
+- `/Users/petersonrainey/scripts/screenshot_pipeline/dom_ready_check.js` — legacy generic check (superseded by `ready_check.js` for configured apps, still used for the generic fallback path)
+- `/Users/petersonrainey/scripts/screenshot_pipeline/strip_banner.js` — (mostly superseded by crop-bottom)
 - `/Users/petersonrainey/scripts/screenshot_pipeline/README.md`
