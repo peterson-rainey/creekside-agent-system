@@ -64,6 +64,7 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 17. **Content dates, not ingestion dates.** Use each table's content date column (e.g., `date`, `sent_at`, `call_date`) for chronological queries, NOT `created_at`. `created_at` is when the pipeline ingested the row.
 18. **Run it yourself.** Always attempt commands, scripts, and shell operations yourself. Only ask Peterson to run something when it genuinely requires his credentials or interactive input.
 19. **Promote universal corrections to CLAUDE.md.** When a correction applies to every session universally (not agent-specific or client-specific), add it to CLAUDE.md via ADMIN_MODE. Then delete the agent_knowledge entry. agent_knowledge is for searchable context — CLAUDE.md is for always-loaded rules.
+20. **Scheduled tasks: local routines first.** When building scheduled/recurring tasks, default to Claude Code routines (local cron via `/schedule`) before deploying to a server (Railway, etc.). Server deployment is still an option when local won't work (e.g., machine off, needs to run 24/7, requires server-side credentials), but always try the local routine first.
 
 ## QC Pattern (Mandatory)
 
