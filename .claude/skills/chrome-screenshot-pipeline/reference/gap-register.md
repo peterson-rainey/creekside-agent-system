@@ -91,21 +91,21 @@ Works for current Claude in Chrome extension. If UI changes, crop becomes wrong.
 
 ## Not tested (known unknowns)
 
-- Parallel captures of different tabs (race conditions unknown)
+- Parallel captures of different tabs (race conditions unknown — but parallel tab CLOSES confirmed to race, see Step 4 in SKILL.md)
 - Long sessions (>50 captures — JSONL size unknown)
 - Sessions with autocompact firing mid-run
 - Fresh Mac without prior tooling/permissions
-- Running the pipeline from a scheduled cron context
-- Any app other than Google Ads
+- Any app other than Google Ads and Meta Ads Manager
 - Firefox/Safari (Chrome MCP is Chrome-only)
 - Headless Chrome (would need different tooling entirely)
 
 ## Recommended priority order for next session
 
-1. **Fix Gap 3 multi-match in `activate_chrome.scpt`** (30 min, prevents wrong-client captures)
-2. **Profile Meta Ads / Square splash selectors** (1-2 hr each, broadens coverage)
-3. **Decision on Gap 1 scheduled runs: Chrome MCP vs Playwright?** (1 hr discussion + research)
-4. **Gap 2 auth expiry detection** (1 hr, needed for any multi-page batch)
-5. **Gap 8 capture orchestrator wrapper** (2-3 hr, makes retry reusable)
+1. ~~Gap 3 multi-match in `activate_chrome.scpt`~~ — ✅ FIXED 2026-04-22
+2. ~~Profile Meta Ads splash selectors~~ — ✅ DONE 2026-04-22 (partial Gap 4 — Meta behavior documented in SKILL.md "Per-app loading patterns")
+3. **Profile Square / Fathom / ClickUp** (1-2 hr each, broadens coverage beyond ad platforms)
+4. **Decision on Gap 1 scheduled runs: Chrome MCP vs Playwright?** — mostly resolved: scheduled tasks fire in a new session via `mcp__scheduled-tasks__create_scheduled_task`, pipeline runs same as manual trigger. Remaining unknowns: MCP tool permission prompts in scheduled sessions, auth expiry.
+5. **Gap 2 auth expiry detection** (1 hr, needed for any multi-page batch)
+6. **Gap 8 capture orchestrator wrapper** (2-3 hr, makes retry reusable)
 
 Everything below P1 can wait for real failures in the wild.

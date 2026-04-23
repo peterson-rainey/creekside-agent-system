@@ -131,7 +131,9 @@ Run this in the success path AND in any error-handling path. If a run errors mid
 
 ## Per-app loading patterns
 
-Different web apps have different unreliable states. The DOM ready check is a first gate; the **post-capture variance+size verifier is always authoritative**. If variance < 300 or size < 30KB, retry — regardless of what DOM-ready said.
+Different web apps have different unreliable states. The DOM ready check (`dom_ready_check.js`) is a first gate tuned for Google Ads + generic `[aria-busy]` / spinner selectors; it is the **same script for every app** and has not been forked per-platform. The **post-capture variance+size verifier is always authoritative**. If variance < 300 or size < 30KB, retry — regardless of what DOM-ready said.
+
+The per-app sections below document OBSERVED loading patterns and recommended *settle waits + retry expectations* — they do not correspond to app-specific code in `dom_ready_check.js`. Meta's ready signals ("Review and publish" / "Updated" / "Create audience" buttons) were identified during profiling but NOT added to the script; they're useful for ad-hoc DOM probes if you need to confirm ready state mid-capture, but the pipeline itself relies on fixed-wait + variance verification.
 
 ### Google Ads (`ads.google.com/aw/*`)
 - **Unreliable state:** full-page splash overlay (animated A logo at viewport center). `readyState=complete` returns true while the splash still obscures content.
@@ -151,15 +153,40 @@ Different web apps have different unreliable states. The DOM ready check is a fi
 - Use the existing `dom_ready_check.js` as-is. It covers readyState, generic spinners, `[aria-busy="true"]`, and skeleton classes.
 - Always rely on the post-capture variance+size verifier for authoritative pass/fail.
 
-## Measured reliability (2026-04-22)
+## Measured reliability
 
-| Scenario | Rate |
-|----------|------|
-| Chrome MCP captures what's on screen | 100% |
-| First-try clean on heavy SPA pages | ~50% |
-| First try + one retry | ~85% |
-| First try + up to 3 retries | 100% (8/8 pages) |
-| Pipeline correctly classifies PASS/FAIL | 100% (gap of 107 between highest FAIL variance 290 and lowest PASS variance 396) |
+| Scenario | Rate | Source |
+|----------|------|--------|
+| Chrome MCP captures what's on screen | 100% | 2026-04-22 Google Ads run |
+| First-try clean on heavy SPA pages | ~50% | 2026-04-22 Google Ads run |
+| First try + one retry | ~85% | 2026-04-22 Google Ads run |
+| First try + up to 3 retries | 100% (8/8 pages) | 2026-04-22 Google Ads run |
+| Pipeline correctly classifies Google Ads PASS/FAIL | 100% (gap of 107 between highest FAIL variance 290 and lowest PASS variance 396) | 2026-04-22 Google Ads run |
+| Pipeline correctly classifies Meta Ads Manager PASS/FAIL | 100% (gap of 362 between highest Meta FAIL variance 6 and lowest PASS variance 368) | 2026-04-22/23 Meta stress test |
+| Meta /manage/* warm-route capture reliability | 100% first-try (3/3 pages, variances 1523–1700) | 2026-04-22/23 Meta stress test |
+| Meta /manage/* cold-navigate reliability (5s settle) | 100% first-try (1/1 pages, variance 1546) | 2026-04-22/23 Meta stress test |
+| Meta /audiences cold-navigate reliability (5s settle, different app shell) | 100% first-try on settled frame (variance 368); mid-load spinner frame captured separately and correctly rejected | 2026-04-22/23 Meta stress test |
+
+## Stress test log
+
+### 2026-04-22 — Google Ads (original battle-hardening)
+8 audit-page types captured, 100% clean after up to 3 retries. Pipeline correctly rejected every loader frame. Full write-up in `chat_sessions` ID `86f11aac-e4eb-4134-a691-84698c58f013`.
+
+### 2026-04-22/23 — Gap 3 multi-tab fix
+`activate_chrome.scpt` rewritten to return `ACTIVATED` / `NOT_FOUND` / `AMBIGUOUS`. All three paths verified against live Chrome. Silent-wrong-client failure mode closed.
+
+### 2026-04-22/23 — MCP tab group lifecycle
+- 1-tab close → auto-remove: ✅
+- 3-tab partial + out-of-order close: ✅ (group persists until final tab)
+- Close-already-closed: returns clear error, no crash: ✅
+- Rapid create/close ×3: fresh `tabGroupId` each cycle, zero residue: ✅
+- **Parallel-close race:** deterministic on 2/2 reproductions. Closing two tabIds in one tool-call message → first succeeds ("1 tab(s) remain"), second errors ("tab group no longer exists"). Self-healing (both tabs still close), but sequential-close is the documented rule.
+
+### 2026-04-22/23 — Meta Ads Manager E2E (gap 4 partial)
+- 4 pages captured: `/manage/campaigns` (cold), `/manage/adsets` (warm), `/manage/ads` (warm), `/audiences` (cold, different app shell).
+- 15 captures extracted from session JSONL (4 Google Ads + 11 Meta). 12 PASS, 3 FAIL. All 3 FAILs were loader/intermediate frames correctly rejected.
+- Most striking Meta data point: `/audiences` mid-load spinner frame had variance=6 (vs threshold 300) and size=17KB (vs threshold 30KB) — a 362-point gap below threshold. The variance verifier catches Meta's spinner state more decisively than Google Ads' splash.
+- Test output: `~/Desktop/meta_stress_test_2026_04_23/` (15 jpgs + manifest.json).
 
 ## Reference docs
 
