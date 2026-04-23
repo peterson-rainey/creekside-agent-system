@@ -129,6 +129,28 @@ Run this in the success path AND in any error-handling path. If a run errors mid
 - Rapid create/close cycles: each `tabs_context_mcp createIfEmpty:true` after a teardown returned a fresh `tabGroupId` (no reuse across cycles); zero residue between runs
 - Parallel-close race: two `tabs_close_mcp` calls in one tool message for different tabIds → first succeeds, second errors with `tab group no longer exists`. Must close sequentially.
 
+## Per-app loading patterns
+
+Different web apps have different unreliable states. The DOM ready check is a first gate; the **post-capture variance+size verifier is always authoritative**. If variance < 300 or size < 30KB, retry — regardless of what DOM-ready said.
+
+### Google Ads (`ads.google.com/aw/*`)
+- **Unreliable state:** full-page splash overlay (animated A logo at viewport center). `readyState=complete` returns true while the splash still obscures content.
+- **Splash selectors:** `svg.la-b`, `svg.la-g`, `svg.la-b-t` (already in `dom_ready_check.js`)
+- **Recommended settle:** wait 10-15s after navigate, then poll DOM, then screenshot. Expect 1-2 retries on ~50% of heavy pages.
+- **Typical first-try success rate:** ~50% | After up to 3 retries: 100% (8/8 pages).
+
+### Meta Ads Manager (`adsmanager.facebook.com/adsmanager/*`) — profiled 2026-04-22
+- **Unreliable state varies by route:**
+  - `/manage/campaigns|adsets|ads`: skeleton top-bar on cold load (data table renders first, top-bar mounts ~2-3s later). Ready signal: visible button with text matching `/Review and publish|Updated|Create a view/`.
+  - `/audiences`: full-viewport spinner overlay on cold load. Textual content is minimal (`textLen ≈ 659`), ready signal is different — use visible `Create audience` button.
+- **Client-side routing:** After the first load, route changes within Ads Manager are near-instant (<10ms) because the app shell stays mounted. Only the first navigate needs the cold-load settle.
+- **Recommended settle:** wait 5s after first cold navigate; subsequent route changes need only 1-2s. The variance verifier catches the spinner-only state reliably.
+- **Does NOT use** Google Ads' `svg.la-*` classes or Angular Material progress bars.
+
+### Generic fallback (any authenticated web app)
+- Use the existing `dom_ready_check.js` as-is. It covers readyState, generic spinners, `[aria-busy="true"]`, and skeleton classes.
+- Always rely on the post-capture variance+size verifier for authoritative pass/fail.
+
 ## Measured reliability (2026-04-22)
 
 | Scenario | Rate |

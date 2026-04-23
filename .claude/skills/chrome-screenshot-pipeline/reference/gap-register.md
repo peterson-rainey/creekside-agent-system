@@ -36,15 +36,25 @@ Observed this session: Google logged out mid-work, required account-chooser clic
 ### Gap 3: Multi-tab ambiguity in activate_chrome.scpt — ✅ FIXED 2026-04-23
 Two-pass AppleScript rewrite: collect all matches first, return `ACTIVATED` only on single match, `AMBIGUOUS: N matches | <t1> || <t2> ...` on 2+ (no activation), `NOT_FOUND` on zero. Verified with live test — 4-tab match returned AMBIGUOUS with all four titles, unique needle ("South River Mortgage") returned ACTIVATED, nonsense needle returned NOT_FOUND. SKILL.md and README.md updated with the three-case contract.
 
-### Gap 4: Non-Google-Ads apps untested
+### Gap 4: Non-Google-Ads apps untested — ⚠️ PARTIAL (Meta profiled 2026-04-22)
 Pipeline tuned specifically to Google Ads splash (`svg.la-b`, 20s settle). Meta Ads, Square, Fathom, ClickUp all have different patterns.
 
-**Fix direction:** Profile each app once. For each:
+**Meta Ads Manager profiled 2026-04-22:**
+- `/manage/*` pages: skeleton top-bar on cold load; readyState=complete at t=immediate but top toolbar mounts ~2-3s later. Ready signal: visible "Review and publish" / "Updated" / "Create a view" buttons.
+- `/audiences` page: different pattern — full-viewport spinner on cold load, `textLen ≈ 659`. Ready signal: "Create audience" button.
+- Client-side routing: warm navigation <10ms; only first cold load needs settle.
+- No Angular Material / `svg.la-*` selectors — the existing `dom_ready_check.js` doesn't fully cover Meta, but the post-capture variance+size verifier catches the spinner state reliably.
+- Recommended: 5s wait after first cold Meta navigate; 1-2s for subsequent route changes.
+- Documented in SKILL.md "Per-app loading patterns" section.
+
+**Still unprofiled:** Square, Fathom, ClickUp.
+
+**Fix direction for remaining apps:** Same playbook as Meta:
 1. Navigate while watching DOM in real time
-2. Identify the splash selector
-3. Measure typical splash duration
-4. Add to `dom_ready_check.js` spinner selectors
-5. Update skill docs with per-app settle time recommendations
+2. Identify the splash / skeleton / spinner selector
+3. Measure typical settle duration on cold vs warm
+4. Add per-app ready-signal buttons to SKILL.md
+5. Rely on variance+size verifier as the authoritative gate
 
 ## P2 — Known but unlikely to bite in normal use
 
