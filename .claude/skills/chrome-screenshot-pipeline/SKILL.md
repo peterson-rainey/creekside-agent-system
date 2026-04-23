@@ -35,9 +35,15 @@ Via `mcp__Control_your_Mac__osascript`:
 ```
 osascript /Users/petersonrainey/scripts/screenshot_pipeline/activate_chrome.scpt "Perfect Parking"
 ```
-Returns `ACTIVATED: <title>` or `NOT_FOUND: <needle>`.
+Returns one of three values — the caller MUST branch on all three:
 
-**Gotcha:** If multiple tabs match the needle (e.g., "Google Ads" matches 3 client tabs), this currently silently picks the first. See `reference/gap-register.md` Gap 3. Use a unique needle like the specific client name.
+| Return | Meaning | Action |
+|--------|---------|--------|
+| `ACTIVATED: <title>` | Exactly one tab matched | Proceed to Step 2 |
+| `NOT_FOUND: <needle>` | Zero tabs matched | Ask user to open the tab, or refine needle. Do NOT screenshot. |
+| `AMBIGUOUS: N matches \| <t1> \|\| <t2> ...` | 2+ tabs matched. No activation happened. | Pick a unique substring from the titles (account ID, client name) and retry. Do NOT screenshot blindly — risk of capturing the wrong client's data. |
+
+**Rule:** Use a needle specific enough to uniquely identify ONE tab. Prefer client account IDs or full client names over generic strings like "Google Ads".
 
 ### Step 2 — For EACH capture
 

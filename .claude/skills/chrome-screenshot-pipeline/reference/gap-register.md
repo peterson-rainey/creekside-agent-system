@@ -1,6 +1,6 @@
 # Screenshot Pipeline — Gap Register
 
-Known issues and open work, ranked by priority. Last updated: 2026-04-22.
+Known issues and open work, ranked by priority. Last updated: 2026-04-23.
 
 ## ✅ Validated and working
 
@@ -13,6 +13,7 @@ Known issues and open work, ranked by priority. Last updated: 2026-04-22.
 | Variance + size verdict | Gap of 107 between highest FAIL (290) and lowest PASS (396) — threshold of 300 sits cleanly between |
 | Retry-on-loader pattern | 8/8 Google Ads pages captured cleanly within 3 retries |
 | Sequential tool-call pattern (navigate / poll / capture in separate messages) | Zero race conditions when followed |
+| **Multi-tab ambiguity detection (Gap 3 FIXED 2026-04-23)** | Three-case return (`ACTIVATED` / `NOT_FOUND` / `AMBIGUOUS`) tested end-to-end; all 3 paths verified against live Chrome |
 
 ## P0 — Will break in production
 
@@ -31,12 +32,8 @@ Observed this session: Google logged out mid-work, required account-chooser clic
 
 ## P1 — Silent bad captures, fix soon
 
-### Gap 3: Multi-tab ambiguity in activate_chrome.scpt
-Currently returns FIRST match when needle matches multiple tabs. Risk: screenshot wrong client's account.
-
-**Real incident:** Earlier this session I hit "South River Mortgage" instead of "Perfect Parking" because both tabs matched "ads.google.com".
-
-**Fix:** ~10 lines of AppleScript — collect all matches, return `AMBIGUOUS: N tabs — title1 | title2 | ...` when count > 1.
+### Gap 3: Multi-tab ambiguity in activate_chrome.scpt — ✅ FIXED 2026-04-23
+Two-pass AppleScript rewrite: collect all matches first, return `ACTIVATED` only on single match, `AMBIGUOUS: N matches | <t1> || <t2> ...` on 2+ (no activation), `NOT_FOUND` on zero. Verified with live test — 4-tab match returned AMBIGUOUS with all four titles, unique needle ("South River Mortgage") returned ACTIVATED, nonsense needle returned NOT_FOUND. SKILL.md and README.md updated with the three-case contract.
 
 ### Gap 4: Non-Google-Ads apps untested
 Pipeline tuned specifically to Google Ads splash (`svg.la-b`, 20s settle). Meta Ads, Square, Fathom, ClickUp all have different patterns.
