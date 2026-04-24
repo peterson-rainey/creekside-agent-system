@@ -88,6 +88,13 @@ When the same task is discussed multiple times in a call (common when revisiting
 
 If a task is discussed but then explicitly cancelled or superseded later in the call, do NOT include it. Only include the final decision.
 
+**Sub-task consolidation:** When multiple items are clearly sub-steps of one larger task, combine them into a single item. List the sub-steps in the Context field. Examples:
+- "Set up Google Analytics", "Set up Tag Manager", "Set up conversion tracking" → ONE item: "Set up full tracking stack (GA, GTM, conversion tracking)"
+- "Create ad account", "Set up pixel", "Connect page" → ONE item: "Complete Meta onboarding (ad account, pixel, page connection)"
+- "Send pricing", "Send proposal", "Send calendar link" → ONE item: "Send post-call package (pricing, proposal, calendar link)"
+
+The test: if sub-items can't be done independently or have no value independently, they belong together.
+
 ## Step 4: Determine Due Dates
 
 For EVERY action item, assign a specific calendar date. Use the call date as the anchor.
@@ -97,7 +104,7 @@ For EVERY action item, assign a specific calendar date. Use the call date as the
 2. **Relative timeframe:** "next week" → Monday of the following week. "This week" → Friday of the current week. "End of month" → last business day of the month. "In a couple days" → 2 business days from call date.
 3. **Urgency language:** "ASAP", "soon", "right away", "today", "first thing" → 1 business day from call date
 4. **Dependency-based:** "After we get access", "Once they send the assets" → mark as `BLOCKED: [dependency]` with no date
-5. **No timeframe mentioned:** → 5 business days from call date (default)
+5. **No timeframe mentioned:** → 5 business days from call date for tactical items (send email, set up tracking, adjust budget). For items that are clearly longer-horizon (build a prototype, develop a strategy, explore a new market), use 10 business days or mark as `[POSSIBLE]` if the timeline is genuinely unclear.
 
 **Business day calculation:** Skip Saturdays and Sundays. If a calculated date falls on a weekend, move to the next Monday.
 
@@ -113,6 +120,19 @@ For each action item, identify WHO is responsible based on the transcript contex
 - **Unclear** (when ownership wasn't explicitly discussed -- flag this)
 
 Do NOT assign ownership if it wasn't discussed. Mark as "Unclear -- needs assignment" instead.
+
+### Client-owned item filter:
+**Only include client-owned items if they directly block Creekside work.** Examples:
+- INCLUDE: "Grant Creekside read access to Google Ads account" (blocks our audit)
+- INCLUDE: "Send email list for lookalike audience" (blocks campaign launch)
+- INCLUDE: "Create CRM fields for conversion tracking integration" (blocks our tracking setup)
+- EXCLUDE: "Review pricing proposal and decide on hiring" (client's internal decision)
+- EXCLUDE: "Present Google Ads proposal to CEOs for budget approval" (their internal process)
+- EXCLUDE: "Talk to partner about increasing ad spend" (their internal discussion)
+- EXCLUDE: "Evaluate proposals and make hiring decision" (not our concern)
+
+For client-owned blockers, note them as sub-context under the Creekside item they block, not as separate items. Example:
+- "Set up conversion tracking for Google Ads via GoHighLevel" with Context noting: "Blocked until client grants CRM access -- VA follow-up needed"
 
 ## Step 6: Deduplicate Against Existing Work
 
