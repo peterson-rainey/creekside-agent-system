@@ -6,6 +6,8 @@
 !README.md
 !.claude/
 !.claude/**
+!admin-setup/
+!admin-setup/**
 
 # Never push secrets or old git data
 .claude/settings.local.json
