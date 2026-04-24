@@ -8,6 +8,17 @@ INPUT=$(cat)
 TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
 FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
 TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+# Normalize FILE to a repo-root-relative path so the stored script_path is
+# stable across worktrees (each worktree has its own absolute path). Strip
+# the working-tree prefix using git if available; fall back to the existing
+# value otherwise.
+REPO_ROOT=$(cd "$(dirname "$FILE")" 2>/dev/null && git rev-parse --show-toplevel 2>/dev/null)
+if [ -n "$REPO_ROOT" ] && [ -n "$FILE" ]; then
+  REL_FILE="${FILE#$REPO_ROOT/}"
+else
+  REL_FILE="$FILE"
+fi
 LOG_FILE="/tmp/skill-registry-sync-$(date +%Y%m%d).jsonl"
 
 log() {
@@ -45,11 +56,13 @@ SKILL_DESC=$(echo "$FRONTMATTER" | grep -E '^description:' | head -1 | sed 's/^d
 [ -z "$SKILL_DESC" ] && SKILL_DESC="(no description)"
 
 # Build JSON payload. Use jq for safe escaping of quotes/newlines in description.
+# script_path stores REL_FILE (repo-root-relative) so rows don't go stale when
+# the worktree that wrote them is cleaned up after merge.
 PAYLOAD=$(jq -cn \
   --arg et "skill" \
   --arg nm "$SKILL_NAME" \
   --arg de "$SKILL_DESC" \
-  --arg sp "$FILE" \
+  --arg sp "$REL_FILE" \
   --arg st "active" \
   '{entry_type: $et, name: $nm, description: $de, script_path: $sp, status: $st}')
 

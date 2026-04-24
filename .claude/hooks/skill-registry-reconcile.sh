@@ -46,10 +46,12 @@ for FILE in .claude/skills/*/SKILL.md; do
   FILES_FOUND="${FILES_FOUND}${SKILL_NAME}
 "
 
-  ABS_PATH="$(pwd)/$FILE"
+  # script_path stores a REPO-ROOT-RELATIVE path (FILE already is relative —
+  # the glob produces .claude/skills/<name>/SKILL.md). Do NOT prefix with
+  # $(pwd) — that would re-introduce worktree-specific absolute paths.
   PAYLOAD=$(jq -cn \
     --arg et "skill" --arg nm "$SKILL_NAME" --arg de "$SKILL_DESC" \
-    --arg sp "$ABS_PATH" --arg st "active" \
+    --arg sp "$FILE" --arg st "active" \
     '{entry_type: $et, name: $nm, description: $de, script_path: $sp, status: $st}')
 
   RESP=$(curl -s -w "\n%{http_code}" -X POST \
