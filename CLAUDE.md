@@ -45,7 +45,7 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 
 ## Core Rules (Every Agent, Every Turn)
 
-1. **Summaries find, raw text answers.** Always call `get_full_content(table, id)` or `get_full_content_batch(table, ids[])` before answering questions with dollar amounts, dates, commitments, or action items.
+1. **Source transparency.** Tag every claim with `[from: summary]` or `[from: raw_text]` so the user knows the depth of the source and can request deeper retrieval. Always use `get_full_content()` or `get_full_content_batch()` when the user requests it or when citing dollar amounts, dates, commitments, or action items.
 2. **Cite everything.** `[source: table_name, record_id]` on every factual claim from the database. Tag inferences as `[INFERRED]`.
 3. **Confidence tags.** `[HIGH]` = direct DB record. `[MEDIUM]` = derived/aggregated. `[LOW]` = inferred or data >90 days old.
 4. **Correction check first.** Query `agent_knowledge WHERE type='correction'` before answering — never repeat a corrected mistake.

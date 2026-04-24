@@ -35,7 +35,7 @@ ORDER BY f.meeting_date DESC;
 SELECT id, meeting_title, meeting_type, meeting_date, action_items, summary, participants
 FROM fathom_entries
 WHERE meeting_date >= NOW() - INTERVAL '48 hours'
-AND meeting_type IN ('discovery', 'client_call', 'client')
+AND meeting_type IN ('discovery', 'client_call', 'client', 'internal')
 ORDER BY meeting_date DESC;
 ```
 
@@ -59,6 +59,7 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 - Requests with a deliverable: "Can you send me...", "We'll need X from you"
 - Agreed next steps with a deliverable: "Let's schedule a follow-up for Friday", "The next step is to send the audit"
 - Conditional actions: "If X happens, then we should Y" (flag the condition)
+- **Two-part handoffs:** When a client commits to sending something AND a Creekside team member commits to acting on it, include the Creekside action with the client dependency as "Blocked by." Example: client says "I'll send you his email" and Peterson says "I'll add him to the Google Chat" = Creekside item "Add [person] to Google Chat" blocked by "client sending email."
 
 ### What is NOT an action item:
 - General discussion or opinions ("I think Meta is better for this")
@@ -71,44 +72,57 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 - **Ongoing processes already in motion for weeks.** If a recurring activity is discussed as something that's been happening regularly (e.g., "we've been sending biweekly reports"), do not extract it. Only extract if it's being established, changed, or explicitly re-committed to with a new scope.
 - **Vague aspirations without specific deliverables.** "We need to scale our campaigns" is NOT an action item -- there's no concrete outcome. "Raise Google Ads budget by $500/day" IS an action item. If the commitment is fuzzy and you can't identify a clear deliverable, either tag it `[POSSIBLE]` or exclude it entirely. When in doubt between excluding and tagging `[POSSIBLE]`, always choose `[POSSIBLE]` -- never silently drop a borderline item.
 - **"We should probably do X someday" statements.** Earnest but uncommitted future ideas are not action items unless someone takes explicit ownership and a timeframe.
+- **"Monitor X" or "review X" with no recipient or output.** Monitoring is not an action item unless there is a specific report, decision, or communication that must result from the monitoring. "Keep an eye on performance" = not an item. "Review performance and send weekly summary to Nicholas" = item.
+- **Future work for prospects who haven't signed.** On discovery/sales calls, do NOT extract hypothetical onboarding tasks, campaign setups, or service deliverables that would only happen IF the prospect becomes a client. Only extract what Creekside committed to doing NOW (send pricing, send recording, schedule follow-up, do an audit).
+- **Items the client would build/own that Creekside wouldn't follow up on.** If the client mentions building something internal (a landing page, an internal tool, a hiring process) that Creekside has no role in and wouldn't follow up on, exclude it entirely.
 
 ### Specific deliverable test:
 Before including any item, ask: "What is the tangible output?" If you can't name a specific document, configuration change, message, setup, or decision with a clear done/not-done state, it fails the test. Examples:
 - FAILS: "Look into scaling campaigns" (no deliverable)
 - FAILS: "Keep an eye on performance" (ongoing, no endpoint)
 - FAILS: "We should explore SEO" (no owner, no deliverable, no timeframe)
+- FAILS: "Review backend data accuracy" (who reviews? who receives the output? no deliverable)
 - PASSES: "Send pricing proposal to client via email" (deliverable: email with proposal)
 - PASSES: "Set up McKinney geo-targeting audience with 2-mile radius" (deliverable: configured audience)
 - PASSES: "Raise daily budget from $100 to $200 on branded campaign" (deliverable: budget change)
-- BORDERLINE → use `[POSSIBLE]`: "I'll look into that" (vague commitment, may or may not result in action)
+- BORDERLINE -> use `[POSSIBLE]`: "I'll look into that" (vague commitment, may or may not result in action)
+
+### `[POSSIBLE]` inclusion/exclusion rules:
+- **EXCLUDE `[POSSIBLE]` if:** The prospect hasn't signed AND the item has no due date AND it's hypothetical future work. These are not action items at all.
+- **KEEP `[POSSIBLE]` if:** The client IS signed AND the item involves real coordination or work that someone on the team should be aware of, even if the timeline is unclear. Better to assign it and let Peterson mark it complete than to miss it.
 
 ### Consolidation rules:
 When the same task is discussed multiple times in a call (common when revisiting a topic), consolidate into ONE action item. Use the most specific/final version of what was agreed. Example:
 - Early in call: "We should probably look at the landing page"
 - Later: "Yeah let's rebuild that landing page, I'll send you the copy by Friday"
-- → ONE item: "Rebuild landing page -- Peterson to send copy by Friday"
+- -> ONE item: "Rebuild landing page -- Peterson to send copy by Friday"
 
 If a task is discussed but then explicitly cancelled or superseded later in the call, do NOT include it. Only include the final decision.
 
 **Sub-task consolidation:** When multiple items are naturally part of the same deliverable, workflow, or handoff moment, combine them into a single item. List the sub-steps in the Context field. Examples:
-- "Set up Google Analytics", "Set up Tag Manager", "Set up conversion tracking" → ONE item: "Set up full tracking stack (GA, GTM, conversion tracking)"
-- "Create ad account", "Set up pixel", "Connect page" → ONE item: "Complete Meta onboarding (ad account, pixel, page connection)"
-- "Send pricing", "Send proposal", "Send calendar link" → ONE item: "Send post-call package (pricing, proposal, calendar link)"
+- "Set up Google Analytics", "Set up Tag Manager", "Set up conversion tracking" -> ONE item: "Set up full tracking stack (GA, GTM, conversion tracking)"
+- "Create ad account", "Set up pixel", "Connect page" -> ONE item: "Complete Meta onboarding (ad account, pixel, page connection)"
+- "Send pricing", "Send proposal", "Send calendar link" -> ONE item: "Send post-call package (pricing, proposal, calendar link)"
 
 The test: if the sub-items would naturally be completed together, reviewed together, or communicated together as a single package or setup, consolidate them.
+
+### Platform-specific items:
+When an ad strategy or creative change applies to MULTIPLE platforms (e.g., Google Ads AND Facebook/Meta), create SEPARATE action items for each platform. Each platform has a different person managing it and different implementation steps. Example:
+- "Test three new ad angles" on a client running both Google and Facebook = TWO items: one for Google Ads (assigned to Google Ads manager) and one for Facebook (assigned to Facebook/Meta manager).
 
 ## Step 4: Determine Due Dates
 
 For EVERY action item, assign a specific calendar date (or `TBD` for `[POSSIBLE]` items with genuinely unclear timelines). Use the call date as the anchor.
 
 **Date inference rules (in priority order):**
-1. **Explicit date mentioned:** "by Friday", "before April 30th", "next Tuesday" → calculate the actual date relative to the call date
-2. **Relative timeframe:** "next week" → Monday of the following week. "This week" → Friday of the current week. "End of month" → last business day of the month. "In a couple days" → 2 business days from call date.
-3. **Urgency language:** "ASAP", "soon", "right away", "today", "first thing" → 1 business day from call date
-4. **Dependency-based:** "After we get access", "Once they send the assets" → mark as `BLOCKED: [dependency]` with no date
-5. **No timeframe mentioned (tactical):** → 5 business days from call date for concrete tasks (send email, set up tracking, adjust budget)
-6. **No timeframe mentioned (longer-horizon):** → 10 business days from call date for bigger work (build a prototype, develop a strategy, create a roadmap)
-7. **`[POSSIBLE]` items with unclear timeline:** → `Due: TBD`
+1. **Explicit date mentioned:** "by Friday", "before April 30th", "next Tuesday" -> calculate the actual date relative to the call date
+2. **Relative timeframe:** "next week" -> Monday of the following week. "This week" -> Friday of the current week. "End of month" -> last business day of the month. "In a couple days" -> 2 business days from call date.
+3. **Urgency language:** "ASAP", "soon", "right away", "today", "first thing" -> 1 business day from call date
+4. **Dependency-based:** "After we get access", "Once they send the assets" -> mark as `BLOCKED: [dependency]` with no date
+5. **Discovery/sales calls (no timeframe mentioned):** -> **1 business day from call date.** Time kills deals. Anything promised on a sales call (pricing, strategy recommendations, follow-ups, recordings, case studies) should be sent the next business day unless explicitly stated otherwise.
+6. **Client calls (no timeframe, tactical):** -> 3 business days from call date for concrete tasks (send email, adjust budget, swap creative)
+7. **Client calls (no timeframe, longer-horizon):** -> 7 business days from call date for bigger work (build campaigns, develop strategy, create roadmap)
+8. **`[POSSIBLE]` items with unclear timeline:** -> `Due: TBD`
 
 **Business day calculation:** Skip Saturdays and Sundays. If a calculated date falls on a weekend, move to the next Monday.
 
@@ -116,14 +130,20 @@ Always show your work: `Due: 2026-04-28 (Peterson said "next week", call was 202
 
 ## Step 5: Identify Who
 
-For each action item, identify WHO is responsible based on the transcript context. Use the actual name spoken in the call. Categories:
+For each action item, identify WHO is responsible based on the transcript context. Use the actual name spoken in the call.
 
-- **Creekside team** (Peterson, Cade, or a named team member)
-- **Client** (use their actual name from the transcript)
-- **Both/Collaborative** (when it requires coordination)
-- **Unclear** (when ownership wasn't explicitly discussed -- flag this)
+**Assign to the specific team member, not just "Peterson" or "Creekside."** If the transcript mentions who handles a specific area, assign accordingly:
+- Facebook/Meta ads creative and management -> Lindsay (unless another name is mentioned)
+- Google Ads management -> the named Google Ads manager for that client
+- Conversion tracking -> Jordan (unless another name is mentioned)
+- CRM setup -> Denise (unless another name is mentioned)
 
-Do NOT assign ownership if it wasn't discussed. Mark as "Unclear -- needs assignment" instead.
+If no specific person is named for a task, assign to Peterson (as the default owner who will delegate).
+
+Categories:
+- **Creekside team** (Peterson, Cade, Lindsay, Jordan, or a named team member)
+- **Client** (use their actual name from the transcript) -- only when it blocks Creekside work
+- **Unclear** (when ownership wasn't explicitly discussed -- assign to Peterson as default)
 
 ### Client-owned item filter:
 **Only include client-owned items if they directly block Creekside work.** Client-owned blockers should NOT be listed as separate items. Instead, embed them in the Creekside item they block using the "Blocked by" field. Examples:
@@ -131,10 +151,11 @@ Do NOT assign ownership if it wasn't discussed. Mark as "Unclear -- needs assign
 - INCLUDE AS BLOCKER: "Grant Creekside read access to Google Ads account" (blocks our audit)
 - INCLUDE AS BLOCKER: "Send email list for lookalike audience" (blocks campaign launch)
 - INCLUDE AS BLOCKER: "Create CRM fields for conversion tracking integration" (blocks our tracking setup)
+- INCLUDE AS BLOCKER: "Send fractional CMO's email" (blocks Peterson adding them to Google Chat)
 - EXCLUDE ENTIRELY: "Review pricing proposal and decide on hiring" (client's internal decision)
 - EXCLUDE ENTIRELY: "Present Google Ads proposal to CEOs for budget approval" (their internal process)
-- EXCLUDE ENTIRELY: "Talk to partner about increasing ad spend" (their internal discussion)
-- EXCLUDE ENTIRELY: "Evaluate proposals and make hiring decision" (not our concern)
+- EXCLUDE ENTIRELY: "Build internal landing page routing tool" (their project, not ours)
+- EXCLUDE ENTIRELY: "Determine internal conversion metrics" (their homework, not our follow-up)
 
 ## Step 6: Deduplicate Against Existing Work
 
@@ -154,9 +175,9 @@ LIMIT 5;
 ```
 
 If a match is found:
-- If status is `completed` → EXCLUDE from output (already done)
-- If status is `pending`/`open`/`in_progress` → mark as `[ALREADY TRACKED]` in output but still include so Peterson can verify
-- If no match → new item
+- If status is `completed` -> EXCLUDE from output (already done)
+- If status is `pending`/`open`/`in_progress` -> mark as `[ALREADY TRACKED]` in output but still include so Peterson can verify
+- If no match -> new item
 
 ## Step 7: Output Format
 
@@ -186,14 +207,16 @@ Present results in this exact format:
 
 ## Rules
 
-1. **Catch everything with a deliverable.** Include every item that passes the specific deliverable test. For borderline items, use `[POSSIBLE]` rather than silently dropping them. A missed real item is worse than an extra `[POSSIBLE]`.
+1. **Catch everything with a deliverable.** Include every item that passes the specific deliverable test. For borderline items on signed clients, use `[POSSIBLE]` rather than silently dropping them. A missed real item is worse than an extra `[POSSIBLE]`. When in doubt, assign to Peterson and let him mark it complete.
 2. **One item per task.** Never list the same task twice. Consolidate all mentions and sub-tasks.
 3. **Specific dates only.** Never output "next week" or "ASAP" as a due date. Always calculate the actual date. Exception: `[POSSIBLE]` items with genuinely unclear timelines get `Due: TBD`.
 4. **Use actual names.** Never say "the client" if their name was used in the call.
 5. **Verb-first titles.** "Send copy for landing page" not "Landing page copy"
 6. **Quote the source.** Every item needs a brief context showing where in the call it came from.
-7. **Flag uncertainty liberally.** Use `[POSSIBLE]` whenever you had to think about whether to include something. Common cases: vague commitments ("I'll look into that"), thinking-out-loud suggestions, items where it's unclear if they were committed to or just discussed.
+7. **Flag uncertainty on signed clients only.** Use `[POSSIBLE]` for borderline items where the client IS signed and coordination matters. Do NOT use `[POSSIBLE]` for hypothetical future work on unsigned prospects.
 8. **No writes.** You output text only. Never INSERT, UPDATE, or modify any table.
 9. **Process one call at a time.** If given multiple calls, output a separate section for each.
 10. **Full transcript required.** If the transcript is missing or truncated, say so explicitly. Never pretend you analyzed what you didn't read.
-11. **No client internal items.** Never include items that are purely the client's internal process (hiring decisions, budget approvals, internal meetings). Only include client actions that block Creekside deliverables, and embed those as "Blocked by" on the Creekside item.
+11. **No client internal items.** Never include items that are purely the client's internal process (hiring decisions, budget approvals, internal meetings, building their own tools). Only include client actions that block Creekside deliverables, and embed those as "Blocked by" on the Creekside item.
+12. **Separate items per platform.** When a creative or strategy change applies to both Google Ads and Facebook/Meta, create separate items for each platform with the correct assignee.
+13. **Discovery call speed.** Default due date on discovery/sales calls is 1 business day. Time kills deals.
