@@ -112,19 +112,27 @@ Parameters:
 
 ## Step 5B: Google Ads Data Pull
 
-Use the dashboard API via WebFetch. Base URL: `https://creekside-dashboard.up.railway.app`
+Use PipeBoard MCP's Google Ads connector. MCP namespace: `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — fetch schemas via `ToolSearch` before calling).
+
+See the `ads-connector` skill for full routing, the `ads-ui-navigation` skill for UI fallback, and the read-only `google_ads` Python pipeline in `creekside-pipelines/pipelines/google_ads/` for historical trend queries against Supabase.
 
 ### Get account list:
 ```
-WebFetch: GET https://creekside-dashboard.up.railway.app/api/google/accounts
+list_google_ads_customers
 ```
+Returns every Creekside-accessible account; all active clients live under MCC `568-042-4954`. Filter by `can_query_metrics: true` before calling any metrics tool (MCC-level entries return false).
 
 ### Get performance data:
-```
-WebFetch: GET https://creekside-dashboard.up.railway.app/api/google/insights?account_id=[id]&date_range=last_30_days
-```
+Use the purpose-built read tools (each takes a `customer_id`, returned by `list_google_ads_customers`). Customer IDs are 10-digit numerics (no dashes, no `act_` prefix):
+- `get_google_ads_campaign_metrics` — campaign-level spend/impressions/clicks/conversions
+- `get_google_ads_ad_group_metrics` — ad group breakdown
+- `get_google_ads_keyword_metrics` — keyword-level
+- `get_google_ads_search_terms_report` — actual queries triggering ads
+- `execute_google_ads_gaql_query` — arbitrary GAQL when the structured tools aren't enough
 
-The `google_account_ids` from `find_client()` gives you the account IDs to pass.
+The `google_account_ids[]` from `find_client()` gives you the customer IDs to pass.
+
+**Legacy note:** earlier versions of this agent used a dashboard WebFetch at `creekside-dashboard.up.railway.app/api/google/*`. That path has been retired — use the Google Ads MCP tools above instead.
 
 ---
 

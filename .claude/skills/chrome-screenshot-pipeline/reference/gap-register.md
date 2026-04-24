@@ -1,0 +1,112 @@
+# Screenshot Pipeline — Gap Register
+
+Known issues and open work, ranked by priority. Last updated: 2026-04-23.
+
+## ✅ Validated and working
+
+| Piece | Evidence |
+|-------|----------|
+| Chrome MCP viewport capture | 36 captures in pipeline_test3, zero wallpaper |
+| Tool-name filter (only MCP screenshots extracted) | No PDF renders or other images leaked into extract output |
+| Banner crop (80px bottom) | All 36 captures = 1568×658, banner gone |
+| MD5 full-content dedup | Unique frames preserved, exact duplicates dropped |
+| Variance + size verdict | Gap of 107 between highest FAIL (290) and lowest PASS (396) — threshold of 300 sits cleanly between |
+| Retry-on-loader pattern | 8/8 Google Ads pages captured cleanly within 3 retries |
+| Sequential tool-call pattern (navigate / poll / capture in separate messages) | Zero race conditions when followed |
+| **Multi-tab ambiguity detection (Gap 3 FIXED 2026-04-23)** | Three-case return (`ACTIVATED` / `NOT_FOUND` / `AMBIGUOUS`) tested end-to-end; all 3 paths verified against live Chrome |
+| **MCP tab group teardown (added 2026-04-22)** | Stress-tested with 4 scenarios: 1-tab close (auto-removes group), 3-tab group with partial + out-of-order close (group persists until last tab), close-already-closed (returns clear error, caller must catch), rapid create/close cycles (fresh `tabGroupId` each time, zero residue). Step 4 documented as mandatory in SKILL.md and README.md. |
+| **Deterministic per-app config (added 2026-04-23)** | `capture_config.json` (canonical) + `ready_check.js` (generated mirror) + `build_ready_check.py` (sync). Replaces AI-inferred settle times + ready signals. 4/4 live tests PASS: correct URL→app match, correct settle times returned, correct ready signals (or descriptive fail reason), generic fallback works. Code audit PASS with LOW WARNs addressed. |
+
+## P0 — Will break in production
+
+### Gap 1: Scheduled/unattended runs not tested
+The pipeline has only run inside an active Claude session with a user at the computer. For Railway cron agents (overnight audits), the Chrome MCP extension needs a running Chrome instance. If Mac sleeps or Chrome is closed, no captures.
+
+**Fix direction:**
+- Option A: Document that scheduled runs require Chrome open + Mac awake
+- Option B: Pivot to Playwright with `storageState` for truly unattended runs
+- Needs decision + testing
+
+### Gap 2: Auth session expiry mid-batch
+Observed this session: Google logged out mid-work, required account-chooser click. Autonomous agents have no human to click.
+
+**Fix direction:** Pre-capture auth check (poll a known protected URL, verify logged in). For true autonomous: Playwright `storageState`.
+
+## P1 — Silent bad captures, fix soon
+
+### Gap 3: Multi-tab ambiguity in activate_chrome.scpt — ✅ FIXED 2026-04-23
+Two-pass AppleScript rewrite: collect all matches first, return `ACTIVATED` only on single match, `AMBIGUOUS: N matches | <t1> || <t2> ...` on 2+ (no activation), `NOT_FOUND` on zero. Verified with live test — 4-tab match returned AMBIGUOUS with all four titles, unique needle ("South River Mortgage") returned ACTIVATED, nonsense needle returned NOT_FOUND. SKILL.md and README.md updated with the three-case contract.
+
+### Gap 4: Non-Google-Ads apps untested — ⚠️ PARTIAL (Meta profiled 2026-04-22)
+Pipeline tuned specifically to Google Ads splash (`svg.la-b`, 20s settle). Meta Ads, Square, Fathom, ClickUp all have different patterns.
+
+**Meta Ads Manager profiled 2026-04-22:**
+- `/manage/*` pages: skeleton top-bar on cold load; readyState=complete at t=immediate but top toolbar mounts ~2-3s later. Ready signal: visible "Review and publish" / "Updated" / "Create a view" buttons.
+- `/audiences` page: different pattern — full-viewport spinner on cold load, `textLen ≈ 659`. Ready signal: "Create audience" button.
+- Client-side routing: warm navigation <10ms; only first cold load needs settle.
+- No Angular Material / `svg.la-*` selectors — the existing `dom_ready_check.js` doesn't fully cover Meta, but the post-capture variance+size verifier catches the spinner state reliably.
+- Recommended: 5s wait after first cold Meta navigate; 1-2s for subsequent route changes.
+- Documented in SKILL.md "Per-app loading patterns" section.
+
+**Still unprofiled:** Square, Fathom, ClickUp.
+
+**Fix direction for remaining apps:** Same playbook as Meta:
+1. Navigate while watching DOM in real time
+2. Identify the splash / skeleton / spinner selector
+3. Measure typical settle duration on cold vs warm
+4. Add per-app ready-signal buttons to SKILL.md
+5. Rely on variance+size verifier as the authoritative gate
+
+## P2 — Known but unlikely to bite in normal use
+
+### Gap 5: Chrome full-screen mode
+AppleScript `set index of w to 1` doesn't switch macOS Spaces. Full-screen Chrome on a different Space silently fails activation.
+
+**Mitigation:** Document "don't run capture batches while Chrome is full-screen," OR add bounds check (full-screen window size === display size → error).
+
+### Gap 6: Autocompact chain
+Investigated — autocompact files land in `subagents/agent-acompact-*.jsonl` under current project dir. Pipeline's `**/subagents/agent-*.jsonl` glob already catches them. **Working correctly**, no fix needed.
+
+### Gap 7: Variance threshold calibrated for Google Ads only
+Current: 300. Other apps may have different variance distributions (darker UIs lower, lighter UIs higher).
+
+**Fix direction:** Per-app threshold config, OR relative threshold (compare to known-good baseline).
+
+## P3 — Nice to have
+
+### Gap 8: Retry loop is SOP, not reusable code
+Agents must implement retry themselves (documented but not wrapped). A Python orchestrator wrapper would be cleaner.
+
+**Blocker:** Would need Python access to Chrome MCP, which requires Claude Agent SDK. Worth exploring.
+
+### Gap 9: Banner crop hardcoded at 80px
+Works for current Claude in Chrome extension. If UI changes, crop becomes wrong.
+
+**Fix direction:** Make crop configurable per-app, OR detect banner dynamically via edge color analysis.
+
+### Gap 10: DOM-ready heuristics imperfect
+- Text length check (>200 chars) could false-positive on sparse valid pages
+- `[class*="loading"]` wildcard could match persistent nav elements on some apps
+
+**Mitigation already exists:** retry-on-variance-fail catches these. DOM-ready is just the first gate.
+
+## Not tested (known unknowns)
+
+- Parallel captures of different tabs (race conditions unknown — but parallel tab CLOSES confirmed to race, see Step 4 in SKILL.md)
+- Long sessions (>50 captures — JSONL size unknown)
+- Sessions with autocompact firing mid-run
+- Fresh Mac without prior tooling/permissions
+- Any app other than Google Ads and Meta Ads Manager
+- Firefox/Safari (Chrome MCP is Chrome-only)
+- Headless Chrome (would need different tooling entirely)
+
+## Recommended priority order for next session
+
+1. ~~Gap 3 multi-match in `activate_chrome.scpt`~~ — ✅ FIXED 2026-04-22
+2. ~~Profile Meta Ads splash selectors~~ — ✅ DONE 2026-04-22 (partial Gap 4 — Meta behavior documented in SKILL.md "Per-app loading patterns")
+3. **Profile Square / Fathom / ClickUp** (1-2 hr each, broadens coverage beyond ad platforms)
+4. **Decision on Gap 1 scheduled runs: Chrome MCP vs Playwright?** — mostly resolved: scheduled tasks fire in a new session via `mcp__scheduled-tasks__create_scheduled_task`, pipeline runs same as manual trigger. Remaining unknowns: MCP tool permission prompts in scheduled sessions, auth expiry.
+5. **Gap 2 auth expiry detection** (1 hr, needed for any multi-page batch)
+6. **Gap 8 capture orchestrator wrapper** (2-3 hr, makes retry reusable)
+
+Everything below P1 can wait for real failures in the wild.
