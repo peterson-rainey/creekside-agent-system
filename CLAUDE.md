@@ -76,7 +76,7 @@ Follow this sequence on every substantive interaction. Do not reconstruct from i
 4. **Dual database search** — run `search_all()` AND `keyword_search_all()` in parallel.
 5. **MCP real-time layer** — query applicable MCP sources (Gmail, Drive, ClickUp, Calendar, Slack) regardless of whether the database returned results. Pipelines sync each morning, so database data is stale by afternoon. MCP is the current-state layer.
 6. **External knowledge** — what does the ceiling look like? Best practices, industry context, what the system is capable of beyond what's currently stored. The database is the floor, not the answer.
-7. **Full content retrieval** — `get_full_content()` or `get_full_content_batch()` before citing dollar amounts, dates, commitments, or action items. Summaries find, raw text answers.
+7. **Source transparency** — tag every claim with whether it came from a summary or raw text. Use `[from: summary]` or `[from: raw_text]` so the user can decide if deeper retrieval is worth it. When raw text was not pulled, the user can ask to dig deeper. Always use `get_full_content()` or `get_full_content_batch()` when the user requests it or when you are pulling dollar amounts, dates, commitments, or action items.
 8. **Cite, tag, conflicts** — `[source: table_name, record_id]` on every fact. `[HIGH]`/`[MEDIUM]`/`[LOW]` confidence. Show both sides of any conflict.
 9. **Save discoveries** — write findings to `client_context_cache` or `agent_knowledge` automatically. Never ask, never let context die with the session.
 
