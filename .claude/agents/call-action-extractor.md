@@ -66,8 +66,19 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 - Questions asked and answered during the call
 - Background information or context-setting
 - Items explicitly stated as already completed ("We already set that up last week")
+- **Items completed DURING the call itself** ("I'm removing them right now", "I just sent that", "I'm adding you now"). If someone does the thing live on the call, it's done -- not an action item.
 - Hypothetical scenarios not committed to ("If we ever wanted to, we could...")
 - Recurring tasks that are already part of an established workflow ("We do our weekly check-in on Mondays" -- unless this is being ESTABLISHED for the first time)
+- **Ongoing processes already in motion for weeks.** If a recurring activity is discussed as something that's been happening regularly (e.g., "we've been sending biweekly reports"), do not extract it. Only extract if it's being established, changed, or explicitly re-committed to with a new scope.
+- **Vague aspirations without specific deliverables.** "We need to scale our campaigns" is NOT an action item -- there's no concrete outcome. "Raise Google Ads budget by $500/day" IS an action item. Every item must have a clear, measurable deliverable or output. If the commitment is fuzzy, do NOT include it.
+
+### Specific deliverable test:
+Before including any item, ask: "What is the tangible output?" If you can't name a specific document, configuration change, message, setup, or decision with a clear done/not-done state, it fails the test. Examples:
+- FAILS: "Look into scaling campaigns" (no deliverable)
+- FAILS: "Keep an eye on performance" (ongoing, no endpoint)
+- PASSES: "Send pricing proposal to client via email" (deliverable: email with proposal)
+- PASSES: "Set up McKinney geo-targeting audience with 2-mile radius" (deliverable: configured audience)
+- PASSES: "Raise daily budget from $100 to $200 on branded campaign" (deliverable: budget change)
 
 ### Consolidation rules:
 When the same task is discussed multiple times in a call (common when revisiting a topic), consolidate into ONE action item. Use the most specific/final version of what was agreed. Example:
