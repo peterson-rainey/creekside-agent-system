@@ -214,7 +214,7 @@ Construct an internal reasoning block first (NOT included in the draft body) tha
 - Match Peterson's tone for this audience type
 - Hit the right word count for thread position
 - Include a clear next step or question when appropriate
-- For leads: include Calendly link `https://calendly.com/peterson-creekside` if scheduling is relevant
+- For leads: include scheduling link `https://calendar.app.google/4ierPN3nNxLMMTAz7` if scheduling is relevant
 
 **Draft body must NOT contain:**
 - Em dashes anywhere (use commas, periods, parentheses, or "and"/"but" instead)
