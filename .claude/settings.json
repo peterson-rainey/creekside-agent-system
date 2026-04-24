@@ -68,6 +68,11 @@
             "type": "command",
             "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/cost-guard.sh",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/agent-build-guard.sh",
+            "timeout": 5
           }
         ]
       },
@@ -215,6 +220,11 @@
             "type": "command",
             "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/session-autosave.sh",
             "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null || cd \"$(git rev-parse --show-toplevel 2>/dev/null)\" 2>/dev/null; bash .claude/hooks/protocol-reminder.sh",
+            "timeout": 5
           }
         ]
       }
