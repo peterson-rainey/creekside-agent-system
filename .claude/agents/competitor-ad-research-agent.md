@@ -102,7 +102,11 @@ Compile a **Client Brief** with these fields before moving to Phase 1:
 
 ## Phase 1: Google Ads Transparency Center Research
 
-The Google Ads Transparency Center lives at `https://adstransparency.google.com/`. It lets you search by advertiser name and see all their active Google Ads.
+The Google Ads Transparency Center lives at `https://adstransparency.google.com/`. It lets you search by advertiser name and see all their active Google Ads. **This is the PRIMARY data source for this agent. The majority of ad copy should come from here.**
+
+### Volume Target
+
+**Minimum: 15 ads per competitor, 100+ total ads across all competitors.** The Transparency Center typically shows dozens to hundreds of ads per advertiser. You MUST scroll through and extract them all -- do not stop after the first page of results. If a competitor has 50 ads showing, record all 50. More data = better pattern detection.
 
 ### How to use it:
 
@@ -118,34 +122,75 @@ The Google Ads Transparency Center lives at `https://adstransparency.google.com/
    d. Use `read_page` or `get_page_text` to extract the ad content
    e. Look for: headlines, descriptions, display URLs, ad formats (search vs display vs video)
    f. Record everything -- exact copy, not paraphrased
+   g. **SCROLL AND PAGINATE.** Use `computer action=scroll` repeatedly to load more ads. Keep scrolling until no new ads appear. The Transparency Center lazy-loads content -- if you only read the first screen, you're missing 80%+ of the data.
+   h. **Click into individual ads** when possible to see the full ad text (headlines, descriptions, sitelinks, callouts). The card view often truncates.
+   i. **Record the ad count** for each competitor -- this is a data quality signal (more ads running = bigger budget = more testing = more signal).
 
 **Important navigation notes:**
 - The Transparency Center may show a region selector -- default to United States or the specified location
-- Filter to "Search" ad format when possible to focus on search ads
-- If a competitor name returns no results, try their domain name or brand variations
-- Scroll down to load more ads if available -- use `computer action=scroll`
+- Filter to "Search" ad format when possible to focus on search ads, but ALSO check Display and Video for messaging angle diversity
+- If a competitor name returns no results, try their domain name, brand variations, or parent company name
 - Take note of the DATE RANGE of ads shown -- recent = likely still performing
+- **If a competitor has 50+ ads, prioritize extracting the search ads first, then display/video**
 
 ### If no competitors were provided:
-Use WebSearch to search for "[industry] + [location]" and note which businesses are running Google Ads (the sponsored results at the top). Collect 3-5 competitor names, then research each in the Transparency Center.
+Use WebSearch to search for "[industry] + [location]" and note which businesses are running Google Ads (the sponsored results at the top). Collect **5-10 competitor names** (not 3-5), then research each in the Transparency Center. More competitors = richer pattern analysis.
+
+### Fallback if Transparency Center fails for a competitor:
+If the Transparency Center returns no results or fails to load for a specific competitor, try:
+1. Search their exact domain (e.g., "drdanib.com" instead of "Dr. Dani B")
+2. Search their Google My Business name exactly as it appears
+3. If still nothing, note "0 ads found in Transparency Center" for that competitor -- do NOT substitute website copy as ad copy. Website copy and ad copy are different things.
 
 ---
 
 ## Phase 2: Google Search Keyword Research
 
-For each target keyword, do a Google Search and capture what ads are actually showing.
+For each target keyword, do a Google Search and capture what ads AND top organic results are actually showing.
+
+### Volume Target
+
+**Search at least 3 variations per keyword.** For each base keyword, also search:
+- [keyword] + [city] (e.g., "porcelain veneers irvine")
+- [keyword] + [region] (e.g., "porcelain veneers orange county")
+- [keyword] + [qualifier] (e.g., "best porcelain veneers", "porcelain veneers cost", "porcelain veneers near me")
+- Related long-tail variations (e.g., "how long do porcelain veneers last", "porcelain veneers vs composite")
+
+This means if you're given 2 keywords, you should be running **at least 8-12 unique searches**, capturing every ad and top organic result from each.
+
+### How to search:
 
 1. Navigate to `https://www.google.com/`
 2. Wait 3 seconds, then inject `ready_check.js`. If `ready=false`, wait and retry.
 3. Inject `dismiss_popups.js` to clear any cookie/consent banners.
-4. Search for each keyword (add location if relevant, e.g., "dental implants dallas tx")
+4. Search for each keyword variation (add location if relevant)
 5. Read the page content and extract:
-   - **Sponsored results** (top and bottom): exact headlines, descriptions, sitelinks, callouts
-   - **Which advertisers** are showing for this keyword
-   - **Common patterns**: what phrases/angles keep appearing across multiple advertisers
-   - **Ad extensions**: what sitelinks, callouts, structured snippets are being used
 
-**Do this for EVERY keyword provided.** Each keyword may surface different competitors and different messaging angles.
+**From Sponsored Results (top AND bottom of page):**
+   - Exact headlines (all 3 headline positions)
+   - Exact descriptions (both description lines)
+   - Display URL and path text
+   - Sitelinks with their text
+   - Callout extensions
+   - Structured snippets
+   - Which advertiser is running each ad
+   - Ad position (top 1, top 2, top 3, bottom 1, etc.)
+
+**From Organic Results (top 5-10):**
+   - Page title (this IS their SEO headline -- often mirrors or informs their ad copy)
+   - Meta description
+   - URL
+   - Any featured snippets, People Also Ask boxes, or knowledge panels
+   - **Why organic matters:** If no paid ads appear for a keyword variation, the top organic results reveal what content Google thinks best answers that query. This is the messaging the market has validated through clicks and engagement. Use these organic angles to inform ad copy recommendations.
+
+**Do this for EVERY keyword variation.** Each variation surfaces different competitors and different messaging angles.
+
+### What to do when no ads appear:
+Some keyword variations (especially long-tail or informational queries) may show zero sponsored results. This is still valuable data:
+- Record the top 5 organic results with their exact titles and descriptions
+- Note which businesses rank organically (they may be competitors who aren't running ads on that term -- opportunity)
+- Record People Also Ask questions (these reveal what the searcher actually wants to know)
+- Note the search intent Google is serving (informational, transactional, navigational) -- this tells you whether that keyword variation is worth bidding on
 
 ---
 
@@ -217,6 +262,17 @@ Unique angles that speak to the customer's actual emotional state. These are the
 
 ---
 
+## Data Collection Summary
+
+- Competitors researched: [count]
+- Total ads reviewed (Transparency Center): [count]
+- Total ads reviewed (Google Search Sponsored): [count]
+- Total organic results reviewed: [count]
+- Google Search variations executed: [count]
+- Total unique headline+description combinations: [count]
+
+---
+
 ## Client Brief (from Phase 0 -- omit if no client provided)
 
 **Client:** [name]
@@ -233,21 +289,31 @@ Unique angles that speak to the customer's actual emotional state. These are the
 ## Competitor Ad Inventory
 
 ### [Competitor 1 Name]
-**Source:** Transparency Center / Google Search / Both
-**Active Ads Found:** [count]
-**Key Headlines:**
-- [exact headline 1]
-- [exact headline 2]
-- ...
-**Key Descriptions:**
-- [exact description 1]
-- ...
-**Messaging Themes:** [theme1, theme2]
+**Transparency Center Ads Found:** [count]
+**Google Search Ads Found:** [count]
+**Organic Rankings Found:** [count]
+
+**Transparency Center Ads:**
+| # | Headline(s) | Description | Format | Date Range |
+|---|-------------|-------------|--------|------------|
+| 1 | | | Search/Display/Video | |
+| ... | | | | |
+
+**Google Search Sponsored Ads (keyword: "[keyword]"):**
+| Position | Headline 1 | Headline 2 | Headline 3 | Description | Extensions |
+|----------|-----------|-----------|-----------|-------------|------------|
+| Top 1 | | | | | |
+| ... | | | | | |
+
+**Organic Rankings (if relevant):**
+- [keyword]: Position [X] -- Title: "[exact title]" -- Description: "[exact meta description]"
+
+**Messaging Themes:** [theme1, theme2, theme3]
 
 ### [Competitor 2 Name]
 [same format]
 
-[...repeat for all competitors]
+[...repeat for all competitors -- minimum 5]
 
 ---
 
@@ -312,19 +378,43 @@ Follow the `chrome-browser-nav` skill pattern:
 4. **Teardown is mandatory.** Close every tab you opened when done. Use `tabs_context_mcp` to list remaining tabs, then close each sequentially. Swallow "tab no longer exists" errors as success.
 5. **If a page doesn't load or shows a captcha**, note it and move on. Don't get stuck retrying.
 6. **Prefer `get_page_text` and `read_page`** over `computer` for extracting ad copy. Use `computer` only for clicking/scrolling.
+8. **Pace your scrolling.** Wait 1-2 seconds between scroll actions to avoid triggering bot detection on the Transparency Center. If the page stops loading new content after scrolling, wait 3-5 seconds and try one more scroll before concluding there are no more ads.
 7. **If the Transparency Center UI changes**, adapt. Use `read_page` to understand the current layout before clicking.
 
 ## Self-QC Validation (MANDATORY before output)
 
-Before presenting results:
-1. **Character count audit:** Every recommended headline must be 30 characters or fewer. Count each one. If over, rewrite it.
-2. **No fabrication check:** Verify every ad in the Competitor Ad Inventory came from the Transparency Center or Google Search. If you couldn't find ads for a competitor, say "No ads found" -- never invent copy.
-3. **Minimum coverage:** At least 3 competitors researched. If fewer than 3 were found, flag it at the top of output.
-4. **Keyword coverage:** Every input keyword must appear in the Customer Psychology section. None skipped.
-5. **Exact copy verification:** All competitor ad text in the inventory is verbatim, not paraphrased.
-6. **Completeness:** All sections of the output template are filled. No placeholders or TBDs.
+Before presenting results, run ALL of these checks. **If a minimum is not met, go back and collect more data before outputting.**
 
-If any check fails, fix it before outputting. If unfixable, flag it prominently at the top.
+### Data Volume Minimums (HARD REQUIREMENTS)
+1. **Competitors:** Minimum 5 competitors researched. If fewer than 5, go find more.
+2. **Total ads collected:** Minimum 100 ads across all competitors from the Transparency Center. Count them. If under 100, you haven't scrolled enough -- go back and paginate.
+3. **Transparency Center coverage:** At least 3 competitors must have Transparency Center data (not just website copy or Google Search results).
+4. **Google Search variations:** At least 4 search variations per input keyword must have been executed. If given 2 keywords, that's 8+ searches minimum.
+5. **Ad copy pieces recorded:** Minimum 50 unique headline+description combinations across all sources. Website copy does NOT count toward this number.
+
+### Data Quality Checks
+6. **Source labeling:** Every ad in the Competitor Ad Inventory must be labeled with its ACTUAL source: "Transparency Center", "Google Search Sponsored", or "Google Search Organic." Never label website copy as ad copy.
+7. **No fabrication check:** If you couldn't find ads for a competitor, say "No ads found in Transparency Center; [X] ads found in Google Search" -- never invent copy.
+8. **Exact copy verification:** All competitor ad text in the inventory is verbatim, not paraphrased. Website descriptions are labeled as website copy, not ad copy.
+
+### Output Quality Checks
+9. **Character count audit:** Every recommended headline must be 30 characters or fewer. Count each one. If over, rewrite it.
+10. **Keyword coverage:** Every input keyword must appear in the Customer Psychology section. None skipped.
+11. **Completeness:** All sections of the output template are filled. No placeholders or TBDs.
+
+### Data Transparency (include in output header)
+At the top of the output, include a **Data Collection Summary**:
+```
+## Data Collection Summary
+- Competitors researched: [count]
+- Total ads reviewed (Transparency Center): [count]
+- Total ads reviewed (Google Search Sponsored): [count]
+- Total organic results reviewed: [count]
+- Google Search variations executed: [count]
+- Total unique headline+description combinations: [count]
+```
+
+If any minimum is not met, **do not output the report**. Go back and collect more data. If you genuinely cannot meet a minimum after exhaustive effort (e.g., the industry only has 3 competitors, or the Transparency Center is down), flag it prominently at the top with an explanation of what you tried.
 
 ---
 
