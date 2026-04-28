@@ -61,6 +61,7 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 - Conditional actions: "If X happens, then we should Y" (flag the condition)
 - **Two-part handoffs:** When a client commits to sending something AND a Creekside team member commits to acting on it, include the Creekside action with the client dependency as "Blocked by." Example: client says "I'll send you his email" and Peterson says "I'll add him to the Google Chat" = Creekside item "Add [person] to Google Chat" blocked by "client sending email."
 - **Budget increases or changes the client agrees to.** When a client says "let's increase the budget by $5K" or "let's add $10K more," that is a firm action item for the person managing that platform to implement. It is NOT a [POSSIBLE].
+- **Client-owned work that directly blocks Creekside deliverables.** When the client needs to build landing pages, provide assets, grant access, or complete setup that Creekside can't proceed without, this IS a follow-up item for the VA (Cyndi/Melvin). Example: "Client needs to build mobile-friendly landing pages" -- if this blocks ad launches or conversion tracking, Cyndi follows up on it.
 
 ### What is NOT an action item:
 - General discussion or opinions ("I think Meta is better for this")
@@ -75,7 +76,13 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 - **"We should probably do X someday" statements.** Earnest but uncommitted future ideas are not action items unless someone takes explicit ownership and a timeframe.
 - **"Monitor X" or "review X" with no recipient or output.** Monitoring is not an action item unless there is a specific report, decision, or communication that must result from the monitoring. "Keep an eye on performance" = not an item. "Review performance and send weekly summary to Nicholas" = item.
 - **Future work for prospects who haven't signed.** On discovery/sales calls, do NOT extract hypothetical onboarding tasks, campaign setups, or service deliverables that would only happen IF the prospect becomes a client. Only extract what Creekside committed to doing NOW (send pricing, send recording, schedule follow-up, do an audit).
-- **Items the client would build/own that Creekside wouldn't follow up on.** If the client mentions building something internal (a landing page, an internal tool, a hiring process) that Creekside has no role in and wouldn't follow up on, exclude it entirely.
+
+### Audit recommendations and client-side fixes:
+When Peterson identifies specific issues during a call (audit findings, settings that need changing, strategies that should be tested), categorize them as follows:
+
+- **Client does the fix, it blocks Creekside work** (e.g., "build landing pages we need for ads") -> Extract as a VA follow-up item for Cyndi. Cyndi follows up with the client to make sure it gets done.
+- **Client does the fix, it does NOT block Creekside work** (e.g., "test a different bidding strategy," "turn off a location setting") -> Do NOT extract as an action item. Instead, add to the **Weekly Call Notes** section (see output format). These are conversation topics for the next weekly call to check if the client did them.
+- **Creekside does the fix** -> Extract as a normal action item assigned to the right person.
 
 ### Specific deliverable test:
 Before including any item, ask: "What is the tangible output?" If you can't name a specific document, configuration change, message, setup, or decision with a clear done/not-done state, it fails the test. Examples:
@@ -89,30 +96,24 @@ Before including any item, ask: "What is the tangible output?" If you can't name
 - PASSES: "Increase Meta ad spend by $5K for Roseville location" (deliverable: budget change in Ads Manager)
 - BORDERLINE -> use `[POSSIBLE]`: "I'll look into that" (vague commitment, may or may not result in action)
 
-### `[POSSIBLE]` inclusion/exclusion rules:
-- **EXCLUDE `[POSSIBLE]` if:** The prospect hasn't signed AND the item has no due date AND it's hypothetical future work. These are not action items at all.
-- **KEEP `[POSSIBLE]` if:** The client IS signed AND the item involves real coordination or work that someone on the team should be aware of, even if the timeline is unclear. Better to assign it and let Peterson mark it complete than to miss it.
-- **NOT `[POSSIBLE]` -- just a regular item:** When a signed client explicitly agrees to a budget increase, creative change, or campaign addition, that is a FIRM action item, not `[POSSIBLE]`. "Let's add $5K more to Meta" from a signed client = firm item for Lindsay.
+### `[POSSIBLE]` rules:
+- **EXCLUDE `[POSSIBLE]` if:** The prospect hasn't signed AND the item has no due date AND it's hypothetical future work.
+- **KEEP `[POSSIBLE]` if:** The client IS signed AND the item involves real coordination or work that someone on the team should be aware of, even if the timeline is unclear.
+- **NOT `[POSSIBLE]` -- just a regular item:** When Peterson says "I will" or "we'll do X on next week's call" with a clear owner and deadline, that is FIRM, not `[POSSIBLE]`. Budget increases, "next call" commitments, and named-person assignments are all firm. Only use `[POSSIBLE]` when there's genuine ambiguity about whether the work will happen.
 
 ### Consolidation rules:
-When the same task is discussed multiple times in a call (common when revisiting a topic), consolidate into ONE action item. Use the most specific/final version of what was agreed. Example:
-- Early in call: "We should probably look at the landing page"
-- Later: "Yeah let's rebuild that landing page, I'll send you the copy by Friday"
-- -> ONE item: "Rebuild landing page -- Peterson to send copy by Friday"
+When the same task is discussed multiple times in a call (common when revisiting a topic), consolidate into ONE action item. Use the most specific/final version of what was agreed.
 
 If a task is discussed but then explicitly cancelled or superseded later in the call, do NOT include it. Only include the final decision.
 
-**Sub-task consolidation:** When multiple items are naturally part of the same deliverable, workflow, or handoff moment, combine them into a single item. List the sub-steps in the Context field. Examples:
-- "Set up Google Analytics", "Set up Tag Manager", "Set up conversion tracking" -> ONE item: "Set up full tracking stack (GA, GTM, conversion tracking)"
-- "Create ad account", "Set up pixel", "Connect page" -> ONE item: "Complete Meta onboarding (ad account, pixel, page connection)"
-- "Send pricing", "Send proposal", "Send calendar link" -> ONE item: "Send post-call package (pricing, proposal, calendar link)"
+**Sub-task consolidation:** When multiple items are naturally part of the same deliverable, workflow, or handoff moment, combine them into a single item. List the sub-steps in the Context field.
 
 The test: if the sub-items would naturally be completed together, reviewed together, or communicated together as a single package or setup, consolidate them.
 
+**Access/setup consolidation:** When multiple access grants or setup steps are needed from the same client (add to Slack, share Google Ads access, send email for Chat invite), consolidate into ONE follow-up item: "Follow up with [client] on all pending access grants (Slack, Google Ads, Chat invite)." Don't create separate items for each access request.
+
 ### Platform-specific items:
-When an ad strategy, creative change, or testing initiative applies to MULTIPLE platforms (e.g., Google Ads AND Facebook/Meta), you MUST create SEPARATE action items for each platform. Each platform has a different person managing it and different implementation steps. Example:
-- "Test age-qualification language in ads" on a client running both Google and Facebook = TWO items: one for Google Ads (assigned to Google Ads contractor) and one for Facebook (assigned to Lindsay).
-- "Create ads with three new angles" = TWO items if client runs both platforms.
+When an ad strategy, creative change, or testing initiative applies to MULTIPLE platforms (e.g., Google Ads AND Facebook/Meta), you MUST create SEPARATE action items for each platform. Each platform has a different person managing it and different implementation steps.
 
 This rule is NOT optional. Always check: does this client run ads on multiple platforms? If yes, does this task apply to both? If yes, split it.
 
@@ -125,11 +126,12 @@ For EVERY action item, assign a specific calendar date (or `TBD` for `[POSSIBLE]
 2. **Relative timeframe:** "next week" -> Monday of the following week. "This week" -> Friday of the current week. "End of month" -> last business day of the month. "In a couple days" -> 2 business days from call date.
 3. **Urgency language:** "ASAP", "soon", "right away", "today", "first thing" -> 1 business day from call date
 4. **Dependency-based:** "After we get access", "Once they send the assets" -> mark as `BLOCKED: [dependency]` with no date
-5. **Discovery/sales calls (no timeframe mentioned):** -> **1 business day from call date.** Time kills deals. Anything promised on a sales call (pricing, strategy recommendations, follow-ups, recordings, case studies) should be sent the next business day unless explicitly stated otherwise.
-6. **Client calls (no timeframe, tactical):** -> 3 business days from call date for concrete tasks (send email, adjust budget, swap creative)
-7. **Client calls (no timeframe, longer-horizon):** -> 7 business days from call date for bigger work (build campaigns, develop strategy, create roadmap)
-8. **"Before next call" items:** -> 1 business day before the next scheduled call. If weekly calls are Thursdays, due date is Wednesday of the following week.
-9. **`[POSSIBLE]` items with unclear timeline:** -> `Due: TBD`
+5. **Discovery/sales calls (no timeframe mentioned):** -> **1 business day from call date.** Time kills deals.
+6. **Client calls (no timeframe, tactical):** -> 3 business days from call date
+7. **Client calls (no timeframe, longer-horizon):** -> 7 business days from call date
+8. **"Before next call" / "next week's call" items:** -> 1 business day before the next scheduled call.
+9. **Weekly call notes items:** -> No due date. These are conversation topics, not tasks.
+10. **`[POSSIBLE]` items with unclear timeline:** -> `Due: TBD`
 
 **Business day calculation:** Skip Saturdays and Sundays. If a calculated date falls on a weekend, move to the next Monday.
 
@@ -145,26 +147,35 @@ For each action item, identify WHO is responsible based on the transcript contex
 - Conversion tracking -> Jordan (unless another name is mentioned)
 - CRM setup -> Denise (unless another name is mentioned)
 - Invoicing, onboarding paperwork, scheduling -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's.
-- Client follow-ups for access/assets -> Cyndi or Melvin (VAs follow up with clients to get things done)
+- Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done)
+- Weekly call notes -> Cyndi (she adds them to Peterson's ClickUp weekly notes page for the client)
 
-**When defaulting to Peterson, always explain why:** "Assigned to Peterson because the specific contractor for this client's Google Ads is unknown" or "Assigned to Peterson for delegation." Never silently default to Peterson without noting it.
+**When Peterson names a specific person on the call, use that person.** If Peterson says "Ahmed will handle the programmatic setup," assign to Ahmed, not Peterson.
+
+**When defaulting to Peterson, always explain why.**
 
 Categories:
-- **Creekside team** (Peterson, Cade, Lindsay, Jordan, Cyndi, Melvin, or a named team member)
+- **Creekside team** (Peterson, Cade, Lindsay, Jordan, Ahmed, Ade, Scott, Cyndi, Melvin, or a named team member)
 - **Client** (use their actual name from the transcript) -- only when it blocks Creekside work
 - **Unclear** (when ownership wasn't explicitly discussed -- assign to Peterson with explanation)
 
 ### Client-owned item filter:
-**Only include client-owned items if they directly block Creekside work.** Client-owned blockers should NOT be listed as separate items. Instead, embed them in the Creekside item they block using the "Blocked by" field. Examples:
+**Only include client-owned items if they directly block Creekside work.** Client-owned blockers should NOT be listed as separate items. Instead, embed them in the Creekside item they block using the "Blocked by" field.
 
-- INCLUDE AS BLOCKER: "Grant Creekside read access to Google Ads account" (blocks our audit)
-- INCLUDE AS BLOCKER: "Send email list for lookalike audience" (blocks campaign launch)
-- INCLUDE AS BLOCKER: "Create CRM fields for conversion tracking integration" (blocks our tracking setup)
-- INCLUDE AS BLOCKER: "Send fractional CMO's email" (blocks Peterson adding them to Google Chat)
-- EXCLUDE ENTIRELY: "Review pricing proposal and decide on hiring" (client's internal decision)
-- EXCLUDE ENTIRELY: "Present Google Ads proposal to CEOs for budget approval" (their internal process)
-- EXCLUDE ENTIRELY: "Build internal landing page routing tool" (their project, not ours)
-- EXCLUDE ENTIRELY: "Determine internal conversion metrics" (their homework, not our follow-up)
+**Client-side work that blocks Creekside:**
+- Building landing pages we need for ads/tracking -> VA follow-up item
+- Granting access (Slack, Google Ads, Meta, CRM) -> VA follow-up item
+- Sending assets (logos, creatives, data files) -> VA follow-up item
+- Setting up accounts Creekside needs -> VA follow-up item
+
+**Client-side audit recommendations that DON'T block Creekside:**
+- "Turn off Presence or Interest location setting" -> Weekly call notes (check if they did it next call)
+- "Test a different bidding strategy" -> Weekly call notes
+- "Fix their CRM automation" -> Weekly call notes (unless it blocks our tracking)
+
+**Exclude entirely:**
+- Client internal decisions (hiring, budget approvals, internal meetings)
+- Client-built projects Creekside has no role in and wouldn't follow up on
 
 ## Step 6: Deduplicate Against Existing Work
 
@@ -203,8 +214,15 @@ Present results in this exact format:
 - **Who:** [Name] (Creekside) [+ delegation note if defaulting to Peterson]
 - **Due:** [YYYY-MM-DD] ([reasoning]) | TBD | BLOCKED
 - **Blocked by:** [client action needed -- VA follow-up required] (only if applicable)
-- **Transcript context:** [Direct quote(s) from the transcript that establish this action item. Use the actual words spoken, with speaker attribution. Include enough context that the assignee can understand what's expected without reading the full transcript.]
+- **Transcript context:** [Direct quote(s) from the transcript with speaker attribution and timestamps.]
 - **Status:** New | [POSSIBLE] | [ALREADY TRACKED]
+
+---
+
+### Weekly Call Notes (for Cyndi to add to ClickUp)
+Items to check on during next weekly call -- NOT action items, just conversation topics:
+- [Topic 1]: [brief description of what was discussed and what to check on]
+- [Topic 2]: ...
 
 ---
 
@@ -212,23 +230,26 @@ Present results in this exact format:
 - **Total items:** [N] (excluding [POSSIBLE]: [N])
 - **New:** [N] | **Already tracked:** [N] | **Blocked:** [N] | **Possible:** [N]
 - **Creekside-owned:** [N] | **Unclear ownership:** [N]
+- **Weekly call notes:** [N]
 ```
 
 ## Rules
 
-1. **Catch everything with a deliverable.** Include every item that passes the specific deliverable test. For borderline items on signed clients, use `[POSSIBLE]` rather than silently dropping them. A missed real item is worse than an extra `[POSSIBLE]`. When in doubt, assign to Peterson and let him mark it complete.
+1. **Catch everything with a deliverable.** Include every item that passes the specific deliverable test. For borderline items on signed clients, use `[POSSIBLE]` rather than silently dropping them. When in doubt, assign to Peterson and let him mark it complete.
 2. **One item per task.** Never list the same task twice. Consolidate all mentions and sub-tasks.
-3. **Specific dates only.** Never output "next week" or "ASAP" as a due date. Always calculate the actual date. Exception: `[POSSIBLE]` items with genuinely unclear timelines get `Due: TBD`.
-4. **Use actual names.** Never say "the client" if their name was used in the call.
-5. **Verb-first titles.** "Send copy for landing page" not "Landing page copy"
-6. **Include transcript quotes.** Every item MUST have direct quotes from the call transcript showing what was said and by whom. This is how the assignee understands what's expected of them. Paraphrases are not sufficient.
-7. **Flag uncertainty on signed clients only.** Use `[POSSIBLE]` for borderline items where the client IS signed and coordination matters. Do NOT use `[POSSIBLE]` for hypothetical future work on unsigned prospects. Do NOT use `[POSSIBLE]` for budget increases or campaign additions that the client explicitly agreed to -- those are firm items.
-8. **No writes.** You output text only. Never INSERT, UPDATE, or modify any table.
-9. **Process one call at a time.** If given multiple calls, output a separate section for each.
-10. **Full transcript required.** If the transcript is missing or truncated, say so explicitly. Never pretend you analyzed what you didn't read.
-11. **No client internal items.** Never include items that are purely the client's internal process (hiring decisions, budget approvals, internal meetings, building their own tools). Only include client actions that block Creekside deliverables, and embed those as "Blocked by" on the Creekside item.
-12. **Separate items per platform.** When a creative, strategy, or testing change applies to both Google Ads and Facebook/Meta, ALWAYS create separate items for each platform with the correct assignee. This is mandatory, not optional.
-13. **Discovery call speed.** Default due date on discovery/sales calls is 1 business day. Time kills deals.
-14. **Administrative tasks go to VAs.** Invoicing, onboarding paperwork, scheduling, and client follow-ups for access/assets are assigned to Cyndi or Melvin, never Peterson.
-15. **Explain Peterson defaults.** When assigning to Peterson because you don't know the right person, say so explicitly in the Who field.
-16. **No established recurring deliverables.** If a report or deliverable has been going out on a regular cadence for weeks, do not extract it. Only extract if the cadence, format, or scope is changing.
+3. **Specific dates only.** Never output "next week" or "ASAP" as a due date. Always calculate the actual date.
+4. **Use actual names.** Never say "the client" if their name was used in the call. Use the name of the person Creekside actually talks to (e.g., use "Tomas" not "Alexander" if Tomas is the real contact).
+5. **Include transcript quotes.** Every item MUST have direct quotes from the call transcript showing what was said and by whom.
+6. **`[POSSIBLE]` is for genuine ambiguity only.** When Peterson says "I will" or "we'll do X on next call" with a clear owner, that is FIRM. Only use `[POSSIBLE]` when it's truly unclear whether the work will happen.
+7. **No writes.** You output text only. Never INSERT, UPDATE, or modify any table.
+8. **Process one call at a time.** If given multiple calls, output a separate section for each.
+9. **Full transcript required.** If the transcript is missing or truncated, say so explicitly.
+10. **No client internal items unless they block Creekside.** Client-owned work that blocks our ads/tracking = VA follow-up. Client audit recommendations that don't block us = weekly call notes. Client internal decisions = exclude entirely.
+11. **Separate items per platform.** When a creative, strategy, or testing change applies to both Google Ads and Facebook/Meta, ALWAYS create separate items with the correct assignee.
+12. **Discovery call speed.** Default due date on discovery/sales calls is 1 business day. Time kills deals.
+13. **Administrative tasks go to VAs.** Invoicing, onboarding paperwork, scheduling, and client follow-ups are Cyndi or Melvin, never Peterson.
+14. **Explain Peterson defaults.** When assigning to Peterson because you don't know the right person, say so.
+15. **No established recurring deliverables.** If it's been going out on cadence for weeks, don't extract it.
+16. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Cyndi adds these to Peterson's ClickUp notes page for that client.
+17. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
+18. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
