@@ -168,14 +168,27 @@ Categories:
 - **Client** (use their actual name from the transcript) -- only when it blocks Creekside work
 
 ### Client blocker routing (explicit pattern):
-When client-side work blocks Creekside, create ONE Creekside action item with "Blocked by" noting the client dependency AND "VA follow-up required" in the Blocked by field. Do NOT create a separate standalone VA follow-up item. The VA sees the "Blocked by" field and knows to follow up. Example:
+When client-side work blocks Creekside, how you handle it depends on the severity:
+
+**Real blocker (work literally cannot start):** Use "Blocked by" field with BLOCKED status. Example: can't build Google Ads campaigns until the client creates the account. Can't launch ads until the landing page is built.
 ```
-### Set up conversion tracking for general dentistry
-- Who: Jordan (Creekside)
+### Build veneer Google Ads campaign
+- Who: Ade A. (Creekside)
 - Due: BLOCKED
-- Blocked by: Tomas setting up Google Ads account and sharing access -- VA follow-up required
+- Blocked by: Landing page completion by Matt (web designer) -- VA follow-up required
 ```
-This is ONE item, not two. The VA follow-up is implicit in the "Blocked by" field.
+
+**Simple access/credential grant (work can be partially started or planned):** Do NOT use BLOCKED. Instead, add a note inside the task context like "Note: need admin access from Conor." The task still gets a due date and assignee -- the access request is just a note, not a full blocker.
+```
+### Set up CallRail conversion tracking
+- Who: Jordan (Creekside)
+- Due: 2026-05-02
+- Transcript context: ... "Note: need admin access to Conor's existing CallRail account."
+```
+
+**Deliverable the client needs to provide (photos, copy, data files):** Create a VA follow-up task for Cyndi to collect the assets. The downstream task references this as a dependency.
+
+This is always ONE item per deliverable, not two. The VA follow-up is implicit in the "Blocked by" field or handled as a separate collection task.
 - **Unclear** (when ownership wasn't explicitly discussed -- assign to Peterson with explanation)
 
 ### Client-owned item filter:
@@ -234,21 +247,25 @@ Q4: Is it a sub-instruction that only makes sense as part of a larger deliverabl
 - Has a due date or is blocked by a dependency
 - Examples: "Source BBB logo," "Launch Meta campaigns," "Set up conversion tracking"
 
-**WEEKLY CALL NOTES (Peterson's ClickUp notes page):** Persistent reference list of things to CHECK ON during calls. Items stay on the list until they resolve or become actionable -- not just for "next call."
-- Client-side items Peterson follows up on himself during weekly calls
-- Audit recommendations the client should implement (don't block Creekside)
-- Future roadmap items and dependency sequences (steps 2+ that can't start yet)
-- Status checks ("Did Tyler's fixes hold?", "Are dashboards working yet?")
-- Client promises to follow up on ("Nick said he'd check BBB emails")
-- Longer-horizon items to revisit in a month or several calls from now (e.g., "Revisit Bing at $10K/month after 30 days of clean tracking data")
-- Examples: "Check if Vipul finished dashboards," "Ask if Presence or Interest was turned off," "Revisit Home for Life angle after scaling is complete"
+**WEEKLY CALL NOTES (Peterson's ClickUp notes page):** Persistent reference list of things that NEED TO BE ADDRESSED AGAIN on a future call. Items stay until they resolve or become actionable.
+- Future topics Peterson needs to revisit with the client ("Revisit Meta ads after Google proves veneer cases")
+- Pending data that will be meaningful next time ("Check cost per conversion data next month")
+- Strategic decisions on hold that will come back ("Revisit general dentistry scaling mid-summer")
+- Longer-horizon items to revisit in a month or several calls from now
+- Examples: "Revisit Bing at $10K/month after 30 days of clean data," "Discuss Meta for veneers after first 2-3 months of Google data"
 
-**CHANNEL MESSAGE (Google Chat):** Rules, guidelines, or FYI updates for the team.
+**NOT weekly call notes:**
+- Things already resolved on this call (even if they were problems -- if it's handled, it's done)
+- FYI data points that don't change what we're doing (e.g., "client's call conversion rate is 80%" -- interesting but not actionable)
+- Client personal schedules or travel plans (unless it directly changes campaign timing)
+- Status updates that were given and don't need follow-up
+
+**CHANNEL MESSAGE (Google Chat):** Rules, guidelines, FYI updates, or quick notes the team should know.
 - New rules the team must follow going forward ("one angle per ad")
-- Boundaries on what we're NOT doing ("no overhaul of current campaigns")
+- Boundaries on what we're NOT doing ("no overhaul of current campaigns," "general dentistry scaling is on pause")
 - Process changes that affect how people work
-- FYI updates that don't require action but people need awareness of
-- Examples: "One angle per ad going forward," "What we're NOT doing right now on SRM"
+- Quick factual notes that the team should be aware of but don't require a task ("prioritize calls over form submissions -- they convert at a higher rate")
+- Examples: "One angle per ad going forward," "General dentistry scaling on pause while testing veneers," "Calls > form submissions for this client"
 
 **COMMENT ON EXISTING TASK ([ADD TO EXISTING]):** New context for work already in progress.
 - Conversion tracking is already assigned to Jordan but the call added new details
