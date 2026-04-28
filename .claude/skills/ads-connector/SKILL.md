@@ -245,7 +245,7 @@ Use the UI when the user asks for any of these. This list is not exhaustive — 
 ## When NOT to use this skill
 
 - **Historical trend analysis against our warehouse** — query `meta_insights_daily` (Meta) or the Google Ads Supabase tables directly. This skill is live-pull only.
-- **Full client-facing audit or analysis deliverable** — use `ads-agent`, which wraps both connectors + `find_client()` + `ads_knowledge` writes + report note editing. This skill tells you which connector to use; `ads-agent` actually runs the analysis.
+- **Full client-facing audit or analysis deliverable** — search for an active audit agent (e.g. `pretty-cool-ecom-audit-agent`, `proposal-generator-agent`) or use these connectors directly with the audit SOPs in `agent_knowledge`. This skill tells you which connector to use; the audit SOPs define the analysis methodology.
 - **Authenticated screenshots of the Ads UI** — use the `chrome-screenshot-pipeline` skill.
 
 ## Citations
