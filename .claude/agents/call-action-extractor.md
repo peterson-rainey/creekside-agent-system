@@ -196,9 +196,70 @@ This is ONE item, not two. The VA follow-up is implicit in the "Blocked by" fiel
 - Client internal decisions (hiring, budget approvals, internal meetings)
 - Client-built projects Creekside has no role in and wouldn't follow up on
 
-## Step 6: Deduplicate Against Existing Work
+## Step 6: Route Each Item (Task vs Notes vs Channel Message)
 
-Before finalizing the list, check if any extracted items are already tracked:
+After extracting all items from the transcript, route each one using this decision tree:
+
+```
+For each extracted item, ask these questions IN ORDER:
+
+Q1: Does it have a specific deliverable with a done/not-done state?
+  NO  -> Is it a rule, guideline, or boundary for how the team should work?
+           YES -> CHANNEL MESSAGE (Cyndi sends in client Google Chat, tags relevant people)
+           NO  -> Is it something to check on or ask about at the next call?
+                    YES -> WEEKLY CALL NOTES
+                    NO  -> EXCLUDE (general discussion, not actionable)
+  YES -> Continue to Q2
+
+Q2: Is it already being done as an existing task or established process?
+  YES -> Does the call add NEW information, context, or scope changes?
+           YES -> COMMENT ON EXISTING TASK (flag as [ADD TO EXISTING])
+           NO  -> EXCLUDE (already tracked, no new info)
+  NO  -> Continue to Q3
+
+Q3: Is it a multi-step future sequence where only step 1 is actionable now?
+  YES -> Extract ONLY the current step as a TASK. Put the full sequence in WEEKLY CALL NOTES.
+  NO  -> Continue to Q4
+
+Q4: Is it a sub-instruction that only makes sense as part of a larger deliverable?
+  YES -> Fold into the parent TASK as a sub-instruction in the Context field.
+  NO  -> It's a standalone TASK.
+```
+
+### What goes WHERE:
+
+**TASK (ClickUp):** Someone on the team must DO something and complete it.
+- Has a specific deliverable (email, campaign, config change, report, setup)
+- Has an owner (person responsible)
+- Has a due date or is blocked by a dependency
+- Examples: "Source BBB logo," "Launch Meta campaigns," "Set up conversion tracking"
+
+**WEEKLY CALL NOTES (Peterson's ClickUp notes page):** Things to CHECK ON at next call.
+- Client-side items Peterson follows up on himself during weekly calls
+- Audit recommendations the client should implement (don't block Creekside)
+- Future roadmap items and dependency sequences (steps 2+ that can't start yet)
+- Status checks ("Did Tyler's fixes hold?", "Are dashboards working yet?")
+- Client promises to follow up on ("Nick said he'd check BBB emails")
+- Examples: "Check if Vipul finished dashboards," "Ask if Presence or Interest was turned off"
+
+**CHANNEL MESSAGE (Google Chat):** Rules, guidelines, or FYI updates for the team.
+- New rules the team must follow going forward ("one angle per ad")
+- Boundaries on what we're NOT doing ("no overhaul of current campaigns")
+- Process changes that affect how people work
+- FYI updates that don't require action but people need awareness of
+- Examples: "One angle per ad going forward," "What we're NOT doing right now on SRM"
+
+**COMMENT ON EXISTING TASK ([ADD TO EXISTING]):** New context for work already in progress.
+- Conversion tracking is already assigned to Jordan but the call added new details
+- A campaign refresh task exists but the call added new creative direction
+- An audit was already created but the call surfaced additional findings
+- Format: Flag as `[ADD TO EXISTING: <existing task title>]` with the new info to add as a comment
+
+**EXCLUDE:** Not actionable, already done, or not Creekside's concern.
+
+## Step 7: Deduplicate Against Existing Work
+
+Before finalizing, check if extracted items already exist:
 
 ```sql
 -- Check existing action_items from this same call
@@ -206,17 +267,25 @@ SELECT title, status, context FROM action_items
 WHERE related_table = 'fathom_entries'
 AND context ILIKE '%<fathom_entry_id>%';
 
--- Check for similar open action items (keyword match)
-SELECT title, status, source, created_at FROM action_items
+-- Check for similar open action items by keyword
+SELECT id, title, status, source, source_agent, created_at FROM action_items
 WHERE status IN ('pending', 'open', 'in_progress')
-AND (title ILIKE '%<key_phrase>%' OR description ILIKE '%<key_phrase>%')
-LIMIT 5;
+AND (title ILIKE '%<key_phrase_1>%' OR title ILIKE '%<key_phrase_2>%' OR description ILIKE '%<key_phrase_1>%')
+LIMIT 10;
+
+-- Also check by client name + work type
+SELECT id, title, status, source FROM action_items
+WHERE status IN ('pending', 'open', 'in_progress')
+AND (title ILIKE '%<client_name>%' OR context ILIKE '%<client_name>%')
+AND (title ILIKE '%<work_type>%' OR description ILIKE '%<work_type>%')
+LIMIT 10;
 ```
 
-If a match is found:
-- If status is `completed` -> EXCLUDE from output (already done)
-- If status is `pending`/`open`/`in_progress` -> mark as `[ALREADY TRACKED]` in output but still include so Peterson can verify
-- If no match -> new item
+**Dedup routing:**
+- Status `completed` -> EXCLUDE (already done)
+- Status `pending`/`open`/`in_progress` AND the call adds new info -> `[ADD TO EXISTING: <task title>]` with the new context to add as a comment
+- Status `pending`/`open`/`in_progress` AND the call adds NO new info -> EXCLUDE (already tracked, nothing new)
+- No match found -> New item
 
 ## Step 7: Output Format
 
@@ -234,27 +303,28 @@ Present results in this exact format:
 - **Due:** [YYYY-MM-DD] ([reasoning]) | TBD | BLOCKED
 - **Blocked by:** [client action needed -- VA follow-up required] (only if applicable)
 - **Transcript context:** [Direct quote(s) from the transcript with speaker attribution and timestamps.]
-- **Status:** New | [POSSIBLE] | [ALREADY TRACKED]
+- **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title>]
 
 ---
 
+### Add to Existing Tasks
+Items that add new context to work already in progress -- add as COMMENTS, not new tasks:
+- **[Existing task title]:** [New information from this call to add as a comment. Include transcript quotes.]
+
 ### Weekly Call Notes (for Cyndi to add to Peterson's ClickUp notes page)
 Items to check on during next weekly call -- NOT action items, just conversation topics:
-- [Topic 1]: [brief description of what was discussed and what to check on]
-- [Topic 2]: ...
+- [Topic]: [brief description + transcript quote showing what was discussed]
 
 ### Channel Messages (for Cyndi to send in client Google Chat)
 Rules, guidelines, or updates the team should know -- NOT tasks:
-- [Message 1]: Tag [names]. [Content to send.]
+- **Tag:** [names]. **Message:** [Content to send, including any boundaries or "what we're NOT doing" items.]
 
 ---
 
 ### Summary
 - **Total items:** [N] | **Firm:** [N] | **Possible:** [N]
-- **New:** [N] | **Already tracked:** [N] | **Blocked:** [N] | **Possible:** [N]
-- **Creekside-owned:** [N] | **Unclear ownership:** [N]
-- **Weekly call notes:** [N]
-- **Channel messages:** [N]
+- **New tasks:** [N] | **Add to existing:** [N] | **Blocked:** [N]
+- **Weekly call notes:** [N] | **Channel messages:** [N]
 ```
 
 ## Rules
