@@ -16,11 +16,7 @@ You have access to: Read, Grep, Glob, and the Agent tool. You do NOT have Bash, 
 
 Do NOT rely on a hardcoded agent list. Query the database:
 ```sql
--- Find available agents
 SELECT name, department, description, read_only FROM agent_definitions WHERE status = 'active' ORDER BY department, name;
-
--- Semantic match for ambiguous tasks
-SELECT name, department, description FROM agent_definitions WHERE embedding IS NOT NULL ORDER BY embedding <=> (embedding_for('task description')) LIMIT 5;
 ```
 If no agent fits, follow the Missing Agent Protocol: propose a new agent and use `/new-agent` after approval.
 
@@ -34,7 +30,7 @@ If no agent fits, follow the Missing Agent Protocol: propose a new agent and use
 |------|-----------|---------|
 | **creekside-agent-system** | `/Users/petersonrainey/C-Code - Rag database/` | RAG database, agents, hooks, skills, pipelines config, CLAUDE.md. This is the current working directory. |
 | **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `peterson-rainey/creekside-dashboard` |
-| **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
+| **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack (legacy), Google Chat, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
 | **creekside-website** | `/Users/petersonrainey/creekside-website/` | Live website (creeksidemarketingpros.com). Astro 5 + Tailwind 4. Hosted by web designer Jonathan. GitHub: `drybonez235/creekside` |
 
 **creekside-tools** (`~/creekside-tools/`) is the PUBLIC free marketing tools site — completely separate. NEVER add internal features there.
@@ -43,58 +39,32 @@ When Peterson says "website" or "creeksidemarketingpros", he means **creekside-w
 
 When Peterson says "dashboard" or "internal dashboard", he means **creekside-dashboard** at `~/creekside-dashboard/`. NOT anything in the current working directory.
 
-## Core Rules (Every Agent, Every Turn)
+## Standing Rules
 
-1. **Source transparency.** Tag every claim with `[from: summary]` or `[from: raw_text]` so the user knows the depth of the source and can request deeper retrieval. Always use `get_full_content()` or `get_full_content_batch()` when the user requests it or when citing dollar amounts, dates, commitments, or action items.
-2. **Cite everything.** `[source: table_name, record_id]` on every factual claim from the database. Tag inferences as `[INFERRED]`.
-3. **Confidence tags.** `[HIGH]` = direct DB record. `[MEDIUM]` = derived/aggregated. `[LOW]` = inferred or data >90 days old.
-4. **Correction check first.** Query `agent_knowledge WHERE type='correction'` before answering — never repeat a corrected mistake.
-5. **Use unified search.** Run BOTH `search_all()` AND `keyword_search_all()` in parallel. Never query content tables directly. For ClickUp queries, use `search_all_expanded()` instead (auto-pulls task families).
-6. **Client questions: check cache first.** Query `client_context_cache` before doing full search. Only do full search if cache is stale (>7 days) or missing.
-7. **Conflicts: show both.** When sources disagree, present both with citations. Never silently pick one.
-8. **Save discoveries.** Before ending, write important findings to `client_context_cache` or `agent_knowledge`. Never let context die with the session. Save automatically -- never ask "should I save this?"
-9. **Flag stale data.** Anything >90 days old gets flagged with its age.
-10. **MCP as real-time layer.** Always query applicable MCP sources (Google Drive, Gmail, ClickUp, Slack, Google Calendar) as part of the standard search flow, not just when database results are empty. Database pipelines sync each morning, so data is stale by afternoon. MCP provides the current-state layer. Skip sources clearly irrelevant to the query type. Tag MCP-sourced answers as `[SOURCE: MCP/<service>]` with `[MEDIUM]` confidence. Agents without MCP access should report this gap and suggest the operations manager search MCP sources. Full SOP: `SELECT content FROM agent_knowledge WHERE title = 'SOP: MCP Fallback Search on Empty Database Results';`
-11. **Communication default.** Google Chat + ClickUp for all team communication. Slack is no longer the default — only used for select legacy clients. Never reference Slack as the default in SOPs, onboarding docs, or workflows. "Send this to [person] in ClickUp" means send a chat message, not create a task.
-12. **Build workflow — plan, interview, QC, then build.** Default to the simplest solution that could work; never overengineer. For any build (agent, script, feature, integration, pipeline), follow this order: (a) state the simplest approach, (b) interview the user to confirm scope and surface hidden requirements — use `interview-agent` for non-trivial builds, (c) write a plan, (d) run the plan through `qc-reviewer-agent`, (e) only then build. **For agent builds, always spawn `agent-builder-agent`. Never build agents inline.** No preemptive abstractions, no "future-proofing," no unrequested features. Trivial builds (<30 lines, reversible, no new dependencies) can skip interview and QC — but still state the approach first. For trivial fixes, don't ask permission — just do them.
-13. **Client data validation.** Before writing to the `clients` table, query `agent_knowledge WHERE type='correction' AND tags @> ARRAY['client-data']` to avoid repeating known data errors.
-14. **Capability vs inventory — answer the ceiling, not the floor.** For any question containing "can I", "is it possible", "what's the best way", "should I use X vs Y", or "review my setup", you are answering a CAPABILITY question. Before responding, name three things explicitly: (a) the CEILING — what the underlying system (API, credentials, codebase) actually allows, (b) the FLOOR — what's currently wired/stored/pre-built, (c) the GAP between them. Database-first answers fail here by default. The Supabase cache is a floor, never a ceiling. When a sub-agent returns a tidy summary organized around existing artifacts, it is ONE input, not the answer — interrogate the premise before summarizing. Anti-pattern name: "convenience anchoring."
-15. **Deterministic over AI for repeatable systems.** For any recurring or scheduled work (data syncs, reports, notifications, validations, cleanup, monitoring), default to a deterministic system — Python script, SQL function, cron job, hook, database trigger — not an AI agent. Agents are expensive, non-deterministic, and drift over time. Reserve them for work that genuinely requires judgment, synthesis, or natural language understanding that can't be captured in code. If the logic can be written as rules, write rules. For complex workflows, the ideal architecture combines deterministic pieces (scripts/cron/triggers handle the repeatable, rule-based steps) with AI agents inserted only at the specific points where judgment is required — never AI end-to-end when a hybrid will do.
-16. **Peterson's voice.** All outbound messages (ClickUp, Gmail, Slack, LinkedIn) must match Peterson's communication style. Never use em dashes (— or --). Run through `communication-style-agent` for non-trivial messages.
-17. **Content dates, not ingestion dates.** Use each table's content date column (e.g., `date`, `sent_at`, `call_date`) for chronological queries, NOT `created_at`. `created_at` is when the pipeline ingested the row.
-18. **Run it yourself.** Always attempt commands, scripts, and shell operations yourself. Only ask Peterson to run something when it genuinely requires his credentials or interactive input.
-19. **Promote universal corrections to CLAUDE.md.** When a correction applies to every session universally (not agent-specific or client-specific), add it to CLAUDE.md via ADMIN_MODE. Then delete the agent_knowledge entry. agent_knowledge is for searchable context — CLAUDE.md is for always-loaded rules.
-20. **Scheduled tasks: local routines first.** When building scheduled/recurring tasks, default to Claude Code routines (local cron via `/schedule`) before deploying to a server (Railway, etc.). Server deployment is still an option when local won't work (e.g., machine off, needs to run 24/7, requires server-side credentials), but always try the local routine first.
-21. **Search before solving.** When encountering an error, bug, or problem that isn't immediately resolved, query `agent_knowledge` for existing solutions before proposing a new fix: `SELECT title, content FROM agent_knowledge WHERE type IN ('correction', 'pattern', 'sop', 'solution') AND (content ILIKE '%error_keyword%' OR title ILIKE '%error_keyword%') ORDER BY created_at DESC LIMIT 10;` Also run `search_all('error description')` for semantic matches. Only propose a novel solution after confirming no prior knowledge exists. If a new solution works, save it back: `INSERT INTO agent_knowledge (type, title, content, tags, confidence) VALUES ('solution', 'descriptive title', 'problem + solution details', ARRAY['solution', 'relevant-tag'], 'verified');`
-
-## Query Response Protocol (Every Substantive Question)
-
-Follow this sequence on every substantive interaction. Do not reconstruct from individual rules.
-
-1. **Discover available agents and skills** — before doing anything, query the database to see what already exists for this task. `SELECT name, description FROM agent_definitions WHERE status = 'active' ORDER BY department, name;` Also review available skills in the system. If a dedicated agent or skill exists, spawn it. Do not replicate its work yourself.
-2. **Corrections** — `SELECT title, content FROM agent_knowledge WHERE type = 'correction' AND (content ILIKE '%TOPIC%' OR title ILIKE '%TOPIC%') ORDER BY created_at DESC LIMIT 10;` This catches behavioral corrections, not just factual ones.
-3. **Client cache** (if client-related) — query `client_context_cache`. Only do full search if cache is stale (>7 days) or missing.
-4. **Dual database search** — run `search_all()` AND `keyword_search_all()` in parallel.
-5. **MCP real-time layer** — query applicable MCP sources (Gmail, Drive, ClickUp, Calendar, Slack) regardless of whether the database returned results. Pipelines sync each morning, so database data is stale by afternoon. MCP is the current-state layer.
-6. **External knowledge** — what does the ceiling look like? Best practices, industry context, what the system is capable of beyond what's currently stored. The database is the floor, not the answer.
-7. **Source transparency** — tag every claim with whether it came from a summary or raw text. Use `[from: summary]` or `[from: raw_text]` so the user can decide if deeper retrieval is worth it. When raw text was not pulled, the user can ask to dig deeper. Always use `get_full_content()` or `get_full_content_batch()` when the user requests it or when you are pulling dollar amounts, dates, commitments, or action items.
-8. **Cite, tag, conflicts** — `[source: table_name, record_id]` on every fact. `[HIGH]`/`[MEDIUM]`/`[LOW]` confidence. Show both sides of any conflict.
-9. **Save discoveries** — write findings to `client_context_cache` or `agent_knowledge` automatically. Never ask, never let context die with the session.
+1. **Communication: Google Chat + ClickUp.** These are the ONLY internal and client communication platforms. Slack is DEAD at Creekside -- do NOT recommend it, reference it as active, or suggest sending messages through it. When listing platforms, use: Google Chat, ClickUp, Gmail, LinkedIn. This applies to all agents, all users (Peterson, Cade, contractors).
+2. **Peterson's voice.** All outbound messages (ClickUp, Gmail, Google Chat, LinkedIn) must match Peterson's communication style. Never use em dashes. Run through `communication-style-agent` for non-trivial messages.
+3. **Build simple, search first.** Default to the simplest solution. Search `agent_knowledge` for existing build processes before improvising. Scripts/deterministic systems over AI for repeatable work. Plan, then QC, then build. Details: `SELECT content FROM agent_knowledge WHERE title = 'Build Workflow -- detailed process (interview, QC, agent-builder)';`
+4. **Content dates, not ingestion dates.** Use each table's content date column (e.g., `date`, `sent_at`, `call_date`) for chronological queries, NOT `created_at`. `created_at` is when the pipeline ingested the row.
+5. **Client data validation.** Before writing to the `clients` table, query `agent_knowledge WHERE type='correction' AND tags @> ARRAY['client-data']` to avoid repeating known data errors.
+6. **Run it yourself.** Always attempt commands, scripts, and shell operations yourself. Only ask Peterson to run something when it genuinely requires his credentials or interactive input.
+7. **Promote universal corrections to CLAUDE.md.** When a correction applies to every session universally (not agent-specific or client-specific), add it to CLAUDE.md via ADMIN_MODE. Then delete the agent_knowledge entry. agent_knowledge is for searchable context -- CLAUDE.md is for always-loaded rules.
+8. **Search before debugging.** When encountering an unresolved error or bug, search `agent_knowledge` for prior solutions before proposing a new fix. If the solution is novel, save it back as `type='solution'`.
+9. **Capability vs inventory.** For "can I", "is it possible", "what's the best way" questions: name the CEILING (what the system allows), the FLOOR (what's currently built), and the GAP. Never let a database-only answer cap what's actually possible. Anti-pattern: "convenience anchoring."
 
 ## QC Pattern (Mandatory)
 
 For ANY output the user will act on or that writes data:
-1. Spawn the worker agent → get result
-2. Spawn `qc-reviewer-agent` with the result → get validation
-3. PASS → present. FAIL/WARN → fix and re-validate.
+1. Spawn the worker agent, get result
+2. Spawn `qc-reviewer-agent` with the result, get validation
+3. PASS = present. FAIL/WARN = fix and re-validate.
 
-For deliverables the user will act on or share externally (strategies, recommendations, presentations, proposals, hiring plans), ALSO spawn `expert-review-agent` automatically.
-When executable code is written or modified (.sh, .js, .py scripts, SQL functions), ALSO spawn `code-audit-agent` to verify the code actually runs.
-Exception: Simple read-only lookups (row counts, schemas) skip QC.
+For deliverables the user will share externally, ALSO spawn `expert-review-agent`.
+For executable code (.sh, .js, .py, SQL functions), ALSO spawn `code-audit-agent`.
+Exception: Simple read-only lookups skip QC.
 
 ## Safety Rules
 
-Enforced by deterministic hooks — these cannot be overridden:
+Enforced by deterministic hooks -- these cannot be overridden:
 
 **NEVER:** `DROP TABLE/SCHEMA/DATABASE/COLUMN` | `TRUNCATE` | `DELETE FROM` without WHERE | `rm -rf` | `git push --force` | `git reset --hard` | `chmod 777` | `npx @anthropic-ai/claude-code` or any child Claude CLI process (bypasses Max subscription, bills API directly)
 
@@ -104,24 +74,11 @@ Enforced by deterministic hooks — these cannot be overridden:
 
 **Kill switch:** Create `KILLSWITCH.md` in project root to freeze all operations. Delete to resume.
 
-**Always:** Never include `char_count` in `raw_content` INSERTs (generated column). Before creating any new table, view, function, or agent, run `SELECT validate_new_entry('type', 'name')` — if BLOCKED or WARNING, stop and review. Before inserting into `agent_knowledge`, run `SELECT validate_new_knowledge('type', 'title', ARRAY['tags'])` — if BLOCKED, UPDATE instead. After any structural creation, register it in `system_registry`.
+**Before creating anything new:** Run `SELECT validate_new_entry('type', 'name')` -- if BLOCKED or WARNING, stop and review. Before inserting into `agent_knowledge`, run `SELECT validate_new_knowledge('type', 'title', ARRAY['tags'])` -- if BLOCKED, UPDATE instead. After any structural creation, register it in `system_registry`. Never include `char_count` in `raw_content` INSERTs (generated column).
 
-## Coding Standards (All Code, All Users)
+## Coding Standards
 
-These 10 rules apply to every file written or modified in this system:
-
-1. **Design for the reader.** 10-second skim test. JSDoc headers, section dividers, consistent structure.
-2. **Constrain before you build.** Define what a module CANNOT do in its JSDoc header.
-3. **Make the implicit explicit.** No `select('*')`, no `Record<string, any>`, no hidden dependencies.
-4. **Build layers, not features.** Route → Service → Repo → DB. Route handlers max 30 lines.
-5. **Delete before you add.** Extract hooks at ~15 useState. Move logic to services.
-6. **Fail loudly.** Never empty `catch {}`. Use `logError(context, error, metadata)`.
-7. **Quarantine side effects.** Secondary concerns get separate try/catch, never block the response.
-8. **One-way dependencies.** Service never imports NextRequest. Repo never imported by client.
-9. **Predictability over cleverness.** Same file type = same structure. Literal unions, not enums.
-10. **Whitelists, not blocklists.** `ALLOWED_UPDATE_FIELDS` for every update. Return null on not-found.
-
-For full examples, anti-patterns, and review checklists:
+Query from database when writing code:
 ```sql
 SELECT content FROM agent_knowledge WHERE title = 'Coding Standards Reference';
 ```
@@ -148,6 +105,6 @@ SELECT title, content FROM agent_knowledge WHERE type = 'configuration' AND tags
 -- Pipeline status
 SELECT * FROM get_all_pipeline_status();
 
--- Hook documentation
-SELECT title, content FROM agent_knowledge WHERE title ILIKE '%hook%' OR title ILIKE '%safety%';
+-- Capability vs inventory framework (full detail)
+SELECT content FROM agent_knowledge WHERE title ILIKE '%capability vs inventory%';
 ```
