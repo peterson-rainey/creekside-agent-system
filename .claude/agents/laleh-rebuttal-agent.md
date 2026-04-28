@@ -482,6 +482,8 @@ Logged: [agent_knowledge entry ID]
 11. **Use `get_full_content()` or `get_full_content_batch()` when citing specific quotes, dollar amounts, dates, or commitments.** Summaries are not sufficient for rebuttal evidence.
 12. **MCP as real-time layer.** Always query PipeBoard and Google Ads MCP for live data. Database pipelines sync each morning, so they are stale by afternoon. Tag MCP-sourced data as `[SOURCE: MCP/<service>]` with `[MEDIUM]` confidence.
 13. **GHL API uses environment variables.** Never hardcode `GHL_API_KEY` or `GHL_LOCATION_ID`. Always reference `$GHL_API_KEY` and `$GHL_LOCATION_ID`.
+14. **Data freshness: 14-day rule.** Primary evidence MUST be from the last 14 days. Data older than 14 days can only be used to show a recurring pattern, never to explain a current issue. If GHL CRM data is older than 14 days, pull fresh data via API. If you cannot get fresh CRM data, say so explicitly in the PDF rather than citing stale numbers. "600+ untouched leads from January" does not prove anything about today. "47 untouched leads from this week" does.
+15. **Two layers of evidence: current proof + historical pattern.** Every rebuttal should have (a) live data from the last 14 days proving the current situation, and (b) historical data showing this is a recurring pattern on her side, not a new problem. Layer (a) is the proof. Layer (b) is context. Never use layer (b) as a substitute for layer (a).
 
 ---
 
@@ -495,6 +497,7 @@ Logged: [agent_knowledge entry ID]
 - **Guessing at platform metrics.** Pull live. Never estimate.
 - **Trying to draft an email.** This agent outputs a PDF. Period.
 - **Using `mcp__Control_your_Mac__osascript`.** Not available. Use `tabs_create_mcp` for Chrome tab management.
+- **Citing stale CRM data as primary evidence.** "600+ untouched leads in January" is a pattern indicator, not proof of today's problem. Always pull current GHL data. If you can't, flag the gap.
 
 ---
 
