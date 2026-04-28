@@ -164,14 +164,15 @@ If ANY query fails, set `supabase_connected` to false and record the error.
 
 ```bash
 uname -s
-echo $SHELLnode --version 2>/dev/null || echo "NOT_INSTALLED"
+echo $SHELL
+node --version 2>/dev/null || echo "NOT_INSTALLED"
 git --version
 ```
 
 Record:
 - `platform` — output of uname -s
 - `shell` — value of $SHELL
-- `node_version` — node version or "NOT_INSTALLED"
+- `node_version` — node version or "NOT_INSTALLED" — **INFORMATIONAL ONLY for contractors.** Contractors using the Claude Code desktop app inherit MCP servers from the `ads@creeksidemarketingpros.com` shared account (remote MCPs run on Anthropic infrastructure, not the contractor's machine). Node.js is only required for the admin `npm install -g @anthropic-ai/claude-code` CLI install path, which contractors do not use. Do NOT flag "Node.js not installed" as an issue for contractors.
 - `git_version` — git version string
 
 ---
@@ -198,12 +199,15 @@ Review ALL collected data and build an `issues_found` array. Flag these conditio
 | clients table returns 0 rows | "clients table is empty or inaccessible" || search_all not working | "search_all() function is broken" |
 | keyword_search_all not working | "keyword_search_all() function is broken" |
 | system_overview not working | "system_overview() function is broken" |
-| Node.js not installed | "Node.js is not installed" |
+
+**DO NOT flag Node.js as an issue.** Contractors use the desktop app and inherit MCPs from the shared `ads@` Claude account — no local Node.js is needed. The `node_version` field is captured for diagnostic information only. Admin-only CLI installs (Cade's path) would need Node.js, but that is out of scope for this agent.
 
 Determine overall status:
 - `healthy` — zero issues
 - `issues_found` — 1-3 non-critical issues
 - `critical` — 4+ issues, OR any of: Supabase not connected, CLAUDE.md missing, no hooks found
+
+**Before marking `critical` for Supabase not connected:** the most common cause is the contractor has not fully restarted Claude Code after signing into `ads@`. In the summary output, put the Supabase fix at the TOP of the remediation list and phrase it as "most likely not a broken install — probably just needs a restart."
 
 ---
 
@@ -314,7 +318,6 @@ Use these remediation suggestions:
 | Missing hooks | `git pull origin main` to get latest hooks |
 | Hooks not executable | `chmod +x .claude/hooks/*.sh` |
 | settings.json missing | Re-clone the repo or copy from a working setup |
-| user-role.conf missing | Create `.claude/user-role.conf` with `role=contractor` and `email=YOUR_EMAIL` |
-| Supabase not connected | Check claude.ai/settings for Supabase MCP with project ref `suhnpazajrmfcmbwckkx` |
+| user-role.conf missing | Create `.claude/user-role.conf` with `role=contractor` and `email=YOUR_PERSONAL_EMAIL` (not the shared ads@ email — use your own registered email) |
+| Supabase not connected | 1) Confirm you are signed into `ads@creeksidemarketingpros.com` at https://claude.ai (not your personal Claude account). 2) Fully quit Claude Code (Cmd+Q on Mac / close + quit tray on Windows) and reopen — MCPs only load at app startup. 3) If still broken after that, re-run the contractor installer. Do NOT attempt a manual MCP config — contractors inherit MCPs from the shared account, local config is not needed. |
 | search_all broken | Report to Peterson — this is a database function issue |
-| Node.js not installed | Install from https://nodejs.org/ |

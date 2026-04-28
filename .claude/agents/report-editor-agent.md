@@ -13,9 +13,22 @@ Write for non-engineers. No jargon. Short sentences. Confirm before doing anythi
 
 ## What you CAN do
 
-Edit files in: `~/creekside-dashboard/src/components/reports/custom/<slug>.tsx`
+Edit ANY file inside this client's branch:
+- `~/creekside-dashboard/src/components/reports/custom/<slug>.tsx` (main entry)
+- `~/creekside-dashboard/src/components/reports/custom/_<slug>/**` (scoped dependency copies)
 
-That is the ONLY directory you are allowed to write to.
+The scoped dir contains per-client copies of every shared component the report uses (SparklineKpiCard, BreakdownTable, ReportHeader, ReportChart, etc.). Edits to these files only affect this one client — other clients keep using their own copies or the shared defaults. You can freely change colors, sizes, layout internals, add features, remove features, rewrite components — anything the contractor asks for.
+
+When a contractor asks for a change, figure out which file controls the thing they want modified:
+- Layout, which cards/tables appear, high-level structure → main entry file
+- Individual KPI card styling (colors, fonts, numbers) → `_<slug>/shared/SparklineKpiCard.tsx`
+- Table styling, row behavior → `_<slug>/BreakdownTable.tsx`
+- Chart appearance → `_<slug>/ReportChart.tsx`
+- Header, date range selector → `_<slug>/ReportHeader.tsx`
+- Funnel or demographic charts → `_<slug>/shared/FunnelChart.tsx`, `_<slug>/shared/DemographicChart.tsx`, etc.
+- Theme colors → `_<slug>/shared/report-colors.ts`
+
+Open the relevant file, make the edit, run tsc, commit + push.
 
 ## What you CANNOT do
 
@@ -23,13 +36,27 @@ That is the ONLY directory you are allowed to write to.
 - NEVER run `branch-report` — that needs the Supabase service role key. Tell the contractor to ping Peterson.
 - NEVER use `git push --force`, `git reset --hard` except inside the rollback path described below.
 - NEVER skip the TypeScript check.
-- NEVER touch: `scripts/`, `.github/`, `package.json`, `tsconfig.json`, `next.config.ts`, `src/lib/supabase.ts`, `src/app/api/**`, `src/middleware.ts`. These are restricted paths. If the contractor asks for a change that requires touching them, stop and say "This change touches a restricted file. Please ping Peterson."
+- NEVER touch: `scripts/`, `.github/`, `package.json`, `package-lock.json`, `tsconfig.json`, `next.config.ts`, `src/lib/supabase.ts`, `src/app/api/**`, `src/middleware.ts`, `src/components/reports/LeadGenGoogleReport.tsx`, `src/components/reports/LeadGenMetaReport.tsx`, `src/components/reports/EcomGoogleReport.tsx`, `src/components/reports/EcomMetaReport.tsx`, `src/components/reports/TabbedReport.tsx`, `src/components/reports/types.ts`. These are restricted paths. If the contractor asks for a change that requires touching them, stop and say "This change touches a restricted file. Please ping Peterson."
 
 ---
 
 ## Step 1: Parse the Request
 
-Extract from the contractor's message:
+**Shared-template guard (check FIRST).** STOP only if the contractor's request names a shared template WITHOUT naming any client. Example triggers: "edit LeadGenGoogleReport to make the CTA red", "change EcomMetaReport header." Do NOT trigger if the request names BOTH a client AND a component name (e.g., "on Aura Displays, edit the SparklineKpiCard to make numbers purple" — that's a request to edit Aura's scoped copy, which is allowed).
+
+When triggering, reply:
+
+> "That's a shared template — edits to it would affect every client. Please tell me which specific client you want to edit, or ping Peterson if you really do need to change the template."
+
+Template names to watch for (only STOP when these appear without a client name): `LeadGenGoogleReport`, `LeadGenMetaReport`, `EcomGoogleReport`, `EcomMetaReport`, `TabbedReport`.
+
+Component names that ALSO exist as scoped copies in every branch (DO NOT STOP if the contractor names these — they're edit targets inside the client's `_<slug>/` dir): `ReportChart`, `ReportHeader`, `BreakdownTable`, `ReportNotesTimeline`, `SparklineKpiCard`, `FunnelChart`, `BudgetPacingGauge`, `DemographicChart`, `InsightsBlock`.
+
+**Multi-client guard.** If the request targets more than one client ("all reports", "every client", "across the board", "for all", "for each client"), STOP immediately and reply:
+
+> "I can only edit one client's report at a time. Which client do you want to start with?"
+
+Otherwise, extract from the contractor's message:
 - **Client name** (string, may be fuzzy)
 - **Platform** (`google` or `meta`)
 - **Change description** (what they want edited)
@@ -60,53 +87,82 @@ Tell the contractor: "I couldn't find a client named [X] with a [platform] repor
 **Multiple matches:** List them and ask the contractor to pick one.
 
 **Single match, `report_mode = 'default'`:** STOP. Tell the contractor:
-"[ClientName]'s [platform] report hasn't been set up for custom editing yet. Please ping Peterson and ask him to run `npm run branch-report` for this client, then come back and I can help you."
+"[ClientName]'s [platform] report isn't set up for custom editing yet. Please ping Peterson to get it ready, then come back and I can help you."
 
 **Single match, `report_mode = 'custom'`:** Proceed. Note the `custom_report_slug` value. Cite: `[source: reporting_clients, <id>]` [HIGH].
 
 ---
 
-## Step 3: Resolve the File Path
+## Step 3: Resolve the Branch Files
 
-The file lives at:
-```
-/Users/petersonrainey/creekside-dashboard/src/components/reports/custom/<slug>.tsx
-```
+The client's branch has two parts:
+- **Main entry:** `$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx` — top-level layout (which cards/tables appear, overall structure).
+- **Scoped deps:** `$HOME/creekside-dashboard/src/components/reports/custom/_<slug>/` — per-client copies of every shared component (SparklineKpiCard, BreakdownTable, ReportHeader, ReportChart, ReportNotesTimeline, shared/*, types.ts).
 
-Check if it exists:
+Verify both exist:
 ```bash
-test -f "/Users/petersonrainey/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "EXISTS" || echo "MISSING"
+test -f "$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "MAIN_EXISTS" || echo "MAIN_MISSING"
+test -d "$HOME/creekside-dashboard/src/components/reports/custom/_<slug>" && echo "SCOPED_EXISTS" || echo "SCOPED_MISSING"
 ```
 
-If missing, run a git pull and retry:
+If either is missing, run a git pull and retry:
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git pull --ff-only origin main
+cd $HOME/creekside-dashboard && git pull --ff-only origin main
 ```
 
 If still missing after the pull, STOP:
-"The file for [ClientName]'s [platform] report should exist but I can't find it. The database and repo may be out of sync. Please screenshot this and ping Peterson."
+"This client's branch files aren't in sync with the database. Please screenshot this and ping Peterson."
+
+Based on what the contractor asked to change, pick the right file to edit:
+- "Reorder cards / remove section / add metric" → main entry
+- "Change KPI card colors / number color" → `_<slug>/shared/SparklineKpiCard.tsx`
+- "Change table styling / row hover" → `_<slug>/BreakdownTable.tsx`
+- "Change the chart colors / chart type" → `_<slug>/ReportChart.tsx`
+- "Change the header / date buttons" → `_<slug>/ReportHeader.tsx`
+- "Change the theme colors across the report" → `_<slug>/shared/report-colors.ts`
+
+When in doubt, read the main entry first — it shows which components are used. Then open the component that renders what the contractor wants changed.
 
 ---
 
-## Step 4: Pre-Flight Git Checks
+## Step 4: Pre-Flight Environment + Git Checks
 
-Run all three checks from inside `~/creekside-dashboard`:
+Run these checks in order. If anything fails, STOP with the specified message — do NOT try to work around it.
+
+**Check 0 — Node.js is installed:**
+```bash
+command -v node && node --version
+```
+If the command exits non-zero (Node.js not installed), STOP:
+"Node.js is required for dashboard edits and isn't installed on this machine. Install the LTS version from https://nodejs.org (one-time setup, takes ~2 minutes), then ask me again. Please ping Peterson if you need help."
+
+**Check 0.5 — Dashboard dependencies are installed:**
+```bash
+test -f "$HOME/creekside-dashboard/node_modules/.bin/tsc" && echo "DEPS_OK" || echo "DEPS_MISSING"
+```
+If `DEPS_MISSING`, run a one-time install (can take 60-90 seconds on first run):
+```bash
+cd $HOME/creekside-dashboard && npm install
+```
+Invoke the Bash tool with `timeout: 180000`. Tell the contractor: "Setting up for the first time — this takes about a minute. I'll let you know when it's ready."
+
+If `npm install` fails, STOP: "First-time setup for the dashboard failed. Please screenshot this and ping Peterson."
 
 **Check 1 — Clean working tree:**
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git status --porcelain
+cd $HOME/creekside-dashboard && git status --porcelain
 ```
 If output is not empty, STOP: "There are unsaved changes in the dashboard folder. This might be a sync issue. Please screenshot this and ping Peterson."
 
 **Check 2 — On main branch:**
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git rev-parse --abbrev-ref HEAD
+cd $HOME/creekside-dashboard && git rev-parse --abbrev-ref HEAD
 ```
-If not `main`, STOP: "The dashboard is on the wrong branch. Please screenshot this and ping Peterson."
+If not `main`, STOP: "The dashboard folder is pointing at the wrong version. Please screenshot this and ping Peterson."
 
 **Check 3 — Pull latest:**
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git pull --ff-only origin main
+cd $HOME/creekside-dashboard && git pull --ff-only origin main
 ```
 If this fails, STOP with the error message and "Please screenshot this and ping Peterson."
 
@@ -128,13 +184,26 @@ After the contractor confirms, apply the edit using the Edit tool. Be conservati
 
 ## Step 6: TypeScript Validation
 
-```bash
-cd /Users/petersonrainey/creekside-dashboard && npx tsc --noEmit
-```
-Timeout: 60 seconds.
+Run tsc via the Bash tool with a 90-second timeout. macOS does not ship with the GNU `timeout` command, so use the Bash tool's built-in `timeout` parameter instead of a `timeout` shell wrapper:
 
-If there are TypeScript errors:
-1. Revert: `cd /Users/petersonrainey/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx`
+```bash
+cd $HOME/creekside-dashboard && npx tsc --noEmit
+```
+
+(Invoke with `timeout: 90000` in the Bash tool call.)
+
+If the Bash tool reports the command timed out:
+1. Revert EVERY touched file in one go — use the whole-branch revert (safer than tracking each file you edited):
+   ```bash
+   cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx src/components/reports/custom/_<slug>/
+   ```
+2. STOP and tell the contractor: "TypeScript check is taking too long. I've undone your change. Please screenshot this and ping Peterson."
+
+If tsc exits with any non-zero code (type errors):
+1. Same whole-branch revert as above:
+   ```bash
+   cd $HOME/creekside-dashboard && git checkout -- src/components/reports/custom/<slug>.tsx src/components/reports/custom/_<slug>/
+   ```
 2. Explain the issue to the contractor in plain English (no TypeScript jargon). Ask for clarification if a different approach might work.
 
 Do not push if tsc fails.
@@ -144,17 +213,17 @@ Do not push if tsc fails.
 ## Step 7: Commit and Push
 
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git add src/components/reports/custom/<slug>.tsx
-cd /Users/petersonrainey/creekside-dashboard && git commit -m "feat: update <client_name> <platform> report — <short change summary>"
-cd /Users/petersonrainey/creekside-dashboard && git push origin main
+cd $HOME/creekside-dashboard && git add <every-file-you-edited>
+cd $HOME/creekside-dashboard && git commit -m "feat: update <client_name> <platform> report — <short change summary>"
+cd $HOME/creekside-dashboard && git push origin main
 ```
 
 If push fails:
-1. Try rebase: `cd /Users/petersonrainey/creekside-dashboard && git pull --rebase origin main`
-2. Retry push: `cd /Users/petersonrainey/creekside-dashboard && git push origin main`
+1. Try rebase: `cd $HOME/creekside-dashboard && git pull --rebase origin main`
+2. Retry push: `cd $HOME/creekside-dashboard && git push origin main`
 3. If still fails, revert and STOP:
    ```bash
-   cd /Users/petersonrainey/creekside-dashboard && git reset --hard HEAD~1
+   cd $HOME/creekside-dashboard && git reset --hard HEAD~1
    ```
    Tell the contractor: "The change was saved locally but I couldn't push it live. I've undone the change so nothing is broken. Please screenshot this and ping Peterson."
 
@@ -167,7 +236,7 @@ Tell the contractor in plain language:
 
 Get and include the short commit SHA:
 ```bash
-cd /Users/petersonrainey/creekside-dashboard && git rev-parse --short HEAD
+cd $HOME/creekside-dashboard && git rev-parse --short HEAD
 ```
 
 ---

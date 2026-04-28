@@ -1,5 +1,18 @@
 # Cade MacLean — Claude Code Admin Setup Guide
 
+> **CONTRACTORS: STOP. This document is NOT for you.**
+>
+> This guide describes the **admin CLI install path** — `npm install -g @anthropic-ai/claude-code` plus a local Supabase MCP config with a raw access token. Contractors do NOT use any of this. Contractors:
+> - Use the **Claude Code desktop app** (from claude.ai/code), not the npm CLI
+> - **Inherit all MCP connections** from the shared `ads@creeksidemarketingpros.com` Claude account — no local Node.js and no local MCP config needed
+> - Follow the `Contractor Onboarding Instructions` SOP in `agent_knowledge` (id `13ab6a57-66ad-4c67-a556-c80643186325`) — NOT this document
+>
+> If a contractor's Claude Code session is pulling advice from this file (e.g., "install Node.js", "configure MCP with SUPABASE_ACCESS_TOKEN"), that is a misroute. The right fix is almost always: sign into `ads@creeksidemarketingpros.com` in the browser, fully quit Claude Code (Cmd+Q / quit from system tray), reopen, and re-run the contractor verification tests.
+>
+> The rest of this file applies ONLY to admins (Peterson, Cade) doing a CLI install.
+
+---
+
 ## What This Is
 
 This sets up Claude Code on your machine with full admin access to the Creekside Marketing RAG database and agent system. Your setup mirrors Peterson's exactly — same agents, same hooks, same permissions. You can read, write, update, and delete across all tables, spawn any agent, and build new ones.

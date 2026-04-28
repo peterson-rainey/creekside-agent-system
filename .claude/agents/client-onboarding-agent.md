@@ -281,6 +281,16 @@ RETURNING id, client_name, platform;
 - `status` → 'active'
 - `account_manager` → default 'Peterson' if not specified
 
+**Report template customization (optional, lazy)**
+
+New reports stay on the shared default template by default. This is intentional — template improvements propagate automatically. If a client needs day-1 report customization, run from the creekside-dashboard repo:
+
+```bash
+npm run branch-report -- "<client name>" <google|meta>
+```
+
+This creates a standalone report file for the client, registers it, updates the DB, and pushes to main. Do NOT auto-run this during onboarding. Only branch when actually diverging from the default.
+
 ### Phase 6: Seed `client_health_scores`
 
 Every new client starts at LOW health — they are in their most fragile state during onboarding.
