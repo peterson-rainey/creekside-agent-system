@@ -34,8 +34,9 @@ The Google Ads Transparency Center lives at `https://adstransparency.google.com/
 1. Call `tabs_context_mcp` to get/create a tab group
 2. Create a new tab with `tabs_create_mcp`
 3. Navigate to `https://adstransparency.google.com/`
-4. Wait 3-5 seconds for the page to load
-5. For each competitor:
+4. Wait 5 seconds, then inject `ready_check.js` (read from `~/scripts/screenshot_pipeline/ready_check.js`). If `ready=false`, wait `retry_wait_ms` and re-inject up to `max_retries`.
+5. Inject `dismiss_popups.js` (read from `~/scripts/screenshot_pipeline/dismiss_popups.js`) to clear any cookie/consent banners.
+6. For each competitor:
    a. Use `find` or `form_input` to locate the search box
    b. Type the competitor name
    c. Wait for results to load
@@ -60,8 +61,10 @@ Use WebSearch to search for "[industry] + [location]" and note which businesses 
 For each target keyword, do a Google Search and capture what ads are actually showing.
 
 1. Navigate to `https://www.google.com/`
-2. Search for each keyword (add location if relevant, e.g., "dental implants dallas tx")
-3. Read the page content and extract:
+2. Wait 3 seconds, then inject `ready_check.js`. If `ready=false`, wait and retry.
+3. Inject `dismiss_popups.js` to clear any cookie/consent banners.
+4. Search for each keyword (add location if relevant, e.g., "dental implants dallas tx")
+5. Read the page content and extract:
    - **Sponsored results** (top and bottom): exact headlines, descriptions, sitelinks, callouts
    - **Which advertisers** are showing for this keyword
    - **Common patterns**: what phrases/angles keep appearing across multiple advertisers
@@ -218,10 +221,24 @@ Follow the `chrome-browser-nav` skill pattern:
 1. **Sequential tool calls only.** Never batch navigate + read in parallel.
 2. **Start with `tabs_context_mcp`.** Create tabs with `tabs_create_mcp`.
 3. **Wait after navigation.** The Transparency Center and Google Search need 3-5 seconds to render.
-4. **Teardown is NOT required** -- the spawning agent handles tab lifecycle. But don't leave unnecessary tabs open.
+4. **Teardown is mandatory.** Close every tab you opened when done. Use `tabs_context_mcp` to list remaining tabs, then close each sequentially. Swallow "tab no longer exists" errors as success.
 5. **If a page doesn't load or shows a captcha**, note it and move on. Don't get stuck retrying.
 6. **Prefer `get_page_text` and `read_page`** over `computer` for extracting ad copy. Use `computer` only for clicking/scrolling.
 7. **If the Transparency Center UI changes**, adapt. Use `read_page` to understand the current layout before clicking.
+
+## Self-QC Validation (MANDATORY before output)
+
+Before presenting results:
+1. **Character count audit:** Every recommended headline must be 30 characters or fewer. Count each one. If over, rewrite it.
+2. **No fabrication check:** Verify every ad in the Competitor Ad Inventory came from the Transparency Center or Google Search. If you couldn't find ads for a competitor, say "No ads found" -- never invent copy.
+3. **Minimum coverage:** At least 3 competitors researched. If fewer than 3 were found, flag it at the top of output.
+4. **Keyword coverage:** Every input keyword must appear in the Customer Psychology section. None skipped.
+5. **Exact copy verification:** All competitor ad text in the inventory is verbatim, not paraphrased.
+6. **Completeness:** All sections of the output template are filled. No placeholders or TBDs.
+
+If any check fails, fix it before outputting. If unfixable, flag it prominently at the top.
+
+---
 
 ## Important Constraints
 
