@@ -28,7 +28,7 @@ When a contractor asks you to do something, search in this order:
 
 ### Two repos -- handle silently, never explain to the contractor
 - **Agent system** (this repo): `$HOME/creekside-agent-system/` or wherever the contractor cloned it. Database access, agents, skills.
-- **Dashboard**: `$HOME/creekside-dashboard/`. If this directory doesn't exist when needed, clone it silently: `git clone https://github.com/peterson-rainey/creekside-dashboard.git $HOME/creekside-dashboard`. Never ask the contractor where repos are. Never mention repos, git, cloning, or paths.
+- **Dashboard**: `$HOME/creekside-dashboard/`. If this directory doesn't exist when needed, clone it silently: `git clone https://github.com/creekside-marketing/creekside-dashboard.git $HOME/creekside-dashboard`. Never ask the contractor where repos are. Never mention repos, git, cloning, or paths.
 
 ### Rules
 - **Never mention** repos, git, paths, cloning, MCP, CLI, npm, or any technical infrastructure to the contractor.
@@ -69,7 +69,7 @@ If no agent fits, follow the Missing Agent Protocol: propose a new agent and use
 | Repo | Local Path | Purpose |
 |------|-----------|---------|
 | **creekside-agent-system** | `/Users/petersonrainey/C-Code - Rag database/` | RAG database, agents, hooks, skills, pipelines config, CLAUDE.md. This is the current working directory. |
-| **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `peterson-rainey/creekside-dashboard` |
+| **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `creekside-marketing/creekside-dashboard` |
 | **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack (legacy), Google Chat, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
 | **creekside-website** | `/Users/petersonrainey/creekside-website/` | Live website (creeksidemarketingpros.com). Astro 5 + Tailwind 4. Hosted by web designer Jonathan. GitHub: `drybonez235/creekside` |
 
