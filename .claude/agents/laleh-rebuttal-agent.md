@@ -167,7 +167,17 @@ get_insights: account_id=act_868498138612020, date_preset="this_month",
   level="account", fields=["messaging_first_reply","cost_per_messaging_first_reply","reach","frequency"]
 ```
 
-**Evidence to capture:** Untouched lead count, average response time, lead status breakdown, messaging connections, cost per connection.
+**GHL CRM: recent leads only** (filter to last 14 days):
+```bash
+# Get opportunities created in the last 14 days
+FOURTEEN_DAYS_AGO=$(date -v-14d +%s)000
+curl -s -X GET \
+  "https://services.leadconnectorhq.com/opportunities/search?locationId=${GHL_LOCATION_ID}&status=open&limit=100&date_range_start=${FOURTEEN_DAYS_AGO}" \
+  -H "Authorization: Bearer ${GHL_API_KEY}" \
+  -H "Version: 2021-07-28"
+```
+
+**Evidence to capture:** Untouched lead count FROM THE LAST 14 DAYS, average response time for recent leads, current lead status breakdown, messaging connections, cost per connection. Historical CRM data (e.g., "600+ untouched in Jan") can show a pattern but CANNOT be the primary evidence for a current complaint.
 
 ### Type 2: Ad Fatigue
 
@@ -213,12 +223,18 @@ get_insights: account_id=act_868498138612020, date_preset="this_month",
 get_google_ads_campaign_metrics: customer_id=5948318044, date_range="THIS_MONTH"
 ```
 
-**Historical comparison** (from Supabase):
+**Historical comparison** (from PipeBoard API, NOT from stale database):
+```
+get_insights: account_id=act_868498138612020, date_preset="last_90d",
+  level="account", fields=["spend","impressions","clicks","reach","frequency"],
+  time_increment="monthly"
+```
+If PipeBoard monthly breakdown is unavailable, fall back to Supabase:
 ```sql
 SELECT date, spend, impressions, clicks, reach,
        (spend / NULLIF(clicks, 0)) as cpc
 FROM meta_insights_daily
-WHERE client_id = 'bd9a3110-cded-4a98-a60f-e2257dfa430c'
+WHERE account_id = 'act_868498138612020'
 ORDER BY date DESC LIMIT 90;
 ```
 
@@ -307,12 +323,18 @@ When goalpost shifting is detected, also gather:
 
 **Satisfaction baselines** (from agent_knowledge, loaded in Step 1).
 
-**Historical metrics** (from Supabase):
+**Historical metrics** (from PipeBoard API):
+```
+get_insights: account_id=act_868498138612020, date_preset="maximum",
+  level="account", fields=["spend","impressions","clicks","reach","frequency"],
+  time_increment="monthly"
+```
+Fallback (Supabase):
 ```sql
 SELECT date, spend, impressions, clicks, reach,
        (spend / NULLIF(clicks, 0)) as cpc
 FROM meta_insights_daily
-WHERE client_id = 'bd9a3110-cded-4a98-a60f-e2257dfa430c'
+WHERE account_id = 'act_868498138612020'
 ORDER BY date;
 ```
 
