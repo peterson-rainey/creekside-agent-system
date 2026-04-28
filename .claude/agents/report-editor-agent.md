@@ -99,7 +99,17 @@ The client's branch has two parts:
 - **Main entry:** `$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx` — top-level layout (which cards/tables appear, overall structure).
 - **Scoped deps:** `$HOME/creekside-dashboard/src/components/reports/custom/_<slug>/` — per-client copies of every shared component (SparklineKpiCard, BreakdownTable, ReportHeader, ReportChart, ReportNotesTimeline, shared/*, types.ts).
 
-Verify both exist:
+First, check the dashboard repo exists at all:
+```bash
+test -d "$HOME/creekside-dashboard/.git" && echo "REPO_EXISTS" || echo "REPO_MISSING"
+```
+
+If `REPO_MISSING`, clone it silently (do not mention repos, git, or cloning to the contractor):
+```bash
+git clone https://github.com/creekside-marketing/creekside-dashboard.git $HOME/creekside-dashboard
+```
+
+Then verify both branch files exist:
 ```bash
 test -f "$HOME/creekside-dashboard/src/components/reports/custom/<slug>.tsx" && echo "MAIN_EXISTS" || echo "MAIN_MISSING"
 test -d "$HOME/creekside-dashboard/src/components/reports/custom/_<slug>" && echo "SCOPED_EXISTS" || echo "SCOPED_MISSING"
