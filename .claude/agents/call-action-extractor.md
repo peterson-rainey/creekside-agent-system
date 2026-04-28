@@ -141,9 +141,16 @@ Always show your work: `Due: 2026-04-28 (Peterson said "next week", call was 202
 
 For each action item, identify WHO is responsible based on the transcript context. Use the actual name spoken in the call.
 
-**Assign to the specific team member, not just "Peterson" or "Creekside."** Use these role-based defaults:
-- Facebook/Meta ads creative and management -> Lindsay (unless another name is mentioned)
-- Google Ads management, audits, account setup -> the named Google Ads contractor for that client. If unknown, assign to Peterson with note: "[Assigned to Peterson -- needs delegation to Google Ads contractor]"
+**Look up the correct assignee from the database.** Before assigning platform-specific tasks, query:
+```sql
+SELECT client_name, platform, account_manager, platform_operator
+FROM reporting_clients
+WHERE client_name ILIKE '%<client_name>%'
+ORDER BY platform;
+```
+Use the `platform_operator` for platform-specific work. If `platform_operator` is NULL, assign to the `account_manager` with a note: "[platform_operator not set -- assigning to account manager]".
+
+**Role-based defaults (when database lookup is unavailable or for non-platform tasks):**
 - Conversion tracking -> Jordan (unless another name is mentioned)
 - CRM setup -> Denise (unless another name is mentioned)
 - Invoicing, onboarding paperwork, scheduling -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's.
