@@ -264,13 +264,23 @@ Q4: Is it a sub-instruction that only makes sense as part of a larger deliverabl
 - Internal observations about team member performance or skill levels (not something Peterson would raise on a future call with that person)
 - Items where someone needs to take action (follow up with a client, fix something) -- those are TASKS, not notes
 
-**CHANNEL MESSAGE (Google Chat):** Rules, guidelines, FYI updates, or quick notes the team should know. Channel messages ARE work for Cyndi to execute -- she sends them. Do NOT also create a separate "send message to team" task. The channel message section IS the task.
+**MESSAGE (Google Chat):** Rules, guidelines, FYI updates, quick notes, or small one-off requests directed to specific people. Messages ARE work for Cyndi to execute -- she sends them. Do NOT also create a separate task for sending messages.
+
+Messages can be directed to:
+- **The whole team / all operators** on a client (rules, guidelines, boundaries)
+- **A specific person** (small one-off request like "add tracking to a new landing page," or a direct FYI)
+
+Content types:
 - New rules the team must follow going forward ("one angle per ad")
-- Boundaries on what we're NOT doing ("no overhaul of current campaigns," "general dentistry scaling is on pause")
+- Boundaries on what we're NOT doing ("general dentistry scaling is on pause")
 - Process changes that affect how people work
-- Quick factual notes that the team should be aware of but don't require a task ("prioritize calls over form submissions -- they convert at a higher rate")
-- New documentation or resources the team should know about ("Jordan now has Notion docs for each client's tracking setup")
-- Examples: "One angle per ad going forward," "General dentistry scaling on pause while testing veneers," "New tracking request process: identify form tech and event before sending to Jordan"
+- Quick factual notes ("prioritize calls over form submissions -- they convert at a higher rate")
+- New documentation or resources ("Jordan now has Notion docs for each client's tracking setup")
+- Small one-off requests ("Jordan: new landing page for [client] needs tracking -- [form tech], [event name]"). Note: when in doubt between a message and a task, lean toward creating a task. Better safe than sorry. The key rule is: do NOT create duplicate tasks for the same work. Check existing tasks first.
+
+**Consolidation rule:** If multiple messages go to the SAME people, combine them into ONE message. Only create separate messages when they have DIFFERENT recipients. Example:
+- Three updates for all operators on SRM = ONE message tagging Ahmed and Lindsey
+- One update for all operators + one request for Jordan specifically = TWO messages (different recipients)
 
 **COMMENT ON EXISTING TASK ([ADD TO EXISTING]):** New context for work already in progress.
 - Conversion tracking is already assigned to Jordan but the call added new details
@@ -338,9 +348,9 @@ Items that add new context to work already in progress -- add as COMMENTS, not n
 Items to check on during next weekly call -- NOT action items, just conversation topics:
 - [Topic]: [brief description + transcript quote showing what was discussed]
 
-### Channel Messages (for Cyndi to send in client Google Chat)
-Rules, guidelines, or updates the team should know -- NOT tasks:
-- **Tag:** [names]. **Message:** [Content to send, including any boundaries or "what we're NOT doing" items.]
+### Messages (for Cyndi to send in Google Chat)
+Consolidate by recipient -- one message per unique set of recipients:
+- **To:** [names]. **Message:** [All content for these recipients combined into one message.]
 
 ---
 
