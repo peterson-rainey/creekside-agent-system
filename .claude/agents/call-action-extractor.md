@@ -181,11 +181,11 @@ This is ONE item, not two. The VA follow-up is implicit in the "Blocked by" fiel
 ### Client-owned item filter:
 **Only include client-owned items if they directly block Creekside work.** Client-owned blockers should NOT be listed as separate items. Instead, embed them in the Creekside item they block using the "Blocked by" field.
 
-**Client-side work that blocks Creekside:**
-- Building landing pages we need for ads/tracking -> VA follow-up item
-- Granting access (Slack, Google Ads, Meta, CRM) -> VA follow-up item
-- Sending assets (logos, creatives, data files) -> VA follow-up item
-- Setting up accounts Creekside needs -> VA follow-up item
+**Client-side work that blocks Creekside** (embed as "Blocked by" on the Creekside item, per blocker routing pattern above):
+- Building landing pages we need for ads/tracking
+- Granting access (Slack, Google Ads, Meta, CRM)
+- Sending assets (logos, creatives, data files)
+- Setting up accounts Creekside needs
 
 **Client-side audit recommendations that DON'T block Creekside:**
 - "Turn off Presence or Interest location setting" -> Weekly call notes (check if they did it next call)
