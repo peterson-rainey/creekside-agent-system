@@ -170,7 +170,9 @@ Categories:
 ### Client blocker routing (explicit pattern):
 When client-side work blocks Creekside, how you handle it depends on the severity:
 
-**Real blocker (work literally cannot start):** Use "Blocked by" field with BLOCKED status. Example: can't build Google Ads campaigns until the client creates the account. Can't launch ads until the landing page is built.
+**Real blocker (work literally cannot start AND timeline is unknown):** Use "Blocked by" field with BLOCKED status. Example: can't build Google Ads campaigns until the client creates the account (and we don't know when they will). Can't launch ads until the landing page is built by the client's web designer.
+
+**Sequential dependency (one task follows another, but both have known timelines):** Give BOTH tasks due dates. Note the dependency in context but do NOT use BLOCKED status. Example: Jordan's call tracking setup depends on Peterson's CallRail account setup, but both can be scheduled with dates.
 ```
 ### Build veneer Google Ads campaign
 - Who: Ade A. (Creekside)
@@ -259,13 +261,16 @@ Q4: Is it a sub-instruction that only makes sense as part of a larger deliverabl
 - FYI data points that don't change what we're doing (e.g., "client's call conversion rate is 80%" -- interesting but not actionable)
 - Client personal schedules or travel plans (unless it directly changes campaign timing)
 - Status updates that were given and don't need follow-up
+- Internal observations about team member performance or skill levels (not something Peterson would raise on a future call with that person)
+- Items where someone needs to take action (follow up with a client, fix something) -- those are TASKS, not notes
 
-**CHANNEL MESSAGE (Google Chat):** Rules, guidelines, FYI updates, or quick notes the team should know.
+**CHANNEL MESSAGE (Google Chat):** Rules, guidelines, FYI updates, or quick notes the team should know. Channel messages ARE work for Cyndi to execute -- she sends them. Do NOT also create a separate "send message to team" task. The channel message section IS the task.
 - New rules the team must follow going forward ("one angle per ad")
 - Boundaries on what we're NOT doing ("no overhaul of current campaigns," "general dentistry scaling is on pause")
 - Process changes that affect how people work
 - Quick factual notes that the team should be aware of but don't require a task ("prioritize calls over form submissions -- they convert at a higher rate")
-- Examples: "One angle per ad going forward," "General dentistry scaling on pause while testing veneers," "Calls > form submissions for this client"
+- New documentation or resources the team should know about ("Jordan now has Notion docs for each client's tracking setup")
+- Examples: "One angle per ad going forward," "General dentistry scaling on pause while testing veneers," "New tracking request process: identify form tech and event before sending to Jordan"
 
 **COMMENT ON EXISTING TASK ([ADD TO EXISTING]):** New context for work already in progress.
 - Conversion tracking is already assigned to Jordan but the call added new details
