@@ -153,17 +153,29 @@ Use the `platform_operator` for platform-specific work. If `platform_operator` i
 **Role-based defaults (when database lookup is unavailable or for non-platform tasks):**
 - Conversion tracking -> Jordan (unless another name is mentioned)
 - CRM setup -> Denise (unless another name is mentioned)
+- Creative design / logo sourcing / asset creation -> Aamir (creative designer). Save assets to the client's Google Drive folder.
 - Invoicing, onboarding paperwork, scheduling -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's.
-- Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done)
+- Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done). **Exception:** When the account_manager in reporting_clients is "Peterson" AND the client has weekly calls, Peterson may handle follow-ups directly on those calls. Default to VA follow-up unless the transcript explicitly shows Peterson saying he'll handle it himself on the next call. When in doubt, use VA follow-up.
 - Weekly call notes -> Cyndi (she adds them to Peterson's ClickUp weekly notes page for the client)
+- Channel updates (rules, guidelines, "what we're NOT doing") -> Cyndi sends as a message in the client's Google Chat channel tagging the relevant team members. NOT a ClickUp task.
 
 **When Peterson names a specific person on the call, use that person.** If Peterson says "Ahmed will handle the programmatic setup," assign to Ahmed, not Peterson.
 
 **When defaulting to Peterson, always explain why.**
 
 Categories:
-- **Creekside team** (Peterson, Cade, Lindsay, Jordan, Ahmed, Ade, Scott, Cyndi, Melvin, or a named team member)
+- **Creekside team** (Peterson, Cade, Lindsey, Jordan, Ahmed, Ade, Scott, Aamir, Cyndi, Melvin, or a named team member)
 - **Client** (use their actual name from the transcript) -- only when it blocks Creekside work
+
+### Client blocker routing (explicit pattern):
+When client-side work blocks Creekside, create ONE Creekside action item with "Blocked by" noting the client dependency AND "VA follow-up required" in the Blocked by field. Do NOT create a separate standalone VA follow-up item. The VA sees the "Blocked by" field and knows to follow up. Example:
+```
+### Set up conversion tracking for general dentistry
+- Who: Jordan (Creekside)
+- Due: BLOCKED
+- Blocked by: Tomas setting up Google Ads account and sharing access -- VA follow-up required
+```
+This is ONE item, not two. The VA follow-up is implicit in the "Blocked by" field.
 - **Unclear** (when ownership wasn't explicitly discussed -- assign to Peterson with explanation)
 
 ### Client-owned item filter:
@@ -226,18 +238,23 @@ Present results in this exact format:
 
 ---
 
-### Weekly Call Notes (for Cyndi to add to ClickUp)
+### Weekly Call Notes (for Cyndi to add to Peterson's ClickUp notes page)
 Items to check on during next weekly call -- NOT action items, just conversation topics:
 - [Topic 1]: [brief description of what was discussed and what to check on]
 - [Topic 2]: ...
 
+### Channel Messages (for Cyndi to send in client Google Chat)
+Rules, guidelines, or updates the team should know -- NOT tasks:
+- [Message 1]: Tag [names]. [Content to send.]
+
 ---
 
 ### Summary
-- **Total items:** [N] (excluding [POSSIBLE]: [N])
+- **Total items:** [N] | **Firm:** [N] | **Possible:** [N]
 - **New:** [N] | **Already tracked:** [N] | **Blocked:** [N] | **Possible:** [N]
 - **Creekside-owned:** [N] | **Unclear ownership:** [N]
 - **Weekly call notes:** [N]
+- **Channel messages:** [N]
 ```
 
 ## Rules
@@ -260,3 +277,9 @@ Items to check on during next weekly call -- NOT action items, just conversation
 16. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Cyndi adds these to Peterson's ClickUp notes page for that client.
 17. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
 18. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
+19. **Sub-instructions go INSIDE the parent task, not as standalone items.** When multiple instructions relate to the same deliverable (e.g., "use these copy angles" + "let Meta handle variations" + "add age call-outs" all relate to the creative refresh), they are ONE task with notes inside the Context field. Do NOT create separate action items for each instruction. Test: if removing the sub-instruction makes the parent task incomplete but the sub-instruction has no meaning without the parent, it belongs inside the parent.
+20. **Every due date must be a specific calendar date.** "Due: next creative refresh" or "Due: alongside the BBB refresh" are NOT acceptable. Calculate the actual date. If a task is tied to another task's completion, use BLOCKED with the dependency, not a vague reference.
+21. **Channel messages for rules and guidelines.** When the call establishes a new rule or guideline for the team (e.g., "one angle per ad going forward," "what we're NOT doing right now"), put it in the Channel Messages section. Cyndi sends it as a message in the client's Google Chat tagging the relevant people. These are NOT tasks.
+22. **Already-assigned work = exclude or mark [ALREADY TRACKED].** If conversion tracking is already assigned to Jordan as an existing task, do not re-extract it. The dedup query in Step 6 should catch this -- if it doesn't, use common sense. If something was discussed as "still in progress" from a prior call, it's already tracked.
+23. **Future sequences with dependencies are notes, not tasks.** When a client lays out a multi-step roadmap ("first tracking, then 30 days clean data, then scale, then Bing, then awareness"), put the ENTIRE sequence in Weekly Call Notes. Only extract the CURRENT step as an action item if it has a clear owner and deliverable. Do not create tasks for steps 2-5 that can't start yet.
+24. **Creative design assets go to Aamir.** Logo sourcing, asset creation, graphic design. Platform operators (Ahmed, Lindsey) handle campaign management and ad copy, not design work. Aamir saves assets to the client's Google Drive folder.
