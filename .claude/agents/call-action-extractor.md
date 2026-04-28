@@ -234,13 +234,14 @@ Q4: Is it a sub-instruction that only makes sense as part of a larger deliverabl
 - Has a due date or is blocked by a dependency
 - Examples: "Source BBB logo," "Launch Meta campaigns," "Set up conversion tracking"
 
-**WEEKLY CALL NOTES (Peterson's ClickUp notes page):** Things to CHECK ON at next call.
+**WEEKLY CALL NOTES (Peterson's ClickUp notes page):** Persistent reference list of things to CHECK ON during calls. Items stay on the list until they resolve or become actionable -- not just for "next call."
 - Client-side items Peterson follows up on himself during weekly calls
 - Audit recommendations the client should implement (don't block Creekside)
 - Future roadmap items and dependency sequences (steps 2+ that can't start yet)
 - Status checks ("Did Tyler's fixes hold?", "Are dashboards working yet?")
 - Client promises to follow up on ("Nick said he'd check BBB emails")
-- Examples: "Check if Vipul finished dashboards," "Ask if Presence or Interest was turned off"
+- Longer-horizon items to revisit in a month or several calls from now (e.g., "Revisit Bing at $10K/month after 30 days of clean tracking data")
+- Examples: "Check if Vipul finished dashboards," "Ask if Presence or Interest was turned off," "Revisit Home for Life angle after scaling is complete"
 
 **CHANNEL MESSAGE (Google Chat):** Rules, guidelines, or FYI updates for the team.
 - New rules the team must follow going forward ("one angle per ad")
