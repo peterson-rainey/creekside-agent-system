@@ -89,7 +89,8 @@ Use BOTH pre-extracted action_items AND raw transcript. Deduplicate.
 Return JSON array only: [{"title": "...", "description": "...", "assignee": "...", "priority": N, "category": "...", "fathom_entry_id": "..."}]"""
 
 
-def call_haiku(entries, transcripts):
+def call_haiku_batch(entries, transcripts):
+    """Send a single batch of entries to Haiku."""
     blocks = []
     for e in entries:
         block = (
@@ -113,6 +114,20 @@ def call_haiku(entries, transcripts):
     if raw.startswith("```"):
         raw = "\n".join(l for l in raw.split("\n") if not l.startswith("```")).strip()
     return json.loads(raw)
+
+
+def call_haiku(entries, transcripts, max_per_batch=3):
+    """Process entries in batches to stay within Haiku's 200K token limit."""
+    import time as _time
+    all_actions = []
+    for i in range(0, len(entries), max_per_batch):
+        batch = entries[i:i + max_per_batch]
+        log(f"  Batch {i // max_per_batch + 1}: {len(batch)} entries")
+        actions = call_haiku_batch(batch, transcripts)
+        all_actions.extend(actions)
+        if i + max_per_batch < len(entries):
+            _time.sleep(1)
+    return all_actions
 
 
 # ---------------------------------------------------------------------------

@@ -15,7 +15,7 @@ README.md                  # This file
 admin-setup/               # CLI install guide — ADMINS ONLY (not for contractors)
 scripts/                   # Utility scripts
 migrations/                # Database migration files
-dashboard/                 # Next.js operations dashboard
+creekside-tools/           # Next.js public tools site (lead magnets)
 ```
 
 > **Note on `admin-setup/`** — this folder is the CLI install path used only by Peterson and Cade. Contractors use a completely different flow (see below). If a contractor's Claude Code session ever pulls setup advice from `admin-setup/`, that is a misroute — point them back here.
