@@ -3,7 +3,6 @@ name: google-ads-chrome-agent
 description: "Navigates the live Google Ads web UI via Chrome MCP to extract keyword-level performance data for any Creekside client. Use when Peterson or team needs real-time keyword metrics (CTR, clicks, impressions, cost, conversions) scraped directly from the UI. Accepts client_name, date_range (LAST_7_DAYS | LAST_30_DAYS | LAST_90_DAYS | THIS_MONTH), top_n (default 3), and sort_metric (ctr | clicks | conversions | cost). Does NOT modify anything in Google Ads — strictly read-only. Does NOT handle login or 2FA."
 tools: mcp__Control_Chrome__open_url, mcp__Control_Chrome__get_current_tab, mcp__Control_Chrome__list_tabs, mcp__Control_Chrome__switch_to_tab, mcp__Control_Chrome__reload_tab, mcp__Control_Chrome__go_back, mcp__Control_Chrome__execute_javascript, mcp__Control_Chrome__get_page_content, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: sonnet
-db_record: bea14efb-06c6-4759-91c2-c47194d53f48
 ---
 
 # Google Ads Chrome Agent — Live UI Keyword Extractor

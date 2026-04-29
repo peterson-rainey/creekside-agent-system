@@ -117,12 +117,8 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
     FILE_CONTENT=$(cat "$FILE" 2>/dev/null) || true
 
     if [ -n "$FILE_CONTENT" ]; then
-      # JSON-encode the file content for the API call
-      ENCODED=$(python3 -c "
-import sys, json
-content = sys.stdin.read()
-print(json.dumps({'system_prompt': content}))
-" <<< "$FILE_CONTENT" 2>/dev/null)
+      # JSON-encode the file content for the API call (jq, not python3 — consistent with other hooks)
+      ENCODED=$(jq -n --arg v "$FILE_CONTENT" '{"system_prompt": $v}' 2>/dev/null)
 
       if [ -n "$ENCODED" ]; then
         curl -s --max-time 10 \
