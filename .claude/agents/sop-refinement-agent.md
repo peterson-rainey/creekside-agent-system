@@ -4,6 +4,7 @@ description: Daily scheduled agent that automatically refines SOPs based on real
 tools: mcp__claude_ai_Supabase__execute_sql
 model: sonnet
 department: operations
+execution_mode: ai_dispatcher
 ---
 
 # SOP Refinement Agent
