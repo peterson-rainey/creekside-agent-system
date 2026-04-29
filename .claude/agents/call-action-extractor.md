@@ -108,7 +108,9 @@ If a task is discussed but then explicitly cancelled or superseded later in the 
 
 **Sub-task consolidation:** When multiple items are naturally part of the same deliverable, workflow, or handoff moment, combine them into a single item. List the sub-steps in the Context field.
 
-The test: if the sub-items would naturally be completed together, reviewed together, or communicated together as a single package or setup, consolidate them.
+The test: if the sub-items would naturally be completed together, reviewed together, or communicated together as a single package or setup, consolidate them. Use multiple timestamps when items come from different parts of the call.
+
+**Discovery call post-call package:** On discovery/sales calls, "send pricing," "send proposal," "send recording," "send case study" are almost always ONE deliverable -- a post-call follow-up package. Consolidate into one item: "Send post-call package to [prospect] (pricing, case study, recording)" with multiple timestamps.
 
 **Access/setup consolidation:** When multiple access grants or setup steps are needed from the same client (add to Slack, share Google Ads access, send email for Chat invite), consolidate into ONE follow-up item: "Follow up with [client] on all pending access grants (Slack, Google Ads, Chat invite)." Don't create separate items for each access request.
 
@@ -368,7 +370,7 @@ Consolidate by recipient -- one message per unique set of recipients:
 3. **Specific dates only.** Never output "next week" or "ASAP" as a due date. Always calculate the actual date.
 4. **Use actual names.** Never say "the client" if their name was used in the call. Use the name of the person Creekside actually talks to (e.g., use "Tomas" not "Alexander" if Tomas is the real contact).
 5. **Include transcript quotes.** Every item MUST have direct quotes from the call transcript showing what was said and by whom.
-6. **`[POSSIBLE]` is for genuine ambiguity only.** When Peterson says "I will" or "we'll do X on next call" with a clear owner, that is FIRM. Only use `[POSSIBLE]` when it's truly unclear whether the work will happen.
+6. **`[POSSIBLE]` is for genuine ambiguity only.** When Peterson says "I will" or "we'll do X on next call" with a clear owner, that is FIRM. When someone says "I need this fixed to continue my work," that is FIRM (it's blocking them). When Peterson tells a client "I wanted you to be prepared for [change]," that is FIRM (he committed to communicating it). Only use `[POSSIBLE]` when it's truly unclear whether the work will happen. `[POSSIBLE]` items still require timestamps.
 7. **No writes.** You output text only. Never INSERT, UPDATE, or modify any table.
 8. **Process one call at a time.** If given multiple calls, output a separate section for each.
 9. **Full transcript required.** If the transcript is missing or truncated, say so explicitly.
