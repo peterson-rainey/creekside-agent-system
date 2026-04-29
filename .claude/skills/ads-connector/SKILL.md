@@ -192,6 +192,76 @@ This pipeline is a **backup data-ingestion path**, not a real-time connector. If
 
 ---
 
+## Known API-side gotchas (PipeBoard + Google Ads / Meta APIs)
+
+Surfaced from the 2026-04-28 ad-copy-editor build (SRM 55→62 compliance run). Encode these in any agent that uses the ads MCPs.
+
+### G1. PipeBoard tools have stricter validators than the underlying platform APIs
+
+`create_google_ads_responsive_search_ad` counts the literal string `{KeyWord:fallback text}` against the 30-character headline limit and rejects, even though the Google Ads API itself only counts the fallback text. A headline like `{KeyWord:Trusted by High-Net Owners}` (36 literal chars, 26-char fallback) is valid in the API but rejected by the dedicated tool.
+
+**Workaround:** use `execute_google_ads_mutate` with `resource_type: "adGroupAds"` directly. If that fails for the reason in G2, drop the dynamic insertion when creating, then add it back via the Google Ads UI (use the `ads-ui-navigation` skill).
+
+### G2. execute_google_ads_mutate gets blocked by a permission heuristic on complex object payloads
+
+Symptom: the permission preview renders the operations array as `[object Object]` and rejects the call before it reaches the API. Affects deeply-nested `responsiveSearchAd` create payloads. Does NOT affect simple text-asset creates, asset_group_asset link creates, or remove operations — those work fine.
+
+**Workaround:** split into smaller, less-nested mutate calls; use the dedicated tool for the create and only use mutate for the remove/unlink.
+
+### G3. All Google Ads creative resources are immutable — universal recreate-and-relink pattern
+
+RSAs, text assets, sitelinks, callouts, structured snippets cannot be edited in place.
+
+**To "edit" an RSA:** create a new RSA with the corrected copy via `create_google_ads_responsive_search_ad` (preserve pinned positions, ad group, status) → remove the old RSA via `execute_google_ads_mutate` resource_type=adGroupAds, operation `{remove: "customers/{cid}/adGroupAds/{ag_id}~{ad_id}"}`.
+
+**To "edit" a text asset:** create a new text asset via `execute_google_ads_mutate` resource_type=`assets` operation `{create: {textAsset: {text: "..."}}}` → create a new asset_group_asset link at the same field_type → remove the old link (NOT the old asset; libraries cannot delete from Google Ads). The asset_group_asset resource path format is: `customers/{cid}/assetGroupAssets/{asset_group_id}~{asset_id}~{field_type}`.
+
+Meta ad creatives behave the same way for substantive copy changes — recreate-and-pause is the platform-agnostic pattern.
+
+### G4. REMOVED campaigns are PERMANENT read-only
+
+Not soft-deleted. Cannot edit, pause, or modify ads inside. Always exclude from edit scope (`AND campaign.status != 'REMOVED'` in audit queries). Surface them in reports for transparency, but mark them read-only.
+
+### G5. PipeBoard MCP rate-limits across all clients
+
+Error message: `"Google Ads API platform quota exhausted on Pipeboard's side"`. Hit during the SRM run mid-verification. The fallback: pause and retry in 10–60 minutes, or do the action via UI if time-sensitive. Do not silently retry in a loop — that burns the rate-limit window further.
+
+### G6. Large GAQL results write to disk, not inline
+
+When a GAQL query result exceeds the MCP tool's inline token limit, the tool writes the JSON to a temp file and returns the file path in the error message. Do NOT try to load the file into context.
+
+**Pattern that worked on the SRM Pmax asset_group_asset dump (1.3 MB):**
+```bash
+python3 -c "
+import json
+data = json.load(open('/path/to/result.txt'))
+inner = json.loads(data[0]['text'])
+results = inner['results']
+matches = [r for r in results if '<TARGET STRING>' in (r.get('asset',{}).get('textAsset',{}).get('text') or '')]
+for m in matches:
+    print(m['asset']['id'], m['assetGroup']['name'], m.get('campaign',{}).get('name'), m['assetGroupAsset']['status'])
+"
+```
+
+Use `Bash` + Python or `jq` to grep over text fields, then trace each hit to its `asset.id`, `assetGroup.id`, `campaign.name`, and status fields.
+
+### G7. Lane-aware copy is the norm in regulated verticals, not an exception
+
+Mortgage (Reverse Mortgage 62+ vs Home For Life 55+), dental (cosmetic vs general), healthcare, insurance, and financial accounts all have multi-product setups where the same word is correct in one product lane and wrong in another. A blind find/replace breaks legitimate copy.
+
+**Pattern:** when the user's request involves changing copy on a multi-product account, ask for or infer lane rules in the form:
+```
+{
+  lanes: [
+    {name: "Reverse Mortgage", must_contain_any: ["FHA","HECM","Reverse Mortgage"], must_not_contain_any: ["Home For Life","H4L"], apply_change: true},
+    {name: "H4L", must_contain_any: ["Home For Life","H4L"], must_not_contain_any: ["FHA","Reverse Mortgage","HECM"], apply_change: false}
+  ]
+}
+```
+Classify every match before mutating. Escalate unclassified matches to the user — never guess. The reference implementation is `ad-copy-editor-agent`.
+
+---
+
 ## Fallback: Google Ads / Meta Ads UI (when the MCP can't do it)
 
 **Routing principle:** try the PipeBoard MCP first. If the needed operation isn't in the MCP's tool surface, do it in the UI via Chrome automation. Do not invent MCP tools that don't exist.

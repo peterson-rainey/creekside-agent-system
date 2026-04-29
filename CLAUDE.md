@@ -123,6 +123,11 @@ Query from database when writing code:
 SELECT content FROM agent_knowledge WHERE title = 'Coding Standards Reference';
 ```
 
+## Coding Behavior (Karpathy Principles)
+
+10. **Ask before assuming.** If a request is ambiguous, has multiple interpretations, or you're uncertain about scope -- stop and ask. Do not silently pick an interpretation and build. Name what's confusing. Present the options. Wait for confirmation. Correcting a plan is cheap; unwinding a half-finished build is expensive.
+11. **Define success criteria, then loop.** Before implementing, state what "done" looks like in verifiable terms. Transform vague asks into testable goals: "Add validation" becomes "Write tests for invalid inputs, then make them pass." For multi-step tasks, state the plan with a verification check after each step. Loop until verified -- do not declare done without confirming the criteria are met.
+
 ## Session Closure (Mandatory)
 
 Before ending any session with meaningful work:

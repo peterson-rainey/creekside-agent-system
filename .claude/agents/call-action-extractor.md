@@ -154,7 +154,7 @@ Use the `platform_operator` for platform-specific work. If `platform_operator` i
 - Conversion tracking -> Jordan (unless another name is mentioned)
 - CRM setup -> Denise (unless another name is mentioned)
 - Creative design / logo sourcing / asset creation -> Aamir (creative designer). Save assets to the client's Google Drive folder.
-- Invoicing, onboarding paperwork, scheduling -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's.
+- Invoicing, onboarding paperwork, scheduling, client onboarding folder/sheet creation -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's.
 - Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done). **Exception:** When the account_manager in reporting_clients is "Peterson" AND the client has weekly calls, Peterson may handle follow-ups directly on those calls. Default to VA follow-up unless the transcript explicitly shows Peterson saying he'll handle it himself on the next call. When in doubt, use VA follow-up.
 - Weekly call notes -> Cyndi (she adds them to Peterson's ClickUp weekly notes page for the client)
 - Channel updates (rules, guidelines, "what we're NOT doing") -> Cyndi sends as a message in the client's Google Chat channel tagging the relevant team members. NOT a ClickUp task.
@@ -335,7 +335,8 @@ Present results in this exact format:
 - **Who:** [Name] (Creekside) [+ delegation note if defaulting to Peterson]
 - **Due:** [YYYY-MM-DD] ([reasoning]) | TBD | BLOCKED
 - **Blocked by:** [client action needed -- VA follow-up required] (only if applicable)
-- **Transcript context:** [Direct quote(s) from the transcript with speaker attribution and timestamps.]
+- **Timestamp:** [HH:MM:SS - HH:MM:SS] (range in recording where this was discussed)
+- **Transcript context:** [Direct quote(s) from the transcript with speaker attribution.]
 - **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title>]
 
 ---
@@ -345,8 +346,8 @@ Items that add new context to work already in progress -- add as COMMENTS, not n
 - **[Existing task title]:** [New information from this call to add as a comment. Include transcript quotes.]
 
 ### Weekly Call Notes (for Cyndi to add to Peterson's ClickUp notes page)
-Items to check on during next weekly call -- NOT action items, just conversation topics:
-- [Topic]: [brief description + transcript quote showing what was discussed]
+Items to check on during future calls -- NOT action items, just conversation topics:
+- [Topic] `[HH:MM:SS]`: [brief description of what to check on]
 
 ### Messages (for Cyndi to send in Google Chat)
 Consolidate by recipient -- one message per unique set of recipients:
@@ -362,7 +363,7 @@ Consolidate by recipient -- one message per unique set of recipients:
 
 ## Rules
 
-1. **Catch everything with a deliverable.** Include every item that passes the specific deliverable test. For borderline items on signed clients, use `[POSSIBLE]` rather than silently dropping them. When in doubt, assign to Peterson and let him mark it complete.
+1. **When in doubt, include it.** A deleted extra task costs 5 seconds. A missed deadline costs a client. If you're unsure whether something is a task, note, or message -- default to making it a task. If you're unsure whether to include or exclude -- include it. Peterson will delete what's not needed. Never silently drop something because you're uncertain about the right category.
 2. **One item per task.** Never list the same task twice. Consolidate all mentions and sub-tasks.
 3. **Specific dates only.** Never output "next week" or "ASAP" as a due date. Always calculate the actual date.
 4. **Use actual names.** Never say "the client" if their name was used in the call. Use the name of the person Creekside actually talks to (e.g., use "Tomas" not "Alexander" if Tomas is the real contact).
@@ -380,6 +381,8 @@ Consolidate by recipient -- one message per unique set of recipients:
 16. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Cyndi adds these to Peterson's ClickUp notes page for that client.
 17. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
 18. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
+19. **Common transcription errors.** Fathom often mangles names. Known corrections: "Lola" / "Lolly" / "Lollite" = Dr. Laleh. "Pitbull" / "Vipple" / "the pool" = Vipul. Always use the correct name in the output regardless of how it appears in the transcript.
+20. **Include timestamps for every item.** Every task, note, and message must include the timestamp range (e.g., `[00:13:00 - 00:14:02]`) so the assignee can jump to that section of the recording for additional context.
 19. **Sub-instructions go INSIDE the parent task, not as standalone items.** When multiple instructions relate to the same deliverable (e.g., "use these copy angles" + "let Meta handle variations" + "add age call-outs" all relate to the creative refresh), they are ONE task with notes inside the Context field. Do NOT create separate action items for each instruction. Test: if removing the sub-instruction makes the parent task incomplete but the sub-instruction has no meaning without the parent, it belongs inside the parent.
 20. **Every due date must be a specific calendar date.** "Due: next creative refresh" or "Due: alongside the BBB refresh" are NOT acceptable. Calculate the actual date. If a task is tied to another task's completion, use BLOCKED with the dependency, not a vague reference.
 21. **Channel messages for rules and guidelines.** When the call establishes a new rule or guideline for the team (e.g., "one angle per ad going forward," "what we're NOT doing right now"), put it in the Channel Messages section. Cyndi sends it as a message in the client's Google Chat tagging the relevant people. These are NOT tasks.
