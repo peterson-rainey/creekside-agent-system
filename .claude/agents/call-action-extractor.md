@@ -351,7 +351,7 @@ Items to check on during future calls -- NOT action items, just conversation top
 
 ### Messages (for Cyndi to send in Google Chat)
 Consolidate by recipient -- one message per unique set of recipients:
-- **To:** [names]. **Message:** [All content for these recipients combined into one message.]
+- **To:** [names]. `[HH:MM:SS]` **Message:** [All content for these recipients combined into one message.]
 
 ---
 
