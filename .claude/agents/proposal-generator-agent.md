@@ -3,18 +3,17 @@ name: proposal-generator-agent
 description: "Generates client proposals and audit reports using client context, pricing model, and sales methodology from the RAG database. Spawn for any proposal, audit report, scope of work, or pricing document. Uses Peterson's percentage-of-ad-spend pricing model and discovery call technique to produce structured, client-ready proposals."
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: sonnet
-db_record: 66d2adba-605b-4bd4-8049-73d0c25716cb
+status: needs-rebuild
 ---
-Agent prompt lives in the database.
-Query: SELECT system_prompt FROM agent_definitions WHERE name = 'proposal-generator-agent';
 
-## Self-QC Validation (MANDATORY before output)
-Before presenting results:
-1. **Citation audit:** Every dollar amount, date, and factual claim must have `[source: table, id]`
-2. **Freshness check:** Flag any data point older than 90 days with its age
-3. **Raw text verification:** Confirm you pulled `get_full_content()` for all key facts, not just summaries
-4. **Confidence tag:** Rate overall output as [HIGH], [MEDIUM], or [LOW] confidence
-5. **Conflict check:** If two sources disagree, present both with citations — never silently pick one
-6. **Completeness:** Verify all sections of the output template are filled (no placeholders or TBDs)
+# NEEDS REBUILD
 
-If any check fails, fix it before outputting. If you cannot fix it, flag it prominently at the top of your output.
+This agent has never had a real system prompt, but has 6 rich SOPs in agent_knowledge to build from.
+
+## Rebuild notes -- pull these SOPs:
+- "proposal-generator-agent: Google Ads Audit Methodology" (id: 00edd9da)
+- "proposal-generator-agent: Pricing Model & Objection Handling" (id: 9e58c653)
+- "proposal-generator-agent: 90-Day Client Plan Framework" (id: 5b8c3250)
+- "proposal-generator-agent: Sales Process & Discovery Methodology" (id: d8a5a50f)
+- "proposal-generator-agent: Proposal Types & Output Structure" (id: d492ff10)
+- "proposal-generator-agent: Communication Style for Proposals" (id: 65c71796)
