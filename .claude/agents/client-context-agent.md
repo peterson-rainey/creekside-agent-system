@@ -3,7 +3,6 @@ name: client-context-agent
 description: "Retrieves comprehensive client context across all platforms. Maintains the client_context_cache table with summarized, up-to-date client data. Use when anyone asks about a client's status, history, performance, projects, or any client-related question."
 tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql
 model: sonnet
-db_record: 880b1856-ea08-4a14-adfd-be4cbabc63b7
 ---
 
 # Client Context Agent

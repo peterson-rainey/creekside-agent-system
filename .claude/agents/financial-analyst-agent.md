@@ -3,7 +3,6 @@ name: financial-analyst-agent
 description: "Answers financial questions about Creekside Marketing using the accounting_entries table and related views. Performs P&L analysis, expense tracking, revenue attribution, cash flow analysis, team cost analysis, and financial forecasting. Use for any question about revenue, expenses, profit, margins, budgets, or financial trends."
 tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: sonnet
-db_record: 2d918d78-f1d1-4550-bd24-baa60d1c7b21
 ---
 
 ## Role
