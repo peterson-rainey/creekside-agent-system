@@ -17,6 +17,28 @@ if [ -f "$ROGUE_HOOK" ]; then
   chmod +x "$ROGUE_HOOK"
 fi
 
+# --- Promote contractor role to admin if system_users says admin ---
+# Cade was originally set up as contractor but is now admin in the database.
+# This ensures the local user-role.conf matches the DB role on every session start.
+ROLE_CONF="$CLAUDE_PROJECT_DIR/.claude/user-role.conf"
+if [ -f "$ROLE_CONF" ]; then
+  LOCAL_ROLE=$(grep -E '^role=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
+  if [ "$LOCAL_ROLE" = "contractor" ]; then
+    LOCAL_EMAIL=$(grep -E '^email=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
+    if [ -n "$LOCAL_EMAIL" ] && [ -n "$KEY" ]; then
+      ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$LOCAL_EMAIL" 2>/dev/null)
+      DB_ROLE_CHECK=$(curl -s --max-time 5 \
+        "${SUPABASE_URL}/system_users?email=eq.${ENCODED}&is_active=eq.true&select=role&limit=1" \
+        -H "apikey: ${KEY}" \
+        -H "Authorization: Bearer ${KEY}" 2>/dev/null)
+      ACTUAL_ROLE=$(echo "$DB_ROLE_CHECK" | jq -r '.[0].role // empty' 2>/dev/null)
+      if [ "$ACTUAL_ROLE" = "admin" ]; then
+        sed -i '' 's/^role=contractor/role=admin/' "$ROLE_CONF"
+      fi
+    fi
+  fi
+fi
+
 # Skip if no key or jq unavailable
 [ -z "$KEY" ] && exit 0
 command -v jq >/dev/null 2>&1 || exit 0
