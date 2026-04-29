@@ -337,7 +337,8 @@ Present results in this exact format:
 - **Who:** [Name] (Creekside) [+ delegation note if defaulting to Peterson]
 - **Due:** [YYYY-MM-DD] ([reasoning]) | TBD | BLOCKED
 - **Blocked by:** [client action needed -- VA follow-up required] (only if applicable)
-- **Timestamp:** [HH:MM:SS - HH:MM:SS] (range in recording where this was discussed)
+- **Timestamp:** [HH:MM:SS - HH:MM:SS] (range in recording where this was discussed. Multiple timestamps OK if discussed in multiple places.)
+- **Repeating:** [frequency] (only if this is a new recurring process being established, e.g., "3x/week" or "daily" or "every Friday")
 - **Transcript context:** [Direct quote(s) from the transcript with speaker attribution.]
 - **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title>]
 
@@ -384,7 +385,8 @@ Consolidate by recipient -- one message per unique set of recipients:
 17. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
 18. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
 19. **Common transcription errors.** Fathom often mangles names. Known corrections: "Lola" / "Lolly" / "Lollite" = Dr. Laleh. "Pitbull" / "Vipple" / "the pool" = Vipul. Always use the correct name in the output regardless of how it appears in the transcript.
-20. **Include timestamps for every item.** Every task, note, and message must include the timestamp range (e.g., `[00:13:00 - 00:14:02]`) so the assignee can jump to that section of the recording for additional context.
+20. **Include timestamps for every item.** Every task, note, message, and `[POSSIBLE]` item must include the timestamp range (e.g., `[00:13:00 - 00:14:02]`) so the assignee can jump to that section of the recording for additional context. Use multiple timestamps if the item was discussed in multiple places.
+21. **Repeating tasks.** When a new recurring process is being established (e.g., "check this spreadsheet 3x/week"), mark it with a Repeating field showing the cadence. The due date is when the first occurrence should happen. Example: "Due: 2026-03-11 | Repeating: 3x/week (Mon/Wed/Fri)"
 19. **Sub-instructions go INSIDE the parent task, not as standalone items.** When multiple instructions relate to the same deliverable (e.g., "use these copy angles" + "let Meta handle variations" + "add age call-outs" all relate to the creative refresh), they are ONE task with notes inside the Context field. Do NOT create separate action items for each instruction. Test: if removing the sub-instruction makes the parent task incomplete but the sub-instruction has no meaning without the parent, it belongs inside the parent.
 20. **Every due date must be a specific calendar date.** "Due: next creative refresh" or "Due: alongside the BBB refresh" are NOT acceptable. Calculate the actual date. If a task is tied to another task's completion, use BLOCKED with the dependency, not a vague reference.
 21. **Channel messages for rules and guidelines.** When the call establishes a new rule or guideline for the team (e.g., "one angle per ad going forward," "what we're NOT doing right now"), put it in the Channel Messages section. Cyndi sends it as a message in the client's Google Chat tagging the relevant people. These are NOT tasks.
