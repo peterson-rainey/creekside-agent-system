@@ -106,7 +106,37 @@ if [ -d "$CLAUDE_DIR/.git" ]; then
   )
 fi
 
-# DB mirroring removed — git repo is the source of truth for all local files.
-# Git auto-commit + push above handles persistence.
+# DB mirroring: sync agent file content to agent_definitions.system_prompt
+# Files are the source of truth; DB copy exists for Railway scheduled agents and routing.
+if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+  (
+    SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
+    SUPA_KEY="$SUPABASE_SERVICE_ROLE_KEY"
+
+    # Read full file content
+    FILE_CONTENT=$(cat "$FILE" 2>/dev/null) || true
+
+    if [ -n "$FILE_CONTENT" ]; then
+      # JSON-encode the file content for the API call
+      ENCODED=$(python3 -c "
+import sys, json
+content = sys.stdin.read()
+print(json.dumps({'system_prompt': content}))
+" <<< "$FILE_CONTENT" 2>/dev/null)
+
+      if [ -n "$ENCODED" ]; then
+        curl -s --max-time 10 \
+          "${SUPA_URL}/agent_definitions?name=eq.${AGENT_NAME}" \
+          -X PATCH \
+          -H "apikey: ${SUPA_KEY}" \
+          -H "Authorization: Bearer ${SUPA_KEY}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "$ENCODED" \
+          2>/dev/null > /dev/null &
+      fi
+    fi
+  ) 2>/dev/null
+fi
 
 exit 0
