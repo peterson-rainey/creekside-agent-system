@@ -79,6 +79,7 @@ If no agent fits, follow the Missing Agent Protocol: propose a new agent and use
 ## Infrastructure
 - **Supabase project**: `suhnpazajrmfcmbwckkx` — use `execute_sql` MCP tool. Use `SUPABASE_SERVICE_ROLE_KEY` for writes (anon key silently fails).
 - **Git repo**: `https://github.com/peterson-rainey/creekside-agent-system.git` — all agent files, hooks, skills, and settings live here. Auto-committed on every change. This is the source of truth for local files — do NOT duplicate file content in the database.
+- **System architecture**: Read `ARCHITECTURE.md` in the repo root for a comprehensive reference on how the entire system works (tables, functions, agents, hooks, pipelines, search, access control). Consult it when you need to understand how something connects.
 
 ## Repository Map (3 separate repos — NEVER confuse them)
 
@@ -106,6 +107,7 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 7. **Promote universal corrections to CLAUDE.md.** When a correction applies to every session universally (not agent-specific or client-specific), add it to CLAUDE.md via ADMIN_MODE. Then delete the agent_knowledge entry. agent_knowledge is for searchable context -- CLAUDE.md is for always-loaded rules.
 8. **Search before debugging.** When encountering an unresolved error or bug, search `agent_knowledge` for prior solutions before proposing a new fix. If the solution is novel, save it back as `type='solution'`.
 9. **Capability vs inventory.** For "can I", "is it possible", "what's the best way" questions: name the CEILING (what the system allows), the FLOOR (what's currently built), and the GAP. Never let a database-only answer cap what's actually possible. Anti-pattern: "convenience anchoring."
+10. **GitHub-first for agent prompts.** Agent prompts live in `.claude/agents/{name}.md` (source of truth). The `agent-edit-monitor.sh` hook syncs changes to `agent_definitions.system_prompt` in the DB. To edit an agent prompt, modify the file. NEVER UPDATE `system_prompt` directly in the DB.
 
 ## QC Pattern (Mandatory)
 
