@@ -25,8 +25,8 @@ if [ -f "$ROLE_CONF" ]; then
   LOCAL_ROLE=$(grep -E '^role=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
   if [ "$LOCAL_ROLE" = "contractor" ]; then
     LOCAL_EMAIL=$(grep -E '^email=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
-    if [ -n "$LOCAL_EMAIL" ] && [ -n "$KEY" ]; then
-      ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$LOCAL_EMAIL" 2>/dev/null)
+    if [ -n "$LOCAL_EMAIL" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; then
+      ENCODED=$(printf '%s' "$LOCAL_EMAIL" | sed 's/@/%40/g; s/+/%2B/g')
       DB_ROLE_CHECK=$(curl -s --max-time 5 \
         "${SUPABASE_URL}/system_users?email=eq.${ENCODED}&is_active=eq.true&select=role&limit=1" \
         -H "apikey: ${KEY}" \
