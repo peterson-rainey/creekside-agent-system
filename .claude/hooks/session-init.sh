@@ -93,6 +93,27 @@ For INSERT statements, include \`created_by_user_id = '${USER_ID}'\` to track ow
   fi
 fi
 
+# --- 0b. Symlink contractor's personal skills into .claude/skills/_personal ---
+# Derives username from USER_NAME (lowercase, spaces→hyphens) to match contractor-skills/{name}/
+if [ -n "$USER_NAME" ]; then
+  CONTRACTOR_SLUG=$(echo "$USER_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+  CONTRACTOR_SKILLS_DIR="$CLAUDE_PROJECT_DIR/.claude/contractor-skills/$CONTRACTOR_SLUG"
+  PERSONAL_LINK="$CLAUDE_PROJECT_DIR/.claude/skills/_personal"
+
+  if [ -d "$CONTRACTOR_SKILLS_DIR" ]; then
+    # Remove stale symlink if it points somewhere else, then create
+    if [ -L "$PERSONAL_LINK" ]; then
+      CURRENT_TARGET=$(readlink "$PERSONAL_LINK" 2>/dev/null)
+      if [ "$CURRENT_TARGET" != "$CONTRACTOR_SKILLS_DIR" ]; then
+        rm "$PERSONAL_LINK" 2>/dev/null
+        ln -s "$CONTRACTOR_SKILLS_DIR" "$PERSONAL_LINK" 2>/dev/null
+      fi
+    elif [ ! -e "$PERSONAL_LINK" ]; then
+      ln -s "$CONTRACTOR_SKILLS_DIR" "$PERSONAL_LINK" 2>/dev/null
+    fi
+  fi
+fi
+
 # --- 1. Fetch the startup guide (single record) ---
 GUIDE=$(curl -s --max-time 8 \
   "${SUPABASE_URL}/agent_knowledge?id=eq.83308752-50a8-42cd-bb15-54bfa04e7764&select=content" \
