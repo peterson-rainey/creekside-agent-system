@@ -3,6 +3,7 @@ name: call-action-extractor
 description: Extracts a clean, deduplicated list of action items from sales and client call transcripts with specific due dates. Read-only — outputs only, no writes.
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: sonnet
+read_only: true
 ---
 
 # Call Action Item Extractor
