@@ -135,4 +135,40 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
   ) 2>/dev/null
 fi
 
+# DB mirroring: sync skill file metadata to agent_knowledge
+# Updates the content preview for "Skill (filesystem):" entries when a SKILL.md changes.
+if [ "$IS_SKILL" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+  (
+    SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
+    SUPA_KEY="$SUPABASE_SERVICE_ROLE_KEY"
+
+    # Derive skill name from path: .claude/skills/{skill-name}/SKILL.md
+    SKILL_NAME=$(echo "$FILE" | sed -E 's|.*/skills/([^/]+)/.*|\1|')
+
+    # Read the SKILL.md content (first 2000 chars for metadata)
+    SKILL_CONTENT=$(head -c 2000 "$FILE" 2>/dev/null) || true
+
+    if [ -n "$SKILL_CONTENT" ] && [ -n "$SKILL_NAME" ]; then
+      ENCODED=$(jq -n \
+        --arg content "$SKILL_CONTENT" \
+        --arg updated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+        '{"content": $content, "updated_at": $updated}' 2>/dev/null)
+
+      if [ -n "$ENCODED" ]; then
+        # URL-encode the title for the filter
+        FILTER_TITLE=$(printf 'Skill (filesystem): %s' "$SKILL_NAME" | sed 's/ /%20/g; s/(/%28/g; s/)/%29/g')
+        curl -s --max-time 10 \
+          "${SUPA_URL}/agent_knowledge?type=eq.skill&title=eq.${FILTER_TITLE}" \
+          -X PATCH \
+          -H "apikey: ${SUPA_KEY}" \
+          -H "Authorization: Bearer ${SUPA_KEY}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "$ENCODED" \
+          2>/dev/null > /dev/null &
+      fi
+    fi
+  ) 2>/dev/null
+fi
+
 exit 0
