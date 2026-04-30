@@ -36,45 +36,7 @@ Additionally spawn:
 
 ## How to Navigate the System
 
-### Search (always use both)
-- Semantic: `search_all(embedding, count)` / `logged_search_all(embedding, count, NULL, NULL, 'agent_name')`
-- Keyword: `keyword_search_all(term, count)` / `logged_keyword_search(term, count, NULL, NULL, 'agent_name')`
-- ClickUp (with task families): `search_all_expanded(embedding, count)`
-
-### Summaries vs Raw Text
-Summaries are for FINDING records. Raw text is for ANSWERING questions.
-- Single record: `get_full_content(table, id)`
-- Batch: `get_full_content_batch(table, ids[])`
-- Never answer dollar amounts, dates, commitments, or action items from summaries alone.
-
-### Client Queries -- Cache First
-1. `client_context_cache` -- check first (fast, pre-built)
-2. `get_client_360(client_id)` -- full view (rebuild if cache is stale >7 days)
-3. `get_client_timeline(client_id, max)` -- chronological feed
-4. Name resolution: `resolve_client_id(name)` or `match_incoming_client(name, source)`
-
-### Routing Table (when user asks X, query Y)
-| User asks about... | Query |
-|---|---|
-| What to work on next | `get_pending_action_items(10)` |
-| Recent sessions / prior work | `chat_sessions ORDER BY session_date DESC LIMIT 5` |
-| What changed recently | `get_recent_changes(7)` |
-| Outstanding admin questions | `admin_questions WHERE status = 'open'` |
-| Pipeline or agent failures | `pipeline_alerts WHERE severity IN ('high','critical') AND acknowledged = false` |
-| Failed agent runs | `agent_run_history WHERE status IN ('failure','timeout') AND started_at > NOW() - interval '24h'` |
-| System health (all-in-one) | `system_health_dashboard()` |
-| SOPs and procedures | `agent_knowledge WHERE type = 'sop' AND title ILIKE '%keyword%'` |
-
-### agent_knowledge Types (filter by type for targeted results)
-configuration | sop | pattern | correction | skill | decision | troubleshooting | reference | quality_audit | api_reference | feedback
-
-### Before Creating Anything New
-- `validate_new_entry(type, name)` -- BLOCKED = dup, WARNING = similar, OK = safe
-- `validate_new_knowledge(type, title, tags)` -- BLOCKED = update instead
-
-### Deep Infrastructure Reference
-For the full startup guide (SQL patterns, RPC functions, connection notes, financial views):
-`SELECT content FROM agent_knowledge WHERE id = '83308752-50a8-42cd-bb15-54bfa04e7764';`
+Search patterns, client query order, common query routing, and agent_knowledge types are all in CLAUDE.md under "Querying the Database." Those rules apply universally -- do not duplicate them here.
 
 ### Schema Navigation Reference (load when routing complex queries)
 Content dates, key columns, relationships, and join chains for every major table:

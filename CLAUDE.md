@@ -68,7 +68,7 @@ The ops manager (`.claude/roles/ops-manager.md`) defines how to discover agents,
 Query `agent_definitions` if unsure. If an agent's description matches the task, spawn it. Do not replicate what a sub-agent already does.
 
 **Check 2: Will the output be acted on or shared externally?**
-If yes (proposals, reports, ad copy, client communications, strategies), the output MUST go through `qc-reviewer-agent` before presenting. Add `expert-review-agent` for external deliverables.
+If yes (proposals, reports, ad copy, client communications, strategies), the output MUST go through `qc-reviewer-agent` before presenting. Add `expert-review-agent` for external deliverables. Add `code-audit-agent` for executable code (.sh, .js, .py, SQL functions).
 
 **Handle directly when BOTH are true:**
 - No specialized agent covers the task
@@ -102,15 +102,48 @@ SELECT content FROM agent_knowledge WHERE title = 'Coding Standards Reference';
 10. **Ask before assuming.** If a request is ambiguous, has multiple interpretations, or you're uncertain about scope -- stop and ask. Do not silently pick an interpretation and build. Name what's confusing. Present the options. Wait for confirmation. Correcting a plan is cheap; unwinding a half-finished build is expensive.
 11. **Define success criteria, then loop autonomously.** Before implementing, state what "done" looks like in verifiable terms. Transform vague asks into testable goals: "Add validation" becomes "Write tests for invalid inputs, then make them pass." Then execute all steps autonomously until done -- do not pause for user input between steps. Only stop to ask if you are genuinely blocked or the requirement is ambiguous. Loop until the success criteria are verified -- do not declare done without confirming they are met.
 
-## On-Demand Reference
+## Querying the Database
 
+### Search (always use both)
+- Semantic: `search_all(query, count)` or `logged_search_all(query, count, NULL, NULL, 'agent_name')`
+- Keyword: `keyword_search_all(term, count)` or `logged_keyword_search(term, count, NULL, NULL, 'agent_name')`
+- ClickUp (with task families): `search_all_expanded(query, count)`
+
+Never rely on a single search method. Semantic finds conceptual matches; keyword finds exact names and IDs.
+
+### Summaries vs Raw Text
+Summaries are for FINDING records. Raw text is for ANSWERING questions.
+- Single record: `get_full_content(table, id)`
+- Batch: `get_full_content_batch(table, ids[])`
+- **Never answer dollar amounts, dates, commitments, or action items from summaries alone.** Always pull raw text first.
+
+### Client Queries -- Cache First
+1. `client_context_cache` -- check first (fast, pre-built sections)
+2. `get_client_360(client_id)` -- full cross-platform view (rebuild if cache is stale >7 days)
+3. `get_client_timeline(client_id, max)` -- chronological activity feed
+4. Name resolution: `find_client(name)` or `match_incoming_client(name, source)`
+
+### Common Query Routing
+| User asks about... | Query |
+|---|---|
+| What to work on next | `get_pending_action_items(10)` |
+| Recent sessions / prior work | `chat_sessions ORDER BY session_date DESC LIMIT 5` |
+| What changed recently | `get_recent_changes(7)` |
+| Outstanding admin questions | `admin_questions WHERE status = 'open'` |
+| Pipeline or agent failures | `pipeline_alerts WHERE severity IN ('high','critical') AND acknowledged = false` |
+| Failed agent runs | `agent_run_history WHERE status IN ('failure','timeout') AND started_at > NOW() - interval '24h'` |
+| System health (all-in-one) | `system_health_dashboard()` |
+| SOPs and procedures | `agent_knowledge WHERE type = 'sop' AND title ILIKE '%keyword%'` |
+| Schema, columns, relationships | `SELECT content FROM agent_knowledge WHERE id = '104ec927-073d-4a8e-aaaa-6fa66c6abd66';` |
+
+### agent_knowledge Types (filter by type for targeted results)
+`configuration` | `sop` | `pattern` | `correction` | `skill` | `decision` | `troubleshooting` | `reference` | `quality_audit` | `api_reference` | `feedback`
+
+### On-Demand Reference
 Everything else lives in the database. Query when needed:
 ```sql
 -- Scheduled agents and their schedules
 SELECT name, cron_expression, description, enabled FROM scheduled_agents ORDER BY name;
-
--- Operational SOPs
-SELECT title, content FROM agent_knowledge WHERE type = 'sop' AND title ILIKE '%keyword%';
 
 -- Architectural principles and system reference
 SELECT title, content FROM agent_knowledge WHERE type = 'configuration' AND tags @> ARRAY['config','admin'];
@@ -118,6 +151,6 @@ SELECT title, content FROM agent_knowledge WHERE type = 'configuration' AND tags
 -- Pipeline status
 SELECT * FROM get_all_pipeline_status();
 
--- Capability vs inventory framework (full detail)
-SELECT content FROM agent_knowledge WHERE title ILIKE '%capability vs inventory%';
+-- Full infrastructure startup guide
+SELECT content FROM agent_knowledge WHERE id = '83308752-50a8-42cd-bb15-54bfa04e7764';
 ```
