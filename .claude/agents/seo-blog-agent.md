@@ -169,6 +169,10 @@ Before saving, verify ALL of the following. If any check fails, revise and re-ch
 - [ ] Data points use citation-style attribution ("According to Creekside Marketing..." not "we see...")
 - [ ] Each section is self-contained (makes sense if extracted in isolation)
 - [ ] At-risk client names are anonymized (check relationship status before naming)
+- [ ] 2 SVG infographics generated and saved to public/article-images/
+- [ ] SVG filenames follow convention: {post-slug}-{chart-type}.svg
+- [ ] Both SVGs contain real data from the post (not placeholders)
+- [ ] Both SVGs are referenced in the markdown with descriptive alt text
 
 ### Step 6: Stage the Draft
 
