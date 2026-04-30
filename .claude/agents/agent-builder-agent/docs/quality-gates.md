@@ -89,47 +89,48 @@ Before inserting into `agent_definitions`, verify `status = 'draft'` in the INSE
 
 ---
 
-## Size Management
+## When to Split (Structure-Based, Not Line-Count)
 
-Large files waste context tokens at runtime and make maintenance harder.
+Split an agent into core + `docs/` (or a skill into core + `reference/`) when ANY of these are true, regardless of total line count:
 
-### Agent directory structure (for complex agents)
+1. **Conditional paths** -- The agent has multiple workflows where only one runs per invocation. Each path becomes a docs/ file so only the relevant one is loaded.
+2. **Reference data** -- API templates, query blocks, lookup tables, platform configs, interpretation frameworks, or example libraries. These are reference material that the agent looks up, not methodology it follows every time.
+3. **Domain knowledge** -- Style guides, audience matrices, pricing models, or other agent-specific knowledge. Goes in docs/, not agent_knowledge (DB is for corrections, routing, shared SOPs, and volatile data).
 
-When an agent exceeds 400 lines, restructure it as a directory with docs:
+**When to stay flat:** The agent is a single linear workflow where every line is relevant every time it runs. A 500-line agent with one straight-through process is fine as a single file. The goal is focus, not an arbitrary line limit.
+
+### Agent directory structure
 
 ```
-.claude/agents/[agent-name].md              # Core prompt (<=300 lines): role, router, rules
+.claude/agents/[agent-name].md              # Core: role, routing logic, rules
 .claude/agents/[agent-name]/
 └── docs/
-    ├── [process].md                        # Workflow steps, methodology
+    ├── [process].md                        # Workflow steps (conditional path)
     ├── [reference].md                      # API templates, platform configs
-    └── [topic].md                          # Additional reference material
+    └── [topic].md                          # Domain knowledge, examples
 ```
 
-The `.md` entry point stays where Claude Code expects it. The agent uses Read to pull only the docs it needs per invocation. This is the same pattern as skills with `reference/` -- adapted for agents.
+**Core file keeps:** role, scope, routing/classification logic (deciding which docs to Read), core rules, correction check step.
 
-**What goes in the core `.md` file:** role, scope, routing/classification logic (deciding which docs to read), core rules, pre-build corrections.
+**docs/ gets:** conditional workflow steps, reference tables, API templates, query blocks, examples, interpretation frameworks, platform configs.
 
-**What goes in `docs/`:** step-by-step build processes, platform-specific requirements, reference tables, examples, quality gate details.
-
-### Skill directory structure (for complex skills)
-
-When a SKILL.md exceeds 200 lines, split into core + reference:
+### Skill directory structure
 
 ```
 .claude/skills/[skill-name]/
-├── SKILL.md              # <=200 lines: purpose, routing, core process
+├── SKILL.md              # Core: purpose, routing, process overview
 └── reference/
-    ├── config.md         # Platform-specific configs, URL templates, selectors
-    ├── gotchas.md        # Known edge cases, workarounds
+    ├── config.md         # Platform-specific configs
+    ├── gotchas.md        # Edge cases, workarounds
     └── [topic].md        # Additional reference material
 ```
 
-The SKILL.md references these files: "For [topic] details, read `reference/[file].md`."
+### Railway exception
 
-### When to stay flat
-- Agent <=400 lines, single purpose -> flat `.md` file, no directory
-- Skill <=200 lines -> flat `SKILL.md`, no `reference/` directory
+Scheduled agents running on Railway cannot Read local docs/ files. They must stay as single self-contained files regardless of structure. Check before splitting:
+```sql
+SELECT name, enabled FROM scheduled_agents WHERE name = '[agent-name]' AND enabled = true;
+```
 
 ### QC gate
-If an agent exceeds 400 lines or a skill SKILL.md exceeds 200 lines at build time, the builder MUST either (a) split the file using the patterns above, or (b) document in the build report why the size is justified.
+Before shipping, ask: "Does this agent load content it doesn't need for every invocation?" If yes, split it. If no, a single file is fine. Document the reasoning in the build report either way.
