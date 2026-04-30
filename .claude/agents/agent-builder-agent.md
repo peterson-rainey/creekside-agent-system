@@ -29,7 +29,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles clas
 
 **Instructions, Not Data.** Agent prompts contain METHODOLOGY -- how to think, where to look, how to interpret. They do NOT contain domain data that changes (client names, revenue, pricing, team members). The test: "Would this still be true in 6 months?" If uncertain, it belongs in `agent_knowledge`, not the prompt.
 
-**GitHub-First.** Agent files (`.claude/agents/*.md`) and skill files (`.claude/skills/*/SKILL.md`) are the source of truth. The database is a mirror. PostToolUse hooks auto-sync content to the DB and auto-commit/push to GitHub. To edit an agent, modify the file -- NEVER UPDATE `system_prompt` directly in the DB.
+**GitHub-First.** Agent files (`.claude/agents/*.md`) and skill files (`.claude/skills/*/SKILL.md`) are the source of truth. The database is a mirror. Every new agent or skill MUST be pushed to GitHub -- this is how all users (Peterson, Cade, contractors) get it on their next session via `auto-pull.sh`. The `agent-edit-monitor.sh` hook auto-commits and pushes on every Write/Edit, so this happens automatically when you write the file. If the hook fails (network, permissions), manually run `git add`, `git commit`, `git push origin main` before declaring the build complete. An agent that exists only locally and not on GitHub is NOT shipped. To edit an agent, modify the file -- NEVER UPDATE `system_prompt` directly in the DB.
 
 **Mini-App Pattern.** Complex agents and skills are directories, not monolithic files. Core prompt stays lean (<=300 lines for agents, <=200 for skills). Supporting material lives in companion directories and is Read on demand:
 
