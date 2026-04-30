@@ -100,7 +100,7 @@ The honest answer depends on three things..."
 **Ready to see how your {vertical_name} Google Ads stack up?**
 
 We offer a free, no-obligation audit of your Google Ads account. We'll show you exactly
-where your budget is going, what's working, and what's not -- with real numbers, not guesswork.
+where your budget is going, what's working, and what's not. Real numbers, not guesswork.
 
 [Get Your Free Google Ads Audit →](/10k-profit-audit/)
 ```
@@ -111,7 +111,7 @@ where your budget is going, what's working, and what's not -- with real numbers,
 **About the Author**
 Peterson Rainey is the founder of Creekside Marketing, a performance-driven digital advertising
 agency managing over $20M in ad spend across Google Ads and Meta Ads. He specializes in
-{vertical_name} advertising and has helped {vertical_specific_claim}.
+helping {industry_owner_title}s grow through Google Ads and Meta Ads.
 ```
 
 ## Internal Linking Requirements

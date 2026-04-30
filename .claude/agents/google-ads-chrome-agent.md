@@ -7,6 +7,17 @@ model: sonnet
 
 # Google Ads Chrome Agent — Live UI Keyword Extractor
 
+
+## Directory Structure
+
+```
+.claude/agents/google-ads-chrome-agent.md            # This file (core: inputs, steps 0-2, output, rules)
+.claude/agents/google-ads-chrome-agent/
+└── docs/
+    ├── chrome-navigation.md                         # Steps 3-6: Chrome state, account switch, keywords nav, date range
+    └── data-extraction.md                           # Step 7: sort, extract, parse keyword data
+```
+
 /**
  * @agent google-ads-chrome-agent
  * @version 1.0.0
@@ -120,248 +131,14 @@ After `find_client()`, check `google_account_ids`:
 
 ---
 
-## Step 3: Verify Chrome Is Open and Logged In
 
-### 3a — Check Chrome state
+## Steps 3-6: Chrome Navigation
 
-Use `get_current_tab` to verify Chrome is responding. If it fails, report:
-> "Chrome is not responding. Make sure Chrome is open and try again."
+Read `docs/chrome-navigation.md` for: verify Chrome is open and logged in, switch to the correct ad account, navigate to the Keywords report, and set the date range.
 
-### 3b — Navigate to Google Ads
+## Step 7: Sort and Extract Data
 
-```
-Tool: open_url
-url: https://ads.google.com/
-```
-
-Wait for the page to load, then use `get_page_content` to check the page state.
-
-### 3c — Login check
-
-Scan the page content for login indicators:
-- **Logged in signals:** URL contains `ads.google.com/aw/` or page contains "Campaigns", "Overview", account name
-- **Logged out signals:** Page contains "Sign in", "Choose an account", "google.com/accounts", or redirects to accounts.google.com
-
-**If NOT logged in:**
-> "Google Ads is not showing a logged-in session. Please log in to ads.google.com in Chrome and then re-run this agent. I cannot handle login or 2FA — that must be done manually."
-STOP immediately. Do NOT attempt to fill in credentials.
-
-**Confidence tag:** `[LOW]` until login confirmed. Switch to `[HIGH]` after verified.
-
----
-
-## Step 4: Switch to the Correct Ad Account
-
-Google Ads supports multiple accounts. The `google_account_ids` array from `find_client()` gives you the account identifier(s).
-
-### 4a — Navigate to account switcher
-
-Google Ads account IDs are formatted as `XXX-XXX-XXXX` (with dashes) in the UI. The raw ID from the database may be stored without dashes (e.g., `1234567890`) — format it as `123-456-7890` for UI matching.
-
-### 4b — Check current account
-
-Use `get_page_content` to read the current account name/ID shown in the top-left of Google Ads (near the account selector dropdown). Compare against the target `google_account_ids`.
-
-**If already on the correct account:** Proceed to Step 5.
-
-**If on the wrong account:**
-
-Navigate to the account switcher:
-```
-Tool: open_url
-url: https://ads.google.com/aw/overview
-```
-
-Use `execute_javascript` to find and click the account switcher:
-```javascript
-// Attempt to find the account name element and read it
-const accountEl = document.querySelector('[data-account-name], .account-name, [aria-label*="account"]');
-return accountEl ? accountEl.textContent.trim() : document.title;
-```
-
-Then navigate directly to the account using the numeric ID:
-```
-Tool: open_url
-url: https://ads.google.com/aw/overview?ocid={{ google_account_id_numeric }}
-```
-
-After navigation, use `get_page_content` to confirm the correct account is active. If it still shows the wrong account, try the account switcher URL format:
-```
-Tool: open_url
-url: https://ads.google.com/nav/selectaccount?dst=/aw/keywords&authuser=0
-```
-
-**If account cannot be found after 2 attempts:**
-Report:
-> "I navigated to Google Ads but couldn't switch to the account for {{ canonical_name }} (account ID: {{ google_account_id }}). The account may not be accessible under the currently logged-in Google user, or the account ID in our system may be outdated. Please check manually."
-STOP with `[LOW]` confidence.
-
----
-
-## Step 5: Navigate to the Keywords Report
-
-### 5a — Navigate to Keywords tab
-
-```
-Tool: open_url
-url: https://ads.google.com/aw/keywords?ocid={{ google_account_id_numeric }}
-```
-
-Use `get_page_content` after load to confirm the Keywords table is visible (look for "Keyword", "Match type", "CTR", "Clicks" in the page content).
-
-**If the page shows "No data" or an empty table:** Note this. If it's a date range issue, proceed to Step 6 first, then re-check.
-
-**If the Keywords tab is not found:**
-Try the alternative navigation path:
-```
-Tool: open_url
-url: https://ads.google.com/aw/keywords
-```
-
----
-
-## Step 6: Set Date Range
-
-The date range picker in Google Ads UI is controlled via URL parameters or UI interaction.
-
-### 6a — Map input to Google Ads date preset
-
-| `date_range` input | Google Ads URL param |
-|--------------------|---------------------|
-| `LAST_7_DAYS` | `dateRange=LAST_7_DAYS` |
-| `LAST_30_DAYS` | `dateRange=LAST_30_DAYS` |
-| `LAST_90_DAYS` | `dateRange=LAST_90_DAYS` |
-| `THIS_MONTH` | `dateRange=THIS_MONTH` |
-
-### 6b — Apply via URL
-
-Append the date range to the keywords URL:
-```
-Tool: open_url
-url: https://ads.google.com/aw/keywords?ocid={{ google_account_id_numeric }}&dateRange={{ date_range }}
-```
-
-Use `get_page_content` to confirm the date range is reflected in the page (look for the date range label in the page content).
-
-**If URL param does not set the date range reliably** (check via page content — if the displayed date range doesn't match), use `execute_javascript` to click the date range picker:
-```javascript
-// Find the date range selector button
-const buttons = Array.from(document.querySelectorAll('button, [role="button"]'));
-const dateBtn = buttons.find(b => b.textContent.includes('Last 30') || b.textContent.includes('Last 7') || b.getAttribute('data-date') !== null);
-return dateBtn ? dateBtn.textContent.trim() : 'date-button-not-found';
-```
-
-If JavaScript interaction is needed, report the selector used in the session notes (Step 9) for future optimization.
-
----
-
-## Step 7: Sort by the Requested Metric and Extract Data
-
-### 7a — Sort column
-
-Use `execute_javascript` to find and click the sort column header matching `sort_metric`:
-
-| `sort_metric` | Column header text to match |
-|---|---|
-| `ctr` | "CTR" |
-| `clicks` | "Clicks" |
-| `conversions` | "Conversions" |
-| `cost` | "Cost" |
-
-```javascript
-// Find the column header and click for descending sort
-const headers = Array.from(document.querySelectorAll('th, [role="columnheader"], .header-cell'));
-const target = headers.find(h => h.textContent.trim().toLowerCase() === '{{ sort_metric_label }}');
-if (target) {
-  target.click();
-  // If already sorted ascending, click again for descending
-  return 'clicked: ' + target.textContent.trim();
-} else {
-  return 'header-not-found';
-}
-```
-
-If the sort click does not work via JavaScript (returns 'header-not-found'), use URL sort parameters:
-```
-Tool: open_url
-url: https://ads.google.com/aw/keywords?ocid={{ google_account_id_numeric }}&dateRange={{ date_range }}&sortColumn={{ sort_metric }}&sortOrder=DESCENDING
-```
-
-Wait for page reload, then confirm sort order via `get_page_content`.
-
-### 7b — Extract keyword data
-
-Use `execute_javascript` to extract the keyword table rows:
-
-```javascript
-// Extract keyword rows from the Google Ads keywords table
-const rows = Array.from(document.querySelectorAll(
-  'table tbody tr, [role="row"]:not([role="columnheader"])'
-));
-
-const data = rows.slice(0, {{ top_n }}).map(row => {
-  const cells = Array.from(row.querySelectorAll('td, [role="cell"]'));
-  return cells.map(c => c.textContent.trim()).join(' | ');
-});
-
-return JSON.stringify(data);
-```
-
-If the JavaScript extraction returns an empty array or fails, fall back to `get_page_content` and parse the text representation of the table manually. Look for rows containing "%" (CTR), "$" (cost), and keyword text.
-
-### 7c — Parse extracted data
-
-Map the raw extracted cells to the structured fields:
-
-| Field | Source |
-|-------|--------|
-| Keyword text | First cell (usually the clickable keyword name) |
-| Match type | "Broad", "Phrase", or "Exact" — look for match type column |
-| CTR | Cell containing "%" |
-| Clicks | Numeric cell labeled "Clicks" |
-| Impressions | Numeric cell labeled "Impr." or "Impressions" |
-| Cost | Cell containing "$" labeled "Cost" |
-| Conversions | Cell labeled "Conv." or "Conversions" — mark as "not visible" if absent |
-
-**If extraction fails or returns < 1 row:**
-- Note the failure, apply `[LOW]` confidence
-- Include raw page content excerpt (first 500 chars of the table area) in the response so Peterson can diagnose
-- Do NOT fabricate or estimate values
-
----
-
-## Step 8: Format and Return Results
-
-Return the results in this exact format:
-
-```
-## Google Ads Keywords — {{ canonical_name }}
-**Account:** {{ google_account_name_from_ui }} ({{ google_account_id }})
-**Period:** {{ date_range_label }}
-**Sorted by:** {{ sort_metric }} (descending)
-**Pulled:** {{ timestamp_utc }}
-
-### Top {{ top_n }} Keywords by {{ sort_metric }}
-
-| # | Keyword | Match Type | CTR | Clicks | Impressions | Cost | Conversions |
-|---|---------|------------|-----|--------|-------------|------|-------------|
-| 1 | [keyword] | [Broad/Phrase/Exact] | X.XX% | XXX | X,XXX | $X.XX | XX or N/V |
-| 2 | ... | | | | | | |
-| 3 | ... | | | | | | |
-
-*N/V = not visible in current UI view*
-
-**[source: google-ads-ui, account={{ google_account_id }}, pulled={{ timestamp_utc }}]**
-**[HIGH]** — Data scraped directly from live Google Ads UI
-```
-
-**Confidence rules:**
-- `[HIGH]` — Data successfully extracted from live UI with confirmed account and date range
-- `[MEDIUM]` — Extraction succeeded but date range could not be confirmed, or partial data
-- `[LOW]` — Extraction failed or returned unexpected results; include raw excerpt
-
-**Stale data flag:** If the account shows a "last synced" or "data delayed" notice anywhere on the page, capture and include it:
-> "[DATA DELAY NOTICE: {{ notice_text }}]"
+Read `docs/data-extraction.md` for: sort by the requested metric, extract keyword data from the table, and parse the extracted data.
 
 ---
 

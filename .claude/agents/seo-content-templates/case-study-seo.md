@@ -110,7 +110,7 @@ Examples:
 **Want results like these for your {vertical_name} business?**
 
 Every engagement starts with a free audit. We'll review your current campaigns
-and show you exactly where the opportunities are -- no commitment, no sales pitch.
+and show you exactly where the opportunities are. No commitment, no sales pitch.
 
 [Get Your Free Audit →](/10k-profit-audit/)
 
@@ -123,7 +123,7 @@ Or read the full case study: [Client Name Case Study →](/case-study-digital-ma
 **About the Author**
 Peterson Rainey is the founder of Creekside Marketing, a performance-driven digital advertising
 agency managing over $20M in ad spend across Google Ads and Meta Ads. He specializes in
-{vertical_name} advertising and has helped {vertical_specific_claim}.
+helping {industry_owner_title}s grow through Google Ads and Meta Ads.
 ```
 
 ## Internal Linking Requirements
