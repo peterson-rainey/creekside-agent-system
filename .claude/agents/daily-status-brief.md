@@ -97,7 +97,8 @@ SELECT
   (SELECT count(*) FROM seo_content_queue WHERE status = 'queued') as queued,
   (SELECT count(*) FROM seo_content_queue WHERE status = 'published' AND published_at > NOW() - interval '24 hours') as published_today,
   (SELECT target_keyword FROM seo_content_queue WHERE status = 'published' ORDER BY published_at DESC LIMIT 1) as last_published_keyword,
-  (SELECT published_at AT TIME ZONE 'America/Chicago' FROM seo_content_queue WHERE status = 'published' ORDER BY published_at DESC LIMIT 1) as last_published_at;
+  (SELECT published_at AT TIME ZONE 'America/Chicago' FROM seo_content_queue WHERE status = 'published' ORDER BY published_at DESC LIMIT 1) as last_published_at,
+  (SELECT target_keyword FROM seo_content_queue WHERE status = 'queued' ORDER BY priority DESC LIMIT 1) as next_queued_keyword;
 
 ### 1G: Client Health Alerts
 execute_sql:

@@ -117,7 +117,7 @@ Write the blog post following the template structure. Critical rules:
 - Do not reuse the exact same H2 phrasing across posts of the same template type
 - Alternate section ordering where the template allows it
 
-**Astro frontmatter format (must match exactly):**
+**Astro frontmatter format (must match exactly -- no extra fields):**
 ```yaml
 ---
 title: "Post Title Here"
@@ -128,6 +128,7 @@ category: "Category Name"
 tags: ["Tag1", "Tag2", "Tag3"]
 ---
 ```
+Do NOT add `lastUpdated` or any other fields not listed above. The Astro content collection schema only accepts these 6 fields for blog posts.
 
 ### Step 5: Quality Gate (Self-Check)
 
