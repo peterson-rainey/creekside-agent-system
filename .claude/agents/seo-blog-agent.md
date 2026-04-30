@@ -111,6 +111,23 @@ Write the blog post following the template structure. Critical rules:
 - Attribute data points to "Creekside Marketing" by name for citability. Include context like "based on $20M+ in managed ad spend" to establish authority.
 - At-risk client relationships: anonymize references. Use "a dental practice in [region]" instead of naming the client. Still link to the case study if it's published on the site.
 
+**SVG infographic rules:**
+- Generate 2 SVG infographics per post and save them alongside the blog post
+- Place SVG files in `public/article-images/` in the website repo (use Glob: `**/public/article-images/` to find the path)
+- Naming convention: `{post-slug}-{chart-type}.svg` (e.g., `how-much-do-google-ads-cost-for-dentists-cpc-chart.svg`)
+- Insert into the markdown with: `![descriptive alt text](/article-images/{filename}.svg)`
+- Infographic 1: A data visualization relevant to the primary data in the post (CPC comparison bars, cost breakdown, before/after metrics). Place after the first major data section.
+- Infographic 2: An ROI or results visualization (flow diagram, comparison table, results summary). Place in or after the ROI/results section.
+- Design requirements:
+  - Dark background (#0f172a to #1e293b gradient)
+  - Clean, modern, professional style
+  - Use the post's real data (CPC ranges, conversion rates, ROI numbers)
+  - Include Creekside branding: `creeksidemarketingpros.com` in bottom-right corner
+  - Use system fonts: `font-family="system-ui, -apple-system, sans-serif"`
+  - Viewbox: 800x400 to 800x500 (landscape, blog-width)
+  - Color palette: blues (#3b82f6), purples (#8b5cf6), ambers (#f59e0b), reds (#ef4444), greens (#10b981) for data, slate (#94a3b8, #64748b) for text
+- Each SVG must contain real data from the post, not placeholder values
+
 **Structural variation rules (to avoid template fingerprinting):**
 - Randomly select the opening hook variant specified in the template
 - Vary FAQ count (3-6 questions)
