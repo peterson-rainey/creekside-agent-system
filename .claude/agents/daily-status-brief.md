@@ -90,7 +90,16 @@ WHERE status = 'open'
 ORDER BY CASE severity WHEN 'critical' THEN 1 WHEN 'high' THEN 2 ELSE 3 END
 LIMIT 10;
 
-### 1F: Client Health Alerts
+### 1F: SEO Blog Status
+execute_sql:
+SELECT
+  (SELECT count(*) FROM seo_published) as total_published,
+  (SELECT count(*) FROM seo_content_queue WHERE status = 'queued') as queued,
+  (SELECT count(*) FROM seo_content_queue WHERE status = 'published' AND published_at > NOW() - interval '24 hours') as published_today,
+  (SELECT target_keyword FROM seo_content_queue WHERE status = 'published' ORDER BY published_at DESC LIMIT 1) as last_published_keyword,
+  (SELECT published_at AT TIME ZONE 'America/Chicago' FROM seo_content_queue WHERE status = 'published' ORDER BY published_at DESC LIMIT 1) as last_published_at;
+
+### 1G: Client Health Alerts
 execute_sql:
 SELECT cl.name, ch.overall_score, ch.calculated_at
 FROM client_health_scores ch
