@@ -456,7 +456,7 @@ Write to the path(s) determined in 4a using the standard structure: YAML frontma
 7. Rules — hard constraints including mandatory patterns
 
 #### System Prompt Quality Checklist:
-- No stale data: Agent file contains NO specific numbers, client names, revenue figures, pricing, dates, or facts that could change within 6 months
+- No stale data: Agent file contains NO specific numbers, client names, revenue figures, pricing, dates, or facts that could change within 6 months. Run every pattern in the 5d staleness table.
 - Domain knowledge stored: All domain data from research is stored in agent_knowledge entries, not the agent file
 - Query templates present: Agent has pre-built SQL to retrieve its domain knowledge at runtime
 - Interpretation frameworks present: Agent knows HOW to analyze data, not WHAT the data says
@@ -468,6 +468,7 @@ Write to the path(s) determined in 4a using the standard structure: YAML frontma
 - If the agent writes data, it includes verification queries after writes
 - If the agent is read-only, it does NOT have Write/Edit/Bash tools
 - Failure modes defined: what to do when data is missing, conflicting, or stale
+- Size check passed: See Size Management rule below. If the file exceeds the threshold, split before shipping.
 
 ---
 
@@ -500,6 +501,25 @@ Interpretation rules are methodology — they belong in the prompt.
 
 #### 5d. Staleness Validation Gate (MANDATORY)
 Before finalizing the agent file: read every line, ask "Would this still be true in 6 months?" If NO or UNCERTAIN → move to agent_knowledge.
+
+**Common staleness patterns that slip through QC (check for ALL of these):**
+
+| Pattern | Example that FAILS | Fix |
+|---------|-------------------|-----|
+| Hardcoded pricing | "$1,000 onboarding fee" | Store in `agent_knowledge` with tag `pricing`, query at runtime |
+| Hardcoded client IDs / ad account IDs | "Meta Ad Account: `act_868498138612020`" | Pull from `client_context_cache` or `reporting_clients` at runtime via `find_client()` |
+| Hardcoded team routing | "Route Meta to Cade, Google to Peterson" | Store in `agent_knowledge` with tag `routing`, query at runtime |
+| Hardcoded compensation / financial figures | "Owner draws: $8,500/month each" | Store in `agent_knowledge` with tag `financial-reference`, query at runtime |
+| Standing corrections with specific amounts | "Nov-Dec ad spend ($16,600) was pass-through" | The correction belongs in `agent_knowledge` with `type='correction'`; the agent's correction-check step pulls it at runtime |
+| Case study metrics used as examples | "CPA dropped from $48.79 to $9.58" | Use generic examples ("CPA dropped from $X to $Y") or pull real metrics from DB at runtime |
+| Contact names / key personnel | "Kevin / Vizion Enterprise (content creator)" | Store in `agent_knowledge` or `client_context_cache`; people change roles |
+| Slack as active platform | "Search Slack for real-time corrections" | Slack is deprecated at Creekside; reference it as historical data only |
+
+**The only exceptions** to the staleness rule:
+- The Supabase project ID (`suhnpazajrmfcmbwckkx`) — infrastructure constant
+- Table and function names — schema is stable
+- Tool names (MCP tool identifiers) — these are code references
+- Generic dollar examples that are clearly hypothetical ("e.g., $100/day budget")
 
 ---
 
@@ -738,6 +758,7 @@ Then the skill body in markdown. Structure:
 - No hardcoded client names, dollar amounts, or dates that change
 - Pre-built SQL queries where the skill needs database lookups
 - Clear scope boundaries (what this skill does and does NOT do)
+- Size management: see Size Management rule below. Skills over 200 lines MUST use `reference/` files.
 
 ### S3. Register in Database (BUILD-BLOCKING GATE)
 
