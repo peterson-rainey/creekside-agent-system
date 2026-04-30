@@ -141,6 +141,12 @@ Before saving, verify ALL of the following. If any check fails, revise and re-ch
 - [ ] Frontmatter matches Astro schema exactly (title, description, date, image, category, tags)
 - [ ] Post does NOT duplicate an existing published post (check seo_published and existing blog files)
 - [ ] H2 structure differs from the last 3 posts of the same template type
+- [ ] TL;DR block present immediately after frontmatter (40-60 words with specific numbers)
+- [ ] Key Data summary table present after TL;DR
+- [ ] Every H2 section opens with a direct answer (40-60 words, extractable standalone)
+- [ ] Data points use citation-style attribution ("According to Creekside Marketing..." not "we see...")
+- [ ] Each section is self-contained (makes sense if extracted in isolation)
+- [ ] At-risk client names are anonymized (check relationship status before naming)
 
 ### Step 6: Stage the Draft
 

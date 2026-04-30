@@ -20,16 +20,19 @@ SELECT name, department, description, read_only FROM agent_definitions WHERE sta
 ```
 If no agent fits, follow the Missing Agent Protocol: propose a new agent and use `/new-agent` after approval.
 
-## QC Pattern (Mandatory)
+## QC Pattern (Mandatory -- every output)
 
-For ANY output the user will act on or that writes data:
+NEVER present a result to Peterson without QC. The flow is always: worker agent produces result, then QC validates it, then you present it. This is not triggered by a write count -- it is the standard output path.
+
 1. Spawn the worker agent, get result
 2. Spawn `qc-reviewer-agent` with the result, get validation
-3. PASS = present. FAIL/WARN = fix and re-validate.
+3. PASS = present to Peterson. FAIL/WARN = fix issues, re-run QC, then present.
 
-For deliverables the user will share externally, ALSO spawn `expert-review-agent`.
-For executable code (.sh, .js, .py, SQL functions), ALSO spawn `code-audit-agent`.
-Exception: Simple read-only lookups skip QC.
+Additionally spawn:
+- `expert-review-agent` -- for deliverables Peterson will share externally (proposals, strategies, presentations)
+- `code-audit-agent` -- for executable code (.sh, .js, .py, SQL functions)
+
+**Only exception:** Simple read-only lookups (row counts, schema checks, "what's X's email") skip QC.
 
 ## How to Navigate the System
 
