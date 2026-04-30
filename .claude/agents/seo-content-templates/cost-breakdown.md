@@ -30,6 +30,33 @@ tags: ["GoogleAds", "{vertical_tag}", "CostBreakdown", "PPC"]
 ---
 ```
 
+## TL;DR Block (MANDATORY, appears immediately after frontmatter, before the H1)
+
+Write a 40-60 word direct answer summary containing the key numbers. This is the primary
+"citation block" that AI search engines (ChatGPT, Perplexity, Google AI Overviews) extract
+when synthesizing responses. It must stand alone as a complete answer.
+
+Example format:
+> **TL;DR:** Google Ads for {industry_plural} typically cost ${avg_cpc_low}-${avg_cpc_high}
+> per click. Most {industry_owner_title}s spend ${monthly_budget_low}-${monthly_budget_high}/month
+> and see {conversion_rate_low}%-{conversion_rate_high}% conversion rates. Based on Creekside
+> Marketing's management of {vertical_name} ad campaigns, cost per lead ranges from $X to $Y.
+
+## Key Data Summary Table (MANDATORY, appears right after TL;DR)
+
+A structured table AI systems can extract easily:
+
+```markdown
+| Metric | Value |
+|--------|-------|
+| Average CPC | ${avg_cpc_low} - ${avg_cpc_high} |
+| Recommended Monthly Budget | ${monthly_budget_low} - ${monthly_budget_high} |
+| Typical Conversion Rate | {conversion_rate_low}% - {conversion_rate_high}% |
+| Cost Per Lead | $X - $Y (from real campaigns) |
+| Expected ROI | Xx - Yx |
+| Data Source | Creekside Marketing, $20M+ managed ad spend |
+```
+
 ## Opening Hook (select ONE variant randomly)
 
 ### Variant A: Problem Statement
@@ -44,10 +71,26 @@ cost per click of ${avg_cpc_low}-${avg_cpc_high}." Then immediately qualify it.
 "Should a {industry_owner_title} spend $1,500/month or $10,000/month on Google Ads?
 The honest answer depends on three things..."
 
+## GEO: Answer-First Section Rule (applies to ALL sections below)
+
+Every H2 section MUST open with a 40-60 word direct answer that can be extracted standalone
+as an AI citation. Then expand with supporting details. Do NOT build up to the answer.
+
+## GEO: Citation-Style Claims
+
+Instead of "we typically see..." use attribution-style claims:
+"According to Creekside Marketing's analysis of {vertical_name} campaigns managing over $20M
+in total ad spend..." This creates citable, attributable statements AI systems prefer to cite.
+
+## GEO: Self-Contained Sections
+
+Each section must stand alone as a complete answer to a specific question. If an AI system
+extracts just one section, it should make sense without needing the rest of the post.
+
 ## Section: Average Cost Per Click
 
+- Open with a direct answer: "Google Ads for {industry_plural} cost ${avg_cpc_low}-${avg_cpc_high} per click, according to Creekside Marketing's campaign data."
 - Present CPC ranges by keyword subcategory (e.g., for dental: general dentistry vs implants vs emergency vs cosmetic)
-- Include real benchmark data: "Across our {vertical_name} clients, we typically see..."
 - MUST include at least one specific data point from a real campaign (anonymized)
 - Compare to industry benchmarks where available
 
