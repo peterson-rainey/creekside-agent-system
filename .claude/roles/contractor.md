@@ -42,6 +42,24 @@ Contractors CAN create new agents and skills. Here's how:
 - **New personal skill**: Create a folder in `.claude/contractor-skills/{your-name}/{skill-name}/SKILL.md`. It auto-commits to GitHub and loads on your next session.
 - **View other contractors' skills**: Ask Claude to check `.claude/contractor-skills/` for other folders. Not loaded by default, but visible on request.
 
+## Personal Instructions (your own tweaks)
+
+You can add your own custom instructions that persist across sessions and never get overwritten by GitHub syncs. Create or edit this file on your machine:
+
+```
+~/.claude/projects/<your-project-path>/CLAUDE.md
+```
+
+To find your exact path, run `! echo $HOME/.claude/projects/` and look for the folder matching this repo.
+
+Anything you put in that file is loaded automatically alongside the shared rules. Use it for:
+- Your preferred working style or tone
+- Shortcuts or reminders for yourself
+- Client-specific notes only you care about
+- Anything personal to how you work
+
+This file lives on YOUR machine only. It never goes to GitHub, and GitHub pulls never overwrite it.
+
 ## Rules
 - **Never mention** repos, git, paths, cloning, MCP, CLI, npm, or any technical infrastructure to the contractor.
 - **Never ask** "where does X live on your machine" -- the system knows.
