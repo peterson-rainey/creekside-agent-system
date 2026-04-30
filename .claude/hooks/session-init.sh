@@ -26,8 +26,13 @@ DEVICE_KEY_FILE="$HOME/.creekside-device-key"
 if [ -f "$DEVICE_KEY_FILE" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; then
   DEVICE_KEY=$(cat "$DEVICE_KEY_FILE" | tr -d '[:space:]')
   if [ -n "$DEVICE_KEY" ]; then
-    # Validate key against database
-    ENCODED_KEY=$(printf '%s' "$DEVICE_KEY" | sed 's/+/%2B/g')
+    # Validate key against database (full URL encoding to prevent query string injection)
+    ENCODED_KEY=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$DEVICE_KEY" 2>/dev/null)
+    if [ -z "$ENCODED_KEY" ]; then
+      # python3 failed -- can't safely encode, default to contractor
+      printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
+      DEVICE_KEY=""
+    fi
     KEY_LOOKUP=$(curl -s --max-time 5 \
       "${SUPABASE_URL}/system_users?device_key=eq.${ENCODED_KEY}&is_active=eq.true&select=id,name,email,role&limit=1" \
       -H "apikey: ${KEY}" \
