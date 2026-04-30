@@ -45,8 +45,9 @@ if [ -f "$DEVICE_KEY_FILE" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; 
       printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
     fi
   fi
-elif [ ! -f "$DEVICE_KEY_FILE" ]; then
-  # No device key file -- default to contractor
+else
+  # No device key file, OR key file exists but can't validate (missing service key/jq).
+  # Either way: default to contractor. Never let a stale admin role persist.
   printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
 fi
 
