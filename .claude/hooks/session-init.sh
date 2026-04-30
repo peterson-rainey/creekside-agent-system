@@ -93,6 +93,19 @@ For INSERT statements, include \`created_by_user_id = '${USER_ID}'\` to track ow
   fi
 fi
 
+# --- 0a. Load role-specific instructions from .claude/roles/ ---
+ROLE_INSTRUCTIONS=""
+if [ -n "$DB_ROLE" ]; then
+  if [ "$DB_ROLE" = "contractor" ]; then
+    ROLE_MD="$CLAUDE_PROJECT_DIR/.claude/roles/contractor.md"
+  else
+    ROLE_MD="$CLAUDE_PROJECT_DIR/.claude/roles/ops-manager.md"
+  fi
+  if [ -f "$ROLE_MD" ]; then
+    ROLE_INSTRUCTIONS=$(cat "$ROLE_MD" 2>/dev/null)
+  fi
+fi
+
 # --- 0b. Symlink contractor's personal skills into .claude/skills/_personal ---
 # Derives username from USER_NAME (lowercase, spaces→hyphens) to match contractor-skills/{name}/
 if [ -n "$USER_NAME" ]; then
