@@ -36,6 +36,10 @@ Agent system prompts contain METHODOLOGY — how to think, where to look, how to
 
 This principle is based on Anthropic's official guidance: "Use tools, skills, or database lookups rather than embedding domain knowledge in the prompt." Baking data into prompts creates staleness, bloat, and maintenance burden. Agents should start smart about HOW to work, then pull WHAT to work with from the database.
 
+## GitHub-First Architecture
+
+Agent files (`.claude/agents/*.md`) and skill files (`.claude/skills/*/SKILL.md`) live in the Git repo -- this is the **source of truth**. The database (`agent_definitions`, `agent_knowledge`, `system_registry`) is a mirror for routing, scheduling, and search. PostToolUse hooks auto-sync file content to the DB and auto-commit/push to GitHub on every Write/Edit. To edit an agent or skill, modify the file -- NEVER UPDATE `system_prompt` or skill content directly in the DB.
+
 ## Supabase Project
 - Project ID: `suhnpazajrmfcmbwckkx`
 - Use `execute_sql` for all database queries
@@ -430,6 +434,8 @@ MAIN_REPO_ROOT=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/nu
   2. `$MAIN_REPO_ROOT/.claude/agents/[agent-name].md` (so future sessions on main get it)
 - If they are equal, you are in the main repo. Write to `.claude/agents/[agent-name].md` as normal.
 
+**Note:** The `agent-edit-monitor.sh` hook fires on the Write and handles git commit + push + DB sync automatically. You do not need to do these manually.
+
 #### 4b. Same-Session Usability (MANDATORY)
 Claude Code loads the agent list at session startup, so a newly created agent file cannot be dispatched by name until the next session. To make the process usable NOW:
 - Save the agent/skill file in the background for future reuse (Steps 4a/4c)
@@ -680,7 +686,7 @@ When the classification gate routes to Skill, follow this lighter process instea
 ### S2. Write the SKILL.md File
 
 #### S2a. Detect Write Path (same as agent Step 4a)
-Check for worktree. Write to both worktree and main repo if applicable.
+Check for worktree. Write to both worktree and main repo if applicable. Hooks handle git commit + push + DB sync automatically on Write.
 
 #### S2b. Create the file at `.claude/skills/[skill-name]/SKILL.md`
 

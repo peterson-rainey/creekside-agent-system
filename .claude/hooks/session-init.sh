@@ -139,7 +139,13 @@ CONTENT=$(echo "$GUIDE" | jq -r '.[0].content // empty' 2>/dev/null)
 if [ -z "$CONTENT" ] && [ -z "$USER_IDENTITY" ]; then
   exit 0
 elif [ -z "$CONTENT" ]; then
-  ESCAPED=$(echo "$USER_IDENTITY" | python3 -c 'import sys,json; print(json.dumps({"systemMessage": sys.stdin.read().strip()}))' 2>/dev/null)
+  EARLY_MSG="$USER_IDENTITY"
+  if [ -n "$ROLE_INSTRUCTIONS" ]; then
+    EARLY_MSG="${EARLY_MSG}
+
+${ROLE_INSTRUCTIONS}"
+  fi
+  ESCAPED=$(echo "$EARLY_MSG" | python3 -c 'import sys,json; print(json.dumps({"systemMessage": sys.stdin.read().strip()}))' 2>/dev/null)
   [ -n "$ESCAPED" ] && echo "$ESCAPED"
   exit 0
 fi
@@ -173,6 +179,13 @@ if [ -n "$USER_IDENTITY" ]; then
   FULL_MSG="${FULL_MSG}
 
 ${USER_IDENTITY}"
+fi
+
+# Append role-specific instructions if resolved
+if [ -n "$ROLE_INSTRUCTIONS" ]; then
+  FULL_MSG="${FULL_MSG}
+
+${ROLE_INSTRUCTIONS}"
 fi
 
 # --- 4. Fetch recent work (last 4 hours) to prevent duplicate effort ---
