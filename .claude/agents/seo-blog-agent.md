@@ -25,9 +25,12 @@ ORDER BY q.priority DESC
 LIMIT 1;
 ```
 
-Update its status to 'generating':
+Update its status to 'generating'. Also reset any items stuck in 'generating' for more than 1 hour (failed prior runs):
 
 ```sql
+UPDATE seo_content_queue SET status = 'queued', updated_at = now()
+WHERE status = 'generating' AND updated_at < now() - interval '1 hour';
+
 UPDATE seo_content_queue SET status = 'generating', updated_at = now() WHERE id = '{queue_id}';
 ```
 
