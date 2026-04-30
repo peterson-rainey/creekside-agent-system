@@ -499,33 +499,30 @@ Before finalizing the agent file: read every line, ask "Would this still be true
 
 ### Step 6: Post-Build Documentation
 
+#### GitHub-First Architecture
+Agent and skill files in the Git repo (`.claude/agents/`, `.claude/skills/`) are the **source of truth**. The database is a mirror for routing and scheduled execution. Hooks handle all syncing automatically:
+
+- **`agent-edit-monitor.sh`** (PostToolUse): On every Write/Edit to an agent or skill file, auto-commits + pushes to GitHub, and PATCHes `agent_definitions.system_prompt` in the DB (agents) or `agent_knowledge` content (skills).
+- **`skill-registry-sync.sh`** (PostToolUse): On every Write/Edit to a SKILL.md, upserts metadata into `system_registry`.
+- **`auto-pull.sh`** (SessionStart): Pulls latest from GitHub so all users get new files on session start.
+
+**What this means for the build process:** Once you Write the agent/skill file (Step 4), the hooks handle git commit, git push, and DB sync of the file content. You do NOT need to run manual git commands. You DO still need to INSERT the initial `agent_definitions` row (the hook only PATCHes existing rows).
+
 #### 6a. Update CLAUDE.md Agent Table (no ADMIN_MODE required for additions)
-#### 6b. Insert into agent_definitions (Supabase)
+
+#### 6b. Insert into agent_definitions (Supabase) — initial row only
+The `agent-edit-monitor.sh` hook will auto-sync `system_prompt` on every subsequent edit. But the hook uses PATCH (not INSERT), so **you must create the initial row** for new agents:
+```sql
+INSERT INTO agent_definitions (name, description, department, tools, model, status, system_prompt)
+VALUES ('[agent-name]', '[description]', '[department]', '[tools]', '[model]', 'draft', '[full prompt content]');
+```
+After this initial INSERT, all future edits to the `.md` file auto-sync to `system_prompt` via the hook. Never manually UPDATE `system_prompt` — edit the file instead.
+
 #### 6c. Insert into agent_knowledge (capabilities entry)
 #### 6d. If Scheduled Agent, seed scheduled_agents
 
-#### 6e. Auto-Push to Git
-Commit and push the new agent file so all users get it on their next session start (via auto-pull.sh).
-
-**Worktree-aware git operations:** If you are in a worktree (detected in Step 4a), you MUST commit and push from the MAIN repo, not the worktree:
-```bash
-# Detect main repo root
-MAIN_REPO_ROOT=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | sed 's|/.git$||')
-
-# Always commit from the main repo
-cd "$MAIN_REPO_ROOT"
-git add .claude/agents/[agent-name].md
-git commit -m "Add [agent-name] agent"
-git push origin main
-```
-If CLAUDE.md was updated in Step 6a, include it in the commit:
-```bash
-cd "$MAIN_REPO_ROOT"
-git add .claude/agents/[agent-name].md CLAUDE.md
-git commit -m "Add [agent-name] agent"
-git push origin main
-```
-If push fails (permissions, network), log the error and continue to QC. The agent is still usable locally and in the DB. Push can be retried manually.
+#### 6e. Git Commit + Push (HANDLED BY HOOKS — skip this step)
+The `agent-edit-monitor.sh` hook auto-commits and pushes to GitHub on every Write/Edit to agent/skill files. Do NOT run manual git commands — the hook already did it when you wrote the file in Step 4.
 
 ---
 
@@ -706,24 +703,19 @@ Then the skill body in markdown. Structure:
 - Pre-built SQL queries where the skill needs database lookups
 - Clear scope boundaries (what this skill does and does NOT do)
 
-### S3. Register in Database (BUILD-BLOCKING GATE — both rows MUST succeed)
+### S3. Register in Database (BUILD-BLOCKING GATE)
 
-A skill is NOT built until BOTH the system_registry row AND the agent_knowledge row exist with the FULL SKILL.md content. The system_registry row holds metadata for SQL discovery; the agent_knowledge row holds the body and gets vector-embedded for semantic search via search_all().
+A skill is NOT built until BOTH the `system_registry` row AND the `agent_knowledge` row exist.
 
-Note: the existing PostToolUse hook `.claude/hooks/skill-registry-sync.sh` and SessionStart hook `.claude/hooks/skill-registry-reconcile.sh` will auto-sync your SKILL.md to BOTH tables on every Write/Edit. So in practice, simply writing the SKILL.md file (Step S2) covers most of S3 automatically. The explicit registration below is a safety net in case the hooks don't fire (e.g., script ran outside Claude Code) or fail (no service role key, network error).
+**What hooks handle automatically when you Write the SKILL.md file:**
+- `skill-registry-sync.sh` upserts the `system_registry` row (metadata for SQL discovery)
+- `agent-edit-monitor.sh` PATCHes the `agent_knowledge` row content (if the row already exists)
+
+**What you must do manually for NEW skills:** The hooks PATCH/upsert existing rows, but for a brand-new skill there is no `agent_knowledge` row yet. You must INSERT the initial row:
 
 ```sql
--- 1. system_registry (metadata only)
-INSERT INTO system_registry (entry_type, name, description, script_path, status)
-VALUES ('skill', '[skill-name]', '[one-line description]', '.claude/skills/[skill-name]/SKILL.md', 'active')
-ON CONFLICT (name) DO UPDATE SET
-  description = EXCLUDED.description,
-  script_path = EXCLUDED.script_path,
-  status = EXCLUDED.status,
-  updated_at = NOW();
-
--- 2. agent_knowledge (FULL CONTENT — gets embedded for vector search)
--- Idempotency: DELETE then INSERT, scoped by title.
+-- agent_knowledge (FULL CONTENT — gets embedded for vector search)
+-- The system_registry row is handled by the skill-registry-sync.sh hook automatically.
 DELETE FROM agent_knowledge WHERE title = 'Skill (filesystem): [skill-name]';
 
 INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
@@ -737,18 +729,20 @@ VALUES (
 );
 ```
 
-VERIFY both writes landed before declaring the build complete:
+After this initial INSERT, all future edits to the SKILL.md auto-sync to both tables via the hooks. Never manually UPDATE these DB rows — edit the file instead.
+
+**VERIFY both rows landed:**
 ```sql
 SELECT
   (SELECT COUNT(*) FROM system_registry WHERE name = '[skill-name]' AND entry_type = 'skill') AS in_system_registry,
   (SELECT COUNT(*) FROM agent_knowledge WHERE title = 'Skill (filesystem): [skill-name]') AS in_agent_knowledge;
 ```
+Both must return 1. If either is 0, the build is INCOMPLETE.
 
-Both must return 1. If either is 0, the build is INCOMPLETE — do not declare success. Surface the failure and either retry or escalate.
+Title format is REQUIRED to be `Skill (filesystem): <skill-name>` so the auto-sync hook's idempotency doesn't collide with pre-existing `type='skill'` entries.
 
-Title format is REQUIRED to be `Skill (filesystem): <skill-name>` so the auto-sync hook's idempotency (DELETE-then-INSERT scoped by title) doesn't collide with the 35 pre-existing how-to-style "How to..." entries that share `type='skill'`.
-
-### S4. Git Push (same as agent Step 6e, worktree-aware)
+### S4. Git Commit + Push (HANDLED BY HOOKS — skip this step)
+The `agent-edit-monitor.sh` hook auto-commits and pushes when you Write the SKILL.md file. No manual git commands needed.
 
 ### S5. Lightweight QC
 - Verify the SKILL.md file exists and parses valid YAML frontmatter
