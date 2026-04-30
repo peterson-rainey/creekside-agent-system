@@ -519,8 +519,22 @@ Agent and skill files in the Git repo (`.claude/agents/`, `.claude/skills/`) are
 #### 6b. Insert into agent_definitions (Supabase) — initial row only
 The `agent-edit-monitor.sh` hook will auto-sync `system_prompt` on every subsequent edit. But the hook uses PATCH (not INSERT), so **you must create the initial row** for new agents:
 ```sql
-INSERT INTO agent_definitions (name, description, department, tools, model, status, system_prompt)
-VALUES ('[agent-name]', '[description]', '[department]', '[tools]', '[model]', 'draft', '[full prompt content]');
+INSERT INTO agent_definitions (
+  name, display_name, description, department, agent_type,
+  system_prompt, tools, read_only, model, status
+)
+VALUES (
+  '[agent-name]',           -- matches the .md filename (without extension)
+  '[Agent Display Name]',   -- human-readable name
+  '[description]',          -- routing description (what + when)
+  '[department]',           -- ops, qc, comms, infra, client, meta, etc.
+  '[type]',                 -- sub_agent, scheduled, on_demand, etc.
+  '[full prompt content]',  -- read from the .md file you just wrote
+  ARRAY['tool1', 'tool2'],  -- only tools the agent needs
+  [true|false],             -- true for read-only agents (no Write/Edit/Bash)
+  '[model]',                -- sonnet (default), opus, or haiku
+  'draft'                   -- ALWAYS draft for new agents
+);
 ```
 After this initial INSERT, all future edits to the `.md` file auto-sync to `system_prompt` via the hook. Never manually UPDATE `system_prompt` — edit the file instead.
 
