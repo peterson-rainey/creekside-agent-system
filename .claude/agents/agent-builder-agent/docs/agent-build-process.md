@@ -240,7 +240,7 @@ Ask: "Does this agent have conditional paths, reference data, or domain knowledg
 - Write agents include verification queries after writes
 - Read-only agents do NOT have Write/Edit/Bash tools
 - Failure modes defined
-- Size check passed (see quality-gates.md)
+- Structure check: no conditional paths, reference data, or domain knowledge that should be split into docs/ (see quality-gates.md)
 
 ---
 
