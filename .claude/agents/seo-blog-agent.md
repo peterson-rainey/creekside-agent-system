@@ -38,10 +38,12 @@ UPDATE seo_content_queue SET status = 'generating', updated_at = now() WHERE id 
 
 This is the critical step. DO NOT write generic content. You MUST pull real data:
 
-1. **Read the case study file** from the website repo:
+1. **Read the case study file** from the website repo. Use Glob to find it:
    ```
-   /Users/petersonrainey/creekside-website/src/content/case-studies/{case_study_slug}.md
+   Glob: **/src/content/case-studies/{case_study_slug}.md
    ```
+   If running locally, the website repo is at `/Users/petersonrainey/creekside-website/`.
+   If running remotely, the repo is cloned -- use Glob to discover the path.
    Extract specific metrics, challenges, strategies, and results.
 
 2. **Query the RAG database** for additional context:
@@ -66,15 +68,17 @@ This is the critical step. DO NOT write generic content. You MUST pull real data
    ```
    Also check existing blog posts:
    ```
-   ls /Users/petersonrainey/creekside-website/src/content/blog/
+   Glob: **/src/content/blog/*.md
    ```
 
 ### Step 3: Read the Template
 
-Read the appropriate template from:
+Read the appropriate template. Use Glob to find it:
 ```
-/Users/petersonrainey/C-Code - Rag database/.claude/agents/seo-content-templates/{template_type}.md
+Glob: **/seo-content-templates/{template_type}.md
 ```
+If running locally, templates are at `/Users/petersonrainey/C-Code - Rag database/.claude/agents/seo-content-templates/`.
+If running remotely, the repo is cloned -- use Glob to discover the path.
 
 ### Step 4: Generate the Post
 
@@ -175,38 +179,28 @@ Output a summary:
 - Internal links included
 - Quality gate results (all pass/any warnings)
 
-## Approval Workflow (handled by Peterson, not this agent)
+## Publishing
 
-Peterson reviews drafts with:
-```sql
-SELECT id, slug, target_keyword,
-       LEFT(draft_content, 500) as preview
-FROM seo_content_queue
-WHERE status = 'draft'
-ORDER BY priority DESC;
-```
+The scheduled agent auto-publishes directly to git. The workflow is:
 
-To approve: update status to 'approved'.
-To reject: update status to 'rejected' with rejection_reason.
+1. Write the .md file to `src/content/blog/{slug}.md` in the website repo
+   - Use Glob (`**/src/content/blog/`) to discover the correct path
+2. Commit and push:
+   ```bash
+   cd {website_repo_path} && git add src/content/blog/{slug}.md && git commit -m 'Add blog post: {title}' && git push
+   ```
+3. Update the database:
+   ```sql
+   UPDATE seo_content_queue SET status = 'published', published_at = now(), updated_at = now() WHERE id = '{queue_id}';
 
-## Publishing (separate step, triggered after approval)
+   INSERT INTO seo_published (queue_id, vertical_id, slug, title, template_type, target_keyword, published_at)
+   SELECT id, vertical_id, slug,
+          (regexp_match(draft_content, 'title: "([^"]+)"'))[1],
+          template_type, target_keyword, now()
+   FROM seo_content_queue WHERE id = '{queue_id}';
+   ```
 
-When a post is approved, the publishing process:
-1. Writes the .md file to `/Users/petersonrainey/creekside-website/src/content/blog/{slug}.md`
-2. Commits and pushes to the creekside-website repo
-3. Creates a record in seo_published
-4. Updates seo_content_queue status to 'published'
-
-```sql
--- After git push succeeds:
-INSERT INTO seo_published (queue_id, vertical_id, slug, title, template_type, target_keyword, published_at)
-SELECT id, vertical_id, slug,
-       (regexp_match(draft_content, 'title: "([^"]+)"'))[1],
-       template_type, target_keyword, now()
-FROM seo_content_queue WHERE id = '{queue_id}';
-
-UPDATE seo_content_queue SET status = 'published', published_at = now(), updated_at = now() WHERE id = '{queue_id}';
-```
+Peterson reviews published posts via the daily morning brief. If a post needs to come down, he tells Claude Code to remove it.
 
 ## Important Context
 
