@@ -43,7 +43,7 @@ Enforced by deterministic hooks -- these cannot be overridden:
 
 **NEVER:** `DROP TABLE/SCHEMA/DATABASE/COLUMN` | `TRUNCATE` | `DELETE FROM` without WHERE | `rm -rf` | `git push --force` | `git reset --hard` | `chmod 777` | `npx @anthropic-ai/claude-code` or any child Claude CLI process (bypasses Max subscription, bills API directly)
 
-**Protected files (hooks block writes):** `CLAUDE.md` | `.claude/settings*.json` | `.claude/hooks/*.sh` | `.env*` | `.zshrc`
+**Protected files (hooks block writes):** `CLAUDE.md` | `.claude/settings*.json` | `.claude/hooks/*.sh` | `.claude/roles/*.md` | `.env*` | `.zshrc`
 
 **ADMIN_MODE:** Peterson runs `touch .claude/ADMIN_MODE` to edit protected files. Agents CANNOT create this file. After edits, agent MUST run `rm .claude/ADMIN_MODE`.
 

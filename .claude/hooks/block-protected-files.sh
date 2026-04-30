@@ -65,6 +65,12 @@ if echo "$FILE" | grep -qE '\.claude/settings'; then
   exit 2
 fi
 
+# --- Role files ---
+if echo "$FILE" | grep -qE '\.claude/roles/'; then
+  echo "BLOCKED: Cannot modify role files in .claude/roles/ — requires ADMIN_MODE." >&2
+  exit 2
+fi
+
 # --- Hook scripts ---
 if echo "$FILE" | grep -qE '\.claude/hooks/'; then
   echo "BLOCKED: Cannot modify hook scripts in .claude/hooks/ — requires explicit user approval." >&2
