@@ -49,6 +49,35 @@ Examples:
 - "Bankruptcy Law Firm Doubles Conversions: A Google Ads Case Study"
 - "20x ROAS: What Happened When a Meal Prep Brand Went All-In on Meta Ads"
 
+## TL;DR Block (MANDATORY, appears immediately after frontmatter, before the H1)
+
+Write a 40-60 word results summary containing the headline metrics. This is the primary
+"citation block" AI search engines extract. Must stand alone as a complete answer.
+
+Example format:
+> **TL;DR:** A {vertical_name} business cut cost per lead by X% and increased conversions
+> Yx using Google Ads, according to a Creekside Marketing case study. The campaign generated
+> [specific result] over [timeframe] on a [budget] monthly ad spend.
+
+## Key Results Summary Table (MANDATORY, appears right after TL;DR)
+
+```markdown
+> **Results at a Glance**
+> - **[Primary Metric]**: [Value]
+> - **[Secondary Metric]**: [Value]
+> - **[Tertiary Metric]**: [Value]
+> - **Platform**: [Google Ads / Meta Ads / Both]
+> - **Timeframe**: [Duration]
+> - **Source**: Creekside Marketing case study
+```
+
+## GEO Rules (apply throughout)
+
+- **Answer-first sections**: Every H2 opens with a 40-60 word standalone answer
+- **Citation-style attribution**: Use "According to Creekside Marketing..." not "we saw..."
+- **Self-contained sections**: Each section stands alone as a complete answer
+- **Source attribution**: Always attribute data to "Creekside Marketing" by name for citability
+
 ## Narrative Framework (select ONE randomly)
 
 ### Framework A: Problem-Solution-Proof
