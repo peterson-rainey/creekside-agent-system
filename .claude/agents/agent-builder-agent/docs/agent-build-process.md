@@ -278,7 +278,26 @@ Hooks handle all syncing automatically:
 
 You do NOT need to run manual git commands. You DO still need the initial `agent_definitions` INSERT.
 
-### 6a. Update CLAUDE.md Agent Table (no ADMIN_MODE required for additions)
+### 6a. Verify GitHub Push (MANDATORY -- build is NOT complete without this)
+
+The `agent-edit-monitor.sh` hook should have auto-committed and pushed when you wrote the file in Step 4. Verify:
+
+```bash
+git log --oneline -1
+```
+
+Confirm the latest commit includes the new agent file. If it doesn't:
+```bash
+git add .claude/agents/[agent-name].md .claude/agents/[agent-name]/docs/*.md
+git commit -m "New agent: [agent-name]"
+git push origin main
+```
+
+An agent that exists only locally and not on GitHub is NOT shipped. All users get new agents via `auto-pull.sh` at session start -- if it's not on GitHub, they don't have it.
+
+Include the commit hash in your build report.
+
+### 6b. Update CLAUDE.md Agent Table (no ADMIN_MODE required for additions)
 
 ### 6b. Insert into agent_definitions (Supabase) -- initial row only
 ```sql
