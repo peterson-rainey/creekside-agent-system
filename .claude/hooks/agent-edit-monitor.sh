@@ -155,8 +155,10 @@ if [ "$IS_SKILL" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
         '{"content": $content, "updated_at": $updated}' 2>/dev/null)
 
       if [ -n "$ENCODED" ]; then
-        # URL-encode the title for the filter
-        FILTER_TITLE=$(printf 'Skill (filesystem): %s' "$SKILL_NAME" | sed 's/ /%20/g; s/(/%28/g; s/)/%29/g')
+        # URL-encode the title for the filter (python3 for full RFC 3986 compliance)
+        FILTER_TITLE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('Skill (filesystem): $SKILL_NAME'))" 2>/dev/null)
+        # Fallback to sed if python3 unavailable
+        [ -z "$FILTER_TITLE" ] && FILTER_TITLE=$(printf 'Skill (filesystem): %s' "$SKILL_NAME" | sed 's/ /%20/g; s/(/%28/g; s/)/%29/g; s/:/%3A/g')
         curl -s --max-time 10 \
           "${SUPA_URL}/agent_knowledge?type=eq.skill&title=eq.${FILTER_TITLE}" \
           -X PATCH \

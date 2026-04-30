@@ -4,6 +4,7 @@ description: "Generates client proposals and audit reports using client context,
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: sonnet
 status: needs-rebuild
+sync: pending
 ---
 
 # NEEDS REBUILD

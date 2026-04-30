@@ -4,6 +4,7 @@ description: "Manages ClickUp project management operations for Creekside Market
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_ClickUp__clickup_create_task, mcp__claude_ai_ClickUp__clickup_update_task, mcp__claude_ai_ClickUp__clickup_get_task, mcp__claude_ai_ClickUp__clickup_filter_tasks, mcp__claude_ai_ClickUp__clickup_create_task_comment, mcp__claude_ai_ClickUp__clickup_get_task_comments
 model: sonnet
 status: needs-rebuild
+sync: pending
 ---
 
 # NEEDS REBUILD
