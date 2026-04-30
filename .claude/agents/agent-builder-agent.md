@@ -147,3 +147,52 @@ Read ONLY the files needed. A non-ads, admin-only agent reads 3 files. An ads sk
 22. **Cross-origin iframe visual extraction.** When testing reveals cross-origin iframes (`canAccess: false`), use `computer action=screenshot` + `computer action=zoom` to read visually. Document this explicitly.
 23. **Claude in Chrome as platform data alternative.** When API access is problematic early in a build, surface the `chrome-browser-nav` skill as an alternative to Peterson. Don't silently struggle with a broken API.
 24. **Mini-app pattern for complex builds.** Agents >400 lines and skills >200 lines MUST be split into core file + docs/ or reference/ directories. See `docs/quality-gates.md` for the patterns.
+25. **Railway scheduled agents cannot Read local files.** Scheduled agents running on Railway via `agent_dispatcher` load their prompt from `agent_definitions.system_prompt` in the DB. They do NOT have access to the local repo, so they cannot Read `docs/` files. If the agent being built will run on Railway, its `system_prompt` must be fully self-contained -- do NOT use the mini-app `docs/` pattern. Instead, keep all methodology inline in the `.md` file (which syncs to DB via the hook). The docs/ pattern is for on-demand agents spawned locally via Claude Code only.
+26. **Domain knowledge belongs in docs/ files, not agent_knowledge.** When building or editing an agent that has reference data (style guides, API templates, platform configs, interpretation frameworks), store that data in the agent's `docs/` directory -- not in `agent_knowledge`. The DB is for corrections, capabilities entries (routing), SOPs shared across agents, and volatile data that changes without a code deploy. Agent-specific reference data lives in GitHub.
+
+---
+
+## Editing Existing Agents
+
+This agent also handles restructuring and editing existing agents. When Peterson asks to modify, restructure, or update an agent:
+
+### When to Edit vs Rebuild
+
+| Situation | Action |
+|---|---|
+| Add a new step or capability to an existing agent | Edit the `.md` file directly |
+| Fix a bug or incorrect instruction | Edit the `.md` file directly |
+| Agent is >400 lines and needs restructuring | Split into core + `docs/` (mini-app pattern) |
+| Agent's domain knowledge is hardcoded | Move data to `docs/` files, add Read references |
+| Agent's domain knowledge is in `agent_knowledge` and only this agent uses it | Move to `docs/` files, mark DB entries as `[MIGRATED TO GITHUB]` |
+| Agent is fundamentally broken or wrong approach | Rebuild from scratch (full build process) |
+
+### Edit Process
+
+1. **Read the current agent file** -- understand what exists before changing anything.
+2. **Check for a `docs/` directory** -- does the agent already use the mini-app pattern?
+3. **Make the edit** to the `.md` file (or create `docs/` files if restructuring).
+4. **The `agent-edit-monitor.sh` hook** auto-commits, pushes to GitHub, and PATCHes `agent_definitions.system_prompt` in the DB.
+5. **No manual git or DB work needed** for edits to existing agents (the initial INSERT was done at build time).
+
+### Migrating agent_knowledge to docs/
+
+When an agent has reference data in `agent_knowledge` that only it uses:
+
+1. **Verify the entries are agent-specific** -- not queried by other agents or used for routing.
+2. **Read the full content** from `agent_knowledge`.
+3. **Write to `docs/` files** in the agent's directory, organized by topic.
+4. **Update the agent's core `.md`** to add a Directory Structure section and Read references.
+5. **Mark DB entries as migrated** (don't delete -- update content to `[MIGRATED TO GITHUB] ... Full content now lives in .claude/agents/[name]/docs/[file]`).
+6. **Do NOT migrate:** corrections (queried by correction-check steps), capabilities entries (used for agent routing/discovery), or data shared across multiple agents.
+
+### Railway Compatibility Check (MANDATORY for edits)
+
+Before completing any agent edit, verify:
+- Is this agent in `scheduled_agents` with `enabled = true`?
+- If YES: the agent runs on Railway and cannot Read local `docs/` files. Keep all methodology inline in the `.md` file. Do NOT add `docs/` references.
+- If NO: safe to use the mini-app `docs/` pattern.
+
+```sql
+SELECT name, enabled FROM scheduled_agents WHERE name = '[agent-name]' AND enabled = true;
+```
