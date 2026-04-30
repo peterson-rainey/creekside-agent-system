@@ -50,7 +50,7 @@ You can add your own custom instructions that persist across sessions and never 
 ~/.claude/projects/<your-project-path>/CLAUDE.md
 ```
 
-To find your exact path, run `! echo $HOME/.claude/projects/` and look for the folder matching this repo.
+To find your exact path, look inside `~/.claude/projects/` on your machine for the folder matching this repo's name. (In Claude Code, you can run `! ls ~/.claude/projects/` to see it.)
 
 Anything you put in that file is loaded automatically alongside the shared rules. Use it for:
 - Your preferred working style or tone

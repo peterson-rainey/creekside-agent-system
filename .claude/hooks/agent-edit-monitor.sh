@@ -143,17 +143,14 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
   ) 2>/dev/null
 fi
 
-# DB mirroring: sync skill file metadata to agent_knowledge
-# Updates the content preview for "Skill (filesystem):" entries when a SKILL.md changes.
-if [ "$IS_SKILL" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+# DB mirroring: sync core skill file metadata to agent_knowledge
+# Updates the content preview for "Skill (filesystem):" entries when a core SKILL.md changes.
+if [ "$IS_SKILL" = true ] && [ "$IS_CONTRACTOR_SKILL" != true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
   (
     SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
     SUPA_KEY="$SUPABASE_SERVICE_ROLE_KEY"
 
-    # Derive skill name from path: .claude/skills/{skill-name}/SKILL.md
     SKILL_NAME=$(echo "$FILE" | sed -E 's|.*/skills/([^/]+)/.*|\1|')
-
-    # Read the SKILL.md content (first 2000 chars for metadata)
     SKILL_CONTENT=$(head -c 2000 "$FILE" 2>/dev/null) || true
 
     if [ -n "$SKILL_CONTENT" ] && [ -n "$SKILL_NAME" ]; then
@@ -163,9 +160,7 @@ if [ "$IS_SKILL" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
         '{"content": $content, "updated_at": $updated}' 2>/dev/null)
 
       if [ -n "$ENCODED" ]; then
-        # URL-encode the title for the filter (python3 for full RFC 3986 compliance)
         FILTER_TITLE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('Skill (filesystem): $SKILL_NAME'))" 2>/dev/null)
-        # Fallback to sed if python3 unavailable
         [ -z "$FILTER_TITLE" ] && FILTER_TITLE=$(printf 'Skill (filesystem): %s' "$SKILL_NAME" | sed 's/ /%20/g; s/(/%28/g; s/)/%29/g; s/:/%3A/g')
         curl -s --max-time 10 \
           "${SUPA_URL}/agent_knowledge?type=eq.skill&title=eq.${FILTER_TITLE}" \
@@ -179,6 +174,70 @@ if [ "$IS_SKILL" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
       fi
     fi
   ) 2>/dev/null
+fi
+
+# DB mirroring: sync contractor skill to agent_knowledge
+# Auto-creates the entry if it doesn't exist (POST with Prefer: resolution=merge-duplicates).
+if [ "$IS_CONTRACTOR_SKILL" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+  (
+    SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
+    SUPA_KEY="$SUPABASE_SERVICE_ROLE_KEY"
+
+    # Path: .claude/contractor-skills/{contractor}/{skill-name}/SKILL.md
+    CONTRACTOR_NAME=$(echo "$FILE" | sed -E 's|.*/contractor-skills/([^/]+)/.*|\1|')
+    SKILL_NAME=$(echo "$FILE" | sed -E 's|.*/contractor-skills/[^/]+/([^/]+)/.*|\1|')
+    SKILL_CONTENT=$(head -c 2000 "$FILE" 2>/dev/null) || true
+
+    if [ -n "$SKILL_CONTENT" ] && [ -n "$SKILL_NAME" ] && [ -n "$CONTRACTOR_NAME" ]; then
+      TITLE="Contractor skill (${CONTRACTOR_NAME}): ${SKILL_NAME}"
+
+      # Upsert: POST with on-conflict resolution
+      PAYLOAD=$(jq -n \
+        --arg title "$TITLE" \
+        --arg content "$SKILL_CONTENT" \
+        --arg type "skill" \
+        --arg contractor "$CONTRACTOR_NAME" \
+        --arg skill "$SKILL_NAME" \
+        '{type: $type, title: $title, content: $content, tags: ["contractor-skill", ("contractor:" + $contractor)], source_context: ("contractor-skills/" + $contractor + "/" + $skill), confidence: "verified"}' 2>/dev/null)
+
+      if [ -n "$PAYLOAD" ]; then
+        # Try PATCH first (update existing)
+        FILTER_TITLE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$TITLE'))" 2>/dev/null)
+        [ -z "$FILTER_TITLE" ] && FILTER_TITLE=$(echo "$TITLE" | sed 's/ /%20/g; s/(/%28/g; s/)/%29/g; s/:/%3A/g')
+
+        HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 \
+          "${SUPA_URL}/agent_knowledge?title=eq.${FILTER_TITLE}" \
+          -X PATCH \
+          -H "apikey: ${SUPA_KEY}" \
+          -H "Authorization: Bearer ${SUPA_KEY}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=minimal" \
+          -d "$(jq -n --arg content "$SKILL_CONTENT" --arg updated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '{"content": $content, "updated_at": $updated}')" \
+          2>/dev/null)
+
+        # If PATCH matched 0 rows (204 with no changes), create new entry
+        if [ "$HTTP_CODE" = "204" ]; then
+          # Check if row actually exists
+          EXISTS=$(curl -s --max-time 5 \
+            "${SUPA_URL}/agent_knowledge?title=eq.${FILTER_TITLE}&select=id" \
+            -H "apikey: ${SUPA_KEY}" \
+            -H "Authorization: Bearer ${SUPA_KEY}" 2>/dev/null)
+          ROW_COUNT=$(echo "$EXISTS" | jq 'length' 2>/dev/null || echo "0")
+          if [ "$ROW_COUNT" = "0" ]; then
+            curl -s --max-time 10 \
+              "${SUPA_URL}/agent_knowledge" \
+              -X POST \
+              -H "apikey: ${SUPA_KEY}" \
+              -H "Authorization: Bearer ${SUPA_KEY}" \
+              -H "Content-Type: application/json" \
+              -H "Prefer: return=minimal" \
+              -d "$PAYLOAD" \
+              2>/dev/null > /dev/null
+          fi
+        fi
+      fi
+    fi
+  ) 2>/dev/null &
 fi
 
 exit 0
