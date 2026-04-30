@@ -16,26 +16,38 @@ if [ -f "$ROGUE_HOOK" ]; then
   chmod +x "$ROGUE_HOOK"
 fi
 
-# --- Promote contractor role to admin if system_users says admin ---
-# Cade was originally set up as contractor but is now admin in the database.
-# This ensures the local user-role.conf matches the DB role on every session start.
+# --- Device-key authentication ---
+# Read ~/.creekside-device-key and validate against system_users.device_key.
+# If valid: set user-role.conf to the DB role (admin/contractor).
+# If no key or invalid: default to contractor.
 ROLE_CONF="$CLAUDE_PROJECT_DIR/.claude/user-role.conf"
-if [ -f "$ROLE_CONF" ]; then
-  LOCAL_ROLE=$(grep -E '^role=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
-  if [ "$LOCAL_ROLE" = "contractor" ]; then
-    LOCAL_EMAIL=$(grep -E '^email=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
-    if [ -n "$LOCAL_EMAIL" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; then
-      ENCODED=$(printf '%s' "$LOCAL_EMAIL" | sed 's/@/%40/g; s/+/%2B/g')
-      DB_ROLE_CHECK=$(curl -s --max-time 5 \
-        "${SUPABASE_URL}/system_users?email=eq.${ENCODED}&is_active=eq.true&select=role&limit=1" \
-        -H "apikey: ${KEY}" \
-        -H "Authorization: Bearer ${KEY}" 2>/dev/null)
-      ACTUAL_ROLE=$(echo "$DB_ROLE_CHECK" | jq -r '.[0].role // empty' 2>/dev/null)
-      if [ "$ACTUAL_ROLE" = "admin" ]; then
-        sed -i '' 's/^role=contractor/role=admin/' "$ROLE_CONF"
-      fi
+DEVICE_KEY_FILE="$HOME/.creekside-device-key"
+
+if [ -f "$DEVICE_KEY_FILE" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; then
+  DEVICE_KEY=$(cat "$DEVICE_KEY_FILE" | tr -d '[:space:]')
+  if [ -n "$DEVICE_KEY" ]; then
+    # Validate key against database
+    ENCODED_KEY=$(printf '%s' "$DEVICE_KEY" | sed 's/+/%2B/g')
+    KEY_LOOKUP=$(curl -s --max-time 5 \
+      "${SUPABASE_URL}/system_users?device_key=eq.${ENCODED_KEY}&is_active=eq.true&select=id,name,email,role&limit=1" \
+      -H "apikey: ${KEY}" \
+      -H "Authorization: Bearer ${KEY}" 2>/dev/null)
+
+    KEY_ROLE=$(echo "$KEY_LOOKUP" | jq -r '.[0].role // empty' 2>/dev/null)
+    KEY_EMAIL=$(echo "$KEY_LOOKUP" | jq -r '.[0].email // empty' 2>/dev/null)
+    KEY_NAME=$(echo "$KEY_LOOKUP" | jq -r '.[0].name // empty' 2>/dev/null)
+
+    if [ -n "$KEY_ROLE" ] && [ -n "$KEY_EMAIL" ]; then
+      # Valid device key -- write role conf from DB
+      printf 'role=%s\nemail=%s\nname=%s\n' "$KEY_ROLE" "$KEY_EMAIL" "$KEY_NAME" > "$ROLE_CONF"
+    else
+      # Invalid key -- force contractor
+      printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
     fi
   fi
+elif [ ! -f "$DEVICE_KEY_FILE" ]; then
+  # No device key file -- default to contractor
+  printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
 fi
 
 # Skip if no key or jq unavailable
