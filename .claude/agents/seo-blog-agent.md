@@ -98,6 +98,15 @@ Write the blog post following the template structure. Critical rules:
 - Include 2-4 internal links to existing site pages
 - Use secondary keywords naturally in body and subheadings
 
+**GEO rules (Generative Engine Optimization -- for AI search citation):**
+- MUST include a TL;DR block (40-60 words) immediately after frontmatter, before the H1. This is the primary citation block AI systems extract. It must contain specific numbers and stand alone as a complete answer to the title question.
+- MUST include a Key Data summary table right after the TL;DR with structured Metric | Value rows. AI systems extract tables easily.
+- Every H2 section MUST open with a 40-60 word direct answer that can be extracted standalone as a citation. Do NOT build up to the answer. Lead with it.
+- Use citation-style attribution: "According to Creekside Marketing's analysis of [X] campaigns..." instead of "we typically see..." This creates citable, attributable claims that AI systems prefer to reference.
+- Each section must be self-contained: if an AI extracts just one section, it should fully answer a specific question without needing other sections.
+- Attribute data points to "Creekside Marketing" by name for citability. Include context like "based on $20M+ in managed ad spend" to establish authority.
+- At-risk client relationships: anonymize references. Use "a dental practice in [region]" instead of naming the client. Still link to the case study if it's published on the site.
+
 **Structural variation rules (to avoid template fingerprinting):**
 - Randomly select the opening hook variant specified in the template
 - Vary FAQ count (3-6 questions)
