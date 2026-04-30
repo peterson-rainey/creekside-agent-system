@@ -166,7 +166,7 @@ Append it to entry `c10cd55d-4f5c-49d3-84c5-3fcab2fe7f77` (UPDATE the content fi
 ### When you discover a NEW ad-platform learning during a build
 1. Append it to entry `94f86a68-c6e4-483d-ac34-d8547fbe9253` (UPDATE, do NOT INSERT)
 2. Propagate it to the relevant skill file (`.claude/skills/ads-connector/SKILL.md` for API gotchas, `.claude/skills/ads-ui-navigation/SKILL.md` for UI gotchas)
-3. Note in the build report that the skill was updated, since skill files are NOT auto-synced to the database
+3. The skill file edits are auto-synced to `system_registry` and `agent_knowledge` by hooks, and auto-committed/pushed to GitHub
 
 ---
 
@@ -305,7 +305,7 @@ SELECT * FROM search_all('TOPIC', NULL, 30);
 SELECT * FROM keyword_search_all('TOPIC', NULL, 30);
 ```
 
-**Slack messages** (real-time corrections, quick guidance):
+**Slack messages** (historical only -- Slack is deprecated at Creekside, but past messages contain training data):
 ```sql
 SELECT id, channel_name, message_date, summary
 FROM slack_summaries
@@ -736,6 +736,8 @@ VALUES (
 ```
 
 After this initial INSERT, all future edits to the SKILL.md auto-sync to both tables via the hooks. Never manually UPDATE these DB rows — edit the file instead.
+
+**Truncation note:** The `agent-edit-monitor.sh` hook only syncs the first 2,000 characters of a SKILL.md to `agent_knowledge` on subsequent edits. If a skill exceeds 2,000 chars, the initial INSERT (above) captures the full content, but later hook-driven PATCHes will truncate. For long skills, re-run the DELETE+INSERT manually after major edits to restore full content.
 
 **VERIFY both rows landed:**
 ```sql
