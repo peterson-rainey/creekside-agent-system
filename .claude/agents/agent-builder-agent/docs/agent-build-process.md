@@ -244,9 +244,26 @@ Ask: "Does this agent have conditional paths, reference data, or domain knowledg
 
 ---
 
-## Step 5: Store Domain Knowledge in the Database (MANDATORY)
+## Step 5: Store Domain Knowledge (MANDATORY)
 
-### 5a. Store domain facts as agent_knowledge entries
+Domain knowledge can live in two places. Choose based on who needs it:
+
+| Store in... | When... |
+|------------|---------|
+| `docs/` folder (`.claude/agents/[name]/docs/*.md`) | Agent-specific reference data, query templates, interpretation frameworks. Loaded on-demand when the agent runs. **Preferred for new agents.** |
+| `agent_knowledge` (Supabase) | Knowledge that Railway scheduled agents need, that requires semantic search, or that multiple unrelated agents need to discover dynamically. |
+| **Both** | When Railway agents query it AND CLI sessions benefit from local file access. File is source of truth; DB is synced copy. |
+
+### 5a. Store in docs/ (preferred for agent-specific knowledge)
+Create `.claude/agents/[agent-name]/docs/[topic].md` files for:
+- Query templates and SQL patterns
+- Interpretation frameworks and decision trees
+- Domain-specific reference data
+- Conditional paths and edge cases
+
+This is already the pattern used by 20+ agents (communication-style-agent, financial-analyst-agent, marketing-strategy-agent, etc.).
+
+### 5b. Store in agent_knowledge (for cross-agent discovery)
 ```sql
 SELECT validate_new_knowledge('domain_knowledge', '[agent-name]: [category]', ARRAY['agent-name-tag']);
 -- If OK:
@@ -260,10 +277,12 @@ VALUES (
 );
 ```
 
-### 5b. Build query templates INTO the agent file
-### 5c. Build interpretation frameworks INTO the agent file
+Use this when Railway scheduled agents need the data or when other agents should be able to discover it via `search_all()`.
 
-### 5d. Staleness Validation Gate (MANDATORY)
+### 5c. Build query templates INTO the agent file (or docs/)
+### 5d. Build interpretation frameworks INTO the agent file (or docs/)
+
+### 5e. Staleness Validation Gate (MANDATORY)
 Read `docs/staleness-patterns.md` and check every line of the agent file against every pattern.
 
 ---
