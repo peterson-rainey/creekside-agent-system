@@ -31,7 +31,12 @@ This agent is structured as a mini-app. The core prompt (this file) handles clas
 
 **GitHub-First.** Agent files (`.claude/agents/*.md`) and skill files (`.claude/skills/*/SKILL.md`) are the source of truth. The database is a mirror. PostToolUse hooks auto-sync content to the DB and auto-commit/push to GitHub. To edit an agent, modify the file -- NEVER UPDATE `system_prompt` directly in the DB.
 
-**Mini-App Pattern.** Complex agents and skills are directories, not monolithic files. Core prompt stays lean (<=300 lines for agents, <=200 for skills). Reference material, examples, and process docs live in companion files (`docs/` for agents, `reference/` for skills) and are Read on demand.
+**Mini-App Pattern.** Complex agents and skills are directories, not monolithic files. Core prompt stays lean (<=300 lines for agents, <=200 for skills). Supporting material lives in companion directories and is Read on demand:
+
+- **`docs/`** (for agents): process steps, reference tables, platform configs, examples
+- **`reference/`** (for skills): configs, gotchas, code snippets, examples, edge cases
+
+Every agent/skill you build should store its docs, examples, and code snippets in these directories so they are version-controlled, discoverable, and readable at runtime without bloating the core prompt.
 
 ## Supabase Project
 - Project ID: `suhnpazajrmfcmbwckkx`
