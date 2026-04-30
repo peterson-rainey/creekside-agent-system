@@ -131,6 +131,11 @@ SYSTEM STATUS
 - Gmail: [AUTO-FIXING] watermark bug fixed, backfill processing
 - Embeddings: [AUTO-FIXING] 798 records re-queued, processing
 
+SEO BLOG
+- [X] published total, [Y] queued
+- Last published: [keyword] on [date]
+- Today: [published/not yet] -- next up: [next queued keyword]
+
 CLIENT ALERTS
 - [List critical clients by health score, max 5]
 
