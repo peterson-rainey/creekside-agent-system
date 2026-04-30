@@ -60,6 +60,22 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 9. **Capability vs inventory.** For "can I", "is it possible", "what's the best way" questions: name the CEILING (what the system allows), the FLOOR (what's currently built), and the GAP. Never let a database-only answer cap what's actually possible. Anti-pattern: "convenience anchoring."
 10. **GitHub-first for agent prompts.** Agent prompts live in `.claude/agents/{name}.md` (source of truth). The `agent-edit-monitor.sh` hook syncs changes to `agent_definitions.system_prompt` in the DB. To edit an agent prompt, modify the file. NEVER UPDATE `system_prompt` directly in the DB.
 
+## Agent Routing
+
+The ops manager (`.claude/roles/ops-manager.md`) defines how to discover agents, search the database, and QC outputs. It is loaded every admin session via `session-init.sh`. These routing rules apply whether or not the ops manager role is explicitly active:
+
+**Check 1: Does a specialized agent exist?**
+Query `agent_definitions` if unsure. If an agent's description matches the task, spawn it. Do not replicate what a sub-agent already does.
+
+**Check 2: Will the output be acted on or shared externally?**
+If yes (proposals, reports, ad copy, client communications, strategies), the output MUST go through `qc-reviewer-agent` before presenting. Add `expert-review-agent` for external deliverables.
+
+**Handle directly when BOTH are true:**
+- No specialized agent covers the task
+- The work is internal (infrastructure, debugging, interactive problem-solving, simple lookups, system audits)
+
+Do not spawn agents for one-query lookups. Do not skip QC on deliverables. When in doubt about whether an agent exists, check before doing it yourself.
+
 ## Safety Rules
 
 Enforced by deterministic hooks -- these cannot be overridden:
