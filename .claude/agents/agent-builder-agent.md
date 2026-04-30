@@ -515,6 +515,7 @@ Agent and skill files in the Git repo (`.claude/agents/`, `.claude/skills/`) are
 **What this means for the build process:** Once you Write the agent/skill file (Step 4), the hooks handle git commit, git push, and DB sync of the file content. You do NOT need to run manual git commands. You DO still need to INSERT the initial `agent_definitions` row (the hook only PATCHes existing rows).
 
 #### 6a. Update CLAUDE.md Agent Table (no ADMIN_MODE required for additions)
+If CLAUDE.md has an agent inventory table, add the new agent to it. The `agent-edit-monitor.sh` hook will auto-commit CLAUDE.md changes alongside the agent file. ADMIN_MODE is NOT required for adding new entries to an existing table -- only for modifying rules or protected sections.
 
 #### 6b. Insert into agent_definitions (Supabase) — initial row only
 The `agent-edit-monitor.sh` hook will auto-sync `system_prompt` on every subsequent edit. But the hook uses PATCH (not INSERT), so **you must create the initial row** for new agents:
