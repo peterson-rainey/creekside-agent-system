@@ -215,8 +215,8 @@ Claude Code loads agents at session startup, so a new file cannot be dispatched 
 ### 4c. Write the Agent File
 Standard structure: YAML frontmatter, Role, Goal, Supabase Project, Scope, Methodology, Query Templates, Interpretation Rules, Output Format, Failure Modes, Rules, Anti-Patterns.
 
-### 4d. Create docs/ directory if agent exceeds 400 lines
-If the agent's content exceeds 400 lines, split into a core `.md` file + companion `docs/` directory. See `docs/quality-gates.md` Size Management section for the pattern.
+### 4d. Evaluate whether to split into docs/
+Ask: "Does this agent have conditional paths, reference data, or domain knowledge that isn't needed on every invocation?" If yes, split into core + `docs/`. See `docs/quality-gates.md` for the criteria and patterns. This is about structure, not line count.
 
 ### Required Sections (Every Agent Must Have):
 1. YAML Frontmatter -- name, description, tools, model
@@ -354,7 +354,7 @@ Collect all build artifacts for validation.
 | Query Template Validity | Correct table/function names | Non-existent tables or direct queries |
 | Domain Knowledge Stored | Research findings in agent_knowledge | Domain data not stored |
 | Output Format Complete | Concrete example | Only field names |
-| Size Management | Agent <=400 lines, or uses docs/ pattern | Exceeds threshold without justification |
+| Structure Check | No unnecessary content loaded per invocation | Agent has conditional paths, reference data, or domain knowledge that should be in docs/ but isn't |
 | Staleness Patterns | No hardcoded pricing, client IDs, routing, compensation, contacts, or Slack-as-active | Any pattern from staleness-patterns.md found |
 | Cost Estimation (scheduled) | Within budget | Over $10/day WARN, over $25/day FAIL |
 
