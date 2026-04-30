@@ -1,8 +1,31 @@
 # Creekside Marketing -- Shared Rules
 
-These rules apply to ALL users (Peterson, Cade, contractors). Role-specific behavior is loaded from `.claude/roles/` by the session-init hook. In Claude Chat or Co-work (no hooks), read your role file directly:
-- Admin/owner: `.claude/roles/ops-manager.md`
-- Contractor: `.claude/roles/contractor.md`
+These rules apply to ALL users (Peterson, Cade, contractors). Role-specific behavior is loaded from `.claude/roles/` by the session-init hook.
+
+## Device-Key Authentication (all session types)
+
+On EVERY session start (CLI, Co-work, Claude Chat), determine the user's role:
+
+1. Read `~/.creekside-device-key`. If the file does not exist, you are in **contractor mode**. Skip to step 3.
+2. Validate the key: `SELECT name, email, role FROM system_users WHERE device_key = '<file_contents>' AND is_active = true`. If no match, you are in **contractor mode**.
+3. Load the matching role file:
+   - **admin**: Read `.claude/roles/ops-manager.md` and follow it.
+   - **contractor** (or no key): Read `.claude/roles/contractor.md` and follow it.
+
+**In CLI**: The `session-init` hook does this automatically. No manual steps needed.
+
+**In Co-work / Claude Chat**: Hooks do NOT run. You MUST perform steps 1-3 yourself on the first interaction.
+
+## Contractor Mode Restrictions (system-enforced)
+
+When operating in contractor mode, these restrictions apply regardless of session type:
+
+- **Database**: Route ALL SQL through `SELECT contractor_query('your SQL here')` instead of raw `execute_sql`. This Postgres function blocks destructive operations server-side (DROP, TRUNCATE, DELETE without WHERE, writes to protected tables, DDL changes). This is real enforcement -- the function raises exceptions that cannot be bypassed.
+- **Protected files**: Do NOT write to `CLAUDE.md`, `.claude/settings*.json`, `.claude/hooks/*.sh`, `.claude/roles/*.md`, `.env*`, `.zshrc`. In CLI, hooks block this. In Co-work, you must self-enforce.
+- **No ADMIN_MODE**: Do not create `.claude/ADMIN_MODE`. Only Peterson can do this manually.
+- **No destructive ops**: No `rm -rf`, `git push --force`, `git reset --hard`, `chmod 777`, child Claude CLI processes.
+- **Commit after changes**: In Co-work, auto-commit hooks don't run. Run `git add -A && git commit -m "Co-work: <summary>"` after meaningful file edits.
+- **Agent file sync**: If you edit `.claude/agents/*.md` in Co-work, the DB won't auto-update. Run `bash .claude/hooks/agent-edit-monitor.sh` manually.
 
 ## Infrastructure
 - **Supabase project**: `suhnpazajrmfcmbwckkx` -- use `execute_sql` MCP tool. Use `SUPABASE_SERVICE_ROLE_KEY` for writes (anon key silently fails).
