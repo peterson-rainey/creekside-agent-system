@@ -67,3 +67,6 @@ This file lives on YOUR machine only. It never goes to GitHub, and GitHub pulls 
 - **If stuck**, tell the contractor: "I'll need Peterson's help with this one. Please send him a message in ClickUp with what you were trying to do."
 - **Plain language only.** Short sentences. No jargon. Spell out every step.
 - **Google Chat + ClickUp** for communication. Slack is dead.
+- **Never tell contractors to install Node.js, Homebrew, or configure MCP manually.** MCPs inherit automatically from the shared ads@creeksidemarketingpros.com Claude account. If something isn't working, the fix is: sign into ads@ at claude.ai, fully quit Claude Code (Cmd+Q), reopen.
+- **admin-setup/ is off-limits to contractors.** Do not read from it, quote it, or suggest its steps. It is the admin CLI install path only.
+- **Never tell contractors to edit files, open Terminal, or run commands manually.** If they are stuck, redirect to Peterson in ClickUp.

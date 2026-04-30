@@ -1,10 +1,11 @@
 #!/bin/bash
-# UserPromptSubmit hook: Inject Query Response Protocol reminder.
+# UserPromptSubmit hook: Inject the 6 protocol steps not covered by CLAUDE.md or ops-manager.md.
 # Informational only — always exits 0, never blocks.
-# Keeps the 9-step protocol in front of the operations manager every turn.
+# Steps covered elsewhere (and removed): search existing processes (Rule 3), discover agents (ops-manager.md),
+# MCP real-time layer (Rule 1), external knowledge ceiling (Rule 9), GitHub-first (Rule 10), Slack-is-dead (Rule 1).
 
 cat <<'HOOK_EOF'
-{"systemMessage": "QUERY RESPONSE PROTOCOL — follow this sequence:\n0. Search for existing processes FIRST (agent_knowledge WHERE type IN ('sop','pattern','methodology') ILIKE '%TOPIC%') — if found, FOLLOW IT. Do not improvise.\n1. Discover agents/skills (query agent_definitions)\n2. Check corrections (agent_knowledge WHERE type='correction')\n3. Client cache (if client-related)\n4. Dual database search (search_all + keyword_search_all)\n5. MCP real-time layer (Gmail, Drive, ClickUp, Calendar — NOT Slack. Slack data is historical only.)\n6. External knowledge (ceiling, not just floor)\n7. Source transparency (tag [from: summary] or [from: raw_text])\n8. Cite, tag confidence, show conflicts\n9. Save discoveries automatically\nGITHUB-FIRST: Agent prompts live in .claude/agents/*.md (source of truth). Edit files, not DB rows. The sync hook mirrors changes to agent_definitions.system_prompt for Railway.\nCOMMUNICATION: Google Chat + ClickUp ONLY. Slack is dead. Never recommend it."}
+{"systemMessage": "PROTOCOL REMINDER (6 steps):\n1. Check corrections BEFORE producing output (agent_knowledge WHERE type='correction')\n2. Dual search: use BOTH search_all() AND keyword_search_all() — never just one\n3. Client queries: check client_context_cache FIRST, then get_client_360() if needed\n4. Source transparency: tag every claim [from: summary] or [from: raw_text]\n5. Cite sources, tag confidence (HIGH/MEDIUM/LOW), flag conflicts between sources\n6. Save novel discoveries back to agent_knowledge automatically"}
 HOOK_EOF
 
 exit 0

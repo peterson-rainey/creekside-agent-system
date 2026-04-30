@@ -1,8 +1,7 @@
 #!/bin/bash
-# SessionStart hook: Fetch the startup guide + correction titles from agent_knowledge.
-# Also identifies the current user from .claude/user-role.conf and injects their identity.
-# Two API calls. Guide content is maintained in the database so any chat can update it.
-# Critical record ID: 83308752-50a8-42cd-bb15-54bfa04e7764 (see agent_knowledge 873e2c75 for docs)
+# SessionStart hook: Identifies the current user, loads their role file, and injects recent work.
+# The startup guide (agent_knowledge 83308752) is no longer injected here -- ops-manager queries on-demand.
+# Corrections are delivered by correction-inject.sh, not this hook.
 # Fails silently on any error — never blocks session start.
 
 SUPABASE_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
@@ -127,52 +126,12 @@ if [ -n "$USER_NAME" ]; then
   fi
 fi
 
-# --- 1. Fetch the startup guide (single record) ---
-GUIDE=$(curl -s --max-time 8 \
-  "${SUPABASE_URL}/agent_knowledge?id=eq.83308752-50a8-42cd-bb15-54bfa04e7764&select=content" \
-  -H "apikey: ${KEY}" \
-  -H "Authorization: Bearer ${KEY}" 2>/dev/null)
+# --- 1. Build system message (role file + user identity + one-liner) ---
+# Startup guide (agent_knowledge 83308752) is NOT injected here.
+# The ops-manager role has routing knowledge baked in and queries the guide on-demand.
+# Corrections are delivered by correction-inject.sh on every Agent tool call.
 
-CONTENT=$(echo "$GUIDE" | jq -r '.[0].content // empty' 2>/dev/null)
-
-# If guide is empty but we have user identity, still inject identity
-if [ -z "$CONTENT" ] && [ -z "$USER_IDENTITY" ]; then
-  exit 0
-elif [ -z "$CONTENT" ]; then
-  EARLY_MSG="$USER_IDENTITY"
-  if [ -n "$ROLE_INSTRUCTIONS" ]; then
-    EARLY_MSG="${EARLY_MSG}
-
-${ROLE_INSTRUCTIONS}"
-  fi
-  ESCAPED=$(echo "$EARLY_MSG" | python3 -c 'import sys,json; print(json.dumps({"systemMessage": sys.stdin.read().strip()}))' 2>/dev/null)
-  [ -n "$ESCAPED" ] && echo "$ESCAPED"
-  exit 0
-fi
-
-# --- 2. Fetch top 5 corrections by usage (self-tuning — most-referenced first) ---
-CORRECTIONS=$(curl -s --max-time 5 \
-  "${SUPABASE_URL}/agent_knowledge?type=eq.correction&order=usage_count.desc.nullslast,created_at.desc&limit=5&select=title,content" \
-  -H "apikey: ${KEY}" \
-  -H "Authorization: Bearer ${KEY}" 2>/dev/null)
-
-CORR_LIST=""
-CORR_COUNT=$(echo "$CORRECTIONS" | jq -r 'length' 2>/dev/null || echo "0")
-if [ "$CORR_COUNT" -gt 0 ] 2>/dev/null; then
-  CORR_LIST=$(echo "$CORRECTIONS" | jq -r '.[] | "- **\(.title)**: \(.content[0:150])..."' 2>/dev/null)
-fi
-
-# --- 3. Build and inject system message ---
-if [ -n "$CORR_LIST" ]; then
-  FULL_MSG="${CONTENT}
-
-### Top Corrections (${CORR_COUNT} by usage — apply every session)
-${CORR_LIST}
-
-Query all: SELECT title, content FROM agent_knowledge WHERE type='correction' ORDER BY usage_count DESC NULLS LAST;"
-else
-  FULL_MSG="$CONTENT"
-fi
+FULL_MSG="Database connected. 65 active agents available (query agent_definitions for details)."
 
 # Append user identity if resolved
 if [ -n "$USER_IDENTITY" ]; then
