@@ -61,7 +61,7 @@ SELECT content FROM agent_knowledge WHERE title = 'Coding Standards Reference';
 ## Coding Behavior (Karpathy Principles)
 
 10. **Ask before assuming.** If a request is ambiguous, has multiple interpretations, or you're uncertain about scope -- stop and ask. Do not silently pick an interpretation and build. Name what's confusing. Present the options. Wait for confirmation. Correcting a plan is cheap; unwinding a half-finished build is expensive.
-11. **Define success criteria, then loop.** Before implementing, state what "done" looks like in verifiable terms. Transform vague asks into testable goals: "Add validation" becomes "Write tests for invalid inputs, then make them pass." For multi-step tasks, state the plan with a verification check after each step. Loop until verified -- do not declare done without confirming the criteria are met.
+11. **Define success criteria, then loop autonomously.** Before implementing, state what "done" looks like in verifiable terms. Transform vague asks into testable goals: "Add validation" becomes "Write tests for invalid inputs, then make them pass." Then execute all steps autonomously until done -- do not pause for user input between steps. Only stop to ask if you are genuinely blocked or the requirement is ambiguous. Loop until the success criteria are verified -- do not declare done without confirming they are met.
 
 ## On-Demand Reference
 
