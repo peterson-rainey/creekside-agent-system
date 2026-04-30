@@ -845,6 +845,28 @@ Tell the user:
 22. **Live-test Chrome extraction before writing agent instructions (MANDATORY).** When building any agent that uses Chrome MCP to read data from an external website, you MUST test the actual extraction method on the actual target page BEFORE writing the agent instructions. Do NOT assume `get_page_text` or `read_page` will work. Many web apps (Google Ads Transparency Center, Meta Ad Library, embedded ad previews, dashboards with widgets) render content inside cross-origin iframes that block all text extraction methods. The only way to know is to test. Required verification steps: (1) Navigate to the target page with Chrome MCP, (2) Try `get_page_text` -- does it return the content you need? (3) Try `read_page` -- does the accessibility tree include the data? (4) Try `javascript_tool` -- can you query the DOM? (5) If none work, test `screenshot` + `zoom` -- can you read it visually? (6) Write the agent instructions based on what ACTUALLY works, not what you assume will work. Failure to test wastes entire agent runs producing zero usable data.
 23. **Cross-origin iframe visual extraction pattern.** When Chrome extraction testing (Rule 22) reveals that content is in cross-origin iframes (symptoms: `get_page_text` returns almost nothing despite visible content, `javascript_tool` shows iframes with `canAccess: false`), the agent MUST use `computer action=screenshot` + `computer action=zoom` to read content visually. Document this in the agent file explicitly -- do not write instructions saying "use get_page_text to extract" when it has been verified not to work. Common sites with this pattern: Google Ads Transparency Center ad previews, Meta Ad Library creative previews, any embedded ad render or third-party widget.
 24. **Claude in Chrome as platform data alternative.** When building an agent that needs data from an external platform and you run into issues with API access or MCP connectivity early in the build (auth complexity, rate limits, missing endpoints, flaky responses, time-consuming setup), recommend Claude in Chrome (chrome-browser-nav skill) as an alternative approach to Peterson. Do not silently struggle with a broken API for hours -- surface the browser automation option early. Chrome automation is a first-class data collection method at Creekside, not a last resort. This is a recommendation you make DURING the build process, not something you embed into every agent file.
+25. **Size management (agents and skills).** Large files waste context tokens at runtime and make maintenance harder. Follow these thresholds:
+
+    **Skills:** SKILL.md should be **≤200 lines** of core methodology. Everything else goes in `reference/` files that the skill reads on demand. Follow the `gmail-manager` pattern:
+    ```
+    .claude/skills/[skill-name]/
+    ├── SKILL.md              # ≤200 lines: purpose, routing, core process
+    └── reference/
+        ├── config.md         # Platform-specific configs, URL templates, selectors
+        ├── gotchas.md        # Known edge cases, workarounds
+        └── [topic].md        # Additional reference material
+    ```
+    The SKILL.md references these files: "For [topic] details, read `reference/[file].md`." The agent using the skill reads only the reference files it needs per invocation, keeping context lean.
+
+    **Agents:** Agent `.md` files should be **≤400 lines** of methodology. If an agent exceeds 400 lines, look for these split candidates:
+    - **API endpoint templates / reference tables** → move to `agent_knowledge` with a query template in the agent file
+    - **Per-platform configs** (URL patterns, selectors, field mappings) → move to `agent_knowledge` or a companion skill's `reference/` directory
+    - **Standing corrections with specific data** → these already belong in `agent_knowledge` per the staleness rule; the agent's correction-check step pulls them
+    - **Large example blocks** → move to `agent_knowledge` as type `domain_knowledge`
+
+    The agent file keeps: role, scope, workflow steps, query templates, interpretation frameworks, output format, rules, failure modes. Everything else gets pulled at runtime.
+
+    **QC gate:** If an agent exceeds 400 lines or a skill SKILL.md exceeds 200 lines at build time, the builder MUST either (a) split the file using the patterns above, or (b) document in the build report why the size is justified and cannot be reduced (e.g., the agent-builder-agent itself is inherently large due to the build process specification).
 
 ---
 
