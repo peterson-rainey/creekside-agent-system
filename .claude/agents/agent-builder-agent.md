@@ -597,6 +597,8 @@ Collect all build artifacts for validation.
 | Query Template Validity | Correct table/function names | Non-existent tables or direct queries |
 | Domain Knowledge Stored | Research findings in agent_knowledge | Domain data not stored |
 | Output Format Complete | Concrete example | Only field names |
+| Size Management | Agent ≤400 lines, Skill ≤200 lines | Exceeds threshold without documented justification |
+| Staleness Patterns (5d table) | No hardcoded pricing, client IDs, routing, compensation, contacts, or Slack-as-active | Any pattern from the 5d staleness table found in the file |
 | Cost Estimation (scheduled) | Within budget | Over $10/day WARN, over $25/day FAIL |
 
 #### 7b-cost. Cost Estimation for Scheduled Agents
