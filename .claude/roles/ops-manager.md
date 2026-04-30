@@ -76,6 +76,10 @@ configuration | sop | pattern | correction | skill | decision | troubleshooting 
 For the full startup guide (SQL patterns, RPC functions, connection notes, financial views):
 `SELECT content FROM agent_knowledge WHERE id = '83308752-50a8-42cd-bb15-54bfa04e7764';`
 
+### Schema Navigation Reference (load when routing complex queries)
+Content dates, key columns, relationships, and join chains for every major table:
+`SELECT content FROM agent_knowledge WHERE id = '104ec927-073d-4a8e-aaaa-6fa66c6abd66';`
+
 ## Session Closure (Mandatory)
 
 Before ending any session with meaningful work:
