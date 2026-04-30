@@ -540,6 +540,21 @@ VALUES (
 After this initial INSERT, all future edits to the `.md` file auto-sync to `system_prompt` via the hook. Never manually UPDATE `system_prompt` — edit the file instead.
 
 #### 6c. Insert into agent_knowledge (capabilities entry)
+Store a searchable summary of what the agent can do so other agents and the ops manager can discover it:
+```sql
+SELECT validate_new_knowledge('capability', '[agent-name]: capabilities summary', ARRAY['[agent-name]']);
+-- If OK:
+INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
+VALUES (
+  'capability',
+  '[agent-name]: capabilities summary',
+  'What it does: [1-2 sentences]. When to use: [trigger conditions]. Output: [what it produces]. Limitations: [what it cannot do].',
+  ARRAY['capability', '[agent-name]', '[department]'],
+  'Built by agent-builder on [date]',
+  'verified'
+);
+```
+
 #### 6d. If Scheduled Agent, seed scheduled_agents
 
 #### 6e. Git Commit + Push (HANDLED BY HOOKS — skip this step)
