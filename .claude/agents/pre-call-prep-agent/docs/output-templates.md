@@ -1,187 +1,163 @@
-## Output Format
+## Output Templates
 
-### For Sales / Discovery Calls (Type 1)
+Use the template matching the classified call type. Skip any section that has no data -- don't include empty placeholders. For follow-up calls (any type where there's a prior call), prepend the Follow-Up Overlay before the type-specific content.
+
+---
+
+### Follow-Up Overlay (Prepend When Prior Call Exists)
+
+This goes at the top of ANY brief where Peterson has met this person before. It's the highest-value section.
+
 ```
-## Pre-Call Brief: [Person Name] — Sales Call
-**Meeting:** [Title] | [Date & Time CT]
-**Type:** Sales / Discovery Call
-**Lead Source:** [Upwork / Website / Referral / Cold / Cold Outreach] [source: leads, ID]
-**Offer Framework:** [Upwork standard / Cold outreach (performance-based)] — if cold outreach, note: "We don't charge until they're profitable off ads"
-**Time Pressure:** [None / Hard cutoff at X:XX — next call is Y]
+### Since Last Call ([Date] -- "[Meeting Title]")
+[source: fathom_entries, id] | Transcript reviewed: Yes/No
 
-### Warm-Up Status
-[Has the Call Warm-Up messaging sequence been executed? How many messages sent? Which resources were shared?]
-[source: check clickup_entries for warm-up task status]
-**Purpose of warm-up:** Pre-answer ~80% of common questions so the live call focuses on strategy, fit, and revenue — not introductions or basics.
+**Action Items Set Last Call:**
+- [x] [Completed item -- what was done]
+- [ ] [Open item -- current status]
+- [ ] [Blocked item -- what's blocking it]
 
-### What Peterson Already Knows (from Upwork chat)
-[Summary of what was discussed in Upwork — Peterson reads this before every call]
-**New info NOT in the Upwork chat:**
-[List information from other sources that Peterson hasn't seen yet — this is the highest-value section]
+**What Happened Since:**
+- [Date]: [Email/Chat/Task] -- [1-line summary]
+- [Date]: [Email/Chat/Task] -- [1-line summary]
 
-### Prior Contact History
-[Chronological list of all prior touchpoints — Upwork messages, emails, Cade's notes, prior calls]
-[Include verbatim key statements from the prospect if available]
+**Commitments Still Open:**
+- Peterson: [What he said he'd do] -- [done/not done]
+- [Other person]: [What they said they'd do] -- [status if known]
+```
 
-### Business Profile
-- **Company:** [Name]
-- **Industry:** [If known]
-- **Current Marketing:** [Channels, spend if known]
-- **Stated Problem/Need:** [Why they reached out]
-- **Previous Agency?** [Yes/No — if yes, flag it. Peterson uses agency frustration as a rapport-building opportunity]
-[source citations for each fact]
+---
 
-### Rapport Context
-- [Recent conferences/travel Peterson attended that could be relevant]
-- [Shared geography, industry, or mutual connections if known]
+### Sales / Discovery Call
 
-### Cade's Notes (if applicable)
-[What Cade discussed with them, what was promised, any concerns flagged]
-[source: fathom_entries/slack_summaries, ID]
+```
+## Prep: [Name] -- [Business Name] (Discovery)
+[Date/Time CT] | Source: [Upwork/Referral/Website/Cold] | Status: [new/contacted/proposal_sent]
+[Time pressure: Hard stop at X:XX -- [next meeting]] (only if applicable)
 
-### Proposals / Audits Sent
-[List any documents, audits, or proposals already delivered]
-[source: loom_entries/gdrive, ID]
+### Who They Are
+[Business name, industry, what they do. 2-3 sentences from leads.notes, ClickUp, or website research.]
+[Website: URL | "No website found -- ask on the call"]
+[source: leads, id]
 
-### Key Questions to Probe
-[Based on gaps in the data — what Peterson still needs to learn on this call]
+### What We Know
+- [Key fact from leads.notes or ClickUp task]
+- [Current marketing situation / ad spend if mentioned]
+- [What they said their problem is]
+- [Previous agency experience if mentioned -- Peterson uses this for rapport]
+- [Budget indicators if available]
+[source citations]
+
+### Website Research
+[3-5 bullets from WebFetch. What the business does, target market, marketing presence, team size.]
+[Skip this section entirely if no website was available or fetchable.]
+
+### Prior Contact Timeline
+[Chronological list of every touchpoint]
+- [Date]: [Channel] -- [What happened, who was involved]
+- [Date]: [Channel] -- [What happened]
+
+### Upwork Note
+[Only include if lead came from Upwork]
+Peterson has already read the Upwork chat. New info NOT in the Upwork thread:
+- [Info from other sources Peterson hasn't seen]
+[If nothing new: "No additional info found beyond the Upwork chat."]
+
+### Proposals / Audits Delivered
+[List any documents, Loom audit videos, or proposals already sent with dates]
+[source: loom_entries/gdrive_operations, id]
+
+### Cade's Notes
+[Only if Cade had prior contact. Summarize what he discussed, what was promised, concerns flagged.]
+[source: fathom_entries, id]
+
+### Gaps to Explore
+[Questions based on what we DON'T know -- what Peterson should learn on this call]
+- [Specific gap 1]
+- [Specific gap 2]
 
 ### Flags
-- [Any concerns, data conflicts, or missing information]
-- [STALE] tags on anything > 90 days old
+[Concerns, red flags, data conflicts. Mark anything stale.]
 ```
 
-### For Client Check-In Calls (Type 3)
+---
+
+### Client Check-In Call
+
 ```
-## Pre-Call Brief: [Client Name] — Check-In
-**Meeting:** [Title] | [Date & Time CT]
-**Type:** Client Check-In
-**Services:** [Active services] [source: clients, ID]
-**Monthly Budget:** $[Amount] [source: clients, ID]
-**Time Pressure:** [None / Hard cutoff at X:XX — next call is Y]
+## Prep: [Client Name] -- Check-In
+[Date/Time CT] | Platforms: [Google/Meta/Both] | Budget: $[X]/mo
+[Time pressure: Hard stop at X:XX -- [next meeting]] (only if applicable)
 
-### Campaign Performance Dashboard (Weekly Pre-Work)
-| Field | Value |
-|-------|-------|
-| Platform | [Google Ads / Facebook Ads] |
-| KPI | [The single success metric for this client] |
-| Target | [Target value] |
-| Weekly Budget | $[monthly / 4] |
-| Weekly Spend | $[actual] |
-| Weekly Performance | [aggregate KPI number] |
-| Current Status | [Client happiness signal — honest churn risk assessment] |
-| Issues | [Current problems] |
-| Opportunities | [Growth levers] |
-| Next Steps | [From prior meeting action items] |
+### Team
+| Platform | Operator | Account Manager |
+|----------|----------|----------------|
+[From reporting_clients]
 
-### Last Call Summary
-**Date:** [Date] [source: fathom_entries]
-**Key Discussion Points:**
-- [Point 1]
-- [Point 2]
-**Action Items (from last call):**
-- [ ] [Peterson's items — status]
-- [ ] [Client's items — status]
-- [ ] [Team items — status]
+### Performance Snapshot
+[From the last 7 days of ad data. Show only the metrics that matter for this client's KPI.]
+| Metric | This Week | Prior Week | Trend |
+|--------|-----------|------------|-------|
+| Spend  | $[X]      | $[X]      | [up/down/flat] |
+| [KPI]  | [value]   | [value]   | |
+| Cost/[KPI] | $[X]  | $[X]      | |
+[source: meta_insights_daily / google_insights_daily]
+[Flag anomalies: spend 20%+ off budget, conversion drops, tracking gaps]
 
-### Activity Since Last Call
-**Emails:** [Count] threads | Most recent: [Subject, Date]
-**Slack:** [Count] messages | Key: [Summary of important ones]
-**ClickUp:** [Count] task updates
-
-### Open Tasks & Projects
+### Open Tasks
 | Task | Status | Assignee | Due |
 |------|--------|----------|-----|
-[Active tasks for this client]
-
-### Financial Snapshot
-| Month | Revenue |
-|-------|---------|
-[Last 3-6 months of revenue from this client]
-**Open Invoices:** [Any unpaid/overdue]
+[Top 5-10 active tasks. Overdue items bolded.]
+[source: clickup_entries]
 
 ### Issues & Flags
-- [Any escalations, delays, or concerns]
-- [Data conflicts between sources]
-- [Churn risk assessment — be honest]
-- [Items older than 90 days marked [STALE]]
+- [Escalations, overdue items, health score warnings, churn signals]
+- [Client health score: X/100] [source: client_health_scores]
+- [Analyst notes if any] [source: ads_knowledge]
+- [Mentions in other calls -- e.g., discussed in internal sync]
 
-### Data Gaps
-- [What's missing — explicitly state what you couldn't find]
-```
-
-### For Follow-Up Calls (Type 2)
-Same as the relevant base type (Sales or Client) PLUS a dedicated section at the top:
-
-```
-### PRIOR CALL RECAP (CRITICAL)
-**Last call:** [Date] — [Title] [source: fathom_entries, ID]
-**Full transcript reviewed:** Yes/No
-
-**What was discussed:**
-[Detailed summary from raw transcript — not the AI summary field]
-
-**Commitments made:**
-- Peterson committed to: [X]
-- [Person] committed to: [Y]
-
-**Where things left off:**
-[The exact state of the conversation — what's the next logical step?]
-
-**Open questions from last call:**
-- [Anything unresolved]
+### Financial
+[Last 3 months revenue trend. Flag open/overdue invoices. Keep to 2-3 lines.]
+[source: revenue_by_client / square_entries]
 ```
 
 ---
 
-## Peterson's Discovery Call Technique (Reference for Sales Prep)
+### Internal / Team Sync
 
-**Load at runtime:**
-```sql
-SELECT content FROM agent_knowledge
-WHERE title ILIKE '%Discovery Call Technique%'
-AND tags @> ARRAY['pre-call-prep-agent'];
 ```
+## Prep: [Name] -- [Role] Sync
+[Date/Time CT]
+[Time pressure: Hard stop at X:XX] (only if applicable)
 
-The retrieved data contains Peterson's 6-phase sales call pattern. The prep brief should arm him with enough context for Phase 3 (diagnostic probing) so he's not learning basics on the call.
+### Their Portfolio
+| Client | Platform | Role |
+|--------|----------|------|
+[Clients they manage as operator or account manager]
+[source: reporting_clients]
+
+### Portfolio Flags
+[Only clients with issues -- low health scores, overdue tasks, recent escalations]
+- [Client]: [Issue summary] (health: [X]/100)
+
+### Open Items Involving [Name]
+- [Action item / task -- status]
+- [Action item / task -- status]
+[source: action_items / clickup_entries]
+
+### Ops Context
+[Only for ops-level syncs (Cade, Scott). Skip for VA/contractor syncs.]
+[Critical pipeline alerts, system issues, recent failures]
+```
 
 ---
 
-## Rules
+## Formatting Rules
 
-1. **Include EVERYTHING.** Do not filter, abbreviate, or omit information you think is unimportant. Peterson will decide what matters. Your job is completeness.
-
-2. **Cite every factual claim.** Format: `[source: table_name, record_id]`. Dollar amounts, dates, action items, and commitments MUST have citations.
-
-3. **Confidence scoring on all facts.** `[HIGH]` = directly from a database record. `[MEDIUM]` = derived from multiple records. `[LOW]` = inferred or data > 90 days old.
-
-4. **Pull raw text for prior calls.** NEVER summarize a prior meeting from the `summary` field alone. Always call `get_full_content()` for the most recent Fathom meeting with this person.
-
-5. **State gaps explicitly.** If you searched for something and found nothing, say so: "No Slack messages found for this client in the last 30 days." Never silently omit a section.
-
-6. **Mark stale data.** Anything older than 90 days gets a `[STALE]` tag. Peterson needs to know when he's acting on old information.
-
-7. **Check corrections first.** Query `agent_knowledge WHERE type = 'correction'` before presenting any client data. Corrections override source tables.
-
-8. **Never cite unverified ROAS targets.** Peterson explicitly checks whether clients have stated targets before citing them. Never assume a target — verify from Fathom recordings or client records.
-
-9. **Classify before pulling.** Don't waste calls on financial data for an internal team meeting. Use the meeting type classification to determine which data sections are relevant.
-
-10. **Target 8-12 execute_sql calls.** Combine queries where possible. Use `get_full_content_batch()` instead of multiple `get_full_content()` calls. Use dual search (`search_all` + `keyword_search_all`) in a single call where possible.
-
-11. **If no data found for the person, say so.** Never fabricate context. Return: "I don't have internal data on [Person Name]. This appears to be a new contact." Then suggest: check Upwork, check email, or ask Cade.
-
-12. **Notes are private.** Prep briefs are for Peterson's eyes only. Never suggest sending prep notes to the meeting attendee or anyone else.
-
-13. **Routing rule for Upwork consultations.** Check agent_knowledge for current call routing rules (platform-based routing). Flag routing in the prep brief if the meeting was booked via Upwork.
-
-14. **For sales calls, check the Call Warm-Up messaging status.** Check agent_knowledge for warm-up SOP details. Report how many warm-up messages were sent and which resources were shared.
-
-15. **For client check-ins, populate ALL weekly pre-work template fields.** Check agent_knowledge for the template field definitions and populate each one from live data.
-
-16. **Check ClickUp task descriptions for prior call transcripts.** Team members paste call transcripts into ClickUp lead record descriptions. For follow-up calls, check BOTH Fathom AND ClickUp.
-
-17. **Cold outreach calls use a different offer than Upwork calls.** Check agent_knowledge for current offer details per channel. Always identify which offer applies and note it in the brief.
-
-18. **Flag back-to-back calls.** Check the calendar for meetings within 15 minutes of this one's end time and flag it.
-
+1. **Bullet points, not paragraphs.** Peterson scans, he doesn't read prose.
+2. **Bold the most important info** in each section -- the thing Peterson would look for first.
+3. **Source citations on key facts:** `[source: table, id]`. Not every bullet, but dollar amounts, commitments, and dates must cite.
+4. **Stale data marker:** `[STALE -- X months old]` for anything > 3 months.
+5. **Low-confidence marker:** `[INFERRED]` for anything not directly from a database record.
+6. **Skip empty sections.** If a query returned nothing, don't include the section header. Note the gap in a single "Data Gaps" line at the bottom instead.
+7. **Target length:** Client calls ~1 page. Sales calls up to 1.5 pages (more research). Internal calls ~half page.
