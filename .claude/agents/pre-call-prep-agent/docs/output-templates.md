@@ -210,10 +210,12 @@ Same as Sales / Discovery template above, with this addition at the top:
 [Clients they manage as operator or account manager]
 [source: reporting_clients] [HIGH]
 
-### Portfolio Flags (Issues Only)
-[Only include clients with problems -- overdue tasks, recent escalations, complaints]
-- [Client]: [Issue summary] (health: [X]/100)
-[If no flags: "No portfolio issues found."]
+### Client Status (Last 30 Days)
+[2-3 line summary per client based on recent calls, emails, chats, and open tasks]
+- **[Client]**: [What's happening, what's stuck, what needs discussion] [source: table, ID]
+- **[Client]**: [Summary] [source: table, ID]
+- **[Client]**: No recent activity in 30 days.
+[Skip detailed breakdowns -- this is a quick status snapshot to ground the sync conversation]
 
 ### Open Items Involving [Name]
 - [Action item / task -- status]

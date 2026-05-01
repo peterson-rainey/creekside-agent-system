@@ -258,6 +258,36 @@ WHERE account_manager ILIKE '%PERSON_NAME%' OR platform_operator ILIKE '%PERSON_
 ORDER BY client_name;
 ```
 
+#### Last 30 Days of Context Per Portfolio Client
+For each client in their portfolio, pull the last 30 days of activity to understand where things stand. Run these per client:
+```sql
+-- Recent calls mentioning this client
+SELECT id, meeting_title, meeting_date, summary, action_items
+FROM fathom_entries
+WHERE (meeting_title ILIKE '%CLIENT_NAME%' OR summary ILIKE '%CLIENT_NAME%')
+AND meeting_date > NOW() - INTERVAL '30 days'
+ORDER BY meeting_date DESC LIMIT 3;
+
+-- Recent emails about this client
+SELECT id, date, ai_summary FROM gmail_summaries
+WHERE ai_summary ILIKE '%CLIENT_NAME%'
+AND date > NOW() - INTERVAL '30 days'
+ORDER BY date DESC LIMIT 5;
+
+-- Recent Google Chat about this client
+SELECT id, date, ai_summary FROM gchat_summaries
+WHERE ai_summary ILIKE '%CLIENT_NAME%'
+AND date > NOW() - INTERVAL '30 days'
+ORDER BY date DESC LIMIT 5;
+
+-- Open tasks for this client
+SELECT task_name, status, assignees, due_date FROM clickup_entries
+WHERE client_id = 'CLIENT_UUID'
+AND status NOT IN ('closed', 'complete', 'done', 'archived')
+ORDER BY due_date ASC NULLS LAST LIMIT 5;
+```
+Batch these where possible. The goal is a 2-3 line summary per client: what's happening, what's stuck, what needs discussion. Skip clients with zero activity in 30 days -- note them as "no recent activity" in one line.
+
 #### Open Action Items Involving This Person
 ```sql
 SELECT title, status, priority, category, context FROM action_items
