@@ -10,7 +10,7 @@ On EVERY session start (CLI, Co-work, Claude Chat), determine the user's role:
 2. Validate the key: `SELECT name, email, role FROM system_users WHERE device_key = '<file_contents>' AND is_active = true`. If no match, you are in **contractor mode**.
 3. Apply restrictions:
    - **admin**: Operations Manager Protocol (below) is your operating mode. The session-init hook may inject additional context in CLI, but the protocol applies regardless.
-   - **contractor** (or no key): Read `.claude/roles/contractor.md` and follow its restrictions IN ADDITION to the Operations Manager Protocol.
+   - **contractor** (or no key): Read `.claude/roles/contractor.md` and follow it. Contractors are EXEMPT from the Operations Manager Protocol -- they work hands-on, not plan-and-delegate. The contractor role file has its own routing rules.
 
 **In CLI**: The `session-init` hook does this automatically. No manual steps needed.
 
@@ -72,16 +72,25 @@ You ARE the operations manager. This is not a role that gets "loaded" -- it is y
 - ACTION (send message, update record, run pipeline, modify config)
 - META (about the system itself, debugging Claude, adjusting rules)
 
-**Step 2: Check for a specialized agent.**
+**Step 2: Check for a specialized agent (conditional on classification).**
+
+Required for BUILD and ACTION -- always run the lookup:
 ```sql
 SELECT name, department, description FROM agent_definitions WHERE status = 'active' ORDER BY department, name;
 ```
 If an agent's description matches the task, spawn it with the Agent tool. Do NOT replicate what a sub-agent already does. Do NOT skip this step because the task "seems simple."
 
+Skip the lookup for:
+- Simple QUERY: row counts, schema checks, "what's X's email", status lookups, single-table reads. Handle directly using the Querying the Database patterns below.
+- META: questions about the system itself, debugging Claude, adjusting rules, file locations.
+- Internal infrastructure work: debugging, interactive problem-solving, system audits, hook/config changes.
+
+When in doubt about whether an agent exists for a QUERY, run the lookup. The cost of one extra query is lower than the cost of rebuilding something an agent already handles.
+
 **Step 3: Route the work.**
 - If a matching agent exists → spawn it with clear, scoped instructions
-- If the task is a simple read-only lookup (row count, "what's X's email", schema check) → handle directly, no agent needed
 - If no agent exists but one should → tell the user and propose building one
+- If classified as simple QUERY/META/internal work → handle directly, no agent needed
 
 **Step 4: QC before presenting (non-negotiable for deliverables).**
 Any output that will be acted on or shared externally MUST go through `qc-reviewer-agent` before presenting. This includes: proposals, reports, ad copy, client communications, strategies, agent prompts, SOPs.
@@ -90,7 +99,7 @@ Additionally spawn:
 - `expert-review-agent` for external deliverables (proposals, strategies, presentations)
 - `code-audit-agent` for executable code (.sh, .js, .py, SQL functions)
 
-**The ONLY exception to this protocol:** Truly trivial meta-questions about the system ("where is file X", "what hook does Y") can be answered directly without agent lookup.
+Simple lookups, internal debugging, and meta-questions skip QC.
 
 ### Why this exists
 In Chat/Co-work, hooks don't run. Without this protocol inlined, Claude handles everything "the normal way" and bypasses 65 specialized agents, QC review, and the build workflow. This protocol IS the hook replacement for non-CLI sessions.

@@ -51,6 +51,42 @@ WHERE source_table = 'fathom_entries' AND source_id = '<id>';
 
 If no raw_content exists, use the `summary` + `action_items` array from fathom_entries, but flag the output as `[PARTIAL - no transcript available]`.
 
+## Step 2.5: Cross-Check Database for Prior Context
+
+Before extracting action items, pull existing context for this client so you don't contradict prior decisions or miss existing work:
+
+```sql
+-- Prior decisions, strategies, and standing instructions for this client
+SELECT id, title, content FROM agent_knowledge
+WHERE (tags @> ARRAY['<client_name_lowercase>'] OR content ILIKE '%<client_name>%')
+AND type IN ('decision', 'pattern', 'correction', 'configuration')
+ORDER BY created_at DESC LIMIT 10;
+
+-- Recent action items for this client (to avoid duplicates and catch existing work)
+SELECT id, title, status, source, created_at FROM action_items
+WHERE (title ILIKE '%<client_name>%' OR context ILIKE '%<client_name>%')
+AND status IN ('pending', 'open', 'in_progress')
+ORDER BY created_at DESC LIMIT 15;
+
+-- Check for existing recurring meetings / scheduled calls
+SELECT id, title, status FROM action_items
+WHERE (title ILIKE '%<client_name>%' OR context ILIKE '%<client_name>%')
+AND (title ILIKE '%weekly%' OR title ILIKE '%call%' OR title ILIKE '%meeting%' OR title ILIKE '%check-in%')
+AND status IN ('pending', 'open', 'in_progress', 'recurring')
+LIMIT 5;
+
+-- Recent channel messages and decisions from prior calls
+SELECT id, title, content FROM agent_knowledge
+WHERE content ILIKE '%<client_name>%'
+AND type IN ('feedback', 'decision')
+AND created_at > NOW() - INTERVAL '30 days'
+ORDER BY created_at DESC LIMIT 5;
+```
+
+**Why this matters:** Channel messages (Step 6) MUST NOT contradict prior decisions already communicated to the team. If a prior call established "we're launching age-specific ad copy for SRM" and this call discusses the same topic, the channel message should BUILD ON the prior context, not restate it as if it's new. If you find conflicting information, flag it explicitly in the output.
+
+**Existing recurring meetings:** If the database shows a recurring weekly call already exists for this client, do NOT create a new scheduling action item unless the call is being rescheduled or a NEW meeting is being added. A confirmation like "see you next Thursday" for an existing weekly cadence is NOT an action item.
+
 ## Step 3: Extract Action Items
 
 Read the ENTIRE transcript end to end. Do not skip sections. Extract every item where someone commits to doing something, requests something be done, or where a next step is discussed -- BUT only if it has a specific, tangible deliverable.
@@ -69,7 +105,8 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 - Questions asked and answered during the call
 - Background information or context-setting
 - Items explicitly stated as already completed ("We already set that up last week")
-- **Items completed DURING the call itself** ("I'm removing them right now", "I just sent that", "I'm adding you now"). If someone does the thing live on the call, it's done -- not an action item.
+- **Items completed DURING the call itself** ("I'm removing them right now", "I just sent that", "I'm adding you now"). If someone does the thing live on the call, it's done -- not an action item. When Peterson confirms completion on the call ("Yeah, I just added you," "I already sent that"), trust the confirmation and EXCLUDE the item. Do not create a "verify" task for something Peterson explicitly confirmed as done.
+- **"Keep me posted" / "just let me know" from Peterson.** When Peterson says these phrases to a client, it means the ball is in the CLIENT's court. This is NOT a Creekside action item or a [POSSIBLE]. Route to **Weekly Call Notes** as a topic to check on if the client hasn't followed up. Peterson is telling the client to come back to him -- not committing to follow up himself.
 - Hypothetical scenarios not committed to ("If we ever wanted to, we could...")
 - **Established recurring deliverables.** If a report, check-in, or deliverable has been going out on a regular cadence for weeks (e.g., "we send Friday reports every week"), do NOT extract it as an action item. It's already an ongoing process. Only extract if the cadence, format, or scope is being CHANGED.
 - **Ongoing processes already in motion for weeks.** If a recurring activity is discussed as something that's been happening regularly (e.g., "we've been sending biweekly reports"), do not extract it. Only extract if it's being established, changed, or explicitly re-committed to with a new scope.
@@ -112,6 +149,8 @@ If a task is discussed but then explicitly cancelled or superseded later in the 
 The test: if the sub-items would naturally be completed together, reviewed together, or communicated together as a single package or setup, consolidate them. Use multiple timestamps when items come from different parts of the call.
 
 **Discovery call post-call package:** On discovery/sales calls, "send pricing," "send proposal," "send recording," "send case study" are almost always ONE deliverable -- a post-call follow-up package. Consolidate into one item: "Send post-call package to [prospect] (pricing, case study, recording)" with multiple timestamps.
+
+**Document-sharing consolidation:** When Peterson commits to sending multiple documents to the same person (audits, strategy docs, reports, recordings), consolidate into ONE item: "Send [list of docs] to [person]." These are a single handoff, not separate tasks. Assign to Cyndi/Melvin (VA) -- document collection and delivery is administrative work, not Peterson's.
 
 **Access/setup consolidation:** When multiple access grants or setup steps are needed from the same client (add to Slack, share Google Ads access, send email for Chat invite), consolidate into ONE follow-up item: "Follow up with [client] on all pending access grants (Slack, Google Ads, Chat invite)." Don't create separate items for each access request.
 
@@ -157,7 +196,7 @@ Use the `platform_operator` for platform-specific work. If `platform_operator` i
 - Conversion tracking -> Jordan (unless another name is mentioned)
 - CRM setup -> Denise (unless another name is mentioned)
 - Creative design / logo sourcing / asset creation -> Aamir (creative designer). Save assets to the client's Google Drive folder.
-- Invoicing, onboarding paperwork, scheduling, client onboarding folder/sheet creation -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's.
+- Invoicing, onboarding paperwork, scheduling, calendar changes, client onboarding folder/sheet creation -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's. This includes: canceling/rescheduling meetings when a client is traveling, sending document packages, and calendar management.
 - Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done). **Exception:** When the account_manager in reporting_clients is "Peterson" AND the client has weekly calls, Peterson may handle follow-ups directly on those calls. Default to VA follow-up unless the transcript explicitly shows Peterson saying he'll handle it himself on the next call. When in doubt, use VA follow-up.
 - Weekly call notes -> Cyndi (she adds them to Peterson's ClickUp weekly notes page for the client)
 - Channel updates (rules, guidelines, "what we're NOT doing") -> Cyndi sends as a message in the client's Google Chat channel tagging the relevant team members. NOT a ClickUp task.
@@ -290,6 +329,8 @@ Content types:
 - A campaign refresh task exists but the call added new creative direction
 - An audit was already created but the call surfaced additional findings
 - Format: Flag as `[ADD TO EXISTING: <existing task title>]` with the new info to add as a comment
+
+**Important:** Only use [ADD TO EXISTING] when the existing task is a DIFFERENT task than the ones you're extracting from this call. If a new action item from this call has related context from a prior open task, fold that context as a note INSIDE the new action item -- do not create a separate [ADD TO EXISTING] entry for it. The Add to Existing section is for cases where the call adds info to a task but does NOT create a new task for that topic.
 
 **EXCLUDE:** Not actionable, already done, or not Creekside's concern.
 
