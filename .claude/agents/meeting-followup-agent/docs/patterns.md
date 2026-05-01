@@ -101,8 +101,8 @@ DO UPDATE SET
 - `meeting_date` (date) - **CRITICAL: Use this for date ordering, NOT created_at**
 - `duration_minutes` (integer)
 - `participants` (text[]) - array of participant names
-- `transcript_text` (text) - full meeting transcript
 - `summary` (text) - AI-generated summary
+- **Full transcript**: stored in `raw_content` table (source_table='fathom_entries', source_id=id). Use `get_full_content('fathom_entries', id)` to retrieve.
 - `action_items` (jsonb) - **Already parsed JSON array** of action items extracted from transcript
 - `key_topics` (text[])
 - `sentiment` (text)
