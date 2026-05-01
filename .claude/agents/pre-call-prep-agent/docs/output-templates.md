@@ -133,16 +133,23 @@ Same as Sales / Discovery template above, with this addition at the top:
 |----------|----------|----------------|
 [From reporting_clients]
 
-### Performance Snapshot (Last 7 Days vs Prior 7 Days)
-[Show only the metrics that matter for this client's KPI]
-| Metric | This Week | Prior Week | Trend |
-|--------|-----------|------------|-------|
-| Spend | $[X] | $[X] | [up/down/flat] |
-| [KPI] | [value] | [value] | |
-| Cost/[KPI] | $[X] | $[X] | |
+### Ad Performance (Last 30 Days -- Weekly Trend)
+[Show the metrics that matter most for THIS client's business model]
+| Week | Spend | [Primary KPI] | Cost/[KPI] | Trend |
+|------|-------|---------------|------------|-------|
+| [Most recent] | $[X] | [value] | $[X] | |
+| [Prior week] | $[X] | [value] | $[X] | |
+| [2 weeks ago] | $[X] | [value] | $[X] | |
+| [3 weeks ago] | $[X] | [value] | $[X] | |
 [Flag anomalies: spend 20%+ off budget, conversion drops, tracking gaps]
 [Never cite ROAS targets unless confirmed in Fathom recordings or client records]
 [source: meta_insights_daily / google_insights_daily] [HIGH]
+
+### Contractor Notes on Performance
+[Summarize the platform operator's recent observations from Google Chat, ClickUp comments, and ads_knowledge]
+- [Operator name]: [Key observation / recommendation / flag] ([date]) [source: gchat_summaries/ads_knowledge, ID]
+- [Operator name]: [Key observation] ([date])
+[If no contractor notes found: "No recent operator notes found for this client."]
 
 ### Open Tasks
 | Task | Status | Assignee | Due |

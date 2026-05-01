@@ -1,6 +1,6 @@
 # Agent Routing Index
 
-Compact reference for routing requests to the correct agent. Read this BEFORE querying `agent_definitions` -- if a match is obvious here, skip the DB query.
+Quick-reference for routing requests to the correct agent. Use this for fast pattern-matching. For BUILD and ACTION requests, always confirm against `agent_definitions` if the agent is unfamiliar or recently added.
 
 **Maintained by:** agent-builder-agent (adds new entries after every build)
 **Last updated:** 2026-05-01

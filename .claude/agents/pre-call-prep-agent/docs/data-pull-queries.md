@@ -173,23 +173,54 @@ AND payment_status NOT IN ('COMPLETED')
 ORDER BY source_timestamp DESC LIMIT 5;
 ```
 
-#### Ad Performance (Last 7 Days vs Prior 7 Days)
+#### Ad Performance (Last 30 Days -- Weekly Rollups)
 ```sql
--- Meta
-SELECT date, campaign_name, spend, impressions, clicks, conversions, cost_per_result
+-- Meta (30 days, aggregated by week for trend visibility)
+SELECT date_trunc('week', date) as week,
+  SUM(spend) as spend, SUM(impressions) as impressions, SUM(clicks) as clicks,
+  SUM(conversions) as conversions,
+  CASE WHEN SUM(conversions) > 0 THEN SUM(spend) / SUM(conversions) ELSE NULL END as cost_per_conversion
 FROM meta_insights_daily
-WHERE client_id = 'CLIENT_UUID' AND date > NOW() - INTERVAL '14 days'
-ORDER BY date DESC;
+WHERE client_id = 'CLIENT_UUID' AND date > NOW() - INTERVAL '30 days'
+GROUP BY date_trunc('week', date)
+ORDER BY week DESC;
 
--- Google
-SELECT date, campaign_name, cost_micros/1000000.0 as spend, impressions, clicks, conversions
+-- Google (30 days, aggregated by week)
+SELECT date_trunc('week', date) as week,
+  SUM(cost_micros)/1000000.0 as spend, SUM(impressions) as impressions, SUM(clicks) as clicks,
+  SUM(conversions) as conversions,
+  CASE WHEN SUM(conversions) > 0 THEN (SUM(cost_micros)/1000000.0) / SUM(conversions) ELSE NULL END as cost_per_conversion
 FROM google_insights_daily
-WHERE client_id = 'CLIENT_UUID' AND date > NOW() - INTERVAL '14 days'
-ORDER BY date DESC;
+WHERE client_id = 'CLIENT_UUID' AND date > NOW() - INTERVAL '30 days'
+GROUP BY date_trunc('week', date)
+ORDER BY week DESC;
 ```
-Compare the two 7-day windows to show trend direction. Surface anomalies: spend 20%+ over/under budget, ROAS drop, conversion tracking gaps. Never cite ROAS targets unless confirmed in Fathom recordings or client records.
+Show 4-week trend with weekly rollups. Identify the metrics that matter most for THIS client's business (e.g., cost per lead for lead gen, ROAS for ecomm, cost per call for service businesses). Surface anomalies: spend 20%+ over/under budget, conversion drops, tracking gaps. Never cite ROAS targets unless confirmed in Fathom recordings or client records.
 
-#### Analyst Notes
+#### Contractor Ad Performance Notes
+Pull recent notes the platform operator has shared about this client's campaigns -- Google Chat messages, ClickUp comments, and ads_knowledge entries.
+```sql
+-- Operator notes in ads_knowledge
+SELECT id, title, content, created_at FROM ads_knowledge
+WHERE client_id = 'CLIENT_UUID'
+AND created_at > NOW() - INTERVAL '30 days'
+ORDER BY created_at DESC LIMIT 5;
+
+-- Operator's Google Chat messages about this client (last 30 days)
+SELECT id, date, ai_summary FROM gchat_summaries
+WHERE ai_summary ILIKE '%CLIENT_NAME%'
+AND date > NOW() - INTERVAL '30 days'
+ORDER BY date DESC LIMIT 10;
+
+-- Operator's ClickUp comments about this client (last 30 days)
+SELECT id, date, ai_summary FROM clickup_comment_threads
+WHERE client_id = 'CLIENT_UUID'
+AND date > NOW() - INTERVAL '30 days'
+ORDER BY date DESC LIMIT 10;
+```
+Summarize the contractor's recent observations, recommendations, and flags. These are the operator's ground-level insights -- often more current than formal reports.
+
+#### Analyst Notes (Legacy -- kept for backward compatibility)
 ```sql
 SELECT id, title, content, created_at FROM ads_knowledge
 WHERE client_id = 'CLIENT_UUID'
