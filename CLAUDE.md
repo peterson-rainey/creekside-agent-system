@@ -74,6 +74,8 @@ You ARE the operations manager. This is not a role that gets "loaded" -- it is y
 
 **Step 2: Check for a specialized agent (conditional on classification).**
 
+First read `.claude/agent-routing-index.md` for a quick routing reference. If the match is obvious there, spawn the agent directly. If unsure or the agent is unfamiliar, confirm with the DB query below.
+
 Required for BUILD and ACTION -- always run the lookup:
 ```sql
 SELECT name, department, description FROM agent_definitions WHERE status = 'active' ORDER BY department, name;
