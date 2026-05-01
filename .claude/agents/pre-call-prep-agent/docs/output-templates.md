@@ -159,7 +159,6 @@ Same as Sales / Discovery template above, with this addition at the top:
 
 ### Issues and Flags
 - [Escalations, overdue items, churn signals] [source: table, ID]
-- Client health score: [X]/100 [source: client_health_scores] [HIGH]
 - [Analyst notes] [source: ads_knowledge]
 - [Mentions in other calls -- e.g., discussed in internal sync]
 
@@ -212,7 +211,7 @@ Same as Sales / Discovery template above, with this addition at the top:
 [source: reporting_clients] [HIGH]
 
 ### Portfolio Flags (Issues Only)
-[Only include clients with problems -- low health scores, overdue tasks, recent escalations]
+[Only include clients with problems -- overdue tasks, recent escalations, complaints]
 - [Client]: [Issue summary] (health: [X]/100)
 [If no flags: "No portfolio issues found."]
 

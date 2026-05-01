@@ -228,14 +228,6 @@ AND created_at > NOW() - INTERVAL '30 days'
 ORDER BY created_at DESC LIMIT 3;
 ```
 
-#### Client Health Score
-```sql
-SELECT overall_score, communication_score, meeting_score, task_score, revenue_score, calculated_at
-FROM client_health_scores
-WHERE client_id = 'CLIENT_UUID'
-ORDER BY calculated_at DESC LIMIT 1;
-```
-
 #### Mentions in Other Calls (Was This Client Discussed Elsewhere?)
 ```sql
 SELECT fm.context_summary, fe.meeting_title, fe.meeting_date
@@ -265,21 +257,6 @@ FROM reporting_clients
 WHERE account_manager ILIKE '%PERSON_NAME%' OR platform_operator ILIKE '%PERSON_NAME%'
 ORDER BY client_name;
 ```
-
-#### Client Issues in Their Portfolio (Health Score Flags)
-```sql
-SELECT c.name as client_name, chs.overall_score, chs.calculated_at
-FROM client_health_scores chs
-JOIN clients c ON chs.client_id = c.id
-WHERE chs.overall_score < 60
-AND c.id IN (
-  SELECT DISTINCT cl.id FROM clients cl
-  JOIN reporting_clients rc ON rc.client_name = cl.name
-  WHERE rc.account_manager ILIKE '%PERSON_NAME%' OR rc.platform_operator ILIKE '%PERSON_NAME%'
-)
-ORDER BY chs.overall_score ASC;
-```
-If this join fails (name mismatch), list their portfolio clients from the query above and check health scores individually.
 
 #### Open Action Items Involving This Person
 ```sql
