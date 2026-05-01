@@ -14,8 +14,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 | ads-agent | Any ad performance question, campaign analysis, creative review (Meta or Google) |
 | ad-copy-editor-agent | Changing ad copy across Google/Meta accounts (find/replace, lane-aware edits) |
 | competitor-ad-research-agent | Competitor ad intelligence, headline research, Transparency Center browsing |
-| meta-ads-connector-agent | Routing reference for Meta Ads data operations via PipeBoard MCP |
-| pretty-cool-ecom-audit-agent | Full Google Ads + Merchant Center audit with .docx deliverable |
 | laleh-rebuttal-agent | Laleh/Lux Dental complaint rebuttals with live evidence + PDF |
 
 ## Clients
@@ -24,7 +22,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 |-------|-------------|
 | client-context-agent | Any question about a client's status, history, performance, or projects |
 | client-onboarding-agent | New client signs -- creates DB records, seeds cache, links data |
-| client-retention-agent | Churn risk detection, retention offers, intervention workflows |
 | client-health-scorer | Daily health score calculation (scheduled) |
 | client-cache-refresher | Weekly rebuild of client_context_cache (scheduled) |
 | client-field-sync-agent | Daily backfill of NULL fields on clients/reporting_clients (scheduled) |
@@ -47,20 +44,18 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 | sales-call-helper-agent | Live call support -- talking points, objection handling, pricing |
 | proposal-generator-agent | Proposals, audit reports, scope of work documents |
 | case-study-builder-agent | Client case studies for proposals/social proof |
-| sales-pipeline-agent | Pipeline status, lead tracking, follow-up cadence, stall analysis |
 
 ## Operations & Tasks
 
 | Agent | Use when... |
 |-------|-------------|
+| daily-status-brief | Morning brief covering calendar, action items, email, pipelines, finances |
 | clickup-task-manager-agent | ClickUp task CRUD, status updates, overdue reports |
 | google-calendar-agent | Calendar management, event creation, time-block rules |
 | meeting-followup-agent | Post-meeting action items, ClickUp tasks, Gmail follow-up drafts |
 | call-action-extractor | Extract action items from call transcripts (read-only) |
 | action-item-closer | Daily auto-close of completed action items (scheduled) |
 | financial-analyst-agent | P&L, expenses, revenue, cash flow, budgets |
-| invoice-billing-agent | Square invoicing, payment tracking, AR reports |
-| cost-summary-agent | Daily API spend summary and cost optimization |
 | ghl-crm-agent | GoHighLevel CRM queries -- contacts, opportunities, calls, SMS |
 
 ## Building & Meta
@@ -81,7 +76,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 | expert-review-agent | Domain-expert audit on external deliverables |
 | code-audit-agent | Run + review executable code (.sh, .js, .py, SQL) |
 | security-audit-agent | Verify safety stack integrity (hooks, RLS, protected files) |
-| sop-compliance-agent | Audit runtime behavior against documented SOPs |
 | connectivity-auditor | Weekly compliance and connectivity audit |
 | agent-quality-audit | Weekly agent definition completeness check |
 
@@ -89,8 +83,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 
 | Agent | Use when... |
 |-------|-------------|
-| gmail-inbox-agent | Triage incoming email, route ambiguous messages |
-| gmail-intelligence-agent | Draft replies in Peterson's voice with RAG context |
 | filter-feedback-digest | Daily auto-filter candidate digest for approval |
 
 ## Infrastructure & Pipelines
@@ -114,7 +106,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 | Agent | Use when... |
 |-------|-------------|
 | report-editor-agent | Edit client dashboard reports (plain language changes) |
-| kpi-tracking-agent | KPI dashboard -- revenue, churn, per-client metrics |
 
 ## Team & Onboarding
 
@@ -128,7 +119,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 
 | Agent | Use when... |
 |-------|-------------|
-| correction-capture-agent | Write corrections with audit trail, invalidate cache, null embeddings |
 | correction-graduation-agent | Check graduation status of provisional corrections |
 | data-promotion-agent | Promote contributor data to authoritative dataset |
 | sop-refinement-agent | Auto-refine SOPs from session execution data (scheduled) |
@@ -147,4 +137,3 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 | fathom-cade / gmail-cade | Cade's personal pipeline syncs |
 | clickup-docs-sync | Daily ClickUp docs sync |
 | upwork-leads-sync / upwork-sheet-sync | Upwork data syncs |
-| agent-prompt-drift-check | Nightly prompt drift detection |
