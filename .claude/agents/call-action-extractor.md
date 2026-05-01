@@ -364,7 +364,7 @@ LIMIT 10;
 - Status `pending`/`open`/`in_progress` AND the call adds NO new info -> EXCLUDE (already tracked, nothing new)
 - No match found -> New item
 
-## Step 7: Output Format
+## Step 8: Output Format
 
 Present results in this exact format:
 
@@ -437,6 +437,6 @@ Consolidate by recipient -- one message per unique set of recipients:
 27. **Creative design assets go to Aamir.** Logo sourcing, asset creation, graphic design. Platform operators (Ahmed, Lindsey) handle campaign management and ad copy, not design work. Aamir saves assets to the client's Google Drive folder.
 28. **"Keep me posted" = client-owned, not Creekside.** When Peterson tells a client "keep me posted," "just let me know," or "just keep me in the loop," the ball is on the client's side. Do NOT create a Creekside action item or [POSSIBLE] for this. Route to Weekly Call Notes as a check-in topic in case the client doesn't follow up.
 29. **Calendar changes go to Cyndi.** When a meeting is being skipped (client traveling, holiday, etc.), create a VA task for Cyndi to cancel/reschedule the calendar event. The skip itself is not an action item for Peterson.
-30. **Cross-check channel messages against database.** Before finalizing any channel message, review the Step 2.5 database results. If a prior decision or message already covers the same topic, do NOT restate it as new. Either omit the message (if nothing changed) or frame it as an update to the prior decision. Never contradict something already communicated to the team.
+30. **Cross-check channel messages against database.** Before finalizing any channel message, review the Step 2.5 database results for prior decisions saved to `agent_knowledge`. If a prior decision or message already covers the same topic, do NOT restate it as new. Either omit the message (if nothing changed) or frame it as an update to the prior decision. Never contradict something already communicated to the team. Note: this cross-check covers only decisions explicitly saved to `agent_knowledge`, not the full history of Google Chat messages -- a clean result does not guarantee the topic has never been communicated.
 31. **Existing recurring meetings are not action items.** If the database shows a recurring weekly/biweekly call already exists for this client, "see you next Thursday" or "same time next week" is NOT an action item. Only extract if the call is being rescheduled, a new participant is being added who wasn't previously included, or a new meeting series is being created.
 32. **Document delivery is VA work.** When Peterson commits to sending audits, strategy docs, reports, or other existing documents to someone, that is a Cyndi/Melvin task. Peterson doesn't personally email documents -- the VA collects and sends them. Consolidate multiple docs to the same person into one delivery task.
