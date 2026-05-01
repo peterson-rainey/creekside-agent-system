@@ -1,7 +1,14 @@
-# Daily Status Brief — Local Routine Prompt
+# Daily Status Brief — Local Routine Setup
 
-**Schedule:** Weekdays 8:00 AM CT
-**Type:** Local routine (Claude Code app)
+## How to create this routine
+
+1. Open the Claude Code app
+2. Go to **Routines** (top-left menu or settings)
+3. Click **New routine** > **Local**
+4. **Name:** `Daily status brief`
+5. **Schedule:** Weekdays at 8:00 AM
+6. **Prompt:** Copy the entire block below (between the triple backticks)
+7. Save and enable
 
 ## Prompt to paste into the routine:
 
