@@ -1,22 +1,28 @@
 ## Data Pull Queries
 
-Run only the sections relevant to the classified call type. All queries enforce the 3-month recency window unless noted.
+Run only the sections relevant to the classified call type. All queries enforce the 3-month recency window unless noted. Use `search_all()` and `keyword_search_all()` to discover records first, then pull specific columns directly from tables for fields the search functions don't return.
 
 ---
 
-### Common Queries (All Call Types)
+### Common Queries (Sales + Client + Joint Pitch Calls)
+
+#### Unified Search (run first -- discovers records across all tables)
+```sql
+SELECT * FROM search_all('PERSON_NAME COMPANY_NAME', 15);
+SELECT * FROM keyword_search_all('PERSON_NAME', 15);
+```
+Use the record IDs returned here to drive subsequent direct queries.
 
 #### Prior Calls with This Person
 ```sql
+-- Within 3-month window (active context)
 SELECT id, meeting_title, meeting_date, meeting_type, participants, summary, action_items
 FROM fathom_entries
 WHERE (participants::text ILIKE '%PERSON_NAME%' OR meeting_title ILIKE '%PERSON_NAME%')
 AND meeting_date > NOW() - INTERVAL '3 months'
 ORDER BY meeting_date DESC LIMIT 5;
-```
 
-For relationship context only (not surfaced as current info):
-```sql
+-- Relationship context (outside window -- count only, no details surfaced as current)
 SELECT COUNT(*) as total_calls,
   MIN(meeting_date) as first_call,
   MAX(meeting_date) as most_recent
@@ -24,14 +30,15 @@ FROM fathom_entries
 WHERE participants::text ILIKE '%PERSON_NAME%' OR meeting_title ILIKE '%PERSON_NAME%';
 ```
 
-#### Full Transcript of Most Recent Call
-Always pull raw text for the most recent call. Never prep from the summary field alone.
+#### Full Transcript of Most Recent Call (MANDATORY when a prior call exists)
 ```sql
-SELECT * FROM get_full_content('fathom_entries', 'MOST_RECENT_FATHOM_ID');
+SELECT full_text FROM raw_content
+WHERE source_table = 'fathom_entries' AND source_id = 'MOST_RECENT_FATHOM_ID';
 ```
+Never prep from the `summary` field alone. If `full_text` is NULL or empty, use `summary` + `action_items` array and flag: `[PARTIAL -- no transcript available]`.
 
 #### Delta: Activity Since Last Call
-Replace `LAST_CALL_DATE` with the date of the most recent prior call.
+Replace `LAST_CALL_DATE` with the date of the most recent prior call. If this is a first interaction, pull the last 30 days instead.
 
 ```sql
 -- Emails since last call
@@ -53,30 +60,80 @@ AND date > 'LAST_CALL_DATE'
 ORDER BY date DESC LIMIT 5;
 ```
 
-If this is a first interaction (no prior calls), pull the last 30 days of communication instead.
+---
 
-#### Cross-Platform Search (Catch Unlinked Records)
-Always run both -- semantic finds conceptual matches, keyword finds exact names.
+### Sales Call Queries (Types 1, 2, 2b, 7)
+
+#### Lead Record
 ```sql
-SELECT * FROM search_all('PERSON_NAME COMPANY_NAME', 10);
-SELECT * FROM keyword_search_all('PERSON_NAME', 10);
+SELECT id, name, business_name, source, source_detail, status, website,
+  interested_in, notes, first_contact_date, last_contact_date, source_refs
+FROM leads
+WHERE name ILIKE '%LEAD_NAME%' OR business_name ILIKE '%LEAD_NAME%'
+ORDER BY created_at DESC LIMIT 5;
 ```
 
-#### Time Pressure Check
+#### ClickUp Lead Task (check for pasted transcripts -- Malik pastes them here)
 ```sql
--- Or use list_events MCP tool with a tight time window after meeting end
-SELECT event_title, start_time FROM google_calendar_entries
-WHERE start_time > 'MEETING_END_TIME'
-AND start_time < 'MEETING_END_TIME'::timestamp + INTERVAL '15 minutes'
-LIMIT 1;
+SELECT clickup_task_id, task_name, status, ai_summary, due_date
+FROM clickup_entries
+WHERE task_name ILIKE '%PERSON_NAME%' OR task_name ILIKE '%COMPANY_NAME%'
+ORDER BY created_at DESC LIMIT 5;
 ```
-If found, flag at the top of the brief.
+If a match is found, pull full content:
+```sql
+SELECT * FROM get_full_content('clickup_entries', 'CLICKUP_ENTRY_ID');
+```
+
+#### SDR / Upwork History
+```sql
+SELECT id, title, created_at, ai_summary FROM sdr_responses
+WHERE ai_summary ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%COMPANY_NAME%'
+ORDER BY created_at DESC LIMIT 5;
+```
+If the lead came from Upwork, Peterson has already read the Upwork chat. Surface only info from OTHER sources that adds to what he already knows.
+
+#### Warm-Up Messaging Sent
+The warm-up SOP sends resource messages before the call. Report: how many were sent and which resources were shared (this tells Peterson what the prospect has already seen).
+```sql
+SELECT * FROM keyword_search_all('warm-up PERSON_NAME', 10);
+```
+
+#### Audit Videos / Looms Sent
+```sql
+SELECT id, title, created_at, ai_summary FROM loom_entries
+WHERE title ILIKE '%PERSON_NAME%' OR title ILIKE '%COMPANY_NAME%'
+ORDER BY created_at DESC LIMIT 5;
+```
+
+#### Proposals / Documents Sent
+```sql
+SELECT id, title, doc_type, ai_summary FROM gdrive_operations
+WHERE title ILIKE '%PERSON_NAME%' OR title ILIKE '%COMPANY_NAME%'
+ORDER BY modified_at DESC LIMIT 5;
+```
+
+#### Cade's Prior Contact
+Cade handles Facebook-only consultations. Check if he had a call first:
+```sql
+SELECT id, meeting_title, meeting_date, summary, action_items
+FROM fathom_entries
+WHERE meeting_title ILIKE '%PERSON_NAME%'
+AND participants::text ILIKE '%Cade%'
+ORDER BY meeting_date DESC LIMIT 3;
+```
 
 ---
 
-### Client Call Queries
+### Client Call Queries (Type 3)
 
-#### Client Context Cache (check first -- fastest path)
+#### Client Resolution (MANDATORY -- never query clients by name directly)
+```sql
+SELECT * FROM find_client('CLIENT_NAME');
+```
+Use the returned `client_id` (UUID) for all subsequent queries.
+
+#### Client Context Cache (fastest path -- check first)
 ```sql
 SELECT section, content, last_updated FROM client_context_cache
 WHERE client_id = 'CLIENT_UUID'
@@ -88,7 +145,7 @@ If cache is < 7 days old, use as foundation and supplement with delta queries be
 ```sql
 SELECT client_name, platform, account_manager, platform_operator
 FROM reporting_clients
-WHERE client_name ILIKE '%CLIENT_NAME%'
+WHERE client_id = 'CLIENT_UUID'
 ORDER BY platform;
 ```
 
@@ -130,7 +187,7 @@ FROM google_insights_daily
 WHERE client_id = 'CLIENT_UUID' AND date > NOW() - INTERVAL '14 days'
 ORDER BY date DESC;
 ```
-Compare the two 7-day windows to show trend direction. Surface anomalies (spend 20%+ over/under budget, ROAS drop, conversion tracking gaps).
+Compare the two 7-day windows to show trend direction. Surface anomalies: spend 20%+ over/under budget, ROAS drop, conversion tracking gaps. Never cite ROAS targets unless confirmed in Fathom recordings or client records.
 
 #### Analyst Notes
 ```sql
@@ -148,8 +205,7 @@ WHERE client_id = 'CLIENT_UUID'
 ORDER BY calculated_at DESC LIMIT 1;
 ```
 
-#### Mentions in Other Calls
-Was this client discussed in internal or other client calls recently?
+#### Mentions in Other Calls (Was This Client Discussed Elsewhere?)
 ```sql
 SELECT fm.context_summary, fe.meeting_title, fe.meeting_date
 FROM fathom_client_mentions fm
@@ -161,65 +217,9 @@ ORDER BY fe.meeting_date DESC LIMIT 5;
 
 ---
 
-### Sales Call Queries
+### Internal Call Queries (Type 5)
 
-#### Lead Record
-```sql
-SELECT id, name, business_name, source, source_detail, status, website,
-  interested_in, notes, first_contact_date, last_contact_date, source_refs
-FROM leads
-WHERE name ILIKE '%LEAD_NAME%' OR business_name ILIKE '%LEAD_NAME%'
-ORDER BY created_at DESC LIMIT 5;
-```
-
-#### ClickUp Lead Task
-Team members sometimes paste call transcripts or notes into ClickUp task descriptions.
-```sql
-SELECT clickup_task_id, task_name, status, ai_summary, due_date
-FROM clickup_entries
-WHERE task_name ILIKE '%PERSON_NAME%' OR task_name ILIKE '%COMPANY_NAME%'
-ORDER BY created_at DESC LIMIT 5;
-```
-If a match is found, pull full content -- it may contain a pasted transcript or detailed notes:
-```sql
-SELECT * FROM get_full_content('clickup_entries', 'CLICKUP_ENTRY_ID');
-```
-
-#### SDR / Upwork History
-```sql
-SELECT id, title, created_at, ai_summary FROM sdr_responses
-WHERE ai_summary ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%COMPANY_NAME%'
-ORDER BY created_at DESC LIMIT 5;
-```
-If the lead came from Upwork, Peterson has already read the Upwork chat. Surface only info from OTHER sources that adds to what he already knows.
-
-#### Audit Videos Sent
-```sql
-SELECT id, title, created_at, ai_summary FROM loom_entries
-WHERE title ILIKE '%PERSON_NAME%' OR title ILIKE '%COMPANY_NAME%'
-ORDER BY created_at DESC LIMIT 5;
-```
-
-#### Proposals / Documents Sent
-```sql
-SELECT id, title, doc_type, ai_summary FROM gdrive_operations
-WHERE title ILIKE '%PERSON_NAME%' OR title ILIKE '%COMPANY_NAME%'
-ORDER BY modified_at DESC LIMIT 5;
-```
-
-#### Cade's Prior Contact
-Cade handles Facebook-only consultations. Check if he had a call first:
-```sql
-SELECT id, meeting_title, meeting_date, summary, action_items
-FROM fathom_entries
-WHERE meeting_title ILIKE '%PERSON_NAME%'
-AND participants::text ILIKE '%Cade%'
-ORDER BY meeting_date DESC LIMIT 3;
-```
-
----
-
-### Internal Call Queries
+For internal calls, skip the Common queries unless there is a prior Fathom call with this person. Focus on their work context.
 
 #### Team Member Profile
 ```sql
@@ -235,7 +235,7 @@ WHERE account_manager ILIKE '%PERSON_NAME%' OR platform_operator ILIKE '%PERSON_
 ORDER BY client_name;
 ```
 
-#### Client Issues in Their Portfolio
+#### Client Issues in Their Portfolio (Health Score Flags)
 ```sql
 SELECT c.name as client_name, chs.overall_score, chs.calculated_at
 FROM client_health_scores chs
@@ -248,7 +248,7 @@ AND c.id IN (
 )
 ORDER BY chs.overall_score ASC;
 ```
-If this join is unreliable, fall back to listing their portfolio clients and checking health scores individually.
+If this join fails (name mismatch), list their portfolio clients from the query above and check health scores individually.
 
 #### Open Action Items Involving This Person
 ```sql
@@ -258,10 +258,19 @@ AND status IN ('open', 'pending', 'in_progress')
 ORDER BY priority ASC LIMIT 10;
 ```
 
-#### Recent Pipeline Alerts (Ops Context)
+#### Recent Pipeline Alerts (Ops-Level Syncs Only -- Cade, Scott)
 ```sql
 SELECT alert_type, severity, message, created_at FROM pipeline_alerts
 WHERE severity IN ('high', 'critical') AND acknowledged = false
 ORDER BY created_at DESC LIMIT 5;
 ```
-Only include for ops-level team syncs (Cade, Scott). Skip for VA or contractor syncs.
+Skip for VA or contractor syncs.
+
+#### Prior Call with This Person (for delta)
+```sql
+SELECT id, meeting_title, meeting_date, summary, action_items
+FROM fathom_entries
+WHERE (participants::text ILIKE '%PERSON_NAME%' OR meeting_title ILIKE '%PERSON_NAME%')
+ORDER BY meeting_date DESC LIMIT 1;
+```
+If found, pull full transcript and identify what was discussed last time.
