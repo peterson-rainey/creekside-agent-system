@@ -74,6 +74,8 @@ These patterns ALWAYS route to a specific agent. Do not handle directly. Do not 
 | Edit, restructure, update, or modify an existing agent | `agent-builder-agent` |
 | "Add a step to [agent]", "change [agent] to..." | `agent-builder-agent` |
 
+**Pre-flight for modify requests:** Before spawning `agent-builder-agent` to edit an existing agent, check its status: `SELECT status FROM agent_definitions WHERE name = '[agent-name]'`. If deprecated or inactive, tell the user before proceeding -- they may want to reactivate it first or build a replacement instead.
+
 ### On EVERY user request, execute this sequence:
 
 **Step 1: Classify the request.**
@@ -84,7 +86,7 @@ These patterns ALWAYS route to a specific agent. Do not handle directly. Do not 
 
 **Step 2: Check for a specialized agent (conditional on classification).**
 
-First read `.claude/agent-routing-index.md` for a quick routing reference. If the match is obvious there, spawn the agent directly. If unsure or the agent is unfamiliar, confirm with the DB query below.
+First read `.claude/agent-routing-index.md` for a quick routing reference. If the match is obvious there, confirm the agent is active before spawning: `SELECT status FROM agent_definitions WHERE name = '[agent-name]'`. If status is not 'active', do not spawn -- report the gap to the user. If unsure or the agent is unfamiliar, run the full lookup below.
 
 Required for BUILD and ACTION -- always run the lookup:
 ```sql
@@ -104,14 +106,14 @@ When in doubt about whether an agent exists for a QUERY, run the lookup. The cos
 - If no agent exists but one should → tell the user and propose building one
 - If classified as simple QUERY/META/internal work → handle directly, no agent needed
 
-**Step 4: QC before presenting (non-negotiable for deliverables).**
-Any output that will be acted on or shared externally MUST go through `qc-reviewer-agent` before presenting. This includes: proposals, reports, ad copy, client communications, strategies, agent prompts, SOPs.
+**Step 4: QC before presenting (non-negotiable for external deliverables).**
+Any output that will be acted on or shared externally MUST go through `qc-reviewer-agent` before presenting. This includes: proposals, client reports, ad copy, client communications, strategies, agent prompts, SOPs.
 
 Additionally spawn:
 - `expert-review-agent` for external deliverables (proposals, strategies, presentations)
 - `code-audit-agent` for executable code (.sh, .js, .py, SQL functions)
 
-Simple lookups, internal debugging, and meta-questions skip QC.
+**Skip QC for:** Simple lookups, internal debugging, meta-questions, and internal operational reports (daily status briefs, pipeline health, system audit outputs, KPI checks for Peterson's own use).
 
 ### Why this exists
 In Chat/Co-work, hooks don't run. Without this protocol inlined, Claude handles everything "the normal way" and bypasses 65 specialized agents, QC review, and the build workflow. This protocol IS the hook replacement for non-CLI sessions.
@@ -125,6 +127,8 @@ Enforced by deterministic hooks -- these cannot be overridden:
 **Protected files (hooks block writes):** `CLAUDE.md` | `.claude/settings*.json` | `.claude/hooks/*.sh` | `.claude/roles/*.md` | `.env*` | `.zshrc`
 
 **ADMIN_MODE:** Peterson runs `touch .claude/ADMIN_MODE` to edit protected files. Agents CANNOT create this file. After edits, agent MUST run `rm .claude/ADMIN_MODE`.
+
+**Chat/Co-work self-enforcement:** In Chat and Co-work, hooks do NOT run -- but protected file rules still apply. You MUST self-enforce: do not write to any protected file without ADMIN_MODE, even though no hook will stop you. This applies to admin sessions too, not just contractors.
 
 **Kill switch:** Create `KILLSWITCH.md` in project root to freeze all operations. Delete to resume.
 
