@@ -19,6 +19,16 @@ When a contractor asks you to do something, search in this order:
 3. **SOPs** -- `SELECT title, content FROM agent_knowledge WHERE type = 'sop' AND title ILIKE '%keyword%'`.
 4. **Direct tools** -- if no agent, skill, or SOP exists, use the MCP tools and database directly.
 
+## Platform access (MCP tools)
+
+Both Meta Ads and Google Ads are accessible via PipeBoard MCP tools. These inherit automatically from the shared ads@creeksidemarketingpros.com Claude account -- no manual setup needed.
+
+- **Google Ads**: `mcp__claude_ai_Pipeboard_google__*` tools (list_google_ads_customers, get_google_ads_campaigns, get_google_ads_campaign_metrics, execute_google_ads_gaql_query, etc.)
+- **Meta Ads**: `mcp__claude_ai_PipeBoard__*` tools (get_ad_accounts, get_insights, get_campaigns, get_adsets, get_ads, get_ad_creatives, etc.)
+- **Database**: `mcp__claude_ai_Supabase__execute_sql` -- route through `SELECT contractor_query('your SQL')` for safety
+
+For the full reference (API keys, auth details, troubleshooting): `SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'`
+
 ## Top 4 contractor use cases (fast-path routing)
 
 | Contractor says... | Do this |

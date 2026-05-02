@@ -37,6 +37,21 @@ WHERE source_table = 'fathom_entries' AND source_id = 'MOST_RECENT_FATHOM_ID';
 ```
 Never prep from the `summary` field alone. If `full_text` is NULL or empty, use `summary` + `action_items` array and flag: `[PARTIAL -- no transcript available]`.
 
+#### Action Item Extraction from Prior Call (MANDATORY for follow-ups)
+After pulling the transcript, extract EVERY commitment and action item from it:
+1. Start with the `action_items` array from `fathom_entries` (quick starting list)
+2. Supplement by reading the raw transcript for commitments the array missed
+3. For each item, check current status by searching ClickUp tasks, emails, and chats:
+```sql
+-- Check if action items became ClickUp tasks
+SELECT task_name, status, assignees, due_date FROM clickup_entries
+WHERE client_id = 'CLIENT_UUID'
+AND created_at > 'PRIOR_CALL_DATE'
+AND status NOT IN ('closed', 'complete', 'done', 'archived')
+ORDER BY created_at ASC LIMIT 10;
+```
+Present as a checklist with status: done / not done / in progress / unknown. This is the highest-value section for recurring calls.
+
 #### Delta: Activity Since Last Call
 Replace `LAST_CALL_DATE` with the date of the most recent prior call. If this is a first interaction, pull the last 30 days instead.
 
@@ -238,6 +253,12 @@ GROUP BY date_trunc('week', date)
 ORDER BY week DESC;
 ```
 Show 4-week trend with weekly rollups. Identify the metrics that matter most for THIS client's business (e.g., cost per lead for lead gen, ROAS for ecomm, cost per call for service businesses). Surface anomalies: spend 20%+ over/under budget, conversion drops, tracking gaps. Never cite ROAS targets unless confirmed in Fathom recordings or client records.
+
+**FALLBACK: If DB tables return empty (no rows for this client), pull live data via MCP:**
+- **Meta:** Use `mcp__claude_ai_PipeBoard__get_ad_accounts` to find the client's account, then `mcp__claude_ai_PipeBoard__get_campaigns` and `mcp__claude_ai_PipeBoard__get_insights` for last 30 days
+- **Google:** Use `mcp__claude_ai_Pipeboard_google__list_google_ads_customers` to find the account, then `mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics` for last 30 days
+
+Do NOT leave the performance section blank when MCP tools can provide live data. Flag the source: `[source: PipeBoard MCP, live pull]`
 
 #### Contractor Ad Performance Notes
 Pull recent notes the platform operator has shared about this client's campaigns -- Google Chat messages, ClickUp comments, and ads_knowledge entries.
