@@ -109,9 +109,9 @@ WHERE task_name ILIKE '%PERSON_NAME%' OR task_name ILIKE '%COMPANY_NAME%'
 ORDER BY created_at DESC LIMIT 5;
 
 -- Pull ALL comment threads on that task (contains full Upwork message history)
-SELECT id, date, ai_summary FROM clickup_comment_threads
-WHERE task_id = 'CLICKUP_TASK_ID'
-ORDER BY date ASC;
+SELECT id, date_range_start, ai_summary FROM clickup_comment_threads
+WHERE clickup_task_id = 'CLICKUP_TASK_ID'
+ORDER BY date_range_start ASC;
 ```
 If comments exist, pull full content for the most recent ones:
 ```sql
@@ -276,20 +276,13 @@ AND date > NOW() - INTERVAL '30 days'
 ORDER BY date DESC LIMIT 10;
 
 -- Operator's ClickUp comments about this client (last 30 days)
-SELECT id, date, ai_summary FROM clickup_comment_threads
+SELECT id, date_range_start, ai_summary FROM clickup_comment_threads
 WHERE client_id = 'CLIENT_UUID'
-AND date > NOW() - INTERVAL '30 days'
-ORDER BY date DESC LIMIT 10;
+AND date_range_start > NOW() - INTERVAL '30 days'
+ORDER BY date_range_start DESC LIMIT 10;
 ```
 Summarize the contractor's recent observations, recommendations, and flags. These are the operator's ground-level insights -- often more current than formal reports.
 
-#### Analyst Notes (Legacy -- kept for backward compatibility)
-```sql
-SELECT id, title, content, created_at FROM ads_knowledge
-WHERE client_id = 'CLIENT_UUID'
-AND created_at > NOW() - INTERVAL '30 days'
-ORDER BY created_at DESC LIMIT 3;
-```
 
 #### Mentions in Other Calls (Was This Client Discussed Elsewhere?)
 ```sql
