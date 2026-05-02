@@ -85,13 +85,31 @@ If a match is found, pull full content:
 SELECT * FROM get_full_content('clickup_entries', 'CLICKUP_ENTRY_ID');
 ```
 
-#### SDR / Upwork History
+#### Upwork Lead Messages (ClickUp Comment Threads -- PRIMARY source for Upwork leads)
+Upwork prospect conversations are captured as comments on ClickUp "Upwork Leads" list tasks. This is often the richest pre-call data for Upwork-sourced prospects.
+```sql
+-- Find the lead's ClickUp task
+SELECT id, clickup_task_id, task_name, ai_summary FROM clickup_entries
+WHERE task_name ILIKE '%PERSON_NAME%' OR task_name ILIKE '%COMPANY_NAME%'
+ORDER BY created_at DESC LIMIT 5;
+
+-- Pull ALL comment threads on that task (contains full Upwork message history)
+SELECT id, date, ai_summary FROM clickup_comment_threads
+WHERE task_id = 'CLICKUP_TASK_ID'
+ORDER BY date ASC;
+```
+If comments exist, pull full content for the most recent ones:
+```sql
+SELECT * FROM get_full_content('clickup_comment_threads', 'COMMENT_THREAD_ID');
+```
+Peterson has already read the Upwork chat directly, but the ClickUp comments may contain team annotations, warm-up tracking, and context Peterson hasn't seen from other team members (Queenie's notes, Cyndi's follow-ups, ClickBot triggers).
+
+#### SDR / Upwork History (supplementary)
 ```sql
 SELECT id, title, created_at, ai_summary FROM sdr_responses
 WHERE ai_summary ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%COMPANY_NAME%'
 ORDER BY created_at DESC LIMIT 5;
 ```
-If the lead came from Upwork, Peterson has already read the Upwork chat. Surface only info from OTHER sources that adds to what he already knows.
 
 #### Warm-Up Messaging Sent
 The warm-up SOP sends resource messages before the call. Report: how many were sent and which resources were shared (this tells Peterson what the prospect has already seen).
@@ -122,6 +140,30 @@ WHERE meeting_title ILIKE '%PERSON_NAME%'
 AND participants::text ILIKE '%Cade%'
 ORDER BY meeting_date DESC LIMIT 3;
 ```
+
+#### Referral Partner Context (When a known partner is on the call with an unknown prospect)
+If a known partner (Erika Schlick, Adam Holcomb, Full Circle) is bringing a third party:
+```sql
+-- Search partner's recent communications for referral context
+SELECT id, date, ai_summary FROM gmail_summaries
+WHERE participants::text ILIKE '%PARTNER_EMAIL%'
+AND (ai_summary ILIKE '%PROSPECT_NAME%' OR ai_summary ILIKE '%referr%' OR ai_summary ILIKE '%intro%')
+AND date > NOW() - INTERVAL '30 days'
+ORDER BY date DESC LIMIT 5;
+
+-- Check partner's recent Fathom calls for context
+SELECT id, meeting_title, meeting_date, summary FROM fathom_entries
+WHERE participants::text ILIKE '%PARTNER_NAME%'
+AND meeting_date > NOW() - INTERVAL '30 days'
+ORDER BY meeting_date DESC LIMIT 5;
+
+-- Check if prospect was mentioned in any gchat
+SELECT id, date, ai_summary FROM gchat_summaries
+WHERE ai_summary ILIKE '%PROSPECT_NAME%'
+AND date > NOW() - INTERVAL '30 days'
+ORDER BY date DESC LIMIT 5;
+```
+Surface: who referred this prospect, why, what the partner said about them, and any context on the prospect's business.
 
 ---
 
