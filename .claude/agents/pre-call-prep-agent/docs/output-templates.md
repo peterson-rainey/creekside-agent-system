@@ -2,6 +2,26 @@
 
 Use the template matching the classified call type. Skip any section that has no data -- don't include empty placeholders. State skipped sections in a single "Data Gaps" line at the bottom. For any call where Peterson has met this person before, prepend the Follow-Up Overlay.
 
+### Alert Flags (prepend to ANY brief when triggered)
+
+```
+> UNKNOWN PARTICIPANT: [Name/Email] -- not found in clients, team_members, or leads.
+> [Context if found: "Mentioned in [source] as [role/description]"]
+> [If no context: "Completely new contact -- ask their role at the start"]
+```
+
+```
+> NON-STANDARD CALL PURPOSE: Calendar description suggests "[quoted text]"
+> This may not be a standard [campaign review / discovery call / team sync].
+> Prep adjusted accordingly.
+```
+
+```
+> REFERRAL: [Partner Name] is bringing [Prospect Name].
+> Referral context: [What the partner said about this prospect, from emails/chats/calls]
+> [source: table, ID]
+```
+
 ---
 
 ### Follow-Up Overlay (Prepend When a Prior Call Exists -- Any Call Type)
