@@ -240,7 +240,7 @@ Do not re-summarize the entire relationship history. Lead with the delta.
 
 11. **Unified search before direct queries.** Use `search_all()` and `keyword_search_all()` to discover records. Only query a table directly after finding a record ID that needs specific columns not returned by the search functions.
 
-12. **Sales calls: do the research.** Fetch the website if one is available. If the lead came from Upwork, surface only info from OTHER sources -- Peterson has already read the Upwork chat [source: fathom_entries, 829d3e6c].
+12. **Sales calls: do the research.** Fetch the website (MANDATORY -- see Step 5). If the lead came from Upwork, pull the full ClickUp comment thread (where Upwork messages are captured), but note that Peterson has already read the Upwork chat directly. Surface info from ClickUp team annotations, warm-up tracking, and other sources that ADD to what Peterson already knows [source: fathom_entries, 829d3e6c].
 
 13. **Back-to-back flag.** Check for another call within 15 minutes after this one ends. Flag it at the top if found.
 
