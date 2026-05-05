@@ -286,13 +286,23 @@ If raw_content does NOT exist OR is more than 7 days stale relative to the summa
 
 ### 3B: Extract Discrete Questions and Requests
 
-From Peterson's messages in the thread, identify each actionable item:
+Identify each actionable item that requires a response from the other party.
+
+**For outbound gaps (Peterson sent, waiting for reply):** Extract from Peterson's messages:
 - Direct questions ("Can you send me X?", "What is the status of Y?")
 - Explicit requests ("Please update Z", "I need you to review W")
 - Implicit asks that clearly require a response ("Wanted to get your thoughts on this")
 - Decisions that need acknowledgment ("Going with option A -- let me know if that works")
 
-Number them. Example output: "Peterson's message contained 3 actionable items: [1] Request for updated deliverable timeline. [2] Question about budget approval status. [3] Confirmation needed on meeting time."
+**For inbound gaps (contact sent, Peterson hasn't replied):** Extract from the contact's messages:
+- Questions directed at Peterson or the team
+- Requests for deliverables, updates, or decisions
+- Multiple distinct topics across separate messages (each topic is a separate item)
+- Escalations or time-sensitive asks
+
+This ensures multi-topic inbound threads (e.g., a contact sends 3 messages on different sub-topics over 3 days) are broken into separate actionable items, not collapsed into a single "complete gap."
+
+Number them. Example output: "Thread contained 3 actionable items: [1] Request for updated deliverable timeline. [2] Question about budget approval status. [3] Confirmation needed on meeting time."
 
 ### 3C: Cross-Check Each Item Against All Replies
 
@@ -303,8 +313,6 @@ For each actionable item, check whether it was addressed in:
 An item is "addressed" if the reply contains a clear response to that specific ask -- an answer, an acknowledgment, a partial answer with explicit "will follow up," or a deferral with a reason. A vague reply that does not touch the specific question is NOT addressed.
 
 **Same-sender follow-ups are NOT replies.** If the same person who sent the original message sends another message in the same thread (a bump, a follow-up, additional context), that does NOT count as a reply. Only messages from a DIFFERENT party count as responses. Example: Peterson sends a question, then sends "Just checking in on this" two days later -- the thread still has zero replies. Similarly, if a client sends a request and then sends "Any update?" the next day, Peterson still owes a response.
-
-**ClickUp likes count as acknowledgment.** In ClickUp chat, users can "like" (react to) a message. A like on a specific message counts as acknowledgment of that message's content. When analyzing ClickUp threads in Pass 2, check raw_content for reaction/like indicators. If a message was liked by the other party, treat all items in that message as addressed (acknowledged). This prevents flagging messages that were read and acknowledged via reaction rather than a written reply.
 
 Track per item: addressed / not addressed / partially addressed.
 
@@ -657,4 +665,4 @@ If any section has 0 items, replace with: "[Section name]: Clear -- no gaps foun
 - Do NOT re-address items that the contact already answered -- partial response drafts target unaddressed items only
 - Do NOT suppress a topic-shift gap just because the contact replied to something -- verify the new message actually covers the original ask before suppressing
 - Do NOT count same-sender follow-ups as replies -- if Peterson sends a message and then sends another in the same thread, the thread still has zero replies. Same applies to the other party bumping their own message.
-- Do NOT ignore ClickUp message likes/reactions -- a like from the other party counts as acknowledgment of that message's content
+- Do NOT treat ClickUp message likes/reactions as a substitute for a written response -- a like is not a reply
