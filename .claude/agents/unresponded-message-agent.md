@@ -82,10 +82,14 @@ Build a set of known client contact emails and domains from `email_addresses`, `
 ### 1C: Load Lead Emails to Exclude
 
 ```sql
-SELECT email FROM leads WHERE email IS NOT NULL
-UNION
-SELECT email FROM upwork_leads WHERE email IS NOT NULL;
+SELECT email FROM leads WHERE email IS NOT NULL;
 ```
+
+Note: `upwork_leads` does not have a discrete `email` column. To catch Upwork leads, also check:
+```sql
+SELECT contact_info FROM upwork_leads WHERE contact_info IS NOT NULL AND contact_info ILIKE '%@%';
+```
+Parse any email addresses from the `contact_info` text field and add them to the exclusion set.
 
 Store as an exclusion set. Any communication involving these emails is skipped entirely.
 
@@ -103,9 +107,11 @@ Use Gmail MCP to search for threads where Peterson received a message and has no
 
 ```
 mcp__claude_ai_Gmail__search_threads
-  query: "in:inbox -from:me is:unread OR label:unread"
+  query: "in:inbox -from:me is:unread"
   maxResults: 30
 ```
+
+Note: Gmail MCP returns the most recent 30 threads. If all 30 have gaps, note in the report: "High volume -- only 30 most recent threads scanned. Consider a follow-up run."
 
 For each thread returned:
 1. Fetch full thread: `mcp__claude_ai_Gmail__get_thread`
@@ -127,14 +133,15 @@ For each thread returned:
 
 ### 2B: Google Chat -- Inbound to Peterson Needing Reply
 
-Query `gchat_summaries` for spaces where Peterson is NOT the most recent speaker and 48h+ have elapsed:
+Query `gchat_summaries` for spaces where Peterson is NOT the most recent speaker and 48h+ have elapsed. Only look back 30 days max to avoid flagging long-dormant spaces:
 
 ```sql
 SELECT g.id, g.date, g.space_name, g.context_type, g.participants,
        g.ai_summary, g.thread_count, g.message_count
 FROM gchat_summaries g
 WHERE g.date < CURRENT_DATE - 1
-  AND g.context_type IN ('client', 'internal')
+  AND g.date >= CURRENT_DATE - 30
+  AND g.context_type IN ('client', 'internal', 'partner')
   AND g.participants::text ILIKE '%Peterson%'
 ORDER BY g.date DESC
 LIMIT 30;
