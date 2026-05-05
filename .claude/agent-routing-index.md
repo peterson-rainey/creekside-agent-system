@@ -96,6 +96,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | Agent | Use when... |
 |-------|-------------|
 | filter-feedback-digest | Daily auto-filter candidate digest for approval |
+| unresponded-message-agent | Find messages 48h+ without a reply (Gmail, GChat, ClickUp). Drafts replies for inbound, auto-sends ClickUp follow-ups to team, flags client gaps |
 
 ## Infrastructure & Pipelines
 
