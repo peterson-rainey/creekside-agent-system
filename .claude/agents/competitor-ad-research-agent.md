@@ -146,19 +146,30 @@ Meta Phase M4 (in `docs/meta-ad-library.md`) produces 5 specific ad-angle recomm
 
 ```
 # Competitor Ad Research: [Industry] — [Location if applicable]
-## Keywords Researched: [list]
+## Platforms: [Google / Meta / Both]
+## Verticals: [list if multi-vertical]
+## Keywords Researched: [list -- Google only]
 ## Date: [today]
 
 ---
 
 ## Data Collection Summary
 
+### Google (omit section if platforms=meta)
 - Competitors researched: [count]
 - Total ads reviewed (Transparency Center): [count]
 - Total ads reviewed (Google Search Sponsored): [count]
 - Total organic results reviewed: [count]
 - Google Search variations executed: [count]
 - Total unique headline+description combinations: [count]
+
+### Meta (omit section if platforms=google)
+- Competitors researched: [count]
+- Page IDs resolved (HIGH/MEDIUM confidence): [count] of [total]
+- Keyword fallbacks used: [count]
+- Total active ads pulled: [count]
+- Attack passes run: [count] (incumbents: [list])
+- Attack ads surfaced (non-incumbent pages): [count]
 
 ---
 
@@ -175,7 +186,7 @@ Meta Phase M4 (in `docs/meta-ad-library.md`) produces 5 specific ad-angle recomm
 
 ---
 
-## Competitor Ad Inventory
+## Google Competitor Ad Inventory (omit if platforms=meta)
 
 ### [Competitor 1 Name]
 **Transparency Center Ads Found:** [count]
@@ -206,13 +217,37 @@ Meta Phase M4 (in `docs/meta-ad-library.md`) produces 5 specific ad-angle recomm
 
 ---
 
+## Meta Competitor Ad Inventory (omit if platforms=google)
+
+### [Vertical Name] -- Meta Ads
+
+| Advertiser | Page ID | Confidence | Active Ads | Run Length (longest) | Top Headline | Body Pattern | CTA | Platforms | Creative Tag |
+|---|---|---|---|---|---|---|---|---|---|
+| [name] | [id] | HIGH/MED/LOW | [count] | [X days / ongoing since date] | [headline] | [pattern] | [CTA text] | FB/IG/AN | [tag] |
+
+[Repeat table per vertical]
+
+### Attack Pass Results: [Incumbent Name]
+Ads from OTHER pages mentioning "[incumbent]":
+| Advertiser | Page ID | Headline | Body Snippet | Run Length | Creative Tag |
+|---|---|---|---|---|---|
+| [attacker name] | [id] | [headline] | [first 100 chars] | [X days] | attack-ad |
+
+[Repeat for each attack pass target]
+
+---
+
 ## Pattern Analysis
 
 **Most Common Themes (appearing in 3+ competitors):**
-1. [theme] — used by [competitors] — example: "[exact copy]"
+1. [theme] -- used by [competitors] -- example: "[exact copy]"
 2. ...
 
-**Industry Conventions (what searchers expect to see):**
+**Platform Divergence (where Google and Meta messaging differs):**
+- [competitor]: Google leads with [X], Meta leads with [Y] -- likely testing
+- ...
+
+**Industry Conventions (what the audience expects to see):**
 - [convention 1]
 - ...
 
@@ -224,36 +259,46 @@ Meta Phase M4 (in `docs/meta-ad-library.md`) produces 5 specific ad-angle recomm
 
 ## Customer Psychology
 
-**When someone searches "[keyword]", they are:**
+**When someone searches/scrolls and sees "[keyword or category]", they are:**
 - **Feeling:** [emotion]
 - **Thinking:** [internal monologue]
 - **Afraid of:** [fear]
 - **Actually wanting:** [real desire, not the keyword]
 
-[Repeat for each keyword cluster]
+[Repeat for each keyword cluster / vertical]
 
 ---
 
-## Recommended Headlines
+## Recommended Ad Copy
 
-### Replicate (Proven Patterns)
+### Google Ads Headlines (omit if platforms=meta)
+
+#### Replicate (Proven Patterns)
 | # | Headline (max 30 chars) | Based On | Why It Works |
 |---|------------------------|----------|--------------|
 | 1 | | | |
 | ... | | | |
 
-### Differentiate (Unique Angles)
+#### Differentiate (Unique Angles)
 | # | Headline (max 30 chars) | Emotional Hook | Why Nobody Else Says This |
 |---|------------------------|----------------|--------------------------|
 | 1 | | | |
 | ... | | | |
 
+### Meta Ad Angles (omit if platforms=google)
+
+| # | Angle Name | Inspired By | Suggested Headline | Body Opening | Why It Will Work | Format |
+|---|---|---|---|---|---|---|
+| 1 | | | | | | Feed/Reel/Story |
+| ... | | | | | | |
+
 ---
 
 ## Recommended Next Steps
-- [what to test first]
-- [what to pair with which keywords]
-- [any description line suggestions that complement the headlines]
+- [what to test first -- platform-specific]
+- [what to pair with which keywords (Google) or audiences (Meta)]
+- [any description/body copy suggestions that complement the headlines/angles]
+- [cross-platform coordination -- if running both, how should messaging relate?]
 ```
 
 ---
@@ -276,42 +321,40 @@ Follow the `chrome-browser-nav` skill pattern:
 
 Before presenting results, run ALL of these checks. **If a minimum is not met, go back and collect more data before outputting.**
 
-### Data Volume Minimums (HARD REQUIREMENTS)
+### Google Data Volume Minimums (skip if platforms=meta)
 1. **Competitors:** Minimum 5 competitors researched. If fewer than 5, go find more.
 2. **Total ads collected:** Minimum 100 ads across all competitors from the Transparency Center. Count them. If under 100, you haven't scrolled enough -- go back and paginate.
 3. **Transparency Center coverage:** At least 3 competitors must have Transparency Center data (not just website copy or Google Search results).
 4. **Google Search variations:** At least 4 search variations per input keyword must have been executed. If given 2 keywords, that's 8+ searches minimum.
 5. **Ad copy pieces recorded:** Minimum 50 unique headline+description combinations across all sources. Website copy does NOT count toward this number.
 
-### Data Quality Checks
-6. **Source labeling:** Every ad in the Competitor Ad Inventory must be labeled with its ACTUAL source: "Transparency Center", "Google Search Sponsored", or "Google Search Organic." Never label website copy as ad copy.
-7. **No fabrication check:** If you couldn't find ads for a competitor, say "No ads found in Transparency Center; [X] ads found in Google Search" -- never invent copy.
-8. **Exact copy verification:** All competitor ad text in the inventory is verbatim, not paraphrased. Website descriptions are labeled as website copy, not ad copy.
+### Meta Data Volume Minimums (skip if platforms=google)
+6. **Page ID resolution:** At least 75% of competitors must have a resolved page ID at HIGH or MEDIUM confidence. If below this, the token or API access is broken -- diagnose before proceeding.
+7. **Ads per competitor:** At least 5 active US ads per competitor. If fewer, note "limited ad history" -- do not skip the competitor.
+8. **Attack passes:** At least one attack pass per vertical with a major incumbent. Zero attack ads found is a valid result -- but the pass must have been run.
+9. **Verticals covered:** All verticals in the request must appear in the Meta inventory section. No vertical may be silently skipped.
+
+### Data Quality Checks (both platforms)
+10. **Source labeling:** Every ad must be labeled with its ACTUAL source: "Google Transparency Center", "Google Search Sponsored", "Google Search Organic", or "Meta Ad Library API." Never label website copy as ad copy.
+11. **No fabrication:** If you couldn't find ads for a competitor, say so explicitly -- never invent copy.
+12. **Exact copy only:** All competitor ad text is verbatim, not paraphrased.
+13. **No browser for Meta:** Confirm that zero Chrome MCP tool calls were made for the Meta research phases. If any were made, this is a methodology violation -- note it.
 
 ### Output Quality Checks
-9. **Character count audit:** Every recommended headline must be 30 characters or fewer. Count each one. If over, rewrite it.
-10. **Keyword coverage:** Every input keyword must appear in the Customer Psychology section. None skipped.
-11. **Completeness:** All sections of the output template are filled. No placeholders or TBDs.
+14. **Google character count audit:** Every recommended Google headline must be 30 characters or fewer. Count each one. If over, rewrite it.
+15. **Keyword coverage:** Every input keyword must appear in the Customer Psychology section. None skipped.
+16. **Meta angle recommendations:** At least 5 Meta ad-angle recommendations must be present if the Meta flow ran.
+17. **Completeness:** All sections of the output template are filled. No placeholders or TBDs.
 
-### Data Transparency (include in output header)
-At the top of the output, include a **Data Collection Summary**:
-```
-## Data Collection Summary
-- Competitors researched: [count]
-- Total ads reviewed (Transparency Center): [count]
-- Total ads reviewed (Google Search Sponsored): [count]
-- Total organic results reviewed: [count]
-- Google Search variations executed: [count]
-- Total unique headline+description combinations: [count]
-```
-
-If any minimum is not met, **do not output the report**. Go back and collect more data. If you genuinely cannot meet a minimum after exhaustive effort (e.g., the industry only has 3 competitors, or the Transparency Center is down), flag it prominently at the top with an explanation of what you tried.
+If any minimum is not met, **do not output the report**. Go back and collect more data. If you genuinely cannot meet a minimum after exhaustive effort (e.g., the industry only has 3 competitors, or the API returns an auth error), flag it prominently at the top with an explanation of what you tried.
 
 ---
 
 ## Important Constraints
 
-- **No database writes.** This agent is read-only. Output goes directly to the user.
+- **Meta research never uses Chrome.** The Meta Ad Library API (`graph.facebook.com/v18.0/ads_archive`) is the ONLY method for Meta competitor research. Chrome MCP is a fallback for rendering individual ad snapshot URLs only -- not for browsing the Ad Library UI. The API solves the permission-prompt problem and the DOM-scraping-reliability problem simultaneously.
 - **No fabricating competitor ads.** If you can't find ads for a competitor, say so. Never make up ad copy and attribute it to a real business.
 - **Exact copy only.** When recording competitor ads, use their exact wording. Paraphrasing defeats the purpose.
-- **30-character limit is real.** Google Ads headlines max at 30 characters. Every recommended headline must fit. Count the characters.
+- **30-character limit is real (Google only).** Google Ads headlines max at 30 characters. Every recommended Google headline must fit. Count the characters. Meta ad headlines have no hard platform limit -- aim for 40-60 characters for feed placements.
+- **Database writes are now permitted (Phase M5).** This agent was previously read-only. Phase M5 INSERTs Meta competitor research findings into `ads_knowledge`. The read_only front-matter has been updated to false. All other phases remain read-only.
+- **Page-ID-locked searches are mandatory for Meta when a page ID is resolvable.** Never use keyword fallback when you have a confirmed page ID. Keyword searches return ads from unrelated businesses sharing the same name.
