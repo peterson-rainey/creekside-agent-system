@@ -124,10 +124,12 @@ For each thread returned:
 - Skip automated/noreply emails: senders matching `noreply@`, `no-reply@`, `notifications@`, `@squareup.com`, `@google.com`, `@railway.app`, `invoicing@`, `@notifications.workana.com`, `@upwork.com`, newsletter patterns (CATEGORY_PROMOTIONS label)
 - Skip financial/automated threads: `context_type = 'financial'` in gmail_summaries, or subjects matching "invoice", "payment", "receipt", "alert", "report", "summary", "digest"
 - Skip if source_labels contains `CATEGORY_PROMOTIONS` or `CATEGORY_UPDATES` (check gmail_summaries for context before using MCP)
+- Skip if `context_type = 'unmatched'` and sender domain matches known automation patterns (scheduling tools like calendly.com, acuity, etc.)
 
 **Classify each inbound gap as:**
 - Internal: last sender is a team member (from Step 1A roster)
 - Client: last sender matches a client contact (from Step 1B)
+- Partner: last sender matches `context_type = 'partner'` in gmail_summaries or is a known vendor/partner contact
 - Lead: matches exclusion set -- SKIP
 - Unknown/other: include but mark as "Unknown sender type"
 
@@ -194,21 +196,25 @@ Search for threads where Peterson sent the LAST message and a team member has no
 
 ```
 mcp__claude_ai_Gmail__search_threads
-  query: "from:me -in:drafts"
+  query: "from:me -in:drafts -to:me"
   maxResults: 30
 ```
+
+The `-to:me` filter excludes self-addressed emails (reminders Peterson sends himself).
 
 For each thread:
 1. Get thread: `mcp__claude_ai_Gmail__get_thread`
 2. Check if last message was FROM Peterson AND is older than 48 hours
 3. Check all participants -- are any of them team members (from Step 1A)?
-4. If YES and no reply from team in 48h: mark as internal outbound gap
+4. Skip if the ONLY recipient is Peterson himself (self-reminder)
+5. If YES and no reply from team in 48h: mark as internal outbound gap
 
 ### 2E: Gmail -- Outbound from Peterson Without Reply (Client)
 
-Same MCP search as 2D, but classify differently:
+Use the same thread results from 2D (do NOT run a duplicate MCP search). Classify differently:
 - If last message is from Peterson AND recipients include a client contact (Step 1B) AND the client has not replied in 48h: mark as external/client outbound gap
 - If recipients match the lead exclusion set: SKIP
+- If a thread has BOTH team members and client contacts as recipients, classify it as outbound_client (the higher-stakes classification). Do NOT create duplicate entries.
 
 ---
 
@@ -263,16 +269,36 @@ For each internal outbound gap where the team member is identifiable:
    mcp__claude_ai_Zapier__clickup_get_chat_channels
    ```
    Filter for the team member's DM channel. Cade's DM is `8cqc1ym-20257` (hardcoded -- his ClickUp email differs from his creeksidemarketingpros.com email).
+   If the team member has NULL `clickup_user_id`, skip auto-send and add to "Manually send these" in the report.
 2. Send a brief follow-up:
    ```
    mcp__claude_ai_Zapier__clickup_send_chat_message
      channel_id: [DM channel ID]
-     message: "Hey [first name], checking in on [brief topic]. Any updates?"
+     message: "Checking in on [brief topic] -- any updates?"
    ```
-   Keep it to one sentence. Match Peterson's voice -- short, friendly, no pressure.
-3. Log that you sent it.
+   No greeting salutation ("Hey [name]"). Start with the substance. One sentence. Match Peterson's voice -- direct, no pressure.
+3. Log the follow-up durably for dedup:
+   ```sql
+   INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
+   VALUES (
+     'reference',
+     'Follow-up sent: [team member name] - ' || CURRENT_DATE::text,
+     'Auto-sent ClickUp DM to [name] re: [topic]. Thread: [thread identifier]. Sent: ' || NOW()::text,
+     ARRAY['follow-up-sent', 'dedup', 'unresponded-message-agent'],
+     'unresponded-message-agent',
+     'verified'
+   );
+   ```
 
-**Do not send more than one follow-up per thread/topic per day.** If a follow-up was sent in the last 24h, skip.
+**Dedup check (MANDATORY before sending):** Before sending any follow-up, check if one was already sent in the last 24h:
+```sql
+SELECT id FROM agent_knowledge
+WHERE type = 'reference'
+AND tags @> ARRAY['follow-up-sent', 'dedup']
+AND title ILIKE '%[team member name]%'
+AND created_at > NOW() - INTERVAL '24 hours';
+```
+If any row exists, SKIP the follow-up for that person/topic. Do not send.
 
 ### 4C: Draft Gmail Follow-ups (for outbound_client gaps)
 
@@ -286,12 +312,9 @@ For each client outbound gap:
 
 ## Step 5: Write Report to agent_knowledge
 
-```sql
-DELETE FROM agent_knowledge
-WHERE type = 'daily_brief'
-AND title ILIKE '%Unresponded Messages%'
-AND created_at < CURRENT_DATE;
+First INSERT today's report, then clean up old ones. This order ensures no data loss if the run is interrupted:
 
+```sql
 INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
 VALUES (
   'daily_brief',
@@ -301,6 +324,22 @@ VALUES (
   'unresponded-message-agent',
   'high'
 );
+```
+
+Then clean up previous days (keep only today's):
+```sql
+DELETE FROM agent_knowledge
+WHERE type = 'daily_brief'
+AND title ILIKE '%Unresponded Messages%'
+AND created_at < CURRENT_DATE;
+```
+
+Also clean up follow-up dedup entries older than 7 days:
+```sql
+DELETE FROM agent_knowledge
+WHERE type = 'reference'
+AND tags @> ARRAY['follow-up-sent', 'dedup']
+AND created_at < NOW() - INTERVAL '7 days';
 ```
 
 ---
@@ -399,7 +438,7 @@ If any section has 0 items, replace with: "[Section name]: Clear -- no gaps foun
 
 **Conflicting information:** DB shows a thread as unresponded but Gmail MCP shows a recent reply -- trust MCP. Note the discrepancy. Do NOT create a draft for a thread that MCP confirms has been replied to.
 
-**Large inbox:** If Gmail search returns 30+ threads, process the 30 most recent. Note: "Inbox has high volume -- only oldest 30 threads scanned. Consider running again with narrower date filter."
+**Large inbox:** Gmail MCP returns the 30 most recent matching threads. If all 30 have gaps, note: "High volume -- only 30 most recent threads scanned. Older gaps may exist. Consider a follow-up run with a narrower date filter."
 
 **Can't identify team member:** If a thread recipient is on the team roster by email but not found in ClickUp channels, flag it for Peterson instead of auto-sending: "Could not find [name]'s ClickUp DM channel -- flagged for manual follow-up."
 
