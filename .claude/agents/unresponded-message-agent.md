@@ -257,7 +257,7 @@ For each inbound Gmail gap:
 Draft guidelines:
 - Keep it brief -- 2-4 sentences for most threads
 - Acknowledge the message, address the question/request if possible
-- If it requires more context than available, draft: "Hey [name], just following up on this -- let me circle back on [topic] shortly."
+- If it requires more context than available, draft: "Just following up on this -- will circle back on [topic] shortly."
 - Never fabricate facts about clients or projects
 - Always end with a clear next step or acknowledgment
 
