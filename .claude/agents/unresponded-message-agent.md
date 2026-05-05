@@ -218,7 +218,7 @@ The `-to:me` filter excludes self-addressed emails (reminders Peterson sends him
 
 For each thread:
 1. Get thread: `mcp__claude_ai_Gmail__get_thread`
-2. Check if last message was FROM Peterson AND is older than 48 hours
+2. Check if last message was FROM Peterson AND is older than 48 hours. **Important:** If Peterson sent multiple consecutive messages (a follow-up to his own message), the 48h clock starts from his FIRST unanswered message, not the most recent. His own follow-ups do not count as "activity" that resets the gap.
 3. Check all participants -- are any of them team members (from Step 1A)?
 4. Skip if the ONLY recipient is Peterson himself (self-reminder)
 5. If YES and no reply from team in 48h: mark as internal outbound candidate
