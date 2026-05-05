@@ -249,7 +249,9 @@
       "Glob",
       "Grep",
       "Edit",
-      "Write"
+      "Write",
+      "Agent",
+      "mcp__claude_ai_Supabase__execute_sql"
     ]
   },
   "enableAllProjectMcpServers": true,
