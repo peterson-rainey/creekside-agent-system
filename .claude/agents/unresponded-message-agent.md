@@ -130,7 +130,8 @@ For each thread returned:
 1. Fetch full thread: `mcp__claude_ai_Gmail__get_thread`
 2. Check if the LAST message in the thread was sent by someone other than Peterson (outgoing check: last message from != peterson@creeksidemarketingpros.com AND != creeksidemarketing1@gmail.com AND != ads@creeksidemarketingpros.com)
 3. Check if that last non-Peterson message is older than 48 hours
-4. If YES: classify and add to inbound gap candidate list
+4. **Same-sender check:** If the thread has multiple consecutive messages from the same non-Peterson sender (e.g., the contact sent a message, then sent a follow-up), only the EARLIEST unanswered message matters for age calculation. The follow-up messages do not reset the 48h clock -- they reinforce that the contact is waiting.
+5. If YES: classify and add to inbound gap candidate list
 
 **Gmail exclusion rules:**
 - Skip if any sender/recipient is in the lead exclusion set from Step 1C

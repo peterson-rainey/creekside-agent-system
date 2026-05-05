@@ -59,6 +59,7 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 8. **Search before debugging.** When encountering an unresolved error or bug, search `agent_knowledge` for prior solutions before proposing a new fix. If the solution is novel, save it back as `type='solution'`.
 9. **Capability vs inventory.** For "can I", "is it possible", "what's the best way" questions: name the CEILING (what the system allows), the FLOOR (what's currently built), and the GAP. Never let a database-only answer cap what's actually possible. Anti-pattern: "convenience anchoring."
 10. **GitHub-first for agent prompts.** Agent prompts live in `.claude/agents/{name}.md` (source of truth). The `agent-edit-monitor.sh` hook syncs changes to `agent_definitions.system_prompt` in the DB. To edit an agent prompt, modify the file. NEVER UPDATE `system_prompt` directly in the DB.
+11. **Chrome tab group teardown.** Any run that creates a Chrome MCP tab group (`tabs_create_mcp` or `tabs_context_mcp createIfEmpty:true`) MUST close all tabs when done -- on both success and error paths. Close sequentially via `tabs_close_mcp`, one call per tab. Swallow "no longer exists" errors as success. Never leave orphan tab groups.
 
 ## Operations Manager Protocol (MANDATORY -- ALL session types)
 
