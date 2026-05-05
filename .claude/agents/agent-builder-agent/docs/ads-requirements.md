@@ -34,6 +34,22 @@ Three skills exist in the system. Include them in the agent's methodology when t
 | Scrape keyword data from UI | `chrome-browser-nav` |
 | API/MCP unavailable or error-prone | `chrome-browser-nav` (first-class fallback for ANY platform) |
 
+### Tab Group Teardown (MANDATORY for any Chrome-using agent)
+
+Any agent that creates a Chrome MCP tab group MUST close it when done. This applies to all three Chrome skills above. Include this in the agent's methodology:
+
+```
+## Teardown (MANDATORY -- runs on success AND error paths)
+
+Close every Chrome tab this run created:
+1. `tabs_context_mcp` -- list remaining tabs
+2. `tabs_close_mcp tabId=<id>` -- close each SEQUENTIALLY (one tool message per close, never parallel)
+3. Swallow "Tab <id> no longer exists" and "tab group no longer exists" errors as success
+4. Never leave orphan tab groups -- they accumulate across sessions and clutter Chrome
+```
+
+**QC gate:** REJECT any agent build that uses Chrome MCP (`tabs_create_mcp`, `tabs_context_mcp`, `navigate`) but does not include a teardown step.
+
 ## Google Ads Transparency Center: Domain-Based Search
 
 Any agent that reads from the Google Ads Transparency Center (adstransparency.google.com) MUST search by the competitor's website **domain**, NOT by business name or advertiser name.
