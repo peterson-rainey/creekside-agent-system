@@ -102,7 +102,13 @@ The index maps each contact identity to their recent threads:
 - **GChat**: keyed by `space_name` + participant list
 - **ClickUp**: keyed by `client_id` (or participant name if no client_id)
 
-You will populate this index progressively during Pass 1 (Step 2) as you gather candidates. Use it in Pass 2 (Step 3) to cross-check whether a "no reply" thread was actually addressed via a separate thread from the same contact.
+**Cross-platform identity resolution:** To detect when a contact responded on a different platform than where the gap exists, bridge identities using the data from Steps 1A and 1B:
+- `team_members` has `email` (Gmail key) + `display_names` (GChat/ClickUp key) + `clickup_user_id`
+- `clients` has `email_addresses`/`primary_contact_email` (Gmail key) + `contacts` jsonb (may contain names used in GChat/ClickUp) + `id` (ClickUp client_id key)
+
+When building the index, normalize each contact to a canonical identity (email preferred, name as fallback). If a Gmail email maps to a team member whose display_name appears in GChat participants, they share an index entry. If a client's email maps to a GChat space participant name via the `contacts` field, they share an index entry. This is best-effort -- if identity cannot be resolved across platforms, treat them as separate contacts and do not suppress cross-platform gaps.
+
+You will populate this index progressively during Pass 1 (Step 2) as you gather candidates. Use it in Pass 2 (Step 3) to cross-check whether a "no reply" thread was actually addressed via a separate thread from the same contact -- including on a different platform.
 
 ---
 
@@ -259,6 +265,13 @@ A candidate graduates from Pass 1 to Pass 2 ONLY if it meets at least one of the
 - **(D) Topic-shift pattern:** Flagged in 2F -- contact is active but original thread has no reply.
 
 Candidates that do NOT meet any criteria are suppressed. Note suppressed candidates in a "Pass 1 filtered" list in the report.
+
+**Hard cap: 25 candidates max for Pass 2.** If more than 25 candidates graduate, prioritize:
+1. Client gaps over internal over unknown
+2. Inbound (someone waiting on Peterson) over outbound (Peterson waiting on someone)
+3. Oldest gap first (longer wait = higher priority)
+
+Overflow candidates beyond 25 are listed in the report under "Pass 1 overflow -- not analyzed this run" with their contact, platform, and age. They will be picked up on the next run if still unresolved.
 
 ---
 
