@@ -21,6 +21,30 @@ TOKEN=$(echo $META_AD_LIBRARY_TOKEN)
 
 ---
 
+## Prerequisites: API Access Tiers and App Review
+
+**The Meta Ad Library API and `pages/search` endpoint have access tiers — read this before the first run with a fresh app.**
+
+### Ad Library API tiers
+
+- **Basic tier (no App Review needed):** Returns ads from your own app's pages, plus political/issue ads from any advertiser. Limited surface for commercial-ad research.
+- **Standard tier (requires App Review):** Returns ads from any commercial advertiser — the level needed for real competitor research. Approval is via Meta App Dashboard → App Review → Permissions and Features → request `ads_read`.
+
+**If basic tier is the only access available**, the agent will return mostly empty results for commercial advertisers and surface a `(#10) This endpoint requires the 'ads_read' permission` error. Tell the user: "Your Meta app needs App Review approval for `ads_archive` to research commercial competitors. Submit via Meta for Developers > App Dashboard > App Review > Permissions and Features."
+
+### `pages/search` endpoint
+
+**This endpoint is restricted.** Meta deprecated open access to `pages/search` in 2021 — it now requires `pages_read_engagement` permission, which itself requires App Review. A brand-new Meta app will hit a permission error on the first call.
+
+**Fallback when `pages/search` returns a permission error or empty results:**
+
+1. **Manual page ID lookup via the public Facebook page.** Navigate to `https://www.facebook.com/COMPANY_NAME` (one navigate, ad library not involved). Read the page ID from the page source — search for `"profile_id":"` followed by a numeric value, or `entity_id`, or the redirect URL containing `/profile.php?id=PAGE_ID`. Document the page ID you found.
+2. **Brand Collabs Manager / Meta Business Suite lookup** if the agency has page-level access.
+3. **Keyword-search-only fallthrough:** drop into Phase M2's `search_terms=NAME` mode and flag every result as `LOW confidence -- keyword fallback`. Acceptable but less precise.
+4. Document the resolution method used per competitor in the output (`page-id-locked`, `manual-lookup`, or `keyword-fallback`) so the user knows which results are precise vs. fuzzy.
+
+---
+
 ## Phase M1: Resolve Advertiser Page IDs
 
 **Goal:** Convert competitor business names into Meta Page IDs. Page-ID-locked searches (`search_page_ids`) are far more accurate than keyword searches and are the default search method.
@@ -126,10 +150,16 @@ curl -s "https://graph.facebook.com/v18.0/ads_archive?search_terms=INCUMBENT_NAM
 
 **Why this matters:** This is the highest-signal data in the entire research flow. Attack ads reveal: pricing pressure points, product weaknesses, positioning gaps, and what differentiated messaging is landing with the market.
 
-**For Jybr's canonical run, attack passes to execute:**
-- `search_terms=Gorgias` → filter out Gorgias's own page → shows Hoop AI, Brandwise, etc.
-- `search_terms=Podium` → shows home-services competitors attacking Podium
-- `search_terms=Weave` → shows dental/healthcare competitors
+**Selecting attack-pass targets:**
+
+- If `attack_pass_targets` was provided as input, use that list verbatim.
+- Otherwise, auto-select the largest competitor per vertical from Phase M2 results — measured by active ad count, longest run-length, and (when known) fan count. One target per vertical minimum; up to two per vertical if the field is highly competitive.
+- Run one attack pass per selected target. Document the target list at the top of the attack-pass section in the output.
+
+**Example (illustrative only — these are the targets that surfaced in past Jybr research; do NOT reuse them unless they match the actual competitive landscape of the current request):**
+- `search_terms=Gorgias` → filter out Gorgias's own page → reveals attack ads from challengers
+- `search_terms=Podium` → reveals home-services competitors attacking Podium
+- `search_terms=Weave` → reveals dental/healthcare competitors
 
 ---
 
@@ -169,9 +199,11 @@ After producing per-vertical tables, pull back to answer:
 3. **Which verticals are highest-pressure (most attack ads)?** This signals where price sensitivity and competitive switching is highest -- which affects which verticals Jybr should position most aggressively.
 4. **What's the biggest creative gap?** What emotional angle, format, or positioning is nobody using?
 
-### Ad-Angle Recommendations for Jybr
+### Ad-Angle Recommendations for [client_name]
 
-Based on the research, generate 5 specific Meta ad-angle recommendations. Each must include:
+Use the resolved client name from Phase 0 in the section header. If no client was provided, use `[Generic Vertical]` and explicitly flag that recommendations are vertical-generic, not client-specific.
+
+Based on the research, generate 5 specific Meta ad-angle recommendations grounded in the client's USPs (from Phase 0) and the gaps surfaced in cross-vertical analysis. Each must include:
 - **Angle name** (short label)
 - **Inspired by** (which competitor pattern or gap it responds to)
 - **Suggested headline** (for Meta -- no character limit like Google, aim for 40-60 chars for feed ads)
@@ -211,11 +243,19 @@ INSERT INTO ads_knowledge (
 
 Run one INSERT per vertical. For the cross-vertical summary, use `vertical = 'cross-vertical'`.
 
-**Before each INSERT, run:**
+**Before each INSERT, run a duplicate check directly on `ads_knowledge`.** Note: `validate_new_knowledge()` validates against `agent_knowledge` only, not `ads_knowledge` — a manual check is required here:
+
 ```sql
-SELECT validate_new_knowledge('competitor_research', '[title]', ARRAY['competitor-research', 'meta-ad-library']);
+SELECT id, title, created_at
+FROM ads_knowledge
+WHERE platform = 'meta'
+  AND knowledge_type = 'competitor_research'
+  AND vertical = '[vertical]'
+  AND (client_id = '[client_id]'::uuid OR (client_id IS NULL AND '[client_id]' IS NULL))
+  AND created_at > NOW() - interval '7 days';
 ```
-If BLOCKED, UPDATE the existing row instead.
+
+If a row is returned, UPDATE that row's `content` and `tags` instead of INSERTing — prevents duplicate research within a rolling 7-day window. If no row is returned, proceed with the INSERT above.
 
 ---
 

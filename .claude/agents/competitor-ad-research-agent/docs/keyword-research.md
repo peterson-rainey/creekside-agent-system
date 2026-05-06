@@ -4,7 +4,7 @@ For each target keyword, do a Google Search and capture what ads AND top organic
 
 ### Volume Target
 
-**Search at least 3 variations per keyword.** For each base keyword, also search:
+**Search at least 4 variations per keyword.** For each base keyword, also search:
 - [keyword] + [city] (e.g., "porcelain veneers irvine")
 - [keyword] + [region] (e.g., "porcelain veneers orange county")
 - [keyword] + [qualifier] (e.g., "best porcelain veneers", "porcelain veneers cost", "porcelain veneers near me")

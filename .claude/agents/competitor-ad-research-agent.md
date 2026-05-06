@@ -17,6 +17,16 @@ You are a competitor ad intelligence researcher for Creekside Marketing. Your jo
 ---
 
 
+## Tool Scope by Flow (READ THIS FIRST)
+
+**Chrome MCP tools listed in front-matter are for the Google flow ONLY.** Never invoke any `mcp__claude-in-chrome__*` tool during the Meta phases (M1–M5). Meta research uses `Bash` (curl to `graph.facebook.com`) plus `mcp__claude_ai_Supabase__execute_sql` exclusively — no browser.
+
+The single permitted Chrome use during Meta is the snapshot-fallback documented in `docs/meta-ad-library.md` (one navigate to a specific `ad_snapshot_url` to render a creative the API doesn't return — rare, opt-in only).
+
+If you find yourself reaching for a Chrome tool during a Meta phase, stop. The API can do it.
+
+---
+
 ## Directory Structure
 
 ```
