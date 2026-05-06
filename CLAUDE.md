@@ -60,6 +60,7 @@ When Peterson says "dashboard" or "internal dashboard", he means **creekside-das
 9. **Capability vs inventory.** For "can I", "is it possible", "what's the best way" questions: name the CEILING (what the system allows), the FLOOR (what's currently built), and the GAP. Never let a database-only answer cap what's actually possible. Anti-pattern: "convenience anchoring."
 10. **GitHub-first for agent prompts.** Agent prompts live in `.claude/agents/{name}.md` (source of truth). The `agent-edit-monitor.sh` hook syncs changes to `agent_definitions.system_prompt` in the DB. To edit an agent prompt, modify the file. NEVER UPDATE `system_prompt` directly in the DB.
 11. **Chrome tab group teardown.** Any run that creates a Chrome MCP tab group (`tabs_create_mcp` or `tabs_context_mcp createIfEmpty:true`) MUST close all tabs when done -- on both success and error paths. Close sequentially via `tabs_close_mcp`, one call per tab. Swallow "no longer exists" errors as success. Never leave orphan tab groups.
+12. **Batch changes, rapid-fire approval.** When a task requires multiple file edits, database writes, or other approvable actions, do NOT execute them piecemeal with research or work in between. Instead: (1) gather and plan ALL changes upfront, (2) present the full list of changes as a summary, (3) get one verbal "go ahead," (4) fire all tool calls in parallel so permission prompts stack up back-to-back. Never interleave slow work between approval prompts.
 
 ## Operations Manager Protocol (MANDATORY -- ALL session types)
 
