@@ -136,6 +136,18 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | data-promotion-agent | Promote contributor data to authoritative dataset |
 | sop-refinement-agent | Auto-refine SOPs from session execution data (scheduled) |
 
+## Decision Frameworks (formats to use, not agents to spawn)
+
+When a request triggers one of the patterns below, USE the named format. These are not agents — they are output structures that produced unusually clear results. Pull the canonical version from `agent_knowledge` before applying.
+
+| Pattern in request | Format to use | Pull from |
+|--------------------|---------------|-----------|
+| "Should we do X?" / proposing operating norms / pitching SOPs / proposing workflow changes / decision recommendations | **What-Why-When-Who-How-Metric-Cost-Implementation** (8 sections, parallel structure across multiple ideas, sequenced rollout when proposing >1) | `SELECT content FROM agent_knowledge WHERE title = 'Idea Format: What-Why-When-Who-How-Metric-Cost-Implementation Template'` |
+
+**When NOT to use:** quick lookups, factual claims, client-facing copy. The format is internal-decision oriented and overkill for everything else.
+
+**Why it works (per Peterson 2026-05-06):** Forces parallel structure across ideas, names failure mode explicitly (not just "this would be good"), quantifies cost in hours, ties to existing data for the metric, names specific people and artifacts, sequences rollout by ascending cost. The fixed-section pattern catches vagueness automatically.
+
 ## Scheduled-Only (not directly invoked)
 
 | Agent | Purpose |
