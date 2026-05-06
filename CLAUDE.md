@@ -108,6 +108,9 @@ When in doubt about whether an agent exists for a QUERY, run the lookup. The cos
 - If no agent exists but one should → tell the user and propose building one
 - If classified as simple QUERY/META/internal work → handle directly, no agent needed
 
+**Step 3.5: Apply decision-format pattern (if request is a recommendation).**
+For "should we do X?" requests, operating-norm proposals, SOP pitches, or workflow-change recommendations — pull `agent_knowledge` row titled "Idea Format: What-Why-When-Who-How-Metric-Cost-Implementation Template" and apply the 8-section format. This catches vagueness automatically. Skip for routine lookups.
+
 **Step 4: QC before presenting (non-negotiable for external deliverables).**
 Any output that will be acted on or shared externally MUST go through `qc-reviewer-agent` before presenting. This includes: proposals, client reports, ad copy, client communications, strategies, agent prompts, SOPs.
 
