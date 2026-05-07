@@ -354,6 +354,17 @@ VALUES (
 
 ### 6d. If Scheduled Agent, seed scheduled_agents
 
+If this agent is a **data pipeline** (ingests external data into a Supabase table), also register it in monitoring:
+
+1. Add a row to `user_pipeline_config` with the pipeline_type, user_id, and config.
+2. Add a CASE line to `get_all_pipeline_status()` mapping the new `pipeline_type` to the `scheduled_agents.name`. Without this, the pipeline won't appear in status checks and failures will be invisible.
+
+Reference existing entries for the exact format:
+```sql
+SELECT pipeline_type, config FROM user_pipeline_config LIMIT 3;
+SELECT prosrc FROM pg_proc WHERE proname = 'get_all_pipeline_status';
+```
+
 ### 6e. Git Commit + Push (HANDLED BY HOOKS -- skip)
 
 ---
