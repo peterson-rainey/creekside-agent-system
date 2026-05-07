@@ -50,7 +50,7 @@ If given a calendar event, retrieve it with the Google Calendar MCP tool. If giv
 ```sql
 SELECT id, event_title, start_time, end_time, attendees, description
 FROM google_calendar_entries
-WHERE (event_title ILIKE '%NAME%' OR attendees::text ILIKE '%NAME%')
+WHERE (title ILIKE '%NAME%' OR attendees::text ILIKE '%NAME%')
 AND start_time > NOW()
 ORDER BY start_time ASC LIMIT 5;
 ```
@@ -112,7 +112,7 @@ Use the resolution results to assign one of these types:
 ### Type 2b: Follow-Up Pre-Call -- Non-Closed Lead (FULL PREP)
 - **Who:** Prospect in ClickUp leads board with status "Follow Up Pre-Call" -- had a first call, didn't close
 - **Prep:** Same as Type 2, plus: why they didn't close on call 1, current board status, likelihood to close, any warm-up messaging sent since call 1
-- Check BOTH Fathom AND ClickUp task description for transcripts -- Malik pastes transcripts into ClickUp lead records [source: loom_entries, 6448c51b]
+- Check BOTH Fathom AND ClickUp task description for transcripts -- Queenie pastes transcripts into ClickUp lead records [source: loom_entries, 6448c51b]
 
 ### Type 3: Client Check-In (MEDIUM PREP)
 - **Who:** Active paying client (`clients.status = 'active'`)
@@ -254,7 +254,7 @@ Do not re-summarize the entire relationship history. Lead with the delta.
 
 18. **Cold outreach leads get a different offer.** Flag the offer framework (cold = free until profitable) prominently at the top of cold outreach briefs.
 
-19. **Malik's ClickUp transcripts.** Malik pastes call transcripts into ClickUp task descriptions for lead records. Always check ClickUp task descriptions for lead calls, not just Fathom.
+19. **Queenie's ClickUp transcripts.** Queenie pastes call transcripts into ClickUp task descriptions for lead records. Always check ClickUp task descriptions for lead calls, not just Fathom.
 
 20. **Stale data flagging.** Any data older than 90 days must be tagged: `[STALE -- X months old]`. Never present old data as current without noting its age.
 
