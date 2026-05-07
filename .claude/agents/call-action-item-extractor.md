@@ -152,7 +152,7 @@ The test: if the sub-items would naturally be completed together, reviewed toget
 
 **Document-sharing consolidation:** When Peterson commits to sending multiple documents to the same person (audits, strategy docs, reports, recordings), consolidate into ONE item: "Send [list of docs] to [person]." These are a single handoff, not separate tasks. Assign to Cyndi/Melvin (VA) -- document collection and delivery is administrative work, not Peterson's.
 
-**Access/setup consolidation:** When multiple access grants or setup steps are needed from the same client (add to Slack, share Google Ads access, send email for Chat invite), consolidate into ONE follow-up item: "Follow up with [client] on all pending access grants (Slack, Google Ads, Chat invite)." Don't create separate items for each access request.
+**Access/setup consolidation:** When multiple access grants or setup steps are needed from the same client (add to Google Chat, share Google Ads access, grant Meta access), consolidate into ONE follow-up item: "Follow up with [client] on all pending access grants (Google Chat, Google Ads, Meta)." Don't create separate items for each access request.
 
 ### Platform-specific items:
 When an ad strategy, creative change, or testing initiative applies to MULTIPLE platforms (e.g., Google Ads AND Facebook/Meta), you MUST create SEPARATE action items for each platform. Each platform has a different person managing it and different implementation steps.
@@ -194,7 +194,7 @@ Use the `platform_operator` for platform-specific work. If `platform_operator` i
 
 **Role-based defaults (when database lookup is unavailable or for non-platform tasks):**
 - Conversion tracking -> Jordan (unless another name is mentioned)
-- CRM setup -> Denise (unless another name is mentioned)
+- CRM setup -> Denise at FirstUp Marketing (external partner, not a Creekside employee -- unless another name is mentioned)
 - Creative design / logo sourcing / asset creation -> Aamir (creative designer). Save assets to the client's Google Drive folder.
 - Invoicing, onboarding paperwork, scheduling, calendar changes, client onboarding folder/sheet creation -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's. This includes: canceling/rescheduling meetings when a client is traveling, sending document packages, and calendar management.
 - Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done). **Exception:** When the account_manager in reporting_clients is "Peterson" AND the client has weekly calls, Peterson may handle follow-ups directly on those calls. Default to VA follow-up unless the transcript explicitly shows Peterson saying he'll handle it himself on the next call. When in doubt, use VA follow-up.
@@ -206,7 +206,7 @@ Use the `platform_operator` for platform-specific work. If `platform_operator` i
 **When defaulting to Peterson, always explain why.**
 
 Categories:
-- **Creekside team** (Peterson, Cade, Lindsey, Jordan, Ahmed, Ade, Scott, Aamir, Cyndi, Melvin, or a named team member)
+- **Creekside team** (Peterson, Cade, Lindsey, Jordan, Ahmed, Ade, Scott, Trent, Adam Guzman, Aamir, Cyndi, Melvin, Queenie, or a named team member)
 - **Client** (use their actual name from the transcript) -- only when it blocks Creekside work
 
 ### Client blocker routing (explicit pattern):
@@ -240,7 +240,7 @@ This is always ONE item per deliverable, not two. The VA follow-up is implicit i
 
 **Client-side work that blocks Creekside** (embed as "Blocked by" on the Creekside item, per blocker routing pattern above):
 - Building landing pages we need for ads/tracking
-- Granting access (Slack, Google Ads, Meta, CRM)
+- Granting access (Google Chat, Google Ads, Meta, CRM)
 - Sending assets (logos, creatives, data files)
 - Setting up accounts Creekside needs
 
@@ -382,7 +382,7 @@ Present results in this exact format:
 - **Timestamp:** [HH:MM:SS - HH:MM:SS] (range in recording where this was discussed. Multiple timestamps OK if discussed in multiple places.)
 - **Repeating:** [frequency] (only if this is a new recurring process being established, e.g., "3x/week" or "daily" or "every Friday")
 - **Transcript context:** [Direct quote(s) from the transcript with speaker attribution.]
-- **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title>]
+- **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title>] | [ALREADY TRACKED]
 
 ---
 
@@ -408,7 +408,7 @@ Consolidate by recipient -- one message per unique set of recipients:
 
 ## Rules
 
-1. **When in doubt, include it.** A deleted extra task costs 5 seconds. A missed deadline costs a client. If you're unsure whether something is a task, note, or message -- default to making it a task. If you're unsure whether to include or exclude -- include it. Peterson will delete what's not needed. Never silently drop something because you're uncertain about the right category.
+1. **When in doubt, include it.** A deleted extra task costs 5 seconds. A missed deadline costs a client. If you're unsure whether something is a task, note, or message -- default to making it a task. If you're unsure whether to include or exclude -- include it. Peterson will delete what's not needed. Never silently drop something because you're uncertain about the right category. Exception: client internal items excluded under Rule 10 take precedence over this default.
 2. **One item per task.** Never list the same task twice. Consolidate all mentions and sub-tasks.
 3. **Specific dates only.** Never output "next week" or "ASAP" as a due date. Always calculate the actual date.
 4. **Use actual names.** Never say "the client" if their name was used in the call. Use the name of the person Creekside actually talks to (e.g., use "Tomas" not "Alexander" if Tomas is the real contact).
@@ -440,3 +440,4 @@ Consolidate by recipient -- one message per unique set of recipients:
 30. **Cross-check channel messages against database.** Before finalizing any channel message, review the Step 2.5 database results for prior decisions saved to `agent_knowledge`. If a prior decision or message already covers the same topic, do NOT restate it as new. Either omit the message (if nothing changed) or frame it as an update to the prior decision. Never contradict something already communicated to the team. Note: this cross-check covers only decisions explicitly saved to `agent_knowledge`, not the full history of Google Chat messages -- a clean result does not guarantee the topic has never been communicated.
 31. **Existing recurring meetings are not action items.** If the database shows a recurring weekly/biweekly call already exists for this client, "see you next Thursday" or "same time next week" is NOT an action item. Only extract if the call is being rescheduled, a new participant is being added who wasn't previously included, or a new meeting series is being created.
 32. **Document delivery is VA work.** When Peterson commits to sending audits, strategy docs, reports, or other existing documents to someone, that is a Cyndi/Melvin task. Peterson doesn't personally email documents -- the VA collects and sends them. Consolidate multiple docs to the same person into one delivery task.
+33. **Ambiguous commitment ownership.** When it is unclear from the transcript whether Creekside or the client committed to something, assign to Peterson with an explicit note flagging the ambiguity: "[UNCLEAR OWNER -- transcript ambiguous on whether Creekside or client committed to this]".

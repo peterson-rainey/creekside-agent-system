@@ -88,7 +88,7 @@ WHERE name ILIKE '%LEAD_NAME%' OR business_name ILIKE '%LEAD_NAME%'
 ORDER BY created_at DESC LIMIT 5;
 ```
 
-#### ClickUp Lead Task (check for pasted transcripts -- Malik pastes them here)
+#### ClickUp Lead Task (check for pasted transcripts -- Queenie pastes them here)
 ```sql
 SELECT clickup_task_id, task_name, status, ai_summary, due_date
 FROM clickup_entries
