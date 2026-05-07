@@ -1,65 +1,241 @@
 ## Meta Ad Library Research (Phases M1–M5)
 
-**No Chrome. No browser. No permission prompts.** All Meta Ad Library research uses the official Meta Ad Library API via curl. This is the entire point -- authenticated HTTP requests return structured JSON, not scraped DOM.
-
 ---
 
-## Access Token Setup
+## Section A: Path Selection (check this first)
 
-The Meta Ad Library API requires an App Access Token (not a user token).
+Before doing anything else, check whether a Meta API token is available:
 
-**Resolution order:**
-1. Check if `META_AD_LIBRARY_TOKEN` is set as an environment variable: `echo $META_AD_LIBRARY_TOKEN`
-2. Check if PipeBoard has stored Meta app credentials: query `agent_knowledge WHERE title ILIKE '%meta%app%token%' OR title ILIKE '%pipeBoard%meta%'`
-3. If neither: the agent cannot proceed with Meta research. Tell the user: "Meta Ad Library API requires an app access token. Set `META_AD_LIBRARY_TOKEN` as an env var or store it in agent_knowledge with title 'Meta Ad Library App Token'. To get one: create a Meta app at developers.facebook.com, enable the Ad Library API product, and use the App ID + App Secret to generate an app access token via `GET https://graph.facebook.com/oauth/access_token?client_id=APP_ID&client_secret=APP_SECRET&grant_type=client_credentials`."
-
-**Store the token in a variable for the session:**
 ```bash
-TOKEN=$(echo $META_AD_LIBRARY_TOKEN)
-# or retrieve from DB and use in subsequent calls
+echo $META_AD_LIBRARY_TOKEN
 ```
 
----
+| Result | Path to use |
+|--------|-------------|
+| Empty / unset | **Section B: Chrome path (default)** |
+| Returns a token value | You may use **Section C: API path (opt-in)** OR still use Chrome -- both work. Chrome is the simpler UX. |
 
-## Prerequisites: API Access Tiers and App Review
-
-**The Meta Ad Library API and `pages/search` endpoint have access tiers — read this before the first run with a fresh app.**
-
-### Ad Library API tiers
-
-- **Basic tier (no App Review needed):** Returns ads from your own app's pages, plus political/issue ads from any advertiser. Limited surface for commercial-ad research.
-- **Standard tier (requires App Review):** Returns ads from any commercial advertiser — the level needed for real competitor research. Approval is via Meta App Dashboard → App Review → Permissions and Features → request `ads_read`.
-
-**If basic tier is the only access available**, the agent will return mostly empty results for commercial advertisers and surface a `(#10) This endpoint requires the 'ads_read' permission` error. Tell the user: "Your Meta app needs App Review approval for `ads_archive` to research commercial competitors. Submit via Meta for Developers > App Dashboard > App Review > Permissions and Features."
-
-### `pages/search` endpoint
-
-**This endpoint is restricted.** Meta deprecated open access to `pages/search` in 2021 — it now requires `pages_read_engagement` permission, which itself requires App Review. A brand-new Meta app will hit a permission error on the first call.
-
-**Fallback when `pages/search` returns a permission error or empty results:**
-
-1. **Manual page ID lookup via the public Facebook page.** Navigate to `https://www.facebook.com/COMPANY_NAME` (one navigate, ad library not involved). Read the page ID from the page source — search for `"profile_id":"` followed by a numeric value, or `entity_id`, or the redirect URL containing `/profile.php?id=PAGE_ID`. Document the page ID you found.
-2. **Brand Collabs Manager / Meta Business Suite lookup** if the agency has page-level access.
-3. **Keyword-search-only fallthrough:** drop into Phase M2's `search_terms=NAME` mode and flag every result as `LOW confidence -- keyword fallback`. Acceptable but less precise.
-4. Document the resolution method used per competitor in the output (`page-id-locked`, `manual-lookup`, or `keyword-fallback`) so the user knows which results are precise vs. fuzzy.
+**Default is always Chrome.** The API path requires a Meta app with App Review approval -- significant setup friction. Chrome requires a one-time "Always allow facebook.com" approval in Claude Code's Chrome MCP settings, then no further prompts.
 
 ---
 
-## Phase M1: Resolve Advertiser Page IDs
+## Section B: Chrome Path (Primary -- Default)
 
-**Goal:** Convert competitor business names into Meta Page IDs. Page-ID-locked searches (`search_page_ids`) are far more accurate than keyword searches and are the default search method.
+### Permission Setup (one-time)
 
-For each competitor name, run a pages search:
+The Meta Ad Library is on `facebook.com`. The first time `navigate` is called for a `facebook.com` URL, Chrome MCP will prompt for permission. Grant "Always allow for facebook.com" in the Claude Code MCP settings popup. After that, all subsequent facebook.com navigates in this and future sessions are prompt-free.
+
+If the prompt fires mid-run (user hasn't set "Always allow" yet):
+1. The navigate call will block waiting for approval.
+2. Tell the user to click "Always allow for facebook.com" in the Claude Code permission popup.
+3. After they grant it, retry the navigate. Do not restart the session.
+
+### Tab Management
+
+```
+1. tabs_context_mcp         -- verify active tab group at session start
+2. tabs_create_mcp          -- create a dedicated tab for Ad Library browsing
+3. [research -- see below]
+4. tabs_close_mcp           -- MANDATORY teardown, every tab, sequentially
+                               Swallow "tab no longer exists" errors as success.
+```
+
+Create one tab per advertiser if running sequential research, or reuse a pool of 2-3 tabs for multi-advertiser runs. Guard against Chrome window-switching: if the run involves long waits (e.g., scroll-wait loops), call `tabs_context_mcp` again after the wait to confirm the tab group hasn't shifted.
+
+**Teardown is mandatory regardless of success or failure.** If the run errors out mid-way, still close all tabs you opened before surfacing the error.
+
+### URL Pattern
+
+```
+https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=COMPETITOR_NAME&search_type=keyword_unordered&media_type=all
+```
+
+Replace `COMPETITOR_NAME` with the URL-encoded competitor name (spaces as `+` or `%20`).
+
+For page-locked search (when you have the advertiser's Facebook Page handle):
+```
+https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=COMPETITOR_NAME&search_type=advertiser&media_type=all
+```
+
+### Page Rendering
+
+- **Wait 4-5 seconds after navigate** before reading. The Ad Library is canvas-rendered and lazy-loads ad results.
+- **Use `read_page` with `filter: all` and `depth: 7` (or 8 if results are sparse).** This is the proven extraction method -- it returns ad block data cleanly.
+- Set `max_chars: 35000` to avoid overflow. If overflow still occurs, drop depth to 6.
+- **Do NOT use `get_page_text`** -- it fails on Meta's heavy DOM ("page too large" error).
+- **Do NOT use `javascript_tool`** -- Facebook blocks JS execution from extensions on facebook.com pages.
+
+### Search Modes
+
+**Keyword search** (`search_type=keyword_unordered`) -- loose, surfaces all advertisers running ads mentioning the query term. Use this for:
+- Initial discovery of who is advertising in a space
+- The attack-pass (Phase M3) -- intentionally loose to find attackers
+- When you don't have the advertiser's Page handle
+
+**Page-locked search** (`search_type=advertiser`) -- precise, returns only ads from the advertiser whose page name matches the query. Use this when you want to research a specific competitor's own ad library. Note: Meta sometimes silently downgrades this to keyword search. Verify by checking the page header after load -- it should say "Ads for [exact advertiser name]" not a broad results count.
+
+**Page Transparency workaround (most precise):** Navigate directly to the advertiser's Facebook Page, then click "Page Transparency" > "View in Ad Library." This is the most reliable page-locked method because it uses the Page's internal ID directly, not a name match.
+
+```
+1. Navigate to: https://www.facebook.com/{page_handle}/
+2. Wait 3 seconds for page load
+3. read_page to find "Page Transparency" section and "View in Ad Library" link
+4. navigate to that link
+5. Wait 4 seconds
+6. read_page filter=all depth=7 max_chars=35000
+```
+
+### Data Extraction Per Ad
+
+Each ad in the `read_page` output appears as a structured accessibility block. Walk the tree by these markers:
+
+| Data point | Where to find it in read_page output |
+|---|---|
+| `ad_id` | `Library ID: NNN` text node |
+| `start_date` | `Started running on DATE` text node |
+| `status` | `Active` or `Inactive` label |
+| `advertiser_name` | `image "X"` or `link href="https://www.facebook.com/{handle}/"` |
+| `page_handle` | The `{handle}` portion of the advertiser's Facebook page link |
+| `body_text` | `button > generic` block (first occurrence per ad) |
+| `headline` | Subsequent `button > generic` block (second occurrence) |
+| `sub_headline` | Third `button > generic` block if present |
+| `cta_text` | Last `button > generic` block (often "Learn More", "Shop Now", etc.) |
+| `destination_url` | `link href="https://l.facebook.com/l.php?u=..."` (decode the `u=` parameter) |
+
+The pattern is consistent across ad blocks. Build a parser that walks these markers for each `Library ID:` occurrence.
+
+**Record per ad:**
+```
+Library ID: [ad_id]
+Advertiser: [name]
+Page Handle: [handle from link href]
+Status: Active / Inactive
+Started: [date]
+Body: [verbatim text]
+Headline: [verbatim text]
+Sub-headline: [verbatim text, if present]
+CTA: [button text]
+Destination URL: [decoded URL]
+```
+
+### Pagination (Scrolling)
+
+Meta's Ad Library lazy-loads additional ads as you scroll. After the initial `read_page`:
+
+1. `computer action=scroll` -- scroll down at page center coordinates
+2. Wait 4-5 seconds (lazy-load fires after scroll)
+3. `read_page filter=all depth=7` again
+4. Count new Library IDs found that weren't in the previous read
+5. Repeat steps 1-4 until 3 consecutive scrolls produce zero new ads
+
+Stop and move to the next competitor. Do not loop indefinitely.
+
+### Phase M1 via Chrome: Resolve Advertiser Identifiers
+
+For each competitor name, do one of the following to establish a precise page handle:
+
+**Method 1 (preferred): Direct URL test**
+- Navigate to `https://www.facebook.com/{guessed_handle}/` (e.g., `gorgiasio`, `gorgias.io`, `gorgiasapp`)
+- If the page loads a real Facebook Page, capture the handle from the URL after any redirect
+- Record confidence: HIGH if the page name exactly matches the competitor name
+
+**Method 2: Keyword search + inspect results**
+- Navigate to Ad Library with `search_type=keyword_unordered&q=COMPETITOR_NAME`
+- In the `read_page` output, find the first advertiser link (`link href="https://www.facebook.com/{handle}/"`)
+- Cross-check: does the Page name match the competitor we expect?
+- Record confidence: HIGH if exact match, MEDIUM if near-match (e.g., "Gorgias Inc" vs "Gorgias"), LOW if name is ambiguous
+
+**Method 3: Page Transparency path**
+- Navigate to `https://www.facebook.com/{name_as_slug}/`
+- Look for the "Page Transparency" section in `read_page` output
+- The Ad Library link in Page Transparency contains the numeric Page ID if needed
+
+**Record per competitor:**
+```
+Competitor: [name]
+FB Page Handle: [handle]
+Page Name (as shown): [exact name from FB]
+Confidence: HIGH / MEDIUM / LOW
+Resolution method: direct-url / keyword-search / page-transparency
+```
+
+### Phase M2 via Chrome: Pull Ads Per Advertiser
+
+For each competitor with a resolved handle:
+
+1. Navigate to the page-locked Ad Library URL (using `search_type=advertiser` or the Page Transparency path)
+2. Wait 4-5 seconds
+3. `read_page filter=all depth=7 max_chars=35000`
+4. Extract all ad blocks (by `Library ID:` markers)
+5. Scroll and read until no new ads appear (3 consecutive empty scrolls)
+6. If `search_type=advertiser` silently downgrades (page header shows broad results), switch to the Page Transparency method
+
+For competitors without a confirmed handle, use `search_type=keyword_unordered` and flag all results as `MEDIUM confidence -- keyword search`.
+
+### Phase M3 via Chrome: Competitive Attack Pass
+
+**Goal:** Find advertisers who are attacking an incumbent by name in their ad copy.
+
+For each attack-pass target (default: the largest competitor per vertical by ad count):
+
+1. Navigate to: `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=INCUMBENT_NAME&search_type=keyword_unordered&media_type=all`
+2. Wait 4-5 seconds
+3. `read_page filter=all depth=7 max_chars=35000`
+4. Extract all ad blocks
+5. **Post-filter:** Remove any ads where the `page_handle` in the advertiser link matches the incumbent's own handle. What remains is the attack-ad landscape.
+6. Scroll and read until 3 consecutive scrolls produce no new ads
+
+This is exactly how the Gorgias / Brandwise / Hoop AI / Noem.AI attack-pass was run in the session that produced this Chrome-first refactor. The `keyword_unordered` mode's looseness is the feature here -- it finds any advertiser whose ad copy contains the incumbent's name.
+
+**Why this matters:** Attack ads reveal pricing pressure points, product weaknesses, positioning gaps, and what differentiated messaging is landing. This is the highest-signal data in the research flow.
+
+**Selecting attack-pass targets:**
+- If `attack_pass_targets` was provided as input, use that list verbatim.
+- Otherwise, auto-select the largest competitor per vertical (by active ad count from Phase M2). One target per vertical minimum; up to two per vertical in highly competitive spaces.
+
+---
+
+## Section C: API Path (Opt-In -- when META_AD_LIBRARY_TOKEN is set)
+
+**Path B: API (opt-in, when `META_AD_LIBRARY_TOKEN` is set in the environment).**
+
+Use this path when the token is available and you prefer structured JSON over DOM parsing. The API path requires App Review for standard-tier access (commercial competitor research). See prerequisites below before using with a fresh app.
+
+### Access Token Setup
+
+**Resolution order:**
+1. Check env var: `echo $META_AD_LIBRARY_TOKEN`
+2. Check `agent_knowledge WHERE title ILIKE '%meta%app%token%' OR title ILIKE '%pipeBoard%meta%'`
+3. If neither: route to Chrome (Section B). Do not attempt API research without a token.
+
+```bash
+TOKEN=$(echo $META_AD_LIBRARY_TOKEN)
+```
+
+### Prerequisites: API Access Tiers and App Review
+
+**Ad Library API tiers:**
+
+- **Basic tier (no App Review needed):** Returns ads from your own app's pages, plus political/issue ads. Limited for commercial research.
+- **Standard tier (requires App Review):** Returns ads from any commercial advertiser. Required for real competitor research. Request `ads_read` via Meta App Dashboard > App Review > Permissions and Features.
+
+If basic tier only, you'll see `(#10) This endpoint requires the 'ads_read' permission` for commercial advertisers. Tell the user: "Your Meta app needs App Review approval for `ads_archive` to research commercial competitors."
+
+**`pages/search` endpoint:** Requires `pages_read_engagement` permission (App Review). A fresh Meta app will hit a permission error. Fallback: use Chrome (navigate to `https://www.facebook.com/COMPANY_NAME`) to find the page ID from the page source.
+
+### Phase M1 via API: Resolve Advertiser Page IDs
+
+For each competitor name:
 
 ```bash
 curl -s "https://graph.facebook.com/pages/search?q=COMPETITOR_NAME&type=PAGE&fields=id,name,fan_count,verification_status,category&limit=10&access_token=$TOKEN"
 ```
 
 **Disambiguation rules (in priority order):**
-1. `verification_status = "blue_verified"` -- prefer verified pages first
-2. Name match exactness -- exact or near-exact match beats partial
-3. `fan_count` -- if multiple unverified matches, prefer larger fan count as signal of the real business
-4. Category alignment -- if you know the competitor's industry, prefer pages with matching category
+1. `verification_status = "blue_verified"` -- prefer verified pages
+2. Name match exactness -- exact beats partial
+3. `fan_count` -- larger fan count signals the real business when multiple unverified matches exist
+4. Category alignment -- match industry/category if known
 
 **Record per competitor:**
 ```
@@ -68,19 +244,15 @@ Page Name: [exact FB page name]
 Page ID: [numeric ID]
 Fan Count: [number]
 Verified: [yes/no]
-Confidence: [HIGH/MEDIUM/LOW]
-Resolution method: [page-id-locked / keyword-fallback]
+Confidence: HIGH / MEDIUM / LOW
+Resolution method: page-id-locked / keyword-fallback
 ```
 
-**Fallback:** If no good page ID match, fall back to keyword search in Phase M2 and flag `[LOW confidence -- keyword fallback]`.
+**Fallback when `pages/search` fails:** Fall back to keyword search in Phase M2 and flag `[LOW confidence -- keyword fallback]`.
 
-**Watch-out -- same-name businesses:** "Hatch" (home-services CRM at usehatchapp.com) vs. multiple unrelated businesses named Hatch. When in doubt:
-- Check if the page URL or about section mentions the known domain
-- If still ambiguous, note both candidates and flag for human review
+**Watch-out -- same-name businesses:** "Hatch" (home-services CRM) vs. multiple unrelated businesses. When ambiguous, check the page URL/about section for the known domain.
 
----
-
-## Phase M2: Pull Ads Per Advertiser
+### Phase M2 via API: Pull Ads Per Advertiser
 
 **Default parameters:**
 - Countries: `US` only
@@ -100,13 +272,14 @@ curl -s "https://graph.facebook.com/v18.0/ads_archive?search_page_ids=PAGE_ID&ad
 curl -s "https://graph.facebook.com/v18.0/ads_archive?search_terms=COMPETITOR_NAME&search_type=KEYWORD_EXACT_PHRASE&ad_reached_countries=%5B%27US%27%5D&ad_active_status=ACTIVE&fields=id,page_name,page_id,ad_creative_bodies,ad_creative_link_titles,ad_creative_link_captions,ad_creative_link_descriptions,ad_delivery_start_time,ad_delivery_stop_time,ad_snapshot_url,publisher_platforms,languages&limit=50&access_token=$TOKEN"
 ```
 
-**Pagination:** The response includes a `paging.cursors.after` value and a `paging.next` URL. If `paging.next` exists and you have fewer than 200 ads for a competitor, follow the cursor:
+**Pagination:** Follow `paging.cursors.after` if `paging.next` exists and you have fewer than 200 ads:
 
 ```bash
 curl -s "https://graph.facebook.com/v18.0/ads_archive?...&after=CURSOR_VALUE&access_token=$TOKEN"
 ```
 
 **For each ad, capture:**
+
 | Field | API Field | Notes |
 |---|---|---|
 | Ad ID | `id` | Unique identifier |
@@ -122,100 +295,60 @@ curl -s "https://graph.facebook.com/v18.0/ads_archive?...&after=CURSOR_VALUE&acc
 | Platforms | `publisher_platforms` | `["facebook","instagram","audience_network"]` |
 | Languages | `languages` | Array of language codes |
 
-**Known API limitations -- document these in the output:**
-- Spend and impressions fields (`spend`, `impressions`) return data only for political/issue ads. Commercial ads return null. This is not a bug.
-- Image and video assets are NOT returned directly. `ad_snapshot_url` renders the ad in a public preview page if needed.
-- Page demographics are not returned for commercial ads.
+**Known API limitations:**
+- Spend and impressions fields return data only for political/issue ads. Commercial ads return null. Not a bug.
+- Image and video assets are NOT returned directly. Use `ad_snapshot_url` to render a preview if needed.
+- Page demographics not returned for commercial ads.
 - Ads older than ~7 years may not appear.
 
 **Run length as performance proxy:**
 ```
 run_days = (ad_delivery_stop_time OR today's date) - ad_delivery_start_time
 ```
-Ads running 30+ days without stopping are likely performing. Ads running 90+ days are almost certainly winning creatives. Use this as the primary performance signal when spend data is unavailable.
+Ads running 30+ days are likely performing. 90+ days are almost certainly winning creatives.
 
----
+### Phase M3 via API: Competitive Attack Pass
 
-## Phase M3: Competitive Attack Pass
-
-**Goal:** Surface competitors attacking an incumbent by name in their ad copy.
-
-For each major incumbent in the verticals (e.g., Gorgias for e-com, Podium for home services), run a keyword search to find ads that MENTION that incumbent:
+For each major incumbent, search for ads that MENTION that incumbent:
 
 ```bash
 curl -s "https://graph.facebook.com/v18.0/ads_archive?search_terms=INCUMBENT_NAME&search_type=KEYWORD_UNORDERED&ad_reached_countries=%5B%27US%27%5D&ad_active_status=ACTIVE&fields=id,page_name,page_id,ad_creative_bodies,ad_creative_link_titles,ad_creative_link_descriptions,ad_delivery_start_time,ad_snapshot_url,publisher_platforms&limit=50&access_token=$TOKEN"
 ```
 
-**Post-filter step:** From the results, remove any ads from the incumbent's own page (filter out rows where `page_id` matches the incumbent's page ID). What remains is the competitive pressure landscape -- businesses actively targeting people who know the incumbent.
+**Post-filter:** Remove rows where `page_id` matches the incumbent's page ID. Remaining rows are the attack-ad landscape.
 
-**Why this matters:** This is the highest-signal data in the entire research flow. Attack ads reveal: pricing pressure points, product weaknesses, positioning gaps, and what differentiated messaging is landing with the market.
+**Selecting targets:** Same logic as Chrome path -- use `attack_pass_targets` input if provided, otherwise auto-select the largest competitor per vertical.
 
-**Selecting attack-pass targets:**
+### API Error Handling
 
-- If `attack_pass_targets` was provided as input, use that list verbatim.
-- Otherwise, auto-select the largest competitor per vertical from Phase M2 results — measured by active ad count, longest run-length, and (when known) fan count. One target per vertical minimum; up to two per vertical if the field is highly competitive.
-- Run one attack pass per selected target. Document the target list at the top of the attack-pass section in the output.
-
-**Example (illustrative only — these are the targets that surfaced in past Jybr research; do NOT reuse them unless they match the actual competitive landscape of the current request):**
-- `search_terms=Gorgias` → filter out Gorgias's own page → reveals attack ads from challengers
-- `search_terms=Podium` → reveals home-services competitors attacking Podium
-- `search_terms=Weave` → reveals dental/healthcare competitors
+| Error | Cause | Action |
+|---|---|---|
+| `Invalid OAuth access token` | Token expired or wrong format | Regenerate app access token and retry |
+| `Application request limit reached` | ~200 req/hr limit hit | Wait 15 min, then continue from where you left off |
+| `(#10) This endpoint requires the 'ads_read' permission` | App not approved for Ad Library | Tell user: go to Meta for Developers > App > Add Product > Ad Library API. May require App Review. |
+| Empty results from page-ID search | Wrong page ID, or page has no US ads | Try keyword fallback; flag in output |
 
 ---
 
-## Phase M4: Synthesis
+## Section D: Writeback to ads_knowledge (both paths)
 
-After collecting all data across all competitors and verticals, synthesize as follows.
+After completing the Meta research (via Chrome or API), save findings to the database. This step applies regardless of which path was used. Tag the source so data quality can be audited later.
 
-### Per-Vertical Comparison Table
+**Duplicate check first** (required before every INSERT -- `validate_new_knowledge()` only covers `agent_knowledge`, not `ads_knowledge`):
 
-For each vertical (e-com, home services, healthcare, agency), produce:
-
+```sql
+SELECT id, title, created_at
+FROM ads_knowledge
+WHERE platform = 'meta'
+  AND knowledge_type = 'competitor_research'
+  AND vertical = '[vertical]'
+  AND (client_id = '[client_id]'::uuid OR (client_id IS NULL AND '[client_id]' IS NULL))
+  AND created_at > NOW() - interval '7 days';
 ```
-## [Vertical Name] -- Meta Ad Analysis
 
-| Advertiser | Run Length (proxy) | Top Headline(s) | Body Copy Pattern | CTA | Format | Creative Tag |
-|---|---|---|---|---|---|---|
-| [name] | [X days / ongoing since YYYY-MM-DD] | [top 3 by run length] | [pattern summary] | [button text] | [Feed/Story/Reel] | [tag] |
-```
+If a row is returned, UPDATE that row's `content` and `tags` instead of INSERTing.
 
-**Creative tags to apply (tag each ad with the most applicable):**
-- `price-comparison` -- explicitly compares pricing against a competitor
-- `use-case-wedge` -- leads with a specific pain point or use case
-- `founder-led` -- features a real person, founder story, or human face
-- `stat-claim` -- leads with a number ("save 3 hours/week", "2x faster ROI")
-- `attack-ad` -- directly names a competitor in the copy
-- `social-proof` -- customer quotes, review counts, or customer logos
-- `feature-list` -- bullet-style list of features
-- `demo-hook` -- leads with showing the product in action
-- `urgency-offer` -- limited time, trial offer, or promotional window
-
-### Cross-Vertical Pattern Summary
-
-After producing per-vertical tables, pull back to answer:
-
-1. **What creative format is winning everywhere?** (e.g., "stat-claim hooks dominate across all 4 verticals")
-2. **What's the single most common CTA across active ads?** (e.g., "Start free trial" vs. "Book a demo")
-3. **Which verticals are highest-pressure (most attack ads)?** This signals where price sensitivity and competitive switching is highest -- which affects which verticals Jybr should position most aggressively.
-4. **What's the biggest creative gap?** What emotional angle, format, or positioning is nobody using?
-
-### Ad-Angle Recommendations for [client_name]
-
-Use the resolved client name from Phase 0 in the section header. If no client was provided, use `[Generic Vertical]` and explicitly flag that recommendations are vertical-generic, not client-specific.
-
-Based on the research, generate 5 specific Meta ad-angle recommendations grounded in the client's USPs (from Phase 0) and the gaps surfaced in cross-vertical analysis. Each must include:
-- **Angle name** (short label)
-- **Inspired by** (which competitor pattern or gap it responds to)
-- **Suggested headline** (for Meta -- no character limit like Google, aim for 40-60 chars for feed ads)
-- **Suggested body opening** (first 2 sentences)
-- **Why this will work** (what the research tells you)
-- **Format recommendation** (feed image / video / reel / story)
-
----
-
-## Phase M5: Save to ads_knowledge
-
-After producing the output, save the research to the database for future reuse.
+**INSERT (when no duplicate found):**
 
 ```sql
 INSERT INTO ads_knowledge (
@@ -235,61 +368,71 @@ INSERT INTO ads_knowledge (
   '[vertical name]',
   'Meta Ad Library Research: [vertical] -- [date]',
   '[full synthesis text]',
-  ARRAY['competitor-research', 'meta-ad-library', '[vertical]'],
-  'Meta Ad Library API v18.0',
+  ARRAY['competitor-research', 'meta-ad-library', '[vertical]', '[chrome-source OR api-source]'],
+  '[Meta Ad Library Chrome path OR Meta Ad Library API v18.0]',
   'verified'
 );
 ```
 
-Run one INSERT per vertical. For the cross-vertical summary, use `vertical = 'cross-vertical'`.
-
-**Before each INSERT, run a duplicate check directly on `ads_knowledge`.** Note: `validate_new_knowledge()` validates against `agent_knowledge` only, not `ads_knowledge` — a manual check is required here:
-
-```sql
-SELECT id, title, created_at
-FROM ads_knowledge
-WHERE platform = 'meta'
-  AND knowledge_type = 'competitor_research'
-  AND vertical = '[vertical]'
-  AND (client_id = '[client_id]'::uuid OR (client_id IS NULL AND '[client_id]' IS NULL))
-  AND created_at > NOW() - interval '7 days';
-```
-
-If a row is returned, UPDATE that row's `content` and `tags` instead of INSERTing — prevents duplicate research within a rolling 7-day window. If no row is returned, proceed with the INSERT above.
+- Use `'chrome-source'` in the tags array when Chrome was the research method.
+- Use `'api-source'` in the tags array when the API was the research method.
+- Run one INSERT per vertical. For the cross-vertical summary, use `vertical = 'cross-vertical'`.
 
 ---
 
-## Data Volume Minimums (Meta -- parallel to Google minimums)
+## Phase M4: Synthesis (both paths)
 
-Before including Meta findings in the output, verify:
+After collecting all ad data (via Chrome or API), synthesize as follows.
 
-1. **Page ID resolution:** At least 75% of competitors must have a resolved page ID (HIGH or MEDIUM confidence). Do not proceed with all-keyword searches if resolution is failing -- diagnose the token or API access first.
-2. **Ads per competitor:** Minimum 5 active ads per competitor. If fewer, note "limited ad history" -- some businesses run very few ads and that itself is a finding.
+### Per-Vertical Comparison Table
+
+For each vertical, produce:
+
+```
+## [Vertical Name] -- Meta Ad Analysis
+
+| Advertiser | Run Length (proxy) | Top Headline(s) | Body Copy Pattern | CTA | Format | Creative Tag |
+|---|---|---|---|---|---|---|
+| [name] | [X days / ongoing since YYYY-MM-DD] | [top 3 by run length] | [pattern summary] | [button text] | [Feed/Story/Reel] | [tag] |
+```
+
+**Creative tags:**
+- `price-comparison` -- explicitly compares pricing against a competitor
+- `use-case-wedge` -- leads with a specific pain point or use case
+- `founder-led` -- features a real person, founder story, or human face
+- `stat-claim` -- leads with a number ("save 3 hours/week", "2x faster ROI")
+- `attack-ad` -- directly names a competitor in the copy
+- `social-proof` -- customer quotes, review counts, or customer logos
+- `feature-list` -- bullet-style list of features
+- `demo-hook` -- leads with showing the product in action
+- `urgency-offer` -- limited time, trial offer, or promotional window
+
+### Cross-Vertical Pattern Summary
+
+1. **What creative format is winning everywhere?**
+2. **What is the single most common CTA across active ads?**
+3. **Which verticals are highest-pressure (most attack ads)?**
+4. **What is the biggest creative gap?**
+
+### Ad-Angle Recommendations for [client_name]
+
+Use the resolved client name from Phase 0. If no client was provided, use `[Generic Vertical]` and flag recommendations as vertical-generic.
+
+Generate 5 specific Meta ad-angle recommendations grounded in the client's USPs (Phase 0) and gaps surfaced in the analysis. Each must include:
+- **Angle name** (short label)
+- **Inspired by** (which competitor pattern or gap it responds to)
+- **Suggested headline** (aim for 40-60 chars for feed ads -- no hard Meta limit)
+- **Suggested body opening** (first 2 sentences)
+- **Why this will work** (what the research tells you)
+- **Format recommendation** (feed image / video / reel / story)
+
+---
+
+## Data Volume Minimums (Meta -- both paths)
+
+Before including Meta findings in the output:
+
+1. **Advertiser resolution:** At least 75% of competitors resolved (HIGH or MEDIUM confidence).
+2. **Ads per competitor:** Minimum 5 active ads per competitor. Fewer = "limited ad history" finding.
 3. **Attack pass coverage:** At least one attack pass per vertical with the major incumbent.
-4. **Verticals covered:** All requested verticals must be represented in the output -- no vertical skipped due to data scarcity.
-
----
-
-## API Error Handling
-
-| Error | Cause | Action |
-|---|---|---|
-| `Invalid OAuth access token` | Token expired or wrong format | Regenerate app access token and retry |
-| `Application request limit reached` | ~200 req/hr limit hit | Wait 15 min, then continue from where you left off |
-| `(#10) This endpoint requires the 'ads_read' permission` | App not approved for Ad Library | Tell user: go to Meta for Developers > App > Add Product > Ad Library API. May require App Review for broad access. |
-| Empty results from page-ID search | Wrong page ID, or page has no US ads | Try keyword fallback; flag in output |
-| `search_page_ids` returns competitor's own-page ads alongside others | This should not happen -- page-ID search is locked | If it does, manually filter by `page_id` in the result |
-
----
-
-## Chrome as Snapshot Fallback (rare)
-
-If you need to visually inspect a specific ad (e.g., to see the image/video creative that the API does not return), use the `ad_snapshot_url` from the API response:
-
-```
-navigate → ad_snapshot_url value (e.g., https://www.facebook.com/ads/archive/render_ad/?id=...)
-computer action=screenshot
-computer action=zoom
-```
-
-This is a SINGLE navigate to a specific ad URL -- NOT browsing the Ad Library UI. One permission prompt maximum, only if needed. This is the exception, not the flow.
+4. **Verticals covered:** All requested verticals represented -- none skipped.

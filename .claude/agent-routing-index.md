@@ -13,7 +13,7 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 |-------|-------------|
 | ads-agent | Any ad performance question, campaign analysis, creative review (Meta or Google) |
 | ad-copy-editor-agent | Changing ad copy across Google/Meta accounts (find/replace, lane-aware edits) |
-| competitor-ad-research-agent | Competitor ad intelligence on Google (Transparency Center) AND Meta (Ad Library API -- no browser). Use for pre-launch competitive analysis, single- or multi-vertical research, attack-ad discovery. |
+| competitor-ad-research-agent | Competitor ad intelligence on Google (Transparency Center) AND Meta (Ad Library -- Chrome-driven, optional API). Use for pre-launch competitive analysis, single- or multi-vertical research, attack-ad discovery. |
 | laleh-rebuttal-agent | Laleh/Lux Dental complaint rebuttals with live evidence + PDF |
 
 ### Direct platform access (no agent needed)
