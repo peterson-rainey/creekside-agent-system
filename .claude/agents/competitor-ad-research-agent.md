@@ -178,10 +178,11 @@ Meta Phase M4 (in `docs/meta-ad-library.md`) produces 5 specific ad-angle recomm
 - Total unique headline+description combinations: [count]
 
 ### Meta (omit section if platforms=google)
+- Research path used: [Chrome / API]
 - Competitors researched: [count]
-- Page IDs resolved (HIGH/MEDIUM confidence): [count] of [total]
-- Keyword fallbacks used: [count]
-- Total active ads pulled: [count]
+- Advertisers resolved (HIGH/MEDIUM confidence): [count] of [total]
+- Keyword/handle fallbacks used: [count]
+- Total active ads collected: [count]
 - Attack passes run: [count] (incumbents: [list])
 - Attack ads surfaced (non-incumbent pages): [count]
 
@@ -343,16 +344,17 @@ Before presenting results, run ALL of these checks. **If a minimum is not met, g
 5. **Ad copy pieces recorded:** Minimum 50 unique headline+description combinations across all sources. Website copy does NOT count toward this number.
 
 ### Meta Data Volume Minimums (skip if platforms=google)
-6. **Page ID resolution:** At least 75% of competitors must have a resolved page ID at HIGH or MEDIUM confidence. If below this, the token or API access is broken -- diagnose before proceeding.
+6. **Advertiser resolution:** At least 75% of competitors must have a resolved Page handle or Page ID (HIGH or MEDIUM confidence). If using the Chrome path, verify by checking that the Ad Library returned results for the correct advertiser (not a same-name unrelated business). If using the API path and resolution is failing, diagnose the token first.
 7. **Ads per competitor:** At least 5 active US ads per competitor. If fewer, note "limited ad history" -- do not skip the competitor.
 8. **Attack passes:** At least one attack pass per vertical with a major incumbent. Zero attack ads found is a valid result -- but the pass must have been run.
 9. **Verticals covered:** All verticals in the request must appear in the Meta inventory section. No vertical may be silently skipped.
 
 ### Data Quality Checks (both platforms)
-10. **Source labeling:** Every ad must be labeled with its ACTUAL source: "Google Transparency Center", "Google Search Sponsored", "Google Search Organic", or "Meta Ad Library API." Never label website copy as ad copy.
+10. **Source labeling:** Every ad must be labeled with its ACTUAL source: "Google Transparency Center", "Google Search Sponsored", "Google Search Organic", "Meta Ad Library (Chrome)", or "Meta Ad Library API." Never label website copy as ad copy.
 11. **No fabrication:** If you couldn't find ads for a competitor, say so explicitly -- never invent copy.
 12. **Exact copy only:** All competitor ad text is verbatim, not paraphrased.
-13. **No browser for Meta:** Confirm that zero Chrome MCP tool calls were made for the Meta research phases. If any were made, this is a methodology violation -- note it.
+13. **Meta path used:** Confirm which path was used for Meta research. If Chrome was used (default), confirm that `read_page` depth 7-8 was the extraction method and that all tabs were closed after the run. If API was used (opt-in), confirm `META_AD_LIBRARY_TOKEN` was set. "Chrome-only Meta path" is correct and expected -- not a violation.
+14. **Advertiser name verification:** All advertiser names in the Meta inventory must have a corresponding Page handle (from the link href in the Chrome path, or `page_id` from the API path). No fabricated names -- if the Page handle could not be resolved, flag it explicitly.
 
 ### Output Quality Checks
 14. **Google character count audit:** Every recommended Google headline must be 30 characters or fewer. Count each one. If over, rewrite it.
@@ -366,9 +368,32 @@ If any minimum is not met, **do not output the report**. Go back and collect mor
 
 ## Important Constraints
 
-- **Meta research never uses Chrome.** The Meta Ad Library API (`graph.facebook.com/v18.0/ads_archive`) is the ONLY method for Meta competitor research. Chrome MCP is a fallback for rendering individual ad snapshot URLs only -- not for browsing the Ad Library UI. The API solves the permission-prompt problem and the DOM-scraping-reliability problem simultaneously.
+- **Default Meta path is Chrome via the Meta Ad Library UI.** Navigate to `facebook.com/ads/library/`, use `read_page` (depth 7-8, filter: all) for extraction. The API path (`graph.facebook.com/v18.0/ads_archive`) is opt-in only -- use it when `META_AD_LIBRARY_TOKEN` is set in the environment. See `docs/meta-ad-library.md` Section A for the path-selection logic.
+- **Tab teardown is mandatory for every Chrome session.** Every tab opened for Meta (or Google) research MUST be closed after the run, success or failure. Close sequentially via `tabs_close_mcp`. Swallow "tab no longer exists" errors. Never leave orphan tab groups.
 - **No fabricating competitor ads.** If you can't find ads for a competitor, say so. Never make up ad copy and attribute it to a real business.
 - **Exact copy only.** When recording competitor ads, use their exact wording. Paraphrasing defeats the purpose.
 - **30-character limit is real (Google only).** Google Ads headlines max at 30 characters. Every recommended Google headline must fit. Count the characters. Meta ad headlines have no hard platform limit -- aim for 40-60 characters for feed placements.
-- **Database writes are now permitted (Phase M5).** This agent was previously read-only. Phase M5 INSERTs Meta competitor research findings into `ads_knowledge`. The read_only front-matter has been updated to false. All other phases remain read-only.
-- **Page-ID-locked searches are mandatory for Meta when a page ID is resolvable.** Never use keyword fallback when you have a confirmed page ID. Keyword searches return ads from unrelated businesses sharing the same name.
+- **Database writes are permitted (Section D writeback).** Phase M5 / Section D INSERTs Meta competitor research findings into `ads_knowledge`. The `read_only` front-matter is false. All other phases remain read-only.
+- **Advertiser-locked searches are preferred when the identifier is known.** For Chrome: use the Page Transparency URL or page-locked Ad Library URL to get only that advertiser's ads. For API: use `search_page_ids` when a page ID is confirmed. Fall back to keyword/unordered only when the advertiser cannot be precisely resolved.
+
+---
+
+## Smoke Test (staged -- do not run automatically)
+
+```
+Run competitor-ad-research-agent with:
+- platforms: meta
+- competitors: ["Gorgias"]
+- vertical: ecommerce
+- (no META_AD_LIBRARY_TOKEN set -- should default to Chrome)
+
+Expected:
+- Agent checks echo $META_AD_LIBRARY_TOKEN, gets empty result, routes to Chrome path (Section B).
+- Navigates to https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=Gorgias&search_type=keyword_unordered&media_type=all
+- Waits 4-5 seconds, runs read_page with filter=all, depth=7, max_chars=35000.
+- Finds and records >= 3 active Gorgias ads with Library IDs, start dates, body text, headlines.
+- Runs attack pass: keyword search for "Gorgias", filters out Gorgias's own page handle.
+- Closes all Chrome tabs (sequentially, swallowing "no longer exists" errors).
+- Writes to ads_knowledge with platform=meta, knowledge_type=competitor_research, tags including 'chrome-source'.
+- Zero curl calls to graph.facebook.com anywhere in the run.
+```

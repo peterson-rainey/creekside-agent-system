@@ -138,7 +138,7 @@ Read ONLY the files needed. A non-ads, admin-only agent reads 3 files. An ads sk
 7. Description field is for routing, not documentation.
 8. Model is always sonnet unless complex multi-step reasoning needed.
 9. After building, update ALL documentation automatically.
-10. If scheduled, seed scheduled_agents and update CLAUDE.md.
+10. If scheduled, seed scheduled_agents and update CLAUDE.md. If the agent is a **data pipeline** (ingests external data into a Supabase table), ALSO add a row to `user_pipeline_config` AND add a CASE line to `get_all_pipeline_status()` mapping the pipeline_type to the scheduled_agents name. Without this, the pipeline won't appear in monitoring.
 11. Every agent file should be self-contained in METHODOLOGY.
 12. NEVER put domain data in agent files. Run `docs/staleness-patterns.md` checks.
 13. Store domain knowledge during the build, not just the agent file.
