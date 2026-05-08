@@ -119,7 +119,7 @@ Before presenting findings, pull full content from any gdrive_operations records
 Extract: monthly management fee, ad spend commitment, contract term, performance bonuses, payment terms, services covered, who signed.
 
 **From onboarding sheets (gdrive_operations, document_type = 'onboarding'):**
-Extract: phone number, email, website URL, ad account IDs (Google format: XXX-XXX-XXXX, Meta format: act_XXXXXXX), CRM platform, website platform, monthly budget per platform.
+Extract: phone number, email, website URL, ad account IDs (Google format: XXX-XXX-XXXX, Meta format: act_XXXXXXX), CRM platform, website platform, total monthly ad budget (per-platform allocation is decided at kickoff, not collected on the form).
 
 As of 2026-05-07 the client-facing onboarding sheet has a **5-tab format** (Google Info Form, Meta Info Form, General Info Part 1, General Info Part 2, Conversion Tracking). Same fields above can be extracted from the same tabs as before — only the layout changed. Field-by-field map:
 - **Phone, email, website** → `General Info Part 1` § 1 Business Basics
