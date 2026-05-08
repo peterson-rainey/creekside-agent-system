@@ -238,15 +238,48 @@ This ensures nothing is silently lost. Peterson always gets the output.
 
 For any call that produced weekly call notes (client OR internal):
 
-1. **Find the doc** using `mcp__claude_ai_ClickUp__clickup_list_document_pages` or `mcp__claude_ai_ClickUp__clickup_get_document_pages`. Search for:
-   - Client calls: a doc page named `[Client Name] - Weekly Call Notes` (e.g., "Fusion - Weekly Call Notes")
-   - Internal calls: a doc page named `[Name] - Weekly Kickoff` (e.g., "Ade - Weekly Kickoff", "Ahmed - Weekly Kickoff")
+**1. Find the doc and parent page from the database:**
 
-2. **Find the most recent date sub-page** under that parent page. The date format varies (e.g., "5/14/26", "4/27/26"). Sort by most recent.
+For client calls:
+```sql
+SELECT doc_id, page_id, page_name FROM clickup_doc_entries
+WHERE page_name ILIKE '%<CLIENT_NAME>%' AND page_name ILIKE '%weekly%'
+AND space_name = 'Client Management'
+LIMIT 1;
+```
 
-3. **Append** the new bullet points to the most recent date page using `mcp__claude_ai_ClickUp__clickup_update_document_page`. Add the notes as bullet points below any existing content.
+For internal calls:
+```sql
+SELECT doc_id, page_id, page_name FROM clickup_doc_entries
+WHERE (doc_name ILIKE '%<TEAM_MEMBER_NAME>%notes%'
+       OR page_name ILIKE '%<TEAM_MEMBER_NAME>%weekly%kickoff%')
+AND space_name = 'Creekside Internal'
+LIMIT 1;
+```
 
-4. **Fallback** if the doc, parent page, or date page can't be found: **email fallback** with the weekly notes content and `[WEEKLY NOTES GAP]` prefix. Continue processing other calls.
+If no match: try looser search (first name only, or just "Weekly" in the client's folder_id). If still nothing: **Cyndi's channel fallback → email fallback.**
+
+**2. List all pages in the doc to find date sub-pages:**
+
+Use `mcp__claude_ai_ClickUp__clickup_list_document_pages` with the `doc_id`. This returns the full page tree including sub-pages.
+
+**3. Find the most recent date sub-page:**
+
+Look for sub-pages under the parent page found in step 1. Page names are dates in varying formats (e.g., "5/14/26", "4/27/26", "5/7/26"). Parse each name as a date. Sort descending. Take the most recent.
+
+If no date sub-pages found or none can be parsed as dates: **Cyndi's channel fallback → email fallback.**
+
+**4. Read the current content, append, write back:**
+
+Use `mcp__claude_ai_ClickUp__clickup_get_document_pages` with the `doc_id` and `page_id` of the most recent date page. Read existing content.
+
+Append the new weekly call notes as bullet points below the existing content.
+
+Use `mcp__claude_ai_ClickUp__clickup_update_document_page` to write the combined content back. WARNING: this REPLACES the entire page, so the existing content MUST be included.
+
+**5. Fallback chain:**
+
+Doc/page not found in DB → loose search → Cyndi's ClickUp channel (with notes + `[WEEKLY NOTES GAP]` flag) → email to Peterson. Continue processing other calls regardless.
 
 ### Step 6: Write daily digest to agent_knowledge
 
