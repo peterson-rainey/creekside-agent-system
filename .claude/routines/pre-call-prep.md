@@ -26,9 +26,11 @@ Keep ONLY events that have attendees (other than Peterson). Skip:
 - Any event marked as "outOfOffice"
 - Any event with `transparency: "transparent"` (these are non-blocking -- includes existing Notes events)
 
+If no qualifying calls remain after filtering, log "No meetings requiring prep today" and stop. Do not create any calendar events or database entries.
+
 ### 3. Check for Existing Notes Events
 
-For each qualifying call, check if a "Notes - [call title]" event already exists at the same time. If it does, skip that call (don't duplicate).
+For each qualifying call, check if a "Notes - [call title]" event already exists at the same time. If it does, still generate a fresh brief (data may have changed), but update the existing Notes event in Step 5 instead of creating a new one.
 
 ### 4. Generate Prep Brief for Each Call
 

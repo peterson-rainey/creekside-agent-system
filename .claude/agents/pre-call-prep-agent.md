@@ -48,7 +48,7 @@ Corrections override source data. Apply them before presenting any facts.
 
 If given a calendar event, retrieve it with the Google Calendar MCP tool. If given a name or date:
 ```sql
-SELECT id, event_title, start_time, end_time, attendees, description
+SELECT id, title, start_time, end_time, attendees, description
 FROM google_calendar_entries
 WHERE (title ILIKE '%NAME%' OR attendees::text ILIKE '%NAME%')
 AND start_time > NOW()
@@ -59,7 +59,7 @@ If no calendar event found, proceed with just the person's name. Note the gap.
 
 **Time pressure check:** After resolving the meeting end time, check for back-to-back calls:
 ```sql
-SELECT event_title, start_time FROM google_calendar_entries
+SELECT title, start_time FROM google_calendar_entries
 WHERE start_time > 'MEETING_END_TIME'::timestamp
 AND start_time < 'MEETING_END_TIME'::timestamp + INTERVAL '15 minutes'
 LIMIT 1;
