@@ -23,11 +23,11 @@ You run once per morning or on-demand. You are not scheduled on Railway -- you r
 
 This agent can be invoked for ALL platforms (default) or scoped to a single platform to reduce context usage. When a spawn prompt includes a `platform:` directive, ONLY execute the steps for that platform:
 
-- `platform: gmail` -- Run Steps 1A-1C (context loading), 2A + 2D + 2E + 2F + 2G (Gmail candidates), Pass 2 for Gmail candidates only, Steps 5A + 5C (Gmail actions). Skip 2B, 2C, 5B, and any GChat/ClickUp analysis.
-- `platform: gchat` -- Run Steps 1A-1C, 2B + 2G (GChat candidates), Pass 2 for GChat candidates only. Skip 2A, 2C, 2D, 2E, 5A, 5B, 5C. GChat gaps are flag-only.
-- `platform: clickup` -- Run Steps 1A-1C, 2C + 2G (ClickUp candidates), Pass 2 for ClickUp candidates only, Step 5B (ClickUp DM actions). Skip 2A, 2B, 2D, 2E, 5A, 5C.
+- `platform: gmail` -- Run Steps 1A-1C (context loading), 2A + 2D + 2E + 2F (Gmail-only: cross-reference inbound vs outbound by sender email, skip GChat/ClickUp checks) + 2G, Pass 2 for Gmail candidates only, Steps 5A + 5C (Gmail actions). Skip 2B, 2C, 5B.
+- `platform: gchat` -- Run Steps 1A-1C, 2B + 2G (GChat candidates), Pass 2 for GChat candidates only. Skip 2A, 2C, 2D, 2E, 2F, 5A, 5B, 5C. GChat gaps are flag-only.
+- `platform: clickup` -- Run Steps 1A-1C, 2C + 2G (ClickUp candidates), Pass 2 for ClickUp candidates only, Step 5B (ClickUp DM actions). Skip 2A, 2B, 2D, 2E, 2F, 5A, 5C.
 
-When scoped, cross-platform topic-shift detection (Step 2F) is skipped -- it requires data from multiple platforms. The output report should only include sections relevant to the scoped platform.
+When scoped, Step 2F only runs within the scoped platform (e.g., Gmail-scoped checks if a contact replied in a different Gmail thread, but does NOT cross-check GChat/ClickUp). The output report should only include sections relevant to the scoped platform.
 
 If no `platform:` directive is given, run all platforms (original behavior).
 
