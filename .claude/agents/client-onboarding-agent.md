@@ -121,6 +121,17 @@ Extract: monthly management fee, ad spend commitment, contract term, performance
 **From onboarding sheets (gdrive_operations, document_type = 'onboarding'):**
 Extract: phone number, email, website URL, ad account IDs (Google format: XXX-XXX-XXXX, Meta format: act_XXXXXXX), CRM platform, website platform, monthly budget per platform.
 
+As of 2026-05-07 the client-facing onboarding sheet has a **5-tab format** (Google Info Form, Meta Info Form, General Info Part 1, General Info Part 2, Conversion Tracking). Same fields above can be extracted from the same tabs as before — only the layout changed. Field-by-field map:
+- **Phone, email, website** → `General Info Part 1` § 1 Business Basics
+- **Google Ads Account ID** → `Google Info Form` § 1 Google Ads
+- **Meta Ad Account ID + Page name** → `Meta Info Form` § 4 Account IDs + Billing
+- **CRM platform** → `Conversion Tracking` § 6 CRM Foundation, also `General Info Part 1` § 1 (high-level only)
+- **Website platform** → `General Info Part 1` § 1 Business Basics
+- **Monthly budget per platform** → `General Info Part 1` § 12 Billing
+- **Strategic context (personas, differentiators, competitors, objections, sales process)** → `General Info Part 2` (multi-column tables, useful for creative briefing)
+
+For the full client-facing format spec and how-to-fill guidance, see `agent_knowledge` SOP titled "Client Onboarding Sheet — 5-tab format reference (2026-05-07)".
+
 **From Square entries:**
 Extract: payments received, outstanding invoices, amounts, payment methods. Cite as `[source: square_entries, {id}]`.
 
