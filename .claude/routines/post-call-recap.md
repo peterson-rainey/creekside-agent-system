@@ -181,14 +181,23 @@ Apply ALL 33 rules from that agent. The following is an illustrative subset, NOT
 
 3. **Internal calls:** Do NOT route to a channel. Internal call extractions go only to the daily digest (Step 6).
 
-4. **Fallback (no channel found after all tiers):** Send to Peterson's ClickUp DM using `mcp__claude_ai_ClickUp__clickup_send_chat_message`. Prefix the message with:
+4. **Fallback (no channel found after all tiers):** Send email to Peterson via the Gmail sender script:
+   ```bash
+   python3 ~/creekside-pipelines/pipelines/gmail/gmail_sender.py send \
+     --to peterson@creeksidemarketingpros.com \
+     --subject "[Post-Call Recap] <MEETING_TITLE> -- <DATE>" \
+     --body "<FULL_EXTRACTION_TEXT>"
+   ```
+   Prefix the body with:
    ```
    [ROUTING GAP] Could not find ClickUp channel for: <CLIENT_NAME>
    Searched: DB by client_id, DB by name, live ClickUp MCP.
    Action needed: verify the client has a ClickUp chat channel and that the chat sync pipeline captures it.
    ---
    ```
-   Then include the full extraction below the gap notice. This ensures Peterson always receives the output AND knows there's a channel mapping to fix.
+   Then include the full extraction below. This ensures Peterson always receives the output via email AND knows there's a channel mapping to fix.
+
+   **Also use email for discovery/sales calls with no matching ClickUp task.** Same pattern -- email with subject "[Post-Call Recap] <MEETING_TITLE>".
 
 ### Step 6: Write daily digest to agent_knowledge
 
