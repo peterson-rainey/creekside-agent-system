@@ -86,7 +86,7 @@ function buildMetaInfoForm() {
 
 /**
  * Deletes the deprecated "For Creekside Use" tab.
- * The Conversion Tracking (Draft) tab replaces its purpose - account managers
+ * The Conversion Tracking tab replaces its purpose - account managers
  * fill out conversion-tracking specifics there before passing to Jordan.
  */
 function deleteForCreeksideUseTab() {
@@ -102,7 +102,7 @@ function deleteForCreeksideUseTab() {
       return;
     }
     ss.deleteSheet(sheet);
-    SpreadsheetApp.getUi().alert('Deleted "For Creekside Use" tab. Conversion Tracking (Draft) replaces its purpose.');
+    SpreadsheetApp.getUi().alert('Deleted "For Creekside Use" tab. Conversion Tracking replaces its purpose.');
   } catch (e) {
     SpreadsheetApp.getUi().alert('deleteForCreeksideUseTab failed: ' + e.message);
     throw e;
