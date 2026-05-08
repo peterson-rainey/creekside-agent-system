@@ -147,57 +147,102 @@ Apply ALL 33 rules from that agent. The following is an illustrative subset, NOT
 
 ### Step 5: Route the output
 
-**Routing decision tree (execute in order, stop at first match):**
+**Route by call type. Each type has different destinations.**
 
-1. **Discovery/sales calls** with a matching ClickUp sales task:
+---
+
+#### A. Discovery/Sales Calls
+
+**Full extraction → ClickUp sales task comment**
+
+Find the sales task:
+```sql
+SELECT clickup_task_id, task_name FROM clickup_entries
+WHERE context_type = 'sales'
+AND task_name ILIKE '%<FULL_PARTICIPANT_NAME>%'
+LIMIT 1;
+```
+If no match by full name, try last name only. If still no match, use `mcp__claude_ai_ClickUp__clickup_get_chat_channels` to search live.
+
+If found: post the FULL extraction (action items, everything) as a comment on that task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
+
+If no sales task found: send email fallback:
+```bash
+python3 ~/creekside-pipelines/pipelines/gmail/gmail_sender.py send \
+  --to peterson@creeksidemarketingpros.com \
+  --subject "[Post-Call Recap] <MEETING_TITLE> -- <DATE>" \
+  --body "<FULL_EXTRACTION_TEXT with [ROUTING GAP] prefix>"
+```
+
+**Action items → `action_items` table**
+```sql
+INSERT INTO action_items (title, description, category, priority, status, source, source_agent, context)
+VALUES ('<title>', '<description>', 'sales', 'normal', 'pending',
+        'fathom_entries:<ENTRY_ID>', 'post-call-recap-routine', '<context_json>');
+```
+
+---
+
+#### B. Client Calls
+
+**Full extraction → client's ClickUp chat channel** (3-tier lookup)
+
+Tier 1: `SELECT DISTINCT view_id FROM clickup_chat_entries WHERE client_id = '<CLIENT_ID>' LIMIT 1;`
+Tier 2: `SELECT DISTINCT view_id FROM clickup_chat_entries WHERE space_name ILIKE '%<CLIENT_NAME>%' LIMIT 1;`
+Tier 3: `mcp__claude_ai_ClickUp__clickup_get_chat_channels` -- search live for client name.
+
+If found: send via `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
+If not found: email fallback (same as sales calls, with `[ROUTING GAP]` prefix).
+
+**Action items → `action_items` table** (same INSERT pattern as sales calls, category = 'client')
+
+**Weekly call notes → TWO destinations:**
+
+1. `client_context_cache` (weekly_call_notes section) -- so pre-call-prep sees them:
    ```sql
-   SELECT clickup_task_id, task_name FROM clickup_entries
-   WHERE context_type = 'sales'
-   AND task_name ILIKE '%<FULL_PARTICIPANT_NAME>%'
-   LIMIT 1;
-   ```
-   If found: post extraction as a comment on that task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
-
-2. **Client calls** -- find the client's ClickUp chat channel using this cascade:
-
-   **Tier 1:** DB lookup by client_id
-   ```sql
-   SELECT DISTINCT view_id FROM clickup_chat_entries
-   WHERE client_id = '<CLIENT_ID>' LIMIT 1;
+   INSERT INTO client_context_cache (client_id, section, content, data_sources, source_record_count, date_range_start, date_range_end, last_updated, stale_after)
+   VALUES ('<CLIENT_ID>', 'weekly_call_notes', '<notes_json>', ARRAY['fathom_entries'], 1, CURRENT_DATE, CURRENT_DATE, NOW(), NOW() + INTERVAL '14 days')
+   ON CONFLICT (client_id, section) DO UPDATE SET
+     content = EXCLUDED.content, last_updated = NOW(), stale_after = NOW() + INTERVAL '14 days';
    ```
 
-   **Tier 2:** DB lookup by client name (catches channels like "Fusion Dental (Tomas)")
-   ```sql
-   SELECT DISTINCT view_id, space_name FROM clickup_chat_entries
-   WHERE space_name ILIKE '%<CLIENT_NAME>%'
-   OR space_name ILIKE '%<FIRST_WORD_OF_CLIENT_NAME>%'
-   LIMIT 1;
-   ```
+2. Peterson's ClickUp weekly call notes doc for that client (see Step 5.5 below)
 
-   **Tier 3:** Live ClickUp MCP search (bypasses DB sync gaps entirely)
-   Use `mcp__claude_ai_ClickUp__clickup_get_chat_channels` to search for the client name. If a channel is found, use its ID to send the message.
+**[ADD TO EXISTING] → ClickUp task comment** on the existing task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
 
-   If a channel is found at any tier: send the extraction using `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
+**Channel messages → included in the full extraction.** Cyndi sends them in Google Chat after Peterson reviews.
 
-3. **Internal calls:** Do NOT route to a channel. Internal call extractions go only to the daily digest (Step 6).
+---
 
-4. **Fallback (no channel found after all tiers):** Send email to Peterson via the Gmail sender script:
-   ```bash
-   python3 ~/creekside-pipelines/pipelines/gmail/gmail_sender.py send \
-     --to peterson@creeksidemarketingpros.com \
-     --subject "[Post-Call Recap] <MEETING_TITLE> -- <DATE>" \
-     --body "<FULL_EXTRACTION_TEXT>"
-   ```
-   Prefix the body with:
-   ```
-   [ROUTING GAP] Could not find ClickUp channel for: <CLIENT_NAME>
-   Searched: DB by client_id, DB by name, live ClickUp MCP.
-   Action needed: verify the client has a ClickUp chat channel and that the chat sync pipeline captures it.
-   ---
-   ```
-   Then include the full extraction below. This ensures Peterson always receives the output via email AND knows there's a channel mapping to fix.
+#### C. Internal Calls
 
-   **Also use email for discovery/sales calls with no matching ClickUp task.** Same pattern -- email with subject "[Post-Call Recap] <MEETING_TITLE>".
+**Full extraction → daily digest only** (Step 6). Internal discussions are not broadcast.
+
+**Action items → `action_items` table** (category = 'internal') + relevant team member's ClickUp channel.
+Find the team member's channel: `mcp__claude_ai_ClickUp__clickup_get_chat_channels`, match by team member name (e.g., "Ahmed", "Lindsey", "Ade"). Send the action items relevant to that person via `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
+
+**Weekly call notes → persistent.** Same ClickUp doc pattern as clients but under Creekside Internal > [Team Member] > [Name] Notes doc (see Step 5.5 below).
+
+**Channel messages → included in the full extraction.** Not sent separately for internal calls.
+
+---
+
+### Step 5.5: Write weekly call notes to ClickUp Docs
+
+For any call that produced weekly call notes (client OR internal):
+
+1. **Find the doc** using `mcp__claude_ai_ClickUp__clickup_list_document_pages` or `mcp__claude_ai_ClickUp__clickup_get_document_pages`. Search for:
+   - Client calls: a doc page named `[Client Name] - Weekly Call Notes` (e.g., "Fusion - Weekly Call Notes")
+   - Internal calls: a doc page named `[Name] - Weekly Kickoff` (e.g., "Ade - Weekly Kickoff", "Ahmed - Weekly Kickoff")
+
+2. **Find the most recent date sub-page** under that parent page. The date format varies (e.g., "5/14/26", "4/27/26"). Sort by most recent.
+
+3. **Append** the new bullet points to the most recent date page using `mcp__claude_ai_ClickUp__clickup_update_document_page`. Add the notes as bullet points below any existing content.
+
+4. **Fallback** if the doc, parent page, or date page can't be found:
+   - Log: `[WEEKLY NOTES GAP] Could not find weekly notes doc for: <CLIENT_OR_PERSON_NAME>`
+   - Include the notes in the daily digest with the gap flag so Cyndi can add them manually
+   - Do NOT stop the routine -- continue processing other calls
 
 ### Step 6: Write daily digest to agent_knowledge
 
