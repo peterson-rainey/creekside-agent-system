@@ -158,18 +158,37 @@ Apply ALL 33 rules from that agent. The following is an illustrative subset, NOT
    ```
    If found: post extraction as a comment on that task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
 
-2. **Client calls** with a client_id:
-   Use `mcp__claude_ai_ClickUp__clickup_send_chat_message` to send to the client's ClickUp chat channel.
-   To find the channel, look up the client in ClickUp:
+2. **Client calls** -- find the client's ClickUp chat channel using this cascade:
+
+   **Tier 1:** DB lookup by client_id
    ```sql
    SELECT DISTINCT view_id FROM clickup_chat_entries
    WHERE client_id = '<CLIENT_ID>' LIMIT 1;
    ```
-   If no channel found: fall through to default.
+
+   **Tier 2:** DB lookup by client name (catches channels like "Fusion Dental (Tomas)")
+   ```sql
+   SELECT DISTINCT view_id, space_name FROM clickup_chat_entries
+   WHERE space_name ILIKE '%<CLIENT_NAME>%'
+   OR space_name ILIKE '%<FIRST_WORD_OF_CLIENT_NAME>%'
+   LIMIT 1;
+   ```
+
+   **Tier 3:** Live ClickUp MCP search (bypasses DB sync gaps entirely)
+   Use `mcp__claude_ai_ClickUp__clickup_get_chat_channels` to search for the client name. If a channel is found, use its ID to send the message.
+
+   If a channel is found at any tier: send the extraction using `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
 
 3. **Internal calls:** Do NOT route to a channel. Internal call extractions go only to the daily digest (Step 6).
 
-4. **Default (no channel found):** Include in the daily digest only.
+4. **Fallback (no channel found after all tiers):** Send to Peterson's ClickUp DM using `mcp__claude_ai_ClickUp__clickup_send_chat_message`. Prefix the message with:
+   ```
+   [ROUTING GAP] Could not find ClickUp channel for: <CLIENT_NAME>
+   Searched: DB by client_id, DB by name, live ClickUp MCP.
+   Action needed: verify the client has a ClickUp chat channel and that the chat sync pipeline captures it.
+   ---
+   ```
+   Then include the full extraction below the gap notice. This ensures Peterson always receives the output AND knows there's a channel mapping to fix.
 
 ### Step 6: Write daily digest to agent_knowledge
 
