@@ -127,7 +127,7 @@ As of 2026-05-07 the client-facing onboarding sheet has a **5-tab format** (Goog
 - **Meta Ad Account ID + Page name** → `Meta Info Form` § 4 Account IDs + Billing
 - **CRM platform** → `Conversion Tracking` § 6 CRM Foundation, also `General Info Part 1` § 1 (high-level only)
 - **Website platform** → `General Info Part 1` § 1 Business Basics
-- **Monthly budget per platform** → `General Info Part 1` § 12 Billing
+- **Monthly ad budget** → `General Info Part 1` § 12 Billing (single total-spend field; per-platform allocation is decided post-kickoff, not collected on the form)
 - **Strategic context (personas, differentiators, competitors, objections, sales process)** → `General Info Part 2` (multi-column tables, useful for creative briefing)
 
 For the full client-facing format spec and how-to-fill guidance, see `agent_knowledge` SOP titled "Client Onboarding Sheet — 5-tab format reference (2026-05-07)".
