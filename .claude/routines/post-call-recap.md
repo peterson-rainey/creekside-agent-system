@@ -17,6 +17,7 @@ FROM fathom_entries
 WHERE recap_sent_at IS NULL
 AND meeting_date > NOW() - INTERVAL '24 hours'
 AND user_id = 'defe36a6-891c-4912-9bef-43556ac3ae6a'
+AND (duration_minutes IS NULL OR duration_minutes >= 3)
 ORDER BY meeting_date ASC;
 ```
 
@@ -95,7 +96,9 @@ WHERE name ILIKE '%<PARTICIPANT>%' OR business_name ILIKE '%<PARTICIPANT>%' LIMI
 Read the full extractor methodology from:
 - `.claude/agents/call-action-item-extractor.md`
 
-Apply ALL 33 rules from that agent. Key ones that matter most for quality:
+If this file cannot be read (missing, renamed, git conflict), STOP and log an error. Do not attempt extraction without the methodology -- improvised extraction produces inconsistent output.
+
+Apply ALL 33 rules from that agent. The following is an illustrative subset, NOT a substitute for the full file:
 
 1. Read the ENTIRE transcript end to end. Do not skip sections.
 2. Every item must have: Who, Due date (specific YYYY-MM-DD), Timestamp, Transcript context quote.
@@ -208,10 +211,10 @@ This prevents reprocessing on the next run. Do this per-call, not in batch -- if
 ```sql
 INSERT INTO ingestion_log (source, status, duration_ms, triggered_by, records_inserted, started_at, completed_at, user_id)
 VALUES (
-  'post_call_recap_local',
+  'post_call_recap',
   '<completed|partial|failed>',
   <duration_ms>,
-  'claude_code_routine',
+  'claude_code_local',
   <calls_processed>,
   '<start_time>',
   NOW(),
@@ -236,4 +239,4 @@ Use `execute_sql` for all database queries.
 - Content dates, not created_at.
 - Never extract from summary alone when transcript exists.
 - Process one call at a time. If multiple are pending, process oldest first.
-- If a call has duration < 3 minutes, skip it (accidental recordings).
+- Calls under 3 minutes are already filtered out in the Step 1 query.
