@@ -257,7 +257,7 @@ AND space_name = 'Creekside Internal'
 LIMIT 1;
 ```
 
-If no match: try looser search (first name only, or just "Weekly" in the client's folder_id). If still nothing: **Cyndi's channel fallback → email fallback.**
+If no match: try looser search (first name only, or just "Weekly" in the client's folder_id). If still nothing: **email fallback.**
 
 **2. List all pages in the doc to find date sub-pages:**
 
@@ -267,7 +267,7 @@ Use `mcp__claude_ai_ClickUp__clickup_list_document_pages` with the `doc_id`. Thi
 
 Look for sub-pages under the parent page found in step 1. Page names are dates in varying formats (e.g., "5/14/26", "4/27/26", "5/7/26"). Parse each name as a date. Sort descending. Take the most recent.
 
-If no date sub-pages found or none can be parsed as dates: **Cyndi's channel fallback → email fallback.**
+If no date sub-pages found or none can be parsed as dates: **email fallback.**
 
 **4. Read the current content, append, write back:**
 
@@ -279,7 +279,7 @@ Use `mcp__claude_ai_ClickUp__clickup_update_document_page` to write the combined
 
 **5. Fallback chain:**
 
-Doc/page not found in DB → loose search → Cyndi's ClickUp channel (with notes + `[WEEKLY NOTES GAP]` flag) → email to Peterson. Continue processing other calls regardless.
+Doc/page not found in DB → loose search → email to Peterson with `[WEEKLY NOTES GAP]` flag. Continue processing other calls regardless.
 
 ### Step 6: Write daily digest to agent_knowledge
 
