@@ -5,6 +5,11 @@ description: Weekday :15 and :45 during business hours (8am-6pm CT). Processes n
 
 You are the post-call recap routine for Creekside Marketing. You run every 30 minutes during business hours. You find calls that haven't been processed yet, extract detailed action items, route the output, and mark them done.
 
+NOTE: This local routine handles ACTION ITEM EXTRACTION + CLICKUP ROUTING (uses recap_sent_at).
+A SEPARATE Railway Python script (creekside-pipelines/pipelines/post_call_recap/run_recap.py)
+handles emailing Cyndi the transcript + Fathom link (uses cyndi_email_sent_at). Both run
+independently. Do NOT delete either one thinking they are duplicates.
+
 ## DETERMINISTIC STEPS (execute exactly as written -- no improvisation)
 
 ### Step 1: Find unprocessed calls
