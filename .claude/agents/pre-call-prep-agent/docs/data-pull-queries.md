@@ -69,10 +69,11 @@ AND date > 'LAST_CALL_DATE'
 ORDER BY date DESC LIMIT 5;
 
 -- ClickUp chat messages since last call
-SELECT id, date, channel_name, ai_summary FROM clickup_chat_entries
-WHERE (ai_summary ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%CLIENT_NAME%')
-AND date > 'LAST_CALL_DATE'
-ORDER BY date DESC LIMIT 5;
+SELECT id, date_range_start, space_name, ai_summary FROM clickup_chat_entries
+WHERE (ai_summary ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%CLIENT_NAME%'
+       OR participants ILIKE '%PERSON_NAME%')
+AND date_range_start > 'LAST_CALL_DATE'
+ORDER BY date_range_start DESC LIMIT 5;
 ```
 
 ---
