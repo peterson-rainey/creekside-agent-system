@@ -168,11 +168,16 @@ If found: post the FULL extraction as a comment on that task using `mcp__claude_
 
 If no sales task found: **email fallback.**
 
-**Action items → `fathom_entries.action_items`** (overwrite the Fathom AI extraction with our better one):
+**Action items → `fathom_entries.action_items`** (overwrite the Fathom AI extraction with our better one).
+The column is `text[]` (Postgres text array), NOT JSON. Format each action item as a single text element:
 ```sql
-UPDATE fathom_entries SET action_items = '<structured_extraction_json>'
+UPDATE fathom_entries SET action_items = ARRAY[
+  'Send post-call package to Nikolai (pricing, case study, recording) -- Who: Cyndi -- Due: 2026-05-08',
+  'Follow up with Nikolai by Friday for audit decision -- Who: Peterson -- Due: 2026-05-09'
+]
 WHERE id = '<ENTRY_ID>';
 ```
+Each array element is one action item as a plain text string with Who and Due inline.
 
 ---
 
@@ -194,14 +199,22 @@ If not found: **email fallback.**
 1. `client_context_cache` (weekly_call_notes section) -- so pre-call-prep sees them:
    ```sql
    INSERT INTO client_context_cache (client_id, section, content, data_sources, source_record_count, date_range_start, date_range_end, last_updated, stale_after)
-   VALUES ('<CLIENT_ID>', 'weekly_call_notes', '<notes_json>', ARRAY['fathom_entries'], 1, CURRENT_DATE, CURRENT_DATE, NOW(), NOW() + INTERVAL '14 days')
+   VALUES ('<CLIENT_ID>', 'weekly_call_notes', '<notes_json>', ARRAY['fathom_entries'], 1, CURRENT_DATE, CURRENT_DATE, NOW(), INTERVAL '14 days')
    ON CONFLICT (client_id, section) DO UPDATE SET
-     content = EXCLUDED.content, last_updated = NOW(), stale_after = NOW() + INTERVAL '14 days';
+     content = EXCLUDED.content, last_updated = NOW(), stale_after = INTERVAL '14 days';
    ```
 
 2. Peterson's ClickUp weekly call notes doc for that client (see Step 5.5 below)
 
-**[ADD TO EXISTING] → ClickUp task comment** on the existing task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
+**[ADD TO EXISTING] → ClickUp task comment** on the existing task. To find the task ID:
+```sql
+SELECT clickup_task_id FROM clickup_entries
+WHERE task_name ILIKE '%<EXISTING_TASK_TITLE>%'
+AND (client_id = '<CLIENT_ID>' OR task_name ILIKE '%<CLIENT_NAME>%')
+ORDER BY created_at DESC LIMIT 1;
+```
+If found: post the new context as a comment using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
+If not found: include in the full extraction with a note `[TASK NOT FOUND: <title>]`. **Email fallback.**
 
 **Channel messages → included in the full extraction.** Cyndi sends them in Google Chat after Peterson reviews.
 
@@ -211,9 +224,15 @@ If not found: **email fallback.**
 
 **Full extraction → daily digest only** (Step 6). Internal discussions are not broadcast.
 
-**Action items → `fathom_entries.action_items`** (same UPDATE) + relevant team member's ClickUp channel.
-Find the team member's channel: `mcp__claude_ai_ClickUp__clickup_get_chat_channels`, match by team member name (e.g., "Ahmed", "Lindsey", "Ade"). Send the action items relevant to that person via `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
-If team member's channel not found: **email fallback.**
+**Action items → `fathom_entries.action_items`** (same UPDATE) + each team member's ClickUp channel.
+
+For EACH non-Peterson participant on the call:
+1. Find their channel: `mcp__claude_ai_ClickUp__clickup_get_chat_channels`, match by name
+2. Filter the extracted action items to only those assigned to this person
+3. Send their items via `mcp__claude_ai_ClickUp__clickup_send_chat_message`
+
+If a team member's channel is not found: **email fallback** with that person's items.
+If multiple team members are on the call, each gets only THEIR action items, not the full extraction.
 
 **Weekly call notes → persistent.** Same ClickUp doc pattern as clients but under Creekside Internal > [Team Member] > [Name] Notes doc (see Step 5.5 below).
 
