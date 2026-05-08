@@ -162,23 +162,16 @@ WHERE context_type = 'sales'
 AND task_name ILIKE '%<FULL_PARTICIPANT_NAME>%'
 LIMIT 1;
 ```
-If no match by full name, try last name only. If still no match, use `mcp__claude_ai_ClickUp__clickup_get_chat_channels` to search live.
+If no match by full name, try last name only. If still no match, search live via ClickUp MCP.
 
-If found: post the FULL extraction (action items, everything) as a comment on that task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
+If found: post the FULL extraction as a comment on that task using `mcp__claude_ai_ClickUp__clickup_create_task_comment`.
 
-If no sales task found: send email fallback:
-```bash
-python3 ~/creekside-pipelines/pipelines/gmail/gmail_sender.py send \
-  --to peterson@creeksidemarketingpros.com \
-  --subject "[Post-Call Recap] <MEETING_TITLE> -- <DATE>" \
-  --body "<FULL_EXTRACTION_TEXT with [ROUTING GAP] prefix>"
-```
+If no sales task found: **email fallback.**
 
-**Action items → `action_items` table**
+**Action items → `fathom_entries.action_items`** (overwrite the Fathom AI extraction with our better one):
 ```sql
-INSERT INTO action_items (title, description, category, priority, status, source, source_agent, context)
-VALUES ('<title>', '<description>', 'sales', 'normal', 'pending',
-        'fathom_entries:<ENTRY_ID>', 'post-call-recap-routine', '<context_json>');
+UPDATE fathom_entries SET action_items = '<structured_extraction_json>'
+WHERE id = '<ENTRY_ID>';
 ```
 
 ---
@@ -192,9 +185,9 @@ Tier 2: `SELECT DISTINCT view_id FROM clickup_chat_entries WHERE space_name ILIK
 Tier 3: `mcp__claude_ai_ClickUp__clickup_get_chat_channels` -- search live for client name.
 
 If found: send via `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
-If not found: email fallback (same as sales calls, with `[ROUTING GAP]` prefix).
+If not found: **email fallback.**
 
-**Action items → `action_items` table** (same INSERT pattern as sales calls, category = 'client')
+**Action items → `fathom_entries.action_items`** (same UPDATE as sales calls)
 
 **Weekly call notes → TWO destinations:**
 
@@ -218,12 +211,26 @@ If not found: email fallback (same as sales calls, with `[ROUTING GAP]` prefix).
 
 **Full extraction → daily digest only** (Step 6). Internal discussions are not broadcast.
 
-**Action items → `action_items` table** (category = 'internal') + relevant team member's ClickUp channel.
+**Action items → `fathom_entries.action_items`** (same UPDATE) + relevant team member's ClickUp channel.
 Find the team member's channel: `mcp__claude_ai_ClickUp__clickup_get_chat_channels`, match by team member name (e.g., "Ahmed", "Lindsey", "Ade"). Send the action items relevant to that person via `mcp__claude_ai_ClickUp__clickup_send_chat_message`.
+If team member's channel not found: **email fallback.**
 
 **Weekly call notes → persistent.** Same ClickUp doc pattern as clients but under Creekside Internal > [Team Member] > [Name] Notes doc (see Step 5.5 below).
 
 **Channel messages → included in the full extraction.** Not sent separately for internal calls.
+
+---
+
+### Email Fallback (universal)
+
+Whenever ANY routing destination can't be found (sales task, client channel, team member channel, weekly notes doc), send the undelivered content to Peterson via email:
+```bash
+python3 ~/creekside-pipelines/pipelines/gmail/gmail_sender.py send \
+  --to peterson@creeksidemarketingpros.com \
+  --subject "[Post-Call Recap] <MEETING_TITLE> -- <DATE>" \
+  --body "<content with [ROUTING GAP] prefix describing what couldn't be found>"
+```
+This ensures nothing is silently lost. Peterson always gets the output.
 
 ---
 
@@ -239,10 +246,7 @@ For any call that produced weekly call notes (client OR internal):
 
 3. **Append** the new bullet points to the most recent date page using `mcp__claude_ai_ClickUp__clickup_update_document_page`. Add the notes as bullet points below any existing content.
 
-4. **Fallback** if the doc, parent page, or date page can't be found:
-   - Log: `[WEEKLY NOTES GAP] Could not find weekly notes doc for: <CLIENT_OR_PERSON_NAME>`
-   - Include the notes in the daily digest with the gap flag so Cyndi can add them manually
-   - Do NOT stop the routine -- continue processing other calls
+4. **Fallback** if the doc, parent page, or date page can't be found: **email fallback** with the weekly notes content and `[WEEKLY NOTES GAP]` prefix. Continue processing other calls.
 
 ### Step 6: Write daily digest to agent_knowledge
 
