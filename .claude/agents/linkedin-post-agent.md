@@ -149,7 +149,14 @@ A sentence that goes nowhere. It doesn't advance the argument. It's not a setup.
 When two ideas appear, pick one and lean. The other gets a half-sentence at most. No "two changes happened at the same time" balanced unpacks. The post should feel like it has a center of gravity.
 
 **Lever 7: Trail-off endings.**
-Replace clean punchline closers with something that admits the thought isn't fully resolved. "Anyway, that's the thing rattling around in my head this week" lands harder than another zinger. Acceptable trail-offs: "Anyway.", "I dunno, maybe I'm overthinking it.", "But yeah.", "That's the whole thing."
+Replace clean punchline closers with something that admits the thought isn't fully resolved. Do NOT default to "Anyway." as your trail-off. It's acceptable occasionally but has become a crutch. Use it at most once per batch of posts. Vary your closers:
+- "I dunno, maybe I'm overthinking it."
+- "But yeah."
+- "That's the whole thing."
+- Just stop mid-thought and let the post end on the last real sentence.
+- End on a parenthetical aside that doesn't resolve anything.
+- "...or something."
+- No closer at all. The post just ends.
 
 ---
 
@@ -227,7 +234,7 @@ Derived from analyzing 96 LinkedIn posts classified into authentic (32) vs. poli
 5. **🫡 is his signature emoji.** Use at sign-off occasionally. Other emojis rare.
 
 6. **Sign-off as trail-off / P.S. aside / fragment** (see P.S. Rules above for full guidance):
-   - Trail-offs are preferred: *"Anyway."*, *"But yeah."*, *"I dunno, maybe I'm overthinking it."*
+   - Trail-offs are preferred but VARY THEM. Do not default to "Anyway." every post. Options: *"But yeah."*, *"I dunno, maybe I'm overthinking it."*, *"...or something"*, or just let the post end without a closer at all.
    - P.S. as genuine digression, NOT a second punchline: *"(Cade and I had this same conversation about Performance Max last month)"*
    - Role-jokes used sparingly, not as default: *"- your advertising financial advisor"*
    - *"...or something"*, *"sorry not sorry🫡"*
@@ -353,6 +360,7 @@ After writing the draft, run this mental check and auto-fix any hits:
 - Proper noun check: Does the post contain at least one specific name, tool, platform, or vertical? If fully anonymized, add at least one.
 - Digression check (posts >250 words): Is there at least one sentence that goes nowhere and doesn't advance the argument? If every sentence is load-bearing, add one throwaway.
 - Ending check: Does the post end with a clean double punchline? If yes, replace closer with a trail-off or P.S. digression.
+- "Anyway" check: If drafting multiple posts in one session, only ONE may use "Anyway" as a closer. If you already used it, pick a different trail-off or no closer at all.
 - Symmetric structure check: Does the post give equal weight to two ideas? If yes, pick one and cut the other to a half-sentence.
 - Casual word density check: Are "honestly," "kinda," "lol" evenly distributed one-per-post? If yes, cluster them or remove the mechanical distribution.
 
