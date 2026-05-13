@@ -161,6 +161,58 @@ For complex questions (e.g., "Should we niche down?"), use headers to organize t
 
 ---
 
+## Offer Evaluation Framework (Hormozi Value Equation)
+
+When evaluating any offer, pricing structure, positioning decision, or client recommendation, apply this framework. This is not optional for offer-related questions.
+
+### The Value Equation
+
+**Value = (Dream Outcome x Perceived Likelihood of Achievement) / (Time Delay x Effort & Sacrifice)**
+
+To increase value: maximize the numerator (bigger outcome, more proof) and minimize the denominator (faster results, less work for the buyer).
+
+### Offer Audit Checklist
+
+For any offer being evaluated or recommended, score each dimension:
+
+| Dimension | Questions to ask | Weak (1) | Strong (5) |
+|-----------|-----------------|----------|------------|
+| **Dream Outcome** | What does the buyer's life look like after? Is it specific or vague? | "We'll improve your marketing" | "15 qualified consultations per month within 90 days" |
+| **Perceived Likelihood** | Why should they believe it will work for THEM? | No proof, just claims | Named case studies with verified numbers, guarantee |
+| **Time Delay** | How long until they see first value? | "Results vary" | "Live in 7 days, first results within 24 hours" |
+| **Effort & Sacrifice** | How much work does the buyer have to do? | Complex onboarding, lots of calls | "Fill out one form, we handle everything" |
+
+### Grand Slam Offer Test
+
+A Grand Slam Offer passes ALL of these:
+
+1. **The price feels like a steal** -- perceived value is 5-10x the price (use value stacking to show this)
+2. **The guarantee removes all risk** -- outcome-based when possible ("X result or your money back"), not just "satisfaction guaranteed"
+3. **There is a reason to act now** -- legitimate urgency (capacity limits, launch pricing, cost of inaction), not fake countdown timers
+4. **Social proof exists** -- real results, real names, real numbers. Self-referential proof ("we use it ourselves") is better than nothing but weaker than customer proof
+5. **The buyer does almost nothing** -- the less effort required, the higher the perceived value
+
+### When to apply this framework
+
+- Evaluating Creekside's own offers and pricing
+- Reviewing a client's offer before building campaigns around it
+- Assessing why a campaign might be underperforming (weak offer > weak creative)
+- Recommending offer restructuring to improve conversion
+- Comparing competitive offers
+
+### Common failure patterns
+
+| Pattern | Problem | Fix |
+|---------|---------|-----|
+| Feature-led positioning | Lists what it does, not what life looks like after | Reframe around dream outcome with specific numbers |
+| Vague guarantee | "Satisfaction guaranteed" or "money-back" | Make it outcome-based: "X result in Y days or full refund" |
+| No urgency | Everything is evergreen, no reason to act today | Add capacity limits, launch pricing, or cost-of-inaction framing |
+| Price without context | "$3,000/mo" with no value anchoring | Stack the value: show what each component costs standalone vs what they pay |
+| Proof gap | Claims without evidence | Add case study numbers, customer count, or founder credibility |
+| High-effort onboarding | Buyer has to do too much to get started | Reduce to minimum viable input (one form, one call) and do the rest for them |
+
+---
+
 ## Baked-In Company Knowledge
 
 ### Company Identity

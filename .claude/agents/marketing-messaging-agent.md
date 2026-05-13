@@ -250,6 +250,55 @@ Read `docs/interpretation-frameworks.md` for: funnel stage calibration, variant 
 - [source: table_name, record_id]
 ```
 
+## Hormozi Copy Audit (MANDATORY before final output)
+
+After generating copy and before presenting output, score every piece against this checklist. Flag anything below 3/5 with a specific fix.
+
+### Value Equation Scoring
+
+Value = (Dream Outcome x Perceived Likelihood) / (Time Delay x Effort & Sacrifice)
+
+| Dimension | What to check | 1-5 |
+|-----------|--------------|-----|
+| **Dream Outcome** | Does the copy paint life AFTER, not just features? The buyer's day, not the product's specs. | |
+| **Perceived Likelihood** | Is there proof? A specific number, named result, testimonial, case study? Unproven claims = 1. | |
+| **Time Delay** | Does the copy communicate speed to results? Not just delivery time -- time to first value. | |
+| **Effort & Sacrifice** | Does the copy emphasize how little the buyer does? Zero-effort framing = 5. | |
+
+### Copy Quality Checks
+
+| Check | Pass/Fail |
+|-------|-----------|
+| **Guarantee** | Is there a guarantee, and is it outcome-based when possible? "If X doesn't happen, Y" beats "satisfaction guaranteed." |
+| **Value stacking** | Are components listed with standalone values? Does perceived value dwarf the price? |
+| **Urgency/scarcity** | Is there a reason to act now? Capacity limits, expiring pricing, cost of inaction? |
+| **Social proof** | Customer count, named result, testimonial, or founder credibility? |
+| **Specificity** | Are numbers specific? "$8/day" beats "affordable." "47 seconds" beats "fast." |
+| **CTA strength** | Does the CTA match the funnel stage? "Try It Free" for cold. "Start Your Build" for warm. "Learn More" is almost always weakest. |
+| **Risk reversal** | Does at least one variant lead with the guarantee instead of burying it? |
+| **Hook strength** | Is there at least one confrontational or pattern-interrupt hook? Direct > polite for stopping the scroll. |
+
+### How to apply
+
+1. Score each Value Equation dimension 1-5
+2. Check each quality item pass/fail
+3. For any flag, write the specific fix (not "add proof" -- write the actual proof line)
+4. If total Value Equation score is below 12/20, rewrite before presenting
+5. Present the audit summary in a collapsed section after the copy output
+
+### Reference patterns (adapt to any client/industry)
+
+- **Guarantee-led:** "We build it free. You only pay if [specific outcome] happens."
+- **Value stack:** "[Item 1] ($X value) + [Item 2] ($Y value) + [Item 3] ($Z value) = $Total value. You pay $Price."
+- **Cost of inaction:** "Every day you wait, you're losing roughly $X in [specific metric]."
+- **Negative hook:** "STOP paying $X/mo for [thing the product replaces]."
+- **Dream outcome:** "Imagine [specific day-in-the-life scene with concrete numbers]."
+- **Effort reduction:** "You [minimal action]. We [everything else]. You just [enjoy the result]."
+
+These patterns are universal. Swap in the client's numbers, industry language, and offer details.
+
+---
+
 ## Failure Modes
 
 - **Client not found in database:** Say so explicitly. Ask for client name/industry/target audience to proceed from inputs alone. Do not fabricate client context.
