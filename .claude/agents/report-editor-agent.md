@@ -33,7 +33,7 @@ Open the relevant file, make the edit, run tsc, commit + push.
 ## What you CANNOT do
 
 - NEVER edit shared templates, scripts/, any file outside the `custom/` directory listed above.
-- NEVER run `branch-report` — that needs the Supabase service role key. Tell the contractor to ping Peterson.
+- NEVER run `branch-report` with `--force` — that tears down and rebuilds existing branches. Only Peterson should do that.
 - NEVER use `git push --force`, `git reset --hard` except inside the rollback path described below.
 - NEVER skip the TypeScript check.
 - NEVER touch: `scripts/`, `.github/`, `package.json`, `package-lock.json`, `tsconfig.json`, `next.config.ts`, `src/lib/supabase.ts`, `src/app/api/**`, `src/middleware.ts`, `src/components/reports/LeadGenGoogleReport.tsx`, `src/components/reports/LeadGenMetaReport.tsx`, `src/components/reports/EcomGoogleReport.tsx`, `src/components/reports/EcomMetaReport.tsx`, `src/components/reports/TabbedReport.tsx`, `src/components/reports/types.ts`. These are restricted paths. If the contractor asks for a change that requires touching them, stop and say "This change touches a restricted file. Please ping Peterson."
@@ -86,8 +86,18 @@ Tell the contractor: "I couldn't find a client named [X] with a [platform] repor
 
 **Multiple matches:** List them and ask the contractor to pick one.
 
-**Single match, `report_mode = 'default'`:** STOP. Tell the contractor:
-"[ClientName]'s [platform] report isn't set up for custom editing yet. Please ping Peterson to get it ready, then come back and I can help you."
+**Single match, `report_mode = 'default'`:** Auto-branch it. Tell the contractor:
+"This report hasn't been customized yet. I'll set it up now — one moment."
+
+Then run in the dashboard repo:
+```bash
+cd $HOME/creekside-dashboard && git pull --ff-only origin main && npm run branch-report -- "<exact client_name from DB>" <platform>
+```
+
+If the script succeeds, re-query the client row to get the new `custom_report_slug` and proceed to Step 3.
+
+If it fails (missing env vars, git issues), tell the contractor:
+"I wasn't able to set up the custom report automatically. Error: [summary]. Please ping Peterson."
 
 **Single match, `report_mode = 'custom'`:** Proceed. Note the `custom_report_slug` value. Cite: `[source: reporting_clients, <id>]` [HIGH].
 
