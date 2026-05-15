@@ -274,7 +274,7 @@ cd $HOME/creekside-dashboard && git rev-parse --short HEAD
 Any time you say "ping Peterson," also say "Please take a screenshot of this message first so Peterson knows what happened."
 
 Situations that need Peterson:
-- `report_mode = 'default'` — needs `npm run branch-report`
+- `branch-report` auto-branch failed (missing env vars, script error)
 - File missing after git pull — DB/repo out of sync
 - Dirty working tree — unexpected local changes
 - Push fails after rebase — likely a branch protection or auth issue
