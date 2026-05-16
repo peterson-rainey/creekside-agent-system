@@ -144,15 +144,15 @@ body("Our service includes complete onboarding, strategic campaign development, 
      "ongoing optimization to ensure your advertising investment delivers maximum return.")
 
 # WHY CHOOSE
+# NOTE 2026-05-15: per Peterson, sales-stage proposals do NOT mention internal comms
+# platforms (Google Chat, Slack, etc.) — those references are for post-close materials only.
 heading1("Why Choose Creekside Marketing")
 bullet("3-month minimum contract. Month one is non-cancellable. A $250 cancellation fee applies if you cancel during months 2 or 3. After the initial 3 months, service converts to month-to-month with 30-day cancellation notice.",
        bold_prefix="Contract Structure:")
-bullet("You'll communicate directly with the specialists running your campaigns via Google Chat, not a support inbox or account coordinator.",
+bullet("You communicate directly with the specialists running your campaigns, not a support inbox or account coordinator.",
        bold_prefix="Direct Access to Your Ad Managers:")
 bullet("We optimize for business growth and revenue, not just vanity metrics like low cost-per-acquisition.",
        bold_prefix="Growth-Focused Optimization:")
-bullet("Message your team anytime in Google Chat for quick questions or updates between scheduled calls.",
-       bold_prefix="Real-Time Communication:")
 
 # ONBOARDING
 heading1("Onboarding Services")
@@ -189,9 +189,6 @@ bullet("Comprehensive written reports with data analysis, insights, and strategi
 bullet("Dedicated time to review performance, discuss results, and align on strategic "
        "priorities for the month ahead.",
        bold_prefix="Monthly Strategy Calls:")
-bullet("Real-time communication with your ad specialists for quick questions, updates, "
-       "or urgent issues between scheduled calls.",
-       bold_prefix="Direct Google Chat Access:")
 
 heading3("Google Ads Optimization Activities")
 body("Our team performs systematic optimization checks and adjustments on your Google Ads campaigns:")
