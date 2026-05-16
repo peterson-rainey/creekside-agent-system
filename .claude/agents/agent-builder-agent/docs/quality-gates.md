@@ -139,7 +139,7 @@ Before shipping, ask: "Does this agent load content it doesn't need for every in
 
 ## Access Compatibility (MANDATORY for All Non-Admin Agents)
 
-Agents built at Creekside are used by admins (Peterson, Cade) AND contractors. Admins have access to systems contractors don't: authenticated MCP integrations (Gmail, ClickUp, Google Calendar, Google Drive, Square, Slack), protected files, direct DB writes, local pipeline scripts, and ADMIN_MODE. Agents built by admins often accidentally depend on these -- then silently fail when a contractor runs them.
+Agents built at Creekside are used by admins (Peterson, Cade) AND contractors. Admins have access to systems contractors don't: authenticated MCP integrations (Gmail, ClickUp, Google Calendar, Google Drive, Square), protected files, direct DB writes, local pipeline scripts, and ADMIN_MODE. Agents built by admins often accidentally depend on these -- then silently fail when a contractor runs them.
 
 ### Default Posture: Universal Access
 
