@@ -111,3 +111,99 @@ Peterson's verbatim responses to pricing objections:
 ## Pricing Risk Note
 
 Do NOT use objection-handling language in the proposal itself -- that's for the sales call. The proposal should state pricing clearly and move to next steps. Objection handling belongs in the email follow-up or next call.
+
+---
+
+## Pricing Override Mechanism
+
+### When to use an override
+
+An override is appropriate when Creekside made a commitment to a specific prospect at
+old pricing terms before the current pricing was in effect. Examples:
+
+- **Existing pipeline carryovers:** A deal has been in negotiation for months under
+  the old pricing structure. Using new pricing mid-conversation would break trust.
+- **Contractual commitments:** Peterson or Cade verbally quoted a specific price on a
+  call that is on record. That quote is a commitment.
+- **Executive exception:** Peterson has explicitly approved a one-off departure from
+  standard pricing for a strategic reason (e.g., marquee client, referral relationship).
+
+### When NOT to use an override
+
+- A prospect objects to the price and asks for a discount. That is a negotiation
+  objection -- handle it on the call, do not silently re-run the proposal with lower
+  numbers.
+- A prospect "feels like" the price is high. Same rule.
+- A prospect compares to a competitor's quote. Same rule.
+
+If Peterson asks for an override in response to a sales objection, flag it: "This
+looks like a negotiation scenario rather than a pipeline carryover. Are you sure you
+want to log a pricing exception? This creates an audit trail."
+
+### How to pass an override to the agent
+
+Two forms are accepted:
+
+**Form 1 -- Snapshot reference:** "Use OLD Plan A pricing" or "Use 2025 Q4 pricing
+snapshot." The agent looks up `agent_knowledge` for an entry tagged
+`pricing-snapshot` to resolve the exact figures.
+
+**Form 2 -- Explicit values:** Pass a dict of override keys directly:
+
+```
+Override pricing: onboarding=$1,000, min=$1,000, variable_rate_desc=20/15/10 at $20K/$40K, cap=$12,000
+```
+
+These map to the `pricing_override` dict accepted by `build_lead_docx.py`:
+
+```json
+{
+  "pricing_override": {
+    "onboarding_fee": "$1,000 per platform (one-time)",
+    "monthly_min": "$1,000 minimum per platform",
+    "variable_rate_desc": "20% up to $20,000/month\n15% from $20,000 to $40,000\n10% above $40,000",
+    "monthly_cap": "$12,000 / month"
+  }
+}
+```
+
+### How the override is logged
+
+Every override automatically creates an `agent_knowledge` entry:
+
+- **Type:** `decision`
+- **Title:** `Pricing Exception: {lead/client name} {YYYY-MM-DD}`
+- **Content:** What was overridden, what the standard pricing would have been, and
+  the stated reason for the exception
+- **Tags:** `['pricing-exception', 'grandfathered', 'precedent-risk']`
+
+Run `validate_new_knowledge('decision', title, ARRAY['pricing-exception',
+'grandfathered', 'precedent-risk'])` before inserting. If BLOCKED, UPDATE instead.
+
+### Output banner (mandatory)
+
+When an override is active, display this banner in the agent's output before
+delivering the proposal:
+
+```
+NOTE: This proposal uses non-standard pricing per [reason stated].
+The override has been logged to agent_knowledge (entry: [title]).
+Do NOT use this as precedent for new leads. Every override is a one-off exception
+tied to specific pipeline history, not a negotiating baseline.
+```
+
+### Validator behavior when override is active
+
+`validate_output.py` does not currently check pricing math. If the validator is
+extended in the future to verify pricing figures, it must accept both standard figures
+AND any figures present in the active `pricing_override` dict. An override is not a
+violation.
+
+### Canonical example: Shin Nagpal / Village Repair (2026-05-15)
+
+- Old pricing used: onboarding=$1,000, min=$1,000, tiers=20/15/10 at $20K/$40K, cap=$12,000
+- Standard pricing at time of proposal: onboarding=$1,500, min=$1,500, tiers=20/15/10
+  at $30K/$60K, cap=$15,000
+- Reason: Deal had been in Creekside's pipeline for months at the old terms.
+  Shin had been quoted that pricing verbally.
+- agent_knowledge entry created: "Pricing Exception: Village Repair / Shin Nagpal 2026-05-15"
