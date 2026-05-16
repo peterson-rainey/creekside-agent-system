@@ -53,6 +53,7 @@ docs/communication-style.md        # Peterson's voice rules, audience calibratio
 docs/proposal-types.md             # Retainer vs Audit vs Project scope -- sections and tone per type
 docs/discovery-framework.md        # 11-step discovery, what to extract from Fathom calls, case study matrix
 docs/companion-writeup-triggers.md # Trigger phrase detection, valid topics, Shin/Village Repair canonical example
+docs/audit-finding-extraction.md   # When to extract findings, detection signals, quality bar, Shin/Bob's Automotive example, anti-patterns
 ```
 
 ---
@@ -148,6 +149,47 @@ Extract and note from the transcript (use `[HIGH]` if verbatim, `[MEDIUM]` if in
 - Industry (for case study matching -- read `docs/discovery-framework.md`)
 
 If NO Fathom call exists and no budget is stated anywhere: STOP and ask Peterson what context to use before continuing.
+
+---
+
+## Step 2.5: Extract Audit Findings
+
+Read `docs/audit-finding-extraction.md` for the full detection criteria, quality bar, and anti-patterns.
+
+Scan the Fathom transcript from Step 2 for evidence that Peterson conducted a **live account audit** during the call -- reviewing the prospect's Google Ads or Meta Ads account in real time.
+
+**Detection signals (any two of these = live audit happened):**
+- Peterson says phrases like "I'm looking at your account", "let's look at your campaigns", "here's what I'm seeing", "I can see you're..."
+- Specific metric callouts Peterson could only know from live access (e.g., "your cost per conversion is $50", "you have five ad groups", "you're getting 3.2% CTR")
+- Account-structure observations (e.g., "you're running broad match on all keywords", "you have no negative keywords", "your Quality Score is 4 on your top terms")
+- Attribution/tracking observations (e.g., "95% of your source attribution shows 'no source'", "you're optimizing for 60-second calls")
+
+**If a live audit happened:**
+
+Extract 2-3 SPECIFIC findings with verbatim quotes where possible. See `docs/audit-finding-extraction.md` for quality criteria and the Shin / Bob's Automotive canonical example.
+
+Set:
+```
+audit_findings_present = true
+audit_findings = [
+  "<finding 1 -- specific, verifiable, account-derived>",
+  "<finding 2>",
+  "<finding 3 if available>"
+]
+audit_findings_header = "What We Found in Your Account"  # or more specific if context suggests it
+```
+
+These will be passed to `build_lead_docx.py` as `audit_findings_section`:
+```json
+"audit_findings_section": {
+  "header": "What We Found in Your Account",
+  "findings": ["<finding 1>", "<finding 2>", "<finding 3>"]
+}
+```
+
+**If no live audit happened:** Set `audit_findings_present = false`. Skip the `audit_findings_section` field in the Step 6 JSON (the builder will omit the callout block automatically).
+
+**Anti-pattern (hard rule):** Do NOT fabricate findings. If you cannot tie a finding to a specific transcript quote or a specific metric stated on the call, do not include it. Generic "we'll audit your account" language is fine as onboarding copy; it is NOT an audit finding. See `docs/audit-finding-extraction.md` for the full anti-pattern list.
 
 ---
 
@@ -282,12 +324,17 @@ mkdir -p /Users/petersonrainey/Desktop/proposals
   "client_name": "<business name>",
   "industry_context": "<one-phrase description, e.g. 'automotive repair shop'>",
   "starting_ad_spend": <integer -- stated monthly budget in dollars>,
-  "audit_findings": ["<finding 1>", "<finding 2>"],
+  "audit_findings": ["<legacy overview bullets -- brief pain points from discovery>"],
+  "audit_findings_section": {
+    "header": "What We Found in Your Account",
+    "findings": ["<specific finding 1>", "<specific finding 2>", "<specific finding 3>"]
+  },
   "recommended_plan": "<A, B, or C>",
-  "signature": "Peterson Rainey",
-  "audit_findings": ["<specific call-out from discovery -- verbatim or close to it>"]
+  "signature": "Peterson Rainey"
 }
 ```
+
+Omit `audit_findings_section` entirely if `audit_findings_present = false` from Step 2.5. The builder skips the callout block automatically when the key is absent.
 
 `single_plan_mode` is derived automatically from `starting_ad_spend` -- do not include it unless you need to override the auto-logic (see `docs/pricing-logic.md`).
 

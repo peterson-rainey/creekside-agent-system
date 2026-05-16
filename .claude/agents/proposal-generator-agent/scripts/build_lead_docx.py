@@ -24,6 +24,12 @@ Optional JSON fields:
                                 monthly_min, variable_rate_desc, monthly_cap)
     out_path            str     full output path (default: ~/Desktop/proposals/{slug}_{date}.docx)
     proposal_title      str     override document title (default: "Google Ads Management Proposal")
+    audit_findings_section  dict    if present, renders a shaded "What We Found in Your Account"
+                                callout at the top of the Onboarding section. Keys:
+                                  findings (list of str -- specific account observations)
+                                  header   (str, optional -- defaults to "What We Found in Your Account")
+                                Use this for Step 2.5 audit-finding injection. Distinct from the
+                                legacy audit_findings list (which appears in Overview body text).
     sections            dict    override section body text (keys: overview, why_choose, next_steps)
     onboarding_items    list    dicts with keys: heading (str) and bullets (list of str or
                                 [bold_prefix, text] pairs)
@@ -284,9 +290,46 @@ class ProposalBuilder:
                 bold_prefix="We do what we do."
             )
 
+    def build_audit_findings_callout(self, findings: list, header: str = "What We Found in Your Account"):
+        """
+        Render a shaded callout block listing specific audit findings extracted from
+        the discovery call. Only called when audit_findings_section is present and
+        non-empty. Uses a single-cell table with a light-blue background to visually
+        distinguish the block from body text.
+        """
+        tbl = self.doc.add_table(rows=1, cols=1)
+        tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+        cell = tbl.rows[0].cells[0]
+        shade_cell(cell, "EBF5FB")  # light blue tint
+
+        cell.text = ""
+        p_header = cell.paragraphs[0]
+        r_header = p_header.add_run(header)
+        self._set_font(r_header, size=10.5, bold=True, color=BLUE)
+        p_header.paragraph_format.space_after = Pt(4)
+
+        for finding in findings:
+            p_finding = cell.add_paragraph()
+            r_bullet = p_finding.add_run("•  " + finding)
+            self._set_font(r_bullet, size=10)
+            p_finding.paragraph_format.space_after = Pt(2)
+            p_finding.paragraph_format.left_indent = Inches(0.15)
+
+        self.doc.add_paragraph()  # spacer after the callout
+
     def build_onboarding(self):
         p = self.p
         self.heading1("Onboarding Services")
+
+        # Audit findings callout: rendered at the top of Onboarding when
+        # audit_findings_section is explicitly provided (Step 2.5 of agent).
+        # Falls back to the legacy audit_findings list in the Overview if not set.
+        audit_section = p.get("audit_findings_section")
+        if audit_section and isinstance(audit_section, dict):
+            findings_list = audit_section.get("findings", [])
+            section_header = audit_section.get("header", "What We Found in Your Account")
+            if findings_list:
+                self.build_audit_findings_callout(findings_list, header=section_header)
 
         onboarding_items = p.get("onboarding_items")
         if onboarding_items:
