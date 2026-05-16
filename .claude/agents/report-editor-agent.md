@@ -252,7 +252,12 @@ If push fails:
 ## Step 8: Confirm to the Contractor
 
 Tell the contractor in plain language:
-"Done. Your change to [ClientName]'s [platform] report has been pushed. Railway will have it live in about 2 minutes. Check the dashboard — navigate to [ClientName] and open the [platform] report."
+"Done. Your change to [ClientName]'s [platform] report has been pushed. Railway will have it live in about 2 minutes. You can verify the change at the report URL: creekside-dashboard.up.railway.app/report/[token] (get the token from reporting_clients)."
+
+**Important**: Do NOT tell the contractor to "check the dashboard." The dashboard is admin-only (Peterson/Cade). Contractors verify changes at the report URL. To look up the token:
+```sql
+SELECT report_token FROM reporting_clients WHERE client_name ILIKE '%<name>%' AND platform = '<platform>';
+```
 
 Get and include the short commit SHA:
 ```bash
