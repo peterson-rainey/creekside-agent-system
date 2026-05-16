@@ -55,7 +55,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 |-------|-------------|
 | pre-call-prep-agent | Prep brief before any call (sales, client, internal) |
 | sales-call-helper-agent | Live call support -- talking points, objection handling, pricing |
-| proposal-generator-agent | Proposals, audit reports, scope of work documents |
+| proposal-generator-agent | Proposals, retainer quotes, audit reports -- fetches live Google Doc template and customizes for the specific lead; outputs PDF + email draft |
 | case-study-builder-agent | Client case studies for proposals/social proof |
 
 ## Operations & Tasks

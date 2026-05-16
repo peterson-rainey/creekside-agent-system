@@ -25,13 +25,19 @@ The folder contains:
 
 ### Step 1: Qualification check (must pass BEFORE recommending any plan)
 
-YES -- write a proposal:
-- $3K+/month per platform ad budget
+Three tiered thresholds (updated 2026-05-15):
+
+**Call gate (before booking a discovery call):** $5K+/month stated ad budget. Below this, don't book.
+
+**Post-call floor (if they got past the gate but budget can't reach $5K):** $3K/month minimum.
+
+**Absolute floor:** $2K/month per platform. Below this, no engagement. Existing pipeline carryovers from before this rule (e.g., Village Repair) are explicit exceptions — do not treat as precedent for new leads.
+
+Other YES criteria:
 - Scaling mindset, treats ads as investment
 - Has a proven offer/product with margins
 
-NO -- do not write a proposal:
-- Below $3K/month total budget
+NO regardless of budget:
 - Price-shoppers or guarantee-seekers
 - Status quo mindset, blames previous agencies without self-awareness
 - Micromanagers or unwilling to give account access

@@ -134,3 +134,52 @@ SELECT name, enabled FROM scheduled_agents WHERE name = '[agent-name]' AND enabl
 
 ### QC gate
 Before shipping, ask: "Does this agent load content it doesn't need for every invocation?" If yes, split it. If no, a single file is fine. Document the reasoning in the build report either way.
+
+---
+
+## Access Compatibility (MANDATORY for All Non-Admin Agents)
+
+Agents built at Creekside are used by admins (Peterson, Cade) AND contractors. Admins have access to systems contractors don't: authenticated MCP integrations (Gmail, ClickUp, Google Calendar, Google Drive, Square, Slack), protected files, direct DB writes, local pipeline scripts, and ADMIN_MODE. Agents built by admins often accidentally depend on these -- then silently fail when a contractor runs them.
+
+### Default Posture: Universal Access
+
+Every agent MUST work for all users unless it is explicitly scoped as admin-only. An agent is admin-only ONLY if it:
+- Modifies protected infrastructure (CLAUDE.md, hooks, settings, roles)
+- Handles internal Creekside finances, billing, or compensation
+- Manages the agent system itself (building/editing agents, DB schema changes)
+
+Everything else -- client work, content, reporting, research, ads, communications -- defaults to universal access.
+
+### Access Audit (run during Step 4 of the build process)
+
+For every tool and system the agent depends on, ask: "Can a contractor use this?"
+
+| Dependency | Admin-only? | Contractor alternative |
+|---|---|---|
+| Supabase `execute_sql` | No (contractors route through `contractor_query()`) | Use `contractor_query()` pattern |
+| GitHub repo files (Read/Glob/Grep) | No (auto-pull gives everyone the files) | Works as-is |
+| MCP Gmail, ClickUp, Calendar, Drive, Square | **Yes** | `chrome-browser-nav` skill |
+| MCP Meta Ads / Google Ads (PipeBoard) | **Yes** | `chrome-browser-nav` skill |
+| Protected file writes | **Yes** | Not available -- scope as admin-only or remove |
+| Local scripts (`~/loom_pipeline/`, `~/gdrive_pipeline/`) | **Yes** | Not available -- note in troubleshooting |
+| ADMIN_MODE | **Yes** | Not available -- admin-only agents only |
+
+### Required: Troubleshooting Section in Agent Docs
+
+If the access audit identifies ANY admin-only dependency, the agent file (or its `docs/` directory) MUST include a troubleshooting section like this:
+
+```markdown
+## Access Requirements
+
+This agent uses the following systems that require specific access:
+- **[System name]**: [What it's used for]. If this fails, it likely means you don't have [MCP integration / local script / etc.] configured.
+  - **Resolution**: Contact Peterson or Cade to get access set up on your device, OR use the `chrome-browser-nav` skill as an alternative for [platform] data.
+```
+
+List every admin-only dependency, what happens when it's missing (error message or silent failure), and how to resolve it (contact admin, use browser alternative, or confirm the step is admin-only and can be skipped).
+
+### QC Build Gate
+- VERIFY the access audit was performed and documented in the build report
+- VERIFY that agents with admin-only dependencies include an "Access Requirements" troubleshooting section
+- REJECT universal-access agents that silently depend on admin-only systems without documenting it
+- Admin-only agents (infrastructure, finance, agent-system management) are exempt from universal access but should still document their access requirements

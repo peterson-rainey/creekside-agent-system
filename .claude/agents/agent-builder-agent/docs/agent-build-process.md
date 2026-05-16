@@ -241,6 +241,7 @@ Ask: "Does this agent have conditional paths, reference data, or domain knowledg
 - Read-only agents do NOT have Write/Edit/Bash tools
 - Failure modes defined
 - Structure check: no conditional paths, reference data, or domain knowledge that should be split into docs/ (see quality-gates.md)
+- Access compatibility: access audit performed per `docs/quality-gates.md` -- admin-only dependencies documented in an "Access Requirements" troubleshooting section (or confirmed agent is admin-only)
 
 ---
 
