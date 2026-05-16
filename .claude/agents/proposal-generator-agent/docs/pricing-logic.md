@@ -29,6 +29,22 @@ This replaces the prior doc `131aD_M5-gPkYuIaoJknWjWKLrQ4wAu8L` as of 2026-05-15
 - All plans onboarding raised: $1,000 → $1,500/platform
 - Caps raised: Plan A $12K → $15K; Plan B $10K → $12K
 
+## Proposal Display Mode (single-plan vs comparison)
+
+After selecting a plan, determine how many plans to show in the proposal. This is enforced in `build_lead_docx.py` via the `single_plan_mode` parameter.
+
+| Stated monthly ad spend | Plans shown in proposal | Rationale |
+|---|---|---|
+| Below $5,000/month | Recommended plan only (single-plan mode) | Comparison table adds friction and confusion for sub-$5K leads. Showing three plans invites objection on Plan C pricing they'll never use. |
+| $5,000 to $30,000/month | Recommended plan + Plan B (two-plan mode) | The Plan A/B crossover is around $20-30K combined. Showing both is genuinely useful at this tier. |
+| Above $30,000/month | All three plans (A, B, C) | At this spend level, Plan C is a real option and the comparison is meaningful. |
+
+The `single_plan_mode` bool passed to `build_lead_docx.py` is derived automatically from `starting_ad_spend` unless explicitly overridden. The derivation logic lives in the script; do not hardcode spend thresholds in the agent prompt.
+
+**Village Repair is the explicit exception:** Shin Nagpal's $2K/month budget is below the $3K qualification floor but was grandfathered as a verification test. His onboarding fee ($1,000) and management fee ($1,000 minimum) reflect OLD pricing. Do not use those figures as a template for future sub-$5K clients.
+
+---
+
 ## Plan Selection Decision Tree
 
 ### Step 1: Qualification check (must pass BEFORE recommending any plan)
