@@ -201,7 +201,7 @@ Fetch the current proposal template using the Google Drive pipeline:
 cd /Users/petersonrainey/gdrive_pipeline && python3 drive_crawler.py read --file-id 169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A --output /tmp/proposal_template.json
 ```
 
-Then parse the JSON file (NOT stdout — drive_crawler.py writes status lines to stdout):
+Then parse the JSON file (NOT stdout, since drive_crawler.py writes status lines to stdout):
 ```bash
 python3 -c "import json; print(json.load(open('/tmp/proposal_template.json'))['content'])" > /tmp/proposal_template.txt
 ```
