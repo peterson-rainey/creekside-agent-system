@@ -154,15 +154,20 @@ If NO Fathom call exists and no budget is stated anywhere: STOP and ask Peterson
 Fetch the current proposal template using the Google Drive pipeline:
 
 ```bash
-cd /Users/petersonrainey/gdrive_pipeline && python3 drive_crawler.py read --file-id 131aD_M5-gPkYuIaoJknWjWKLrQ4wAu8L 2>/dev/null
+cd /Users/petersonrainey/gdrive_pipeline && python3 drive_crawler.py read --file-id 169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A --output /tmp/proposal_template.json
 ```
 
-Parse the JSON output and extract the `content` field. This is the live template text.
+Then parse the JSON file (NOT stdout — drive_crawler.py writes status lines to stdout):
+```bash
+python3 -c "import json; print(json.load(open('/tmp/proposal_template.json'))['content'])" > /tmp/proposal_template.txt
+```
+
+The `content` field of the JSON is the live template text. Doc ID `169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A` is the current source of truth as of 2026-05-15 (replaces the old `131aD_M5...` doc).
 
 **If drive_crawler.py fails:** Try the plain-text export (requires authenticated session -- may return a login page):
 ```bash
 curl -sL --max-time 20 \
-  "https://docs.google.com/document/d/131aD_M5-gPkYuIaoJknWjWKLrQ4wAu8L/export?format=txt" \
+  "https://docs.google.com/document/d/169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A/export?format=txt" \
   -o /tmp/proposal_template_raw.txt && head -5 /tmp/proposal_template_raw.txt
 ```
 If the export returns an HTML login page (starts with `<!DOCTYPE html>`), the unauthenticated export path does not work. Report to Peterson and stop -- do not generate a proposal from memory.
