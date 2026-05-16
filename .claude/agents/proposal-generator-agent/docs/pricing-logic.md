@@ -9,31 +9,40 @@ The folder contains:
 - `Pricing_Plans (1).pdf` -- the 3-plan structure (Plan A Growth, Plan B Shared, Plan C Retainer)
 - `Pricing_Proposal_Creekside_v2.docx` -- the full proposal template
 
-**The figures below reflect the current template as of 2026-05-15. If the Google Drive template has different numbers, the template wins.**
+**The figures below reflect the pricing structure as of 2026-05-15 (refreshed). If the Google Drive template has different numbers, the template wins. NOTE: as of 2026-05-15, Peterson is updating the live template to match these new figures — flag to Peterson if the fetched template still shows the old $1,000 minimum and $12K/$10K/$8K caps.**
 
-## Current Pricing Structure (from live template, 2026-05-15)
+## Current Pricing Structure (refreshed 2026-05-15)
 
 | Feature | Plan A: Growth | Plan B: Shared | Plan C: Retainer |
 |---|---|---|---|
 | Best For | Lower initial cost; fee scales with ad spend | Predictable base with lower percentage at scale | Total cost certainty -- one flat fee |
-| Base Fee | $1,000 minimum per platform | $2,000 flat base (covers all platforms) | $8,000 flat retainer (covers all platforms) |
+| Base Fee | $1,500 minimum per platform (raised from $1,000) | $2,000 flat base (covers all platforms) | $10,000 flat retainer (raised from $8,000) |
 | Variable Fee | 20% up to $20K spend; 15% from $20K-$40K; 10% over $40K (per platform) | 10% of total combined ad spend across all platforms | None |
-| Monthly Cap | $12,000/month | $10,000/month | N/A -- always $8,000 |
+| Monthly Cap | $15,000/month (raised from $12,000) | $12,000/month (raised from $10,000) | N/A -- always $10,000 |
 | Onboarding Fee | $1,000 per platform | $1,000 per platform | $0 -- waived |
 
 ## Plan Selection Decision Tree
 
 ### Step 1: Qualification check (must pass BEFORE recommending any plan)
 
-Three tiered thresholds (updated 2026-05-15):
+Tiered routing model (refreshed 2026-05-15):
 
-**Call gate (before booking a discovery call):** $5K+/month stated ad budget. Below this, don't book.
+**Tier 1 — Creekside-managed track (Peterson/Cade close personally):**
+- Stated budget $5K+/month → book the discovery call
+- Post-call adjustment OK down to $3K/month if budget can't reach $5K but prospect will pay our fee
+- These leads become Creekside-managed clients
 
-**Post-call floor (if they got past the gate but budget can't reach $5K):** $3K/month minimum.
+**Tier 2 — Barron white-label routing (sub-$3K leads):**
+- Leads with budget under $3K/month who are otherwise a good fit get passed to Barron for white-label fulfillment
+- Creekside keeps a referral/spread arrangement
+- Use sparingly — not a primary track, only when the lead is a fit
+- These leads do NOT go through the proposal-generator-agent flow
 
-**Absolute floor:** $2K/month per platform. Below this, no engagement. Existing pipeline carryovers from before this rule (e.g., Village Repair) are explicit exceptions — do not treat as precedent for new leads.
+**Hard floor — no engagement:**
+- Budget under $2K/month AND not a Barron fit → decline politely
+- Existing pipeline carryovers from before this rule (e.g., Village Repair) are explicit exceptions, NOT precedent
 
-Other YES criteria:
+Other YES criteria for Tier 1:
 - Scaling mindset, treats ads as investment
 - Has a proven offer/product with margins
 
@@ -42,7 +51,7 @@ NO regardless of budget:
 - Status quo mindset, blames previous agencies without self-awareness
 - Micromanagers or unwilling to give account access
 
-If a lead fails qualification, STOP and tell Peterson. Do not generate a proposal.
+If a lead doesn't qualify for Tier 1, STOP and tell Peterson. Do not generate a proposal. Peterson decides whether to route to Barron or decline.
 
 ### Step 2: Plan selection logic
 

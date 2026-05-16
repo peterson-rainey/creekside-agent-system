@@ -252,7 +252,7 @@ If push fails:
 ## Step 8: Confirm to the Contractor
 
 Tell the contractor in plain language:
-"Done. Your change to [ClientName]'s [platform] report has been pushed. Railway will have it live in about 2 minutes. You can verify the change at the report URL: creekside-dashboard.up.railway.app/report/[token] (get the token from reporting_clients)."
+"Done. Your change to [ClientName]'s [platform] report has been pushed. Railway will have it live in about 2 minutes. You can verify the change at the Report Hub: https://creekside-dashboard.up.railway.app/report -- find your client and click their report link."
 
 **Important**: Do NOT tell the contractor to "check the dashboard." The dashboard is admin-only (Peterson/Cade). Contractors verify changes at the report URL. To look up the token:
 ```sql
