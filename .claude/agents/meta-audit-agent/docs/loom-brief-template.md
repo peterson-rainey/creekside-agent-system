@@ -8,7 +8,9 @@ The brief enables a screen-recorder who has NO Meta Ads expertise to record a co
 
 ## File Naming
 
-`/tmp/meta-audit-loom-brief-[ACCOUNT_SLUG]-[YYYY-MM-DD].pdf`
+`$AUDIT_DIR/loom-brief.docx` (i.e. `~/Desktop/meta-audit-[ACCOUNT_SLUG]-[YYYY-MM-DD]/loom-brief.docx`).
+
+Lives in the same folder as `audit.docx` and `screenshots/` so the recorder can preview the pre-captured reference screenshots before going on camera.
 
 ---
 
@@ -66,6 +68,9 @@ Use the Creekside team login credentials in the shared 1Password vault. If you d
 ---
 
 ### Finding 1: [Top EASY-SELL FLAG or most impactful finding]
+
+**Reference screenshot:** `./screenshots/01-<finding-slug>.png`
+(Open this image first to see exactly what the screen should look like when you record. If your screen doesn't look like this, refresh or check the date range.)
 
 **What this finding is (for your context -- don't say this on camera):**
 [1-2 sentences explaining what the issue is, in plain language]
@@ -177,12 +182,12 @@ These are the common navigation paths Lindsey/Scott will need:
 
 ## PDF Generation Instructions
 
-Use `mcp__desktop-commander__write_pdf` with the following approach:
+Use the same docx-js builder pattern as the main audit (see `docx-template.md` and `meta-audit-agent.md` Step 6). Loom brief specifics:
 
 1. Build the full brief as clear, instructional content
 2. Keep it scannable -- bullet points, numbered steps, clear headers
 3. Use larger font for navigation steps so they're easy to follow on a second monitor
 4. Include the full account URL in the before-you-start section
-5. File path: `/tmp/meta-audit-loom-brief-[ACCOUNT_SLUG]-[YYYY-MM-DD].pdf`
+5. File path: `$AUDIT_DIR/loom-brief.docx` (i.e. `~/Desktop/meta-audit-[ACCOUNT_SLUG]-[YYYY-MM-DD]/loom-brief.docx`)
 
-If `write_pdf` fails, write markdown to `/tmp/meta-audit-loom-brief-[ACCOUNT_SLUG]-[YYYY-MM-DD].md` and report fallback prominently.
+If docx generation fails, write markdown to `$AUDIT_DIR/loom-brief.md` and report fallback prominently.
