@@ -66,7 +66,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | clickup-task-manager-agent | ClickUp task CRUD, status updates, overdue reports |
 | google-calendar-agent | Calendar management, event creation, time-block rules |
 | meeting-followup-agent | Post-meeting action items, ClickUp tasks, Gmail follow-up drafts |
-| call-action-extractor | Extract action items from call transcripts (read-only) |
+| call-action-item-extractor | Extract action items from call transcripts (read-only) |
 | action-item-closer | Daily auto-close of completed action items (scheduled) |
 | financial-analyst-agent | P&L, expenses, revenue, cash flow, budgets |
 | ghl-crm-agent | GoHighLevel CRM queries -- contacts, opportunities, calls, SMS |
