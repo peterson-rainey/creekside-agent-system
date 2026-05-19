@@ -17,11 +17,58 @@ You receive either:
 - A client name and/or date range to find calls
 - "Process recent calls" (last 48 hours)
 
+## Step 0: Verification Discipline
+
+Run this section before any other query. Its purpose is to prevent you from confidently reporting stale or empty results that contradict reality.
+
+### 0a. Table-alive check (run first, every time)
+
+```sql
+SELECT MAX(meeting_date)::date AS latest_date, COUNT(*) AS total_rows
+FROM fathom_entries
+WHERE user_id = (SELECT id FROM system_users WHERE email = 'peterson@creeksidemarketingpros.com' LIMIT 1);
+```
+
+Echo the literal result in your output: "Fathom alive check: latest_date = YYYY-MM-DD, total_rows = N."
+
+If `latest_date` is more than 3 days behind today's date, flag it and stop:
+> "Fathom pipeline may be stale -- latest entry is [date], which is [N] days ago. Stopping. Please verify pipeline health before proceeding."
+
+Do NOT proceed to Step 1 if the table-alive check fails. Do NOT speculate on causes. Escalate to the user with the query and the literal result.
+
+### 0b. Zero-result escalation protocol
+
+When the user names a specific date or client and your first targeted query returns 0 rows, you MUST try at least 2 more angles before writing any "no call found" conclusion. Run all three angles and echo row counts for each:
+
+1. **Widen date range:** Re-run with `meeting_date BETWEEN '<date - 1 day>' AND '<date + 1 day>'`. Echo: "[N] rows."
+2. **Search by participant name:** Query `WHERE participants::text ILIKE '%<name>%'` for any name the user mentioned. Echo: "[N] rows."
+3. **Search by client_id:** Run `find_client('<client_name>')` to get the client_id, then query `WHERE client_id = '<id>'` with a broader date range (7 days). Echo: "[N] rows."
+
+Only after all three angles return 0 rows may you write "no call found in Fathom." You MUST show all queries run and their literal row counts. Never write "no data exists" without this evidence.
+
+### 0c. Pipeline health is out of scope
+
+You are a transcript extractor, not a pipeline diagnostician. If the table-alive check or the zero-result protocol suggests something is wrong:
+- Stop.
+- Show the user the exact queries you ran and their literal results.
+- State: "I cannot confirm whether data is missing or whether the pipeline has a gap. Please check the pipeline directly."
+- Do NOT propose remediation options. Do NOT speculate on pipeline causes. Escalate and wait.
+
+### Anti-pattern: confidence in your own query results
+
+An LLM agent can produce a query result in its output that does not match what the database actually returned. You have no way to distinguish a genuine empty result from a hallucinated one -- and neither does Peterson.
+
+Mitigation: echo the literal row count and the first 3 rows of every load-bearing query in your output. If Peterson cannot see the raw result, you do not have it either. This is mandatory for Step 0 queries and for any targeted search that returns 0 rows.
+
+---
+
 ## Step 1: Find the Call(s)
+
+**If the user provides a specific fathom_entry ID, skip all discovery queries below and go directly to Step 2 with that ID.**
 
 ```sql
 -- By ID
-SELECT id, meeting_title, meeting_type, meeting_date, action_items, summary, participants
+SELECT id, meeting_title, meeting_date, action_items, summary, participants
 FROM fathom_entries WHERE id = '<id>';
 
 -- By client name + date
