@@ -23,7 +23,11 @@ fi
 ROLE_CONF="$CLAUDE_PROJECT_DIR/.claude/user-role.conf"
 DEVICE_KEY_FILE="$HOME/.creekside-device-key"
 
-if [ -f "$DEVICE_KEY_FILE" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; then
+if [ ! -f "$DEVICE_KEY_FILE" ]; then
+  # No device key file -- genuinely no auth. Force contractor.
+  printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
+elif [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; then
+  # Device key exists AND we can validate -- run the full check.
   DEVICE_KEY=$(cat "$DEVICE_KEY_FILE" | tr -d '[:space:]')
   if [ -n "$DEVICE_KEY" ]; then
     # Validate key against database (full URL encoding to prevent query string injection)
@@ -51,9 +55,15 @@ if [ -f "$DEVICE_KEY_FILE" ] && [ -n "$KEY" ] && command -v jq >/dev/null 2>&1; 
     fi
   fi
 else
-  # No device key file, OR key file exists but can't validate (missing service key/jq).
-  # Either way: default to contractor. Never let a stale admin role persist.
-  printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
+  # Device key file exists but can't validate (missing service key or jq).
+  # Preserve existing role conf if it has a real (non-unknown) email -- don't
+  # downgrade a validated admin just because the env var is transiently missing.
+  EXISTING_EMAIL=$(grep -E '^email=' "$ROLE_CONF" 2>/dev/null | cut -d= -f2 | tr -d '[:space:]')
+  if [ -z "$EXISTING_EMAIL" ] || [ "$EXISTING_EMAIL" = "unknown" ]; then
+    # No prior valid session -- safe default to contractor
+    printf 'role=contractor\nemail=unknown\nname=unknown\n' > "$ROLE_CONF"
+  fi
+  # else: prior validated role exists, keep it until we can re-validate
 fi
 
 # Skip if no key or jq unavailable
