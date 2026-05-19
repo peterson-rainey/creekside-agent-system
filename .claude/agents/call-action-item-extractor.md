@@ -49,7 +49,13 @@ SELECT full_text FROM raw_content
 WHERE source_table = 'fathom_entries' AND source_id = '<id>';
 ```
 
-If no raw_content exists, use the `summary` + `action_items` array from fathom_entries, but flag the output as `[PARTIAL - no transcript available]`.
+If no raw_content exists, do NOT fall back to the `summary` or `action_items` fields on fathom_entries — those are auto-generated artifacts and are not acceptable substitutes for the verbatim transcript.
+
+Instead, halt and notify Peterson with this exact message:
+
+> "No raw transcript available for this call (raw_content is empty for fathom_entries id `<id>`). I cannot extract action items without the verbatim transcript. Options: (1) re-ingest from Fathom by running `pipelines/fathom/run_daily.py` and waiting for the next sync, (2) paste the transcript directly into the conversation. Stopping until one of these is provided."
+
+Then stop. Do not extract anything. Do not use the summary. Do not use the action_items array.
 
 ## Step 2.5: Cross-Check Database for Prior Context
 
