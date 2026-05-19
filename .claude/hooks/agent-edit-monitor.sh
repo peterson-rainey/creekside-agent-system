@@ -130,7 +130,7 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
       FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$FILE" 2>/dev/null | sed '1d;$d')
 
       # Extract fields from frontmatter (with defaults for required NOT NULL columns)
-      FM_DESC=$(echo "$FRONTMATTER" | sed -n 's/^description: *"\{0,1\}\(.*\)"\{0,1\}$/\1/p' | head -1)
+      FM_DESC=$(echo "$FRONTMATTER" | sed -n 's/^description: *//p' | head -1 | sed 's/^"//;s/"$//')
       FM_DEPT=$(echo "$FRONTMATTER" | sed -n 's/^department: *//p' | head -1)
       FM_TYPE=$(echo "$FRONTMATTER" | sed -n 's/^agent_type: *//p' | head -1)
       FM_MODEL=$(echo "$FRONTMATTER" | sed -n 's/^model: *//p' | head -1)
