@@ -114,8 +114,9 @@ if [ -d "$CLAUDE_DIR/.git" ]; then
   )
 fi
 
-# DB mirroring: sync agent file content to agent_definitions.system_prompt
+# DB mirroring: sync agent file content to agent_definitions (upsert)
 # Files are the source of truth; DB copy exists for Railway scheduled agents and routing.
+# Uses POST with on-conflict upsert so NEW agents get inserted automatically.
 if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
   (
     SUPA_URL="https://suhnpazajrmfcmbwckkx.supabase.co/rest/v1"
@@ -125,18 +126,49 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
     FILE_CONTENT=$(cat "$FILE" 2>/dev/null) || true
 
     if [ -n "$FILE_CONTENT" ]; then
-      # JSON-encode the file content for the API call (jq, not python3 — consistent with other hooks)
-      ENCODED=$(jq -n --arg v "$FILE_CONTENT" '{"system_prompt": $v}' 2>/dev/null)
+      # Parse YAML frontmatter for metadata (between first pair of ---)
+      FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$FILE" 2>/dev/null | sed '1d;$d')
 
-      if [ -n "$ENCODED" ]; then
+      # Extract fields from frontmatter (with defaults for required NOT NULL columns)
+      FM_DESC=$(echo "$FRONTMATTER" | sed -n 's/^description: *"\{0,1\}\(.*\)"\{0,1\}$/\1/p' | head -1)
+      FM_DEPT=$(echo "$FRONTMATTER" | sed -n 's/^department: *//p' | head -1)
+      FM_TYPE=$(echo "$FRONTMATTER" | sed -n 's/^agent_type: *//p' | head -1)
+      FM_MODEL=$(echo "$FRONTMATTER" | sed -n 's/^model: *//p' | head -1)
+      FM_READONLY=$(echo "$FRONTMATTER" | sed -n 's/^read_only: *//p' | head -1)
+
+      # Derive display_name from AGENT_NAME: meta-audit-agent -> Meta Audit Agent
+      DISPLAY_NAME=$(echo "$AGENT_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+
+      # Apply defaults for required fields
+      [ -z "$FM_DESC" ] && FM_DESC="Agent: $AGENT_NAME"
+      [ -z "$FM_DEPT" ] && FM_DEPT="operations"
+      [ -z "$FM_TYPE" ] && FM_TYPE="worker"
+      [ -z "$FM_MODEL" ] && FM_MODEL="sonnet"
+      [ -z "$FM_READONLY" ] && FM_READONLY="false"
+
+      # Build the full upsert payload
+      PAYLOAD=$(jq -n \
+        --arg name "$AGENT_NAME" \
+        --arg display_name "$DISPLAY_NAME" \
+        --arg description "$FM_DESC" \
+        --arg department "$FM_DEPT" \
+        --arg agent_type "$FM_TYPE" \
+        --arg model "$FM_MODEL" \
+        --argjson read_only "$FM_READONLY" \
+        --arg system_prompt "$FILE_CONTENT" \
+        --arg status "active" \
+        '{name: $name, display_name: $display_name, description: $description, department: $department, agent_type: $agent_type, model: $model, read_only: $read_only, system_prompt: $system_prompt, status: $status}' 2>/dev/null)
+
+      if [ -n "$PAYLOAD" ]; then
+        # POST with upsert: inserts new rows, updates existing ones (on name conflict)
         curl -s --max-time 10 \
-          "${SUPA_URL}/agent_definitions?name=eq.${AGENT_NAME}" \
-          -X PATCH \
+          "${SUPA_URL}/agent_definitions" \
+          -X POST \
           -H "apikey: ${SUPA_KEY}" \
           -H "Authorization: Bearer ${SUPA_KEY}" \
           -H "Content-Type: application/json" \
-          -H "Prefer: return=minimal" \
-          -d "$ENCODED" \
+          -H "Prefer: return=minimal,resolution=merge-duplicates" \
+          -d "$PAYLOAD" \
           2>/dev/null > /dev/null &
       fi
     fi
