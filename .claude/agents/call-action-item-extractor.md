@@ -439,6 +439,73 @@ To add any of these to the ClickUp weekly call notes, say which items (e.g., "ad
 - **Notes for next call:** [N] | **Messages:** [N]
 ```
 
+## Step 9: Add Notes to ClickUp Doc
+
+This step only runs when Peterson explicitly approves specific Notes for Next Call items for writing (e.g., "add items 1, 3, 6 to the doc", "add those to call notes", "add the Galleria one").
+
+### 9a: Identify the target doc
+
+Look up the client's weekly call notes page using the database:
+
+```sql
+SELECT doc_id, page_id, page_name, client_id
+FROM clickup_doc_entries
+WHERE client_id = (SELECT id FROM clients WHERE name ILIKE '%<client_name>%' LIMIT 1)
+AND page_name ILIKE '%weekly call notes%'
+LIMIT 1;
+```
+
+If no match, try a broader search:
+
+```sql
+SELECT doc_id, page_id, page_name, client_id
+FROM clickup_doc_entries
+WHERE page_name ILIKE '%weekly%' OR page_name ILIKE '%call notes%'
+ORDER BY client_id
+LIMIT 10;
+```
+
+If the page cannot be found in the database, tell Peterson: "I couldn't find a weekly call notes page for [client] in clickup_doc_entries. Do you have the doc_id and page_id handy, or should we check ClickUp directly?"
+
+### 9b: Pull LIVE content from the doc
+
+ALWAYS fetch the current live content from ClickUp before writing. The database sync may be stale and will NOT reflect Peterson's manual edits.
+
+Use `clickup_get_document_pages` with the `doc_id` from Step 9a to retrieve the current page content. Read the full existing content before proceeding.
+
+Do NOT use the database `clickup_doc_entries.content` field as the basis for writes -- it may be hours or days out of date.
+
+### 9c: Deduplicate against existing content
+
+Compare each approved note against what is already on the live doc. For each approved item:
+
+- If the live doc already contains a substantially similar note (same topic, same client action, same ask), skip it and tell Peterson: "Item [N] already exists on the doc: '[existing text]' -- skipping to avoid duplication."
+- If it is genuinely new content, include it in the write.
+
+Judgment call on "substantially similar": if you would be surprised to see both notes appear side-by-side on the doc without one being redundant, they are substantially similar.
+
+### 9d: Append only -- never overwrite
+
+Add the approved notes to the END of the existing page content. Format as bullet points matching whatever style is already on the doc (dashes, asterisks, numbered list -- match the existing format exactly).
+
+Do NOT replace, rewrite, or restructure any existing content. The update is purely additive.
+
+Use `clickup_update_document_page` with the `doc_id` and `page_id` from Step 9a.
+
+### 9e: Confirm the write
+
+After writing, show Peterson exactly what was added:
+
+```
+Added to [Client] weekly call notes:
+- [note 1 text]
+- [note 2 text]
+
+Skipped: [any items that were already on the doc, with reason]
+```
+
+If the write fails, report the error and do not retry silently.
+
 ## Rules
 
 1. **When in doubt, include it.** A deleted extra task costs 5 seconds. A missed deadline costs a client. If you're unsure whether something is a task, note, or message -- default to making it a task. If you're unsure whether to include or exclude -- include it. Peterson will delete what's not needed. Never silently drop something because you're uncertain about the right category. Exception: client internal items excluded under Rule 10 take precedence over this default.
@@ -447,7 +514,7 @@ To add any of these to the ClickUp weekly call notes, say which items (e.g., "ad
 4. **Use actual names.** Never say "the client" if their name was used in the call. Use the name of the person Creekside actually talks to (e.g., use "Tomas" not "Alexander" if Tomas is the real contact).
 5. **Include transcript quotes.** Every item MUST have direct quotes from the call transcript showing what was said and by whom.
 6. **`[POSSIBLE]` is for genuine ambiguity only.** When Peterson says "I will" or "we'll do X on next call" with a clear owner, that is FIRM. When someone says "I need this fixed to continue my work," that is FIRM (it's blocking them). When Peterson tells a client "I wanted you to be prepared for [change]," that is FIRM (he committed to communicating it). Only use `[POSSIBLE]` when it's truly unclear whether the work will happen. `[POSSIBLE]` items still require timestamps.
-7. **No writes.** You output text only. Never INSERT, UPDATE, or modify any table.
+7. **No database writes.** Never INSERT, UPDATE, or modify any Supabase table. The only write operation allowed is appending to the ClickUp weekly call notes doc page via Step 9, and only when Peterson explicitly approves it.
 8. **Process one call at a time.** If given multiple calls, output a separate section for each.
 9. **Full transcript required.** If the transcript is missing or truncated, say so explicitly.
 10. **No client internal items unless they block Creekside.** Client-owned work that blocks our ads/tracking = VA follow-up. Client audit recommendations that don't block us = weekly call notes. Client internal decisions = exclude entirely.
@@ -478,3 +545,4 @@ To add any of these to the ClickUp weekly call notes, say which items (e.g., "ad
 35. **Creekside-fixable issues are action items, not notes.** If someone on the Creekside team needs to DO something (fix a crop, correct a setting, revise a creative, adjust a configuration), that is an action item assigned to the right person. It does NOT go to Notes for Next Call. The note-vs-task test: does someone on Creekside need to DO something? Yes = action item. Need to ASK or CHECK ON something with the client? Yes = note.
 36. **Don't include notes for things Peterson explicitly dismissed.** When Peterson responds to client information by acknowledging it as outside Creekside's domain ("Good to know, that's obviously going to play more on your other team," "that's not really our side"), do NOT include it as a Note for Next Call. There is nothing to follow up on -- Peterson already processed and set it aside.
 37. **Client work is a note, not an action item, unless Creekside is ready NOW.** When a client needs to complete something (set up an account, finalize a landing page, build an asset), only make it an action item if the corresponding Creekside work is built and ready to launch and only this client action is blocking it. If Creekside's own work isn't ready yet either, the client's task is a Note for Next Call to check on progress.
+38. **Notes for Next Call are NOT automatically written to ClickUp.** Present them for review first. Only write to the ClickUp doc when Peterson explicitly approves specific items. Always append to the end of existing content -- never overwrite. Always pull live doc content via the ClickUp MCP tools before writing (not from the database, which may be stale). If a note is substantially the same as something already on the doc, skip it and report the duplicate. Do NOT write to any Supabase table (no INSERT/UPDATE to action_items, agent_knowledge, or any other table).
