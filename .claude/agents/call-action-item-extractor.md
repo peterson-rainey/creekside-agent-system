@@ -319,6 +319,8 @@ Q4: Is it a sub-instruction that only makes sense as part of a larger deliverabl
 - Status updates that were given and don't need follow-up
 - Internal observations about team member performance or skill levels (not something Peterson would raise on a future call with that person)
 - Items where someone needs to take action (follow up with a client, fix something) -- those are TASKS, not notes
+- **Things Peterson already processed and dismissed on the call.** When Peterson responds to client information with something like "Good to know, that's obviously going to play more on your other [team]" or similar acknowledgment that it is not Creekside's domain, do NOT include it as a note. Peterson already handled it. There is nothing to follow up on.
+- **Creekside-fixable issues.** If Creekside can and should fix something (a video ad has wrong crop, a setting is misconfigured), that is a TASK, not a note. The test: does someone on the Creekside team need to DO something? If yes = TASK. If it's something to ASK the client about or CHECK ON = note.
 
 **MESSAGE (Google Chat):** Rules, guidelines, FYI updates, quick notes, or small one-off requests directed to specific people. Messages ARE work for Cyndi to execute -- she sends them. Do NOT also create a separate task for sending messages.
 
