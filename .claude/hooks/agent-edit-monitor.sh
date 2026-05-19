@@ -147,6 +147,8 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
       [ -z "$FM_READONLY" ] && FM_READONLY="false"
 
       # Build the full upsert payload
+      # NOTE: status is omitted so merge-duplicates won't reactivate deprecated agents.
+      # New inserts get status='active' from the column default.
       PAYLOAD=$(jq -n \
         --arg name "$AGENT_NAME" \
         --arg display_name "$DISPLAY_NAME" \
@@ -156,8 +158,8 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
         --arg model "$FM_MODEL" \
         --argjson read_only "$FM_READONLY" \
         --arg system_prompt "$FILE_CONTENT" \
-        --arg status "active" \
-        '{name: $name, display_name: $display_name, description: $description, department: $department, agent_type: $agent_type, model: $model, read_only: $read_only, system_prompt: $system_prompt, status: $status}' 2>/dev/null)
+        --arg updated_at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+        '{name: $name, display_name: $display_name, description: $description, department: $department, agent_type: $agent_type, model: $model, read_only: $read_only, system_prompt: $system_prompt, updated_at: $updated_at}' 2>/dev/null)
 
       if [ -n "$PAYLOAD" ]; then
         # POST with upsert: inserts new rows, updates existing ones (on name conflict)
