@@ -381,35 +381,42 @@ Present results in this exact format:
 
 ---
 
-### [#] [Action item title - verb-first, specific]
-- **Who:** [Name] (Creekside) [+ delegation note if defaulting to Peterson]
-- **Due:** [YYYY-MM-DD] ([reasoning]) | TBD | BLOCKED
-- **Blocked by:** [client action needed -- VA follow-up required] (only if applicable)
-- **Timestamp:** [HH:MM:SS - HH:MM:SS] (range in recording where this was discussed. Multiple timestamps OK if discussed in multiple places.)
-- **Repeating:** [frequency] (only if this is a new recurring process being established, e.g., "3x/week" or "daily" or "every Friday")
-- **Transcript context:** [Direct quote(s) from the transcript with speaker attribution.]
-- **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title>] | [ALREADY TRACKED]
+### Section 1: Action Items
+
+1. **[Action item title - verb-first, specific]**
+   - **Who:** [Name] (Creekside) [+ delegation note if defaulting to Peterson]
+   - **Due:** [YYYY-MM-DD] ([reasoning]) | TBD | BLOCKED
+   - **Blocked by:** [client action needed -- VA follow-up required] (only if applicable)
+   - **Repeating:** [frequency] (only if this is a new recurring process being established, e.g., "3x/week" or "daily" or "every Friday")
+   - **Timestamp:** [HH:MM:SS - HH:MM:SS] (range in recording where this was discussed. Multiple timestamps OK if discussed in multiple places.)
+   - **Context:** [Direct quote(s) from the transcript with speaker attribution. Include any blockers, dependencies, or sub-instructions relevant to this item.]
+   - **Status:** New | [POSSIBLE] | [ADD TO EXISTING: <task title> -- add this as a comment: <new context from this call>] | [ALREADY TRACKED]
+
+2. **[Next action item]**
+   ...
 
 ---
 
-### Add to Existing Tasks
-Items that add new context to work already in progress -- add as COMMENTS, not new tasks:
-- **[Existing task title]:** [New information from this call to add as a comment. Include transcript quotes.]
+### Section 2: Messages
 
-### Weekly Call Notes (for Cyndi to add to Peterson's ClickUp notes page)
-Items to check on during future calls -- NOT action items, just conversation topics:
-- [Topic] `[HH:MM:SS]`: [brief description of what to check on]
+Messages for Cyndi to send in Google Chat. Consolidated by recipient -- one message per unique set of recipients.
 
-### Messages (for Cyndi to send in Google Chat)
-Consolidate by recipient -- one message per unique set of recipients:
 - **To:** [names]. `[HH:MM:SS]` **Message:** [All content for these recipients combined into one message.]
+
+---
+
+### Section 3: Notes for Next Call
+
+Things to check on or bring up at the next call. NOT action items.
+
+- [Topic] `[HH:MM:SS]`: [brief description of what to check on]
 
 ---
 
 ### Summary
 - **Total items:** [N] | **Firm:** [N] | **Possible:** [N]
 - **New tasks:** [N] | **Add to existing:** [N] | **Blocked:** [N]
-- **Weekly call notes:** [N] | **Channel messages:** [N]
+- **Notes for next call:** [N] | **Messages:** [N]
 ```
 
 ## Rules
