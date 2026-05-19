@@ -124,9 +124,9 @@ Read the ENTIRE transcript end to end. Do not skip sections. Extract every item 
 ### Audit recommendations and client-side fixes:
 When Peterson identifies specific issues during a call (audit findings, settings that need changing, strategies that should be tested), categorize them as follows:
 
-- **Client does the fix, it blocks Creekside work** (e.g., "build landing pages we need for ads") -> Extract as a VA follow-up item for Cyndi. Cyndi follows up with the client to make sure it gets done.
-- **Client does the fix, it does NOT block Creekside work** (e.g., "test a different bidding strategy," "turn off a location setting") -> Do NOT extract as an action item. Instead, add to the **Weekly Call Notes** section (see output format). These are conversation topics for the next weekly call to check if the client did them.
-- **Creekside does the fix** -> Extract as a normal action item assigned to the right person.
+- **Client does the fix, it blocks Creekside work that is ready to start NOW** (e.g., "build landing pages we need for ads that are already built and waiting") -> Extract as a VA follow-up item for Cyndi. Cyndi follows up with the client to make sure it gets done.
+- **Client does the fix, it does NOT block Creekside work** (e.g., "test a different bidding strategy," "turn off a location setting," "set up an account for a campaign Creekside hasn't built yet") -> Do NOT extract as an action item. Instead, add to the **Notes for Next Call** section (see output format). These are conversation topics for the next weekly call to check if the client did them.
+- **Creekside does the fix** -> Extract as a normal action item assigned to the right person. This applies regardless of how minor the fix seems. If someone on the Creekside team needs to DO something (fix a crop, update a setting, adjust a creative), it is a TASK. Example: a video ad is 16x9 with black letterbox bars -- Creekside needs to fix this -> action item for the creative owner, not a note for next call.
 
 ### Specific deliverable test:
 Before including any item, ask: "What is the tangible output?" If you can't name a specific document, configuration change, message, setup, or decision with a clear done/not-done state, it fails the test. Examples:
@@ -159,6 +159,13 @@ The test: if the sub-items would naturally be completed together, reviewed toget
 **Document-sharing consolidation:** When Peterson commits to sending multiple documents to the same person (audits, strategy docs, reports, recordings), consolidate into ONE item: "Send [list of docs] to [person]." These are a single handoff, not separate tasks. Assign to Cyndi/Melvin (VA) -- document collection and delivery is administrative work, not Peterson's.
 
 **Access/setup consolidation:** When multiple access grants or setup steps are needed from the same client (add to Google Chat, share Google Ads access, grant Meta access), consolidate into ONE follow-up item: "Follow up with [client] on all pending access grants (Google Chat, Google Ads, Meta)." Don't create separate items for each access request.
+
+### Notes for Next Call consolidation:
+When multiple notes are essentially the same ask, consolidate into ONE note. The test: if you would bring it up as one topic in conversation, it is one note.
+
+Example: "Ask Tomas to identify their top 10 videos" and "Ask Tomas to identify their top 20 static images" are both versions of "Ask Tomas to go through their best raw footage and flag it for us." Consolidate to one note: "Ask Tomas to review their raw footage and flag the top videos and static images for Creekside to work with."
+
+Apply this BEFORE finalizing the Notes for Next Call section the same way you apply action item consolidation.
 
 ### Platform-specific items:
 When an ad strategy, creative change, or testing initiative applies to MULTIPLE platforms (e.g., Google Ads AND Facebook/Meta), you MUST create SEPARATE action items for each platform. Each platform has a different person managing it and different implementation steps.
@@ -466,3 +473,7 @@ Things to check on or bring up at the next call. NOT action items.
 31. **Existing recurring meetings are not action items.** If the database shows a recurring weekly/biweekly call already exists for this client, "see you next Thursday" or "same time next week" is NOT an action item. Only extract if the call is being rescheduled, a new participant is being added who wasn't previously included, or a new meeting series is being created.
 32. **Document delivery is VA work.** When Peterson commits to sending audits, strategy docs, reports, or other existing documents to someone, that is a Cyndi/Melvin task. Peterson doesn't personally email documents -- the VA collects and sends them. Consolidate multiple docs to the same person into one delivery task.
 33. **Ambiguous commitment ownership.** When it is unclear from the transcript whether Creekside or the client committed to something, assign to Peterson with an explicit note flagging the ambiguity: "[UNCLEAR OWNER -- transcript ambiguous on whether Creekside or client committed to this]".
+34. **One section per item -- no duplication.** Every extracted item must appear in exactly one section (Action Items, Messages, or Notes for Next Call). If an item is routed to Messages, it must NOT also appear as an action item. The message is the deliverable -- there is no separate task to track.
+35. **Creekside-fixable issues are action items, not notes.** If someone on the Creekside team needs to DO something (fix a crop, correct a setting, revise a creative, adjust a configuration), that is an action item assigned to the right person. It does NOT go to Notes for Next Call. The note-vs-task test: does someone on Creekside need to DO something? Yes = action item. Need to ASK or CHECK ON something with the client? Yes = note.
+36. **Don't include notes for things Peterson explicitly dismissed.** When Peterson responds to client information by acknowledging it as outside Creekside's domain ("Good to know, that's obviously going to play more on your other team," "that's not really our side"), do NOT include it as a Note for Next Call. There is nothing to follow up on -- Peterson already processed and set it aside.
+37. **Client work is a note, not an action item, unless Creekside is ready NOW.** When a client needs to complete something (set up an account, finalize a landing page, build an asset), only make it an action item if the corresponding Creekside work is built and ready to launch and only this client action is blocking it. If Creekside's own work isn't ready yet either, the client's task is a Note for Next Call to check on progress.
