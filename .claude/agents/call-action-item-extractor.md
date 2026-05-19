@@ -210,7 +210,7 @@ Use the `platform_operator` for platform-specific work. If `platform_operator` i
 - Creative design / logo sourcing / asset creation -> Aamir (creative designer). Save assets to the client's Google Drive folder.
 - Invoicing, onboarding paperwork, scheduling, calendar changes, client onboarding folder/sheet creation -> Cyndi or Melvin (VAs). Administrative tasks are NEVER Peterson's. This includes: canceling/rescheduling meetings when a client is traveling, sending document packages, and calendar management.
 - Client follow-ups for access/assets/client-side work -> Cyndi or Melvin (VAs follow up with clients to get things done). **Exception:** When the account_manager in reporting_clients is "Peterson" AND the client has weekly calls, Peterson may handle follow-ups directly on those calls. Default to VA follow-up unless the transcript explicitly shows Peterson saying he'll handle it himself on the next call. When in doubt, use VA follow-up.
-- Weekly call notes -> Cyndi (she adds them to Peterson's ClickUp weekly notes page for the client)
+- Weekly call notes -> presented to Peterson for review; approved items appended to the client's ClickUp weekly call notes page via Step 9
 - Channel updates (rules, guidelines, "what we're NOT doing") -> Cyndi sends as a message in the client's Google Chat channel tagging the relevant team members. NOT a ClickUp task.
 
 **When Peterson names a specific person on the call, use that person.** If Peterson says "Ahmed will handle the programmatic setup," assign to Ahmed, not Peterson.
@@ -451,21 +451,23 @@ Look up the client's weekly call notes page using the database:
 SELECT doc_id, page_id, page_name, client_id
 FROM clickup_doc_entries
 WHERE client_id = (SELECT id FROM clients WHERE name ILIKE '%<client_name>%' LIMIT 1)
-AND page_name ILIKE '%weekly call notes%'
-LIMIT 1;
+AND page_name ILIKE '%weekly call notes%';
 ```
 
-If no match, try a broader search:
+If multiple rows return, do NOT silently pick one. Show Peterson the options and ask which page to write to: "I found multiple weekly call notes pages for [client] -- which one should I use? [list page_name, page_id for each]"
+
+If no match, try a broader search filtered to the client in scope:
 
 ```sql
-SELECT doc_id, page_id, page_name, client_id
-FROM clickup_doc_entries
-WHERE page_name ILIKE '%weekly%' OR page_name ILIKE '%call notes%'
-ORDER BY client_id
-LIMIT 10;
+SELECT cde.doc_id, cde.page_id, cde.page_name, cde.client_id
+FROM clickup_doc_entries cde
+JOIN clients c ON cde.client_id = c.id
+WHERE c.name ILIKE '%<client_name>%'
+AND (cde.page_name ILIKE '%weekly%' OR cde.page_name ILIKE '%call notes%')
+ORDER BY cde.page_name;
 ```
 
-If the page cannot be found in the database, tell Peterson: "I couldn't find a weekly call notes page for [client] in clickup_doc_entries. Do you have the doc_id and page_id handy, or should we check ClickUp directly?"
+If that also returns multiple rows, again show Peterson the options. If no rows return at all, tell Peterson: "I couldn't find a weekly call notes page for [client] in clickup_doc_entries. Do you have the doc_id and page_id handy, or should we check ClickUp directly?"
 
 ### 9b: Pull LIVE content from the doc
 
@@ -473,7 +475,7 @@ ALWAYS fetch the current live content from ClickUp before writing. The database 
 
 Use `clickup_get_document_pages` with the `doc_id` from Step 9a to retrieve the current page content. Read the full existing content before proceeding.
 
-Do NOT use the database `clickup_doc_entries.content` field as the basis for writes -- it may be hours or days out of date.
+Do NOT use the database as the basis for writes -- the synced content in `clickup_doc_entries` may be hours or days out of date.
 
 ### 9c: Deduplicate against existing content
 
@@ -523,7 +525,7 @@ If the write fails, report the error and do not retry silently.
 13. **Administrative tasks go to VAs.** Invoicing, onboarding paperwork, scheduling, and client follow-ups are Cyndi or Melvin, never Peterson.
 14. **Explain Peterson defaults.** When assigning to Peterson because you don't know the right person, say so.
 15. **No established recurring deliverables.** If it's been going out on cadence for weeks, don't extract it.
-16. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Cyndi adds these to Peterson's ClickUp notes page for that client.
+16. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Notes are presented in the output for Peterson's review and written to ClickUp via Step 9 only when Peterson explicitly approves specific items -- they are not added automatically, and Cyndi does not manage this.
 17. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
 18. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
 19. **Common transcription errors.** Fathom often mangles names. Known corrections: "Lola" / "Lolly" / "Lollite" = Dr. Laleh. "Pitbull" / "Vipple" / "the pool" = Vipul. Always use the correct name in the output regardless of how it appears in the transcript.

@@ -171,6 +171,12 @@ Same as Sales / Discovery template above, with this addition at the top:
 - [Operator name]: [Key observation] ([date])
 [If no contractor notes found: "No recent operator notes found for this client."]
 
+### Operator's Recent Calls
+[Summarize the assigned operator's recent Fathom calls about this client -- Google rep calls, internal syncs, or client calls]
+- [Date]: [Meeting title] -- [Key takeaway relevant to Peterson's upcoming call]
+- [Date]: [Meeting title] -- [Key observation or action item]
+[If no operator calls found: "No recent operator calls found involving this client."]
+
 ### Open Tasks
 | Task | Status | Assignee | Due |
 |------|--------|----------|-----|
@@ -236,6 +242,12 @@ Same as Sales / Discovery template above, with this addition at the top:
 - **[Client]**: [Summary] [source: table, ID]
 - **[Client]**: No recent activity in 30 days.
 [Skip detailed breakdowns -- this is a quick status snapshot to ground the sync conversation]
+
+### [Name]'s Recent Calls and Comms
+[Summary of the team member's own Fathom calls, Google Chat messages, and ClickUp chats from the last 14 days. Organized by client where possible.]
+- [Date]: [Call/Chat] re: [Client] -- [Key point or issue raised]
+- [Date]: [Call/Chat] re: [Client] -- [Action item or flag]
+[This surfaces what they've been dealing with day-to-day -- issues they may bring up in the sync]
 
 ### Open Items Involving [Name]
 - [Action item / task -- status]

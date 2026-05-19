@@ -5,6 +5,42 @@ description: Weekday 8 AM CT. Pulls today's calendar, generates pre-call prep br
 
 You are the daily pre-call prep routine for Creekside Marketing. Every weekday morning, you generate prep briefs for Peterson's calls and create corresponding calendar note events.
 
+## CRITICAL: Logging Protocol (do this FIRST and LAST)
+
+### On Start (FIRST thing you do, before any other work)
+```sql
+INSERT INTO agent_run_history (agent_name, trigger_type, status, started_at, result_summary)
+VALUES ('pre-call-prep-routine', 'local_scheduled', 'running', NOW(), 'Starting daily pre-call prep')
+RETURNING id;
+```
+Save the returned ID as RUN_ID for all subsequent updates.
+
+### On Success (after all briefs are generated and Notes events created)
+```sql
+UPDATE agent_run_history SET status = 'success', completed_at = NOW(),
+    result_summary = 'Generated N briefs for: [call names]. Created/updated N Notes events.'
+WHERE id = 'RUN_ID';
+```
+
+### On Failure (if any step fails catastrophically)
+```sql
+UPDATE agent_run_history SET status = 'failure', completed_at = NOW(),
+    error_message = '[what failed and why]',
+    result_summary = 'Failed at step: [step]. Generated N/M briefs before failure.'
+WHERE id = 'RUN_ID';
+
+INSERT INTO pipeline_alerts (alert_type, severity, message, details, acknowledged)
+VALUES ('routine_failure', 'high', 'Pre-call prep routine failed: [brief reason]',
+        '{"step": "[step]", "error": "[details]", "calls_found": N, "briefs_generated": M}', false);
+```
+
+### On No Meetings
+```sql
+UPDATE agent_run_history SET status = 'success', completed_at = NOW(),
+    result_summary = 'No qualifying meetings found today. No prep needed.'
+WHERE id = 'RUN_ID';
+```
+
 ## Workflow
 
 ### 1. Get Today's Calls
@@ -26,7 +62,7 @@ Keep ONLY events that have attendees (other than Peterson). Skip:
 - Any event marked as "outOfOffice"
 - Any event with `transparency: "transparent"` (these are non-blocking -- includes existing Notes events)
 
-If no qualifying calls remain after filtering, log "No meetings requiring prep today" and stop. Do not create any calendar events or database entries.
+If no qualifying calls remain after filtering, log "No meetings requiring prep today" using the On No Meetings protocol above and stop. Do not create any calendar events or database entries beyond the run log.
 
 ### 3. Check for Existing Notes Events
 
@@ -70,6 +106,8 @@ SELECT id, name, business_name, source, status, website, notes FROM leads WHERE 
 
 **Step 6:** Assemble the brief following the output templates
 
+**IMPORTANT:** If generating a brief fails for one call, log the individual failure and continue to the next call. Do NOT stop the entire routine for one failure.
+
 ### 5. Create or Update Calendar Notes Events
 
 For each completed brief, check if a "Notes" or "Notes - [call title]" event already exists at the same time.
@@ -99,9 +137,20 @@ Note: Google Calendar does not have a "transparent" field in the create API. The
 
 ### 6. Skip Rules
 
-- Skip Type 6 (Google Rep) calls entirely -- no prep needed
+- Skip Type 6 (Google Rep) calls entirely -- no prep needed, but count them in the log
 - If a call has fewer than 15 minutes until the next call, flag "BACK-TO-BACK" at the top of the brief
 - If generating a brief fails (e.g., Supabase timeout), log the failure and continue to the next call -- don't stop the entire routine
+
+### 7. Final Logging
+
+After all calls are processed (or skipped), update the run log using the On Success protocol. The result_summary should include:
+- Total qualifying calls found
+- Number of briefs generated
+- Names of calls prepped (e.g., "Elvis/Samuel, Donna, Tomas Weekly")
+- Number of Notes events created vs updated
+- Any individual call failures with brief error descriptions
+
+This summary is picked up by the daily-status-brief routine, so be specific.
 
 ## Supabase
 

@@ -285,6 +285,36 @@ ORDER BY date_range_start DESC LIMIT 10;
 Summarize the contractor's recent observations, recommendations, and flags. These are the operator's ground-level insights -- often more current than formal reports.
 
 
+#### Freelancer/Operator Recent Calls About This Client
+The platform operator or account manager often has calls with Google reps, internal syncs, or client-facing calls where they discuss this client's campaigns. These contain ground-level insights Peterson won't have seen.
+```sql
+-- Get the assigned operator and account manager names
+-- (already retrieved from reporting_clients above)
+
+-- Pull the operator's recent Fathom calls that mention this client
+SELECT id, meeting_title, meeting_date, summary, action_items
+FROM fathom_entries
+WHERE (participants::text ILIKE '%OPERATOR_NAME%' OR participants::text ILIKE '%ACCOUNT_MANAGER_NAME%')
+AND (meeting_title ILIKE '%CLIENT_NAME%' OR summary ILIKE '%CLIENT_NAME%')
+AND meeting_date > NOW() - INTERVAL '30 days'
+ORDER BY meeting_date DESC LIMIT 5;
+
+-- Also check for operator calls that don't mention the client by name
+-- but are likely relevant (e.g., Google rep calls, internal syncs)
+SELECT id, meeting_title, meeting_date, LEFT(summary, 300) as summary
+FROM fathom_entries
+WHERE participants::text ILIKE '%OPERATOR_NAME%'
+AND meeting_date > NOW() - INTERVAL '14 days'
+AND (meeting_title ILIKE '%google%' OR meeting_title ILIKE '%sync%' OR meeting_title ILIKE '%review%')
+ORDER BY meeting_date DESC LIMIT 3;
+```
+If the operator had a recent call about the client, pull the full transcript of the most recent one:
+```sql
+SELECT full_text FROM raw_content
+WHERE source_table = 'fathom_entries' AND source_id = 'OPERATOR_CALL_ID';
+```
+Summarize the operator's key observations, recommendations, and any flags raised. These are often the most current insights available.
+
 #### Mentions in Other Calls (Was This Client Discussed Elsewhere?)
 ```sql
 SELECT fm.context_summary, fe.meeting_title, fe.meeting_date
@@ -344,6 +374,38 @@ AND status NOT IN ('closed', 'complete', 'done', 'archived')
 ORDER BY due_date ASC NULLS LAST LIMIT 5;
 ```
 Batch these where possible. The goal is a 2-3 line summary per client: what's happening, what's stuck, what needs discussion. Skip clients with zero activity in 30 days -- note them as "no recent activity" in one line.
+
+#### This Person's Recent Calls and Comms (Their Perspective)
+Pull the team member's OWN recent Fathom calls across all their clients. This surfaces what THEY have been dealing with -- context Peterson may not have from other sources.
+```sql
+-- Their recent calls (all, not just client-specific)
+SELECT id, meeting_title, meeting_date, LEFT(summary, 300) as summary, action_items
+FROM fathom_entries
+WHERE participants::text ILIKE '%PERSON_NAME%'
+AND meeting_date > NOW() - INTERVAL '14 days'
+ORDER BY meeting_date DESC LIMIT 10;
+```
+For the most relevant calls (client calls, not Google rep calls), pull full transcripts:
+```sql
+SELECT full_text FROM raw_content
+WHERE source_table = 'fathom_entries' AND source_id = 'CALL_ID';
+```
+
+Also pull their recent Google Chat and ClickUp chat messages -- this is where day-to-day operational context lives:
+```sql
+-- Their recent Google Chat messages
+SELECT id, date, space_name, ai_summary FROM gchat_summaries
+WHERE (ai_summary ILIKE '%PERSON_NAME%' OR participants ILIKE '%PERSON_NAME%')
+AND date > NOW() - INTERVAL '14 days'
+ORDER BY date DESC LIMIT 10;
+
+-- Their recent ClickUp chat messages
+SELECT id, date_range_start, space_name, ai_summary FROM clickup_chat_entries
+WHERE (participants ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%PERSON_NAME%')
+AND date_range_start > NOW() - INTERVAL '14 days'
+ORDER BY date_range_start DESC LIMIT 10;
+```
+Summarize per client: what the team member has been working on, any issues flagged, any client concerns raised. This gives Peterson the full picture of what this person has been handling since their last sync.
 
 #### Open Action Items Involving This Person
 ```sql

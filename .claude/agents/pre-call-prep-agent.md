@@ -116,7 +116,8 @@ Use the resolution results to assign one of these types:
 
 ### Type 3: Client Check-In (MEDIUM PREP)
 - **Who:** Active paying client (`clients.status = 'active'`)
-- **Prep:** Prior call action items, campaign performance (last 7-14 days), open tasks, recent communications, financial snapshot, health score
+- **Prep:** Prior call action items, campaign performance (last 7-14 days), open tasks, recent communications, financial snapshot, health score, **freelancer/operator recent calls about this client**
+- Always pull the assigned operator's recent Fathom calls and comms about this client -- these contain ground-level campaign insights Peterson won't have seen
 - Special case: Toby's weekly call ALWAYS gets full prep [source: fathom_entries, 3aadb91c]
 
 ### Type 4: Joint Pitch with Partner (FULL PREP + ROLE ALIGNMENT)
@@ -126,8 +127,9 @@ Use the resolution results to assign one of these types:
 
 ### Type 5: Internal / Team Call (MINIMAL PREP)
 - **Who:** All attendees are in `team_members`, or title contains sync/standup/internal/weekly
-- **Prep:** Team member's client portfolio, client health flags in their portfolio, open action items involving them, delta since last meeting
-- Keep it light: half-page max. Portfolio + flags + open items. No campaign performance deep-dives unless a specific client issue warrants it.
+- **Prep:** Team member's client portfolio, client health flags in their portfolio, open action items involving them, delta since last meeting, **their recent calls and comms across all their clients**
+- Pull the team member's own recent Fathom calls, Google Chat messages, and ClickUp chats -- this shows what they've been dealing with day-to-day and surfaces issues they may raise
+- Keep it half-page max. Portfolio + flags + open items + their recent activity highlights. No campaign performance deep-dives unless a specific client issue warrants it.
 
 ### Type 6: Google Rep Account Review (NO PREP)
 - **Who:** Google rep call (e.g., "Aura x Google")
