@@ -242,18 +242,26 @@ This is always ONE item per deliverable, not two. The VA follow-up is implicit i
 - **Unclear** (when ownership wasn't explicitly discussed -- assign to Peterson with explanation)
 
 ### Client-owned item filter:
-**Only include client-owned items if they directly block Creekside work.** Client-owned blockers should NOT be listed as separate items. Instead, embed them in the Creekside item they block using the "Blocked by" field.
+**Only include client-owned items if they directly block Creekside work that is ready to start NOW.** Client-owned blockers should NOT be listed as separate items. Instead, embed them in the Creekside item they block using the "Blocked by" field.
+
+The key test: Is the corresponding Creekside work actually ready to launch, and is only the client's action preventing it? If Creekside's own work isn't ready either (campaigns not built yet, strategy not finalized), then the client's pending action is NOT a blocker -- it's something to check on later. Route to Notes for Next Call instead.
+
+Examples:
+- "Set up OpenAI advertiser accounts" -- if the Meta campaigns themselves aren't ready to run yet, this is NOT a blocker action item. It's a note to check whether the client did it by the time Creekside is ready.
+- "Finalize landing pages on subdomain" -- if the ads aren't built yet and won't be for weeks, this is NOT a blocker. It's a note for the next call to verify progress.
+- "Build mobile-friendly landing pages for ads" -- if ad campaigns ARE built and ready to launch NOW, this IS a blocker. Create a VA follow-up task.
 
 **Client-side work that blocks Creekside** (embed as "Blocked by" on the Creekside item, per blocker routing pattern above):
-- Building landing pages we need for ads/tracking
-- Granting access (Google Chat, Google Ads, Meta, CRM)
-- Sending assets (logos, creatives, data files)
-- Setting up accounts Creekside needs
+- Building landing pages we need for ads/tracking -- ONLY if the ads are ready to launch
+- Granting access (Google Chat, Google Ads, Meta, CRM) -- ONLY if we're actively waiting on it to start work
+- Sending assets (logos, creatives, data files) -- ONLY if we're in active production and need them now
+- Setting up accounts Creekside needs -- ONLY if the campaign build is ready and waiting on this
 
-**Client-side audit recommendations that DON'T block Creekside:**
-- "Turn off Presence or Interest location setting" -> Weekly call notes (check if they did it next call)
-- "Test a different bidding strategy" -> Weekly call notes
-- "Fix their CRM automation" -> Weekly call notes (unless it blocks our tracking)
+**Client-side audit recommendations and non-blocking client work:**
+- "Turn off Presence or Interest location setting" -> Notes for Next Call (check if they did it next call)
+- "Test a different bidding strategy" -> Notes for Next Call
+- "Fix their CRM automation" -> Notes for Next Call (unless it blocks our tracking)
+- "Set up X account before we launch" (when launch is weeks away) -> Notes for Next Call
 
 **Exclude entirely:**
 - Client internal decisions (hiring, budget approvals, internal meetings)
@@ -313,6 +321,8 @@ Q4: Is it a sub-instruction that only makes sense as part of a larger deliverabl
 - Items where someone needs to take action (follow up with a client, fix something) -- those are TASKS, not notes
 
 **MESSAGE (Google Chat):** Rules, guidelines, FYI updates, quick notes, or small one-off requests directed to specific people. Messages ARE work for Cyndi to execute -- she sends them. Do NOT also create a separate task for sending messages.
+
+**No duplication rule:** If an item is routed to the Messages section, it must NOT also appear as an action item. The message IS the deliverable -- there is no separate task to track. Example: "Tomas is routing creative approvals through Marnie now" = Message to Lindsey and Ahmed. It is NOT also action item #11 "Route creative approvals to Marnie." Every item appears in exactly ONE section.
 
 Messages can be directed to:
 - **The whole team / all operators** on a client (rules, guidelines, boundaries)
