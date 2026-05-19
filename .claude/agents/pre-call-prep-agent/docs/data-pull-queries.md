@@ -395,7 +395,7 @@ Also pull their recent Google Chat and ClickUp chat messages -- this is where da
 ```sql
 -- Their recent Google Chat messages
 SELECT id, date, space_name, ai_summary FROM gchat_summaries
-WHERE (ai_summary ILIKE '%PERSON_NAME%' OR participants ILIKE '%PERSON_NAME%')
+WHERE (ai_summary ILIKE '%PERSON_NAME%' OR participants::text ILIKE '%PERSON_NAME%')
 AND date > NOW() - INTERVAL '14 days'
 ORDER BY date DESC LIMIT 10;
 

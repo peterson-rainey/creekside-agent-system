@@ -29,8 +29,8 @@ UPDATE agent_run_history SET status = 'failure', completed_at = NOW(),
     result_summary = 'Failed at step: [step]. Generated N/M briefs before failure.'
 WHERE id = 'RUN_ID';
 
-INSERT INTO pipeline_alerts (alert_type, severity, message, details, acknowledged)
-VALUES ('routine_failure', 'high', 'Pre-call prep routine failed: [brief reason]',
+INSERT INTO pipeline_alerts (pipeline_name, alert_type, severity, message, details, acknowledged)
+VALUES ('pre-call-prep-routine', 'routine_failure', 'high', 'Pre-call prep routine failed: [brief reason]',
         '{"step": "[step]", "error": "[details]", "calls_found": N, "briefs_generated": M}', false);
 ```
 

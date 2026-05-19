@@ -173,8 +173,9 @@ Same as Sales / Discovery template above, with this addition at the top:
 
 ### Operator's Recent Calls
 [Summarize the assigned operator's recent Fathom calls about this client -- Google rep calls, internal syncs, or client calls]
-- [Date]: [Meeting title] -- [Key takeaway relevant to Peterson's upcoming call]
-- [Date]: [Meeting title] -- [Key observation or action item]
+- [Date]: [Meeting title] -- [Key takeaway relevant to Peterson's upcoming call] [source: fathom_entries, ID] [HIGH]
+- [Date]: [Meeting title] -- [Key observation or action item] [source: fathom_entries, ID] [HIGH]
+[from: raw_text] or [from: summary]
 [If no operator calls found: "No recent operator calls found involving this client."]
 
 ### Open Tasks
@@ -245,8 +246,9 @@ Same as Sales / Discovery template above, with this addition at the top:
 
 ### [Name]'s Recent Calls and Comms
 [Summary of the team member's own Fathom calls, Google Chat messages, and ClickUp chats from the last 14 days. Organized by client where possible.]
-- [Date]: [Call/Chat] re: [Client] -- [Key point or issue raised]
-- [Date]: [Call/Chat] re: [Client] -- [Action item or flag]
+- [Date]: [Call/Chat] re: [Client] -- [Key point or issue raised] [source: fathom_entries/gchat_summaries, ID] [HIGH]
+- [Date]: [Call/Chat] re: [Client] -- [Action item or flag] [source: fathom_entries/clickup_chat_entries, ID] [HIGH]
+[from: raw_text] or [from: summary]
 [This surfaces what they've been dealing with day-to-day -- issues they may bring up in the sync]
 
 ### Open Items Involving [Name]

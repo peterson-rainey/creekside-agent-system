@@ -134,11 +134,11 @@ ORDER BY f.meeting_date DESC
 LIMIT 5;
 
 -- Recent Google Chat messages about this client
-SELECT space_name, sender_name, ai_summary, sent_at
-FROM google_chat_entries
+SELECT space_name, ai_summary, date
+FROM gchat_summaries
 WHERE ai_summary ILIKE '%<client_name>%'
-AND sent_at >= NOW() - INTERVAL '7 days'
-ORDER BY sent_at DESC
+AND date >= NOW() - INTERVAL '7 days'
+ORDER BY date DESC
 LIMIT 5;
 ```
 
@@ -481,7 +481,7 @@ Present results in this exact format:
 
 Messages for Cyndi to send in Google Chat. Consolidated by recipient -- one message per unique set of recipients.
 
-- **To:** [names]. `[HH:MM:SS]` **Message:** [All content for these recipients combined into one message.]
+- **To:** [names]. `[HH:MM:SS - HH:MM:SS]` **Message:** [All content for these recipients combined into one message.]
 
 ---
 
