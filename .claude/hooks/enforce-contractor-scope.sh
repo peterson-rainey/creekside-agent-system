@@ -43,29 +43,34 @@ printf '%s' "$TOOL" | grep -qi 'execute_sql' || exit 0
 # and normalize to uppercase for pattern matching
 CMD_UPPER=$(printf '%s' "$CMD" | tr '\n' ' ' | tr -d '"' | tr '[:lower:]' '[:upper:]')
 
+# Strip single-quoted string literals before checking table names.
+# Without this, content values like 'INSERT INTO AGENT_DEFINITIONS' trigger
+# false positives. The sed handles escaped quotes ('') by matching adjacent pairs.
+CMD_STRIPPED=$(printf '%s' "$CMD_UPPER" | sed "s/'[^']*'//g")
+
 # Protected tables that contractors cannot write to
 PROTECTED_TABLES="AGENT_DEFINITIONS|SYSTEM_USERS|SYSTEM_REGISTRY|SCHEDULED_AGENTS|PROMPT_CONFIG|API_COST_LIMITS|API_COST_BREACHES|API_COST_TRACKING"
 
 # Check for INSERT/UPDATE/DELETE on protected tables
-if echo "$CMD_UPPER" | grep -qE "(INSERT\s+INTO|UPDATE|DELETE\s+FROM)\s+($PROTECTED_TABLES)"; then
+if echo "$CMD_STRIPPED" | grep -qE "(INSERT\s+INTO|UPDATE|DELETE\s+FROM)\s+($PROTECTED_TABLES)"; then
   echo "BLOCKED: Contractors cannot modify protected system tables (agent_definitions, system_users, scheduled_agents, etc.). Contact Peterson or Cade." >&2
   exit 2
 fi
 
 # Check for ALTER TABLE on protected tables
-if echo "$CMD_UPPER" | grep -qE "ALTER\s+TABLE\s+($PROTECTED_TABLES)"; then
+if echo "$CMD_STRIPPED" | grep -qE "ALTER\s+TABLE\s+($PROTECTED_TABLES)"; then
   echo "BLOCKED: Contractors cannot alter protected system tables." >&2
   exit 2
 fi
 
 # Check for CREATE OR REPLACE FUNCTION (contractors can't modify DB functions)
-if echo "$CMD_UPPER" | grep -qE "CREATE\s+(OR\s+REPLACE\s+)?FUNCTION"; then
+if echo "$CMD_STRIPPED" | grep -qE "CREATE\s+(OR\s+REPLACE\s+)?FUNCTION"; then
   echo "BLOCKED: Contractors cannot create or modify database functions. Contact Peterson or Cade." >&2
   exit 2
 fi
 
 # Check for policy modifications
-if echo "$CMD_UPPER" | grep -qE "(CREATE|DROP|ALTER)\s+POLICY"; then
+if echo "$CMD_STRIPPED" | grep -qE "(CREATE|DROP|ALTER)\s+POLICY"; then
   echo "BLOCKED: Contractors cannot modify RLS policies." >&2
   exit 2
 fi
