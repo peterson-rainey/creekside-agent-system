@@ -88,6 +88,68 @@ AND created_at > NOW() - INTERVAL '30 days'
 ORDER BY created_at DESC LIMIT 5;
 ```
 
+### Step 2.5b: Operator/Freelancer Call Context
+
+This sub-step pulls recent calls between Peterson's team and the client's assigned operators so you have background context before extraction. Skip this sub-step for discovery/sales calls -- prospects have no assigned operators.
+
+**For CLIENT CALLS (meeting_type = client_call, client, or similar where a current client is on the call):**
+
+First look up who is assigned to this client:
+
+```sql
+SELECT platform, platform_operator, account_manager
+FROM reporting_clients
+WHERE client_name ILIKE '%<client_name>%';
+```
+
+Then pull recent calls (last 14 days) involving those operators that mention this client:
+
+```sql
+SELECT f.id, f.meeting_title, f.meeting_date, f.summary
+FROM fathom_entries f
+WHERE f.meeting_date >= NOW() - INTERVAL '14 days'
+AND (
+  f.meeting_title ILIKE '%<operator_name>%'
+  OR f.participants::text ILIKE '%<operator_name>%'
+)
+AND (f.summary ILIKE '%<client_name>%' OR f.summary ILIKE '%<sub_brand>%')
+ORDER BY f.meeting_date DESC
+LIMIT 5;
+```
+
+Repeat the second query for each unique operator returned. For any relevant matches, pull the sections of the transcript that mention the client using `get_full_content('fathom_entries', id)` -- you do not need the entire transcript, only the passages that reference the client by name or sub-brand. Use those passages to build context.
+
+**For INTERNAL CALLS (team syncs such as Lindsey/Cade/Pete, Cade + Pete, Cyndi + Peterson):**
+
+These calls discuss multiple clients. After identifying which clients are discussed (from the transcript), pull recent context for EACH mentioned client:
+
+```sql
+-- Recent calls mentioning this client (excluding the current call)
+SELECT f.id, f.meeting_title, f.meeting_date, f.summary
+FROM fathom_entries f
+WHERE f.meeting_date >= NOW() - INTERVAL '14 days'
+AND f.summary ILIKE '%<client_name>%'
+AND f.id != '<current_call_id>'
+ORDER BY f.meeting_date DESC
+LIMIT 5;
+
+-- Recent Google Chat messages about this client
+SELECT space_name, sender_name, ai_summary, sent_at
+FROM google_chat_entries
+WHERE ai_summary ILIKE '%<client_name>%'
+AND sent_at >= NOW() - INTERVAL '7 days'
+ORDER BY sent_at DESC
+LIMIT 5;
+```
+
+**How to use this context:**
+
+1. **Deduplication** -- do not create action items for things already discussed and assigned in operator calls.
+2. **Status awareness** -- know what is blocked, in progress, or completed on the operator side before flagging it as a new item.
+3. **Contradiction detection** -- if the client says something on the current call that conflicts with what an operator reported recently, flag it explicitly in the output.
+
+This context is background knowledge only. Do NOT use it to add extra action items that were not discussed in the call being processed. Nothing from an operator call becomes a new action item unless the current call also surfaces it.
+
 **Why this matters:** Channel messages (Step 6) MUST NOT contradict prior decisions already communicated to the team. If a prior call established "we're launching age-specific ad copy for SRM" and this call discusses the same topic, the channel message should BUILD ON the prior context, not restate it as if it's new. If you find conflicting information, flag it explicitly in the output.
 
 **Existing recurring meetings:** If the database shows a recurring weekly call already exists for this client, do NOT create a new scheduling action item unless the call is being rescheduled or a NEW meeting is being added. A confirmation like "see you next Thursday" for an existing weekly cadence is NOT an action item.
@@ -427,7 +489,7 @@ Messages for Cyndi to send in Google Chat. Consolidated by recipient -- one mess
 
 Things to check on or bring up at the next call. NOT action items.
 
-- [Topic] `[HH:MM:SS]`: [brief description of what to check on]
+- [Topic] `[HH:MM:SS - HH:MM:SS]`: [brief description of what to check on]
 
 To add any of these to the ClickUp weekly call notes, say which items (e.g., "add 1, 3, 6 to call notes").
 
@@ -442,6 +504,8 @@ To add any of these to the ClickUp weekly call notes, say which items (e.g., "ad
 ## Step 9: Add Notes to ClickUp Doc
 
 This step only runs when Peterson explicitly approves specific Notes for Next Call items for writing (e.g., "add items 1, 3, 6 to the doc", "add those to call notes", "add the Galleria one").
+
+**Only Section 3 (Notes for Next Call) items are eligible for this write.** If Peterson references an item number from Section 1 (Action Items) or Section 2 (Messages), clarify: "Section 1 items are tasks -- they go to ClickUp as tasks, not into the weekly call notes doc. Section 2 items are messages -- Cyndi sends those in Google Chat. Which Section 3 items did you want added to the doc?"
 
 ### 9a: Identify the target doc
 
@@ -472,6 +536,10 @@ If that also returns multiple rows, again show Peterson the options. If no rows 
 ### 9b: Pull LIVE content from the doc
 
 ALWAYS fetch the current live content from ClickUp before writing. The database sync may be stale and will NOT reflect Peterson's manual edits.
+
+**Tool distinction:**
+- `clickup_list_document_pages` -- use this to list page metadata (names, IDs) for a doc when you need to discover which pages exist.
+- `clickup_get_document_pages` -- use this to retrieve actual page content. Use this here.
 
 Use `clickup_get_document_pages` with the `doc_id` from Step 9a to retrieve the current page content. Read the full existing content before proceeding.
 
