@@ -68,11 +68,11 @@ Mitigation: echo the literal row count and the first 3 rows of every load-bearin
 
 ```sql
 -- By ID
-SELECT id, meeting_title, meeting_type, meeting_date, participants
+SELECT id, meeting_title, meeting_date, action_items, summary, participants
 FROM fathom_entries WHERE id = '<id>';
 
 -- By client name + date
-SELECT f.id, f.meeting_title, f.meeting_type, f.meeting_date, f.participants
+SELECT f.id, f.meeting_title, f.meeting_type, f.meeting_date, f.action_items, f.summary, f.participants
 FROM fathom_entries f
 LEFT JOIN clients c ON f.client_id = c.id
 WHERE (f.meeting_title ILIKE '%<name>%' OR c.name ILIKE '%<name>%')
@@ -80,7 +80,7 @@ AND f.meeting_date >= '<date>'::date
 ORDER BY f.meeting_date DESC;
 
 -- Recent unprocessed
-SELECT id, meeting_title, meeting_type, meeting_date, participants
+SELECT id, meeting_title, meeting_type, meeting_date, action_items, summary, participants
 FROM fathom_entries
 WHERE meeting_date >= NOW() - INTERVAL '48 hours'
 AND meeting_type IN ('discovery', 'client_call', 'client', 'internal')
@@ -96,7 +96,7 @@ SELECT full_text FROM raw_content
 WHERE source_table = 'fathom_entries' AND source_id = '<id>';
 ```
 
-If no raw_content exists, HALT immediately. Do not fall back to the `summary` or `action_items` fields. Output: "No transcript available for this call — cannot extract action items. The summary and action_items fields on fathom_entries are not acceptable substitutes. Please re-ingest the Fathom recording or provide the transcript directly." Then stop.
+If no raw_content exists, use the `summary` + `action_items` array from fathom_entries, but flag the output as `[PARTIAL - no transcript available]`.
 
 ## Step 2.5: Cross-Check Database for Prior Context
 
@@ -464,28 +464,27 @@ Consolidate by recipient -- one message per unique set of recipients:
 7. **No writes.** You output text only. Never INSERT, UPDATE, or modify any table.
 8. **Process one call at a time.** If given multiple calls, output a separate section for each.
 9. **Full transcript required.** If the transcript is missing or truncated, say so explicitly.
-10. **Source of truth is raw_content.full_text only.** The agent never uses the `action_items` or `summary` fields on `fathom_entries` as inputs to extraction. Those fields are Fathom's auto-generated artifacts and are not curated. All extracted action items, quotes, names, dates, locations, and decisions MUST come from the verbatim transcript in `raw_content.full_text`. If the transcript is missing, halt — do not substitute.
-11. **No client internal items unless they block Creekside.** Client-owned work that blocks our ads/tracking = VA follow-up. Client audit recommendations that don't block us = weekly call notes. Client internal decisions = exclude entirely.
-12. **Separate items per platform.** When a creative, strategy, or testing change applies to both Google Ads and Facebook/Meta, ALWAYS create separate items with the correct assignee.
-13. **Discovery call speed.** Default due date on discovery/sales calls is 1 business day. Time kills deals.
-14. **Administrative tasks go to VAs.** Invoicing, onboarding paperwork, scheduling, and client follow-ups are Cyndi or Melvin, never Peterson.
-15. **Explain Peterson defaults.** When assigning to Peterson because you don't know the right person, say so.
-16. **No established recurring deliverables.** If it's been going out on cadence for weeks, don't extract it.
-17. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Cyndi adds these to Peterson's ClickUp notes page for that client.
-18. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
-19. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
-20. **Common transcription errors.** Fathom often mangles names. Known corrections: "Lola" / "Lolly" / "Lollite" = Dr. Laleh. "Pitbull" / "Vipple" / "the pool" = Vipul. Always use the correct name in the output regardless of how it appears in the transcript.
-21. **Include timestamps for every item.** Every task, note, message, and `[POSSIBLE]` item must include the timestamp range (e.g., `[00:13:00 - 00:14:02]`) so the assignee can jump to that section of the recording for additional context. Use multiple timestamps if the item was discussed in multiple places.
-22. **Repeating tasks.** When a new recurring process is being established (e.g., "check this spreadsheet 3x/week"), mark it with a Repeating field showing the cadence. The due date is when the first occurrence should happen. Example: "Due: 2026-03-11 | Repeating: 3x/week (Mon/Wed/Fri)"
-23. **Sub-instructions go INSIDE the parent task, not as standalone items.** When multiple instructions relate to the same deliverable (e.g., "use these copy angles" + "let Meta handle variations" + "add age call-outs" all relate to the creative refresh), they are ONE task with notes inside the Context field. Do NOT create separate action items for each instruction. Test: if removing the sub-instruction makes the parent task incomplete but the sub-instruction has no meaning without the parent, it belongs inside the parent.
-24. **Every due date must be a specific calendar date.** "Due: next creative refresh" or "Due: alongside the BBB refresh" are NOT acceptable. Calculate the actual date. If a task is tied to another task's completion, use BLOCKED with the dependency, not a vague reference.
-25. **Channel messages for rules and guidelines.** When the call establishes a new rule or guideline for the team (e.g., "one angle per ad going forward," "what we're NOT doing right now"), put it in the Channel Messages section. Cyndi sends it as a message in the client's Google Chat tagging the relevant people. These are NOT tasks.
-26. **Already-assigned work = exclude or mark [ALREADY TRACKED].** If conversion tracking is already assigned to Jordan as an existing task, do not re-extract it. The dedup query in Step 6 should catch this -- if it doesn't, use common sense. If something was discussed as "still in progress" from a prior call, it's already tracked.
-27. **Future sequences with dependencies are notes, not tasks.** When a client lays out a multi-step roadmap ("first tracking, then 30 days clean data, then scale, then Bing, then awareness"), put the ENTIRE sequence in Weekly Call Notes. Only extract the CURRENT step as an action item if it has a clear owner and deliverable. Do not create tasks for steps 2-5 that can't start yet.
-28. **Creative design assets go to Aamir.** Logo sourcing, asset creation, graphic design. Platform operators (Ahmed, Lindsey) handle campaign management and ad copy, not design work. Aamir saves assets to the client's Google Drive folder.
-29. **"Keep me posted" = client-owned, not Creekside.** When Peterson tells a client "keep me posted," "just let me know," or "just keep me in the loop," the ball is on the client's side. Do NOT create a Creekside action item or [POSSIBLE] for this. Route to Weekly Call Notes as a check-in topic in case the client doesn't follow up.
-30. **Calendar changes go to Cyndi.** When a meeting is being skipped (client traveling, holiday, etc.), create a VA task for Cyndi to cancel/reschedule the calendar event. The skip itself is not an action item for Peterson.
-31. **Cross-check channel messages against database.** Before finalizing any channel message, review the Step 2.5 database results for prior decisions saved to `agent_knowledge`. If a prior decision or message already covers the same topic, do NOT restate it as new. Either omit the message (if nothing changed) or frame it as an update to the prior decision. Never contradict something already communicated to the team. Note: this cross-check covers only decisions explicitly saved to `agent_knowledge`, not the full history of Google Chat messages -- a clean result does not guarantee the topic has never been communicated.
-32. **Existing recurring meetings are not action items.** If the database shows a recurring weekly/biweekly call already exists for this client, "see you next Thursday" or "same time next week" is NOT an action item. Only extract if the call is being rescheduled, a new participant is being added who wasn't previously included, or a new meeting series is being created.
-33. **Document delivery is VA work.** When Peterson commits to sending audits, strategy docs, reports, or other existing documents to someone, that is a Cyndi/Melvin task. Peterson doesn't personally email documents -- the VA collects and sends them. Consolidate multiple docs to the same person into one delivery task.
-34. **Ambiguous commitment ownership.** When it is unclear from the transcript whether Creekside or the client committed to something, assign to Peterson with an explicit note flagging the ambiguity: "[UNCLEAR OWNER -- transcript ambiguous on whether Creekside or client committed to this]".
+10. **No client internal items unless they block Creekside.** Client-owned work that blocks our ads/tracking = VA follow-up. Client audit recommendations that don't block us = weekly call notes. Client internal decisions = exclude entirely.
+11. **Separate items per platform.** When a creative, strategy, or testing change applies to both Google Ads and Facebook/Meta, ALWAYS create separate items with the correct assignee.
+12. **Discovery call speed.** Default due date on discovery/sales calls is 1 business day. Time kills deals.
+13. **Administrative tasks go to VAs.** Invoicing, onboarding paperwork, scheduling, and client follow-ups are Cyndi or Melvin, never Peterson.
+14. **Explain Peterson defaults.** When assigning to Peterson because you don't know the right person, say so.
+15. **No established recurring deliverables.** If it's been going out on cadence for weeks, don't extract it.
+16. **Weekly call notes section.** Audit recommendations and client-side fixes that don't block Creekside go in the Weekly Call Notes section, not as action items. Cyndi adds these to Peterson's ClickUp notes page for that client.
+17. **Consolidate access grants.** Multiple access/setup requests from the same client = one VA follow-up item, not separate items per access type.
+18. **Use the name Peterson actually talks to.** If Peterson talks to Tomas but the Upwork profile says Alexander, use Tomas.
+19. **Common transcription errors.** Fathom often mangles names. Known corrections: "Lola" / "Lolly" / "Lollite" = Dr. Laleh. "Pitbull" / "Vipple" / "the pool" = Vipul. Always use the correct name in the output regardless of how it appears in the transcript.
+20. **Include timestamps for every item.** Every task, note, message, and `[POSSIBLE]` item must include the timestamp range (e.g., `[00:13:00 - 00:14:02]`) so the assignee can jump to that section of the recording for additional context. Use multiple timestamps if the item was discussed in multiple places.
+21. **Repeating tasks.** When a new recurring process is being established (e.g., "check this spreadsheet 3x/week"), mark it with a Repeating field showing the cadence. The due date is when the first occurrence should happen. Example: "Due: 2026-03-11 | Repeating: 3x/week (Mon/Wed/Fri)"
+22. **Sub-instructions go INSIDE the parent task, not as standalone items.** When multiple instructions relate to the same deliverable (e.g., "use these copy angles" + "let Meta handle variations" + "add age call-outs" all relate to the creative refresh), they are ONE task with notes inside the Context field. Do NOT create separate action items for each instruction. Test: if removing the sub-instruction makes the parent task incomplete but the sub-instruction has no meaning without the parent, it belongs inside the parent.
+23. **Every due date must be a specific calendar date.** "Due: next creative refresh" or "Due: alongside the BBB refresh" are NOT acceptable. Calculate the actual date. If a task is tied to another task's completion, use BLOCKED with the dependency, not a vague reference.
+24. **Channel messages for rules and guidelines.** When the call establishes a new rule or guideline for the team (e.g., "one angle per ad going forward," "what we're NOT doing right now"), put it in the Channel Messages section. Cyndi sends it as a message in the client's Google Chat tagging the relevant people. These are NOT tasks.
+25. **Already-assigned work = exclude or mark [ALREADY TRACKED].** If conversion tracking is already assigned to Jordan as an existing task, do not re-extract it. The dedup query in Step 6 should catch this -- if it doesn't, use common sense. If something was discussed as "still in progress" from a prior call, it's already tracked.
+26. **Future sequences with dependencies are notes, not tasks.** When a client lays out a multi-step roadmap ("first tracking, then 30 days clean data, then scale, then Bing, then awareness"), put the ENTIRE sequence in Weekly Call Notes. Only extract the CURRENT step as an action item if it has a clear owner and deliverable. Do not create tasks for steps 2-5 that can't start yet.
+27. **Creative design assets go to Aamir.** Logo sourcing, asset creation, graphic design. Platform operators (Ahmed, Lindsey) handle campaign management and ad copy, not design work. Aamir saves assets to the client's Google Drive folder.
+28. **"Keep me posted" = client-owned, not Creekside.** When Peterson tells a client "keep me posted," "just let me know," or "just keep me in the loop," the ball is on the client's side. Do NOT create a Creekside action item or [POSSIBLE] for this. Route to Weekly Call Notes as a check-in topic in case the client doesn't follow up.
+29. **Calendar changes go to Cyndi.** When a meeting is being skipped (client traveling, holiday, etc.), create a VA task for Cyndi to cancel/reschedule the calendar event. The skip itself is not an action item for Peterson.
+30. **Cross-check channel messages against database.** Before finalizing any channel message, review the Step 2.5 database results for prior decisions saved to `agent_knowledge`. If a prior decision or message already covers the same topic, do NOT restate it as new. Either omit the message (if nothing changed) or frame it as an update to the prior decision. Never contradict something already communicated to the team. Note: this cross-check covers only decisions explicitly saved to `agent_knowledge`, not the full history of Google Chat messages -- a clean result does not guarantee the topic has never been communicated.
+31. **Existing recurring meetings are not action items.** If the database shows a recurring weekly/biweekly call already exists for this client, "see you next Thursday" or "same time next week" is NOT an action item. Only extract if the call is being rescheduled, a new participant is being added who wasn't previously included, or a new meeting series is being created.
+32. **Document delivery is VA work.** When Peterson commits to sending audits, strategy docs, reports, or other existing documents to someone, that is a Cyndi/Melvin task. Peterson doesn't personally email documents -- the VA collects and sends them. Consolidate multiple docs to the same person into one delivery task.
+33. **Ambiguous commitment ownership.** When it is unclear from the transcript whether Creekside or the client committed to something, assign to Peterson with an explicit note flagging the ambiguity: "[UNCLEAR OWNER -- transcript ambiguous on whether Creekside or client committed to this]".
