@@ -47,6 +47,7 @@ The first 1-3 lines determine everything. Rules:
 - **Alternate rhythm** — Short punchy lines followed by longer flowing paragraphs. After dense blocks, insert a one-liner to reset.
 - **Visual layout test** — Look at how it appears on the page. Break up repetitive patterns.
 - **Never use em dashes** — Never use em dashes (—) in any post. Use periods, commas, or restructure the sentence instead. Em dashes are an AI-generated tell.
+- **LinkedIn-clean plain text** — Output must be plain text with zero leading/trailing spaces on any line, no tabs, no indentation, and exactly one blank line between paragraphs. LinkedIn strips markdown and mangles whitespace, so the post must paste cleanly with no formatting artifacts. Test by imagining pasting directly into the LinkedIn post composer.
 - Pair with a relevant photo/graphic when possible. Scrappy > polished.
 - Keep LinkedIn-native. No dumped podcast clips.
 
