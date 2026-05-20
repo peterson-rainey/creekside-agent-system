@@ -41,11 +41,11 @@ if [ -z "$SESSION_UUID" ]; then
 fi
 
 # --- 2. Env check ---
-SUPABASE_URL_VAL="${SUPABASE_URL:-}"
+SUPABASE_URL_VAL="${SUPABASE_URL:-https://suhnpazajrmfcmbwckkx.supabase.co}"
 KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 
-if [ -z "$SUPABASE_URL_VAL" ] || [ -z "$KEY" ]; then
-  log_err "missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY; leaving state file for retry"
+if [ -z "$KEY" ]; then
+  log_err "missing SUPABASE_SERVICE_ROLE_KEY; leaving state file for retry"
   exit 0
 fi
 

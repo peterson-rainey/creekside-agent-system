@@ -28,11 +28,11 @@ command -v jq >/dev/null 2>&1 || exit 0
 command -v curl >/dev/null 2>&1 || exit 0
 command -v uuidgen >/dev/null 2>&1 || exit 0
 
-SUPABASE_URL_VAL="${SUPABASE_URL:-}"
+SUPABASE_URL_VAL="${SUPABASE_URL:-https://suhnpazajrmfcmbwckkx.supabase.co}"
 KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 
-if [ -z "$SUPABASE_URL_VAL" ] || [ -z "$KEY" ]; then
-  log_err "missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY"
+if [ -z "$KEY" ]; then
+  log_err "missing SUPABASE_SERVICE_ROLE_KEY"
   exit 0
 fi
 
