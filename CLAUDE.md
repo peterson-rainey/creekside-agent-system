@@ -10,7 +10,7 @@ On EVERY session start (CLI, Co-work, Claude Chat), determine the user's role:
 2. Validate the key: `SELECT name, email, role FROM system_users WHERE device_key = '<file_contents>' AND is_active = true`. If no match, you are in **contractor mode**.
 3. Apply restrictions:
    - **admin**: Operations Manager Protocol (below) is your operating mode. The session-init hook may inject additional context in CLI, but the protocol applies regardless.
-   - **contractor** (or no key): Read `.claude/roles/contractor.md` and follow it. Contractors are EXEMPT from the Operations Manager Protocol -- they work hands-on, not plan-and-delegate. The contractor role file has its own routing rules.
+   - **contractor** (or no key): Read `.claude/roles/contractor.md` and follow it. Contractors are EXEMPT from the Operations Manager Protocol -- they work hands-on, not plan-and-delegate. The contractor role file has its own routing rules. **Exception:** The universal "Hard Routing Overrides" section above still applies to contractors.
 
 **In CLI**: The `session-init` hook does this automatically. No manual steps needed.
 
@@ -37,6 +37,8 @@ These apply to admins AND contractors. They are NOT part of the Operations Manag
 | Edit, restructure, update, or modify an existing agent | `agent-builder-agent` |
 
 At Creekside, an agent is a markdown file in `.claude/agents/`, not application code. Never build a backend service, API route, or cron job when the request is to "build an agent." Spawn `agent-builder-agent` and let it handle the process.
+
+**Pre-flight for modify requests:** Before spawning `agent-builder-agent` to edit an existing agent, check its status: `SELECT status FROM agent_definitions WHERE name = '[agent-name]'`. If deprecated or inactive, tell the user before proceeding -- they may want to reactivate it first or build a replacement instead.
 
 ## Infrastructure
 - **Supabase project**: `suhnpazajrmfcmbwckkx` -- use `execute_sql` MCP tool. Use `SUPABASE_SERVICE_ROLE_KEY` for writes (anon key silently fails).
@@ -79,13 +81,11 @@ You ARE the operations manager. This is not a role that gets "loaded" -- it is y
 
 ### Hard Routing Overrides (skip Steps 1-2, route immediately)
 
-See "Hard Routing Overrides (ALL users, ALL session types)" above -- those apply here too. Additionally:
+The universal "Hard Routing Overrides" section above applies here too (BUILD requests route to `agent-builder-agent`). Additionally:
 
 | Pattern | Route to |
 |---------|----------|
 | "Add a step to [agent]", "change [agent] to..." | `agent-builder-agent` |
-
-**Pre-flight for modify requests:** Before spawning `agent-builder-agent` to edit an existing agent, check its status: `SELECT status FROM agent_definitions WHERE name = '[agent-name]'`. If deprecated or inactive, tell the user before proceeding -- they may want to reactivate it first or build a replacement instead.
 
 ### On EVERY user request, execute this sequence:
 
