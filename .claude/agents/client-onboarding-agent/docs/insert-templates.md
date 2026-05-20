@@ -59,6 +59,37 @@ RETURNING id, name;
 
 For any field you don't have data for, use NULL — do NOT guess or fabricate values.
 
+### Phase 4.5: Populate Dashboard Quick Links
+
+The Creekside dashboard client detail page has 6 quick link buttons. Source and populate ALL of these fields on the `clients` row BEFORE moving on:
+
+| Field | Where to find it |
+|-------|-----------------|
+| `gdrive_folder_id` | Search `gdrive_operations` for the client's root folder: `SELECT file_id FROM gdrive_operations WHERE mime_type = 'application/vnd.google-apps.folder' AND folder_path = 'Drive/CRM/Current Clients' AND file_name ILIKE '%{client_name}%'`. The `file_id` is the folder ID. |
+| `clickup_folder_id` | Use `clickup_get_workspace_hierarchy` MCP tool (max_depth=1), look in the "Client Management" space for the client's folder. Store the folder `id`. |
+| `contract_url` | Search `gdrive_operations`: `SELECT web_view_link FROM gdrive_operations WHERE folder_path ILIKE '%{client_name}%' AND (file_name ILIKE '%agreement%' OR file_name ILIKE '%contract%')`. Also check GHL proposals at `crm.getpinnacle.ai`. |
+| `gchat_url` | Format: `https://chat.google.com/room/{space_suffix}` where `space_suffix` comes from `gchat_summaries.space_id` (strip the `spaces/` prefix). Query: `SELECT space_id FROM gchat_summaries WHERE space_name ILIKE '%{client_name}%' LIMIT 1`. If not found, the Google Chat space may not exist yet -- flag for manual creation. |
+| `website` | Should already be set from Phase 4 onboarding sheet data. If NULL, check the onboarding sheet: `SELECT ai_summary FROM gdrive_operations WHERE folder_path ILIKE '%{client_name}%' AND file_name ILIKE '%onboard%'`. |
+
+```sql
+UPDATE clients SET
+  gdrive_folder_id = COALESCE(gdrive_folder_id, '{found_folder_id}'),
+  clickup_folder_id = COALESCE(clickup_folder_id, '{found_clickup_id}'),
+  contract_url = COALESCE(contract_url, '{found_contract_url}'),
+  gchat_url = COALESCE(gchat_url, '{found_gchat_url}'),
+  website = COALESCE(website, '{found_website}')
+WHERE id = '{client_id}';
+```
+
+Also ensure every `reporting_clients` row has a `report_token` (powers the "Client Report" button):
+
+```sql
+UPDATE reporting_clients SET report_token = gen_random_uuid()
+WHERE client_id = '{client_id}' AND report_token IS NULL;
+```
+
+**If any field cannot be sourced**, flag it in the onboarding summary so it gets filled manually. Do NOT skip this phase.
+
 ### Phase 5: Insert into `reporting_clients` Table
 
 Create one row per platform. This is what the Creekside dashboard reads.
