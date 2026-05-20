@@ -272,13 +272,15 @@ Same as Sales / Discovery template above, with this addition at the top:
 
 ## Formatting Rules
 
-1. **Bullet points, not paragraphs.** Peterson scans, he does not read prose.
-2. **Bold the most important info** in each section -- the fact Peterson would look for first.
-3. **Source citations on key facts:** `[source: table, id]`. Required for dollar amounts, commitments, and dates.
-4. **Source depth tagging:** `[from: raw_text]` or `[from: summary]` on any prior-call content.
-5. **Confidence tags:** `[HIGH]` / `[MEDIUM]` / `[LOW]` on factual claims.
-6. **Stale data marker:** `[STALE -- X months old]` for anything > 3 months.
-7. **Low-confidence marker:** `[INFERRED]` for anything not directly from a database record.
-8. **Skip empty sections.** No section headers with nothing under them. Consolidate all gaps into one "Data Gaps" line at the bottom.
-9. **Target length:** Client calls ~1 page. Sales / cold calls up to 1.5 pages (more research). Internal calls ~half page.
-10. **Not an agenda.** No "Suggested Discussion Topics," no questions to ask, no suggested talking points. Context only.
+1. **Plain text for Google Calendar.** No markdown tables, no pipe characters. Use dashes for lists, ═══ lines for section breaks, indentation for sub-items.
+2. **Bullet points, not paragraphs.** Peterson scans, he does not read prose.
+3. **No source citations in the output.** Use them internally to verify facts, strip from the calendar description.
+4. **No confidence tags in the output.** [HIGH]/[MEDIUM]/[LOW] are internal -- don't show them.
+5. **No depth tags in the output.** [from: raw_text]/[from: summary] are internal.
+6. **Stale data:** flag inline as "(X months old)" only when relevant, not on every item.
+7. **Skip empty sections.** Consolidate all gaps into one "Gaps" line at the bottom.
+8. **Target length:** Client calls ~1 page. Sales/cold calls up to 1.5 pages. Internal calls ~half page.
+9. **Not an agenda.** No "Suggested Discussion Topics," no questions to ask. Context only.
+10. **Lead with blockers.** The most actionable information goes at the top.
+11. **Merge, don't duplicate.** Contractor notes go into the relevant section (e.g., Lindsey's insights under Meta performance), not a separate block. If something appears in "what changed," don't repeat it elsewhere.
+12. **Performance as inline text.** "Spend: $34K | Leads: 1,370 | CPL: $24.80" -- not a table.
