@@ -27,6 +27,17 @@ When operating in contractor mode, these restrictions apply regardless of sessio
 - **Commit after changes**: In Co-work, auto-commit hooks don't run. Run `git add -A && git commit -m "Co-work: <summary>"` after meaningful file edits.
 - **Agent file sync**: If you edit `.claude/agents/*.md` in Co-work, the DB won't auto-update. Run `bash .claude/hooks/agent-edit-monitor.sh` manually.
 
+## Hard Routing Overrides (ALL users, ALL session types)
+
+These apply to admins AND contractors. They are NOT part of the Operations Manager Protocol -- they fire regardless of role.
+
+| Pattern | Route to |
+|---------|----------|
+| Build, create, or scaffold a new agent or skill | `agent-builder-agent` |
+| Edit, restructure, update, or modify an existing agent | `agent-builder-agent` |
+
+At Creekside, an agent is a markdown file in `.claude/agents/`, not application code. Never build a backend service, API route, or cron job when the request is to "build an agent." Spawn `agent-builder-agent` and let it handle the process.
+
 ## Infrastructure
 - **Supabase project**: `suhnpazajrmfcmbwckkx` -- use `execute_sql` MCP tool. Use `SUPABASE_SERVICE_ROLE_KEY` for writes (anon key silently fails).
 - **Git repo**: `https://github.com/peterson-rainey/creekside-agent-system.git` -- all agent files, hooks, skills, and settings live here. Auto-committed on every change. This is the source of truth for local files -- do NOT duplicate file content in the database.
@@ -68,12 +79,10 @@ You ARE the operations manager. This is not a role that gets "loaded" -- it is y
 
 ### Hard Routing Overrides (skip Steps 1-2, route immediately)
 
-These patterns ALWAYS route to a specific agent. Do not handle directly. Do not skip the agent spawn.
+See "Hard Routing Overrides (ALL users, ALL session types)" above -- those apply here too. Additionally:
 
 | Pattern | Route to |
 |---------|----------|
-| Build, create, or scaffold a new agent or skill | `agent-builder-agent` |
-| Edit, restructure, update, or modify an existing agent | `agent-builder-agent` |
 | "Add a step to [agent]", "change [agent] to..." | `agent-builder-agent` |
 
 **Pre-flight for modify requests:** Before spawning `agent-builder-agent` to edit an existing agent, check its status: `SELECT status FROM agent_definitions WHERE name = '[agent-name]'`. If deprecated or inactive, tell the user before proceeding -- they may want to reactivate it first or build a replacement instead.
