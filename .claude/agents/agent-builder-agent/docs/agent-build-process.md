@@ -328,7 +328,7 @@ INSERT INTO agent_definitions (
 VALUES (
   '[agent-name]',           -- matches the .md filename (without extension)
   '[Agent Display Name]',   -- human-readable name
-  '[description]',          -- routing description (what + when)
+  '[description] (Built by [FirstName])',  -- routing description (what + when) + attribution for contractor builds
   '[department]',           -- ops, qc, comms, infra, client, meta, etc.
   '[type]',                 -- sub_agent, scheduled, on_demand, etc.
   '[full prompt content]',  -- read from the .md file you just wrote
@@ -348,7 +348,7 @@ VALUES (
   '[agent-name]: capabilities summary',
   'What it does: [1-2 sentences]. When to use: [trigger conditions]. Output: [what it produces]. Limitations: [what it cannot do].',
   ARRAY['capability', '[agent-name]', '[department]'],
-  'Built by agent-builder on [date]',
+  'Built by [FirstName] via agent-builder on [date]',
   'verified'
 );
 ```
