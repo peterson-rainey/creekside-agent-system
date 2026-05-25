@@ -13,13 +13,11 @@ Required JSON fields:
     lead_name           str     e.g. "Shin Nagpal"
     client_name         str     e.g. "Village Repair"
     industry_context    str     e.g. "automotive repair shop"
-    starting_ad_spend   int     monthly ad spend in dollars (used for plan/mode logic)
+    starting_ad_spend   int     monthly ad spend in dollars
     audit_findings      list    strings -- specific call-out points from discovery call
-    recommended_plan    str     "A", "B", or "C"
     signature           str     e.g. "Peterson Rainey"
 
 Optional JSON fields:
-    single_plan_mode    bool    override auto-derived plan display mode
     pricing_override    dict    override pricing figures (keys: onboarding_fee,
                                 monthly_min, variable_rate_desc, monthly_cap)
     out_path            str     full output path (default: ~/Desktop/proposals/{slug}_{date}.docx)
@@ -60,39 +58,20 @@ DARK = RGBColor(0x11, 0x18, 0x27)
 GRAY = RGBColor(0x6B, 0x72, 0x80)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 
-# Current pricing (2026-05-15) -- matches pricing-logic.md and build_docx.py
+# Current pricing (2026-05-25) -- matches pricing-logic.md and build_docx.py
+# Simplified from 3-plan structure: Plan B Shared and Plan C Retainer removed.
 DEFAULT_PRICING = {
-    "A": {
-        "onboarding_fee": "$1,500 per platform (one-time)",
-        "monthly_min": "$1,500 minimum per platform",
-        "variable_rate_desc": (
-            "20% of ad spend up to $30,000/month\n"
-            "15% from $30,000 to $60,000\n"
-            "10% above $60,000\n"
-            "(Calculated per platform; $1,500 minimum applies until spend exceeds $7,500/mo)"
-        ),
-        "monthly_cap": "$15,000 / month",
-        "plan_label": "Plan A: Growth",
-    },
-    "B": {
-        "onboarding_fee": "$1,500 per platform (one-time)",
-        "monthly_min": "$3,000 flat base (covers all platforms)",
-        "variable_rate_desc": "10% of total combined ad spend across all platforms",
-        "monthly_cap": "$12,000 / month",
-        "plan_label": "Plan B: Shared",
-    },
-    "C": {
-        "onboarding_fee": "$1,500 per platform (one-time)",
-        "monthly_min": "$10,000 flat retainer (covers all platforms)",
-        "variable_rate_desc": "None",
-        "monthly_cap": "N/A -- always $10,000",
-        "plan_label": "Plan C: Retainer",
-    },
+    "onboarding_fee": "$1,500 per platform (one-time)",
+    "monthly_min": "$1,500 minimum per platform",
+    "variable_rate_desc": (
+        "20% of ad spend up to $30,000/month\n"
+        "15% from $30,000 to $60,000\n"
+        "10% above $60,000\n"
+        "(Calculated per platform; $1,500 minimum applies until spend exceeds $7,500/mo)"
+    ),
+    "monthly_cap": "$15,000 / month",
+    "plan_label": "Creekside Management Fee",
 }
-
-# Budget thresholds that drive single_plan_mode (from pricing-logic.md)
-SINGLE_PLAN_THRESHOLD = 5_000     # below this: single plan only
-TWO_PLAN_THRESHOLD = 30_000       # below this: show A and B
 
 
 # ---------------------------------------------------------------------------
