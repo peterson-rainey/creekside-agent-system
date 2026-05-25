@@ -3,7 +3,7 @@ name: pricing-update-agent
 description: "Cascades a Creekside pricing change across the entire system: proposal scripts, generated docs, documentation files, agent prompt, adjacent agent docs, database entries, Google Drive upload, website, SDR agent, Cade notification, and git commit. Spawn when Peterson says 'change pricing to X', 'update our rates', or 'new minimum/cap/onboarding fee'. Confirms new values before executing any changes."
 tools: Bash, Read, Write, Edit, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_ClickUp__clickup_send_chat_message
 model: opus
-status: draft
+status: active
 ---
 
 # Pricing Update Agent
