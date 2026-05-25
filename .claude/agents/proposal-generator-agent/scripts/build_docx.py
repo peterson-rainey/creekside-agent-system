@@ -5,12 +5,7 @@ Mirrors the live Google Doc template; pricing matches proposal_chart.py.
 Run order: proposal_chart.py first (generates chart), then this script
 (embeds the chart in the Investment & Terms section).
 
-Original by an external chat agent; updated for Creekside Marketing local environment
-on 2026-05-15:
-- Paths corrected for macOS
-- Slack references replaced with Google Chat (Standing Rule #1: Slack is dead at Creekside)
-- Contract terms corrected to actual policy (3-month minimum + $250 cancellation, then MTM)
-- Plan A base fee description clarified (math: $1,500 floor applies until $7,500 spend)
+Simplified to single pricing plan on 2026-05-25 (Plan B Shared and Plan C Retainer removed).
 """
 import os
 from docx import Document
@@ -252,80 +247,67 @@ for item in [
 # INVESTMENT & TERMS
 doc.add_page_break()
 heading1("Investment & Terms")
-body("We believe in transparent pricing that aligns with your business goals and risk tolerance. "
-     "We offer three distinct management plans, allowing you to choose the structure that best fits your needs.")
+body("Our management fee is based on a percentage of your ad spend, designed to scale with your "
+     "business. As your ad budget grows, the percentage decreases, and a monthly cap ensures your "
+     "costs stay predictable even at higher spend levels.")
 
-heading2("1. The Three Pricing Plans")
+heading2("Pricing Structure")
 
-HEADERS = ["Feature", "Plan A: Growth", "Plan B: Shared", "Plan C: Retainer"]
 ROWS = [
-    ["Best For",
-     "Lower initial cost; fee scales directly with ad spend",
-     "Predictable base fee with a lower percentage as you scale",
-     "Total cost certainty — one flat fee regardless of ad spend"],
-    ["Base Fee",
-     "$0 base fee\n($1,500 minimum per platform\napplies until ad spend exceeds $7,500/mo)",
-     "$3,000 flat base\n(covers all platforms)",
-     "$10,000 flat retainer\n(covers all platforms)"],
-    ["Variable Fee",
-     "20% up to $30k spend\n15% from $30k–$60k\n10% over $60k\n(Calculated per platform, $1,500 minimum)",
-     "10% of total combined\nad spend across all platforms",
-     "None"],
-    ["Monthly Cap",
-     "$15,000 / month",
-     "$12,000 / month",
-     "N/A — always $10,000"],
-    ["Onboarding Fee",
-     "$1,500 per platform",
-     "$1,500 per platform",
-     "$1,500 per platform"],
+    ["Onboarding Fee (one-time)", "$1,500 per platform"],
+    ["Monthly Management Fee",
+     "$1,500 minimum per platform\n(applies until ad spend exceeds $7,500/mo)"],
+    ["Variable Rate",
+     "20% up to $30k spend\n15% from $30k-$60k\n10% over $60k\n(Calculated per platform)"],
+    ["Monthly Cap", "$15,000 / month"],
 ]
 
-col_widths = [Inches(1.6), Inches(1.55), Inches(1.55), Inches(1.55)]
-tbl = doc.add_table(rows=1 + len(ROWS), cols=4)
+col_widths = [Inches(2.6), Inches(3.6)]
+tbl = doc.add_table(rows=1 + len(ROWS), cols=2)
 tbl.style = "Table Grid"
 tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
 
 hdr_cells = tbl.rows[0].cells
-for i, h in enumerate(HEADERS):
-    shade_cell(hdr_cells[i], "1A56DB")
-    set_cell_text(hdr_cells[i], h, bold=True, size=10,
-                  color=(255, 255, 255), align=WD_ALIGN_PARAGRAPH.CENTER)
+shade_cell(hdr_cells[0], "1A56DB")
+shade_cell(hdr_cells[1], "1A56DB")
+set_cell_text(hdr_cells[0], "Creekside Management Fee", bold=True, size=11,
+              color=(255, 255, 255), align=WD_ALIGN_PARAGRAPH.LEFT)
+hdr_cells[0].merge(hdr_cells[1])
 
-ROW_COLORS = ["F9FAFB", "FFFFFF", "F9FAFB", "FFFFFF", "F9FAFB"]
+ROW_COLORS = ["F9FAFB", "FFFFFF", "F9FAFB", "FFFFFF"]
 for r_idx, row_data in enumerate(ROWS):
     row_cells = tbl.rows[r_idx + 1].cells
     for c_idx, cell_text in enumerate(row_data):
         shade_cell(row_cells[c_idx], ROW_COLORS[r_idx])
         bold = (c_idx == 0)
-        set_cell_text(row_cells[c_idx], cell_text, bold=bold, size=9.5,
+        set_cell_text(row_cells[c_idx], cell_text, bold=bold, size=10.5,
                       align=WD_ALIGN_PARAGRAPH.LEFT)
 
 for row in tbl.rows:
     for i, cell in enumerate(row.cells):
-        cell.width = col_widths[i]
+        if i < len(col_widths):
+            cell.width = col_widths[i]
 
 doc.add_paragraph()
 
-heading2("2. Visual Fee Comparison")
-body("The chart below shows how your monthly agency fee changes with ad spend under each plan, "
-     "including the exact crossover points where one plan becomes more cost-effective than another.")
+heading2("Fee Scaling")
+body("The chart below shows how your monthly management fee scales with ad spend, including "
+     "the tier breakpoints where the percentage decreases and the $15,000 monthly cap.")
 
 if os.path.exists(CHART_PATH):
     doc.add_picture(CHART_PATH, width=Inches(6.3))
     last_para = doc.paragraphs[-1]
     last_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    caption = doc.add_paragraph("Figure 1 — Agency fee vs. monthly ad spend for single-platform (left) "
-                                "and two-platform 50/50 split (right) clients.")
+    caption = doc.add_paragraph("Figure 1 -- Monthly management fee by ad spend level.")
     caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
     caption.runs[0].font.size = Pt(9)
     caption.runs[0].font.color.rgb = RGBColor(0x6b, 0x72, 0x80)
     caption.runs[0].font.italic = True
     caption.paragraph_format.space_after = Pt(12)
 else:
-    body(f"[Chart missing — run proposal_chart.py first to generate {CHART_PATH}]")
+    body(f"[Chart missing -- run proposal_chart.py first to generate {CHART_PATH}]")
 
-heading2("3. Payment & Contract Terms")
+heading2("Payment & Contract Terms")
 for item in [
     ("Ad Spend:", "You pay Google and Meta directly for all advertising costs. We never touch your ad spend budget."),
     ("Management Fees:", "Billed separately and paid directly to Creekside Marketing."),

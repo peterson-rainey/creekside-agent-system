@@ -82,15 +82,6 @@ def _slugify(text: str) -> str:
     return re.sub(r"[^a-zA-Z0-9_-]", "_", text).strip("_")
 
 
-def _derive_plan_mode(starting_ad_spend: int, recommended_plan: str) -> str:
-    """Return 'single', 'two', or 'all' based on spend thresholds."""
-    if starting_ad_spend < SINGLE_PLAN_THRESHOLD:
-        return "single"
-    if starting_ad_spend < TWO_PLAN_THRESHOLD:
-        return "two"
-    return "all"
-
-
 def shade_cell(cell, hex_color: str):
     tc = cell._tc
     tcPr = tc.get_or_add_tcPr()
@@ -412,44 +403,23 @@ class ProposalBuilder:
 
     def build_investment(self):
         p = self.p
-        recommended = p["recommended_plan"].upper()
-        spend = p.get("starting_ad_spend", 0)
-
-        # Determine display mode
-        if "single_plan_mode" in p and isinstance(p["single_plan_mode"], bool):
-            explicit_mode = p["single_plan_mode"]
-            if explicit_mode:
-                mode = "single"
-            else:
-                # Use spend to determine two vs all
-                mode = _derive_plan_mode(spend, recommended)
-                if mode == "single":
-                    mode = "two"  # override: caller said don't be single
-        else:
-            mode = _derive_plan_mode(spend, recommended)
 
         self.doc.add_page_break()
         self.heading1("Investment & Terms")
 
         pricing_override = p.get("pricing_override", {})
-
-        if mode == "single":
-            self._build_single_plan_table(recommended, pricing_override)
-        elif mode == "two":
-            self._build_two_plan_table(recommended, pricing_override)
-        else:
-            self._build_all_plans_table(pricing_override)
+        self._build_pricing_table(pricing_override)
 
         self.doc.add_paragraph()
         self._build_payment_terms()
 
-    def _get_pricing(self, plan_key: str, pricing_override: dict) -> dict:
-        base = dict(DEFAULT_PRICING[plan_key])
+    def _get_pricing(self, pricing_override: dict) -> dict:
+        base = dict(DEFAULT_PRICING)
         base.update(pricing_override)
         return base
 
-    def _build_single_plan_table(self, plan: str, pricing_override: dict):
-        pricing = self._get_pricing(plan, pricing_override)
+    def _build_pricing_table(self, pricing_override: dict):
+        pricing = self._get_pricing(pricing_override)
         label = pricing["plan_label"]
 
         self.heading3("Pricing Structure")
@@ -487,68 +457,6 @@ class ProposalBuilder:
                 self.set_cell_text(
                     cells[c_idx], cell_text, bold=bold,
                     size=10.5, color=DARK, align=WD_ALIGN_PARAGRAPH.LEFT
-                )
-
-        for row in tbl.rows:
-            for i, cell in enumerate(row.cells):
-                if i < len(col_widths):
-                    cell.width = col_widths[i]
-
-    def _build_two_plan_table(self, recommended: str, pricing_override: dict):
-        plans = ["A", "B"]
-        self._build_multi_plan_table(plans, recommended, pricing_override)
-
-    def _build_all_plans_table(self, pricing_override: dict):
-        self._build_multi_plan_table(["A", "B", "C"], None, pricing_override)
-
-    def _build_multi_plan_table(self, plans: list, recommended: str, pricing_override: dict):
-        self.heading3("Pricing Structure")
-        self.body(
-            "We offer multiple pricing plans. The recommended plan for "
-            f"{self.p['client_name']} is marked below."
-        )
-
-        HEADER_ROW = ["Feature"] + [
-            (DEFAULT_PRICING[pl]["plan_label"] +
-             (" [Recommended]" if pl == recommended else ""))
-            for pl in plans
-        ]
-        ROWS = [
-            ["Onboarding Fee (one-time)"] + [self._get_pricing(pl, pricing_override)["onboarding_fee"] for pl in plans],
-            ["Monthly Management Fee"] + [self._get_pricing(pl, pricing_override)["monthly_min"] for pl in plans],
-            ["Variable Rate"] + [self._get_pricing(pl, pricing_override)["variable_rate_desc"] for pl in plans],
-            ["Monthly Cap"] + [self._get_pricing(pl, pricing_override)["monthly_cap"] for pl in plans],
-        ]
-
-        num_cols = 1 + len(plans)
-        col_widths_map = {
-            2: [Inches(2.0), Inches(4.2)],
-            3: [Inches(1.6), Inches(2.4), Inches(2.4)],
-            4: [Inches(1.4), Inches(1.85), Inches(1.85), Inches(1.85)],
-        }
-        col_widths = col_widths_map.get(num_cols, [Inches(6.2 / num_cols)] * num_cols)
-
-        tbl = self.doc.add_table(rows=1 + len(ROWS), cols=num_cols)
-        tbl.style = "Table Grid"
-        tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-
-        hdr_cells = tbl.rows[0].cells
-        for i, h in enumerate(HEADER_ROW):
-            shade_cell(hdr_cells[i], "1A56DB")
-            self.set_cell_text(
-                hdr_cells[i], h, bold=True, size=10,
-                color=WHITE, align=WD_ALIGN_PARAGRAPH.CENTER
-            )
-
-        ROW_COLORS = ["F9FAFB", "FFFFFF", "F9FAFB", "FFFFFF"]
-        for r_idx, row_data in enumerate(ROWS):
-            cells = tbl.rows[r_idx + 1].cells
-            for c_idx, cell_text in enumerate(row_data):
-                shade_cell(cells[c_idx], ROW_COLORS[r_idx % len(ROW_COLORS)])
-                bold = (c_idx == 0)
-                self.set_cell_text(
-                    cells[c_idx], cell_text, bold=bold, size=9.5,
-                    color=DARK, align=WD_ALIGN_PARAGRAPH.LEFT
                 )
 
         for row in tbl.rows:
@@ -656,7 +564,7 @@ def main():
 
     # Validate required fields
     required = ["lead_name", "client_name", "industry_context",
-                "starting_ad_spend", "recommended_plan", "signature"]
+                "starting_ad_spend", "signature"]
     missing = [f for f in required if f not in params]
     if missing:
         print(f"ERROR: Missing required fields: {missing}", file=sys.stderr)
