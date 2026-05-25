@@ -413,26 +413,60 @@ If specific numbers appear (minimum fee amounts, percentage rates, cap amounts):
 
 ## Step 9: Upload to Google Drive
 
-Upload the two generated files to the Creekside Pricing folder.
+Upload the two generated files to the Creekside Pricing folder using the Google Drive API via `google-api-python-client` (already installed locally).
 
-### 9a. Proposal DOCX
-Upload `out/Pricing_Proposal_Creekside.docx` to overwrite doc ID `169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A` in folder `1M3csGxV6OLZFeXJUHv_jXLSkn-N9oOiJ`.
+**Auth:** Uses `~/gdrive_pipeline/token_drive_rw.json` (full `https://www.googleapis.com/auth/drive` scope, peterson@creeksidemarketingpros.com). The token auto-refreshes via its refresh_token. Credentials file: `~/gdrive_pipeline/credentials.json`.
 
-Attempt using the Google Drive MCP tools first. Look for:
-- `mcp__claude_ai_Google_Drive__update_file`
-- `mcp__claude_ai_Google_Drive__upload_file`
-- `mcp__claude_ai_Google_Drive__create_file`
+**Critical:** The `supportsAllDrives=True` flag is REQUIRED on all API calls. Without it, files return 404 (they're in a shared/linked folder).
 
-Try the update tool with the file ID to overwrite. If the MCP call succeeds, confirm. If it fails with an error:
+Run this Python script via Bash:
 
-**Chrome fallback:** Use the `chrome-browser-nav` skill to navigate to https://drive.google.com/drive/folders/1M3csGxV6OLZFeXJUHv_jXLSkn-N9oOiJ and upload the file manually. Report to Peterson that MCP upload failed and the fallback method was used.
+```python
+import os
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 
-### 9b. Pricing Slides PPTX
-Upload `out/Pricing_Plans.pptx` to folder `1M3csGxV6OLZFeXJUHv_jXLSkn-N9oOiJ`.
+TOKEN_FILE = os.path.expanduser("~/gdrive_pipeline/token_drive_rw.json")
+SCOPES = ["https://www.googleapis.com/auth/drive"]
 
-First search for an existing file named "Pricing_Plans.pptx" in the folder to overwrite. If not found, create new.
+creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
+if creds.expired and creds.refresh_token:
+    from google.auth.transport.requests import Request
+    creds.refresh(Request())
+    with open(TOKEN_FILE, 'w') as f:
+        f.write(creds.to_json())
 
-Same fallback as 9a if MCP fails.
+service = build('drive', 'v3', credentials=creds)
+
+SCRIPTS_OUT = os.path.expanduser("~/C-Code - Rag database/.claude/agents/proposal-generator-agent/scripts/out")
+
+# Update the docx (overwrites existing file content, keeps same file ID and sharing)
+media = MediaFileUpload(
+    os.path.join(SCRIPTS_OUT, "Pricing_Proposal_Creekside.docx"),
+    mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+)
+result = service.files().update(
+    fileId="169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A",
+    media_body=media,
+    supportsAllDrives=True
+).execute()
+print(f"[OK] Docx uploaded: {result.get('name')} (ID: {result.get('id')})")
+
+# Update the pptx
+media2 = MediaFileUpload(
+    os.path.join(SCRIPTS_OUT, "Pricing_Plans.pptx"),
+    mimetype='application/vnd.openxmlformats-officedocument.presentationml.presentation'
+)
+result2 = service.files().update(
+    fileId="1UQGUy3cWRcDOnr9I8sTb5ZcSbRgEODk7",
+    media_body=media2,
+    supportsAllDrives=True
+).execute()
+print(f"[OK] Pptx uploaded: {result2.get('name')} (ID: {result2.get('id')})")
+```
+
+If the upload fails with a 401/403, the refresh token may be revoked. Tell Peterson to re-auth: `cd ~/gdrive_pipeline && python3 drive_crawler.py` (triggers the OAuth flow).
 
 ---
 
@@ -664,7 +698,7 @@ Output files: [list with sizes]
 |---|---|
 | Peterson does not confirm with clear "proceed" | STOP -- do not execute any changes. Re-present confirmation block. |
 | Script exits non-zero | STOP -- report the full error. Do not proceed to Step 4 completion or beyond. |
-| Google Drive MCP upload fails | Try Chrome browser fallback. If both fail, note in output and continue rest of steps. |
+| Google Drive API upload fails (401/403) | Refresh token may be revoked. Tell Peterson to re-auth: `cd ~/gdrive_pipeline && python3 drive_crawler.py`. If 404, check file IDs haven't changed. |
 | Website commit fails (push rejected) | Report to Peterson. Do not retry force-push. Leave as manual step. |
 | DB UPDATE fails | Report the error and row ID. Continue with remaining updates. |
 | ClickUp send fails | Report the error. Continue with remaining steps. |
@@ -695,7 +729,7 @@ This agent requires:
 - **Bash**: run Python scripts, git operations (admin-only local scripts)
 - **Supabase MCP** (`execute_sql`): DB updates (admin access via service role key)
 - **ClickUp MCP** (`clickup_send_chat_message`): notify Cade
-- **Google Drive MCP** (optional): upload files. Falls back to Chrome browser nav if unavailable.
+- **Google Drive API** (via google-api-python-client + ~/gdrive_pipeline/token_drive_rw.json): upload files directly.
 
 **For contractors:** This agent is admin-only. It modifies proposal scripts, agent prompts, and the production website. Do not run as a contractor. If you need to execute a pricing update, ask Peterson to run this agent directly.
 
