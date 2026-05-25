@@ -28,9 +28,7 @@
 ## Pricing Model
 **Pricing is maintained in Google Drive and must not be hardcoded.** Always pull current pricing from the Creekside Pricing folder: https://drive.google.com/drive/folders/1M3csGxV6OLZFeXJUHv_jXLSkn-N9oOiJ. If the pricing information doesn't come from this folder, disregard it entirely.
 
-The folder contains:
-- **Pricing_Plans (1).pdf** -- the 3-plan pricing structure (Plan A Growth, Plan B Shared, Plan C Retainer)
-- **Pricing_Proposal_Creekside_v2.docx** -- the full proposal template
+The folder contains the current pricing structure (single plan: percentage of ad spend with tiered rates, $15K cap) and the full proposal template. Plan B (Shared) and Plan C (Retainer) were removed on 2026-05-25.
 
 ## Common Objections & Responses
 - On value-based pricing: "We're not charging based on the number of hours being worked on the account. We're charging based on the value that we're providing to the business owner."

@@ -60,7 +60,7 @@ Tone: Specific, milestone-focused. This is a contract, not a pitch.
 These sections must appear in every proposal regardless of type:
 - Current state analysis (what we found -- specific, not vague)
 - Recommended services (tailored to their business)
-- Investment structure (always % of ad spend per the pricing model, except project scope which can be flat)
+- Investment structure (percentage of ad spend with tiered rates per the pricing model, except project scope which can be flat)
 - Timeline
 - Next steps (specific, with who does what by when)
 

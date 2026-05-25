@@ -532,7 +532,7 @@ Body:
 4. No em dashes anywhere in proposal copy or email draft -- hard rule, no exceptions
 5. No Slack references in output -- always stop and flag before continuing if found in template
 6. No guaranteed ROI or specific results promises
-7. Pricing logic must show the math explicitly -- never just name a plan
+7. Pricing logic must show the math explicitly -- never state a fee without the calculation
 8. Template is fetched live on every run from Google Drive -- never construct from memory
 9. QC via qc-reviewer-agent is mandatory before any proposal is declared done
 10. Village Repair / Shin Nagpal used grandfathered pricing -- confirm override is applied if generating a new proposal for this client
