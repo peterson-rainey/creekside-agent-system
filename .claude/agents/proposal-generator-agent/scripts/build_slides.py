@@ -136,13 +136,13 @@ add_text(slide1, Inches(0.7), footer_top, Inches(11.9), Inches(0.6),
          size=11, color=GRAY_TEXT, align=PP_ALIGN.CENTER)
 
 # ═══════════════════════════════════════════════════════════════════
-# SLIDE 2: How the Plans Compare
+# SLIDE 2: How It Scales
 # ═══════════════════════════════════════════════════════════════════
 slide2 = prs.slides.add_slide(BLANK_LAYOUT)
 
 # Title
 add_text(slide2, Inches(0.5), Inches(0.35), Inches(12.3), Inches(0.7),
-         "How the Plans Compare",
+         "How It Scales",
          size=32, bold=True, color=CREEKSIDE_BLUE, align=PP_ALIGN.CENTER)
 
 # Chart (embedded from proposal_chart.py output)
@@ -155,16 +155,16 @@ if os.path.exists(CHART_PATH):
 else:
     add_text(slide2, Inches(0.5), Inches(1.2),
              Inches(12.3), Inches(0.5),
-             f"[Chart missing — run proposal_chart.py first to generate {CHART_PATH}]",
+             f"[Chart missing -- run proposal_chart.py first to generate {CHART_PATH}]",
              size=12, color=GRAY_TEXT, align=PP_ALIGN.CENTER)
     commentary_top = Inches(2.0)
 
-# Commentary (math corrected: A=B at $30K, NOT $20K as the original PDF said)
+# Commentary
 add_text(slide2, Inches(1.0), commentary_top,
          Inches(11.3), Inches(0.9),
-         "Plans A and B cost exactly the same at $30,000/month in ad spend. "
-         "As your budget scales past $60,000/month, Plan C (the flat retainer) "
-         "becomes the most cost-effective option.",
+         "Your management fee scales with your ad spend. The percentage drops "
+         "at $30,000 and again at $60,000 per platform. The $15,000 monthly cap "
+         "means your costs are predictable even as you grow.",
          size=13, color=DARK_TEXT, align=PP_ALIGN.CENTER)
 
 prs.save(OUT_PATH)
