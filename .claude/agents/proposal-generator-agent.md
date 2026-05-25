@@ -325,14 +325,13 @@ mkdir -p /Users/petersonrainey/Desktop/proposals
     "header": "What We Found in Your Account",
     "findings": ["<specific finding 1>", "<specific finding 2>", "<specific finding 3>"]
   },
-  "recommended_plan": "<A, B, or C>",
   "signature": "Peterson Rainey"
 }
 ```
 
 Omit `audit_findings_section` entirely if `audit_findings_present = false` from Step 2.5. The builder skips the callout block automatically when the key is absent.
 
-`single_plan_mode` is derived automatically from `starting_ad_spend` -- do not include it unless you need to override the auto-logic (see `docs/pricing-logic.md`).
+The proposal always shows a single pricing structure. Use `pricing_override` only when Peterson explicitly provides non-standard pricing terms (see `docs/pricing-logic.md`).
 
 **6c. Run the builder:**
 ```bash
@@ -474,9 +473,9 @@ Every proposal run produces this structure:
 ### Slack Reference Check
 [CLEAR / FLAGGED: "exact quote from template"]
 
-### Pricing Recommendation
-Plan: [A/B/C -- Name]
-Math: [full budget calculation showing why this plan]
+### Fee Calculation
+Fee at stated spend: $X/month
+Math: [full budget calculation showing how fee was derived]
 
 ### Customizations Applied
 [Bullet list of each section changed and what was inserted]
