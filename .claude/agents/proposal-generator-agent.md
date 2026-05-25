@@ -266,12 +266,8 @@ Apply these customizations:
 - For Month 2 and 3: reference their stated goals and timeline explicitly
 
 **5e. Investment section:**
-- The number of plans shown is determined by stated monthly ad spend (read `docs/pricing-logic.md` -- "Proposal Display Mode" section). Do NOT always show all three plans.
-  - Below $5K/month: single-plan mode (recommended plan only)
-  - $5K to $30K/month: show recommended plan + Plan B
-  - Above $30K/month: show all three plans
-- Mark the recommended plan clearly: "Recommended for [Business Name]"
-- Include the pricing math from Step 4 in a brief note below the table
+- Single pricing structure (no plan comparison). The pricing table shows the standard fee structure.
+- Include the pricing math from Step 4 in a brief note below the table showing what the prospect's actual fee would be at their stated spend
 
 **5f. Next Steps section:**
 - Be specific: "1. Review and sign the service agreement (we'll send this separately). 2. Pay the onboarding invoice. 3. Send Google Ads and Meta Business Suite access to peterson@creeksidemarketingpros.com."
