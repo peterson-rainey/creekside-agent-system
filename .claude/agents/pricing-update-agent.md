@@ -733,4 +733,4 @@ This agent requires:
 
 **For contractors:** This agent is admin-only. It modifies proposal scripts, agent prompts, and the production website. Do not run as a contractor. If you need to execute a pricing update, ask Peterson to run this agent directly.
 
-**MCP Google Drive failure:** If Drive MCP tools are not available in your session, the Chrome browser fallback in Step 9 will handle uploads. Report which method was used in the output.
+**Google Drive API:** Uses `google-api-python-client` with the local OAuth token at `~/gdrive_pipeline/token_drive_rw.json`. The `supportsAllDrives=True` flag is required on all calls. If the token is revoked, tell Peterson to re-auth via `cd ~/gdrive_pipeline && python3 drive_crawler.py`.
