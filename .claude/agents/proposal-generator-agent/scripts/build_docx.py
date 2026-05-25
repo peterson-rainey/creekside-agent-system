@@ -320,7 +320,7 @@ for item in [
 heading1("Next Steps")
 body("We're excited about the opportunity to partner with you and drive meaningful results for your business.")
 bullet("Review this proposal and reach out with any questions.")
-bullet("Ready to move forward? Let us know which pricing plan you prefer, and we'll send over your "
+bullet("Ready to move forward? Let us know and we'll send over your "
        "onboarding invoice, service agreement, and onboarding instructions with everything we need to get started.")
 
 doc.add_paragraph()
