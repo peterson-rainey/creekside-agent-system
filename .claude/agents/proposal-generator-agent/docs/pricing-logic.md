@@ -6,64 +6,54 @@ Pricing is maintained in Google Drive. The current source of truth is:
 `https://docs.google.com/document/d/169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A/edit`
 (Doc ID: `169PMfXB9y2gc3UnEHIqZo8Lk8CVBTK9A`)
 
-This replaces the prior doc `131aD_M5-gPkYuIaoJknWjWKLrQ4wAu8L` as of 2026-05-15.
+**The figures below reflect the live pricing as of 2026-05-25. If the fetched doc disagrees, the live doc wins.**
 
-**The figures below reflect what is IN the live doc as of 2026-05-15. If the fetched doc disagrees, the live doc wins.**
+## Current Pricing Structure (2026-05-25)
 
-## Current Pricing Structure (from live doc, 2026-05-15)
+Simplified to a single pricing plan on 2026-05-25. Plan B (Shared) and Plan C (Retainer) were removed. The fee structure is percentage-based with tiered rates and a monthly cap.
 
-| Feature | Plan A: Growth | Plan B: Shared | Plan C: Retainer |
-|---|---|---|---|
-| Best For | Lower initial cost; fee scales with ad spend | Predictable base with lower percentage at scale | Total cost certainty — one flat fee |
-| Base Fee | $0 base + $1,500 minimum per platform if spend is under $5K | $3,000 flat base (covers all platforms) | $10,000 flat retainer (covers all platforms) |
-| Variable Fee | 20% up to $30K spend; 15% from $30K–$60K; 10% over $60K (per platform, $1,500 minimum) | 10% of total combined ad spend across all platforms | None |
-| Monthly Cap | $15,000 / month | $12,000 / month | N/A — always $10,000 |
-| Onboarding Fee | $1,500 per platform | $1,500 per platform | $1,500 per platform |
+| Feature | Value |
+|---|---|
+| Base Fee | $0 base |
+| Minimum Fee | $1,500 per platform (applies until ad spend exceeds $7,500/mo) |
+| Variable Fee | 20% up to $30K/month; 15% from $30K-$60K; 10% over $60K (per platform) |
+| Monthly Cap | $15,000 / month |
+| Onboarding Fee | $1,500 per platform (one-time) |
 
-**What changed from the prior pricing (pre-2026-05-15):**
-- Plan A base structure: was $1,000 minimum/platform; now $0 base with $1,500 minimum kicking in only when spend < $5K
-- Plan A variable tier breakpoints raised: was 20% to $20K / 15% to $40K / 10% over $40K; now 20% to $30K / 15% to $60K / 10% over $60K
-- Plan B base raised: $2,000 → $3,000
-- Plan C flat fee raised: $8,000 → $10,000
-- Plan C onboarding: was waived ($0); now $1,500/platform (CHANGE — Plan C no longer has waived onboarding)
-- All plans onboarding raised: $1,000 → $1,500/platform
-- Caps raised: Plan A $12K → $15K; Plan B $10K → $12K
+**What changed on 2026-05-25:**
+- Plan B (Shared: $3K base + 10% combined, $12K cap) removed
+- Plan C (Retainer: $10K flat) removed
+- The former "Plan A" fee structure is now the only pricing plan, no longer labeled with a plan letter
+- All Plan A rates, tiers, cap, and onboarding fee remain unchanged
+- Proposal display mode logic removed (always single plan)
 
-## Proposal Display Mode (single-plan vs comparison)
+**What changed on 2026-05-15 (prior update for reference):**
+- Variable tier breakpoints raised: 20% to $30K / 15% to $60K / 10% over $60K
+- Minimum raised: $1,000 to $1,500/platform
+- Cap raised: $12K to $15K
+- Onboarding raised: $1,000 to $1,500/platform
 
-After selecting a plan, determine how many plans to show in the proposal. This is enforced in `build_lead_docx.py` via the `single_plan_mode` parameter.
-
-| Stated monthly ad spend | Plans shown in proposal | Rationale |
-|---|---|---|
-| Below $5,000/month | Recommended plan only (single-plan mode) | Comparison table adds friction and confusion for sub-$5K leads. Showing three plans invites objection on Plan C pricing they'll never use. |
-| $5,000 to $30,000/month | Recommended plan + Plan B (two-plan mode) | The Plan A/B crossover is around $20-30K combined. Showing both is genuinely useful at this tier. |
-| Above $30,000/month | All three plans (A, B, C) | At this spend level, Plan C is a real option and the comparison is meaningful. |
-
-The `single_plan_mode` bool passed to `build_lead_docx.py` is derived automatically from `starting_ad_spend` unless explicitly overridden. The derivation logic lives in the script; do not hardcode spend thresholds in the agent prompt.
-
-**Village Repair is the explicit exception:** Shin Nagpal's $2K/month budget is below the $3K qualification floor but was grandfathered as a verification test. His onboarding fee ($1,000) and management fee ($1,000 minimum) reflect OLD pricing. Do not use those figures as a template for future sub-$5K clients.
+**Village Repair exception:** Shin Nagpal's $2K/month budget is below the $3K qualification floor but was grandfathered. His onboarding fee ($1,000) and management fee ($1,000 minimum) reflect OLD pricing via `pricing_override`. Do not use those figures as a template.
 
 ---
 
-## Plan Selection Decision Tree
-
-### Step 1: Qualification check (must pass BEFORE recommending any plan)
+## Qualification Check (must pass BEFORE generating a proposal)
 
 Tiered routing model (refreshed 2026-05-15):
 
-**Tier 1 — Creekside-managed track (Peterson/Cade close personally):**
-- Stated budget $5K+/month → book the discovery call
+**Tier 1 -- Creekside-managed track (Peterson/Cade close personally):**
+- Stated budget $5K+/month -> book the discovery call
 - Post-call adjustment OK down to $3K/month if budget can't reach $5K but prospect will pay our fee
 - These leads become Creekside-managed clients
 
-**Tier 2 — Barron white-label routing (sub-$3K leads):**
+**Tier 2 -- Barron white-label routing (sub-$3K leads):**
 - Leads with budget under $3K/month who are otherwise a good fit get passed to Barron for white-label fulfillment
 - Creekside keeps a referral/spread arrangement
-- Use sparingly — not a primary track, only when the lead is a fit
+- Use sparingly -- not a primary track, only when the lead is a fit
 - These leads do NOT go through the proposal-generator-agent flow
 
-**Hard floor — no engagement:**
-- Budget under $2K/month AND not a Barron fit → decline politely
+**Hard floor -- no engagement:**
+- Budget under $2K/month AND not a Barron fit -> decline politely
 - Existing pipeline carryovers from before this rule (e.g., Village Repair) are explicit exceptions, NOT precedent
 
 Other YES criteria for Tier 1:
@@ -77,27 +67,22 @@ NO regardless of budget:
 
 If a lead doesn't qualify for Tier 1, STOP and tell Peterson. Do not generate a proposal. Peterson decides whether to route to Barron or decline.
 
-### Step 2: Plan selection logic
+## Fee Calculation
 
-**Start with the math. Show all three calculations.**
+At the prospect's stated monthly ad spend, calculate their fee:
 
-At any given monthly ad spend level:
-- Plan A cost = MAX($1,000, 20% of spend) per platform [tiers kick in above $20K/platform]
-- Plan B cost = $2,000 + 10% of total combined spend [across all platforms]
-- Plan C cost = $8,000 flat
+**Per platform:** `fee = MAX($1,500, tiered_rate * spend)` where:
+- 20% on the first $30K
+- 15% from $30K to $60K
+- 10% above $60K
 
-**Crossover points (approximate):**
-- Plan B beats Plan A (single platform): spend > ~$22K/month (Plan A at 15% = $3,300 vs Plan B = $2,000 + $2,200 = $4,200 -- actually Plan A still better at $22K; crossover depends on platform count)
-- For MULTI-PLATFORM clients: Plan B base splits across platforms, so it often wins at $10-15K combined
-- Plan C beats Plan B: combined spend > ~$60K/month ($2,000 + 10% of $60K = $8,000)
+**Total fee** = sum of per-platform fees, capped at $15,000/month.
 
-**General guidance (show the math, don't just apply these rules):**
-- Single platform, $3K-$20K: Plan A usually wins
-- Two platforms, $8K-$20K combined: run the math -- often comparable
-- Two platforms, $20K+: Plan B often better
-- Enterprise, $50K+ or high-certainty account: Plan C worth discussing
+Show the math explicitly in the proposal. Example:
 
-### Step 3: Address the optics risk
+> "At $8K/month on Google Ads: 20% x $8,000 = $1,600/month management fee. If you add Meta at $5K/month: 20% x $5,000 = $1,500/month (the minimum). Total: $3,100/month across both platforms."
+
+## Addressing the Optics Risk
 
 Pure percentage-of-spend creates an alignment concern ("are you recommending more spend to earn more?"). Address this proactively in the proposal:
 
@@ -127,6 +112,9 @@ old pricing terms before the current pricing was in effect. Examples:
   call that is on record. That quote is a commitment.
 - **Executive exception:** Peterson has explicitly approved a one-off departure from
   standard pricing for a strategic reason (e.g., marquee client, referral relationship).
+- **Grandfathered Plan B/C clients:** Clients who signed on Plan B or Plan C terms
+  before the 2026-05-25 simplification keep their contracted rates. Use `pricing_override`
+  to generate any future proposals at their existing terms.
 
 ### When NOT to use an override
 
@@ -144,9 +132,9 @@ want to log a pricing exception? This creates an audit trail."
 
 Two forms are accepted:
 
-**Form 1 -- Snapshot reference:** "Use OLD Plan A pricing" or "Use 2025 Q4 pricing
-snapshot." The agent looks up `agent_knowledge` for an entry tagged
-`pricing-snapshot` to resolve the exact figures.
+**Form 1 -- Snapshot reference:** "Use pre-2026-05-25 pricing" or "Use Plan B terms
+for Fusion." The agent looks up `agent_knowledge` for an entry tagged
+`pricing-snapshot` or `pricing-exception` to resolve the exact figures.
 
 **Form 2 -- Explicit values:** Pass a dict of override keys directly:
 
@@ -199,11 +187,15 @@ extended in the future to verify pricing figures, it must accept both standard f
 AND any figures present in the active `pricing_override` dict. An override is not a
 violation.
 
-### Canonical example: Shin Nagpal / Village Repair (2026-05-15)
+### Canonical examples
 
+**Village Repair / Shin Nagpal (2026-05-15):**
 - Old pricing used: onboarding=$1,000, min=$1,000, tiers=20/15/10 at $20K/$40K, cap=$12,000
-- Standard pricing at time of proposal: onboarding=$1,500, min=$1,500, tiers=20/15/10
-  at $30K/$60K, cap=$15,000
+- Standard pricing at time of proposal: onboarding=$1,500, min=$1,500, tiers=20/15/10 at $30K/$60K, cap=$15,000
 - Reason: Deal had been in Creekside's pipeline for months at the old terms.
-  Shin had been quoted that pricing verbally.
-- agent_knowledge entry created: "Pricing Exception: Village Repair / Shin Nagpal 2026-05-15"
+- agent_knowledge entry: "Pricing Exception: Village Repair / Shin Nagpal 2026-05-15"
+
+**Fusion Dental Implants (signed May 2026 on Plan B terms):**
+- Contracted rates: $1,000/platform onboarding, $2,000/mo base + 10% of spend, $10K cap
+- Reason: Signed before Plan B/C removal. Contractual commitment honored.
+- agent_knowledge entry: dee3545d (Fusion + Galleria contract renewal)

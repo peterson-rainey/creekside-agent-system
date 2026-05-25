@@ -46,7 +46,7 @@ Shin Nagpal / Village Repair used grandfathered OLD pricing as a documented one-
 This agent uses companion docs in `.claude/agents/proposal-generator-agent/docs/`. Read the relevant file at the step where it is needed -- do not load all at once.
 
 ```
-docs/pricing-logic.md              # Plan A/B/C selection rules, qualification thresholds, objection handling, override mechanism
+docs/pricing-logic.md              # Pricing rules, qualification thresholds, fee calculation, objection handling, override mechanism
 docs/audit-methodology.md          # Google Ads + Meta Ads 9-area audit framework and report format
 docs/90-day-plan.md                # Month 1-3 framework, onboarding task list, communication cadence
 docs/communication-style.md        # Peterson's voice rules, audience calibration, what NOT to say
@@ -224,19 +224,19 @@ Do not silently replace. Do not proceed past this check if Slack is found.
 
 ---
 
-## Step 4: Recommend a Pricing Plan
+## Step 4: Calculate the Fee
 
-Read `docs/pricing-logic.md` for the full Plan A/B/C decision rules, qualification thresholds, current pricing, and the Pricing Override Mechanism section.
+Read `docs/pricing-logic.md` for the current pricing structure, qualification thresholds, and the Pricing Override Mechanism section.
 
 **CRITICAL: Pricing must be pulled from Google Drive, not hardcoded.** The pricing logic doc contains the current figures. If any pricing in the template differs from the doc, flag it.
 
 **Pricing override (when explicitly passed by Peterson):** If Peterson provides an override in either form (snapshot reference or explicit values), apply it now. Read the "Pricing Override Mechanism" section of `docs/pricing-logic.md` for the two accepted forms and how to log the exception to `agent_knowledge`. The override dict flows through to `build_lead_docx.py` as the `pricing_override` key. Display the mandatory banner in your output when an override is active.
 
-After selecting a plan (or confirming an override), output the explicit reasoning showing the math. Example format:
+Calculate the prospect's fee at their stated spend and output the explicit math. Example format:
 
-> "Recommending Plan B Shared. Budget stated: $8K/month split across Google and Meta ($4K each). Plan A at $4K/platform = $800/month x 2 = $1,600/month in fees. Plan B at $2,000 base + 10% of $8K combined = $2,800/month. Plan A is better at current spend. However, lead stated intent to scale to $15K/month by Q3 -- at $7.5K/platform, Plan A = $1,500 x 2 = $3,000/month vs Plan B = $2,000 + $1,500 = $3,500/month, so Plan A stays better. Recommending Plan A Growth with a note that Plan B becomes favorable above $20K combined spend."
+> "At $8K/month split across Google and Meta ($4K each): Google fee = 20% x $4,000 = $800, but $1,500 minimum applies = $1,500. Meta fee = 20% x $4,000 = $800, but $1,500 minimum applies = $1,500. Total: $3,000/month management fee. If they scale to $15K/month ($7.5K each): 20% x $7,500 = $1,500/platform = $3,000/month total."
 
-Never just name the plan without the math.
+Never skip the math.
 
 ---
 
