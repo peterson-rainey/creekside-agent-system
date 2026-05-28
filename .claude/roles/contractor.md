@@ -29,6 +29,26 @@ Both Meta Ads and Google Ads are accessible via PipeBoard connectors. These inhe
 
 For the full reference (API keys, auth details, troubleshooting): `SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'`
 
+## Self-Service Write Functions
+
+`contractor_query()` only runs SELECTs. For the few writes contractors need, use these safe functions instead. They are scoped, validated, and cannot touch anything outside their stated purpose.
+
+| Function | What it does | Example |
+|---|---|---|
+| `activate_custom_report(slug, mode)` | Flips `report_mode` on `reporting_clients`. Use after branching a custom report. `mode` is `'custom'` (default) or `'default'` (revert). | `SELECT activate_custom_report('south-river-mortgage-google')` |
+
+**In Claude sessions:** wrap in `contractor_query()`:
+```sql
+SELECT contractor_query($$SELECT activate_custom_report('south-river-mortgage-google')$$);
+```
+
+**In dashboard scripts (PostgREST RPC with anon key):**
+```typescript
+await supabase.rpc('activate_custom_report', { slug: 'south-river-mortgage-google' });
+```
+
+If you need a write that no function covers, message Peterson in ClickUp with what you were trying to do.
+
 ## Top 4 contractor use cases (fast-path routing)
 
 | Contractor says... | Do this |
