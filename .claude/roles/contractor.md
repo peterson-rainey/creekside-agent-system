@@ -56,6 +56,7 @@ If you need a write that no function covers, message Peterson in ClickUp with wh
 | Edit/update a client report, change report visuals, fix report data | Spawn `report-editor-agent`. It handles everything: file lookup, edit, validation, push. |
 | Ad performance, ROAS, creative analysis, campaign metrics | Search for an active agent first. If none, use PipeBoard MCP tools directly (Meta via `mcp__claude_ai_PipeBoard__*`, Google via `mcp__claude_ai_Pipeboard_google__*`). Also check the `ads-connector` skill. |
 | Pause/enable campaigns, change budgets, manage ad accounts | Same as above -- active agent first, then PipeBoard MCPs directly, then `ads-connector` skill. |
+| Pull data from Klaviyo, Mailchimp, Shopify, or other platforms | Spawn `api-connector-agent`. It checks for a stored key, calls the platform API securely, and shows results. If no key is stored, it tells you to ask Peterson. |
 | Client info, history, status, what's going on with a client | Query `client_context_cache` first (`SELECT * FROM client_context_cache WHERE client_name ILIKE '%name%'`). For deeper info, use `get_client_360(client_id)` or spawn `client-context-agent` if active. |
 
 ## Audit vs Report -- know the difference
@@ -89,6 +90,22 @@ Anything you put in that file is loaded automatically alongside the shared rules
 - Anything personal to how you work
 
 This file lives on YOUR machine only. It never goes to GitHub, and GitHub pulls never overwrite it.
+
+## API Vault (Klaviyo, Mailchimp, Shopify, etc.)
+
+Peterson stores API keys securely for each client. You never see the raw key -- it stays locked in the database vault. When you need to pull or push data on a platform like Klaviyo, Mailchimp, Shopify, GoHighLevel, HubSpot, SendGrid, or ActiveCampaign:
+
+1. Spawn `api-connector-agent` or just ask for what you need (e.g., "Pull the Klaviyo subscriber list for [client]").
+2. The agent checks if a key exists for that client + platform.
+3. If a key exists, it makes the API call and shows you the results.
+4. If no key exists, it tells you to ask Peterson to add one.
+
+To see what keys are available for a client:
+```sql
+SELECT contractor_query('SELECT * FROM list_api_keys(''client name'')')
+```
+
+Supported platforms: Klaviyo, Mailchimp, Shopify, ActiveCampaign, SendGrid, GoHighLevel, HubSpot.
 
 ## Rules
 - **Never mention** repos, git, paths, cloning, MCP, CLI, npm, or any technical infrastructure to the contractor.
