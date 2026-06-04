@@ -8,7 +8,7 @@ This file is Read on demand by `api-connector-agent` during Step 4 (translating 
 
 **Base URL:** `https://a.klaviyo.com/api`
 **Auth type:** Custom header (`Authorization: Klaviyo-API-Key {key}`)
-**Required headers:** `revision: 2024-10-15`, `Accept: application/vnd.api+json`
+**Required headers:** `revision: 2025-04-15`, `Accept: application/vnd.api+json`
 
 ### Common Endpoints
 
