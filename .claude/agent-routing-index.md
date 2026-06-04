@@ -3,7 +3,7 @@
 Quick-reference for routing requests to the correct agent. Use this for fast pattern-matching. For BUILD and ACTION requests, always confirm against `agent_definitions` if the agent is unfamiliar or recently added.
 
 **Maintained by:** agent-builder-agent (adds new entries after every build)
-**Last updated:** 2026-05-13
+**Last updated:** 2026-06-04
 
 ---
 
@@ -62,6 +62,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
+| api-connector-agent | Contractor wants to pull data from or interact with Klaviyo, Mailchimp, Shopify, GoHighLevel, HubSpot, SendGrid, or ActiveCampaign for a client (uses vault-stored keys, never exposes raw credentials) |
 | daily-status-brief | Morning brief covering calendar, action items, email, pipelines, finances |
 | clickup-task-manager-agent | ClickUp task CRUD, status updates, overdue reports |
 | google-calendar-agent | Calendar management, event creation, time-block rules |
