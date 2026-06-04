@@ -30,6 +30,51 @@ When a contractor asks for a change, figure out which file controls the thing th
 
 Open the relevant file, make the edit, run tsc, commit + push.
 
+## Internal vs. Public Content (mode prop)
+
+Every report component receives a `mode` prop typed as `'internal' | 'public'`. You do not need to wire this up — it is already passed to every component via `ReportProps`.
+
+- `'internal'` — the viewer is authenticated (a Creekside team member logged in via the dashboard or the report index gate).
+- `'public'` — the viewer is a client accessing the report through their token URL with no login.
+
+**When a contractor asks to add something "internal only," "not visible to the client," or "only for us," this is the pattern to use.**
+
+To show content ONLY to the Creekside team:
+```tsx
+{mode === 'internal' && (
+  <MetricsCard title="Internal Notes" ... />
+)}
+```
+
+To show content ONLY to clients (rare — hides it from internal view):
+```tsx
+{mode === 'public' && (
+  <ClientFacingCallout ... />
+)}
+```
+
+The `mode` prop comes in through the component's props. A typical usage looks like:
+
+```tsx
+interface MyComponentProps {
+  data: ReportData;
+  mode: 'internal' | 'public';
+}
+
+export default function MyComponent({ data, mode }: MyComponentProps) {
+  return (
+    <div>
+      <PublicMetricsSection data={data} />
+      {mode === 'internal' && (
+        <InternalBenchmarkGraph data={data} />
+      )}
+    </div>
+  );
+}
+```
+
+No extra wiring needed. Just use `mode` inside whatever file you are editing.
+
 ## What you CANNOT do
 
 - NEVER edit shared templates, scripts/, any file outside the `custom/` directory listed above.
