@@ -97,7 +97,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
-| cyndi-gmail-intelligence-agent | Cyndi wants AI-drafted replies to her inbox emails. Scans for emails addressed to "Cyndi" (exact spelling), pulls Supabase context, creates Gmail drafts via Chrome. ON-DEMAND, no send. |
+| cyndi-gmail-intelligence-agent | SCHEDULED (~30 min, business hours). Server-side Gmail drafter for Cyndi's inbox -- scans for emails addressed to "Cyndi" (exact spelling), pulls Supabase context, creates DRAFT replies. Never sends. DISABLED pending Cyndi Gmail OAuth + Railway MCP wiring. |
 | filter-feedback-digest | Daily auto-filter candidate digest for approval |
 | unresponded-message-agent | Find messages 48h+ without a reply (Gmail, GChat, ClickUp). Two-pass: Pass 1 filters candidates, Pass 2 detects partial responses, selective responses, and topic-shifted conversations. Drafts replies for inbound, auto-sends ClickUp follow-ups to team, flags client gaps |
 
