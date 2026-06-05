@@ -3,6 +3,8 @@ name: cyndi-gmail-intelligence-agent
 description: "SCHEDULED (every ~30 min, business hours Mon-Fri). Scans Cyndi's Gmail inbox (cyndi@creeksidemarketingpros.com) for emails addressed to 'Cyndi' (exact spelling, case-insensitive whole-word match). Pulls Supabase RAG context to ground each reply, then creates Gmail DRAFT replies attached to the correct thread. Never sends. Server-side Gmail MCP only -- no browser, no Chrome. DISABLED pending Cyndi Gmail OAuth + Railway MCP wiring. (Built by Cyndi)"
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__cyndi_gmail__gmail_search_messages, mcp__cyndi_gmail__gmail_read_message, mcp__cyndi_gmail__gmail_read_thread, mcp__cyndi_gmail__gmail_create_draft
 model: sonnet
+department: comms
+agent_type: scheduled-task
 ---
 
 # Cyndi Gmail Intelligence Agent
