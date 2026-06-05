@@ -106,7 +106,7 @@ Read the posting carefully and reason about what is actually being asked, who is
 
 1. **PERFORMANCE-ONLY PAY**: Does the client want to pay only based on results, or demand guaranteed ROI before a retainer?
 2. **SETUP ONLY (EXPLICIT HANDOFF)**: The client explicitly states they want someone to set up campaigns and then hand them off so the client can manage them independently. They must clearly say they do NOT want ongoing management. Do NOT flag ambiguity about ongoing work. Most clients who say "set up" without mentioning ongoing work are still open to it. Ambiguity is a sales opportunity, not a flag. Only flag this if the client makes it clear they want a handoff with no continued relationship.
-3. **NARROW ONE-PROBLEM FIX**: Client looking to solve one isolated issue with no broader help indicated. NEVER flag trial periods, test engagements, or short-term contracts.
+3. **NARROW ONE-PROBLEM FIX**: Client looking to solve one isolated issue with no broader help indicated. Use judgment about whether this could lead somewhere. NEVER flag trial periods, test engagements, or short-term contracts. These are normal in freelance work and routinely lead to long-term engagements. Examples: "2-week test", "1-month trial", "start with a small project" -- none of these are narrow fixes regardless of whether they explicitly mention scaling.
 4. **NON-CORE CHANNEL IS THE SOLE PRIMARY DELIVERABLE**: Zero mention of Google Ads AND zero mention of Meta Ads, and entire scope is a channel Creekside does not offer. Only flag if BOTH Google and Meta are completely absent.
 5. **IMMEDIATE AVAILABILITY REQUIRED**: Posting states immediate availability is a hard requirement. Do NOT flag normal urgency like "ASAP."
 
