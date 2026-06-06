@@ -63,16 +63,22 @@ First, find recent discovery and sales calls:
 ```sql
 SELECT id, meeting_title, meeting_date, meeting_type, client_id
 FROM fathom_entries
-WHERE meeting_type IN ('discovery', 'sales')
+WHERE meeting_type IN ('discovery', 'client_call')
 ORDER BY meeting_date DESC
 LIMIT 40;
 ```
 
+Note: Valid `meeting_type` values are: `discovery`, `client`, `client_call`, `internal`. There is no `sales` type. Use `discovery` for prospect questions (primary source) and `client_call` for existing client questions that prospects also commonly ask.
+
 Pull full transcripts for the most recent 15 to 20 calls (batch in groups of 10):
 
 ```sql
-SELECT * FROM get_full_content_batch('fathom_entries', ARRAY['id1','id2','id3','id4','id5','id6','id7','id8','id9','id10']);
+SELECT * FROM get_full_content_batch(
+  '[{"source_table":"fathom_entries","source_id":"id1"},{"source_table":"fathom_entries","source_id":"id2"},{"source_table":"fathom_entries","source_id":"id3"}]'::jsonb
+);
 ```
+
+Replace `id1`, `id2`, etc. with the actual UUIDs from Step 2's query results. Batch in groups of 10 to avoid oversized responses.
 
 **Question extraction rules:**
 - Identify lines where the PROSPECT (not Peterson, not Cade) asks a question
