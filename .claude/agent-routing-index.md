@@ -46,6 +46,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 |-------|-------------|
 | communication-style-agent | Rewriting messages in Peterson's voice (Gmail, GChat, ClickUp, LinkedIn) |
 | content-freshness-agent | Weekly pass: identifies blog posts with stale numeric data, updates CPCs/CPAs/ROI figures from RAG database, sets lastModified frontmatter for Google AI freshness signals. Runs Monday 6 AM CT. Admin-only. |
+| faq-schema-agent | Monthly: mines real prospect questions from Fathom discovery/sales call transcripts, generates FAQ sections grounded in campaign data, injects into blog posts lacking FAQs. Improves Google rich results and AI Overview visibility. |
 | linkedin-post-agent | LinkedIn post generation (Tommy Clark methodology) |
 | seo-blog-agent | Blog posts for creeksidemarketingpros.com |
 | marketing-messaging-agent | Ad copy, cold outreach sequences, landing page copy, social posts |
