@@ -218,6 +218,8 @@ curl -s -X POST \
 
 **HTML formatting note:** If Peterson's body is plain text (no HTML tags), wrap paragraphs in `<p>` tags before sending. Do not add marketing footers, unsubscribe links, or branding -- send exactly what he provided, formatted for HTML email.
 
+**Personalization merge fields:** GHL supports merge fields in the email body. The most common one is `{{contact.first_name}}` for the recipient's first name. If Peterson includes `{{contact.first_name}}` in his email content, leave it as-is -- GHL will resolve it per recipient at send time. Do NOT replace it with literal names. Other available fields follow the same `{{contact.field_name}}` pattern (e.g. `{{contact.last_name}}`, `{{contact.email}}`, `{{contact.company_name}}`).
+
 **Track per send:**
 - Contact ID, email address, HTTP status, success/failure
 - If 429 (rate limited): exponential backoff -- wait `2^attempt` seconds, max 3 retries, then mark as failed
