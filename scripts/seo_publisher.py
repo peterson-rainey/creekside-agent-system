@@ -119,6 +119,14 @@ def extract_title(content: str) -> str:
     return 'Untitled'
 
 
+def find_svg_references(content: str, slug: str) -> list[str]:
+    """Find SVG filenames referenced in the blog post markdown."""
+    import re
+    # Match ![alt text](/article-images/filename.svg) patterns
+    pattern = r'!\[[^\]]*\]\(/article-images/([^)]+\.svg)\)'
+    return re.findall(pattern, content)
+
+
 def publish_draft(draft: dict) -> bool:
     """Write draft to website repo, commit, push, verify."""
     slug = draft['slug']
@@ -144,9 +152,25 @@ def publish_draft(draft: dict) -> bool:
         f.write(content)
     log(f'Wrote {len(content)} chars to {blog_path}')
 
+    # Check for SVG infographics referenced in the post
+    svg_files = find_svg_references(content, slug)
+    svg_dir = os.path.join(WEBSITE_REPO, 'public', 'article-images')
+    staged_svgs = []
+    for svg_name in svg_files:
+        svg_path = os.path.join(svg_dir, svg_name)
+        if os.path.exists(svg_path):
+            git_run('add', f'public/article-images/{svg_name}')
+            staged_svgs.append(svg_name)
+            log(f'Staged SVG: {svg_name}')
+        else:
+            log(f'Warning: SVG referenced but not found: {svg_name}')
+
     # Stage and commit
     git_run('add', f'src/content/blog/{slug}.md')
-    commit = git_run('commit', '-m', f'Add blog post: {title}')
+    commit_msg = f'Add blog post: {title}'
+    if staged_svgs:
+        commit_msg += f' (with {len(staged_svgs)} infographic{"s" if len(staged_svgs) > 1 else ""})'
+    commit = git_run('commit', '-m', commit_msg)
     if commit.returncode != 0:
         if 'nothing to commit' in commit.stdout + commit.stderr:
             log('File already committed (no changes)')
