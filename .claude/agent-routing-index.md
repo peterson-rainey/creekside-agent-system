@@ -101,6 +101,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 |-------|-------------|
 | cyndi-gmail-intelligence-agent | SCHEDULED (~30 min, business hours). Server-side Gmail drafter for Cyndi's inbox -- scans for emails addressed to "Cyndi" (exact spelling), pulls Supabase context, creates DRAFT replies. Never sends. DISABLED pending Cyndi Gmail OAuth + Railway MCP wiring. |
 | filter-feedback-digest | Daily auto-filter candidate digest for approval |
+| newsletter-send-agent | Peterson wants to send his weekly newsletter to GHL subscribers without opening the GHL UI. Handles opt-out suppression, shows preview + recipient count, requires explicit confirmation before sending. Admin-only (needs GHL_API_KEY). |
 | unresponded-message-agent | Find messages 48h+ without a reply (Gmail, GChat, ClickUp). Two-pass: Pass 1 filters candidates, Pass 2 detects partial responses, selective responses, and topic-shifted conversations. Drafts replies for inbound, auto-sends ClickUp follow-ups to team, flags client gaps |
 
 ## Infrastructure & Pipelines
