@@ -126,10 +126,16 @@ def publish_draft(draft: dict) -> bool:
     title = extract_title(content)
     blog_path = os.path.join(WEBSITE_REPO, 'src', 'content', 'blog', f'{slug}.md')
 
+    # Stash any uncommitted changes (e.g. Jonathan's in-progress work)
+    stash = git_run('stash', '--include-untracked')
+    stashed = stash.returncode == 0 and 'No local changes' not in stash.stdout
+
     # Pull latest from remote first
     pull = git_run('pull', '--rebase', 'origin', 'main')
     if pull.returncode != 0:
         log(f'Git pull failed: {pull.stderr}')
+        if stashed:
+            git_run('stash', 'pop')
         return False
 
     # Write the blog post
@@ -144,8 +150,10 @@ def publish_draft(draft: dict) -> bool:
     if commit.returncode != 0:
         if 'nothing to commit' in commit.stdout + commit.stderr:
             log('File already committed (no changes)')
-            return False
-        log(f'Git commit failed: {commit.stderr}')
+        else:
+            log(f'Git commit failed: {commit.stderr}')
+        if stashed:
+            git_run('stash', 'pop')
         return False
     log(f'Committed: {commit.stdout.strip().split(chr(10))[0]}')
 
@@ -154,6 +162,8 @@ def publish_draft(draft: dict) -> bool:
     if push.returncode != 0:
         log(f'Git push failed: {push.stderr}')
         git_run('reset', '--soft', 'HEAD~1')
+        if stashed:
+            git_run('stash', 'pop')
         return False
 
     # Verify push succeeded
@@ -161,9 +171,20 @@ def publish_draft(draft: dict) -> bool:
     verify = git_run('log', 'origin/main', '--oneline', '-1')
     if slug not in verify.stdout and title[:30] not in verify.stdout:
         log(f'Push verification failed. Remote HEAD: {verify.stdout.strip()}')
+        if stashed:
+            git_run('stash', 'pop')
         return False
 
     log(f'Push verified. Remote HEAD: {verify.stdout.strip()}')
+
+    # Restore any stashed changes
+    if stashed:
+        pop = git_run('stash', 'pop')
+        if pop.returncode == 0:
+            log('Restored stashed local changes')
+        else:
+            log(f'Warning: could not restore stashed changes: {pop.stderr}')
+
     return True
 
 
