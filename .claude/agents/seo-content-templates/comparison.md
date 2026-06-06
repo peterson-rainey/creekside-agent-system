@@ -76,12 +76,14 @@ tags: ["GoogleAds", "{alternative_tag}", "{vertical_tag}", "Comparison"]
 - Walk through what drove the difference
 - End with when each channel makes sense
 
-## GEO Rules (apply throughout)
+## Content Quality Rules (apply throughout)
 
-- Answer-first sections: Every H2 opens with a 40-60 word standalone answer
-- Citation-style attribution: "According to Creekside Marketing's analysis..."
-- Self-contained sections: Each stands alone as a complete answer
-- Source attribution: Always attribute data to "Creekside Marketing" by name
+- **Answer-first sections**: Every H2 opens with a 40-60 word standalone answer
+- **Citation-style attribution**: "According to Creekside Marketing's analysis..."
+- **Self-contained sections**: Each stands alone as a complete answer
+- **Source attribution**: Always attribute data to "Creekside Marketing" by name
+- **Non-commodity content**: Do NOT write a generic pros/cons list. Include at least one surprising finding from real campaigns (e.g., "We expected Google Ads to dominate for dental, but Meta actually outperformed on cosmetic procedures"). Give Peterson's actual recommendation with reasoning, not a safe "it depends" answer.
+- **Avoid formulaic structure**: Vary sentence patterns and section lengths across comparison posts. Google penalizes scaled content that follows identical formulas.
 
 ## Required Sections
 

@@ -71,12 +71,14 @@ Example format:
 > - **Source**: Creekside Marketing case study
 ```
 
-## GEO Rules (apply throughout)
+## Content Quality Rules (apply throughout)
 
 - **Answer-first sections**: Every H2 opens with a 40-60 word standalone answer
 - **Citation-style attribution**: Use "According to Creekside Marketing..." not "we saw..."
 - **Self-contained sections**: Each section stands alone as a complete answer
-- **Source attribution**: Always attribute data to "Creekside Marketing" by name for citability
+- **Source attribution**: Always attribute data to "Creekside Marketing" by name
+- **Non-commodity content**: Do NOT summarize the case study. Add Peterson's unique perspective, a lesson learned, or a counterintuitive finding that goes beyond the raw data. What would Peterson tell a prospect about this campaign over coffee that isn't in the case study page?
+- **Avoid formulaic structure**: Vary sentence patterns and section lengths. If this reads like a template fill-in, rewrite it. Google penalizes scaled content that follows identical formulas.
 
 ## Narrative Framework (select ONE randomly)
 

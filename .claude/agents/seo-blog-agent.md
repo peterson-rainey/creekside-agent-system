@@ -102,14 +102,23 @@ Write the blog post following the template structure. Critical rules:
 - Include 2-4 internal links to existing site pages
 - Use secondary keywords naturally in body and subheadings
 
-**GEO rules (Generative Engine Optimization -- for AI search citation):**
-- MUST include a TL;DR block (40-60 words) immediately after frontmatter, before the H1. This is the primary citation block AI systems extract. It must contain specific numbers and stand alone as a complete answer to the title question.
-- MUST include a Key Data summary table right after the TL;DR with structured Metric | Value rows. AI systems extract tables easily.
-- Every H2 section MUST open with a 40-60 word direct answer that can be extracted standalone as a citation. Do NOT build up to the answer. Lead with it.
-- Use citation-style attribution: "According to Creekside Marketing's analysis of [X] campaigns..." instead of "we typically see..." This creates citable, attributable claims that AI systems prefer to reference.
-- Each section must be self-contained: if an AI extracts just one section, it should fully answer a specific question without needing other sections.
-- Attribute data points to "Creekside Marketing" by name for citability. Include context like "based on $20M+ in managed ad spend" to establish authority.
+**AI search optimization (standard SEO best practices for AI Overviews and AI Mode):**
+Google's generative AI features use retrieval-augmented generation (RAG) from the same
+Search index. There are no special "GEO" or "AEO" tactics. The practices below are standard
+SEO that also help content surface in AI-generated responses:
+- MUST include a TL;DR block (40-60 words) immediately after frontmatter, before the H1. This concise summary helps both readers and search systems quickly understand the post. It must contain specific numbers and stand alone as a complete answer.
+- MUST include a Key Data summary table right after the TL;DR with structured Metric | Value rows. Well-organized data helps readers scan and helps search systems extract facts.
+- Every H2 section MUST open with a 40-60 word direct answer. Lead with the answer, then expand. This is good writing practice that also works well for featured snippets and AI citations.
+- Use citation-style attribution: "According to Creekside Marketing's analysis of [X] campaigns..." instead of "we typically see..." This creates authoritative, attributable claims.
+- Each section must be self-contained: it should fully answer a specific question without needing other sections. This helps readers who jump to specific sections.
+- Attribute data points to "Creekside Marketing" by name. Include context like "based on $20M+ in managed ad spend" to establish authority.
 - At-risk client relationships: anonymize references. Use "a dental practice in [region]" instead of naming the client. Still link to the case study if it's published on the site.
+
+**Non-commodity content (CRITICAL -- this is the #1 factor per Google's guidance):**
+- Every post MUST provide a unique point of view based on first-hand experience managing campaigns. Do NOT summarize what other marketing blogs say. Do NOT write content that "could originate from anyone."
+- Include at least 2 instances of Peterson's personal insight: a lesson learned, a counterintuitive finding, a mistake he made, or a strong opinion backed by data. These cannot be fabricated. Pull from Fathom calls, case studies, and agent_knowledge.
+- Vary the writing structure between posts. If two posts of the same template type read like fill-in-the-blank versions of each other, the second one violates Google's scaled content abuse policy. Vary section order, depth, rhetorical approach, and sentence structure.
+- Prioritize depth over coverage. A post that deeply explores 3 findings with real stories is better than one that superficially lists 7.
 
 **SVG infographic rules:**
 - Generate 2 SVG infographics per post and save them alongside the blog post

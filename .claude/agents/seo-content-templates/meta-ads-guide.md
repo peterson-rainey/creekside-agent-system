@@ -66,12 +66,14 @@ Meta Ads alone. Here's exactly how the campaign is structured."
 "The #1 mistake {industry_owner_title}s make with Meta Ads: boosting posts instead of
 running real campaigns. Here's what to do instead."
 
-## GEO Rules (apply throughout)
+## Content Quality Rules (apply throughout)
 
-- Answer-first sections: Every H2 opens with a 40-60 word standalone answer
-- Citation-style attribution: "According to Creekside Marketing's analysis..."
-- Self-contained sections: Each stands alone as a complete answer
-- Source attribution: Always attribute data to "Creekside Marketing" by name
+- **Answer-first sections**: Every H2 opens with a 40-60 word standalone answer
+- **Citation-style attribution**: "According to Creekside Marketing's analysis..."
+- **Self-contained sections**: Each stands alone as a complete answer
+- **Source attribution**: Always attribute data to "Creekside Marketing" by name
+- **Non-commodity content**: Do NOT write a generic "how to run Facebook ads" guide. Include Peterson's specific opinions on what works and doesn't for this vertical, specific creative approaches that outperformed, and lessons from campaigns that failed before succeeding. First-hand experience is what separates this from commodity content.
+- **Avoid formulaic structure**: Vary sentence patterns and section lengths across Meta Ads guide posts. Google penalizes scaled content that follows identical formulas.
 
 ## Required Sections
 

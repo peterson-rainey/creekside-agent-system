@@ -50,12 +50,14 @@ tags: ["GoogleAds", "{vertical_tag}", "Audit", "Optimization"]
 | ... | ... | ... |
 ```
 
-## GEO Rules (apply throughout)
+## Content Quality Rules (apply throughout)
 
-- Answer-first sections: Every H2 opens with a 40-60 word standalone answer
-- Citation-style attribution: "According to Creekside Marketing's audit data..."
-- Self-contained sections: Each stands alone as a complete answer
-- Source attribution: Always attribute findings to "Creekside Marketing" by name
+- **Answer-first sections**: Every H2 opens with a 40-60 word standalone answer
+- **Citation-style attribution**: "According to Creekside Marketing's audit data..."
+- **Self-contained sections**: Each stands alone as a complete answer
+- **Source attribution**: Always attribute findings to "Creekside Marketing" by name
+- **Non-commodity content**: Do NOT write generic "10 Google Ads mistakes" content. For each finding, include a specific anonymized story from a real audit: what the account looked like, what was wrong, and the exact impact of fixing it. First-hand experience is what separates this from commodity content.
+- **Avoid formulaic structure**: Vary the depth and style of each finding section. Some can be brief (2-3 sentences), others deserve a full case-study-style breakdown. Google penalizes scaled content that follows identical formulas.
 
 ## Master List of Audit Findings (select 5-7 per post, vary by vertical)
 

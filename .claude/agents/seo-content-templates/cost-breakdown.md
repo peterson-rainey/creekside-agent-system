@@ -71,21 +71,27 @@ cost per click of ${avg_cpc_low}-${avg_cpc_high}." Then immediately qualify it.
 "Should a {industry_owner_title} spend $1,500/month or $10,000/month on Google Ads?
 The honest answer depends on three things..."
 
-## GEO: Answer-First Section Rule (applies to ALL sections below)
+## Content Quality Rules (applies to ALL sections below)
 
-Every H2 section MUST open with a 40-60 word direct answer that can be extracted standalone
-as an AI citation. Then expand with supporting details. Do NOT build up to the answer.
+**Answer-first sections:** Every H2 section MUST open with a 40-60 word direct answer that
+can be extracted standalone. Then expand with supporting details. Do NOT build up to the answer.
 
-## GEO: Citation-Style Claims
-
-Instead of "we typically see..." use attribution-style claims:
+**Citation-style claims:** Instead of "we typically see..." use attribution-style claims:
 "According to Creekside Marketing's analysis of {vertical_name} campaigns managing over $20M
-in total ad spend..." This creates citable, attributable statements AI systems prefer to cite.
+in total ad spend..." This creates citable, attributable statements.
 
-## GEO: Self-Contained Sections
+**Self-contained sections:** Each section must stand alone as a complete answer to a specific
+question. If a search system extracts just one section, it should make sense without the rest.
 
-Each section must stand alone as a complete answer to a specific question. If an AI system
-extracts just one section, it should make sense without needing the rest of the post.
+**Non-commodity content:** Do NOT write anything that could appear on any generic marketing blog.
+Every section must include at least ONE of: a specific campaign anecdote, a lesson Peterson
+learned the hard way, a counterintuitive finding from real data, or a direct opinion that
+disagrees with common advice. The goal is expert-led content based on first-hand experience,
+not a summary of information available elsewhere.
+
+**Avoid formulaic structure:** Vary sentence patterns, section lengths, and rhetorical approaches
+across posts. If this post reads like a fill-in-the-blank version of another post, rewrite it.
+Google penalizes scaled content that follows identical formulas across variations.
 
 ## Section: Average Cost Per Click
 
