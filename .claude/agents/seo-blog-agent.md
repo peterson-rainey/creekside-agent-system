@@ -154,7 +154,7 @@ category: "Category Name"
 tags: ["Tag1", "Tag2", "Tag3"]
 ---
 ```
-Do NOT add `lastUpdated` or any other fields not listed above. The Astro content collection schema only accepts these 6 fields for blog posts.
+Do NOT add any fields not listed above for new posts. The schema also accepts an optional `lastModified: "YYYY-MM-DD"` field, but only add this when updating an existing post (not on initial publish). This powers the `dateModified` signal in the BlogPosting schema for content freshness.
 
 ### Step 5: Quality Gate (Self-Check)
 
@@ -178,6 +178,8 @@ Before saving, verify ALL of the following. If any check fails, revise and re-ch
 - [ ] Data points use citation-style attribution ("According to Creekside Marketing..." not "we see...")
 - [ ] Each section is self-contained (makes sense if extracted in isolation)
 - [ ] At-risk client names are anonymized (check relationship status before naming)
+- [ ] NON-COMMODITY CHECK: Post contains >= 2 instances of unique first-hand insight (lesson learned, counterintuitive finding, or strong opinion backed by data) that could NOT appear on a generic marketing blog
+- [ ] ANTI-FORMULA CHECK: Post structure, section order, and rhetorical approach differ meaningfully from the last 3 posts of the same template type
 - [ ] 2 SVG infographics generated and saved to public/article-images/
 - [ ] SVG filenames follow convention: {post-slug}-{chart-type}.svg
 - [ ] Both SVGs contain real data from the post (not placeholders)
