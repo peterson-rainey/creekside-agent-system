@@ -213,15 +213,17 @@ When asked to process multiple clients (e.g., "refresh cache for all active clie
 ## Cache Sections
 | Section | Sources |
 |---------|---------|
-| `overview` | clients table |
-| `recent_activity` | gmail, slack, gchat, fathom_mentions |
+| `overview` | clients table, reporting_clients |
+| `recent_activity` | gmail, slack, gchat, clickup_chat_entries, loom_entries, fathom_mentions |
 | `project_status` | clickup_entries |
-| `communication_summary` | gmail, slack, gchat (patterns + frequency) |
-| `financial_summary` | square_entries |
+| `communication_summary` | gmail, slack, gchat, clickup_chat_entries (patterns + frequency) |
+| `financial_summary` | square_entries, reporting_clients (fee configs, platform budgets) |
 | `team_interactions` | clickup (assignees), slack/gmail (participants) |
 | `open_issues` | clickup (open tasks), unresolved threads |
-| `key_decisions` | fathom (action_items), clickup |
+| `key_decisions` | fathom (action_items), clickup, clickup_chat_entries |
 | `drive_files` | gdrive_operations, gdrive_marketing, gdrive_legal |
+| `clickup_chat` | clickup_chat_entries (conversations, budget decisions, directives) |
+| `clickup_docs` | clickup_doc_entries (strategy docs, conversion notes, call notes) |
 
 ## Confidence Scoring (MANDATORY)
 Tag every claim:
@@ -233,7 +235,7 @@ Tag every claim:
 ```
 ## [Client Name] — Context Report
 **Status**: [status] | **Services**: [list] | **Budget**: $X [HIGH]
-**Data inventory**: gmail:[N] slack:[N] gchat:[N] clickup:[N] comments:[N] calendar:[N] square:[N] fathom:[N] mentions:[N] loom:[N] gdrive:[N]
+**Data inventory**: gmail:[N] slack:[N] gchat:[N] clickup:[N] clickup_chat:[N] clickup_docs:[N] comments:[N] calendar:[N] square:[N] fathom:[N] mentions:[N] loom:[N] gdrive:[N]
 
 ### Overview [HIGH]
 ### Recent Activity (chronological, all platforms merged)
@@ -259,6 +261,7 @@ Tag every claim:
 - ALWAYS update the cache before finishing (Call 7)
 - Never include `char_count` in raw_content INSERTs (generated column)
 - NEVER spawn child processes, use Bash, or run external commands — all work is SQL via execute_sql
+- Some clients communicate exclusively via Slack (e.g., Retirement Income Solutions). If gchat count is 0 and slack count is also 0, check whether the client has a Slack channel that isn't synced to the DB. Note this gap in the output: "Slack channel may exist but is not synced to DB -- check manually."
 
 ## Additional Data Source: Contractor Pre-work Spreadsheets
 
