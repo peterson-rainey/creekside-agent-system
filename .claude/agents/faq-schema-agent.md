@@ -314,7 +314,7 @@ Push status: [success/failed]
 ## Failure Modes
 
 **No discovery/sales calls found:**
-- Check that `meeting_type IN ('discovery', 'sales')` returns results
+- Check that `meeting_type IN ('discovery', 'client_call')` returns results
 - If zero results, check if the column has different values: `SELECT DISTINCT meeting_type FROM fathom_entries LIMIT 20;`
 - If still zero, log the issue and abort the run
 
