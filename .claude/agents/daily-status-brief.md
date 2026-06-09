@@ -100,7 +100,7 @@ SELECT
   (SELECT published_at AT TIME ZONE 'America/Chicago' FROM seo_content_queue WHERE status = 'published' ORDER BY published_at DESC LIMIT 1) as last_published_at,
   (SELECT target_keyword FROM seo_content_queue WHERE status = 'queued' ORDER BY priority DESC LIMIT 1) as next_queued_keyword;
 
-### 1G-B: Contractor Status Flags (from Google Drive pre-work spreadsheets)
+### 1G: Contractor Status Flags (from Google Drive pre-work spreadsheets)
 For clients managed by contractors with weekly pre-work spreadsheets, check the most recent week's status. Resolve the contractor via `reporting_clients.platform_operator`, then search their Google Drive folder using the Drive MCP `search_files` tool with `parentId = '<folder_id>' and title contains 'weekly'`. See agent_knowledge SOP: "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for folder IDs.
 
 Flag any client where the contractor marked status as "Bad" or "Mediocre" -- include the contractor's issue note. Lindsey, Trent, Ahmed, Ade, Scott, and Jordan have sheets. Ahmed and Ade use the full ad management format. Scott's is stale (April 2026). Jordan tracks tasks, not ad performance.
@@ -109,7 +109,7 @@ Format for the brief:
 - [CONTRACTOR FLAG] South River Mortgage: Lindsey marked "Mediocre" -- creative fatigue, leads not tracking
 - [CONTRACTOR FLAG] RIS: Lindsey marked "Bad" -- still need tracking for kit downloads
 
-### 1G: Client Health Alerts
+### 1H: Client Health Alerts
 execute_sql:
 SELECT cl.name, ch.overall_score, ch.calculated_at
 FROM client_health_scores ch
