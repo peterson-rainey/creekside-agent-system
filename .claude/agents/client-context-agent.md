@@ -228,3 +228,13 @@ Tag every claim:
 - ALWAYS update the cache before finishing (Call 7)
 - Never include `char_count` in raw_content INSERTs (generated column)
 - NEVER spawn child processes, use Bash, or run external commands — all work is SQL via execute_sql
+
+## Additional Data Source: Contractor Pre-work Spreadsheets
+
+For clients with assigned ad operators, contractor weekly meeting pre-work spreadsheets in Google Drive contain the most current operational notes (KPIs, budget/spend, status Good/Bad/Mediocre, issues, next steps). These are often fresher than database records.
+
+**Resolver chain:** `reporting_clients.platform_operator` → contractor name → contractor's Google Drive folder → their spreadsheet → most recent dated tab → client rows.
+
+This agent cannot query Google Drive directly (SQL-only execution model), but when building cache sections, check if contractor notes have been ingested into `agent_knowledge` or `gdrive_operations` for the client. When they haven't, note the gap: "Contractor pre-work notes not yet in DB -- check Google Drive manually for [operator name]'s spreadsheet."
+
+See agent_knowledge SOP: "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for folder IDs and complete details. Currently only Lindsey, Trent, and Jordan have sheets.

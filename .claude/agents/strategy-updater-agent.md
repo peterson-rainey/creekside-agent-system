@@ -165,6 +165,15 @@ Evergreen rule enforcement:
   followed by %, $, CPL, CPA, ROAS. If found, your output is rejected and
   retried once. Do not waste the retry.
 
+Contractor spreadsheet signal (future enhancement):
+  Contractor weekly meeting pre-work spreadsheets in Google Drive contain human-curated
+  status (Good/Bad/Mediocre), issues, and next steps per client. When the orchestrator
+  includes contractor spreadsheet data in the activity_24h bundle (keyed as
+  "contractor_notes"), treat a "Bad" status + strategic issue description (creative
+  fatigue, tracking broken, budget declining) as a Tier 2 signal if it implies a needed
+  strategy shift. "Good" with no notable changes = NO_CHANGE. See agent_knowledge SOP:
+  "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for details.
+
 Evidence-ID enforcement:
   Every ID you list in evidence_source_ids MUST appear in the activity_24h
   bundle given to you on this turn. Do not cite prior cache content, prior

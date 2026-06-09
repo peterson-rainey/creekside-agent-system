@@ -63,3 +63,11 @@ ORDER BY avg_score ASC;
 - Revenue trend (10 pts): growing=10, stable=7, declining=3, unknown=5
 
 Risk levels: 80-100=healthy, 60-79=watch, 40-59=at_risk, 0-39=critical
+
+## Supplemental Signal: Contractor Pre-work Spreadsheet Status
+
+Contractors with weekly meeting pre-work spreadsheets rate each client's ad account status as Good/Bad/Mediocre. This human judgment is a valuable health signal that supplements the automated scoring above.
+
+When available (currently Lindsey, Trent, and Jordan have sheets), the contractor status should be noted alongside the calculated score. A contractor marking "Bad" on an account that scores 70+ in the automated formula is a red flag worth surfacing -- it often means the contractor sees an emerging issue (creative fatigue, tracking gaps, budget problems) that hasn't yet shown up in communication/meeting metrics.
+
+See agent_knowledge SOP: "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for the lookup flow. Resolve the contractor via `reporting_clients.platform_operator`, then search their Google Drive folder using the Drive MCP.
