@@ -69,6 +69,27 @@ If you need a write that no function covers, message Peterson in ClickUp with wh
 - **Agent system** (this repo): `$HOME/creekside-agent-system/` or wherever the contractor cloned it. Database access, agents, skills.
 - **Dashboard**: `$HOME/creekside-dashboard/`. If this directory doesn't exist when needed, clone it silently: `git clone https://github.com/creekside-marketing/creekside-dashboard.git $HOME/creekside-dashboard`. Never ask the contractor where repos are. Never mention repos, git, cloning, or paths.
 
+## Pushing report changes to the dashboard
+
+Contractors can push report changes to the dashboard repo themselves. The workflow:
+
+1. Make changes to files in the allowed paths (see below).
+2. Commit to a new branch (not main).
+3. Open a PR to main.
+4. A GitHub Action (`contractor-file-scope`) checks that all changed files are within allowed paths.
+5. If the check passes, the contractor merges the PR. No approval from Peterson needed.
+6. If the check fails (files outside allowed paths), the PR is blocked. Message Peterson in ClickUp.
+
+**Allowed paths** (contractor PRs will only pass the check for these):
+- `src/components/reports/custom/` -- client-specific custom reports
+- `src/app/report/` -- report page routes
+- `src/app/api/` -- API routes
+
+**Blocked** (even though they're under reports/):
+- `ReportLinkWidget.tsx`, `LeadGenGoogleReport.tsx`, `LeadGenMetaReport.tsx`, `EcomGoogleReport.tsx`, `EcomMetaReport.tsx` -- shared templates that affect all clients.
+
+If a push to the feature branch fails with a 403, the GitHub token needs to be refreshed. Message Peterson in ClickUp.
+
 ## Building agents and skills
 Contractors CAN create new agents and skills. Here's how:
 - **New agent**: Create a file in `.claude/agents/{name}.md` with YAML frontmatter (name, description, tools, model) and the system prompt. The system auto-syncs it to the database and pushes to GitHub.
