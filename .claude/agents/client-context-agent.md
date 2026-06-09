@@ -237,4 +237,4 @@ For clients with assigned ad operators, contractor weekly meeting pre-work sprea
 
 This agent cannot query Google Drive directly (SQL-only execution model), but when building cache sections, check if contractor notes have been ingested into `agent_knowledge` or `gdrive_operations` for the client. When they haven't, note the gap: "Contractor pre-work notes not yet in DB -- check Google Drive manually for [operator name]'s spreadsheet."
 
-See agent_knowledge SOP: "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for folder IDs and complete details. Currently only Lindsey, Trent, and Jordan have sheets.
+See agent_knowledge SOP: "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for folder IDs and complete details. Lindsey, Trent, Ahmed, Ade, Scott, and Jordan have sheets.

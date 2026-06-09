@@ -18,4 +18,4 @@ Include in each client's weekly report section:
 - Any issues or opportunities the contractor flagged
 - Contractor's planned next steps
 
-Currently only Lindsey, Trent, and Jordan have sheets. Jordan's sheet tracks implementation tasks, not ad performance.
+Lindsey, Trent, Ahmed, Ade, Scott, and Jordan have sheets. Ahmed and Ade use the full ad management format (Google Ads). Scott's sheet is stale (last updated April 2026). Jordan's sheet tracks implementation tasks, not ad performance.

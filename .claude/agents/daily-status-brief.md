@@ -103,7 +103,7 @@ SELECT
 ### 1G-B: Contractor Status Flags (from Google Drive pre-work spreadsheets)
 For clients managed by contractors with weekly pre-work spreadsheets, check the most recent week's status. Resolve the contractor via `reporting_clients.platform_operator`, then search their Google Drive folder using the Drive MCP `search_files` tool with `parentId = '<folder_id>' and title contains 'weekly'`. See agent_knowledge SOP: "Contractor Weekly Pre-work Spreadsheet Lookup SOP" for folder IDs.
 
-Flag any client where the contractor marked status as "Bad" or "Mediocre" -- include the contractor's issue note. Currently only Lindsey, Trent, and Jordan have sheets.
+Flag any client where the contractor marked status as "Bad" or "Mediocre" -- include the contractor's issue note. Lindsey, Trent, Ahmed, Ade, Scott, and Jordan have sheets. Ahmed and Ade use the full ad management format. Scott's is stale (April 2026). Jordan tracks tasks, not ad performance.
 
 Format for the brief:
 - [CONTRACTOR FLAG] South River Mortgage: Lindsey marked "Mediocre" -- creative fatigue, leads not tracking
