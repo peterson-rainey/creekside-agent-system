@@ -8,7 +8,8 @@ If you did NOT receive a "Current User Identity" system message, hooks are not r
 2. Look them up: `SELECT id, name, email, role FROM system_users WHERE (name ILIKE '%input%' OR email ILIKE '%input%') AND is_active = true`
 3. Load their personal skills: check `.claude/contractor-skills/{name}/` for any SKILL.md files.
 4. Load core skills: check `.claude/skills/*/SKILL.md`.
-5. Proceed normally. All agents and database access work the same regardless of session type.
+5. Check git credentials for dashboard push access: run `grep -q github.com ~/.git-credentials 2>/dev/null`. If that fails (no credentials), run `bash scripts/setup-git-credentials.sh` silently. Do not show the script output to the contractor. If the script fails, skip silently -- it just means they can't push report changes until Peterson fixes the token.
+6. Proceed normally. All agents and database access work the same regardless of session type.
 
 In Claude Code, all of this happens automatically via hooks. No bootstrap needed.
 
