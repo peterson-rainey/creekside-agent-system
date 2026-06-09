@@ -43,11 +43,18 @@ If no match, try: `SELECT * FROM match_incoming_client('CLIENT_NAME', 'manual');
 
 Then immediately:
 ```sql
--- Check corrections AND cache in one call
-SELECT 'correction' as source, title, content, NULL as section, NULL as is_stale
-FROM agent_knowledge WHERE type = 'correction' AND content ILIKE '%CLIENT_NAME%'
-UNION ALL
-SELECT 'cache', section, content, section, ((now() - last_updated) > stale_after)::text
+-- Check agent_knowledge (corrections, configs, decisions, references) AND cache in one call
+SELECT type as source, title, left(content, 300) as content, type as section, NULL as is_stale
+FROM agent_knowledge
+WHERE (type IN ('correction', 'configuration', 'reference', 'decision')
+  AND (content ILIKE '%CLIENT_NAME%' OR title ILIKE '%CLIENT_NAME%'))
+ORDER BY
+  CASE type WHEN 'correction' THEN 1 WHEN 'configuration' THEN 2 WHEN 'decision' THEN 3 ELSE 4 END
+LIMIT 10;
+```
+Then separately:
+```sql
+SELECT 'cache' as source, section, content, section, ((now() - last_updated) > stale_after)::text as is_stale
 FROM client_context_cache WHERE client_id = 'UUID';
 ```
 
@@ -55,13 +62,15 @@ FROM client_context_cache WHERE client_id = 'UUID';
 
 **If cache is stale or missing**: Continue with Calls 2-7.
 
-### Call 2: Platform Data Inventory (ALL 13 tables in ONE query)
+### Call 2: Platform Data Inventory (ALL tables in ONE query)
 ```sql
 SELECT
   (SELECT count(*) FROM gmail_summaries WHERE client_id = 'UUID') as gmail,
   (SELECT count(*) FROM slack_summaries WHERE client_id = 'UUID') as slack,
   (SELECT count(*) FROM gchat_summaries WHERE client_id = 'UUID') as gchat,
   (SELECT count(*) FROM clickup_entries WHERE client_id = 'UUID') as clickup_tasks,
+  (SELECT count(*) FROM clickup_chat_entries WHERE client_id = 'UUID') as clickup_chat,
+  (SELECT count(*) FROM clickup_doc_entries WHERE client_id = 'UUID') as clickup_docs,
   (SELECT count(*) FROM clickup_comment_threads WHERE clickup_task_id IN
     (SELECT clickup_task_id FROM clickup_entries WHERE client_id = 'UUID')) as clickup_comments,
   (SELECT count(*) FROM google_calendar_entries WHERE client_id = 'UUID') as calendar,
@@ -87,10 +96,16 @@ UNION ALL
 (SELECT 'gchat', id::text, date::text, left(ai_summary, 300), participants::text
  FROM gchat_summaries WHERE client_id = 'UUID' ORDER BY date DESC LIMIT 5)
 UNION ALL
+(SELECT 'clickup_chat', id::text, chunk_date::text, left(ai_summary, 300), participants::text
+ FROM clickup_chat_entries WHERE client_id = 'UUID' ORDER BY chunk_date DESC LIMIT 5)
+UNION ALL
 (SELECT 'fathom_mention', fm.id::text, fe.meeting_date::text,
   left(fm.context_summary, 300), fe.participants::text
  FROM fathom_client_mentions fm JOIN fathom_entries fe ON fm.fathom_entry_id = fe.id
  WHERE fm.client_id = 'UUID' ORDER BY fe.meeting_date DESC LIMIT 5)
+UNION ALL
+(SELECT 'loom', id::text, recorded_at::text, left(ai_summary, 300), NULL::text
+ FROM loom_entries WHERE client_id = 'UUID' ORDER BY recorded_at DESC LIMIT 3)
 ORDER BY activity_date DESC;
 ```
 
@@ -106,7 +121,7 @@ ORDER BY
 LIMIT 20;
 ```
 
-### Call 5: Financial + Calendar + Drive (combined)
+### Call 5: Financial + Calendar + Drive + Docs + Reporting Config (combined)
 ```sql
 (SELECT 'square' as source, id::text, title, amount_cents::text as detail,
   source_timestamp::text as activity_date
@@ -123,8 +138,22 @@ UNION ALL
 (SELECT 'gdrive_mktg', id::text, file_name, document_type,
   created_at::text
  FROM gdrive_marketing WHERE client_id = 'UUID' ORDER BY created_at DESC LIMIT 5)
+UNION ALL
+(SELECT 'clickup_doc' as source, id::text,
+  doc_name || ' > ' || coalesce(page_name, '') as title,
+  left(ai_summary, 200) as detail,
+  last_synced_at::text as activity_date
+ FROM clickup_doc_entries WHERE client_id = 'UUID' ORDER BY last_synced_at DESC LIMIT 10)
 ORDER BY activity_date DESC;
 ```
+
+Also run (separate call if needed, or batch here):
+```sql
+SELECT client_name, platform, ad_account_id, ad_account_name, monthly_budget,
+  fee_config, status, platform_operator, account_manager, segment_name, goal_type, goal_target
+FROM reporting_clients WHERE client_id = 'UUID';
+```
+Include `reporting_clients` data in the `financial_summary` and `overview` cache sections. A client may have multiple rows (one per platform). This is the authoritative source for fee configs, platform operators, and monthly budgets per platform.
 
 ### Call 6: Cross-Platform Keyword Search (catches unlinked records)
 ```sql
@@ -140,13 +169,15 @@ For each section with data, upsert using a single batched statement:
 INSERT INTO client_context_cache (client_id, section, content, data_sources, source_record_count, date_range_start, date_range_end, last_updated)
 VALUES
   ('UUID', 'overview', 'SUMMARIZED_CONTENT', ARRAY['clients'], 1, NULL, NULL, now()),
-  ('UUID', 'recent_activity', 'SUMMARIZED_CONTENT', ARRAY['gmail_summaries','slack_summaries','gchat_summaries','fathom_client_mentions'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
+  ('UUID', 'recent_activity', 'SUMMARIZED_CONTENT', ARRAY['gmail_summaries','slack_summaries','gchat_summaries','clickup_chat_entries','loom_entries','fathom_client_mentions'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
   ('UUID', 'project_status', 'SUMMARIZED_CONTENT', ARRAY['clickup_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
-  ('UUID', 'financial_summary', 'SUMMARIZED_CONTENT', ARRAY['square_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
-  ('UUID', 'communication_summary', 'SUMMARIZED_CONTENT', ARRAY['gmail_summaries','slack_summaries','gchat_summaries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
+  ('UUID', 'financial_summary', 'SUMMARIZED_CONTENT', ARRAY['square_entries','reporting_clients'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
+  ('UUID', 'communication_summary', 'SUMMARIZED_CONTENT', ARRAY['gmail_summaries','slack_summaries','gchat_summaries','clickup_chat_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
   ('UUID', 'team_interactions', 'SUMMARIZED_CONTENT', ARRAY['clickup_entries','slack_summaries','gmail_summaries'], COUNT, NULL, NULL, now()),
   ('UUID', 'open_issues', 'SUMMARIZED_CONTENT', ARRAY['clickup_entries'], COUNT, NULL, NULL, now()),
-  ('UUID', 'key_decisions', 'SUMMARIZED_CONTENT', ARRAY['fathom_entries','clickup_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
+  ('UUID', 'key_decisions', 'SUMMARIZED_CONTENT', ARRAY['fathom_entries','clickup_entries','clickup_chat_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
+  ('UUID', 'clickup_chat', 'SUMMARIZED_CONTENT', ARRAY['clickup_chat_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
+  ('UUID', 'clickup_docs', 'SUMMARIZED_CONTENT', ARRAY['clickup_doc_entries'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now()),
   ('UUID', 'drive_files', 'SUMMARIZED_CONTENT', ARRAY['gdrive_operations','gdrive_marketing','gdrive_legal'], COUNT, 'START'::timestamptz, 'END'::timestamptz, now())
 ON CONFLICT (client_id, section)
 DO UPDATE SET content = EXCLUDED.content, data_sources = EXCLUDED.data_sources,

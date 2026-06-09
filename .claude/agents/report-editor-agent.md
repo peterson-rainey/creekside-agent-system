@@ -225,12 +225,19 @@ Invoke the Bash tool with `timeout: 180000`. Tell the contractor: "Setting up fo
 
 If `npm install` fails, STOP: "First-time setup for the dashboard failed. Please screenshot this and ping Peterson."
 
-**Check 0.75 -- GitHub CLI is installed:**
+**Check 0.75 -- GitHub CLI is installed and authenticated:**
 ```bash
 command -v gh && gh --version
 ```
 If `gh` is not installed, STOP:
 "The GitHub CLI (`gh`) is required for the preview workflow and isn't installed. Install it: `brew install gh` (Mac) or see https://cli.github.com. Then run `gh auth login` to authenticate. Please ping Peterson if you need help."
+
+Then verify authentication:
+```bash
+gh auth status
+```
+If this exits non-zero (not logged in or token expired), STOP:
+"The GitHub CLI is installed but not logged in. Run `gh auth login` to authenticate, then ask me again. Please ping Peterson if you need help."
 
 **Check 1 -- Clean working tree:**
 ```bash
@@ -240,9 +247,9 @@ If output is not empty, check if we're on an existing preview branch for this cl
 ```bash
 cd $HOME/creekside-dashboard && git rev-parse --abbrev-ref HEAD
 ```
-If the current branch is `preview/<slug>` (matching this client), the dirty state is from a prior incomplete edit. Stash it:
+If the current branch is `preview/<slug>` (matching this client), the dirty state is from a prior incomplete edit. Discard it (the committed work on the branch is safe -- only uncommitted leftovers are cleared):
 ```bash
-cd $HOME/creekside-dashboard && git stash
+cd $HOME/creekside-dashboard && git checkout -- .
 ```
 If the current branch is something else (main or a different preview), STOP: "There are unsaved changes in the dashboard folder. This might be a sync issue. Please screenshot this and ping Peterson."
 
@@ -256,14 +263,18 @@ Valid states:
   ```bash
   cd $HOME/creekside-dashboard && git pull --ff-only origin preview/<slug> 2>/dev/null; git pull --ff-only origin main
   ```
-- Anything else -- wrong branch. Switch to main:
+- Anything else -- wrong branch. Switch to main and pull:
   ```bash
   cd $HOME/creekside-dashboard && git checkout main && git pull --ff-only origin main
   ```
+  If the pull fails, STOP with the error message and "Please screenshot this and ping Peterson."
 
-**Check 3 -- Pull latest (if on main):**
+**Check 3 -- Pull latest (always run on main):**
 ```bash
-cd $HOME/creekside-dashboard && git pull --ff-only origin main
+CURRENT=$(cd $HOME/creekside-dashboard && git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT" = "main" ]; then
+  cd $HOME/creekside-dashboard && git pull --ff-only origin main
+fi
 ```
 If this fails, STOP with the error message and "Please screenshot this and ping Peterson."
 
@@ -323,6 +334,19 @@ cd $HOME/creekside-dashboard && git rev-parse --abbrev-ref HEAD
 ```
 
 **If on `main` (first edit for this client):**
+
+First check if a preview branch already exists (from a prior session or different contractor):
+```bash
+cd $HOME/creekside-dashboard && git ls-remote --heads origin preview/<slug>
+```
+
+If the remote branch exists, check it out:
+```bash
+cd $HOME/creekside-dashboard && git fetch origin preview/<slug> && git checkout --track origin/preview/<slug>
+```
+Tell the contractor: "There's already a preview in progress for this client's report. I'll add your change on top of it."
+
+If no remote branch exists, create a new one:
 ```bash
 cd $HOME/creekside-dashboard && git checkout -b preview/<slug>
 ```
@@ -342,7 +366,7 @@ If push fails:
 2. Retry push.
 3. If still fails, revert and STOP:
    ```bash
-   cd $HOME/creekside-dashboard && git checkout main && git branch -D preview/<slug>
+   cd $HOME/creekside-dashboard && git checkout main && git branch -D preview/<slug> 2>/dev/null; git push origin --delete preview/<slug> 2>/dev/null
    ```
    Tell the contractor: "I couldn't push the preview. I've cleaned up so nothing is broken. Please screenshot this and ping Peterson."
 
@@ -430,9 +454,17 @@ If merge fails:
    ```
 2. If there are conflicts, tell the contractor: "Someone else changed the reports while you were previewing. I need to sync things up -- one moment." Then:
    ```bash
-   cd $HOME/creekside-dashboard && git checkout preview/<slug> && git pull origin main --no-edit && git push origin preview/<slug>
+   cd $HOME/creekside-dashboard && git checkout preview/<slug> && git pull origin main --no-edit
    ```
-   Retry the merge.
+   Re-run tsc to make sure the merge didn't break anything:
+   ```bash
+   cd $HOME/creekside-dashboard && npx tsc --noEmit
+   ```
+   If tsc fails, STOP: "Merging the latest changes caused a conflict I can't auto-fix. Please screenshot this and ping Peterson."
+   If tsc passes, push and retry the merge:
+   ```bash
+   cd $HOME/creekside-dashboard && git push origin preview/<slug>
+   ```
 3. If it still fails, STOP: "I couldn't merge your changes to production. Please screenshot this and ping Peterson."
 
 **Switch back to main and pull:**
@@ -474,6 +506,6 @@ Situations that need Peterson:
 - File missing after git pull -- DB/repo out of sync
 - Dirty working tree -- unexpected local changes
 - Push fails after rebase -- likely a branch protection or auth issue
-- tsc hangs past 60 seconds -- bigger code issue in the repo
+- tsc hangs past 90 seconds -- bigger code issue in the repo
 - Merge conflicts that can't be auto-resolved
 - `gh` CLI not installed or not authenticated
