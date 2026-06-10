@@ -204,7 +204,7 @@ Rate spread (max - min) itself is a signal: tight = client knows what they want.
 
 ---
 
-## 9. Invites Sent Signal (NEW -- counterintuitive)
+## 9. Invites Sent Signal (RESOLVED 2026-06-10: watch list, not a rule)
 
 | Invites Sent | Apps | Reply% | Call% | Won |
 |---|---|---|---|---|
@@ -214,7 +214,9 @@ Rate spread (max - min) itself is a signal: tight = client knows what they want.
 | 1-2 | 150 | 11.3% | 4.0% | 2 |
 | **3-5** | 131 | **9.2%** | 4.6% | **0** |
 
-11+ invites = active buyer shopping broadly. 3-5 = invited specific people, ignoring cold proposals. Contradicts the earlier zero-opens analysis -- the zero-open correlation with high invites was confounded by job saturation.
+11+ invites = active buyer shopping broadly. 3-5 = invited specific people, ignoring cold proposals.
+
+**MERGE RESOLUTION (Peterson, 2026-06-10): the raw gradient above does NOT survive month stratification (11+ invites: +31% reply, p=0.26) and call rate is flat across all bands.** The raw spread is partly month-mix. Status: watch-list candidate for the Section 18 interaction scan — do not bid or skip on invites alone. The directional story (11+ = broad shopper, 3-5 = made their shortlist) remains plausible and worth re-testing with more data.
 
 ---
 
@@ -354,6 +356,12 @@ Gradual, all-band decline = platform-wide, not Queenie-specific.
 
 ### Critical: Enrichment Query
 Raw DB messaged/sales_call/won undercount by ~40%. All analysis must use the ClickUp enrichment join. See `memory/upwork_data_analysis.md` for the query.
+
+### Win-count reconciliation (2026-06-10)
+Different sections of this doc cite different total win counts. Verified row-by-row:
+- **Enriched analysis dataset (3,741 scraped application rows): 36 wins.** This is a SUPERSET of the sheet within its row range — it catches all 27 sheet-marked wins plus 9 ClickUp-confirmed wins the sheet's WON column lags on. It missed zero.
+- **Higher counts (~58) come from scope, not better accuracy**: ~10 wins sit in sheet rows newer than the analysis snapshot (sheet now 4,056 rows), and the remainder are ClickUp lead wins with no matched application row (DMs/invites/synthetic dashboard entries). Valid for total-wins reporting; NOT usable for per-application rate analysis.
+- Rule: per-application rate tables in this doc are correct as-is; treat their "Won" columns as conservative by ~10 on recent rows.
 
 ---
 
