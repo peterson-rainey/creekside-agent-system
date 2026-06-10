@@ -164,7 +164,200 @@ Do NOT build rules on these:
 
 ---
 
-## 7. Open Items
+## 7. Platform & Competitive Benchmarks
+
+### Our Performance vs Platform Average (same 1,410 jobs with Freelancer Plus data)
+- Our view rate: 26.2% vs platform 16.8% (1.56x)
+- Our reply rate: 13.7% vs platform 6.8% (2.01x)
+- Our call rate: 5.0% vs platform shortlist 4.6% (1.09x)
+
+### Platform-Wide Trends (monthly)
+| Month | Platform Open Rate | Platform Msg Rate | Avg Props/Job |
+|---|---|---|---|
+| Sep '25 | 25.7% | 8.7% | 46 |
+| Oct '25 | 22.4% | 9.1% | 45 |
+| Jan '26 | 23.9% | 7.7% | 50 |
+| Mar '26 | 16.5% | 5.6% | 47 |
+| May '26 | 14.9% | 5.4% | 40 |
+
+Client engagement declining platform-wide at stable proposal volume. Not Creekside-specific.
+
+---
+
+## 8. Min Rate + Max Rate 2D Matrix (last 6 months, view% included)
+
+Best viewed as a heatmap. View% matters because it precedes reply.
+
+| Min / Max | View% | Reply% | Call% | Apps | Signal |
+|---|---|---|---|---|---|
+| **$41-55 / $61-80** | 34.2% | **23.7%** | **13.2%** | 38 | BEST -- tight realistic range |
+| $56+ / $81-100 | 42.3% | 23.1% | 7.7% | 26 | High quality |
+| $41-55 / $81-100 | **35.4%** | **19.8%** | 6.3% | **96** | Volume sweet spot |
+| $41-55 / $140+ | 50.0% | 16.7% | 4.2% | 24 | High views, lower conversion |
+| $11-20 / $61-80 | 30.0% | 17.5% | 7.5% | 40 | Good |
+| $21-30 / $41-60 | 33.3% | 11.5% | 5.8% | 156 | Average, highest win count |
+| $0-10 / $81-100 | 21.7% | **0.0%** | 0.0% | 23 | DEAD -- wide spread, skip |
+| $0-10 / $0-40 | 17.7% | 8.9% | 1.3% | 79 | Cheap client, cheap job |
+| $31-40 / $61-80 | 34.4% | 6.3% | 0.0% | 32 | Trap -- high views, no replies |
+
+Rate spread (max - min) itself is a signal: tight = client knows what they want. Wide = window shopping.
+
+---
+
+## 9. Invites Sent Signal (NEW -- counterintuitive)
+
+| Invites Sent | Apps | Reply% | Call% | Won |
+|---|---|---|---|---|
+| **11+** | 154 | **24.7%** | 5.8% | 1 |
+| 6-10 | 111 | 16.2% | 4.5% | 1 |
+| 0 | 719 | 12.7% | 5.4% | 4 |
+| 1-2 | 150 | 11.3% | 4.0% | 2 |
+| **3-5** | 131 | **9.2%** | 4.6% | **0** |
+
+11+ invites = active buyer shopping broadly. 3-5 = invited specific people, ignoring cold proposals. Contradicts the earlier zero-opens analysis -- the zero-open correlation with high invites was confounded by job saturation.
+
+---
+
+## 10. Upwork Recommendations Signal
+
+| Recs | Apps | Reply% | Call% | Won |
+|---|---|---|---|---|
+| 0 recs | 901 | 14.3% | **6.0%** | **7** |
+| 1-5 recs | 234 | 15.4% | 3.4% | 1 |
+| **6+ recs** | 130 | **8.5%** | **2.3%** | **0** |
+
+When Upwork recommends 6+ freelancers, reply drops to 8.5% and 0 wins. Client gets flooded with handpicked suggestions.
+
+---
+
+## 11. Connect Cost Signal
+
+| Connects | Apps (3mo) | Reply% | Call% | Won |
+|---|---|---|---|---|
+| **9-12** | 195 | **13.8%** | 4.6% | **2** |
+| 5-8 | 121 | 10.7% | 5.8% | 1 |
+| 13-16 | 183 | 10.9% | 5.5% | 0 |
+| 17-20 | 249 | 8.4% | 3.2% | 0 |
+| **21+** | 78 | **6.1%** | 2.6% | **0** |
+
+9-12 is the sweet spot. 21+ = Upwork's signal the job is saturated. Skip.
+
+---
+
+## 12. US-Only Requirement vs Client Location (2x2 matrix)
+
+| Requirement | Client Location | Apps | Reply% | Call% | Won |
+|---|---|---|---|---|---|
+| **US-only** | CA/UK/AU client | 27 | **18.5%** | 3.7% | 0 |
+| **US-only** | US client | 642 | **15.4%** | **6.9%** | **5** |
+| Worldwide | US client | 31 | 12.9% | **0.0%** | 0 |
+| Worldwide | CA/UK/AU client | 111 | 9.9% | 1.8% | 1 |
+| Worldwide | other client | 119 | 9.2% | 1.7% | 0 |
+
+Filter on the REQUIREMENT, not the location. A Canadian client who requires US-only (18.5%) beats a US client who sets worldwide (12.9%, 0% call).
+
+---
+
+## 13. Fixed Price Job Details
+
+### Fixed vs Hourly Overall
+- Fixed: 520 apps, 15.2% reply, 5.8% call, 3 won, $39/call
+- Hourly: 3,521 apps, 18.1% reply, 6.9% call, 55 won, $30/call
+- ~30% less efficient but not a hard skip
+
+### Fixed $500-2,500 (the main band): Dead Job Signals
+- Zero opens on 41-44% of jobs in this range
+- Dead jobs: 64% non-US clients (vs 44% on active), 37.5% full-time (vs 0% on active), 27% under-1-month (vs 21%)
+- Full-time + fixed $500-2,500 = 100% dark -- zero opens across all
+- Short duration + worldwide + fixed = hard skip
+
+---
+
+## 14. Queenie Transition Decomposition
+
+### View Rate Drop: 33.2% -> 22.2% (11 points)
+- Composition (more crowded jobs): 4.8 points (44%)
+- Within-band decline: 6.2 points (56%)
+
+### Competition Shift
+- Pre: median 5 proposals, 52% had <=5
+- Post: median 15 proposals, only 26% had <=5
+- Volume increase = applying to harder jobs, not more of the same
+
+### Within-Band Drop by Period
+| Band | Pre | Post (pre-JSS) | Post (post-JSS) |
+|---|---|---|---|
+| 1-5 props | 39.3% | 35.2% | 31.2% |
+| 6-10 props | 32.8% | 27.6% | 23.4% |
+| 11+ props | 22.2% | 17.3% | 15.7% |
+
+Gradual, all-band decline = platform-wide, not Queenie-specific.
+
+---
+
+## 15. Change Log Impact Analysis
+
+| Date | Change | Observed Impact |
+|---|---|---|
+| 2025-12-24 | Rate dropped to $73 | Jan 26 week hit 31% reply (all-time high) |
+| 2026-02-16 | Queenie took over | Immediate drop: 11.6% reply first week |
+| 2026-04-03 | Rate $5 above max + JSS 96% | Apr 13 spiked to 20.2% (best post-Queenie week) |
+| 2026-04-10 | Fixed no-rate job gap | Combined with rate change, brief improvement |
+| 2026-04-22 | Case study proposal | 8.7% reply, sustained downturn. Half the performance. |
+| 2026-05-04 | (no change) | 2.5% reply -- worst week ever |
+| 2026-05-11 | Started boosting | Didn't help |
+| 2026-06-09 | Boosting discontinued | Per data analysis |
+
+---
+
+## 16. Conversation-Extracted Rules (309 conversations + Fathom transcripts)
+
+### Budget Routing
+- $5K/month minimum per platform (Cade/Peterson)
+- $3K/month minimum for Google Ads-only
+- Under $1,500/month: disqualify entirely
+- $1,500-$5K: route to Baran
+- Cade requires $5K/month guaranteed for 3 months
+- Non-USD clients need $10-20K USD minimum
+
+### Pricing
+- $75/hr minimum on proposals regardless of posted budget
+- Consulting: $250/hr
+- Management: $1,500/mo minimum per platform, 20% of spend up to $30K
+- Audit: $400 per platform
+
+### Communication
+- Ask about ad spend before booking calls
+- Don't volunteer pricing unprompted
+- Send calendar immediately when lead wants a call
+- Never offer pre-call work
+- 5-minute reply target
+- On Upwork, Samuel is an individual expert (don't reveal team unprompted)
+
+---
+
+## 17. Data Infrastructure
+
+### Automated Pipelines
+- Daily client stats sync: `scripts/upwork_client_stats_sync.py` (5 PM launchd)
+- Conversation sync: `~/upwork-api/sync_conversations.py` (hourly launchd)
+- Token refresh: `~/upwork-api/refresh.py` (12-hour launchd)
+
+### Database Tables
+- `upwork_jobs`: 4,012 rows, master table (87 columns)
+- `upwork_leads`: ClickUp lead pipeline
+- `upwork_conversations`: 309 conversations, 3,056 messages
+
+### Spreadsheet
+- 75 columns (A through BW), synced from DB
+- BT-BW added this session: Invites Sent, Required Hours Worked, Client Country, Avg Interviewed Bid
+
+### Critical: Enrichment Query
+Raw DB messaged/sales_call/won undercount by ~40%. All analysis must use the ClickUp enrichment join. See `memory/upwork_data_analysis.md` for the query.
+
+---
+
+## 18. Open Items
 
 - Interviewing-at-apply-time signal untested (ghost-job signature) — would need capturing the panel value at apply
 - Qualifying-questions regime flip — investigate answer quality post-Queenie
