@@ -357,7 +357,26 @@ Raw DB messaged/sales_call/won undercount by ~40%. All analysis must use the Cli
 
 ---
 
-## 18. Open Items
+## 18. Planned: Exhaustive 2-Way / 3-Way Interaction Scan (BLOCKED on client-data backfill)
+
+**Goal:** once client variables are backfilled, scan ALL variable pairs and triples for combinations that show a distinct, significant DECREASE in performance (skip-rule mining).
+
+**Blocked on:** manual UI backfill of client-profile fields that exist nowhere in the API and were never recorded (0% historical fill): client avg hourly rate paid, hours paid, member since, active hires, open jobs, hire rate, rating, # reviews, jobs posted, total spent. (`scripts/upwork_client_stats_sync.py` auto-captures rating/reviews/jobs-posted/spent/hires going forward, but only for OPEN jobs at sync time — historical rows need the manual UI pass.)
+
+**Backfill caveat to resolve first:** values captured from the UI today are CURRENT client stats, not stats at apply time. Fine for slow-moving fields (member since, rating, jobs posted), distorted for fast-moving ones (active hires, open jobs, total spent on long-running clients). Record the capture date alongside each backfilled row.
+
+**Method spec (so either session can execute):**
+1. Bin every variable to 3-5 levels; include established singles (props band, US-only req, avg-bid pool, low bid, rate structure, connect cost, invites, recs, engagement type, duration) plus the new client fields
+2. For every pair/triple: month-stratified inverse-variance pooled z on REPLY (primary) and CALL (confirmatory) vs the complement population
+3. Minimum cell n ≈ 80-100; smaller cells reported as "insufficient n," never as findings
+4. Multiple-comparison control is mandatory: thousands of hypotheses → Benjamini-Hochberg FDR (q=0.05); hard skip rules additionally require Bonferroni survival or a clean month sign-test record. Everything else goes to a "needs fresh-month confirmation" watch list
+5. An interaction only counts if it BEATS its best single-variable component (the pair must be worse than either variable alone predicts) — otherwise it's the single restated
+6. Report in standard format: Segment | Apps | View% | Reply% | Call% | Won, with month record
+7. Rank final skip-rule candidates by economics: connects saved vs replies/calls lost (per Section 1 pattern)
+
+---
+
+## 19. Open Items
 
 - Interviewing-at-apply-time signal untested (ghost-job signature) — would need capturing the panel value at apply
 - Qualifying-questions regime flip — investigate answer quality post-Queenie
