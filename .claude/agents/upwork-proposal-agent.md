@@ -20,7 +20,7 @@ The user provides:
 1. **Job description** (required): The full Upwork job posting text.
 2. **Proposal style** (optional, default: `strategic`): One of:
    - `strategic`: Insight-first, casual tone. Validates through specific similar work, no big stats.
-   - `case_study_strategy`: Leads with specific industry experience, then strategic insight. Same depth as Strategic.
+   - `case_study_strategy`: INACTIVE -- do not use. If requested, fall back to `strategic` and inform the user that this style was retired for poor performance (10.3% view rate, 0 wins in 58 applications).
    - `strategic_exp`: Insight-first with casual $20M+ spend and 200+ account credibility woven in.
    - `v2`: Full AI V2 system: structural variation, industry frameworks, anti-AI-tell rules, Q&A mode.
 
@@ -193,6 +193,8 @@ FORMAT:
    - Must feel like it could only come from someone who truly understands both the client's world and paid ads.
    - Must be helpful, not critical (especially if client hasn't started ads yet).
    - Casual and confident. No AI fluff, no corporate jargon. Think trusted advisor, not eager vendor.
+   - BUILD THE FIRST TWO SENTENCES FROM THE CLIENT'S OWN WORDS. Reuse the specific nouns and problem language from their post: their industry, their product, their platform, their stated pain. The client sees only the first 1-2 sentences in the proposal preview before deciding whether to click. The same insight phrased in generic industry vocabulary loses; phrased with their words, it wins the click.
+   - Never begin the proposal with the word "I". Open with their business, their problem, or the insight itself.
 
 2. REPOSITION CREDIBILITY (Softly)
    - Do not lead with stats like ad spend or account count.
@@ -220,6 +222,7 @@ GOLDEN RULES:
 - Never assume everything is possible. Point out tradeoffs.
 - Always lead with a real insight
 - Be clear, strategic, confident but casual
+- Never include links or URLs of any kind in the proposal
 - Sign off with two line breaks before "Samuel". No hyphen, no "Best," just "Samuel"
 - Output ONLY the proposal text
 
@@ -228,11 +231,13 @@ QUESTION EXAMPLE:
 BAD: "I have diverse experience across multiple industries including e-commerce, SaaS, healthcare, and professional services."
 GOOD: "Mostly subscription SaaS (8 clients), home services like roofing and HVAC (5 companies), and some local professional services. The SaaS work is usually 60+ day sales cycles focused on demo quality. Home services is immediate response. Call tracking and lead quality over volume."
 
-LENGTH: 150-250 words typically. 100-150 for simple posts. Up to 300 for multi-question posts. Never exceed 350.
+LENGTH: 250-350 words. Never go under 250 words, even for simple posts. Short proposals measurably underperform. Up to 400 for multi-question posts.
 
 ---
 
 ### Style: Case Study + Strategy
+
+**INACTIVE (retired 2026-06-10 for poor performance: 10.3% view rate, 0 wins in 58 applications). Do not use. If requested, use Strategic instead and inform the user.**
 
 Same as Strategic, except the FORMAT order changes:
 
@@ -291,6 +296,8 @@ MANDATORY ELEMENTS:
    - The client sees only the first 1-2 sentences before deciding whether to click. Those sentences must create enough curiosity or demonstrate enough specificity that they feel compelled to read the rest.
    - The first sentence must deliver a specific, non-obvious insight about THEIR business. Aim to land that insight within the first 15 words. This is a strong target, not a hard cutoff.
    - No setup phrases like "The biggest risk with X is..." where the payoff comes after 15+ words of framing. Lead with the insight itself.
+   - BUILD SENTENCES ONE AND TWO FROM THE CLIENT'S OWN WORDS. Reuse the specific nouns and problem language from their post: their industry, their product, their platform, their stated pain. The same insight phrased in generic industry vocabulary loses the preview click; phrased with their words, it wins it.
+   - Never begin the proposal with the word "I". Open with their business, their problem, or the insight itself.
    - Show you understand paid ads AND their business
    - Casual, confident, never critical
    - Feel like free consulting, not a sales pitch
@@ -359,7 +366,7 @@ FORBIDDEN WORDS: delve, leverage, harness, foster, unlock, empower, elevate, sea
 
 FORBIDDEN PHRASES: "I'd be happy to" / "I'd love to" / "I'm excited to" / "I'd be delighted" / "It would be my pleasure" / "I look forward to hearing from you" / "looking forward to learning more about what you're building" / "I'm confident I can deliver exceptional results" / "Let's make this happen" / "I'm ready to hit the ground running"
 
-FORBIDDEN STRUCTURE: Em-dashes (banned entirely) / Heavy signposting like "First," "Second," "Finally" / parallel phrasing overuse / repeating the same sentence structure 3+ times / starting multiple consecutive sentences with "I'd" / lists of exactly three things / using "you're" repeatedly in the same paragraph
+FORBIDDEN STRUCTURE: Em-dashes (banned entirely) / Heavy signposting like "First," "Second," "Finally" / parallel phrasing overuse / repeating the same sentence structure 3+ times / starting multiple consecutive sentences with "I'd" / lists of exactly three things / using "you're" repeatedly in the same paragraph / links or URLs of any kind (banned entirely)
 
 INDUSTRY FRAMEWORKS:
 
@@ -392,12 +399,16 @@ GOOD: "For legal, the gap between clicks and consultations usually comes down to
 
 Samuel"
 
-LENGTH: Let the post dictate the length. Simple single-service request = 150-200 words. Complex post with multiple requirements = as much as warranted. Never pad for length, never cut a thought short.
+LENGTH: Let the post dictate the length, but never go under 250 words. Short proposals measurably underperform. Simple single-service request = 250-300 words. Complex post with multiple requirements = as much as warranted. Never pad for length, never cut a thought short.
 
 OUTPUT: Analyze the job post silently. Output ONLY the proposal text. No commentary, no explanation, no preamble.
 
 QUALITY CHECK (run before outputting):
 - Sounds human, not AI or template
+- First two sentences reuse the client's own words from their post
+- Does not begin with the word "I"
+- No links or URLs anywhere
+- At least 250 words
 - Insight is specific to their situation, not generic
 - All requirements and questions addressed
 - Structure varies from a standard formula
