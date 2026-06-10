@@ -84,23 +84,21 @@ Read the posting carefully and reason about what is actually being asked, who is
 
 **RED FLAGS** (reason about each, don't just look for trigger words):
 
-1. **NO AGENCIES WANTED**: Does the posting explicitly and clearly state that they do not want an agency, only want an individual freelancer, or will not consider agency applicants? Only flag as red if directly stated. If the tone suggests they may prefer an individual but they never say it outright, flag as yellow instead.
+1. **COMPETING MARKETING/AD AGENCY SEEKING WHITE-LABEL HELP**: Is the poster a marketing agency or advertising agency that already offers ad management as a core service, and they want someone to do their ad work for them so they can resell it? This is the only white-label scenario that is a red flag. IMPORTANT: Creative agencies, SEO agencies, web design agencies, PR firms, or any business that does NOT offer ad management as a core service are NOT red flags. Creekside actively white-labels for these types of partners. A creative agency looking for someone to "lead paid acquisition for their client" is a GOOD fit, not a red flag. Only flag if the poster clearly runs ads themselves and wants cheap labor to scale their own ad management business.
 
-2. **COMPETING MARKETING/AD AGENCY SEEKING WHITE-LABEL HELP**: Is the poster a marketing agency or advertising agency that already offers ad management as a core service, and they want someone to do their ad work for them so they can resell it? This is the only white-label scenario that is a red flag. IMPORTANT: Creative agencies, SEO agencies, web design agencies, PR firms, or any business that does NOT offer ad management as a core service are NOT red flags. Creekside actively white-labels for these types of partners. A creative agency looking for someone to "lead paid acquisition for their client" is a GOOD fit, not a red flag. Only flag if the poster clearly runs ads themselves and wants cheap labor to scale their own ad management business.
+2. **FULL-TIME EMPLOYEE ROLE**: Does this read like they want a staff member rather than a freelance contractor? Consider whether they're describing an ongoing internal role with oversight responsibilities, team management, reporting structures, or expectations that go beyond a typical freelance engagement.
 
-3. **FULL-TIME EMPLOYEE ROLE**: Does this read like they want a staff member rather than a freelance contractor? Consider whether they're describing an ongoing internal role with oversight responsibilities, team management, reporting structures, or expectations that go beyond a typical freelance engagement.
+3. **AD BUDGET TOO SMALL**: If a specific monthly ad budget is mentioned and it is under $3,000/month, that is a red flag. Between $3,000-$5,000/month is a yellow flag. Only flag if a number is explicitly stated.
 
-4. **AD BUDGET TOO SMALL**: If a specific monthly ad budget is mentioned and it is under $3,000/month, that is a red flag. Between $3,000-$5,000/month is a yellow flag. Only flag if a number is explicitly stated.
+4. **WRONG SERVICE ENTIRELY**: The job has zero mention of Google Ads, Meta Ads, Bing Ads, TikTok Ads, programmatic advertising, PPC, SEM, pay-per-click, paid search, or paid media, and is exclusively about services Creekside does not offer. Only flag as red if none of Creekside's ad platforms or generic ad industry terms are mentioned at all.
 
-5. **WRONG SERVICE ENTIRELY**: The job has zero mention of Google Ads, Meta Ads, Bing Ads, TikTok Ads, programmatic advertising, PPC, SEM, pay-per-click, paid search, or paid media, and is exclusively about services Creekside does not offer. Only flag as red if none of Creekside's ad platforms or generic ad industry terms are mentioned at all.
+5. **TRAINING ONLY**: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them?
 
-6. **TRAINING ONLY**: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them?
+6. **CONVERSION TRACKING ONLY**: Is the entire scope limited to setting up, fixing, or auditing conversion tracking with no ad management implied?
 
-7. **CONVERSION TRACKING ONLY**: Is the entire scope limited to setting up, fixing, or auditing conversion tracking with no ad management implied?
+7. **SETUP ONLY WITH EXPLICIT HANDOFF**: The posting unmistakably states they ONLY want help with initial setup AND explicitly says they will take over management. A job that just mentions "set up" or "launch" without excluding ongoing work is NOT a red flag.
 
-8. **SETUP ONLY WITH EXPLICIT HANDOFF**: The posting unmistakably states they ONLY want help with initial setup AND explicitly says they will take over management. A job that just mentions "set up" or "launch" without excluding ongoing work is NOT a red flag.
-
-9. **UNSUPPORTED REGION**: Flag as yellow (not red) if EITHER: (a) The client is based outside English-speaking countries AND outside of Europe. (b) The client is in Europe but the campaign explicitly targets a non-English-speaking audience. Do NOT flag European clients who want English-language campaigns.
+8. **UNSUPPORTED REGION**: Flag as yellow (not red) if EITHER: (a) The client is based outside English-speaking countries AND outside of Europe. (b) The client is in Europe but the campaign explicitly targets a non-English-speaking audience. Do NOT flag European clients who want English-language campaigns.
 
 **YELLOW FLAGS**:
 
