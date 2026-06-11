@@ -39,15 +39,15 @@ If proposal-origin evidence is present AND no job description was provided:
 
 1. Try to pull it from the database:
 ```sql
-SELECT id, title, description, platform, created_at
+SELECT id, job_name, job_description, platform, created_at
 FROM upwork_jobs
-WHERE lead_name ILIKE '%{lead_name}%' OR job_title ILIKE '%{keyword_from_conversation}%'
+WHERE client_name ILIKE '%{lead_name}%' OR job_name ILIKE '%{keyword_from_conversation}%'
 ORDER BY created_at DESC
 LIMIT 3;
 ```
 Also check:
 ```sql
-SELECT id, lead_name, job_title, job_description, source_url
+SELECT id, lead_name, description, upwork_proposal_url
 FROM upwork_leads
 WHERE lead_name ILIKE '%{lead_name}%'
 ORDER BY created_at DESC
@@ -70,9 +70,9 @@ If call evidence is found AND no transcript was provided:
 
 1. Try to pull the Fathom transcript from the database. Match by lead name and approximate call date:
 ```sql
-SELECT id, title AS meeting_title, meeting_date, LEFT(ai_summary, 300) AS summary
+SELECT id, meeting_title, meeting_date, LEFT(summary, 300) AS summary
 FROM fathom_entries
-WHERE (title ILIKE '%{lead_name}%' OR title ILIKE '%{company_name}%')
+WHERE (meeting_title ILIKE '%{lead_name}%' OR meeting_title ILIKE '%{company_name}%')
   AND meeting_type IN ('discovery', 'sales', 'client_call')
 ORDER BY meeting_date DESC
 LIMIT 5;
@@ -260,8 +260,8 @@ Filter results to `fathom_entries` table. Use meeting_title, meeting_date, summa
 
 Alternatively query directly:
 ```sql
-SELECT id, title AS meeting_title, meeting_date,
-       LEFT(ai_summary, 500) AS summary, key_topics, action_items
+SELECT id, meeting_title, meeting_date,
+       LEFT(summary, 500) AS summary, key_topics, action_items
 FROM fathom_entries
 WHERE meeting_type IN ('discovery', 'client_call', 'sales')
 ORDER BY meeting_date DESC
