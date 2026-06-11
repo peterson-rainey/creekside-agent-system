@@ -147,9 +147,6 @@ Or use: `get_full_content('fathom_entries', '{fathom_entry_id}')`
 
 ### Pricing Rules
 - Do NOT volunteer pricing unless the lead explicitly asks or shares their ad spend.
-- When a lead shares their ad spend, use pricing tiers in Company Rules to calculate their fee and give the dollar amount as an estimate (e.g. "Based on that spend level, our fee would be around $X/month").
-- Do NOT reveal the percentage tiers or calculation formula unless the lead specifically asks how pricing is structured.
-- If they ask how pricing is structured, share that it is a percentage of ad spend that scales down as their budget grows, starting at a $1,500/month minimum per platform. For the monthly cap amount, pull the current cap from company_rules at generation time (do NOT hardcode it here) and include it only if found.
 - **Default lead-facing pricing answer when asked directly:** "Our pricing is performance-based and custom for every client. For specifics, we hop on a call." Do not quote dollar amounts or minimums unprompted.
 - **If the lead pushes for specifics**, give this verbatim (substitute actual calendar link): "For context, one client we work with is on a $2,000 retainer plus a percentage of ad spend bonus tied to hitting ROAS and spend goals. That client spends around $30K/month. Every client's structure is different based on their situation. Want to hop on a call to figure out what makes sense? [calendar link]"
 - Internal pricing minimums and caps (pulled from company_rules at generation time) are INTERNAL VALIDATION ONLY. Never quote them to leads as a minimum, floor, or price range.
