@@ -472,6 +472,18 @@ Sent to Queenie and Cade. All changes apply immediately.
 - Rename chats to the lead name for reuse on multi-message threads
 - Don't reupload everything -- reuse the same named chat
 
+### Additional Response Rules (Peterson-approved, 2026-06-11)
+1. First sentence of every response must BE the direct answer. No filler before it ("happy to share," "great question," "absolutely").
+2. Never restate what the client just told you. If they described their setup, don't describe it back.
+3. Remove the "we just wrapped a campaign for [your exact industry]" template entirely. If you have real experience, name the client or give a specific detail. If you don't, say so honestly.
+4. When a client says "sure, tell me" or "send it over" -- deliver the actual information. Not a teaser, not a menu without numbers, not another CTA.
+5. Double-check client names before sending. Three misspellings found in last 2 months.
+6. "$10K Profit Recovery Audit" / "247-point checklist" -- maximum ONE mention per lead across the entire conversation. Never repeat it in follow-ups.
+7. Pricing escalation flow when asked:
+   - First: "Our pricing is performance-based and custom for every client. We'd need to hop on a call to give you accurate numbers."
+   - If they push for specifics: Give the New Mason example -- "$2,000 retainer plus a percentage of ad spend bonus tied to hitting ROAS and spend goals. That client spends around $30K/month."
+   - Then: "Every client's structure is different based on their situation. Want to hop on a call to figure out what makes sense? [calendar link]"
+
 ### Specific Corrections (from conversation audit)
 - Joseph Nguyen: He asked detailed questions, we just sent a calendar link. Answer all questions THEN ask to book.
 - Taylor Cyr: Same issue -- answer first, then route to call.
