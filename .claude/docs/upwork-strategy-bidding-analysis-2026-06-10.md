@@ -357,11 +357,13 @@ Gradual, all-band decline = platform-wide, not Queenie-specific.
 ### Critical: Enrichment Query
 Raw DB messaged/sales_call/won undercount by ~40%. All analysis must use the ClickUp enrichment join. See `memory/upwork_data_analysis.md` for the query.
 
-### Win-count reconciliation (2026-06-10)
-Different sections of this doc cite different total win counts. Verified row-by-row:
-- **Enriched analysis dataset (3,741 scraped application rows): 36 wins.** This is a SUPERSET of the sheet within its row range — it catches all 27 sheet-marked wins plus 9 ClickUp-confirmed wins the sheet's WON column lags on. It missed zero.
-- **Higher counts (~58) come from scope, not better accuracy**: ~10 wins sit in sheet rows newer than the analysis snapshot (sheet now 4,056 rows), and the remainder are ClickUp lead wins with no matched application row (DMs/invites/synthetic dashboard entries). Valid for total-wins reporting; NOT usable for per-application rate analysis.
-- Rule: per-application rate tables in this doc are correct as-is; treat their "Won" columns as conservative by ~10 on recent rows.
+### Win-count reconciliation (2026-06-10, FINAL — full re-verification against fresh DB enrichment)
+Re-built the ClickUp enrichment fresh from the DB and diffed row-by-row against the analysis snapshot:
+- **Zero outcome flips.** All 3,741 analyzed rows have identical e_msg/e_call/e_won in the fresh enrichment. No analysis in this doc used stale outcomes; nothing needs re-running.
+- **The 36 vs 58 win gap is funnel scope, not accuracy.** Full DB = 4,041 rows / 58 wins. The 300 rows outside the analysis set are 135 Invites + 98 DMs + 56 Outreach + 11 untyped, carrying 22 wins (9 DM, 8 Invite, 4 untyped, 1 Outreach) and 80 calls. These are mostly INBOUND — a different funnel that never passes through job screening.
+- **Correct usage:** bidding/screening rules must use the cold-outreach set (36 wins). Total-business win reporting uses the full enrichment (58). Never mix them. Only 1 outreach win sits outside the analysis set.
+- ClickUp is the source of truth for ALL outcome fields (Peterson, 2026-06-10). The sheet's MESSAGED/SALES CALL/WON columns and pivot tabs are outdated — sheet lagged 9 ClickUp-confirmed wins at verification. Sheet remains authoritative only for apply-time INPUT fields. Saved as agent_knowledge correction `4184a8f8`.
+- Data error found: one row has application_date 2026-11-15 (future date) — needs fixing in source.
 
 ---
 
