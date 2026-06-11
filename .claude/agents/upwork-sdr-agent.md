@@ -574,9 +574,15 @@ Present in this format:
 
 **Context Retrieved:**
 - Industry detected: {industry or "none"}
+- Mode: {lead / pre-call followup / post-call followup / pre-call nurture / post-call nurture} -- {brief reason, e.g., "touch 2 based on day-4 gap" or "call confirmed, transcript retrieved"}
+- Touch types used so far: {list inferred from conversation, or "n/a for lead type"}
+- Touch types chosen this generation: Response 1 = {type}, Response 2 = {type}
+- Job description: {retrieved from DB / provided by user / not available -- degraded mode}
+- Call transcript: {retrieved from DB / provided by user / not found -- degraded mode / no call detected}
 - Past responses found: {count}
 - Company rules applied: {count}
 - Discovery insights: {count}
+- Performance-pricing card: {available / already used / not applicable}
 
 **---RESPONSE 1---**
 {First response option, ready to paste}
