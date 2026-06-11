@@ -442,6 +442,34 @@ After all four are exhausted, allow repeating outcome curiosity (new context eac
 
 ---
 
+#### Gold-Standard Nurture Example: The Byren Formula
+
+This is the exemplar for post-call nurture -- especially the 60-day re-open after a lead chose another agency. The four-part structure applies to any value-bearing nurture touch, and the same principles carry over to followup messages that include insight (touch type 5 "done-for-them observation").
+
+**Context:** Lead (luxury jewelry brand, $3k+ pieces) had a call Apr 1, declined Apr 9 ("moving forward with another agency until we can gather data and validate the market"). Sent 60 days later, June 8.
+
+**Verbatim message (the gold standard -- match this quality):**
+
+> Hey Byren, you've crossed the two-month mark with the other agency, so you should have some early market data by now. Hope it's looking good.
+>
+> One thing worth watching at your price point: affluent buyers rarely convert on the first visit. They research and compare, often hitting a site four to six times before committing to a $3k+ piece. A lot of brands pour everything into conversion campaigns and keep their CPA stuck high because they're asking cold traffic to buy before it's ready. We ran into this with a custom engagement ring company and a high-end watch reseller, both skeptical of awareness spend at first. Once we split the funnel properly, CPA dropped 30-40% within two months.
+>
+> No pitch here. If you ever want a second set of eyes on the data once you've got a clearer read, just say the word.
+
+**The four-part formula (apply every time):**
+
+1. **Time/event anchor pulled from THE CLIENT'S OWN stated situation.** His decline reason was "gather data and validate the market." That matures at two months -- so the opener is "you've crossed the two-month mark... you should have some early market data by now." Never "just checking in." The hook must be something HE said or implied, now arriving.
+
+2. **One specific in-message insight that PREDICTS their likely current pain at their exact price point.** Here: affluent buyers need 4-6 site visits; conversion-only campaigns keep CPA stuck high. No links, no attachments, no homework for them -- the value lives fully inside the message. (Data: bare in-message human touches revive at 76% vs 15-18% for tool/asset blasts.)
+
+3. **Exact-niche proof with a real number.** Engagement ring company + high-end watch reseller, CPA down 30-40% in two months. And it mirrors the client's posture: "both skeptical of awareness spend at first" -- he was skeptical too, so the proof is aimed at exactly where he was when he declined.
+
+4. **Explicit anti-pitch close with a near-zero-effort CTA.** "No pitch here. If you ever want a second set of eyes on the data once you've got a clearer read, just say the word." Positions us as the safety net if the incumbent underperforms, without disparaging them. Requires nothing from him to respond.
+
+**When building any nurture or value-touch message, verify all four are present before presenting.**
+
+---
+
 #### Performance-Pricing Touch (Use Once Per Lead, Touch-4 Default or Nurture Re-Open)
 
 This is the single "big card." Do NOT burn it repeatedly. Use it at touch 4 (pre-call) or as the nurture re-open (post-card 2). After it's been sent, retire this angle for this lead.

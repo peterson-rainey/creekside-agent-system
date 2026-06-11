@@ -412,7 +412,114 @@ Re-built the ClickUp enrichment fresh from the DB and diffed row-by-row against 
 
 ---
 
-## 19. Open Items
+## 19. Lead Response Process Overhaul (Peterson directive, 2026-06-11)
+
+Sent to Queenie and Cade. All changes apply immediately.
+
+### Response Speed & Confidence Routing
+- When confident about response: respond within 5 minutes. Still send the message + lead's context to Peterson/Cade for accuracy check.
+- When less confident: run by Peterson or Cade first. If no response within 2 hours, send anyway.
+
+### Call Booking (top priority)
+- When lead is trying to book a call: book by any means necessary, ASAP
+- If they ask about availability: send calendars + a few specific times same-day and next-day
+- If they ask about same-day: check Cade/Peterson's calendar yourself, tell lead what's free, book it for them, notify Cade/Peterson via Google Chat
+- If they send their own calendar: coordinate with Melvin or Cyndi to book ASAP on their calendar
+- If they ask to book: keep the message SHORT. No AI slop when all they need is a calendar link.
+- They do NOT need to confirm ad spend before booking. Route to Baran after if needed, but book first.
+
+### Baran Positioning
+- Position Baran as "our small business consultant" and "my partner" -- same level as Cade
+- Cade = Meta Ads expert. Baran = small business expert.
+- Never say "we have a minimum of $5K" as the reason for redirecting
+- Stay in sales mode during the redirect -- position Baran as the best solution, not a handoff
+- When unqualified: "My partner Baran specializes in helping businesses at your stage. He'd be the best person to talk to about this."
+
+### Baran Redirect Follow-Up
+- Still send a couple of follow-ups after redirecting to Baran (adjusted sequence, coordinated with Baran)
+- Automation will email Queenie when a lead books through Baran's calendar
+- If link sent but no booking: follow up next day
+- If still no response: one more follow-up 2 days later
+- If still nothing: move to lost follow-up, 60-day cycle
+- If booking email received: move to Referred status
+
+### Response Quality Rules
+- Keep answers short to basic questions. Don't over-elaborate.
+- Don't repeat the client's words back to them.
+- Don't mirror their language unnecessarily.
+- Answer direct questions directly -- first sentence is the answer.
+- No filler phrases: "happy to share," "happy to walk through," "great question," "absolutely," "that's exactly"
+- When asked about pricing: "Our pricing is performance-based and custom for every client. We'd need to hop on a call to give you accurate numbers."
+- Confirmation messages: short and sweet ("Great, see you then.")
+- No generic template messages -- use Claude to write everything
+- Pre-call warmup messages must NOT ask questions already answered in the job description or conversation
+
+### Follow-Up Cadence
+- 1-2 days after last message
+- 2 days later
+- 2 days later
+- 6 days later
+- 1 week later
+- Then every 60 days until they say stop, or 1 year, whichever first
+- Don't repeat follow-ups -- each must be different
+- Send follow-ups on ALL channels: Upwork, email, LinkedIn
+- Connect with every prospect on LinkedIn via Cade and Peterson accounts
+
+### AI Usage Rules
+- Include the full job description AND entire conversation in every Claude prompt
+- Use Opus with 1M token context window
+- Open a new chat for every new conversation
+- Rename chats to the lead name for reuse on multi-message threads
+- Don't reupload everything -- reuse the same named chat
+
+### Specific Corrections (from conversation audit)
+- Joseph Nguyen: He asked detailed questions, we just sent a calendar link. Answer all questions THEN ask to book.
+- Taylor Cyr: Same issue -- answer first, then route to call.
+- Johnathan Flanagan: We turned him down based on ad spend instead of routing to Baran as the expert.
+- Stan the Men: 60-day follow-up said "I guess the timing isn't right" -- makes no sense 2 months later. Each follow-up must provide value.
+
+---
+
+## 20. Conversation Audit Findings (2026-06-10/11)
+
+### Drop-Off Analysis (155 conversations, Feb 14+)
+| Reason | Count | % |
+|---|---|---|
+| Follow-ups ignored after engagement | 68 | 43.9% |
+| Budget too low | 18 | 11.6% |
+| Other (project paused, scam, tech) | 14 | 9.0% |
+| Not a fit / we turned away | 13 | 8.4% |
+| Went with someone else | 8 | 5.2% |
+| Ghosted after $5K minimum | 7 | 4.5% |
+| Just stopped (no reason) | 7 | 4.5% |
+| Wanted freelancer/coaching | 6 | 3.9% |
+| Calendar friction | 5 | 3.2% |
+| Handoff confusion | 4 | 2.6% |
+| Ghosted after budget question | 3 | 1.9% |
+| Pricing model objection | 2 | 1.3% |
+
+### Response Quality (last 3 months, correct timestamp ordering)
+| Rating | Count | % |
+|---|---|---|
+| Appropriate | 64 | 47.8% |
+| We didn't respond | 58 | 43.3% |
+| AI slop | 4 | 3.0% |
+| Formulaic | 2 | 1.5% |
+| Can't tell | 6 | 4.5% |
+
+Non-response rate WORSENED from 32.4% (full dataset) to 43.3% (last 3 months).
+
+### Overelaboration Audit (283 conversations, 6 months)
+- 47 instances: 19 from the "check my profile" template, 28 genuine overelaboration
+- 14.8% of conversations have at least one
+- Average response to short client messages: 114 words (should be 15-40)
+
+### Active Issues (30 of 46 still happening in last 2 months, 0 fixed)
+Top 5 by volume: "watch my profile video" (44 mentions), "just wrapped a campaign" fabricated (31), $5K minimum as rejection (28), messages unanswered (25), long conversations below minimums (17)
+
+---
+
+## 21. Open Items
 
 - Interviewing-at-apply-time signal untested (ghost-job signature) — would need capturing the panel value at apply
 - Qualifying-questions regime flip — investigate answer quality post-Queenie
