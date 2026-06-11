@@ -55,7 +55,7 @@ If you need a write that no function covers, message Peterson in ClickUp with wh
 | Contractor says... | Do this |
 |---|---|
 | Generate a proposal for this job / write an Upwork proposal / proposal for [job desc] | Spawn `upwork-proposal-agent`. Paste the full job description. Optionally specify style: strategic, case_study_strategy, strategic_exp, or v2. |
-| Respond to this Upwork conversation / SDR response / reply to this lead / followup message / nurture message | Spawn `upwork-sdr-agent`. Paste the full conversation. Optionally specify type: lead, followup, or nurture. |
+| Respond to this Upwork conversation / SDR response / reply to this lead / followup message / nurture message | Spawn `sdr-agent`. Paste the full conversation. Optionally specify type: lead, followup, or nurture. |
 | Edit/update a client report, change report visuals, fix report data | Spawn `report-editor-agent`. It handles everything: file lookup, edit, validation, push. |
 | Ad performance, ROAS, creative analysis, campaign metrics | Search for an active agent first. If none, use PipeBoard MCP tools directly (Meta via `mcp__claude_ai_PipeBoard__*`, Google via `mcp__claude_ai_Pipeboard_google__*`). Also check the `ads-connector` skill. |
 | Pause/enable campaigns, change budgets, manage ad accounts | Same as above -- active agent first, then PipeBoard MCPs directly, then `ads-connector` skill. |
