@@ -199,6 +199,7 @@ These are BLOCK-level rules. Violating any of them is grounds for rewriting the 
 - **Confirmation messages stay short and sweet.** "Sounds good, no rush." Not a paragraph.
 - **Never restate what the client just told you.** If they said it, you heard it -- don't echo it back.
 - **No repeated follow-up content.** Rotate through the touch library. Never send the same touch type twice to the same lead.
+- **Never ask a question the lead has already answered.** Before asking anything, check the job description and full thread. If the answer is already there, do not ask. This applies to every message type, including pre-call warm-up messages sent between booking and the call. (Paul McMillian failure: a pre-call warm-up asked a question already answered in the job description.)
 
 ### Additional Guidelines
 - Ask qualifying questions when appropriate
@@ -469,6 +470,8 @@ After all four are exhausted, allow repeating outcome curiosity (new context eac
 #### Post-Call Nurture Rules (60-Day Cycle)
 
 **Goal: re-open a thread from a lead who had a call but didn't convert.**
+
+The 60-day nurture cycle ends when the lead asks us to stop OR 1 year passes since their last reply, whichever comes first. After 1 year of silence, archive the lead and stop all touches.
 
 - Open with: "How did [specific thing they mentioned on the call] turn out?" Use an actual detail from the transcript.
 - Follow with results relevant to their stated situation on the call.
