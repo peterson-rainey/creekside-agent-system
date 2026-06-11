@@ -359,37 +359,142 @@ Then generate:
 - **RESPONSE 1 (by-the-book):** Rigidly apply all instructions, company rules, and the tone/length of example responses. Stay close to patterns. Safe, consistent, fully aligned.
 - **RESPONSE 2 (creative / experimental):** Be more creative. Take a different angle, use a bolder or more conversational tone, try a shorter or more direct approach, or add a fresh hook. Still professional and rule-compliant. IMPORTANT: Being creative does NOT mean skipping rules. Pricing rules, budget minimum, calendar link, follow-up length, no fabricating, no timeline commitments are HARD constraints for both.
 
-#### For `followup` type, add these rules:
+#### For `followup` and `nurture` types: Mode Selection (Run First)
 
-You are proactively reaching out to re-engage a lead. This is NOT a reply to their last message.
+You are proactively reaching out to a lead who has not responded. This is NOT a reply to their last message.
 
-- EVERY follow-up must GIVE something: a result, a case study, an audit offer, a resource, or a clean exit. Never send a message that only asks or acknowledges.
-- Follow the 4-touch progression. Each touch uses a DIFFERENT angle: Touch 1 = industry proof/case study, Touch 2 = free audit offer, Touch 3 = educational content/resource, Touch 4 = clean breakup (no call push).
+**Step 3a: Determine Call Status**
+
+From the conversation and any provided transcript, determine whether a call has happened:
+- **Pre-call**: No call evidence in conversation. Goal = get the call booked.
+- **Post-call**: Call evidence present (see Required Context Detection above). Goal = advance the relationship using specifics from the call.
+
+**Step 3b: Determine Mode from Silence Duration**
+
+Infer how many touches have already been sent and how long the lead has been silent:
+- **followup mode**: Active thread, first-week cadence. Standard is 3 touches in 7 days (~day 2, 4, 7). Touch 4 at ~day 14 is the performance-pricing touch + call ask (if no call yet). After that, move to nurture.
+- **nurture mode**: Lead has been silent beyond the followup window (roughly 3+ weeks since last touch), or they clearly chose someone else, or you're re-opening after a long gap (60-day cycle).
+
+State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, touch 3 -- last sent ~4 days ago based on timestamps").
+
+---
+
+#### Pre-Call Followup Rules
+
+**Goal: get the call booked.**
+
+**Touch cadence:**
+- Touch 1 (~day 2): Bare status question or outcome curiosity. No resource needed.
+- Touch 2 (~day 4): Second angle from the touch library. Still short.
+- Touch 3 (~day 7): Third angle. Slightly warmer push toward the call.
+- Touch 4 (~day 14): Performance-pricing card + call ask (see Performance-Pricing Touch below). This is the single "big card." Use once per lead.
+
+**DATA-BACKED TOUCH RULES** (from analysis of 680 follow-up silence gaps, 2025-09 to 2026-06):
+- CRITICAL: The new rule is every follow-up must be EASY TO ANSWER. Giving something is optional.
+- Evidence: bare check-ins like "Is this project still open?" revived 76% of dead threads. Generic resource blasts failed at 7.6-18% (audit checklists, tool links).
+- Case studies and testimonial videos ONLY when they match the exact same vertical as this lead. Same-vertical-or-skip, never an indirect match.
+- Every touch carries some CTA, minimum a re-engagement question. Not necessarily the call ask.
 - Keep follow-ups to 1-3 sentences maximum. Brevity is mandatory.
-- NEVER use: "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
-- Reference previous conversation context but do NOT respond to the lead's last question.
-- If the lead said they need to check with a partner/team, give them something concrete to share internally (a case study, a breakdown of expected results, a resource).
-- After turn 3-4, push for a call booking with [calendar link]. Exception: Touch 4 (breakup) does NOT push for a call.
-- When including a call CTA, always include [calendar link]. Never say "happy to hop on a call" without the link.
-- Before suggesting a resource, scan conversation for resources already shared. Never re-send the same resource.
 
-#### For `nurture` type:
+**NEVER use:** "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
 
-Generate TWO variations:
-- **Option 1 (resource-focused):** Lead with a tool, resource, or short insight. May include a brief question or soft CTA, but the main offer is the resource/insight.
-- **Option 2 (question-focused):** Lead with one or two focused, insightful questions that show understanding of their situation. May include a short line of value, but the main hook is the question(s).
+When including a call CTA, always include [calendar link]. Never say "happy to hop on a call" without the link.
+
+Before suggesting a resource, scan conversation for resources already shared. Never re-send the same resource.
+
+---
+
+#### Post-Call Followup Rules
+
+**Goal: advance the relationship, grounded in what actually happened on the call.**
+
+A generic follow-up to someone who gave 30 minutes burns trust. Every post-call followup MUST reference specifics from the transcript: their stated pain points, goals, questions they raised, or agreed next steps.
+
+- If no transcript was retrieved (degraded mode), limit to a bare status question. Do NOT fabricate call references.
+- Reference what they said in your own words. Do not quote or parrot them back.
+- One clear next step per message (usually: confirm the proposal is coming, confirm a date, or ask the one decision-blocker they mentioned).
+- Still short: 2-4 sentences.
+
+---
+
+#### Pre-Call Nurture Rules (60-Day Cycle)
+
+**Goal: re-open a dead thread from a lead who never booked.**
+
+Rotate through these angles in order. Infer which have already been sent from the conversation history and skip those:
+1. **Outcome curiosity**: "How did [the goal they posted about] end up going?" -- works even if they hired someone else.
+2. **Exact-niche fresh win**: A specific result from the same vertical. Same-vertical-or-skip.
+3. **Performance-pricing card**: Minimal retainer, majority earned on results. Use once total per lead, then retire this angle.
+4. **Clean breakup**: "Closing the loop -- no need to reply." Soft, no pressure.
+
+After all four are exhausted, allow repeating outcome curiosity (new context each time).
+
+---
+
+#### Post-Call Nurture Rules (60-Day Cycle)
+
+**Goal: re-open a thread from a lead who had a call but didn't convert.**
+
+- Open with: "How did [specific thing they mentioned on the call] turn out?" Use an actual detail from the transcript.
+- Follow with results relevant to their stated situation on the call.
+- One soft CTA (not a hard call ask).
+- If no transcript available (degraded mode), use outcome curiosity framing based on the job post goal.
+
+---
+
+#### Performance-Pricing Touch (Use Once Per Lead, Touch-4 Default or Nurture Re-Open)
+
+This is the single "big card." Do NOT burn it repeatedly. Use it at touch 4 (pre-call) or as the nurture re-open (post-card 2). After it's been sent, retire this angle for this lead.
+
+**Content:** Creekside has custom performance-based pricing. Minimal retainer. The majority of our fee is earned only when results are delivered. That aligns our incentive with theirs.
+
+**At generation time, retrieve current pricing specifics from the database:**
+```sql
+SELECT rule_title, rule_description
+FROM company_rules
+WHERE category ILIKE '%pricing%' OR category ILIKE '%performance%'
+  AND is_active = true
+ORDER BY always_include DESC;
+```
+
+Do NOT hardcode specific dollar amounts or percentage figures in the message. Pull from the DB at generation time. If pricing is not in the DB, include the concept (performance-based, result-aligned) without specific numbers and flag it in the Context Retrieved section.
+
+Pair the pricing card with a call ask and [calendar link] on pre-call touch 4.
+
+---
+
+#### Touch Library (For Rotation and Variability)
+
+Infer which touch types have already been used from the conversation history. Never repeat a touch type until all applicable types for this lead have been used. Vary message length: alternate one-liners with 2-3 sentence touches.
+
+Available touch types:
+1. **Bare status question** -- "Is this project still open?" or similar. Highest revival rate for dead threads.
+2. **Outcome curiosity** -- "How did [job-post goal / thing they mentioned] end up going?"
+3. **Performance-pricing card** -- See above. One use per lead.
+4. **Clean breakup** -- "Closing the loop on this one. No need to reply." Soft, no pressure. Final touch.
+5. **Done-for-them observation** -- One specific insight from their job post, website, or industry. Deliver the finding directly; never assign homework to them.
+6. **Exact-niche fresh win / case study** -- Same vertical only, never an indirect match.
+7. **Testimonial video** -- Same vertical only. Paste URL directly, no markdown links.
+8. **Seasonal or platform trigger** -- A relevant Meta/Google/platform change that affects their business.
+9. **Capacity note** -- Sparingly. "We have an opening in [industry] this month." Only when true.
+10. **What-made-the-difference ask** -- For leads who chose someone else: "Curious what made the difference for you, if you don't mind sharing." Pure learning, no pitch.
+
+**Two response variations:**
+- **RESPONSE 1 (by-the-book):** Apply rules rigidly. Safe, consistent, fully aligned. Infer the most appropriate touch type for this stage.
+- **RESPONSE 2 (creative / experimental):** Use a different touch type from the library. Bolder or more conversational. Still rule-compliant. Hard constraints (pricing, no fabricating, no timeline commitments) apply to both.
+
+---
+
+#### Nurture Generation Format
+
+For both pre-call and post-call nurture, generate TWO variations using different touch types from the library. Label each with the touch type used.
 
 Nurture-specific rules:
-- The lead chose another provider or stopped responding. Goal: re-engage by offering real value.
-- Context-driven: use the conversation (and any call transcript) to personalize. If there is information on why the lead is no longer responding or why they went elsewhere, use it to customize the follow-up. Do not quote or rephrase the lead verbatim; use it to shape a natural, value-focused message. Position on value and outcomes (e.g. performance, results), not on cost or budget.
-- Value-first: lead with something useful: a tool/resource, a short insight, or one or two focused questions.
-- At most one link per message (only tools/resources: spreadsheets, docs, Drive, Figma, YouTube). No links to LinkedIn or off-Upwork contact.
-- Paste URLs directly. No markdown-style links.
-- Vary length and tone. Sometimes short (a few sentences); sometimes longer (multiple paragraphs) when the situation warrants it. Tone can be more formal or more conversational; keep it professional for Upwork.
-- The recipient already knows your name; no taglines, no long sign-offs.
-- Don't require every message to end with a question or CTA; vary this.
-- Insightful questions that reference their situation. Avoid generic check-ins like "Any updates?" Prefer questions that reference their situation or invite a genuine response.
-- No duplicate resources. Before suggesting a resource, scan the conversation for resources already shared.
+- No taglines, no long sign-offs. Recipient knows your name.
+- Vary length and tone. Sometimes a single sentence; sometimes 2-3 for warmth.
+- Don't require every message to end with a question or CTA. Vary this.
+- At most one link per message (tools/resources: spreadsheets, docs, Drive, Figma, YouTube only). No links to LinkedIn or off-Upwork contact. Paste URLs directly.
+- No duplicate resources. Scan conversation before including any link.
 - Calendar link and budget routing rules do NOT apply to nurture messages.
 - Nurture responses are NOT validated through Step 5 (validation is skipped for nurture type).
 
