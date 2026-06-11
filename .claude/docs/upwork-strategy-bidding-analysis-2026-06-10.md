@@ -336,19 +336,45 @@ Gradual, all-band decline = platform-wide, not Queenie-specific.
 - 5-minute reply target
 - On Upwork, Samuel is an individual expert (don't reveal team unprompted)
 
+### Reply-to-Booking Analysis (2026-06-10, FULL dataset: 795 rooms, 9-month window n=524)
+Backfilled all 486 missing rooms (DMs, invites, unmatched leads) + fixed 20-message truncation. 517 threads where the client replied; 22.8% booked.
+
+**Booking-ask timing is the #1 lever (z=3.4):**
+| When we proposed the call | Threads | Booked% | Won |
+|---|---|---|---|
+| Never proposed | 282 | 17.4% | 12 |
+| Immediately (0 client msgs first) | 34 | 20.6% | 1 |
+| **After 1 client msg** | **115** | **33.0%** | 4 |
+| After 2+ client msgs | 86 | 27.9% | 4 |
+
+**55% of replied threads never got a call proposal at all.** Failure modes of 399 lost threads: one-and-done 32%, fizzled-no-call-ask-ever 30%, engaged-after-ask 22%, explicit decline 10%, ghosted-at-ask 6%.
+
+Confirmed at full scale:
+- Baran/Baron referral threads book 7.1% vs 23.7% (z=2.0) — deliberate punts, expected
+- 29 lost threads end on an unanswered client question
+- 34 threads where the client wrote and we NEVER replied (11.8% booked, via other channels)
+
+Debunked at full scale (were artifacts of the 309-room sample):
+- First-reply latency: <1h = 25.4% vs >24h = 22.9% — no meaningful standalone effect; only total non-response hurts
+- Ad-spend gate on hot leads: only 8 instances, no rate difference (25.0% vs 26.7%)
+
+Era check: pre/post Queenie overall flat (23.6% vs 21.7%), but "ask after 1 client msg" converted 41.9% pre vs 22.6% post (z=2.2) — ask timing is right, ask execution post-era needs a read-through of those 53 threads.
+
+**Rule for Queenie:** propose the call in our first reply after the client's first message. Always answer their question in the same message as the ask. Never leave a client question as the last message in a thread.
+
 ---
 
 ## 17. Data Infrastructure
 
 ### Automated Pipelines
 - Daily client stats sync: `scripts/upwork_client_stats_sync.py` (5 PM launchd)
-- Conversation sync: `~/upwork-api/sync_conversations.py` (hourly launchd)
+- Conversation sync: `~/upwork-api/sync_conversations.py` (hourly launchd) — REWRITTEN 2026-06-10 to room-first: pages full `roomList`, syncs any room that is new or has newer activity, fetches up to 500 stories per room (old version required clickup_task_id + api_proposal_id, used `proposalRoom`, missed ~60% of rooms, and truncated threads at 20 messages)
 - Token refresh: `~/upwork-api/refresh.py` (12-hour launchd)
 
 ### Database Tables
 - `upwork_jobs`: 4,012 rows, master table (87 columns)
 - `upwork_leads`: ClickUp lead pipeline
-- `upwork_conversations`: 309 conversations, 3,056 messages
+- `upwork_conversations`: 795 conversations (ALL rooms incl. DMs/invites as of 2026-06-10 backfill); backfilled rows have NULL upwork_job_id/api_proposal_id — outcome matching for those is room_name → upwork_leads.lead_name
 
 ### Spreadsheet
 - 75 columns (A through BW), synced from DB
