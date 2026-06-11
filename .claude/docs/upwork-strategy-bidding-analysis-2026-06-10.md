@@ -312,7 +312,7 @@ Gradual, all-band decline = platform-wide, not Queenie-specific.
 
 ---
 
-## 16. Conversation-Extracted Rules (309 conversations + Fathom transcripts)
+## 16. Conversation-Extracted Rules (795 conversations + Fathom transcripts)
 
 ### Budget Routing
 - $5K/month minimum per platform (Cade/Peterson)
