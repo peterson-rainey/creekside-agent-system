@@ -59,7 +59,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | sales-call-helper-agent | Live call support -- talking points, objection handling, pricing |
 | proposal-generator-agent | Formal .docx proposals, retainer quotes, audit reports -- fetches live Google Doc template and customizes for the specific lead; outputs .docx + email draft |
 | upwork-proposal-agent | Quick Upwork proposals from a job posting. Paste a job description, get a ready-to-send proposal in 4 styles (strategic, case_study_strategy, strategic_exp, v2). Includes fit screening and case study matching. |
-| upwork-sdr-agent | Upwork conversation responses. Paste a conversation thread, get 2 response options (by-the-book + creative). Handles lead, followup, and nurture types. Validates for pricing leaks, banned phrases, timeline commitments. |
+| sdr-agent | Upwork conversation responses (and SDR responses generally as scope expands). Paste a conversation thread, get 2 response options (by-the-book + creative). Handles lead, followup, and nurture types. Validates for pricing leaks, banned phrases, timeline commitments. Alias: upwork-sdr-agent. |
 | case-study-builder-agent | Client case studies for proposals/social proof |
 
 ## Operations & Tasks

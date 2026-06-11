@@ -223,14 +223,14 @@ Split into "Always Apply" (always_include = true) and "Relevant" rules. For the 
 ```sql
 SELECT * FROM logged_search_all(
   'Lead said: ' || (extract last lead message from conversation),
-  20, NULL, NULL, 'upwork-sdr-agent'
+  20, NULL, NULL, 'sdr-agent'
 );
 ```
 Also do a keyword search:
 ```sql
 SELECT * FROM keyword_search_all(
   (key terms from conversation),
-  20, NULL, NULL, 'upwork-sdr-agent'
+  20, NULL, NULL, 'sdr-agent'
 );
 ```
 Filter results to `sdr_responses` table entries. These are historical response examples.
@@ -253,7 +253,7 @@ Deduplicate by first 200 characters of full_response to prevent canned message b
 ```sql
 SELECT * FROM logged_search_all(
   (lead's business type or industry from conversation),
-  5, NULL, NULL, 'upwork-sdr-agent'
+  5, NULL, NULL, 'sdr-agent'
 );
 ```
 Filter results to `fathom_entries` table. Use meeting_title, meeting_date, summary (truncated to 500 chars), key_topics, action_items.
@@ -273,7 +273,7 @@ Use semantic search to find emails that match Peterson's voice in the context of
 ```sql
 SELECT * FROM logged_search_all(
   'Samuel Rainey Upwork response ' || (key topic from conversation),
-  5, NULL, NULL, 'upwork-sdr-agent'
+  5, NULL, NULL, 'sdr-agent'
 );
 ```
 Filter results to `gmail_summaries` table. Take top 3 results, truncate each to 1500 characters. These are real email samples to match voice.
