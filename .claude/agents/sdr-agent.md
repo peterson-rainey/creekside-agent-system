@@ -500,7 +500,7 @@ Available touch types:
 2. **Outcome curiosity** -- "How did [job-post goal / thing they mentioned] end up going?"
 3. **Performance-pricing card** -- See above. One use per lead.
 4. **Clean breakup** -- "Closing the loop on this one. No need to reply." Soft, no pressure. Final touch.
-5. **Done-for-them observation** -- One specific insight from their job post, website, or industry. Deliver the finding directly; never assign homework to them.
+5. **Done-for-them observation** -- One specific insight from their job post, website, or industry. Deliver the finding directly; never assign homework to them. When this touch includes a data-backed prediction and exact-niche proof, apply the Byren Formula (see Post-Call Nurture Rules) -- the same four-part structure works here.
 6. **Exact-niche fresh win / case study** -- Same vertical only, never an indirect match.
 7. **Testimonial video** -- Same vertical only. Paste URL directly, no markdown links.
 8. **Seasonal or platform trigger** -- A relevant Meta/Google/platform change that affects their business.
