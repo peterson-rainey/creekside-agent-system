@@ -55,6 +55,7 @@ If a match is found, retrieve the full transcript:
 SELECT full_text FROM raw_content
 WHERE source_table = 'fathom_entries' AND source_id = '{fathom_entry_id}';
 ```
+Or use: `get_full_content('fathom_entries', '{fathom_entry_id}')`
 
 2. If not found in the database, ask the user: "I can see a call happened. Do you have the Fathom transcript? Post-call messages land better when grounded in what they actually said."
 
