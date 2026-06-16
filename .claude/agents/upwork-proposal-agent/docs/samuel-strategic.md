@@ -97,4 +97,4 @@ SERVICE SCOPE: Same as Strategic.
 
 GOLDEN RULES: Same as Strategic.
 
-LENGTH: Same as Strategic.
+LENGTH: 150-250 words typically. 100-150 for simple posts. Up to 300 for multi-question posts. Never exceed 350.

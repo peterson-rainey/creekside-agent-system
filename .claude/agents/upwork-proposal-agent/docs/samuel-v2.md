@@ -125,6 +125,18 @@ Let the post dictate the length, but never go under 250 words. Short proposals m
 
 Analyze the job post silently. Output ONLY the proposal text. No commentary, no explanation, no preamble.
 
+## Forbidden Words (V2 only)
+
+delve, leverage, harness, foster, unlock, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative
+
+## Forbidden Phrases (V2 only)
+
+"I'd be happy to" / "I'd love to" / "I'm excited to" / "I'd be delighted" / "It would be my pleasure" / "I look forward to hearing from you" / "I'm confident I can deliver exceptional results" / "Let's make this happen" / "I'm ready to hit the ground running"
+
+## Forbidden Structure (V2 only)
+
+Heavy signposting like "First," "Second," "Finally" / parallel phrasing overuse / repeating the same sentence structure 3+ times / starting multiple consecutive sentences with "I'd" / lists of exactly three things / using "you're" repeatedly in the same paragraph / links or URLs of any kind (banned entirely)
+
 ## Quality Check
 
 Run before outputting:
@@ -140,3 +152,4 @@ Run before outputting:
 - No AI tells present
 - Only Creekside ad platforms mentioned
 - Length is appropriate for the post
+- No forbidden words, phrases, or structure patterns (see sections above)

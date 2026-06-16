@@ -57,23 +57,14 @@ Read the docs/ files immediately after determining profile+style, before any oth
 
 ## Step 1: Gather Context
 
-**Industry experience:**
 ```sql
-SELECT industry_key, industry_label, keywords, business_name, platforms, result_statement
-FROM industry_experience ORDER BY industry_key;
-```
-- Group by `industry_key`. Collect: label, merged keywords, business names, platforms, result statements.
-- Count unique businesses per industry (`client_count`) and total unique businesses.
-
-**Case studies:**
-```sql
-SELECT id, client_name, industry_key, industry_label, platforms, key_result, summary, keywords, download_url
-FROM case_studies ORDER BY client_name;
+SELECT match_proposal_context('paste job description here');
 ```
 
-**Industry matching:** For each industry, check if any keywords (case-insensitive) appear as substrings in the job description. Stop after first match per industry.
-
-**Case study matching:** Count keyword hits per case study. Include only those with >= 1 hit. Sort by hit count descending (`relevance_score`).
+Replace the placeholder with the actual job description. The function returns a JSONB object with:
+- `matched_industries`: array of industries where any keyword appears in the job description, grouped by `industry_key`. Each entry has: `industry_key`, `industry_label`, `business_names`, `platforms`, `result_statements`, `client_count`.
+- `total_unique_businesses`: count of unique businesses across all matched industries.
+- `matched_case_studies`: array of case studies with >= 1 keyword hit, sorted by `relevance_score` descending. Each entry has: `id`, `client_name`, `industry_key`, `industry_label`, `platforms`, `key_result`, `summary`, `keywords`, `download_url`, `relevance_score`.
 
 **Case study enrichment** (relevance_score >= 3): Reference the top match's results naturally in the proposal. Keep it brief and casual.
 
@@ -85,18 +76,6 @@ FROM case_studies ORDER BY client_name;
 4. Plain prose only. No headers, no colons introducing lists.
 
 BEFORE OUTPUT: Scan for em-dashes and ** markers. Rewrite if found.
-
-## Forbidden Words
-
-delve, leverage, harness, foster, unlock, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative
-
-## Forbidden Phrases
-
-"I'd be happy to" / "I'd love to" / "I'm excited to" / "I'd be delighted" / "It would be my pleasure" / "I look forward to hearing from you" / "I'm confident I can deliver exceptional results" / "Let's make this happen" / "I'm ready to hit the ground running"
-
-## Forbidden Structure
-
-Em-dashes (banned entirely) / Heavy signposting like "First," "Second," "Finally" / parallel phrasing overuse / repeating the same sentence structure 3+ times / starting multiple consecutive sentences with "I'd" / lists of exactly three things / using "you're" repeatedly in the same paragraph / links or URLs of any kind (banned entirely)
 
 ## Shared Fit Check Rules
 
@@ -119,6 +98,8 @@ These apply to both profiles. Profile-specific overrides are in each profile's d
 7. **SETUP ONLY WITH EXPLICIT HANDOFF**: The posting unmistakably states they ONLY want help with initial setup AND explicitly says they will take over management. A job that just mentions "set up" or "launch" without excluding ongoing work is NOT a red flag.
 
 8. **UNSUPPORTED REGION**: Flag as yellow (not red) if EITHER: (a) The client is based outside English-speaking countries AND outside of Europe. (b) The client is in Europe but the campaign explicitly targets a non-English-speaking audience. Do NOT flag European clients who want English-language campaigns.
+
+9. **NO AGENCIES WANTED**: The job posting explicitly states they do not want agencies, marketing firms, or companies to apply. Flag as RED if they explicitly say "no agencies" or "freelancers only, no companies." Flag as YELLOW if the sentiment is implied but not stated outright (e.g., "looking for an individual freelancer" without explicitly rejecting agencies). Do NOT flag jobs that simply prefer individual freelancers without rejecting agencies.
 
 **YELLOW FLAGS:**
 1. **PERFORMANCE-ONLY PAY**: Does the client want to pay only based on results, or demand guaranteed ROI before a retainer?
