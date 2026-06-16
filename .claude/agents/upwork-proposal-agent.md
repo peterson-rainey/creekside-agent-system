@@ -478,14 +478,6 @@ When `profile = lindsey`, use this section INSTEAD of the Samuel styles above. T
 
 - Minimum $3,000/month. Meta Ads only. Never recommend Google/Bing budgets.
 
-### Lindsey Fit Check Overrides
-
-Red flag #4 (Wrong Service): ZERO mention of Meta Ads, Facebook Ads, Instagram Ads, paid social, email marketing, Klaviyo, Shopify, or e-commerce. Google-Ads-only jobs (no Meta/email) = red flag for Lindsey.
-
-Additional yellow flag: Google Ads is the sole focus with no Meta/email/social component. Fit risk, not auto-reject.
-
-NOT flags: Meta/Facebook/Instagram/paid social jobs. Email/Klaviyo/Mailchimp. Shopify/e-commerce/DTC. Any of Lindsey's industries. Ad creative/copy. Creative/SEO/web agencies seeking Meta specialist.
-
 ### Lindsey Case Study Override
 
 Prioritize case studies where `platforms` contains "Meta" or "Facebook" or "Instagram". Meta case studies rank higher at equal relevance_score.
