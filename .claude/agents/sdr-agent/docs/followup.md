@@ -8,7 +8,7 @@ Before proceeding, assess whether the pasted conversation appears complete. If i
 
 ## Lead-Reply Sanity Check
 
-If the lead's message is the most recent message in the thread (they replied and we haven't responded yet), this is a lead response, not a followup. Tell the user: "The lead just replied, so this is a response scenario, not a followup. Switching to lead mode." Then follow lead-response.md rules instead.
+If the lead's message is the most recent message in the thread (they replied and we haven't responded yet), this is a lead response, not a followup. Tell the user: "The lead just replied, so this is a response scenario, not a followup. Switching to lead mode." Then Read `docs/lead-response.md` and follow those rules instead.
 
 ## Step 1: Determine Call Status
 

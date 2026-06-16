@@ -10,7 +10,7 @@ Before proceeding, assess whether the pasted conversation appears complete. If i
 
 ## Silence Duration Sanity Check
 
-If the conversation shows recent activity (last touch within ~2 weeks), this may be a followup scenario, not nurture. Tell the user: "The last message was pretty recent. Did you mean followup instead of nurture?" Proceed with nurture only if the user confirms.
+If the conversation shows recent activity (last touch within ~2 weeks), this may be a followup scenario, not nurture. Tell the user: "The last message was pretty recent. Did you mean followup instead of nurture?" If the user confirms followup, Read `docs/followup.md` and follow those rules instead. Proceed with nurture only if the user confirms nurture.
 
 ## Step 1: Determine Call Status
 
