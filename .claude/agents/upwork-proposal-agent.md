@@ -114,7 +114,7 @@ These apply to both profiles. Profile-specific overrides are in each profile's d
 **YELLOW FLAGS:**
 1. **PERFORMANCE-ONLY PAY**: Pay only based on results.
 2. **SETUP ONLY (EXPLICIT HANDOFF)**: Clearly stated, no ongoing relationship wanted.
-3. **NARROW ONE-PROBLEM FIX**: Isolated issue. NEVER flag trial periods or short-term contracts.
+3. **NARROW ONE-PROBLEM FIX**: Client looking to solve one isolated issue with no broader help indicated. Use judgment about whether this could lead somewhere. NEVER flag trial periods, test engagements, or short-term contracts. These are normal in freelance work and routinely lead to long-term engagements. Examples: "2-week test", "1-month trial", "start with a small project" -- none of these are narrow fixes regardless of whether they explicitly mention scaling.
 4. **IMMEDIATE AVAILABILITY REQUIRED**: Hard requirement. Normal urgency ("ASAP") is not a flag.
 
 **IMPORTANT:** Reason about context, not keywords. Don't invent concerns. Don't flag based on industry. If no flags, return empty list.
