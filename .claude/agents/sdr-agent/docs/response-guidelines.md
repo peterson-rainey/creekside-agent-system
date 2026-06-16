@@ -37,7 +37,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 ## Pricing Rules
 - Do NOT volunteer pricing unless the lead explicitly asks or shares their ad spend.
 - **Default lead-facing pricing answer when asked directly:** "Our pricing is performance-based and custom for every client. For specifics, we hop on a call." Do not quote dollar amounts or minimums unprompted.
-- **If the lead pushes for specifics**, give this verbatim (substitute actual calendar link): "For context, one client we work with is on a $2,000 retainer plus a percentage of ad spend bonus tied to hitting ROAS and spend goals. That client spends around $30K/month. Every client's structure is different based on their situation. Want to hop on a call to figure out what makes sense? [calendar link]"
+- **If the lead pushes for specifics (the "New Mason" example)**, give this verbatim (substitute actual calendar link): "For context, one client we work with is on a $2,000 retainer plus a percentage of ad spend bonus tied to hitting ROAS and spend goals. That client spends around $30K/month. Every client's structure is different based on their situation. Want to hop on a call to figure out what makes sense? [calendar link]"
 - Internal pricing minimums and caps (pulled from company_rules at generation time) are INTERNAL VALIDATION ONLY. Never quote them to leads as a minimum, floor, or price range.
 - This is a HARD rule for BOTH response options.
 

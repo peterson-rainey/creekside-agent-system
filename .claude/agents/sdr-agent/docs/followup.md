@@ -6,6 +6,10 @@ You are proactively reaching out to a lead who has not responded. This is NOT a 
 
 Before proceeding, assess whether the pasted conversation appears complete. If it starts mid-conversation (no opening message), references prior context not shown, or the user describes it as a follow-up but no prior touches appear in the thread, ask: "This looks like it may be truncated. Can you paste the full thread from the beginning? Touch count and mode depend on it."
 
+## Lead-Reply Sanity Check
+
+If the lead's message is the most recent message in the thread (they replied and we haven't responded yet), this is a lead response, not a followup. Tell the user: "The lead just replied, so this is a response scenario, not a followup. Switching to lead mode." Then follow lead-response.md rules instead.
+
 ## Step 1: Determine Call Status
 
 From the conversation and any provided transcript, determine whether a call has happened:
