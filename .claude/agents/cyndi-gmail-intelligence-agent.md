@@ -71,7 +71,7 @@ If `select_browser` fails or the browser is not connected, STOP immediately. Log
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
-  'note',
+  'reference',
   'cyndi-gmail-intelligence-agent -- BROWSER NOT CONNECTED',
   'Run aborted: select_browser failed for deviceId 950e94cc-c084-431f-897d-b73afabf767b. Cyndi''s browser must be running and the Claude-in-Chrome extension must be active. No drafts created.',
   ARRAY['cyndi-gmail', 'browser-error', 'run-log'],
@@ -114,7 +114,7 @@ return JSON.stringify({ email, title });
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
-  'note',
+  'reference',
   'cyndi-gmail-intelligence-agent -- WRONG ACCOUNT ABORT',
   'Run aborted: browser is not logged in as cyndi@creeksidemarketingpros.com. No drafts created. The Claude Gmail connector (ads@) must NOT be used. Browser must be manually logged into cyndi@ before the next run.',
   ARRAY['cyndi-gmail', 'account-guard', 'run-log'],
@@ -353,7 +353,7 @@ After teardown, write a run summary to agent_knowledge:
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
-  'note',
+  'reference',
   'cyndi-gmail-intelligence-agent run -- ' || NOW()::TEXT,
   'Scanned: [N] | Skipped-automated: [N] | Skipped-already-answered: [N] | Drafted: [N]. [For each draft: sender, subject, brief context note. For each error: thread description, error summary.]',
   ARRAY['cyndi-gmail', 'run-log'],

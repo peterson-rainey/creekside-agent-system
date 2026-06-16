@@ -124,7 +124,7 @@ If `select_browser` fails or the browser is not connected, STOP immediately. Log
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
-  'note',
+  'reference',
   'peterson-gmail-draft-agent -- BROWSER NOT CONNECTED -- ' || NOW()::TEXT,
   'Run aborted: select_browser failed for deviceId 950e94cc-c084-431f-897d-b73afabf767b. Cyndi''s browser must be running with the Claude-in-Chrome extension active. The Claude app must be open. Peterson''s Gmail delegation must be active in Cyndi''s browser session. No drafts created.',
   ARRAY['peterson-gmail', 'browser-error', 'run-log'],
@@ -192,7 +192,7 @@ The `aria-label` MUST contain BOTH of the following strings (case-insensitive):
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
-  'note',
+  'reference',
   'peterson-gmail-draft-agent -- WRONG ACCOUNT ABORT -- ' || NOW()::TEXT,
   'Run aborted at account guard step. The browser account label does not confirm peterson@creeksidemarketingpros.com with Delegated status. No drafts created. Zero Gmail writes executed. Manual verification required: Cyndi''s browser must be logged into cyndi@ with Peterson''s Gmail delegation active.',
   ARRAY['peterson-gmail', 'account-guard', 'run-log', 'abort'],
@@ -503,7 +503,7 @@ After all threads are processed (or on abort), write a run summary:
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
-  'note',
+  'reference',
   'peterson-gmail-draft-agent run -- ' || NOW()::TEXT,
   'Account confirmed: [yes/NO-ABORT]. Scanned: [N]. Skipped-automated: [N]. Skipped-already-replied: [N]. Skipped-draft-exists: [N]. Flagged: [N] (reasons: ...). Deferred-cap: [N]. Drafted: [N]. Errors: [N]. [For each draft: threadId, sender, subject, brief context note. For each flag: threadId, sender, reason. For each error: threadId, error summary.]',
   ARRAY['peterson-gmail', 'run-log'],
