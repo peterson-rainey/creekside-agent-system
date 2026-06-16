@@ -96,20 +96,29 @@ delve, leverage, harness, foster, unlock, empower, elevate, seamlessly, robust, 
 
 ## Forbidden Structure
 
-Em-dashes / Heavy signposting ("First," "Second," "Finally") / parallel phrasing overuse / repeating the same sentence structure 3+ times / links or URLs of any kind
+Em-dashes (banned entirely) / Heavy signposting like "First," "Second," "Finally" / parallel phrasing overuse / repeating the same sentence structure 3+ times / starting multiple consecutive sentences with "I'd" / lists of exactly three things / using "you're" repeatedly in the same paragraph / links or URLs of any kind (banned entirely)
 
 ## Shared Fit Check Rules
 
 These apply to both profiles. Profile-specific overrides are in each profile's docs/ file.
 
-**RED FLAGS:**
-1. **COMPETING AD AGENCY WHITE-LABEL**: Agency that runs ads themselves wanting cheap labor. NOT a flag: creative/SEO/web agencies looking for ad management help.
-2. **FULL-TIME EMPLOYEE ROLE**: Reads like a staff position, not freelance.
-3. **AD BUDGET TOO SMALL**: Under $3,000/month = red. $3,000-$5,000 = yellow. Only if stated.
-4. **WRONG SERVICE ENTIRELY**: See profile-specific override for platform scope.
-5. **TRAINING ONLY**: Client wants to learn, not hire.
-6. **SETUP ONLY WITH EXPLICIT HANDOFF**: Unmistakably setup-only AND explicit handoff stated. Ambiguity is NOT a flag.
-7. **UNSUPPORTED REGION**: Yellow (not red) if outside English-speaking countries + outside Europe, unless English-language campaign.
+**RED FLAGS** (reason about each, don't just look for trigger words):
+
+1. **COMPETING MARKETING/AD AGENCY SEEKING WHITE-LABEL HELP**: Is the poster a marketing agency or advertising agency that already offers ad management as a core service, and they want someone to do their ad work for them so they can resell it? This is the only white-label scenario that is a red flag. IMPORTANT: Creative agencies, SEO agencies, web design agencies, PR firms, or any business that does NOT offer ad management as a core service are NOT red flags. Creekside actively white-labels for these types of partners. A creative agency looking for someone to "lead paid acquisition for their client" is a GOOD fit, not a red flag. Only flag if the poster clearly runs ads themselves and wants cheap labor to scale their own ad management business.
+
+2. **FULL-TIME EMPLOYEE ROLE**: Does this read like they want a staff member rather than a freelance contractor? Consider whether they're describing an ongoing internal role with oversight responsibilities, team management, reporting structures, or expectations that go beyond a typical freelance engagement.
+
+3. **AD BUDGET TOO SMALL**: If a specific monthly ad budget is mentioned and it is under $3,000/month, that is a red flag. Between $3,000-$5,000/month is a yellow flag. Only flag if a number is explicitly stated.
+
+4. **WRONG SERVICE ENTIRELY**: See profile-specific override in docs/ file for platform scope.
+
+5. **TRAINING ONLY**: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them?
+
+6. **CONVERSION TRACKING ONLY**: Is the entire scope limited to setting up, fixing, or auditing conversion tracking with no ad management implied?
+
+7. **SETUP ONLY WITH EXPLICIT HANDOFF**: The posting unmistakably states they ONLY want help with initial setup AND explicitly says they will take over management. A job that just mentions "set up" or "launch" without excluding ongoing work is NOT a red flag.
+
+8. **UNSUPPORTED REGION**: Flag as yellow (not red) if EITHER: (a) The client is based outside English-speaking countries AND outside of Europe. (b) The client is in Europe but the campaign explicitly targets a non-English-speaking audience. Do NOT flag European clients who want English-language campaigns.
 
 **YELLOW FLAGS:**
 1. **PERFORMANCE-ONLY PAY**: Pay only based on results.
