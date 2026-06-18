@@ -107,7 +107,7 @@ JOIN reporting_clients rc ON rc.id = cmr.reporting_client_id
 WHERE cmr.monitoring_enabled = true
   AND cmr.status = 'configured'
   AND rc.platform = 'meta'
-  AND rc.is_active = true
+  AND rc.status = 'active'
 ORDER BY rc.client_name;
 ```
 
@@ -439,16 +439,16 @@ Artifacts:
 Then log the run:
 
 ```sql
-INSERT INTO agent_run_history (agent_name, status, output_summary, duration_ms)
+INSERT INTO agent_run_history (agent_name, trigger_type, status, result_summary)
 VALUES (
   'ad-account-monitor-agent',
+  'manual',  -- use 'scheduled' when invoked by Railway cron, 'manual' for on-demand runs
   'success',
-  '<N> clients monitored, <M> alerts',
-  <elapsed_ms>
+  '<N> clients monitored, <M> alerts'
 );
 ```
 
-If the run failed (PipeBoard down, DB unavailable, no clients configured), use `status = 'failure'` or `'no_work'` and capture the reason in `output_summary`.
+If the run failed (PipeBoard down, DB unavailable, no clients configured), use `status = 'failure'` or `'no_work'` and capture the reason in `result_summary`. For failures, also populate the `error_message` column with the specific error text.
 
 ---
 
