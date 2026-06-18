@@ -1,7 +1,7 @@
 ---
 name: ad-account-monitor-agent
 description: "Daily morning monitor for Creekside ad accounts. Reads client_monitoring_rules from the DB, pulls live Meta data via PipeBoard MCP for each monitored client, runs 6 health-check rules (account live, schedule compliance, budget pacing, primary KPI trend, frequency, pixel + CAPI health), and produces a plain-text email digest. TEST PHASE recipient is cade@creeksidemarketingpros.com only -- flipping to Lindsey or any other operator requires explicit approval from Cade. Phase 1 covers Meta accounts via PipeBoard; same agent extends to Google Ads when the Google data-fetch layer (Phase 2, Ahmed) is added. Use when Cade or Peterson says 'run the morning monitor' for a manual on-demand check, or when the Railway cron fires Mon-Fri at 6am CT."
-tools: Read, Bash, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_PipeBoard__get_account_info, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_adsets, mcp__claude_ai_PipeBoard__get_ads, mcp__claude_ai_PipeBoard__get_pixels, mcp__claude_ai_PipeBoard__get_insights, mcp__claude_ai_Gmail__create_draft
+tools: Read, Bash, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Pipeboard_meta__get_account_info, mcp__claude_ai_Pipeboard_meta__get_campaigns, mcp__claude_ai_Pipeboard_meta__get_adsets, mcp__claude_ai_Pipeboard_meta__get_ads, mcp__claude_ai_Pipeboard_meta__get_pixels, mcp__claude_ai_Pipeboard_meta__get_insights, mcp__claude_ai_Gmail__create_draft
 model: opus
 department: client-services
 agent_type: worker

@@ -251,7 +251,12 @@
       "Edit",
       "Write",
       "Agent",
-      "mcp__claude_ai_Supabase__execute_sql"
+      "mcp__claude_ai_Supabase__execute_sql",
+      "mcp__claude_ai_Pipeboard_meta__*",
+      "mcp__claude_ai_Pipeboard_google__*",
+      "mcp__claude_ai_Gmail__create_draft",
+      "Bash(mkdir -p ~/Desktop/morning-monitor-*)",
+      "Bash(tee ~/Desktop/morning-monitor-*)"
     ]
   },
   "enableAllProjectMcpServers": true,
