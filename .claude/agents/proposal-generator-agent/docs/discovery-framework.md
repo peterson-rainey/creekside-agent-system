@@ -42,7 +42,7 @@ Match the prospect to the closest existing case study. Use real figures from the
 | Legal / personal injury | Big Chad Law | 50+ qualified cases in 4 months |
 | Home services / landscaping | Landmark Lawn | $300K additional profit; 298% ROI |
 | Home services lead gen | LawnValue | 2,000+ leads generated |
-| Mortgage | South River Mortgage | $10K to $50K+ monthly spend in 5 months; 7-8x better vs direct mail |
+| Mortgage | South River Mortgage | $10K to $80K/month in 5 months; 28 leads/week at $81 CPL; beat $1.25M/month direct mail by 3-4x on CPA |
 | SaaS | ReferPro | Doubled ARR in 6 months post-funding |
 | Medical spa | Advanced Med Spa | Saved 3rd location; expanded to 4th |
 | E-commerce | Unrefined, Hello Bargello | ROAS improvements (pull specific figures from DB at runtime if needed) |

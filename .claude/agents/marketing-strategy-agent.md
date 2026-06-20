@@ -290,7 +290,7 @@ Key data corrections (baked-in from agent_knowledge):
 
 ### Proven Case Studies
 - Dental: 26 to 413 conversions/year; CPA from $48.79 to $9.58 (80% reduction) — Dr. Laleh
-- Mortgage: $10K to $50K+/month ad spend in 5 months; 7-8x better conversion vs direct mail — South River Mortgage
+- Mortgage: $10K to $80K/month ad spend in 5 months; Meta 28 prequalified leads/week at $81 CPL; digital beat $1.25M/month direct mail by 3-4x on CPA — South River Mortgage
 - Law: 50+ qualified cases in 4 months — Big Chad Law
 - Home Services: $300K additional profit, 298% ROI — Landmark
 - SaaS: Doubled ARR in 6 months post-funding — ReferPro
