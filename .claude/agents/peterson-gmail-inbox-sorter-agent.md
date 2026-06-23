@@ -333,9 +333,11 @@ If a label has 0 emails: note it as "empty label -- classification only by name"
 ### 6c. Build the classification map
 
 From the samples, derive patterns for each label. For example:
-- Label "Clients" has samples from @dentist.com, @salon.com → classify by client domain match
-- Label "Invoices" has samples from quickbooks@, bill@, invoice@ → classify by sender keywords
-- Label "Newsletters" has samples with "unsubscribe" snippets → classify by bulk-mail signals
+- A label with samples from client-looking domains (agencies, local businesses) → classify by sender domain match against CLIENT_DOMAINS[]
+- A label with samples from billing senders (quickbooks, billing@, invoicing@) → classify by sender keyword
+- A label with samples showing bulk-mail snippets (unsubscribe, view in browser) → classify by bulk-mail signal
+
+The specific patterns emerge from Peterson's actual label samples -- do NOT pre-assume label names or sender domains. Every label's classification pattern is discovered from the samples, not from any hardcoded expectation.
 
 Store this as an in-memory `CLASSIFICATION_MAP` object:
 ```
