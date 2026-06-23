@@ -217,6 +217,8 @@ Track count: skipped-already-answered.
 
 ## Step 6: Pull Context from Supabase
 
+**SUPABASE TOOL RESILIENCE (read first):** the Supabase `execute_sql` MCP is connected under different names by environment -- Railway dispatcher exposes it as `mcp__claude_ai_Supabase__execute_sql`, while the cowork app exposes a project-specific server id (e.g. `mcp__<uuid>__execute_sql`). If the expected tool is not directly available, locate the connected Supabase `execute_sql` tool via ToolSearch (query "execute_sql supabase") before giving up. If Supabase is genuinely unreachable, DEGRADE GRACEFULLY: draft WITHOUT RAG context. NEVER abort the run because Supabase is unavailable -- the browser drafting must proceed regardless.
+
 For each remaining thread, identify the sender's name, email address, and company/domain. Run context lookups:
 
 ### 6a. Client Resolution
