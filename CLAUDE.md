@@ -35,6 +35,7 @@ These apply to admins AND contractors. They are NOT part of the Operations Manag
 |---------|----------|
 | Build, create, or scaffold a new agent or skill | `agent-builder-agent` |
 | Edit, restructure, update, or modify an existing agent | `agent-builder-agent` |
+| Pasted multi-message conversation thread (lead + Samuel/Creekside), job description + messages, Upwork thread, or message prefixed with "SDR:" | `sdr-agent` |
 
 At Creekside, an agent is a markdown file in `.claude/agents/`, not application code. Never build a backend service, API route, or cron job when the request is to "build an agent." Spawn `agent-builder-agent` and let it handle the process.
 

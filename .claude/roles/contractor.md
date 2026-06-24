@@ -50,12 +50,25 @@ await supabase.rpc('activate_custom_report', { slug: 'south-river-mortgage-googl
 
 If you need a write that no function covers, message Peterson in ClickUp with what you were trying to do.
 
+## Auto-routing: pasted conversations
+
+**If the contractor pastes a multi-message conversation thread (a job description and/or back-and-forth messages between a lead and Samuel/Creekside), ALWAYS spawn `sdr-agent`.** Do NOT attempt to generate a response directly. This is the most common contractor workflow and the SDR agent has hundreds of specialized rules that Claude cannot replicate from scratch.
+
+Detection signals (any of these = spawn sdr-agent):
+- Multiple messages between two parties (lead + Samuel/Creekside)
+- A job description followed by conversation messages
+- Upwork thread formatting
+- The contractor prefixes with "SDR:", "Lead:", or "Response:"
+- References to proposals, calendar links, or Upwork
+
+If unclear whether it's an SDR task, ask: "Is this a lead conversation you want me to respond to?"
+
 ## Top contractor use cases (fast-path routing)
 
 | Contractor says... | Do this |
 |---|---|
 | Generate a proposal for this job / write an Upwork proposal / proposal for [job desc] | Spawn `upwork-proposal-agent`. Paste the full job description. Optionally specify style: strategic, case_study_strategy, strategic_exp, or v2. |
-| Respond to this Upwork conversation / SDR response / reply to this lead / followup message / nurture message | Spawn `sdr-agent`. Paste the full conversation. Optionally specify type: lead, followup, or nurture. |
+| Respond to this Upwork conversation / SDR response / reply to this lead / followup message / nurture message / "SDR:" prefix | Spawn `sdr-agent`. Paste the full conversation. Optionally specify type: lead, followup, nurture, or warmup. |
 | Edit/update a client report, change report visuals, fix report data | Spawn `report-editor-agent`. It handles everything: file lookup, edit, validation, push. |
 | Ad performance, ROAS, creative analysis, campaign metrics | Search for an active agent first. If none, use PipeBoard MCP tools directly (Meta via `mcp__claude_ai_PipeBoard__*`, Google via `mcp__claude_ai_Pipeboard_google__*`). Also check the `ads-connector` skill. |
 | Pause/enable campaigns, change budgets, manage ad accounts | Same as above -- active agent first, then PipeBoard MCPs directly, then `ads-connector` skill. |
