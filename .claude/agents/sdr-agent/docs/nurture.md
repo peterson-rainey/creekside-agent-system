@@ -30,7 +30,7 @@ Rotate through these angles in order. Infer which have already been sent from th
 3. **Performance-pricing card**: Minimal retainer, majority earned on results. Use once total per lead, then retire this angle. See touch library for full details.
 4. **Clean breakup**: "Closing the loop -- no need to reply." Soft, no pressure.
 
-After all four are exhausted, allow repeating outcome curiosity (new context each time).
+After all four are exhausted, rotate through additional touch types from the full touch library (docs/touch-library.md): done-for-them observation, seasonal/platform trigger, testimonial video (same vertical only), capacity note, or what-made-the-difference ask. Use outcome curiosity as the fallback when no other angle fits. Always use new context each time.
 
 ---
 
@@ -40,8 +40,9 @@ After all four are exhausted, allow repeating outcome curiosity (new context eac
 
 - Open with: "How did [specific thing they mentioned on the call] turn out?" Use an actual detail from the transcript.
 - Follow with results relevant to their stated situation on the call.
-- One soft CTA (not a hard call ask).
+- One soft CTA (not a hard call ask). Unlike lead/followup post-call mode (which pushes onboarding), nurture post-call keeps the CTA soft: "if you ever want a second set of eyes," "just say the word," "you know where to find me." The lead already declined once after the call, so a hard onboarding push will feel aggressive.
 - If no transcript available (degraded mode), use outcome curiosity framing based on the job post goal.
+- After the initial post-call touch, rotate through the full touch library (docs/touch-library.md) for subsequent nurture touches.
 
 ---
 

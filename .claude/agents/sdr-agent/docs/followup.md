@@ -14,7 +14,7 @@ If the lead's message is the most recent message in the thread (they replied and
 
 From the conversation and any provided transcript, determine whether a call has happened:
 - **Pre-call**: No call evidence in conversation. Goal = get the call booked.
-- **Post-call**: Call evidence present (see context detection in context-retrieval.md). Goal = advance the relationship using specifics from the call.
+- **Post-call**: Call evidence present (see context detection in context-retrieval.md). Goal = begin onboarding using specifics from the call (see "Post-Call Goal Shift" in context-retrieval.md).
 
 ## Step 2: Determine Mode from Silence Duration
 

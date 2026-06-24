@@ -80,7 +80,7 @@ Based on recency, set the post-call goal:
 - **Call was 6+ months ago:** Treat as a re-engagement. The original call is stale. Goal = book a NEW discovery call to reassess their situation.
 - **Call evidence found but no date available:** Default to the onboarding goal. If unsure, ask the user: "I can see a call happened but can't confirm when. Should I aim to start onboarding or book a fresh call?"
 
-This goal shift applies to ALL response types (lead, followup, nurture). It overrides the default "book a call" CTA in every doc.
+This goal shift applies to lead and followup response types. It overrides the default "book a call" CTA. **Exception: nurture** -- if a lead had a call but didn't convert and is now in the 60-day nurture cycle, keep the CTA soft (see nurture.md post-call rules). A hard onboarding push in nurture will feel aggressive after they already declined.
 
 ---
 
