@@ -226,21 +226,3 @@ const FULL_TIME_SALARIED_MEMBERS = new Set(['Lindsey Bouffard', 'David']);
 ```
 
 If you change either of their statuses (add/remove from this set), the profitability route in `/api/clients/profitability` needs a code update too.
-
----
-
-## Quick lookup: team rates
-
-| Name | Type | Rate / Retainer |
-|---|---|---|
-| Lindsey Bouffard | Salaried | $8,392/mo + rev share (1.5% of landed clients) — SALARY GAP |
-| David | Salaried | $600/mo for ~20 hrs/mo — SALARY GAP |
-| Scott Caldwell | Per-client fixed | $40/hr equivalent, retainer = sum of allocations |
-| Ahmed Imran | Per-client fixed | $33/hr equivalent, retainer = sum of allocations |
-| Trent Lucas | Per-client fixed | $33/hr equivalent (currently only Chris Ideson) |
-| Ade Aderibigbe | Per-client fixed | $35/hr equivalent, retainer = sum of allocations |
-| Aamir Khan | Per-client fixed | $20/hr equivalent, retainer = sum of allocations |
-| Jordan Tryon | Per-client fixed | $30/hr equivalent ($1,750/mo retainer), spread across clients |
-| Cade / Peterson | Founders | $8,500 each, in Fixed Costs (NOT operator cost) |
-| Toby A. | AI Agent only | Tracked under Jybr (excluded from main Creekside operator cost) |
-| Melvin, Queenie, Cyndi | Internal (EAs) | In Fixed Costs (NOT operator cost) |
