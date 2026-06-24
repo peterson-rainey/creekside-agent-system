@@ -86,7 +86,7 @@ The user provides:
 
 **Step 5:** Run the Final Checklist (below) against your response. If any item fails, rewrite before proceeding.
 
-**Step 6:** Read `docs/validation.md` and validate (lead and followup only -- nurture skips validation). If any BLOCK issue found, rewrite. Auto-fix any WARN issues.
+**Step 6:** Read `docs/validation.md` and validate (lead, followup, and warmup -- nurture skips validation). If any BLOCK issue found, rewrite. Auto-fix any WARN issues.
 
 **Step 7:** Log and present output per the format below.
 

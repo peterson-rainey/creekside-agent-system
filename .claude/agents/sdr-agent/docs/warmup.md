@@ -10,6 +10,8 @@ Triggered after a lead books a call. Queenie or the operator invokes this with `
 
 This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-call prep message that shows we read their information.
 
+**Jay-booked calls:** If the lead was routed to Jay's calendar, skip the warmup entirely. Jay handles his own pre-call prep. Only generate warmup messages for leads booked on Samuel's, Peterson's, or Cade's calendars.
+
 ---
 
 ## Step W1: Read the Conversation and Extract Answered Questions
@@ -58,7 +60,7 @@ Mark as: **video mentioned** or **video not mentioned**.
 
 ### Case A: 0 questions unanswered + video mentioned
 
-Skip the questions entirely. Skip the video nudge. Send a brief, personalized note that references something specific from the conversation, plus a soft forward-look to the call.
+Skip the questions entirely. Skip the video nudge. Skip the YouTube mention (YouTube only appears alongside the profile video nudge). Send a brief, personalized note that references something specific from the conversation, plus a soft forward-look to the call.
 
 Example tone:
 > Looking forward to digging into the Meta setup you've been running. I've looked at everything you shared and have some thoughts ready.
@@ -72,7 +74,7 @@ Keep it to 1-2 sentences. No fluff. No "I look forward to hearing from you."
 Send the profile video nudge (one natural sentence) + a brief personalized forward-look to the call. No questions.
 
 Example tone:
-> If you haven't yet, worth checking out my profile video before we chat -- it covers how we work and answers most of the setup questions upfront. Looking forward to getting into the [their specific topic] side of things on the call.
+> If you haven't yet, worth checking out my profile video before we chat. It covers how we work and answers most of the setup questions upfront. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the [their specific topic] side of things on the call.
 
 ---
 
@@ -162,7 +164,7 @@ Follow the same output format as the main router (Step 7):
 
 > Take a look at my profile video if you haven't. It walks through exactly how we work and covers most setup questions upfront. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1
 >
-> Also, so I have context going into Thursday: what's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
+> What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
 
 Note what this message does NOT do:
 - Does not ask about prior agency experience (they already told us)
