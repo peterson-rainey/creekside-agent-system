@@ -100,25 +100,47 @@ Jay is our small business specialist, positioned exactly the way Cade is positio
 - If the agent cannot find the proof, say "I'll pull those together and send them over" and flag the human operator (Queenie) to get them from Cade or Peterson.
 - When reporting cadence comes up, share the relevant sample report link from the "What We Do and Don't Do" section.
 
-**Case study landing page (general, send when no specific industry match):**
-https://creeksidemarketingpros.com/case-study-digital-marketing
+**Case study landing page (general, or when no specific industry match):**
+https://creeksidemarketingpros.com/case-study-digital-marketing/
 
-**Industry-specific case studies:**
+**Industry-specific case studies (all under the landing page above):**
 
-| Industry | URL |
-|----------|-----|
-| Dental | https://creeksidemarketingpros.com/blog/dental-google-ads-case-study-results |
-| Ecommerce | https://creeksidemarketingpros.com/blog/ecommerce-google-ads-case-study-real-results |
-| Home Services | https://creeksidemarketingpros.com/blog/home-services-google-ads-case-study-298-percent-roi |
-| Legal (PI) | https://creeksidemarketingpros.com/blog/personal-injury-law-firm-google-ads-case-study |
-| Legal (Bankruptcy) | https://creeksidemarketingpros.com/blog/bankruptcy-law-firm-doubles-conversions-google-ads-case-study |
-| Meal Prep (Meta) | https://creeksidemarketingpros.com/blog/meal-prep-facebook-ads-case-study-20x-roas |
-| Meal Prep (Meta #2) | https://creeksidemarketingpros.com/blog/meal-prep-company-20x-roas-meta-ads-case-study |
-| Med Spa | https://creeksidemarketingpros.com/blog/med-spa-marketing-case-study-google-meta-ads |
-| Mortgage | https://creeksidemarketingpros.com/blog/mortgage-lead-generation-digital-ads-vs-direct-mail-case-study |
-| App Install | https://creeksidemarketingpros.com/blog/app-install-campaign-case-study-47-percent-cpi-reduction |
+| Industry | Client | Slug |
+|----------|--------|------|
+| Dental | Dr. Laleh ($200K+ monthly revenue in 90 days) | dr-laleh |
+| Dental | Polaris Dentistry (500%+ ROI) | polaris-dentistry |
+| Ecommerce | Aura Displays (8-10x ROAS, 49 countries) | aura-displays |
+| Ecommerce | Chagrin Valley Beauty (new-customer acquisition) | chagrin-valley-beauty |
+| Ecommerce | Fitness Superstore (7-40x ROAS Meta) | fitness-superstore |
+| Ecommerce | Join Piper (10x ROAS first month) | join-piper |
+| Home Services | Florida Awnings (3 locations) | florida-awnings |
+| Home Services | Landmark Lawn (new branch added) | landmark-lawn-and-landscape |
+| Home Services | LawnValue (2,000+ leads) | lawnvalue |
+| Home Services | Perfect Parking (3 leads/day, -31% CPL) | perfect-parking |
+| Home Services | UrCovered Construction (60 leads) | urcovered-construction |
+| Legal (PI) | Big Chad Law (50+ cases in 4 months) | big-chad-law |
+| Legal (Bankruptcy) | Winterbotham Parham Teeple (2x conversions, -42% CPA) | winterbotham-parham-teeple |
+| Meal Prep | CI Lifestyle Meals ($25 CPA, 4.5x ROAS) | ci-lifestyle-meals |
+| Meal Prep | Duck A Diet (4-6x ROAS, $8-$17 CPA) | duck-a-diet |
+| Meal Prep | Punch Drunk Chef (20x ROAS, 3 new markets) | punch-drunk-chef |
+| Meal Prep | Unrefined Meal Prep (4x ROAS, new market) | unrefined-meal-prep |
+| Med Spa | Advanced Medical Spa (2x conversions, saved location) | advanced-medical-spa |
+| Healthcare | Integrity Naturopathic (150+ conversions, $14-$40 CPA) | integrity-naturopathic |
+| Healthcare | Root Hair (690 conversions, YouTube + Search) | root-hair |
+| Mortgage | South River Mortgage ($10K to $50K+ spend) | south-river-mortgage |
+| Pest Control | Green Shield Pest (79 conversions, -19% CPA) | green-shield-pest |
+| SaaS / B2B | ReferPro (464% YoY growth) | referpro |
+| B2B | American Foam Products (quote pipeline) | american-foam-products |
+| B2B | GPP Industrial (412 qualified leads) | gpp-industrial |
+| Automotive | Axle Solutions (beat national chains) | axle-solutions |
+| Education | Adventures in Wisdom (-52% CPA, 2x volume) | adventures-in-wisdom |
+| App Install | Birthday Club (2,662 installs, -47% CPI) | birthday-club-app |
+| Professional Services | NYC Notary (440 conversions, $27.92 CPA) | nyc-notary |
+| Professional Services | Luggage Drop (1,050 purchases, $2.44 CPA) | luggage-drop |
 
-**How to use:** Match the detected industry from context-retrieval.md to the closest case study above. If no exact match, use the general landing page. If multiple match (e.g., two legal case studies), pick the one closest to the lead's sub-niche. Always paste the URL directly (no markdown links).
+**Full URL format:** `https://creeksidemarketingpros.com/case-study-digital-marketing/{slug}`
+
+**How to use:** Match the detected industry to the closest case study above. Pick the one whose result statement best matches the lead's situation (e.g., for a dentist asking about patient volume, use dr-laleh; for a dentist asking about ROI, use polaris-dentistry). If no industry match, send the general landing page. Always paste the full URL directly (no markdown links).
 
 ## What We Do and Don't Do
 - **Ongoing management only.** We do not do one-time audits, one-time tracking fixes, or standalone project work. Audits and tracking fixes happen as part of onboarding into ongoing management. If they only want a one-off, tell them: "We handle that as part of our ongoing management package. If you're not looking for ongoing management, we're probably not the right fit."
