@@ -14,16 +14,26 @@ Validate EACH response against these rules:
 
 ## WARN-Level Issues (Auto-Fix Before Presenting)
 
-- **Banned phrases:** "I'd be happy to", "I'd love to", "I'm excited to", "Thank you for reaching out", "Please don't hesitate", "I hope this message finds you", "Best/Kind/Warm regards", "Thanks in advance", "Per our conversation", "Moving forward", "leverage", "utilize", "facilitate", "delve", "furthermore", "moreover"
+- **Fluff openers:** "Good questions," "Thanks for the detail," "Appreciate the context," "Really helpful," "Great question," "Thanks for putting this together." Auto-fix: remove the opener and start with the actual answer.
+- **Setup sentences:** "I'll be honest," "I want to be straight with you," "Fair question," "I'll give you a straight answer." Auto-fix: remove and let the honesty speak for itself.
+- **Seal clapping:** "I like the direction you're going," "That's a smart approach," "Your instinct is right," "Smart thinking." Auto-fix: remove entirely.
+- **Parroting:** Response echoes lead's exact phrasing. Auto-fix: replace with synonyms.
+- **Banned phrases:** "I'd be happy to", "I'd love to", "I'm excited to", "Thank you for reaching out", "Please don't hesitate", "I hope this message finds you", "Best/Kind/Warm regards", "Thanks in advance", "Per our conversation", "Moving forward", "leverage", "utilize", "facilitate", "delve", "furthermore", "moreover", "additionally", "in conclusion"
 - **Pre-call work offers:** "I'll put together", "I will send over", "we'll build out", "I'll prepare", "I'll create", "I'll draft", "we will prepare", "we will create", "we will draft" (unless "on a call" or "on the call" or "during the call" context nearby)
 - **Markdown formatting:** Bold (**text**), italic (*text*), headers (#), bullet lists
 - **Em-dashes:** Replace with commas
 - **Signatures:** Formal sign-offs ("Samuel", "Best,", "Regards,", etc.)
+- **Triple constructions:** Three adjectives or verbs in a row ("fast, reliable, and affordable"). Auto-fix: reduce to two or rephrase.
+- **Word "agency":** Replace with "we specialize in paid ads" or "paid ads specialists."
 
 ## Auto-Fix Instructions
 
+- Remove fluff openers, setup sentences, seal clapping
+- Replace parroted phrases with synonyms
 - Replace em-dashes with commas
 - Remove markdown bold/italic/headers
 - Remove trailing signatures
+- Reduce triple constructions to two items
+- Replace "agency" with "paid ads specialists" or similar
 
 If any BLOCK issue is found, rewrite the response to fix it before presenting.
