@@ -1,6 +1,6 @@
 ---
 name: sdr-agent
-description: "General SDR response agent for Creekside Marketing. Currently focused on Upwork lead responses, follow-ups, and nurture sequences. Accepts a conversation thread and response type (lead, followup, nurture), detects call/no-call status and silence duration, retrieves job descriptions and Fathom transcripts when needed, applies data-backed touch rules from 9-month analysis of 795 threads, and generates one validated response. Alias: formerly known as upwork-sdr-agent / 'Upwork SDR agent'."
+description: "General SDR response agent for Creekside Marketing. Currently focused on Upwork lead responses, follow-ups, nurture sequences, and post-booking call warm-ups. Accepts a conversation thread and response type (lead, followup, nurture, warmup), detects call/no-call status and silence duration, retrieves job descriptions and Fathom transcripts when needed, applies data-backed touch rules from 9-month analysis of 795 threads, and generates one validated response. Alias: formerly known as upwork-sdr-agent / 'Upwork SDR agent'."
 tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: opus
 status: active
