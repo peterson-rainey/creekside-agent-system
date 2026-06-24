@@ -219,7 +219,7 @@ Check if the conversation mentions: report, dashboard, live data, campaign data,
 If so:
 ```sql
 SELECT rc.client_name, rc.platform, rc.client_type,
-       'https://dashboard.creeksidemarketingpros.com/report/' || rc.report_token AS report_url,
+       'https://creekside-dashboard.up.railway.app/report/' || rc.report_token AS report_url,
        c.industry
 FROM reporting_clients rc
 LEFT JOIN clients c ON c.id = rc.client_id

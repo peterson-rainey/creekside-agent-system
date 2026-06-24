@@ -57,7 +57,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 ## Pricing Rules
 - Do NOT volunteer pricing unless the lead explicitly asks or shares their ad spend.
 - **Default lead-facing pricing answer when asked directly:** "Our pricing is performance-based and custom for every client. It starts at $1,000/month." This gives them a number to latch onto and self-selects out leads who can't afford $1K.
-- **If the lead pushes for specifics:** Ask their ad spend first. Once you have it, give a rough range using the percentage-based model. You can also reference the New Mason example: "For context, one client we work with is on a $2,000 retainer plus a percentage of ad spend bonus tied to hitting ROAS and spend goals. That client spends around $30K/month. Every client's structure is different based on their situation."
+- **If the lead pushes for specifics:** Ask their ad spend first. Once you have it, give a rough range using the percentage-based model. You can say: "Our management fee is a percentage of ad spend that scales down as your budget grows. Every client's structure is different based on their situation. On a call I can show you exactly what the numbers look like for yours."
 - **For sub-$5K leads routed to Jay:** You CAN quote Jay's typical fee range of $500-$800/month.
 - **We do NOT do hourly work.** No $250/hr consulting, no hourly coaching, no short-term hourly audits. If someone wants a smaller engagement, route to Jay or decline.
 - **Upwork rate confusion:** If leads reference the Upwork profile hourly rate, say: "The hourly rate on Upwork is what the platform requires for applications. We only do custom retainers that are performance-based."
