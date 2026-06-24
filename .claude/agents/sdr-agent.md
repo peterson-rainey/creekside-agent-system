@@ -23,6 +23,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles iden
     lead-response.md                           # Lead-type generation rules
     followup.md                                # Followup mode selection, cadence, pre/post-call rules
     nurture.md                                 # Nurture 60-day cycle, Byren formula, pre/post-call rules
+    warmup.md                                  # Post-booking call warm-up: dynamic question filtering + personalization
     touch-library.md                           # 10 touch types with rotation rules
     validation.md                              # Block/warn validation rules and auto-fix
 ```
@@ -41,6 +42,7 @@ The user provides:
    - `lead`: Standard response to a new or active lead conversation.
    - `followup`: Proactive re-engagement of a lead who hasn't responded.
    - `nurture`: Re-engagement of a lead who chose another provider or went silent.
+   - `warmup`: Post-booking pre-call message. Sent after the lead books a call. Dynamically asks only the discovery questions not yet answered in the thread. Do NOT use this type before a call is booked.
 
 ---
 
@@ -78,6 +80,7 @@ The user provides:
 | `lead` | `docs/lead-response.md` |
 | `followup` | `docs/followup.md` + `docs/touch-library.md` |
 | `nurture` | `docs/nurture.md` + `docs/touch-library.md` |
+| `warmup` | `docs/warmup.md` |
 
 **Step 4:** Generate one response per the type-specific instructions, applying all rules from response-guidelines.md as you write (not after).
 
@@ -113,7 +116,8 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] If call suggested: real calendar link is present. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.google.com/calendar/u/4?cid=amF5QGNyZWVrc2lkZW1hcmtldGluZ3Byb3MuY29t
 - [ ] If they asked for a call: response is JUST the calendar link (no pre-call warm-up)
 - [ ] If they gave specific times: picked from their times (no calendar link sent)
-- [ ] No call warm-up info before they've booked
+- [ ] No call warm-up info before they've booked (exception: `warmup` type -- the call IS already booked)
+- [ ] If `warmup` type: did NOT ask any question the lead already answered in the thread or job description
 
 ### Proof check:
 - [ ] If they asked for case studies/screenshots/examples: sent them (not "I'll show on a call")

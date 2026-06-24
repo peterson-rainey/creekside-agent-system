@@ -1,6 +1,6 @@
 # Response Validation
 
-**Applies to:** lead and followup types only. **Skip entirely for nurture.**
+**Applies to:** lead, followup, and warmup types. **Skip entirely for nurture.**
 
 Validate EACH response against these rules:
 
