@@ -40,20 +40,8 @@ Validate EACH response against these rules:
 
 If any BLOCK issue is found, rewrite the response to fix it before presenting.
 
-## Validation Execution (How to Actually Run This)
+## Deterministic Validation Script
 
-Do NOT skim-check your response. Run validation as a literal pattern scan:
+Validation is handled by `validate_response.py` in the agent directory. The script runs every BLOCK and WARN pattern as deterministic regex checks and auto-fixes WARNs. See Step 6 in `sdr-agent.md` for how to call it.
 
-1. Copy your entire response text into your working memory.
-2. For each BLOCK pattern: search the response text for that exact string or pattern. If found, the response FAILS. Rewrite.
-3. For each WARN pattern: search the response text for that exact string. If found, auto-fix it in place:
-   - "agency" (standalone word) -> "paid ads team" or rephrase the sentence
-   - "That said" -> delete and start the next sentence directly, or use "But" / "And" / "Still"
-   - "I want to be straight" / "I'll be straight" -> delete the sentence, let the honesty speak for itself
-   - "Furthermore" / "Moreover" / "Additionally" -> delete or use "And" / "Also"
-   - em dash (--) -> comma
-   - Any **bold** or *italic* -> remove the asterisks
-   - Any trailing signature (Samuel, Best, Regards) -> delete
-4. After all auto-fixes, re-read the full response one more time to confirm no new issues were introduced.
-
-Common miss: the word "agency" appears when the LEAD's industry is an agency or when discussing agency partnerships. It still needs to be replaced. Say "marketing company" or "your team" or rephrase. The only exception is if you're directly quoting the lead's own words in a clarification ("You mentioned you're an agency looking for...") -- even then, prefer "marketing company" if possible.
+The rules above are the reference documentation. The script is the enforcement. If there's ever a conflict between what the script catches and what the rules say, update the script to match the rules -- the rules are the source of truth, the script is the mechanism.

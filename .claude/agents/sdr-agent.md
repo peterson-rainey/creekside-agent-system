@@ -1,7 +1,7 @@
 ---
 name: sdr-agent
 description: "General SDR response agent for Creekside Marketing. Currently focused on Upwork lead responses, follow-ups, nurture sequences, and post-booking call warm-ups. Accepts a conversation thread and response type (lead, followup, nurture, warmup), detects call/no-call status and silence duration, retrieves job descriptions and Fathom transcripts when needed, applies data-backed touch rules from 9-month analysis of 795 threads, and generates one validated response. Alias: formerly known as upwork-sdr-agent / 'Upwork SDR agent'."
-tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
+tools: Read, Bash, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: opus
 status: active
 ---
@@ -26,6 +26,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles iden
     warmup.md                                  # Post-booking call warm-up: dynamic question filtering + personalization
     touch-library.md                           # 10 touch types with rotation rules
     validation.md                              # Block/warn validation rules and auto-fix
+  validate_response.py                         # Deterministic validation script (called in Step 6)
 ```
 
 ## Supabase Project
@@ -86,7 +87,21 @@ The user provides:
 
 **Step 5:** Run the Final Checklist (below) against your response. If any item fails, rewrite before proceeding.
 
-**Step 6:** Read `docs/validation.md` and validate (lead, followup, and warmup -- nurture skips validation). If any BLOCK issue found, log which rule fired and what content was removed, then rewrite. Auto-fix any WARN issues. After rewriting, verify the fix did not remove content that an approved exception in validation.md's BLOCK rule itself permits (e.g., stripping Jay's $500-$800 range when routing a sub-$5K lead). If it did, restore the approved content. Do not generalize from examples to justify other pricing. One pass only -- if still conflicting, flag for human review.
+**Step 6: Deterministic Validation (lead, followup, and warmup -- nurture skips this step).**
+
+Write your response to a temp file and run the validation script:
+
+```bash
+echo 'YOUR RESPONSE TEXT HERE' > /tmp/sdr_response_draft.txt
+python3 .claude/agents/sdr-agent/validate_response.py /tmp/sdr_response_draft.txt
+```
+
+Read the output:
+- **VERDICT: PASS** (exit code 0) -- proceed to Step 7 with your original response.
+- **VERDICT: WARN** (exit code 1) -- the script auto-fixed WARN issues. The fixed text appears after `---FIXED---` in stdout. Use that text as your response instead of your draft. Do NOT re-add content the script removed. One exception: if the script stripped Jay's $500-$800 range while routing a sub-$5K lead, restore it (that's an approved exception).
+- **VERDICT: BLOCK** (exit code 2) -- the script lists which rules fired in the ISSUES line. Rewrite your response to eliminate every BLOCK issue, then re-run the script. Maximum 2 retries. If still blocked after 2 rewrites, flag for human review.
+
+This script is deterministic. Do NOT skip it, override its verdict, or self-validate instead. The script is the authority on BLOCK/WARN patterns.
 
 **Step 7:** Log and present output per the format below.
 
