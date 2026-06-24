@@ -86,7 +86,7 @@ The user provides:
 
 **Step 5:** Run the Final Checklist (below) against your response. If any item fails, rewrite before proceeding.
 
-**Step 6:** Read `docs/validation.md` and validate (lead, followup, and warmup -- nurture skips validation). If any BLOCK issue found, rewrite. Auto-fix any WARN issues.
+**Step 6:** Read `docs/validation.md` and validate (lead, followup, and warmup -- nurture skips validation). If any BLOCK issue found, log which rule fired and what content was removed, then rewrite. Auto-fix any WARN issues. After rewriting, verify the fix did not remove content that an explicit exception in validation.md or response-guidelines.md approves (e.g., stripping Jay's $500-$800 range when routing a sub-$5K lead). If it did, restore the approved content. One pass only -- if still conflicting, flag for human review.
 
 **Step 7:** Log and present output per the format below.
 
@@ -137,7 +137,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No assertions of things the agent can't verify
 - [ ] Didn't default to apologizing without checking what happened
 - [ ] Didn't explain terms the lead clearly already knows
-- [ ] Didn't repeat info already covered earlier in the conversation
+- [ ] Didn't repeat info already stated in THIS response (referencing things from earlier thread messages is fine if relevant)
 - [ ] If Upwork auto-invite: flagged as "no response needed" instead of generating
 - [ ] If hourly/live video call engagement: flagged as "no response needed" or declined
 
