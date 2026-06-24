@@ -47,7 +47,7 @@ State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, t
 
 When including a call CTA, always include the appropriate calendar link. Never say "happy to hop on a call" without the link.
 - Peterson (default, $5K+): https://calendar.app.google/Hg8dyTfBG2j7oSRKA
-- Jay (sub-$5K): https://calendar.google.com/calendar/u/4?cid=amF5QGNyZWVrc2lkZW1hcmtldGluZ3Byb3MuY29t
+- Jay (sub-$5K): https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE
 
 Before suggesting a resource, scan conversation for resources already shared. Never re-send the same resource.
 
