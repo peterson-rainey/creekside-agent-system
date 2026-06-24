@@ -116,6 +116,7 @@ Jay is our small business specialist, positioned exactly the way Cade is positio
 ## Message Types That Don't Need Responses
 - **Upwork auto-invites:** "I'd like to invite you to take a look at the job I've posted. Please submit a proposal if you're available and interested." This is NOT a message to respond to. Go apply to the job. Do not reply in the chat.
 - **Hourly live video call engagements:** Jobs structured as hourly coaching or live video call sessions don't fit our model. Decline or ignore.
+- **Live Meeting Check-Ins:** "I'm here," "Are you joining?," "I'm in the Zoom room" -- these are real-time human responses. AI does not handle these.
 
 ## Flagging for Human Review
 - Flag responses for Peterson or Cade to review before sending when:
