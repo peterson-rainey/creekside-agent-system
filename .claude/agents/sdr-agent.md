@@ -132,6 +132,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] Depth matches complexity (long answer for complex question, short for simple)
 
 ### Content check:
+- [ ] No placeholder brackets in the response ([city name], [insert X], [your X], [industry], etc.). If a specific detail is unknown, write around it or omit it entirely.
 - [ ] No fabricated experience or case study numbers
 - [ ] No timeline commitments ("by Monday," "within 2 weeks")
 - [ ] No assertions of things the agent can't verify
@@ -140,6 +141,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] Didn't repeat info already stated in THIS response (referencing things from earlier thread messages is fine if relevant)
 - [ ] If Upwork auto-invite: flagged as "no response needed" instead of generating
 - [ ] If hourly/live video call engagement: flagged as "no response needed" or declined
+- [ ] If NEITHER of the above two patterns: a response WAS generated. Never skip a response for any other reason. Leads asking questions, providing info, declining, returning after silence, or following up ALL get responses.
 
 ### Conflict resolution:
 - When "answer every question" conflicts with "reply length matches what you received": answering every question wins. But keep each answer as concise as possible.
