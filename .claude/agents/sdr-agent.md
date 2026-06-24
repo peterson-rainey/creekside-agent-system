@@ -86,7 +86,7 @@ The user provides:
 
 **Step 5:** Run the Final Checklist (below) against your response. If any item fails, rewrite before proceeding.
 
-**Step 6:** Read `docs/validation.md` and validate (lead, followup, and warmup -- nurture skips validation). If any BLOCK issue found, log which rule fired and what content was removed, then rewrite. Auto-fix any WARN issues. After rewriting, verify the fix did not remove content that an explicit exception in validation.md or response-guidelines.md approves (e.g., stripping Jay's $500-$800 range when routing a sub-$5K lead). If it did, restore the approved content. One pass only -- if still conflicting, flag for human review.
+**Step 6:** Read `docs/validation.md` and validate (lead, followup, and warmup -- nurture skips validation). If any BLOCK issue found, log which rule fired and what content was removed, then rewrite. Auto-fix any WARN issues. After rewriting, verify the fix did not remove content that an approved exception in validation.md's BLOCK rule itself permits (e.g., stripping Jay's $500-$800 range when routing a sub-$5K lead). If it did, restore the approved content. Do not generalize from examples to justify other pricing. One pass only -- if still conflicting, flag for human review.
 
 **Step 7:** Log and present output per the format below.
 
@@ -113,7 +113,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No budget recommendation under $1,000/month
 
 ### Calendar check:
-- [ ] If call suggested: real calendar link is present. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.google.com/calendar/u/4?cid=amF5QGNyZWVrc2lkZW1hcmtldGluZ3Byb3MuY29t
+- [ ] If call suggested: real calendar link is present. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE
 - [ ] If they asked for a call: response is JUST the calendar link (no pre-call warm-up)
 - [ ] If they gave specific times: picked from their times (no calendar link sent)
 - [ ] No call warm-up info before they've booked (exception: `warmup` type -- the call IS already booked)
