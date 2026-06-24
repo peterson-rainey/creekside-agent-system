@@ -15,9 +15,10 @@ Validate EACH response against these rules:
 ## WARN-Level Issues (Auto-Fix Before Presenting)
 
 - **Fluff openers:** "Good questions," "Thanks for the detail," "Appreciate the context," "Really helpful," "Great question," "Thanks for putting this together," "Got it, that's helpful context," "Got it, helpful context," "That's helpful." Auto-fix: remove the opener and start with the actual answer.
-- **Setup sentences:** "I'll be honest," "I want to be straight with you," "Fair question," "I'll give you a straight answer." Auto-fix: remove and let the honesty speak for itself.
-- **Seal clapping:** "I like the direction you're going," "That's a smart approach," "Your instinct is right," "Smart thinking." Auto-fix: remove entirely.
-- **Parroting:** Response echoes lead's exact phrasing. Auto-fix: replace with synonyms.
+- **Setup sentences:** "I'll be honest," "I want to be straight with you," "I'll be straight about that," "Fair question," "I'll give you a straight answer," "To be transparent." Auto-fix: remove and let the honesty speak for itself.
+- **Seal clapping:** "I like the direction you're going," "That's a smart approach," "Your instinct is right," "Your concern is the right one to have," "That's the right question," "You're thinking about this the right way," "Smart thinking." Auto-fix: remove entirely.
+- **Parroting:** Response echoes lead's exact phrasing (e.g., lead says "wheelhouse" and response says "right in my wheelhouse"). Auto-fix: replace with synonyms.
+- **Defining by negation:** "We don't do hourly," "We actually don't do X," "We're not an agency." Auto-fix: rewrite to state what we DO instead of what we don't.
 - **Banned phrases:** "I'd be happy to", "I'd love to", "I'm excited to", "Thank you for reaching out", "Please don't hesitate", "I hope this message finds you", "Best/Kind/Warm regards", "Thanks in advance", "Per our conversation", "Moving forward", "leverage", "utilize", "facilitate", "delve", "furthermore", "moreover", "additionally", "in conclusion"
 - **Pre-call work offers:** "I'll put together", "I will send over", "we'll build out", "I'll prepare", "I'll create", "I'll draft", "we will prepare", "we will create", "we will draft" (unless "on a call" or "on the call" or "during the call" context nearby)
 - **Markdown formatting:** Bold (**text**), italic (*text*), headers (#), bullet lists
