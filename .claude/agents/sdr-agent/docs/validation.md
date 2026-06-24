@@ -10,7 +10,7 @@ Validate EACH response against these rules:
 - **Hourly rate quotes:** NEVER quote $95/hr (Upwork display rate) or $250/hr (old consulting rate) to any lead. We do not do hourly work. This is a HARD BLOCK.
 - **Hard-banned phrases:** "Before we lock anything in" / "I/we charge for consultations"
 - **Timeline commitments:** Specific days ("by Monday", "before Friday"). Specific durations ("within 2 weeks", "in 3 days"). Launch commitments ("live by", "launched by", "ready by"). Exception: "typically", "usually", "generally", "most cases", "on average" context is allowed.
-- **Placeholder brackets:** Any [text in brackets] is a BLOCK. All calendar links now use real URLs, no placeholders needed. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE
+- **Placeholder brackets:** Any [text in brackets] is a BLOCK. All calendar links now use real URLs, no placeholders needed. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.app.google/nFP1Brwxz1TsetBA6
 
 ## WARN-Level Issues (Auto-Fix Before Presenting)
 

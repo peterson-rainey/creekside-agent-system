@@ -113,7 +113,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No budget recommendation under $1,000/month
 
 ### Calendar check:
-- [ ] If call suggested: real calendar link is present. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE
+- [ ] If call suggested: real calendar link is present. Peterson: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | Jay: https://calendar.app.google/nFP1Brwxz1TsetBA6
 - [ ] If they asked for a call: response is JUST the calendar link (no pre-call warm-up)
 - [ ] If they gave specific times: picked from their times (no calendar link sent)
 - [ ] No call warm-up info before they've booked (exception: `warmup` type -- the call IS already booked)

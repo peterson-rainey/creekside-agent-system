@@ -20,7 +20,7 @@ Infer which touch types have already been used from the conversation history. Ne
    ```
    Do NOT hardcode dollar amounts. Pull from DB. If pricing is not in the DB, include the concept (performance-based, result-aligned) without specific numbers and flag it in the Context Retrieved section.
 
-   On pre-call followup touch 4, pair with a call ask and the appropriate calendar link: Peterson (https://calendar.app.google/Hg8dyTfBG2j7oSRKA) or Jay (https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE).
+   On pre-call followup touch 4, pair with a call ask and the appropriate calendar link: Peterson (https://calendar.app.google/Hg8dyTfBG2j7oSRKA) or Jay (https://calendar.app.google/nFP1Brwxz1TsetBA6).
 
 4. **Clean breakup** -- "Closing the loop on this one. No need to reply." Soft, no pressure. Final touch.
 
