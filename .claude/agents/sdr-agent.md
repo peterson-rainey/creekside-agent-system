@@ -1,6 +1,6 @@
 ---
 name: sdr-agent
-description: "General SDR response agent for Creekside Marketing. Currently focused on Upwork lead responses, follow-ups, and nurture sequences -- will expand beyond Upwork over time. Accepts a conversation thread and response type (lead, followup, nurture), detects call/no-call status and silence duration, retrieves job descriptions and Fathom transcripts when needed, applies data-backed touch rules from 9-month analysis of 795 threads, and generates two response variations with validation. Alias: formerly known as upwork-sdr-agent / 'Upwork SDR agent'."
+description: "General SDR response agent for Creekside Marketing. Currently focused on Upwork lead responses, follow-ups, and nurture sequences. Accepts a conversation thread and response type (lead, followup, nurture), detects call/no-call status and silence duration, retrieves job descriptions and Fathom transcripts when needed, applies data-backed touch rules from 9-month analysis of 795 threads, and generates one validated response. Alias: formerly known as upwork-sdr-agent / 'Upwork SDR agent'."
 tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: opus
 status: active
@@ -190,7 +190,7 @@ Present in this format:
 - Industry detected: {industry or "none"}
 - Mode: {lead / pre-call followup / post-call followup / pre-call nurture / post-call nurture} -- {brief reason}
 - Touch types used so far: {list inferred from conversation, or "n/a for lead type"}
-- Touch types chosen this generation: Response 1 = {type}, Response 2 = {type}
+- Touch type chosen: {type, or "n/a for lead type"}
 - Job description: {retrieved from DB / provided by user / not available -- degraded mode}
 - Call transcript: {retrieved from DB / provided by user / not found -- degraded mode / no call detected}
 - Past responses found: {count}

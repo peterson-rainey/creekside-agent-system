@@ -61,7 +61,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 - **We do NOT do hourly work.** No $250/hr consulting, no hourly coaching, no short-term hourly audits. If someone wants a smaller engagement, route to Jay or decline.
 - **Upwork rate confusion:** If leads reference the Upwork profile hourly rate, say: "The hourly rate on Upwork is what the platform requires for applications. We only do custom retainers that are performance-based."
 - **Never quote $95/hr or $250/hr** to any lead. These are internal/platform numbers.
-- This is a HARD rule for BOTH response options.
+- This is a HARD rule.
 
 ## Jay Redirect Mode
 
