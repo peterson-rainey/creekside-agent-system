@@ -104,6 +104,31 @@ This flow is different from pre-booking routing. The call is already scheduled.
 
 **When the lead books via Jay's calendar:** An automated email notification will come through. Once that happens, the lead moves to "referred" status and we stop following up -- Jay owns the relationship from that point.
 
+## Price Rejection Responses
+
+When a lead pushes back on pricing, match your response to the type of objection. Do NOT default to Jay routing for every price pushback. Jay routing is for leads whose budget genuinely doesn't fit, not for leads who need reframing.
+
+**"That's too expensive" / sticker shock:**
+Route to Jay only if their budget is genuinely sub-$5K. If they have the budget but are hesitant, reframe: "Most of our clients felt the same way before seeing what their ad spend was actually producing. The fee pays for itself when your campaigns are running efficiently. Right now you're likely leaving money on the table." Share a relevant case study showing ROI.
+
+**"Other agencies charge less" / comparison shopping:**
+"Cheaper options exist, and most of our clients tried them first. The difference is we tie our pricing to your results, not a flat fee regardless of performance. When your campaigns grow, we grow with you. When they don't, you're not overpaying." Never trash competitors. Let the structure speak for itself.
+
+**"Can you do it for less?" / negotiation:**
+We don't discount. Our pricing is performance-based and scales with their ad spend, so it's already proportional to their business. "The fee is built around your ad spend, so it naturally adjusts to your budget. On a call I can show you exactly what the numbers look like for your situation." Push to the call, not to a discount.
+
+**"I want to start small and scale" / trial request:**
+This is fine. We do 3-month engagements with every client. "We do a 3-month initial engagement so both sides can evaluate fit. If it's working, we keep going. If not, no hard feelings." Don't lower the rate for a trial.
+
+**"What if it doesn't work?" / risk aversion:**
+"That's why our pricing is performance-based. If the campaigns aren't producing, you're not overpaying for management. Our incentive is to make your ads profitable because that's what keeps the relationship going." Share a case study of a client who started cautious and scaled.
+
+**"I can't afford it right now" / genuine budget constraint:**
+Route to Jay. "No problem at all. My partner Jay works with businesses at your stage and has packages that make more sense for where you are right now." Send Jay's calendar link. No shame, no pressure.
+
+**"I need to think about it" / soft stall:**
+This usually isn't about price. Don't volunteer pricing concessions. "No rush. When you're ready, you know where to find me." Move to follow-up cadence.
+
 ## Honesty & Experience Claims
 - NEVER claim experience with an industry or client type unless the Verified Industry Experience section explicitly confirms it.
 - NEVER fabricate case studies, client names, revenue numbers, or results. Every claim must be backed by real data.
