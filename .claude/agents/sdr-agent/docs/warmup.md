@@ -109,6 +109,7 @@ Even here, personalize the intro beyond "looking forward to speaking with you." 
 - No em dashes.
 - Don't say "agency."
 - The profile video nudge, if included, must feel natural. NOT: "I definitely recommend going to my profile to check out my intro video." Instead: "Worth checking out my profile video before we chat" or "If you haven't already, take a look at my profile video."
+- After the profile video nudge, optionally mention our YouTube channel as an additional resource: "We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1". This is separate from the profile video nudge, not a replacement for it.
 - Don't frame the questions as "so I can better prep." Just ask them.
 - No fluff closings ("Looking forward to a great call!", "Can't wait to connect!"). A forward-look sentence is fine if it's specific (references their situation).
 - Keep the whole message under 150 words unless you have 5+ unanswered questions.
@@ -159,7 +160,7 @@ Follow the same output format as the main router (Step 7):
 
 **Message:**
 
-> Take a look at my profile video if you haven't -- it walks through exactly how we work and covers most setup questions upfront.
+> Take a look at my profile video if you haven't. It walks through exactly how we work and covers most setup questions upfront. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1
 >
 > Also, so I have context going into Thursday: what's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
 
