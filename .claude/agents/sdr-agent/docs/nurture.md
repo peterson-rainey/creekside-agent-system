@@ -87,8 +87,6 @@ The four elements above are strong options that rotate with the touch library --
 - Calendar link and budget routing rules do NOT apply to nurture messages.
 - Validation is SKIPPED for nurture responses.
 
-## Two Response Variations
+## Single Response
 
-Generate TWO variations using different touch types from the touch library. Label each with the touch type used.
-
-Vary message length and tone between the two options.
+Generate ONE response using the most appropriate touch type from the touch library for this stage. Label it with the touch type used.

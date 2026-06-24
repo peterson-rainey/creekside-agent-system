@@ -64,9 +64,6 @@ A generic follow-up to someone who gave 30 minutes burns trust. Every post-call 
 
 ---
 
-## Two Response Variations
+## Single Response
 
-Generate TWO response options using different touch types from the touch library. Label each with the touch type used.
-
-- **RESPONSE 1 (by-the-book):** Apply rules rigidly. Safe, consistent, fully aligned. Infer the most appropriate touch type for this stage.
-- **RESPONSE 2 (creative / experimental):** Use a different touch type from the library. Bolder or more conversational. Still rule-compliant. Hard constraints (pricing, no fabricating, no timeline commitments) apply to both.
+Generate ONE response using the most appropriate touch type from the touch library for this stage. Label it with the touch type used. Apply rules rigidly. Safe, consistent, fully aligned.

@@ -79,7 +79,7 @@ The user provides:
 | `followup` | `docs/followup.md` + `docs/touch-library.md` + `docs/validation.md` |
 | `nurture` | `docs/nurture.md` + `docs/touch-library.md` |
 
-**Step 4:** Generate two response variations per the type-specific instructions.
+**Step 4:** Generate one response per the type-specific instructions.
 
 **Step 5:** Apply Critical Reminders (below) as a final check.
 
@@ -164,8 +164,8 @@ After presenting, log the generation:
 ```sql
 INSERT INTO sdr_generation_log (
   conversation_text, conversation_summary, response_type, detected_industry,
-  response_1_text, response_2_text,
-  response_1_passed, response_1_issues, response_2_passed, response_2_issues,
+  response_1_text,
+  response_1_passed, response_1_issues,
   retrieved_examples_count, retrieved_rules_count,
   prompt_tokens, completion_tokens, total_tokens, estimated_cost
 ) VALUES (
@@ -173,12 +173,9 @@ INSERT INTO sdr_generation_log (
   '{summary_or_null}',
   '{response_type}',
   '{detected_industry}',
-  '{response_1_text}',
-  '{response_2_text}',
-  {response_1_passed},
-  '{response_1_issues_json}'::jsonb,
-  {response_2_passed},
-  '{response_2_issues_json}'::jsonb,
+  '{response_text}',
+  {response_passed},
+  '{response_issues_json}'::jsonb,
   {retrieved_examples_count},
   {retrieved_rules_count},
   0, 0, 0, 0
@@ -201,12 +198,7 @@ Present in this format:
 - Discovery insights: {count}
 - Performance-pricing card: {available / already used / not applicable}
 
-**---RESPONSE 1---**
-{First response option, ready to paste}
+**---RESPONSE---**
+{Response, ready to paste}
 
-**---RESPONSE 2---**
-{Second response option, ready to paste}
-
-**Validation:**
-- Response 1: {PASSED / FAILED: list issues}
-- Response 2: {PASSED / FAILED: list issues}
+**Validation:** {PASSED / FAILED: list issues}
