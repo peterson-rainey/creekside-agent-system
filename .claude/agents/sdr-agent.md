@@ -184,6 +184,7 @@ Present in this format:
 - Touch type chosen: {type, or "n/a for lead type"}
 - Job description: {retrieved from DB / provided by user / not available -- degraded mode}
 - Call transcript: {retrieved from DB / provided by user / not found -- degraded mode / no call detected}
+- Post-call goal: {onboarding (call <6mo) / re-engage (call 6mo+) / n/a (no call detected)}
 - Past responses found: {count}
 - Company rules applied: {count}
 - Discovery insights: {count}

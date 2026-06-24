@@ -53,10 +53,11 @@ Before suggesting a resource, scan conversation for resources already shared. Ne
 
 ## Post-Call Followup Rules
 
-**Goal: advance the relationship, grounded in what actually happened on the call.**
+**Goal: begin onboarding, not book another call.** The call already happened. Do NOT suggest scheduling another call unless 6+ months have passed (see "Post-Call Goal Shift" in context-retrieval.md).
 
 A generic follow-up to someone who gave 30 minutes burns trust. Every post-call followup MUST reference specifics from the transcript: their stated pain points, goals, questions they raised, or agreed next steps.
 
+- **CTA = onboarding next steps:** Send the onboarding doc, get account access, confirm proposal details, answer the one thing holding them back. NOT "let's hop on another call."
 - If no transcript was retrieved (degraded mode), limit to a bare status question. Do NOT fabricate call references.
 - Reference what they said in your own words. Do not quote or parrot them back.
 - One clear next step per message (usually: confirm the proposal is coming, confirm a date, or ask the one decision-blocker they mentioned).

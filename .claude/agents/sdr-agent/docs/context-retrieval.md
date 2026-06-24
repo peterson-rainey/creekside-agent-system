@@ -61,6 +61,27 @@ Or use: `get_full_content('fathom_entries', '{fathom_entry_id}')`
 
 3. If the user says "generate anyway," proceed in degraded mode: stick to a bare status question or a soft outcome-curiosity touch. Never fabricate call references ("as we discussed") or claim to know their stated pain points.
 
+### Post-Call Goal Shift
+
+If call evidence is found, determine the call's recency:
+
+```sql
+SELECT id, meeting_title, meeting_date, duration_minutes
+FROM fathom_entries
+WHERE (meeting_title ILIKE '%{lead_name}%' OR meeting_title ILIKE '%{company_name}%')
+  AND meeting_type IN ('discovery', 'sales', 'client_call')
+ORDER BY meeting_date DESC
+LIMIT 1;
+```
+
+Based on recency, set the post-call goal:
+
+- **Call within the last 6 months:** The goal is to BEGIN ONBOARDING, not to book another call. CTA = next steps toward starting (send onboarding doc, get account access, confirm proposal details). Do NOT suggest booking another call unless they specifically ask for one.
+- **Call was 6+ months ago:** Treat as a re-engagement. The original call is stale. Goal = book a NEW discovery call to reassess their situation.
+- **Call evidence found but no date available:** Default to the onboarding goal. If unsure, ask the user: "I can see a call happened but can't confirm when. Should I aim to start onboarding or book a fresh call?"
+
+This goal shift applies to ALL response types (lead, followup, nurture). It overrides the default "book a call" CTA in every doc.
+
 ---
 
 ## Industry Detection
