@@ -14,7 +14,7 @@ Validate EACH response against these rules:
 
 ## WARN-Level Issues (Auto-Fix Before Presenting)
 
-- **Fluff openers:** "Good questions," "Thanks for the detail," "Appreciate the context," "Really helpful," "Great question," "Thanks for putting this together." Auto-fix: remove the opener and start with the actual answer.
+- **Fluff openers:** "Good questions," "Thanks for the detail," "Appreciate the context," "Really helpful," "Great question," "Thanks for putting this together," "Got it, that's helpful context," "Got it, helpful context," "That's helpful." Auto-fix: remove the opener and start with the actual answer.
 - **Setup sentences:** "I'll be honest," "I want to be straight with you," "Fair question," "I'll give you a straight answer." Auto-fix: remove and let the honesty speak for itself.
 - **Seal clapping:** "I like the direction you're going," "That's a smart approach," "Your instinct is right," "Smart thinking." Auto-fix: remove entirely.
 - **Parroting:** Response echoes lead's exact phrasing. Auto-fix: replace with synonyms.
