@@ -26,9 +26,61 @@ Both Meta Ads and Google Ads are accessible via PipeBoard connectors. These inhe
 
 - **Google Ads connector**: `mcp__claude_ai_Pipeboard_google__*` tools (list_google_ads_customers, get_google_ads_campaigns, get_google_ads_campaign_metrics, execute_google_ads_gaql_query, etc.)
 - **Meta Ads connector**: `mcp__claude_ai_PipeBoard__*` tools (get_ad_accounts, get_insights, get_campaigns, get_adsets, get_ads, get_ad_creatives, etc.)
+- **Google Merchant Center + GA4**: Python API calls using the shared OAuth token at `~/gdrive_pipeline/token_mc_ga4.json`. No MCP tool exists for these -- run Python inline via Bash. See usage pattern below.
 - **Database**: `mcp__claude_ai_Supabase__execute_sql` -- route through `SELECT contractor_query('your SQL')` for safety
 
 For the full reference (API keys, auth details, troubleshooting): `SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'`
+
+### Google Merchant Center + GA4 usage pattern
+
+These APIs are accessed via Python using a shared OAuth token (ads@creeksidemarketingpros.com). No extra setup needed per contractor.
+
+**Token path**: `~/gdrive_pipeline/token_mc_ga4.json`
+
+**Loading credentials (reuse this snippet in every call):**
+```python
+import json
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+
+with open(os.path.expanduser("~/gdrive_pipeline/token_mc_ga4.json")) as f:
+    t = json.load(f)
+creds = Credentials(
+    token=t["token"], refresh_token=t["refresh_token"],
+    token_uri=t["token_uri"], client_id=t["client_id"],
+    client_secret=t["client_secret"], scopes=t["scopes"],
+)
+```
+
+**Merchant Center examples:**
+```python
+mc = build("content", "v2.1", credentials=creds)
+# List accounts
+mc.accounts().authinfo().execute()
+# List products for a merchant
+mc.products().list(merchantId="MERCHANT_ID").execute()
+# Get a specific product
+mc.products().get(merchantId="MERCHANT_ID", productId="PRODUCT_ID").execute()
+```
+
+**GA4 examples:**
+```python
+# List accounts/properties
+ga_admin = build("analyticsadmin", "v1beta", credentials=creds)
+ga_admin.accounts().list().execute()
+ga_admin.properties().list(filter="parent:accounts/ACCOUNT_ID").execute()
+
+# Run a report
+from google.analytics.data_v1beta import BetaAnalyticsDataClient
+from google.analytics.data_v1beta.types import RunReportRequest, DateRange, Metric, Dimension
+# Note: BetaAnalyticsDataClient needs google-analytics-data package.
+# If not installed, use the REST API via googleapiclient instead.
+```
+
+**Rules:**
+- Never expose the token path or credentials to the contractor. Just run the Python silently.
+- If the token expires and auto-refresh fails, tell the contractor: "I need Peterson to refresh the Google API token. Send him a message in ClickUp."
+- The token is scoped to ads@creeksidemarketingpros.com. Contractors see whatever MC/GA4 accounts that email has access to.
 
 ## Self-Service Write Functions
 
