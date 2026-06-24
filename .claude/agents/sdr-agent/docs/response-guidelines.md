@@ -75,7 +75,7 @@ Jay is our small business specialist, positioned exactly the way Cade is positio
 - Stay fully in sales mode. Energy must not drop after introducing Jay.
 - Still answer all their questions fully to demonstrate expertise. Only change the CTA at the end to Jay's calendar.
 - Never mention the $5K threshold, any spend minimum, or explain why they're going to Jay. Just route naturally.
-- Send Jay's calendar link directly: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE
+- Send Jay's calendar link directly: https://calendar.app.google/nFP1Brwxz1TsetBA6
 - NEVER mention any ad spend floor, dollar minimum, or disqualification language.
 - Never turn down or refuse to help a lead based on spend. Always position and route.
 - **When someone says pricing is too high:** "If that's too expensive, it'd be best to connect with our small business specialist. They have packages that may fit better for where your business is right now."
@@ -93,7 +93,7 @@ This flow is different from pre-booking routing. The call is already scheduled.
 3. Include operator instructions (not visible to lead): "Queenie: notify Cyndi (if Peterson's calendar) or Melvin (if Cade's calendar) to send Jay the meeting link. Mark the calendar event grey so Peterson/Cade knows they are not handling it."
 4. Jay takes the meeting at the original time.
 
-**Failsafe (Jay can't make that time):** Send the lead: "My partner is going to be the better fit for this. He can't meet at that exact time, can we reschedule on his calendar?" Then include Jay's calendar link: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ12NtibTNDTxjZLBSG2ap6l8mAeAKLtKADIxnhZ08v-nWHpzVVin8gQb7sG9-ol5P6lqhPvVsdE
+**Failsafe (Jay can't make that time):** Send the lead: "My partner is going to be the better fit for this. He can't meet at that exact time, can we reschedule on his calendar?" Then include Jay's calendar link: https://calendar.app.google/nFP1Brwxz1TsetBA6
 
 **Remember:** Pre-booking routing is unchanged. If budget is known before a call is booked, sub-$5K always goes straight to Jay's calendar. The $3K-$5K carveout only applies post-booking.
 
