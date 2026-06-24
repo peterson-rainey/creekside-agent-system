@@ -135,6 +135,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] Didn't explain terms the lead clearly already knows
 - [ ] Didn't repeat info already covered earlier in the conversation
 - [ ] If Upwork auto-invite: flagged as "no response needed" instead of generating
+- [ ] If hourly/live video call engagement: flagged as "no response needed" or declined
 
 ### Conflict resolution:
 - When "answer every question" conflicts with "reply length matches what you received": answering every question wins. But keep each answer as concise as possible.
