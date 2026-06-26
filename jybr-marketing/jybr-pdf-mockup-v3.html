@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Jybr Lead Report v3 -- Production Style Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f8fa;--bg-2:#eef2f6;--paper:#ffffff;
+  --ink:#1d2939;--ink-2:#2a3645;--ink-soft:#475467;--ink-mute:#7a8597;
+  --rule:#e3e8ef;--rule-strong:#c8d2de;
+  --accent:#2d8fb5;--accent-soft:#d8ecf4;--accent-ink:#155875;
+  --pos:#0f8a6a;--pos-soft:#d6f0e6;--neg:#b3261e;
+  --brand-1:#5ec5d1;--brand-2:#8ad9b1;--brand-3:#4a8fc2;
+  --pg-w:794px;--pg-h:1123px;--pg-pad:48px;
+  --shadow-card:4px 4px 0 var(--ink);--shadow-card-sm:2px 2px 0 var(--ink);
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+html,body{margin:0;padding:0;background:#0c1118;color:var(--ink);
+  font-family:"Inter","Helvetica Neue",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  font-feature-settings:"ss01","cv11"}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff}
+  .page{border:0!important;box-shadow:none!important;margin:0!important}
+  .page::before{display:none!important}
+  .page:last-child{page-break-after:auto}
+  .draft-banner{display:none!important}
+}
+
+/* PAGE */
+.rep{display:flex;flex-direction:column;gap:14px;padding:14px;max-width:822px;margin:0 auto}
+.page{
+  width:var(--pg-w);height:var(--pg-h);background:var(--bg);
+  position:relative;overflow:hidden;
+  border:1.5px solid var(--ink);box-shadow:6px 6px 0 #000;
+  page-break-after:always;break-after:page;
+}
+.page::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(29,41,57,.10) 1px,transparent 1px);
+  background-size:3px 3px;opacity:.6}
+
+/* CHROME */
+.pg-h{position:absolute;left:var(--pg-pad);right:var(--pg-pad);top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:10px;border-bottom:1.5px solid var(--ink);font-size:11px;z-index:1}
+.pg-h-l{display:flex;align-items:center;gap:12px}
+.pg-logo{height:32px;width:auto;object-fit:contain;display:block}
+.pg-logo-text{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;color:var(--ink);letter-spacing:-.02em}
+.pg-mark-div{width:1px;height:18px;background:var(--rule-strong)}
+.pg-h-r{color:var(--ink-mute);font-size:10.5px;letter-spacing:.06em}
+.pg-body{position:absolute;left:var(--pg-pad);right:var(--pg-pad);top:68px;bottom:56px;display:flex;flex-direction:column;z-index:1}
+.pg-f{position:absolute;left:var(--pg-pad);right:var(--pg-pad);bottom:24px;
+  display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--ink-mute);
+  padding-top:10px;border-top:1.5px solid var(--ink);z-index:1}
+.pg-folio{color:var(--ink)}
+
+/* TYPE */
+.display{font-family:"Space Grotesk","Inter",sans-serif;font-weight:700;letter-spacing:-.035em;line-height:.95;color:var(--ink);text-wrap:balance}
+.display em{font-style:normal;background:var(--accent);color:#fff;padding:0 .12em;display:inline-block;transform:rotate(-1deg);box-shadow:4px 4px 0 var(--ink);margin:0 .06em;line-height:1.05}
+.h-mid{font-size:38px;line-height:1;letter-spacing:-.03em}
+.h-mid em{box-shadow:3px 3px 0 var(--ink)}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-mute);margin-bottom:8px}
+.num{font-family:"Space Grotesk",sans-serif;font-weight:700;font-feature-settings:"lnum","tnum";letter-spacing:-.04em}
+.mono{font-family:"JetBrains Mono",monospace}
+
+/* PILL */
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border-radius:6px;
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;
+  background:var(--paper);border:1.5px solid var(--ink);color:var(--ink-soft)}
+.dot{width:6px;height:6px;border-radius:999px;background:var(--pos)}
+.dot.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* CARD */
+.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;box-shadow:var(--shadow-card);position:relative}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:8px;border-bottom:1px solid var(--rule);padding-bottom:6px}
+.section-head .index{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.08em;margin-bottom:3px}
+.section-head .display em{box-shadow:3px 3px 0 var(--ink)}
+.section-head-r{align-self:flex-end;padding-bottom:4px}
+/* Compact section head for How We Wire pages */
+.section-head-compact{margin-bottom:6px;padding-bottom:4px}
+.section-head-compact .index{margin-bottom:2px;font-size:9px}
+.section-head-compact .h-mid{font-size:28px}
+
+/* MCP CHIP */
+.mcp{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--ink-soft);background:var(--bg-2);border:1px solid var(--rule-strong);border-radius:3px}
+.mcp-dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* BTN */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:6px;
+  font-weight:700;font-size:14px;line-height:1;text-decoration:none;
+  border:1.5px solid var(--ink);cursor:pointer}
+.btn-primary{background:var(--ink);color:var(--bg);box-shadow:3px 3px 0 var(--accent)}
+
+/* ===== PAGE 1: COVER+DIAGNOSTIC ===== */
+.p-cover{background:var(--paper)}
+.p-cover::before{background-image:radial-gradient(rgba(29,41,57,.06) 1px,transparent 1px)}
+.cover-h1{font-size:72px;line-height:.92;margin:0 0 10px;letter-spacing:-.045em}
+.cover-h1 em{font-size:72px;line-height:.92;box-shadow:5px 5px 0 var(--ink)}
+.cover-sub{font-size:14px;line-height:1.55;color:var(--ink-soft);max-width:62ch;margin:0 0 12px}
+
+/* TOC */
+.toc{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow-card-sm);margin-bottom:14px}
+.toc-item{padding:8px 10px;border-right:1.5px solid var(--ink)}
+.toc-item:last-child{border-right:0}
+.toc-pg{font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.toc-label{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:12px;margin:3px 0 2px;color:var(--ink);line-height:1.15;letter-spacing:-.01em}
+.toc-desc{font-size:9.5px;color:var(--ink-mute);line-height:1.3}
+
+/* VITALS */
+.diag-vitals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow-card);margin-bottom:14px}
+.diag-v{padding:12px;border-right:1.5px solid var(--ink)}
+.diag-v:last-child{border-right:0}
+.diag-vn{font-size:32px;line-height:1;color:var(--ink);margin:4px 0;letter-spacing:-.04em}
+.diag-vn-sm{font-size:20px}
+.diag-vd{font-size:10px;color:var(--ink-mute);line-height:1.35}
+
+/* DIAG */
+.diag-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:12px;margin-bottom:12px}
+.diag-pains{padding:12px}
+.diag-pains ul{list-style:none;padding:0;margin:6px 0 0;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--ink)}
+.diag-pains li{display:flex;gap:6px;align-items:baseline;line-height:1.4}
+.bul{color:var(--accent);font-weight:700;font-size:11px;flex:0 0 auto}
+
+.diag-ba{padding:12px;overflow:hidden}
+.ba-tbl{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.ba-tbl th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;color:var(--ink-mute);font-weight:500;text-transform:uppercase;padding:4px 6px;border-bottom:1.5px solid var(--ink)}
+.ba-tbl td{padding:6px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.35}
+.ba-tbl tr:last-child td{border-bottom:0}
+.ba-x{display:inline-block;width:14px;color:var(--neg);font-weight:700;margin-right:3px}
+.ba-ck{display:inline-block;width:14px;color:var(--pos);font-weight:700;margin-right:3px}
+
+/* AGENT INDEX */
+.agents-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.agent-card{padding:12px;display:flex;flex-direction:column;gap:5px;min-height:110px}
+.agent-card-head{display:flex;justify-content:space-between;align-items:center}
+.agent-card-rank{font-size:24px;color:var(--accent);line-height:1}
+.agent-card-pri{font-size:9.5px;color:var(--ink-mute);letter-spacing:.12em;text-transform:uppercase;font-family:"JetBrains Mono",monospace}
+.agent-card-name{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;line-height:1.15;letter-spacing:-.01em;color:var(--ink)}
+.agent-card-stack{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
+.agent-card-foot{padding-top:5px;border-top:1px solid var(--rule);font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase}
+
+/* ===== PAGE 2: AGENT DEEP ===== */
+.agent-tag{font-size:13px;line-height:1.45;color:var(--ink-soft);margin:6px 0 0;max-width:70ch}
+.inbox{padding:0;overflow:hidden;margin-bottom:12px}
+.inbox-bar{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--ink);color:#fff;font-size:11px;border-bottom:1.5px solid var(--ink)}
+.inbox-title{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:.02em}
+.inbox-count{color:var(--accent);letter-spacing:.06em;background:rgba(255,255,255,.1);padding:1px 8px;border-radius:3px;font-family:"JetBrains Mono",monospace;font-size:10px}
+.inbox-spc{flex:1}
+.inbox-status{display:inline-flex;align-items:center;gap:6px;color:#fff;opacity:.85;letter-spacing:.04em;font-family:"JetBrains Mono",monospace;font-size:9.5px}
+.inbox-status .dot{background:var(--brand-2)}
+.inbox-row{display:grid;grid-template-columns:220px 1fr;min-height:260px}
+.inbox-list{list-style:none;padding:0;margin:0;border-right:1px solid var(--rule)}
+.inbox-item{padding:8px 10px;border-bottom:1px solid var(--rule);position:relative}
+.inbox-item.active{background:var(--accent-soft)}
+.inbox-item.active::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.inbox-item-row{display:flex;justify-content:space-between;align-items:baseline;gap:4px;margin-bottom:2px}
+.inbox-from{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:11.5px;color:var(--ink)}
+.inbox-ts{font-size:9px;color:var(--ink-mute);letter-spacing:.04em;font-family:"JetBrains Mono",monospace}
+.inbox-snippet{font-size:10.5px;color:var(--ink-soft);line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inbox-tag{font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:1px 5px;border:1px solid var(--rule-strong);border-radius:3px;color:var(--ink-soft);background:#fff;display:inline-block;margin-top:3px}
+.inbox-pane{display:flex;flex-direction:column;padding:0}
+.inbox-thread-h{display:flex;justify-content:space-between;align-items:baseline;padding:8px 12px;border-bottom:1px solid var(--rule);background:var(--bg-2)}
+.inbox-thread-from{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:12px;color:var(--ink)}
+.inbox-thread-meta{font-size:10px;color:var(--ink-mute);letter-spacing:.04em;font-family:"JetBrains Mono",monospace}
+.inbox-msg{padding:8px 12px 4px}
+.inbox-msg-bubble{display:inline-block;padding:7px 10px;border-radius:10px;font-size:12px;line-height:1.5;color:var(--ink);max-width:88%}
+.inbox-msg-c .inbox-msg-bubble{background:var(--bg-2);border:1px solid var(--rule);border-bottom-left-radius:3px;font-style:italic;color:var(--ink-soft)}
+.inbox-msg-a{padding-top:4px}
+.inbox-draft-banner{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.12em;color:var(--accent-ink);background:var(--accent-soft);border:1px solid var(--accent);padding:3px 8px;border-radius:3px;margin-bottom:5px;font-weight:600}
+.inbox-msg-bubble-a{background:#fff;border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--accent);border-bottom-right-radius:3px}
+.inbox-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;clear:both}
+.inbox-chip{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;background:var(--paper);border:1px solid var(--rule-strong);color:var(--ink-soft);padding:3px 7px;border-radius:3px}
+
+/* VALUE STACK */
+.value-stack{border:1.5px solid var(--ink);background:var(--paper);box-shadow:var(--shadow-card-sm);margin-bottom:10px;border-radius:6px;overflow:hidden}
+.value-stack-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:12px;align-items:end;padding:9px 12px;border-bottom:1px solid var(--rule);background:var(--bg-2)}
+.value-stack-head h3{font-family:"Space Grotesk",sans-serif;font-size:16px;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin:0}
+.value-stack-head p{font-size:10.5px;line-height:1.3;color:var(--ink-soft);margin:0}
+.value-stack-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.vs-item{padding:9px 10px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:2px}
+.vs-item:last-child{border-right:0}
+.vs-title{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
+.vs-val{font-family:"Space Grotesk",sans-serif;font-size:15px;font-weight:700;color:var(--accent-ink)}
+.vs-desc{font-size:9px;line-height:1.2;color:var(--ink-soft)}
+
+/* AGENT STRIP */
+.agent-strip{display:grid;grid-template-columns:1fr 1.2fr 1.2fr;gap:0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);margin-top:auto}
+.agent-strip-cell{padding:10px 14px 10px 0;border-right:1px solid var(--rule)}
+.agent-strip-cell:not(:first-child){padding-left:14px}
+.agent-strip-cell:last-child{border-right:0}
+.agent-strip-cell .eyebrow{margin-bottom:5px}
+.agent-strip-list{font-size:11px;color:var(--ink);line-height:1.4}
+
+/* ===== PHASE PROGRESS BAR ===== */
+.phase-bar{display:flex;align-items:center;gap:0;margin-bottom:10px;border:1.5px solid var(--ink);border-radius:5px;overflow:hidden;height:20px;box-shadow:var(--shadow-card-sm)}
+.phase-seg{flex:1;text-align:center;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.06em;padding:3px 0;color:var(--ink-mute);background:var(--paper);border-right:1.5px solid var(--ink)}
+.phase-seg:last-child{border-right:0}
+.phase-seg.active{background:var(--accent);color:white;font-weight:700}
+.phase-seg.done{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+
+/* ===== STEP CARDS ===== */
+.step{margin-bottom:8px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;box-shadow:var(--shadow-card-sm);flex:1;display:flex;flex-direction:column}
+.step-head{display:flex;align-items:baseline;gap:10px;padding:8px 14px;background:var(--bg-2);border-bottom:1.5px solid var(--ink)}
+.step-n{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+.step-t{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em}
+.step-body{padding:9px 14px;flex:1}
+.step-section{margin-bottom:5px}
+.step-section:last-child{margin-bottom:0}
+.step-section p{font-size:10.5px;line-height:1.45;color:var(--ink-soft)}
+.step-section p b{color:var(--ink)}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;font-family:"JetBrains Mono",monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin-bottom:3px;font-weight:600}
+.badge-tech{background:var(--bg-2);color:var(--ink-mute);border:1px solid var(--rule-strong)}
+.badge-plain{background:var(--accent-soft);color:var(--accent-ink);border:1px solid var(--accent)}
+.badge-deliver{background:var(--pos-soft);color:var(--pos);border:1px solid #a8dcc8}
+.badge-diy{background:#fef7e6;color:#8a6a1a;border:1px solid #e8d4a0}
+
+.step-plain{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 4px 4px 0}
+.step-plain p{font-size:10.5px;line-height:1.45;color:var(--ink)}
+.step-deliver{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+.step-deliver-item{font-family:"JetBrains Mono",monospace;font-size:8px;background:var(--pos-soft);color:var(--pos);border:1px solid #a8dcc8;border-radius:3px;padding:2px 7px;font-weight:600;letter-spacing:.04em}
+.step-diy{background:#fef7e6;border-left:3px solid #e8a735;padding:6px 10px;border-radius:0 4px 4px 0}
+.step-diy p{font-size:10px;line-height:1.4;color:#5a4a1a}
+
+/* ===== AGENTS COMPACT ===== */
+.ac-block{padding:14px;margin-bottom:10px;display:flex;flex-direction:column}
+.ac-block-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:10px}
+.ac-block-top-left{flex:0 0 auto}
+.ac-block-top-right{flex:1}
+.ac-rank{font-size:28px;line-height:1;color:var(--accent)}
+.ac-name{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:3px}
+.ac-tag{font-size:11.5px;line-height:1.4;color:var(--ink-soft);margin:0 0 6px}
+.ac-meta{display:flex;gap:12px;margin-bottom:8px}
+.ac-meta-col{flex:1}
+.ac-meta-col .eyebrow{margin-bottom:3px;font-size:9px}
+.ac-stack{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.ac-ta{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;font-size:11px;color:var(--ink)}
+.ac-ta li{display:grid;grid-template-columns:38px 1fr;gap:6px;line-height:1.35}
+.ac-ta b{font-size:9.5px;color:var(--accent);letter-spacing:.12em;font-weight:600}
+.ac-when{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 4px 4px 0;margin-bottom:8px}
+.ac-when-label{font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin-bottom:2px}
+.ac-when p{font-size:11px;line-height:1.4;color:var(--ink);margin:0}
+.ac-examples{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.conv{background:var(--paper);border:1.5px solid var(--ink);border-radius:5px;padding:8px 10px;box-shadow:var(--shadow-card-sm)}
+.conv-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;padding-bottom:5px;border-bottom:1px dashed var(--rule)}
+.conv-label{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.conv-ts{font-size:9.5px;color:var(--ink-mute);letter-spacing:.04em;font-family:"JetBrains Mono",monospace}
+.conv-msg{padding:4px 0;font-size:11px;line-height:1.4}
+.conv-msg+.conv-msg{border-top:1px dashed var(--rule)}
+.conv-who{display:block;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:2px;font-weight:500}
+.conv-msg p{margin:0;color:var(--ink)}
+
+/* ===== PLAN PAGE ===== */
+.plan-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
+.plan-road{padding:12px}
+.road{list-style:none;padding:0;margin:8px 0 0}
+.road li{display:grid;grid-template-columns:74px 1fr;gap:8px;padding:6px 0;border-bottom:1px dashed var(--rule)}
+.road li:last-child{border-bottom:0}
+.road-day{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--accent);letter-spacing:.04em;align-self:start;padding-top:1px}
+.road-l{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13px;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
+.road-l small{display:block;font-family:"Inter",sans-serif;font-weight:400;font-size:10.5px;color:var(--ink-soft);margin-top:2px;letter-spacing:0;line-height:1.3}
+.plan-price{padding:12px;display:flex;flex-direction:column}
+.price-hero{display:flex;align-items:baseline;gap:10px;padding:4px 0 8px;border-bottom:1.5px solid var(--ink);margin-bottom:8px}
+.price-amt{font-size:48px;color:var(--ink);line-height:1}
+.price-sub{font-size:11px;color:var(--ink-mute);letter-spacing:.06em;font-family:"JetBrains Mono",monospace}
+.price-note{font-size:10px;color:var(--ink-soft);line-height:1.35;margin-bottom:8px}
+.price-incl{list-style:none;padding:0;margin:6px 0 8px;display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--ink)}
+.price-incl li{padding-left:18px;position:relative;line-height:1.35}
+.price-incl li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--pos);font-weight:700;font-size:12px}
+.price-refund{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em;margin-top:auto;padding-top:8px;border-top:1px solid var(--rule)}
+
+.signoff{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;padding:10px 14px;align-items:stretch}
+.signoff-l p{margin:4px 0 8px;font-size:12px;line-height:1.35;color:var(--ink);max-width:60ch}
+.signoff-r{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;text-align:right;border-left:1.5px solid var(--ink);padding-left:18px}
+.signoff-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:24px;line-height:1;color:var(--ink)}
+.signoff-role{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.06em;margin-top:4px}
+.signoff-stamp{display:flex;flex-direction:column;align-items:center;border:1.5px solid var(--ink);background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;box-shadow:3px 3px 0 var(--ink);margin-top:10px}
+.signoff-stamp-t{font-size:24px;line-height:1;color:#fff}
+.signoff-stamp-l{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+
+.faq{margin-top:6px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 16px}
+.faq-item{padding:3px 0;border-top:1px solid var(--rule)}
+.faq-q{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:11px;line-height:1.2;color:var(--ink);display:flex;align-items:baseline;gap:6px;margin-bottom:1px}
+.faq-n{font-size:9.5px;color:var(--accent);font-weight:700;letter-spacing:.04em;flex:0 0 auto}
+.faq-a{font-size:9.5px;line-height:1.32;color:var(--ink-soft);padding-left:20px}
+
+.draft-banner{text-align:center;padding:6px;background:#fff8e1;font-size:10px;font-family:"JetBrains Mono",monospace;color:#5a4a00;border:1.5px solid #d4a800;border-radius:4px;margin:14px auto 0;max-width:822px}
+</style>
+</head>
+<body>
+<div class="draft-banner">MOCKUP v3 -- Production-style layout for developer reference</div>
+<div class="rep">
+
+<!-- ========================= PAGE 1: COVER + DIAGNOSTIC ========================= -->
+<section class="page p-cover">
+  <header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header>
+  <div class="pg-body">
+    <h1 class="display cover-h1" style="font-size:58px">Ally Plumbing &amp; Restoration, here's the <em style="font-size:58px">blueprint</em>.</h1>
+    <p class="cover-sub">Emergency Intake &amp; Scheduling Agent is the recommended first build for Ally Plumbing &amp; Restoration. It handles after-hours calls, urgent water-damage intake, appointment routing, and follow-up through scoped MCP capabilities for CallRail, ServiceTitan, Google Calendar, Gmail, QuickBooks Online, and Podium.</p>
+
+    <div class="eyebrow" style="margin-bottom:4px">What's inside</div>
+    <div class="toc">
+      <div class="toc-item"><div class="toc-pg">p. 2</div><div class="toc-label">Agent #01</div><div class="toc-desc">What your first agent does</div></div>
+      <div class="toc-item"><div class="toc-pg">p. 3-4</div><div class="toc-label">Phase 1: Blueprint</div><div class="toc-desc">Rules, events, capabilities, adapters</div></div>
+      <div class="toc-item"><div class="toc-pg">p. 5-6</div><div class="toc-label">Phase 2: Infrastructure</div><div class="toc-desc">Ingress, queues, state, retrieval</div></div>
+      <div class="toc-item"><div class="toc-pg">p. 7-8</div><div class="toc-label">Phase 3: Safety &amp; Launch</div><div class="toc-desc">Permissions, policy, simulation, rollout</div></div>
+      <div class="toc-item"><div class="toc-pg">p. 9-10</div><div class="toc-label">Expansion &amp; Plan</div><div class="toc-desc">Optional agents, roadmap, pricing</div></div>
+    </div>
+
+    <div class="diag-vitals">
+      <div class="diag-v"><div class="eyebrow">First workflow</div><div class="num diag-vn diag-vn-sm">Emergency<br>intake</div><div class="diag-vd">Start with the workflow that loses the most urgency when staff is unavailable.</div></div>
+      <div class="diag-v"><div class="eyebrow">Named tools</div><div class="num diag-vn">6</div><div class="diag-vd">Only maps tools the lead actually provided.</div></div>
+      <div class="diag-v"><div class="eyebrow">Build model</div><div class="num diag-vn diag-vn-sm">MCP +<br>functions</div><div class="diag-vd">MCP for capabilities; backend functions for events, state, retries, and writes.</div></div>
+      <div class="diag-v"><div class="eyebrow">Pilot window</div><div class="num diag-vn">7 <span style="font-size:18px">days</span></div><div class="diag-vd">Per scoped agent after deposit.</div></div>
+    </div>
+
+    <div class="diag-row">
+      <div class="card diag-pains"><div class="eyebrow">Reported pain</div><ul>
+        <li><span class="bul">&#9656;</span> After-hours calls need fast qualification before staff is online.</li>
+        <li><span class="bul">&#9656;</span> Customer details get retyped between phone notes, service software, calendar, and email.</li>
+        <li><span class="bul">&#9656;</span> Emergency jobs require service-area, schedule, urgency, and policy checks.</li>
+        <li><span class="bul">&#9656;</span> Estimate, invoice, and review follow-up depends on staff remembering the next step.</li>
+      </ul></div>
+      <div class="card diag-ba"><div class="eyebrow">Before &middot; After</div><table class="ba-tbl"><thead><tr><th>Before</th><th>After</th></tr></thead><tbody>
+        <tr><td><span class="ba-x">&times;</span> Missed call waits until office hours</td><td><span class="ba-ck">&#10003;</span> Agent classifies urgency and queues callback</td></tr>
+        <tr><td><span class="ba-x">&times;</span> Staff copy details across tools</td><td><span class="ba-ck">&#10003;</span> MCP capabilities write scoped notes/tasks</td></tr>
+        <tr><td><span class="ba-x">&times;</span> Calendar checks happen manually</td><td><span class="ba-ck">&#10003;</span> Agent checks availability before next action</td></tr>
+        <tr><td><span class="ba-x">&times;</span> Risky decisions are ad hoc</td><td><span class="ba-ck">&#10003;</span> Policy gates pause pricing, refunds, safety</td></tr>
+      </tbody></table></div>
+    </div>
+
+    <div style="margin-top:auto"><div class="eyebrow">3 agents, in priority order</div>
+      <div class="agents-row" style="margin-top:6px">
+        <div class="card agent-card"><div class="agent-card-head"><span class="num agent-card-rank">01</span><span class="agent-card-pri">Build first</span></div><div class="agent-card-name">Emergency Intake &amp; Scheduling Agent</div><div class="agent-card-stack"><span class="mcp"><span class="mcp-dot"></span> CallRail</span><span class="mcp"><span class="mcp-dot"></span> ServiceTitan</span><span class="mcp"><span class="mcp-dot"></span> Google Calendar</span></div><div class="agent-card-foot">Build first</div></div>
+        <div class="card agent-card"><div class="agent-card-head"><span class="num agent-card-rank">02</span><span class="agent-card-pri">Expansion path</span></div><div class="agent-card-name">Estimate Follow-Up Agent</div><div class="agent-card-stack"><span class="mcp"><span class="mcp-dot"></span> ServiceTitan</span><span class="mcp"><span class="mcp-dot"></span> Gmail</span><span class="mcp"><span class="mcp-dot"></span> Podium</span></div><div class="agent-card-foot">Expansion path</div></div>
+        <div class="card agent-card"><div class="agent-card-head"><span class="num agent-card-rank">03</span><span class="agent-card-pri">Expansion path</span></div><div class="agent-card-name">Billing &amp; Review Agent</div><div class="agent-card-stack"><span class="mcp"><span class="mcp-dot"></span> QuickBooks Online</span><span class="mcp"><span class="mcp-dot"></span> Podium</span><span class="mcp"><span class="mcp-dot"></span> Gmail</span></div><div class="agent-card-foot">Expansion path</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">01 / 10</span></footer>
+</section>
+
+<!-- ========================= PAGE 2: AGENT DEEP DIVE ========================= -->
+<section class="page">
+  <header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header>
+  <div class="pg-body">
+    <div class="section-head"><div class="left"><div class="index">&sect; 02 &middot; Agent #01</div><h2 class="display h-mid">Emergency Intake &amp; Scheduling <em>agent.</em></h2><p class="agent-tag">Handles after-hours calls, urgent water-damage intake, appointment routing, and follow-up using CallRail, ServiceTitan, Google Calendar with scoped MCP capabilities, policy gates, and staged writes.</p></div><div class="section-head-r"><span class="pill"><span class="dot"></span> Build first</span></div></div>
+    <div class="eyebrow" style="margin-bottom:6px">A day in the agent's inbox &middot; sample drawn from your intake categories</div>
+    <div class="card inbox">
+      <div class="inbox-bar"><span class="inbox-title">Inbox</span><span class="inbox-count">5 open</span><span class="inbox-spc"></span><span class="inbox-status"><span class="dot pulse" style="background:var(--brand-2)"></span> powered by Jybr &middot; resolved</span></div>
+      <div class="inbox-row">
+        <ul class="inbox-list">
+          <li class="inbox-item active"><div class="inbox-item-row"><span class="inbox-from">Jordan K.</span><span class="inbox-ts">Auto &middot; intake</span></div><div class="inbox-snippet">A homeowner leaves a voicemail about water under the si...</div><span class="inbox-tag">Missed call</span></li>
+          <li class="inbox-item"><div class="inbox-item-row"><span class="inbox-from">Maya R.</span><span class="inbox-ts">Auto &middot; calendar</span></div><div class="inbox-snippet">A customer asks for the earliest appointment window...</div><span class="inbox-tag">Schedule request</span></li>
+          <li class="inbox-item"><div class="inbox-item-row"><span class="inbox-from">Priya S.</span><span class="inbox-ts">Auto &middot; follow-up</span></div><div class="inbox-snippet">An estimate has been open for four days...</div><span class="inbox-tag">Quote follow-up</span></li>
+          <li class="inbox-item"><div class="inbox-item-row"><span class="inbox-from">Tom B.</span><span class="inbox-ts">Auto &middot; billing</span></div><div class="inbox-snippet">A customer replies that the invoice amount looks...</div><span class="inbox-tag">Billing</span></li>
+        </ul>
+        <div class="inbox-pane">
+          <div class="inbox-thread-h"><div><span class="inbox-thread-from">Jordan K.</span><span class="inbox-thread-meta"> &middot; ref #4802</span></div><span class="inbox-ts">Auto &middot; intake</span></div>
+          <div class="inbox-msg inbox-msg-c"><div class="inbox-msg-bubble">"A homeowner leaves a voicemail about water under the sink and asks if someone can come today."</div></div>
+          <div class="inbox-msg inbox-msg-a">
+            <span class="inbox-draft-banner"><span class="dot pulse"></span> Completed by agent &middot; resolved</span>
+            <div class="inbox-msg-bubble inbox-msg-bubble-a">Checked service area and existing record, classified urgency, completed callback, and created a dispatch task with the missing details to collect.</div>
+            <div class="inbox-actions"><span class="inbox-chip">Lookup context</span><span class="inbox-chip">Classify request</span><span class="inbox-chip">Draft next action</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="value-stack"><div class="value-stack-head"><div><div class="eyebrow" style="margin-bottom:3px">Value stack</div><h3>What the first agent includes</h3></div><p>The deposit starts one scoped build. Agents #02 and #03 are optional expansion paths.</p></div>
+      <div class="value-stack-grid">
+        <div class="vs-item"><span class="vs-title">Workflow teardown</span><span class="vs-val">Included</span><span class="vs-desc">Trigger map, edge cases, approvals, escalation rules, and success criteria.</span></div>
+        <div class="vs-item"><span class="vs-title">Tool integration</span><span class="vs-val">Included</span><span class="vs-desc">Scoped adapters for CallRail, ServiceTitan, Google Calendar; no broad API access.</span></div>
+        <div class="vs-item"><span class="vs-title">Simulation pass</span><span class="vs-val">Included</span><span class="vs-desc">Hundreds of test tickets/tasks before the agent is allowed to write.</span></div>
+        <div class="vs-item"><span class="vs-title">Monitoring + rollback</span><span class="vs-val">Included</span><span class="vs-desc">Run logs, exception review, kill switch, and rollback path.</span></div>
+      </div>
+    </div>
+    <div class="agent-strip">
+      <div class="agent-strip-cell"><div class="eyebrow">MCP servers</div><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="mcp"><span class="mcp-dot"></span> CallRail</span><span class="mcp"><span class="mcp-dot"></span> ServiceTitan</span><span class="mcp"><span class="mcp-dot"></span> Google Calendar</span></div></div>
+      <div class="agent-strip-cell"><div class="eyebrow">Triggers</div><div class="agent-strip-list">Missed call or voicemail &middot; Emergency form submitted &middot; Schedule window requested &middot; Customer reply needs routing</div></div>
+      <div class="agent-strip-cell"><div class="eyebrow">Actions</div><div class="agent-strip-list">Lookup context &middot; Classify request &middot; Draft next action &middot; Escalate if risky</div></div>
+    </div>
+  </div>
+  <footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">02 / 10</span></footer>
+</section>
+
+<!-- ========================= PAGES 3-8: HOW WE WIRE ========================= -->
+<!-- I'll use a template approach. Each page has: phase bar + 2 step cards -->
+
+<!-- PAGE 3: Phase 1 steps 1-2 -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head section-head-compact"><div class="left"><div class="index">&sect; 03 &middot; How we wire Emergency Intake</div><h2 class="display h-mid">Phase 1: <em>Blueprint</em></h2></div></div>
+  <div class="phase-bar"><div class="phase-seg active">Phase 1 &middot; Blueprint</div><div class="phase-seg">Phase 2 &middot; Infrastructure</div><div class="phase-seg">Phase 3 &middot; Safety &amp; Launch</div></div>
+  <div class="step"><div class="step-head"><span class="step-n">01</span><span class="step-t">Intake to runtime spec</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Convert the intake workflow into a runtime contract: planner objective, allowed reads/writes, blocked actions, tool boundaries, escalation owners, state tables, retry policy, audit fields, and rollback command for every side effect.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>We take everything you told us about how emergency calls, scheduling, and follow-ups work at Ally Plumbing and turn it into a precise set of rules. The "runtime spec" is the instruction manual for the agent: what it can do, what it can't do, who gets notified when something goes wrong, and how to undo any action it takes.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Workflow scope document</span><span class="step-deliver-item">Allowed/blocked action list</span><span class="step-deliver-item">Escalation owner map</span><span class="step-deliver-item">Rollback plan</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Map every workflow path end-to-end: what triggers it, who owns each step, what decisions get made, and what happens when something goes wrong. Write down every edge case (what if the customer calls back before the first callback completes? what if the address is outside your service area?). Then translate each path into a rule set with explicit stop conditions, escalation points, and a rollback command for every action. Expect 3-5x more edge cases than you initially estimate.</p></div></div>
+  </div></div>
+  <div class="step"><div class="step-head"><span class="step-n">02</span><span class="step-t">Event taxonomy</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Enumerate every trigger: missed call, voicemail, form submit, inbox reply, scheduled scan, overdue follow-up, retry, timeout, manual override. Assign source tool, schema version, payload hash, owner, priority, and correlation ID.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>We map out every type of event that should wake the agent up. A missed call from CallRail, a voicemail transcription, an emergency form, a customer reply, an overdue follow-up. Each gets tagged with where it came from and how urgent it is. This is how the agent knows a water-damage emergency at 2 AM from a routine scheduling request.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Complete trigger list</span><span class="step-deliver-item">Priority classification matrix</span><span class="step-deliver-item">Event schema per source</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Go into each platform's settings and find every webhook, notification, and form endpoint that fires. List each with its payload format. Design a unified event schema that normalizes all of them with fields for source, priority, owner, and a unique correlation ID. Build deduplication logic so the same voicemail arriving twice doesn't create two dispatch tasks. Start with CallRail's webhook docs and work outward.</p></div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">03 / 10</span></footer></section>
+
+<!-- PAGE 4: Phase 1 steps 3-4 -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head section-head-compact"><div class="left"><div class="index">&sect; 03 &middot; Phase 1: Blueprint (continued)</div><h2 class="display h-mid">Capabilities and <em>adapters</em>.</h2></div></div>
+  <div class="phase-bar"><div class="phase-seg active">Phase 1 &middot; Blueprint</div><div class="phase-seg">Phase 2 &middot; Infrastructure</div><div class="phase-seg">Phase 3 &middot; Safety &amp; Launch</div></div>
+  <div class="step"><div class="step-head"><span class="step-n">03</span><span class="step-t">MCP capability registry</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Expose only approved capabilities: lookup customer, classify urgency, draft reply, create job note, request approval, log trace, rollback. Each has auth scope, risk class, JSON schema, rate limit, and test fixtures.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Instead of giving the agent the keys to your entire ServiceTitan account, we create a menu of specific, approved actions. "Look up a customer record" is one capability. "Create a dispatch note" is another. The agent never gets raw access to your tools. It can only use capabilities we've explicitly listed, tested, and approved.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Capability registry</span><span class="step-deliver-item">Permission matrix per tool</span><span class="step-deliver-item">Rate limit config</span><span class="step-deliver-item">Test fixtures</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>For each action the agent should take (e.g., "look up customer by phone number," "create dispatch note," "check calendar availability"), write a JSON schema defining the exact input fields, output format, and error responses. Map each action to the narrowest possible OAuth scope. Set rate limits per action and write test fixtures -- sample inputs with known correct outputs -- to verify each capability works before connecting it to the agent.</p></div></div>
+  </div></div>
+  <div class="step"><div class="step-head"><span class="step-n">04</span><span class="step-t">Tool adapter contracts</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Wrap vendor APIs behind typed adapters handling pagination, rate limits, vendor errors, response normalization, idempotency keys, request tracing, stale-read detection, and rollback-safe writes.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Every tool you use has its own API with its own quirks, limits, and error messages. We build a wrapper around each one that handles all that complexity. If ServiceTitan is slow or returns an error, the adapter retries safely. If the agent tries to create a duplicate record, the adapter catches it.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Typed adapter per tool</span><span class="step-deliver-item">Error handling rules</span><span class="step-deliver-item">Retry + idempotency config</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Open the API documentation for CallRail, ServiceTitan, and Google Calendar. For each, build a wrapper that handles paginated responses, rate-limit headers (back off instead of crashing), error codes (map each vendor's format to a standard structure), and idempotency (retrying a timed-out write shouldn't create a duplicate). Test each wrapper independently against the live API with a sandbox account.</p></div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">04 / 10</span></footer></section>
+
+<!-- PAGE 5: Phase 2 steps 5-6 -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head section-head-compact"><div class="left"><div class="index">&sect; 03 &middot; How we wire Emergency Intake</div><h2 class="display h-mid">Phase 2: <em>Infrastructure</em></h2></div></div>
+  <div class="phase-bar"><div class="phase-seg done">Phase 1 &middot; Blueprint</div><div class="phase-seg active">Phase 2 &middot; Infrastructure</div><div class="phase-seg">Phase 3 &middot; Safety &amp; Launch</div></div>
+  <div class="step"><div class="step-head"><span class="step-n">05</span><span class="step-t">Serverless ingress</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Create isolated backend handlers for signed webhooks, auth callbacks, scheduled scans, queue workers, CRM/payment writes, approval callbacks, and admin retries. Every handler validates tenant, signature, schema version, and actor.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>This is the front door for incoming events. When CallRail sends a "missed call" notification, it hits a secure endpoint that verifies the message is real (not spoofed), checks the format, and queues it for the agent. Each handler is isolated, so a problem with one doesn't affect the others.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Webhook handlers per tool</span><span class="step-deliver-item">Signature validation</span><span class="step-deliver-item">Ingress monitoring</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Set up a serverless function (AWS Lambda, Cloudflare Workers, or similar) for each event type. Each function needs to: verify the webhook signature (CallRail uses HMAC-SHA256, ServiceTitan uses a different method), validate the payload against your schema, reject malformed requests, and enqueue valid events. Deploy each on its own endpoint so a failure in one doesn't take down the others.</p></div></div>
+  </div></div>
+  <div class="step"><div class="step-head"><span class="step-n">06</span><span class="step-t">Queue and retry fabric</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Transform inbound events into command envelopes: tenant, actor, target tool, correlation ID, idempotency key, retry count, backoff policy, poison-event flag, DLQ route, and replay metadata.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Not everything can be processed instantly. The queue organizes incoming work into a reliable pipeline. If ServiceTitan is unreachable, the task waits and retries automatically. If a task fails repeatedly, it goes to a dead-letter queue for investigation without blocking everything else. Every action gets a unique ID so nothing runs twice.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Message queue config</span><span class="step-deliver-item">Retry + backoff policy</span><span class="step-deliver-item">Dead-letter queue</span><span class="step-deliver-item">Replay tooling</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Choose a message broker (AWS SQS, RabbitMQ, or Google Pub/Sub). Generate unique idempotency keys so duplicates get caught. Configure exponential backoff (1s, 4s, 16s) with a max retry count. Route repeated failures to a dead-letter queue for inspection. Build a replay tool to re-process failed events after fixing the root cause.</p></div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">05 / 10</span></footer></section>
+
+<!-- PAGE 6: Phase 2 steps 7-8 -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head section-head-compact"><div class="left"><div class="index">&sect; 03 &middot; Phase 2: Infrastructure (continued)</div><h2 class="display h-mid">State and <em>retrieval</em>.</h2></div></div>
+  <div class="phase-bar"><div class="phase-seg done">Phase 1 &middot; Blueprint</div><div class="phase-seg active">Phase 2 &middot; Infrastructure</div><div class="phase-seg">Phase 3 &middot; Safety &amp; Launch</div></div>
+  <div class="step"><div class="step-head"><span class="step-n">07</span><span class="step-t">State model</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Persist source event, run phase, planner decision, tool trace, approval status, rollback pointer, generated draft, delivery status, customer-visible outcome, exception reason, and final resolution as separate records.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Every time the agent handles a call or request, a complete record is saved: what came in, what the agent decided, what tools it used, what it sent, and the outcome. If a customer ever asks "what happened with my request?", you can pull the exact sequence of events in seconds.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">State schema</span><span class="step-deliver-item">Audit trail per action</span><span class="step-deliver-item">Searchable run history</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Design a database with separate tables for: source events, agent decisions, tool requests/responses, approval records, and outcomes. Link each record via a correlation ID. Build a query layer so you can ask "show me every action for this customer" or "which events failed last Tuesday." Without this, you're left with unstructured logs that can't be searched or audited.</p></div></div>
+  </div></div>
+  <div class="step"><div class="step-head"><span class="step-n">08</span><span class="step-t">Retrieval pipeline</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Index SOPs, service policies, price rules, service-area pages, FAQs, examples, and prior resolutions with source IDs, trust levels, freshness windows, citation rules, and stale-context guards.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>The agent needs to know your business rules: service area boundaries, pricing tiers, emergency classification, warranty policies. We index all of this with freshness dates, so the agent never references outdated policies. Think of it as a searchable, always-current employee handbook.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Indexed policy library</span><span class="step-deliver-item">Freshness rules</span><span class="step-deliver-item">Citation config</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Gather all reference documents: service area maps, pricing sheets, warranty policies, FAQs, past resolutions. Break each into small chunks and load into a vector database (Pinecone, Weaviate, or pgvector). Tag each with a source ID, trust level, and expiration date. Set up re-indexing whenever a document changes -- if pricing updates and the index doesn't, the agent quotes the old price.</p></div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">06 / 10</span></footer></section>
+
+<!-- PAGE 7: Phase 3 steps 9-10 -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head section-head-compact"><div class="left"><div class="index">&sect; 03 &middot; How we wire Emergency Intake</div><h2 class="display h-mid">Phase 3: <em>Safety &amp; Launch</em></h2></div></div>
+  <div class="phase-bar"><div class="phase-seg done">Phase 1 &middot; Blueprint</div><div class="phase-seg done">Phase 2 &middot; Infrastructure</div><div class="phase-seg active">Phase 3 &middot; Safety &amp; Launch</div></div>
+  <div class="step"><div class="step-head"><span class="step-n">09</span><span class="step-t">Permission lattice</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Keep secrets server-only in encrypted token storage. Bind OAuth scopes to capability IDs. Enforce separate permissions for read, draft, write, money movement, PII, irreversible mutation, admin override, and rollback.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Your API keys and credentials never touch the AI model. They're stored in encrypted vaults used only by server-side code. The agent has different permission levels: read a customer record freely, but creating a dispatch task requires higher permission, and anything involving payments or personal data requires explicit approval.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Permission matrix</span><span class="step-deliver-item">Encrypted credential vault</span><span class="step-deliver-item">Approval routing rules</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Set up an encrypted secret vault (AWS Secrets Manager, HashiCorp Vault, or similar). Never store credentials where the AI can access them. Configure the narrowest OAuth scopes per tool with automatic token refresh. Build a permission matrix: reads auto-approved, drafts logged, writes need elevation, money/PII needs human sign-off. Log every credential access. One misconfiguration and the agent touches data it shouldn't.</p></div></div>
+  </div></div>
+  <div class="step"><div class="step-head"><span class="step-n">10</span><span class="step-t">Policy and approval engine</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Risk-score planned commands using capability risk, payload fields, confidence, customer impact, dollar exposure, PII exposure, historical error rate, and approval policy before execution.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Before the agent takes any action, a policy engine scores how risky it is. Looking up a customer record? Low risk, auto-approved. Sending a price quote? Medium, might need review. Issuing a refund? High, requires your team's approval. You set the thresholds. The agent follows them every time, with no exceptions.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Risk scoring matrix</span><span class="step-deliver-item">Approval routing config</span><span class="step-deliver-item">Auto-allow/block rules</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Build a rules engine that evaluates every planned action. Define risk dimensions: capability type, dollar amount, PII presence, confidence score, error history. Assign a composite score and route: low auto-executes, medium logs for review, high pauses and notifies a human with context. Store every scoring decision in an audit table.</p></div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">07 / 10</span></footer></section>
+
+<!-- PAGE 8: Phase 3 steps 11-12 -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head section-head-compact"><div class="left"><div class="index">&sect; 03 &middot; Phase 3: Safety &amp; Launch (continued)</div><h2 class="display h-mid">Simulation and <em>rollout</em>.</h2></div></div>
+  <div class="phase-bar"><div class="phase-seg done">Phase 1 &middot; Blueprint</div><div class="phase-seg done">Phase 2 &middot; Infrastructure</div><div class="phase-seg active">Phase 3 &middot; Safety &amp; Launch</div></div>
+  <div class="step"><div class="step-head"><span class="step-n">11</span><span class="step-t">Simulation harness</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Generate hundreds of simulated calls, tickets, malformed payloads, duplicate events, no-availability cases, approval delays, and vendor failures. Replay golden traces and target unhandled errors toward &lt;0.01%.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>Before the agent handles a single real customer, we run it through hundreds of test scenarios: normal calls, 3 AM emergencies, incomplete information, duplicate voicemails, ServiceTitan outages, scheduling conflicts. It only graduates to real customers after passing every test.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Test scenario library</span><span class="step-deliver-item">Golden trace recordings</span><span class="step-deliver-item">Pass/fail report</span><span class="step-deliver-item">Regression suite</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Write 200+ test scenarios: normal calls, 3 AM emergencies, incomplete info, duplicate voicemails, tool outages, calendar conflicts, out-of-area requests. Build a harness that replays each and records results. Compare against what a human should have done. Fix every failure and re-run until errors are below 0.01%. Save passing scenarios as "golden traces" to re-run after future changes.</p></div></div>
+  </div></div>
+  <div class="step"><div class="step-head"><span class="step-n">12</span><span class="step-t">Rollout and rollback</span></div><div class="step-body">
+    <div class="step-section"><span class="badge badge-tech">&#9881; Technical</span><p>Start in shadow mode, compare against staff decisions, then enable staged writes by capability. Monitor latency, approval rate, failed calls, drift, duplicate prevention, quality, SLO alerts, kill switch, and rollback.</p></div>
+    <div class="step-section"><span class="badge badge-plain">&#9734; What this means for you</span><div class="step-plain"><p>We don't flip a switch on day one. The agent starts in "shadow mode," watching real calls and showing what it would have done without actually doing anything. Once confirmed, we turn on capabilities one at a time. At any point, a kill switch pauses the agent instantly, and every action can be rolled back.</p></div></div>
+    <div class="step-section"><span class="badge badge-deliver">&#10003; Deliverables</span><div class="step-deliver"><span class="step-deliver-item">Shadow-mode dashboard</span><span class="step-deliver-item">Staged rollout plan</span><span class="step-deliver-item">Kill switch</span><span class="step-deliver-item">Rollback commands</span><span class="step-deliver-item">SLO monitoring</span></div></div>
+    <div class="step-section"><span class="badge badge-diy">&#9888; Build it yourself</span><div class="step-diy"><p>Deploy in shadow mode first: the agent logs what it would do without acting. Compare against staff decisions for 1-2 weeks. Turn on the lowest-risk capability via feature flag. Monitor errors, latency, and approval rates. Add capabilities one at a time. Build a kill switch that disables everything in under 60 seconds, and write rollback procedures for every write action. Test the kill switch before you need it.</p></div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">08 / 10</span></footer></section>
+
+<!-- ========================= PAGE 9: AGENTS #02 & #03 ========================= -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head"><div class="left"><div class="index">&sect; 04 &middot; Agents #02 &amp; #03</div><h2 class="display h-mid">After <em>agent #01</em>, the rest are <em>expansion paths</em>.</h2></div></div>
+  <div class="card ac-block">
+    <div class="ac-block-top">
+      <div class="ac-block-top-left"><span class="num ac-rank">02</span></div>
+      <div class="ac-block-top-right">
+        <div class="ac-name">Estimate Follow-Up Agent</div>
+        <p class="ac-tag">Watches open estimates in ServiceTitan, detects aging quotes and customer questions, and handles follow-ups through Gmail and Podium so no revenue slips through the cracks.</p>
+        <div class="ac-stack"><span class="mcp"><span class="mcp-dot"></span> ServiceTitan</span><span class="mcp"><span class="mcp-dot"></span> Gmail</span><span class="mcp"><span class="mcp-dot"></span> Podium</span></div>
+      </div>
+    </div>
+    <div class="ac-meta">
+      <div class="ac-meta-col"><div class="eyebrow">Triggers</div><div class="ac-ta"><span>Open estimate aging &middot; Customer asks about quote &middot; Follow-up overdue &middot; Internal task needs update</span></div></div>
+      <div class="ac-meta-col"><div class="eyebrow">Actions</div><div class="ac-ta"><span>Lookup context &middot; Classify request &middot; Draft next action &middot; Escalate if risky</span></div></div>
+    </div>
+    <div class="ac-when"><div class="ac-when-label">When to add this agent</div><p>Once agent #01 is live and you notice that estimates are still aging without follow-up, or customers are asking questions about quotes and waiting days for a response. This agent picks up where intake leaves off.</p></div>
+    <div class="ac-examples">
+      <div class="conv"><div class="conv-head"><span class="conv-label">Quote aging</span><span class="conv-ts">Auto &middot; follow-up</span></div><div class="conv-msg"><span class="conv-who">System</span><p>A water heater estimate has sat for five days with no homeowner response.</p></div><div class="conv-msg"><span class="conv-who">Your agent &middot; resolved</span><p>Pulled the estimate from ServiceTitan, sent a follow-up via Podium referencing scope and price, updated task status.</p></div></div>
+      <div class="conv"><div class="conv-head"><span class="conv-label">Quote question</span><span class="conv-ts">Auto &middot; inbox</span></div><div class="conv-msg"><span class="conv-who">Customer</span><p>Homeowner asks if the quoted price includes permits and disposal.</p></div><div class="conv-msg"><span class="conv-who">Your agent &middot; resolved</span><p>Looked up estimate line items, found permit details in service policy, drafted a clear reply with the breakdown.</p></div></div>
+    </div>
+  </div>
+
+  <div class="card ac-block">
+    <div class="ac-block-top">
+      <div class="ac-block-top-left"><span class="num ac-rank">03</span></div>
+      <div class="ac-block-top-right">
+        <div class="ac-name">Billing &amp; Review Agent</div>
+        <p class="ac-tag">Monitors completed jobs and open invoices across QuickBooks Online, sends payment reminders through Gmail, and requests reviews through Podium when customer sentiment is positive.</p>
+        <div class="ac-stack"><span class="mcp"><span class="mcp-dot"></span> QuickBooks Online</span><span class="mcp"><span class="mcp-dot"></span> Podium</span><span class="mcp"><span class="mcp-dot"></span> Gmail</span></div>
+      </div>
+    </div>
+    <div class="ac-meta">
+      <div class="ac-meta-col"><div class="eyebrow">Triggers</div><div class="ac-ta"><span>Invoice unpaid &middot; Job marked complete &middot; Customer sentiment changes &middot; Review request due</span></div></div>
+      <div class="ac-meta-col"><div class="eyebrow">Actions</div><div class="ac-ta"><span>Lookup context &middot; Classify request &middot; Draft next action &middot; Escalate if risky</span></div></div>
+    </div>
+    <div class="ac-when"><div class="ac-when-label">When to add this agent</div><p>Once agent #01 is handling intake and you see that invoices are going unpaid past their due date, or completed jobs aren't generating Google reviews. This agent closes the loop on every finished job.</p></div>
+    <div class="ac-examples">
+      <div class="conv"><div class="conv-head"><span class="conv-label">Unpaid invoice</span><span class="conv-ts">Auto &middot; billing</span></div><div class="conv-msg"><span class="conv-who">System</span><p>A drain repair invoice has been unpaid 12 days past due.</p></div><div class="conv-msg"><span class="conv-who">Your agent &middot; resolved</span><p>Confirmed completion in ServiceTitan, cross-referenced QuickBooks, sent payment reminder via Gmail with direct pay link.</p></div></div>
+      <div class="conv"><div class="conv-head"><span class="conv-label">Review request</span><span class="conv-ts">Auto &middot; post-job</span></div><div class="conv-msg"><span class="conv-who">System</span><p>A re-pipe job completed three days ago with positive customer feedback.</p></div><div class="conv-msg"><span class="conv-who">Your agent &middot; resolved</span><p>Detected positive sentiment, waited the window, sent a review request via Podium with a Google review link.</p></div></div>
+    </div>
+  </div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">09 / 10</span></footer></section>
+
+<!-- ========================= PAGE 10: THE PLAN ========================= -->
+<section class="page"><header class="pg-h"><div class="pg-h-l"><span class="pg-logo-text">Jybr</span><span class="pg-mark-div"></span><span class="mono">Lead Report &middot; JBR-LR-2486</span></div><div class="pg-h-r mono">Ally Plumbing &amp; Restoration &middot; June 24, 2026</div></header><div class="pg-body">
+  <div class="section-head"><div class="left"><div class="index">&sect; 05 &middot; The plan</div><h2 class="display h-mid">Seven days to live. <em>Agent #01</em> first.</h2></div></div>
+  <div class="plan-row">
+    <div class="card plan-road"><div class="eyebrow">Rollout &mdash; Agent #01: Emergency Intake &amp; Scheduling Agent</div><ol class="road">
+      <li><span class="road-day mono">Day 0</span><span class="road-l">Confirm workflow<small>Lock agent #01 scope, risky actions, approval owners, and source tools.</small></span></li>
+      <li><span class="road-day mono">Day 1</span><span class="road-l">Map capabilities<small>Define MCP contracts for lookup, classify, draft, mutate, escalate, log, and rollback.</small></span></li>
+      <li><span class="road-day mono">Day 2</span><span class="road-l">Wire events<small>Build signed webhooks, scheduled scans, queue envelopes, retries, and DLQ routes.</small></span></li>
+      <li><span class="road-day mono">Day 3</span><span class="road-l">State + retrieval<small>Persist traces, approvals, customer context, SOP chunks, and source citations.</small></span></li>
+      <li><span class="road-day mono">Day 4</span><span class="road-l">Policy gates<small>Gate sends, pricing, payments, PII, safety, and irreversible writes.</small></span></li>
+      <li><span class="road-day mono">Day 5-6</span><span class="road-l">Simulate<small>Replay hundreds of calls, tickets, malformed payloads, and tool failures before writes.</small></span></li>
+      <li><span class="road-day mono">Day 7</span><span class="road-l">Pilot<small>Start shadow mode, then staged writes with monitoring and rollback controls.</small></span></li>
+    </ol></div>
+    <div class="card plan-price"><div class="eyebrow">Your investment</div>
+      <div class="price-hero"><span class="num price-amt">$250</span><span class="price-sub">/ month</span></div>
+      <div class="price-note">$250 checkout = refundable build deposit for agent #01. Agents #02 and #03 are optional add-ons after the first pilot proves useful.</div>
+      <ul class="price-incl">
+        <li>After-hours calls classified and routed before your office opens</li>
+        <li>Customer details flow between CallRail, ServiceTitan, and Calendar automatically</li>
+        <li>Emergency jobs triaged by urgency, service area, and availability without staff intervention</li>
+        <li>Every action logged, approval-gated, and reversible with one click</li>
+      </ul>
+      <div class="price-refund">Refundable deposit &middot; first scoped build starts with agent #01</div>
+    </div>
+  </div>
+  <div class="card signoff"><div class="signoff-l"><div class="eyebrow">Next step</div><p>Your deposit starts one scoped build: Emergency Intake &amp; Scheduling Agent. Estimate Follow-Up and Billing &amp; Review are optional add-ons after agent #01 proves useful.</p><a class="btn btn-primary" href="#">Reserve build slot &nbsp;&rarr;</a></div><div class="signoff-r"><div class="signoff-name">&mdash; Build Desk</div><div class="signoff-role">Jybr</div><div class="signoff-stamp"><span class="num signoff-stamp-t">7 days</span><span class="signoff-stamp-l">build window</span></div></div></div>
+  <div class="faq"><div class="eyebrow">Questions you'd be reasonable to ask</div><div class="faq-grid">
+    <div class="faq-item"><div class="faq-q"><span class="num faq-n">01</span> What if we want to change the workflow later?</div><div class="faq-a">The agent is built on modular MCP contracts. Changing a trigger, adding a tool, or adjusting an approval threshold is a config update, not a rebuild.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="num faq-n">02</span> How is this different from a chatbot?</div><div class="faq-a">A chatbot answers questions. This agent takes actions across your real tools with policy gates, audit trails, and rollback. It works, not just talks.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="num faq-n">03</span> Can we build this ourselves?</div><div class="faq-a">Yes, if your team can own MCP contracts, adapters, auth, queues, state, approval gates, simulation tests, and rollout. Pages 3-8 are your starting point.</div></div>
+    <div class="faq-item"><div class="faq-q"><span class="num faq-n">04</span> Prefer to start by email?</div><div class="faq-a">Send this report to hello@jybr.com and ask for a scoped build review for agent #01.</div></div>
+  </div></div>
+</div><footer class="pg-f"><span class="mono">Jybr &middot; Build Desk</span><span class="mono">allyplumbing.com</span><span class="mono pg-folio">10 / 10</span></footer></section>
+
+</div><!-- .rep -->
+</body>
+</html>
