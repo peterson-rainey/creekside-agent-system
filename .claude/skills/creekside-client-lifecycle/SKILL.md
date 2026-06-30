@@ -85,8 +85,8 @@ ALSO capture:
 - [ ] **Account manager** (`reporting_clients.account_manager`): "Cade", "Peterson Rainey", "Lindsey", "Scott", etc.
 - [ ] **Platform operator** (`reporting_clients.platform_operator`): "Scott C.", "Ahmed I.", "Lindsey B.", "Trent L.", "David", etc.
 - [ ] **Operator's monthly contribution from this client**:
-  - For per-client-rate operators (Scott, Ahmed, Ade, Trent, Aamir, Jordan): what does this client add to their pay?
-  - For salaried operators (Lindsey, David): just hrs/wk allocated, retainer doesn't change unless rev share applies
+  - For per-client-rate operators (Scott, Ahmed, Ade, Trent, Aamir): what does this client add to their pay? Their `monthly_retainer` field must equal the SUM of their per-client allocations — increase the retainer by this amount when adding.
+  - For salaried operators (Lindsey, David, Jordan): just hrs/wk allocated. Retainer is FIXED — Lindsey $8,392, David $600, Jordan $1,750. Retainer does NOT change with workload (unless Lindsey rev share applies). Salary gap absorbs the difference.
 
 #### 1f. Lindsey-specific (CRITICAL if Lindsey is involved)
 
@@ -154,9 +154,10 @@ For EACH operator on the churned client:
 |---|---|
 | **Lindsey** | DELETE the `client_labor_allocations` row. Her `monthly_retainer` STAYS THE SAME (salary-gap absorbs). If she landed this client via rev share, DECREASE retainer by 1.5% × churned revenue. |
 | **David** | DELETE the `client_labor_allocations` row. His `monthly_retainer` STAYS THE SAME (also in FULL_TIME_SALARIED_MEMBERS). |
-| **Scott, Ahmed, Ade, Trent, Aamir, Jordan** | DELETE the `client_labor_allocations` row AND DECREASE their `team_members.monthly_retainer` by the same amount. Their retainer = SUM of allocations — must stay in sync. |
+| **Jordan Tryon** | DELETE the `client_labor_allocations` row. His `monthly_retainer` STAYS THE SAME — we pay him flat $1,750/mo regardless of allocations. (FULL_TIME_SALARIED_MEMBERS). His effective cost per hour just goes UP when work shifts. |
+| **Scott, Ahmed, Ade, Trent, Aamir** | DELETE the `client_labor_allocations` row AND DECREASE their `team_members.monthly_retainer` by the same amount. Their retainer = SUM of allocations — must stay in sync. |
 
-⚠ **The most common mistake**: forgetting to decrease the non-Lindsey freelancer's `monthly_retainer`. This makes Operator Cost stay artificially high for months.
+⚠ **The most common mistake**: forgetting to decrease the per-client-rate freelancer's `monthly_retainer` (Scott / Ahmed / Ade / Trent / Aamir). This makes Operator Cost stay artificially high for months. (Lindsey, David, Jordan are exempt — salary-gap absorbs.)
 
 #### 2c. Lindsey rebalance (if she was on the client)
 After deleting her allocation:
