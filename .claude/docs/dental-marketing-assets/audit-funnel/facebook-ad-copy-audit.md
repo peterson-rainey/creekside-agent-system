@@ -1,9 +1,7 @@
 # Facebook Ad Copy: Dental Practice Offer (Audit Funnel)
-## Duplicated from V2, CTA adjusted to Free Ad Account Audit
+## For Aamir / Cade
 
 **Funnel Role:** Ads catch attention. The prospect's mindset after seeing the ad should be "these people look like they could help me." The landing page convinces. The audit delivers value and converts. Ads do NOT need to tell the full story -- they hook and get the click.
-
-**Key change from blueprint funnel:** All CTAs route to booking a free 30-minute ad account audit with Cade instead of getting a Paid Ads Blueprint.
 
 **Specs:** Primary text ~125 chars visible before "See More." Headline 27-40 chars.
 

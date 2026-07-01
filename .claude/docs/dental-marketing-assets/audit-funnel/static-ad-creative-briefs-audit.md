@@ -1,5 +1,5 @@
 # Static Ad Creative Briefs: Dental Practice Offer (Audit Funnel)
-## Duplicated from V3, CTA adjusted to Free Ad Account Audit -- For Aamir
+## For Aamir
 
 **Funnel Role:** Ad creatives catch attention. The prospect should think "these people look like they could help me" and tap Learn More. Save the deep proof for the landing page.
 
@@ -11,8 +11,6 @@
 - Gold accent color for highlights and key numbers
 - Gray/muted for "before" states
 - All creatives need 1080x1080 (feed) and 1080x1920 (story/reels) unless noted otherwise
-
-**Key change from blueprint funnel:** End cards and CTA lines reference the free audit, not the blueprint.
 
 ---
 
