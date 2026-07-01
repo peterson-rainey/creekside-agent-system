@@ -89,6 +89,10 @@ QUALITY CHECK:
 - No sign-off name
 - Only Meta/email/Shopify services mentioned
 
+## Lindsey Screening Questions
+
+When the job includes screening or additional questions to answer, follow the Screening Question Rules in the core file. Anti-duplication is mandatory: inventory what the proposal already covered (the diagnostic question used, the experience stories told, the specific results cited), then make screening answers cover different material. Lindsey voice and identity rules still apply: warm but direct, experience-grounded, no sign-off name, Meta/email scope only.
+
 ## Lindsey Log Mode
 
 Use `lindsey_default` as mode when logging to upwork_proposal_logs.
