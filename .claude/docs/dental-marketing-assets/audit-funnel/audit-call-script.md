@@ -155,7 +155,7 @@ After walking through the account, summarize the top 3 findings.
 
 **If they ask about pricing:**
 
-"Our management fee is a percentage of your ad spend. It starts at 20% and comes down as your spend grows. At higher spend levels, the rate drops to 15%, then 10%.
+"Our management fee is a percentage of your ad spend. It starts at 20% and comes down as your spend grows. At higher spend levels, the rate drops to 15%, then 10%. Our minimum is $3,000 a month, and there's a one-time $3,000 onboarding fee that covers account setup, creative production, and landing page builds.
 
 At your spend level of [their reported spend], your management fee would be about [calculate]. That covers everything: ad management, landing page builds, creative production, reporting, CRM consultation. One fee, full service.
 
