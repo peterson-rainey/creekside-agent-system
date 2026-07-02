@@ -33,10 +33,10 @@
 > "We break the whole thing down on our site. Link's below."
 
 **B. Audit (direct)**
-> "Want to see what's going wrong in your ads? Book a free audit with our team. We'll look at your account live and tell you exactly what to fix. Link's below."
+> "Want to see what's going wrong in your ads? Book a free ad account audit with our team. We'll look at your account live and tell you exactly what to fix. Link's below."
 
 **C. Audit (simple)**
-> "We'll audit your ad account for free. 30 minutes. Link's below."
+> "We'll audit your ad account for free. 30 minutes with an ads expert. Link's below."
 
 ### Selected Combos
 
@@ -54,11 +54,11 @@ Match the CTA tone to the emotion the script leaves the viewer with:
 
 | Feeling after script | CTA tone | Example |
 |---|---|---|
-| "That's impressive" (proof) | See what's wrong with yours | "Want to know what's holding your ads back? Free audit. Link's below." |
-| "That resonates with me" (emotional) | We diagnose the problem | "Let us look at your ads and tell you what to fix. Free audit below." |
-| "Maybe that could work for me" (budget) | See what yours could do | "Want to know if your budget is being wasted? Book a free audit. Link's below." |
-| "Wait, what is that?" (novelty) | Come see how it works | "Most practices don't even know this exists yet. Book a free audit. Link's below." |
-| "These people are focused" (identity) | See what that looks like | "We'll look at your ad account and show you exactly what's not working. Free. Link's below." |
+| "That's impressive" (proof) | See what's wrong with yours | "Want to know what's holding your ads back? Free ad account audit. Link's below." |
+| "That resonates with me" (emotional) | We diagnose the problem | "Let us look at your ads and tell you what to fix. Free ad account audit below." |
+| "Maybe that could work for me" (budget) | See what yours could do | "Want to know if your budget is being wasted? Book a free ad account audit. Link's below." |
+| "Wait, what is that?" (novelty) | Come see how it works | "Most practices don't even know this exists yet. Book a free ad account audit. Link's below." |
+| "These people are focused" (identity) | See what that looks like | "We'll look at your ad account and show you exactly what's not working. Free ad account audit. Link's below." |
 
 ---
 
@@ -87,15 +87,15 @@ Match the CTA tone to the emotion the script leaves the viewer with:
 > "We can fix that. Come see how. Link's below."
 
 **B. Show the money**
-> "Let us show you where the money is going. Book a free audit. Link's below."
+> "Let us show you where the money is going. Book a free ad account audit. Link's below."
 
 **C. Audit (direct)**
-> "Want to know exactly where your ad spend is going? Book a free audit with our team. 30 minutes, we'll look at your account live and tell you what to fix."
+> "Want to know exactly where your ad spend is going? Book a free ad account audit with our team. 30 minutes, we'll look at your account live and tell you what to fix."
 
 ### Selected Combo
 
 **Script 5 + CTA C:**
-> "You didn't go to dental school to worry about your ads. But if you're like most practice owners, that's exactly what's keeping you up at night. Not the dentistry. The money. Whether the ads are working. Whether the budget is being wasted. That's what we take off your plate. Want to know exactly where your ad spend is going? Book a free audit with our team. 30 minutes, we'll look at your account live and tell you what to fix."
+> "You didn't go to dental school to worry about your ads. But if you're like most practice owners, that's exactly what's keeping you up at night. Not the dentistry. The money. Whether the ads are working. Whether the budget is being wasted. That's what we take off your plate. Want to know exactly where your ad spend is going? Book a free ad account audit with our team. 30 minutes, we'll look at your account live and tell you what to fix."
 
 ---
 
@@ -111,9 +111,7 @@ Match the CTA tone to the emotion the script leaves the viewer with:
 
 ### Selected Script
 
-> "You don't need a massive ad budget to get real results. The Tooth Co started with us at five thousand a month in ad spend. By the end of month three, we added thirty to forty thousand a month to their bottom line. Want to know if your ads are underperforming? Book a free audit below. 30 minutes, we'll tell you exactly what to fix."
-
-**Note:** Tooth Co video numbers reflect their first 3 months at $5K/month spend. The $10K spend / $60-80K revenue numbers on the website are the current scale-up phase.
+> "You don't need a massive ad budget to get real results. The Tooth Co spends ten thousand a month on ads with us. We generate sixty to eighty thousand a month in revenue for them. That's a six to eight X return on their ad spend. Want to know if your ads are underperforming? Book a free ad account audit below. 30 minutes, we'll tell you exactly what to fix."
 
 ---
 
@@ -121,7 +119,7 @@ Match the CTA tone to the emotion the script leaves the viewer with:
 
 ### Selected Script
 
-> "Most dental practices running ads are optimizing for leads. More form fills. More phone calls. More names on a list. But leads don't pay your bills. Patients in chairs do. We optimize for the thing that actually matters. Revenue. Want to see what's actually happening in your ad account? Book a free audit. Link's below."
+> "Most dental practices running ads are optimizing for leads. More form fills. More phone calls. More names on a list. But leads don't pay your bills. Patients in chairs do. We optimize for the thing that actually matters. Revenue. Want to see what's actually happening in your ad account? Book a free ad account audit. Link's below."
 
 ---
 

@@ -89,18 +89,16 @@
 
 ## CREATIVE 5: Tooth Co / Lower Budget
 
-**Headline:** "$5K/Month in Ads. $30-40K Added to Their Bottom Line."
+**Headline:** "$10K/Month in Ads. $60-80K in Monthly Revenue."
 
-**Supporting text:** "The Tooth Co started with us at $5,000/month in ad spend. By month three, we added $30,000-$40,000 a month to their bottom line. You don't need a massive budget. You need the right strategy."
+**Supporting text:** "The Tooth Co spends $10,000 a month on ads for their cosmetic dental practice. We generate $60,000-$80,000 in monthly revenue. That's a 6-8X return on ad spend. You don't need a massive budget. You need the right strategy."
 
 **Visual direction:**
 - Clean, data-forward design similar to Creative 1 but positioned for smaller budgets
-- Hero numbers: $5K spend -> $30-40K added revenue. Make the contrast obvious.
-- "3 Months" as a timeline callout
+- Hero numbers: $10K spend -> $60-80K revenue. Make the contrast obvious.
+- "6-8X ROAS" as a highlight callout
 - This creative speaks to the practice owner who sees Dr. Laleh's $110K budget and thinks "that's not me." Show them it works at their level too.
 - Creekside branding at bottom
-
-**Note:** These numbers reflect Tooth Co's first 3 months at $5K/month spend. Do NOT use the $10K spend / $60-80K revenue numbers -- those are the current scale-up phase.
 
 **Format:** 1080x1080 + 1080x1920
 **File name:** dental_static_toothco_audit_v1
