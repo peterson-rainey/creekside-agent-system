@@ -106,6 +106,18 @@ This flow is different from pre-booking routing. The call is already scheduled.
 
 **When the lead books via Jay's calendar:** An automated email notification will come through. Once that happens, the lead moves to "referred" status and we stop following up -- Jay owns the relationship from that point.
 
+**Approved Jay-routing template (use this verbatim -- adapt only the lead's first name):**
+
+> "Hey [Name], you'd actually be a great fit for my partner Jay. He specializes in businesses at your stage and has gotten results doing exactly what you're describing. I'd point you his way: https://calendar.app.google/nFP1Brwxz1TsetBA6"
+
+Do not paraphrase. Do not add to it. The only variable is the lead's name.
+
+**Absolute bans -- each grounded in a documented violation:**
+
+- **NEVER frame Jay as the fallback if pricing is too high.** Saying "just in case the pricing I give you is too high, he's a great option" positions Jay as the cheaper option and Creekside as unaffordable. Route to Jay because he is the right fit for their business stage, full stop. (Violation: Robert Murphy thread, Jun 18.)
+- **NEVER route a lead to any third party other than Jay.** If Jay is unavailable or you are unsure, escalate to Peterson -- do not refer the lead to any external freelancer, contractor, or other Upwork profile. (Violation: lead referred to "Derek," an unrelated Upwork freelancer -- Tracey Kelly thread, Jul 1.)
+- **Once a lead is routed to Jay, do not offer calls or send calendar links from the Samuel/Lindsey profile.** Jay owns the relationship. Sending "pick whatever time is easiest for you here and I'll walk you through your account live" after routing to Jay creates a double-booking and undermines the handoff. (Violation: Robert Murphy thread, Jun 26.)
+
 ## Price Rejection Responses
 
 When a lead pushes back on pricing, match your response to the type of objection. Do NOT default to Jay routing for every price pushback. Jay routing is for leads whose budget genuinely doesn't fit, not for leads who need reframing.
