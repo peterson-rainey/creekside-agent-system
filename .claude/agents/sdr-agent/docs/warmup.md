@@ -108,7 +108,7 @@ Even here, personalize the intro beyond "looking forward to speaking with you." 
 All standard voice rules from sdr-agent.md and validation.md apply. Additionally:
 
 - The profile video nudge must feel natural. NOT: "I definitely recommend going to my profile to check out my intro video." Instead: "Worth checking out my profile video before we chat" or "If you haven't already, take a look at my profile video."
-- After the profile video nudge, optionally mention our YouTube channel: "We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1". Separate from the profile video nudge, not a replacement.
+- After the profile video nudge, optionally mention our YouTube channel (samuel profile only): "We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1". Separate from the profile video nudge, not a replacement. Do NOT include the YouTube channel reference in Lindsey's warmup messages -- see the lindsey profile doc.
 - Don't frame the questions as "so I can better prep." Just ask them.
 - No fluff closings. A forward-look sentence is fine if it's specific (references their situation).
 - Keep the whole message under 150 words unless you have 5+ unanswered questions.

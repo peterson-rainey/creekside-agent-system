@@ -46,7 +46,7 @@ State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, t
 **NEVER use:** "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
 
 When including a call CTA, always include the appropriate calendar link. Never say "happy to hop on a call" without the link.
-- Peterson (default, $5K+): https://calendar.app.google/Hg8dyTfBG2j7oSRKA
+- Default path ($5K+): use the profile's booking calendar (from the loaded profile doc -- samuel: Peterson's link; lindsey: Lindsey's Calendly)
 - Jay (sub-$5K): https://calendar.app.google/nFP1Brwxz1TsetBA6
 
 Before suggesting a resource, scan conversation for resources already shared. Never re-send the same resource.

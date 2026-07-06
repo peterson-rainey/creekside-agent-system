@@ -271,6 +271,7 @@ def check_and_fix_warns(text):
     # 11. Signatures (trailing)
     sig_patterns = [
         r'\n\s*Samuel\s*$',
+        r'\n\s*Lindsey\s*$',
         r'\n\s*Best,?\s*$',
         r'\n\s*Regards,?\s*$',
         r'\n\s*Best regards,?\s*$',
