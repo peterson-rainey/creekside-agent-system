@@ -165,6 +165,8 @@ Follow the same output format as the main router (Step 7):
 >
 > What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
 
+**(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
+
 Note what this message does NOT do:
 - Does not ask about prior agency experience (they already told us)
 - Does not ask about current strategy (they already told us)

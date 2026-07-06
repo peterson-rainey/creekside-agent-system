@@ -68,7 +68,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 
 ## Jay Redirect Mode
 
-Jay is our small business specialist, positioned exactly the way Cade is positioned as the Meta ads expert -- the best-fit solution for their needs, not a downgrade.
+Jay is our small business specialist -- position him as the best-fit solution for their needs, not a downgrade.
 
 **Trigger:** Lead's ad spend falls below $5K/month. NEVER gate call booking on ad spend upfront. Qualification happens on or after the call. If spend comes up and it's below $5K, route to Jay.
 
