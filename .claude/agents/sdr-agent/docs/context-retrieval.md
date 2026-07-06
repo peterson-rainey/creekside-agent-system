@@ -155,7 +155,7 @@ ORDER BY conversation_date DESC NULLS LAST
 LIMIT 20;
 ```
 
-Filter out initial proposals: responses at turn_index=1 that contain "Samuel Rainey" + "Case Study" references + credential boilerplate.
+Filter out initial proposals: responses at turn_index=1 that match the active profile's initial proposal filter pattern (see the loaded profile doc). For samuel: contains "Samuel Rainey" + "Case Study" references + credential boilerplate. For lindsey: contains "Lindsey Bouffard" + "Case Study" references + credential boilerplate.
 
 Deduplicate by first 200 characters of full_response to prevent canned message bias.
 
@@ -179,19 +179,21 @@ LIMIT 5;
 ```
 
 ### Voice Samples
+Use the voice sample query string from the loaded profile doc (e.g., `'Samuel Rainey Upwork response ...'` for samuel, `'Lindsey Bouffard Upwork response ...'` for lindsey):
+
 ```sql
 SELECT * FROM logged_search_all(
-  'Samuel Rainey Upwork response ' || (key topic from conversation),
+  {profile_voice_query_string} || (key topic from conversation),
   5, NULL, NULL, 'sdr-agent'
 );
 ```
 Filter results to `gmail_summaries` table. Take top 3 results, truncate each to 1500 characters.
 
-Fallback if search returns no gmail results:
+Fallback if search returns no gmail results: use the sender name from the loaded profile doc (samuel: `'%peterson%' OR '%samuel%'`; lindsey: `'%lindsey%'`):
 ```sql
 SELECT id, LEFT(ai_summary, 1500) AS text
 FROM gmail_summaries
-WHERE sender ILIKE '%peterson%' OR sender ILIKE '%samuel%'
+WHERE sender ILIKE '{profile_sender_pattern}'
 ORDER BY message_date DESC
 LIMIT 3;
 ```
