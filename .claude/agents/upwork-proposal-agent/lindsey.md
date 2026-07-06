@@ -88,6 +88,7 @@ QUALITY CHECK:
 - Includes profile video mention
 - No sign-off name
 - Only Meta/email/Shopify services mentioned
+- Contains no hourly rate or per-hour figure ($/hr, hourly, per hour, or similar)
 
 ## Lindsey Screening Questions
 

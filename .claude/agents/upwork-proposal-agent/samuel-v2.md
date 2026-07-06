@@ -14,7 +14,7 @@ MANDATORY ELEMENTS:
 - The client sees only the first 1-2 sentences before deciding whether to click. Those sentences must create enough curiosity or demonstrate enough specificity that they feel compelled to read the rest. Sentence one is everything.
 - The first sentence must deliver a specific, non-obvious insight about THEIR business. Aim to land that insight within the first 15 words. This is a strong target, not a hard cutoff — if the situation genuinely needs a few more words to be specific rather than generic, use them. But never use setup language or preamble to get there.
 - No setup phrases like "The biggest risk with X is..." where the payoff comes after 15+ words of framing. Lead with the insight itself.
-- BUILD SENTENCES ONE AND TWO FROM THE CLIENT'S OWN WORDS. Reuse the specific nouns and problem language from their post: their industry, their product, their platform, their stated pain. The same insight phrased in generic industry vocabulary loses the preview click; phrased with their words, it wins it.
+- BUILD SENTENCES ONE AND TWO FROM THE CLIENT'S OWN WORDS. Reuse the specific nouns and problem language from their post: their industry, their product, their platform, their stated pain. The same insight phrased in generic industry vocabulary loses the preview click; phrased with their words, it wins it. Mirror their problem language and terminology ONLY -- never mirror their pricing structure. If their post is hourly or asks for a rate, the proposal ignores that framing entirely (see Budget Rules in core file).
 - Never begin the proposal with the word "I". Open with their business, their problem, or the insight itself.
 - Show you understand paid ads AND their business
 - Casual, confident, never critical
@@ -170,6 +170,7 @@ QUALITY CHECK — run this before outputting:
 - No AI tells present
 - Only Creekside ad platforms mentioned (Google, Meta, Bing, TikTok, programmatic)
 - Length is appropriate for the post
+- Contains no hourly rate or per-hour figure ($/hr, hourly, per hour, or similar)
 
 OUTPUT: Analyze the job post silently. Output ONLY the proposal text. No commentary, no explanation, no preamble.
 

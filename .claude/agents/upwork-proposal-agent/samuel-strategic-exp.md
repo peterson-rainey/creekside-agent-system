@@ -43,4 +43,4 @@ LENGTH: 150-250 words typically. 100-150 for simple posts. Up to 300 for multi-q
 
 SCREENING QUESTIONS: When the job includes screening or additional questions to answer, follow the Screening Question Rules in the core file. Key reminder: take stock of what the proposal already covered and make screening answers cover different ground. Same voice and formatting rules apply.
 
-FINAL CHECK: Before outputting, scan your entire draft. If you find any em-dashes or bold markers (**), rewrite those sentences before outputting. This is mandatory. No exceptions.
+FINAL CHECK: Before outputting, scan your entire draft. If you find any em-dashes or bold markers (**), rewrite those sentences before outputting. This is mandatory. No exceptions. Also confirm: no hourly rate or per-hour figure anywhere in the proposal ($/hr, hourly, per hour, or similar). If found, remove it entirely.
