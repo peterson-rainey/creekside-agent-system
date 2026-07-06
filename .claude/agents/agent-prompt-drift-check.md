@@ -1,6 +1,6 @@
 ---
 name: agent-prompt-drift-check
-description: "Nightly check that detects drift between agent file content and DB system_prompt. Catches stub reversions, suspiciously short prompts, and stale syncs on the 3 Railway ai_dispatcher agents. Writes alerts to pipeline_alerts."
+description: "Nightly check that detects broken agent prompts. Catches ai_dispatcher agents with missing executed prompts and active agents with short prompts matching no intentional-stub convention. Writes alerts to pipeline_alerts."
 model: none
 execution_mode: pg_cron
 cron: "0 4 * * *"
@@ -10,23 +10,21 @@ cron: "0 4 * * *"
 
 Pure SQL function `check_agent_prompt_drift()` that runs nightly at 4am CT via pg_cron.
 
-## What it checks
+## What it checks (redesigned 2026-07-06)
 
-1. **Stub content**: Any active agent whose system_prompt contains old stub patterns ("SELECT system_prompt FROM", "Agent prompt lives in the database", "See .claude/agents/", etc.)
-2. **Suspiciously short prompts**: Any active agent with system_prompt < 100 chars (excludes known Python scripts and deprecated agents)
-3. **Stale ai_dispatcher syncs**: The 3 Railway ai_dispatcher agents (client-field-sync, sop-refinement-agent, session-summarizer-agent) not updated in > 14 days
+1. **Missing dispatcher prompt** (`drift_detected`, critical): Any enabled `ai_dispatcher` agent in `scheduled_agents` whose `system_prompt` (the prompt the dispatcher actually executes) is NULL or < 100 chars.
+2. **Unconventional short prompt** (`short_prompt`, medium): Any active agent in `agent_definitions` with system_prompt < 100 chars that matches NO intentional-stub convention (file pointer "See .claude/agents/", DB pointer "Agent prompt lives in the database", "python script", "no AI prompt", "DEPRECATED", "status: needs-rebuild", "deterministic pipeline").
 
-## Severity levels
+## What it deliberately does NOT check anymore
 
-- **critical**: Stub or short prompt on an ai_dispatcher agent (Railway runs stale prompt)
-- **high**: Stub content on any active agent, or stale ai_dispatcher sync
-- **medium**: Short prompt on a non-dispatcher agent
+- **Intentional stubs in agent_definitions**: Stub system_prompt entries are intentional for file-based agents and deterministic scripts (registry/discovery only, not execution). The old check alerted daily on klaviyo-campaign-agent and ai-analyst-agent.
+- **Age-based stale_sync**: The old Check 3 flagged any dispatcher not edited in 14+ days. Age is not breakage; it fired daily for fusion-weekly-report-agent, ai-analyst-agent, sop-refinement-agent, and client-field-sync. Removed per Peterson 2026-07-06.
 
 ## Alerts
 
 Writes to `pipeline_alerts` with:
 - pipeline_name: `agent-prompt-drift`
-- alert_type: `drift_detected`, `short_prompt`, or `stale_sync`
+- alert_type: `drift_detected` or `short_prompt`
 - source: `check_agent_prompt_drift`
 - details: JSON with agent name, prompt length, check type
 
