@@ -10,7 +10,7 @@ Triggered after a lead books a call. Queenie or the operator invokes this with `
 
 This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-call prep message that shows we read their information.
 
-**Jay-booked calls:** If the lead was routed to Jay's calendar, skip the warmup entirely. Jay handles his own pre-call prep. Only generate warmup messages for leads booked on Samuel's, Peterson's, or Cade's calendars.
+**Jay-booked calls:** If the lead was routed to Jay's calendar, skip the warmup entirely. Jay handles his own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Samuel profile: Samuel's/Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on Jay's calendar for any profile, skip.
 
 ---
 
