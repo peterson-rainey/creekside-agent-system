@@ -22,6 +22,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
     response-guidelines.md                     # Universal rules: formatting, pricing, Jay, honesty
     context-retrieval.md                       # JD/transcript gates, industry detection, all SQL queries
     lead-response.md                           # Lead-type generation rules
+    recent-contact-check.md                    # Pre-generation check: detect recent contact across all channels (followup + nurture only)
     followup.md                                # Followup mode selection, cadence, pre/post-call rules
     nurture.md                                 # Nurture 60-day cycle, Byren formula, pre/post-call rules
     warmup.md                                  # Post-booking call warm-up: dynamic question filtering + personalization
