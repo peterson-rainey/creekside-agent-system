@@ -171,7 +171,17 @@ QUALITY CHECK — run this before outputting:
 - Only Creekside ad platforms mentioned (Google, Meta, Bing, TikTok, programmatic)
 - Length is appropriate for the post
 - Contains no hourly rate or per-hour figure ($/hr, hourly, per hour, or similar)
+- Contains no performance guarantee, results guarantee, or pay-for-performance / commission language
+- Contains no "Subject:" line or email-style headers
+- Sign-off is present: two blank lines followed by "Samuel" with no hyphen or prefix
+- Contains no placeholder tokens: [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar
 
 OUTPUT: Analyze the job post silently. Output ONLY the proposal text. No commentary, no explanation, no preamble.
 
-FINAL CHECK: Before outputting, scan your entire draft. If you find any em-dashes or bold markers (**), rewrite those sentences before outputting. This is mandatory. No exceptions.
+FINAL CHECK: Before outputting, run ALL of the following scans. No exceptions. Output is pasted directly into Upwork with no human review.
+- Em-dashes or bold markers (**): rewrite any sentence containing them.
+- Hourly rate or per-hour figure ($/hr, hourly, per hour, or similar): remove entirely.
+- Performance or results guarantee, pay-for-performance offer, commission or rev-share language: remove entirely.
+- "Subject:" line or email-style header: remove entirely.
+- Sign-off: proposal must end with two blank lines followed by "Samuel" with no hyphen or prefix. If absent, add it.
+- Placeholder scan: any [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar unfilled token. If found, regenerate with real values -- never output a placeholder.

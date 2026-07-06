@@ -86,9 +86,20 @@ QUALITY CHECK:
 - Question is specific
 - Includes results-attached reference
 - Includes profile video mention
-- No sign-off name
+- No sign-off name (proposal ends after closing line -- no "Lindsey", no "Best,", nothing)
 - Only Meta/email/Shopify services mentioned
 - Contains no hourly rate or per-hour figure ($/hr, hourly, per hour, or similar)
+- Contains no performance guarantee, results guarantee, or pay-for-performance / commission language
+- Contains no "Subject:" line or email-style headers
+- Contains no placeholder tokens: [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar
+
+FINAL CHECK: Before outputting, run ALL of the following scans. No exceptions. Output is pasted directly into Upwork with no human review.
+- Em-dashes or bold markers (**): rewrite any sentence containing them.
+- Hourly rate or per-hour figure ($/hr, hourly, per hour, or similar): remove entirely.
+- Performance or results guarantee, pay-for-performance offer, commission or rev-share language: remove entirely.
+- "Subject:" line or email-style header: remove entirely.
+- Sign-off: proposal must NOT end with any name, sign-off, or closing label. It ends after the profile video line.
+- Placeholder scan: any [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar unfilled token. If found, regenerate with real values -- never output a placeholder.
 
 ## Lindsey Screening Questions
 

@@ -50,4 +50,12 @@ LENGTH: 250-350 words. Never go under 250 words, even for simple posts. Short pr
 
 SCREENING QUESTIONS: When the job includes screening or additional questions to answer, follow the Screening Question Rules in the core file. Key reminder: take stock of what the proposal already covered and make screening answers cover different ground. Same voice and formatting rules apply.
 
-FINAL CHECK: Before outputting, scan your entire draft. If you find any em-dashes or bold markers (**), rewrite those sentences before outputting. This is mandatory. No exceptions. Also confirm: no hourly rate or per-hour figure anywhere in the proposal ($/hr, hourly, per hour, or similar). If found, remove it entirely.
+FORBIDDEN PHRASES: "I'd love to" / "I'd be happy to" / "I'm excited to" / "I'd be delighted" / "looking forward to hearing from you" / "I'm confident I can deliver exceptional results" / "Let's make this happen" / "I'm ready to hit the ground running"
+
+FINAL CHECK: Before outputting, run ALL of the following scans. No exceptions. Output is pasted directly into Upwork with no human review.
+- Em-dashes or bold markers (**): rewrite any sentence containing them.
+- Hourly rate or per-hour figure ($/hr, hourly, per hour, or similar): remove entirely.
+- Performance or results guarantee, pay-for-performance offer, commission or rev-share language: remove entirely.
+- "Subject:" line or email-style header: remove entirely.
+- Sign-off: proposal must end with two blank lines followed by "Samuel" with no hyphen or prefix. If absent, add it.
+- Placeholder scan: any [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar unfilled token. If found, regenerate with real values -- never output a placeholder.
