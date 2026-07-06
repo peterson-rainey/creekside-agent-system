@@ -93,14 +93,24 @@ Apply the rules from that file to analyze the job description for red and yellow
 
 ### Step 4: Validate Output
 
-Before presenting the proposal, scan it for:
+Before presenting the proposal, scan it for ALL of the following. If ANY violation is found, rewrite or regenerate -- NEVER output a proposal with a known violation. Output is pasted directly into Upwork with no human review.
+
 1. Em-dashes: Replace with commas or periods
 2. Bold text (** or __): Remove entirely
 3. Markdown headers (#): Remove entirely
 4. Bullet lists: Remove unless job post uses them and you are addressing each point
 5. Hourly rate or per-hour pricing: Any figure expressed as $/hr, hourly, "per hour", or similar -- remove entirely. Creekside does not quote hourly rates. If pricing was mentioned at all, replace with a call-deferral or retainer framing.
-
-If any violations found, rewrite those sentences.
+6. Below-minimum ad budget endorsement: Does the proposal validate, endorse, or accept any client-stated ad budget below $3,000/month per platform? If yes, remove or rewrite. Never affirm a sub-minimum budget is workable.
+7. Performance or results guarantees: Any language promising outcomes, guaranteeing ROI, offering pay-for-performance, commission, or rev-share. Remove entirely.
+8. Subject line or email headers: Any "Subject:" line or email-style header. Remove entirely.
+9. Missing sign-off (Samuel proposals): Proposal must end with two blank lines followed by "Samuel". If absent, add it.
+10. PLACEHOLDER SCAN (highest priority): Scan for any unfilled template artifact:
+    - Square-bracket tokens: [RATE], [CLIENT], [NAME], [X], or any [...] pattern
+    - Curly-brace tokens: {{...}} or {...}
+    - Angle-bracket tokens: <insert...> or similar
+    - Literal strings: TBD, TODO, XXX
+    - Dollar-blank patterns: $___, $[amount], or similar
+    If ANY placeholder is found, the proposal MUST be regenerated with real values. Never output a proposal containing a placeholder. Output is pasted directly into Upwork with no human review -- a placeholder sent to a client is a critical failure.
 
 ### Step 5: Log to Database
 
@@ -178,5 +188,11 @@ BUDGET RECOMMENDATION RULES (Mandatory):
 - If recommending two platforms, the total monthly budget recommendation should be at least $8,000 ($5,000 minimum on Google Ads, $3,000 minimum on Meta Ads).
 - Do NOT default to "both platforms" or "across both platforms." Only recommend the platform(s) that make strategic sense for the job. If the job only mentions one platform, recommend spend for that platform only. If you genuinely believe both platforms are warranted, explain why and state per-platform budget recommendations, not a vague combined total.
 - When mentioning budget, frame it per platform (e.g., "$3,000-5,000/month on Google Ads") rather than as a lump sum across platforms.
-- If the job states a budget below $3,000/month per platform, do not lower your recommendation to match. Acknowledge their stated budget but recommend what is actually needed for meaningful data and results.
+- NEVER validate, endorse, or accept an ad budget stated by the client that is below $3,000/month per platform. If the job description states a budget below $3,000/month, this should have already failed fit screening (RED flag: Ad Budget Too Small). If the proposal is generated anyway, it must not contain any language that endorses, accepts, or treats the below-minimum budget as workable. Do not say phrases like "your $1,500 budget can work," "that range is a good sign," or anything that signals the sub-minimum budget is acceptable. State what is actually needed.
 - Only include a budget recommendation if the job post asks about budget or if it is directly relevant. Do not volunteer budget numbers in every proposal.
+
+BUSINESS MODEL RULES (Mandatory -- output is pasted directly into Upwork with no human review):
+- NEVER offer performance guarantees, results guarantees, pay-for-performance structures, or commission-based arrangements of any kind. The offer is always Creekside's standard retainer service.
+- NEVER quote fees below the documented minimum retainer. NEVER invent alternative business models: no partnerships, rev-share, reseller arrangements, or "you deliver, I close clients" structures. If the job implies such a model, write the proposal as if it is a standard retainer engagement or do not apply.
+- NEVER include a "Subject:" line, email-style headers, or any structural element that belongs in an email and not a cover letter body. The output is a cover letter body only.
+- Sign-off is mandatory for Samuel proposals: two blank lines followed by "Samuel" with no hyphen, no "Best,", nothing else. A proposal that ends without this sign-off is incomplete and must be regenerated.
