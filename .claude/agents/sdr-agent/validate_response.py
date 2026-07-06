@@ -46,6 +46,10 @@ BLOCK_PATTERNS = [
     # Placeholder calendar links
     (r'\[(?:calendar|Calendar)\s*(?:link|Link)\]', "placeholder_calendar"),
     (r'\[insert\b', "placeholder_insert"),
+
+    # Off-platform contact info: email addresses (Upwork compliance -- never
+    # include any email address in a response, even Creekside's own)
+    (r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', "email_address"),
 ]
 
 # Structural BLOCK: call suggested without a real URL

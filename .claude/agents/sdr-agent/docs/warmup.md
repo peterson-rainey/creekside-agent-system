@@ -76,6 +76,8 @@ Send the profile video nudge (one natural sentence) + a brief personalized forwa
 Example tone:
 > If you haven't yet, worth checking out my profile video before we chat. It covers how we work and answers most of the setup questions upfront. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the [their specific topic] side of things on the call.
 
+**(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
+
 ---
 
 ### Case C: Some questions unanswered (1-6 remaining)
