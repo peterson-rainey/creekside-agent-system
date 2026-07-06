@@ -163,8 +163,10 @@ if [ "$IS_AGENT" = true ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
 
       if [ -n "$PAYLOAD" ]; then
         # POST with upsert: inserts new rows, updates existing ones (on name conflict)
+        # on_conflict=name is REQUIRED: without it PostgREST resolves merge-duplicates on the
+        # PK (id), so edits to existing agents take the INSERT path and fail silently.
         curl -s --max-time 10 \
-          "${SUPA_URL}/agent_definitions" \
+          "${SUPA_URL}/agent_definitions?on_conflict=name" \
           -X POST \
           -H "apikey: ${SUPA_KEY}" \
           -H "Authorization: Bearer ${SUPA_KEY}" \
