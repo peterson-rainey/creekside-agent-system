@@ -245,7 +245,7 @@ Here's a 3-minute video breakdown of what we did for Dr. Laleh, who had similar 
 [If follow-up: Let's reconnect on [day]. I'll send a calendar invite.]
 
 Talk soon,
-Peterson
+Cade
 
 Creekside Marketing
 Specialized Patient Acquisition for Cosmetic and Implant Dentistry

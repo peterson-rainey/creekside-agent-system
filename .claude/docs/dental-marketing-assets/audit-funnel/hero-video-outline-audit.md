@@ -54,7 +54,7 @@ Record each of these as a separate clip. The editor will lay them over the corre
 - [ ] Screen recording of Google Ads dashboard (spend visible)
 - [ ] Consultation numbers / revenue comparison graphic (50 -> 105, $1M -> $2M)
 - [ ] The "record high 100 consults" message screenshot
-- [ ] Screen recording of the landing page calculator with sliders being adjusted
+- [ ] Screen recording of the landing page calculator with sliders being adjusted (ON HOLD: calculator section is currently disabled on the audit LP. Skip until re-enabled)
 - [ ] Creekside branding for end card
 
 ## EDITING NOTES

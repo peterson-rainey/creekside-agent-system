@@ -173,7 +173,7 @@
 | 2 | Testimonial Screenshot | Yes | Yes | Needs actual message screenshot |
 | 3 | Before/After Transformation | Yes | Yes | Needs patient smile photos |
 | 4 | Emotional Outcome | Yes | Yes | Text-forward, warm tone |
-| 5 | Tooth Co / Lower Budget | Yes | Yes | $5K spend proof point |
+| 5 | Tooth Co / Lower Budget | Yes | Yes | $10K spend proof point |
 | 6 | ChatGPT Ads | Yes | Yes | Mock-up or real screenshot |
 | 7 | Get Clients, Not Leads | Yes | Yes | Bold messaging play |
 | 8 | Free Audit Promotion | Yes | Yes | NEW -- sells the audit directly |

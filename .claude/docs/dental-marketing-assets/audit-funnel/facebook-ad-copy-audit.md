@@ -205,12 +205,51 @@ We'll audit your dental practice's ad account for free. An ads expert will pull 
 
 ---
 
+## AD 12: The Hidden Problem (Phase 2 -- problem-unaware traffic)
+
+**Primary Text:**
+Most dental practices spending $10K+ a month on ads have no idea their cost per consultation is 2X higher than it should be.
+
+Not because anyone is lying to them. Because the reports they get measure leads, clicks, and impressions instead of what actually matters: consultations booked and cases closed.
+
+Dr. Laleh was spending $110K a month and getting 50-60 consults. Nobody told her that was low until we pulled up the account. Six months later: 105+ consults a month on the same budget.
+
+Want to know what your numbers should look like? Book a free ad account audit. An ads expert will pull up your account live and show you in 30 minutes.
+
+**Headline:** Is Your Cost Per Consult 2X Too High?
+**Description:** Free 30-minute ad account audit
+**CTA Button:** Learn More
+**Destination:** Audit landing page
+**Angle:** Problem-unaware traffic. The hook is "you don't know what you don't know." Opens the funnel to practices that think their ads are fine.
+
+---
+
+## AD 13: Already Have an Agency? (Phase 2 -- agency-switch traffic)
+
+**Primary Text:**
+Quick question for practice owners already working with a marketing agency:
+
+When was the last time they showed you return on ad spend tied to actual revenue? Not leads. Not clicks. Revenue.
+
+If the answer is "never," that's worth a second opinion. We took over an account for a practice spending $110K a month with another team. Their campaigns were optimizing for form fills, so the algorithm was buying cheap leads that never showed up. We switched the optimization to booked consultations. Same budget, 50 consults became 105.
+
+We'll give you the same second opinion for free. 30 minutes, screen share, no pitch. If your current agency is doing a great job, we'll tell you that too.
+
+**Headline:** Get a Second Opinion on Your Ads. Free.
+**Description:** 30-minute independent audit
+**CTA Button:** Learn More
+**Destination:** Audit landing page
+**Angle:** Most-aware/competitive traffic. Targets practices with committed budgets and existing agencies. The "we'll tell you if they're doing great" line disarms the pitch objection.
+
+---
+
 ## CTA STRATEGY
 
 | Ad | Destination | Audience | Objective |
 |----|------------|----------|-----------|
 | 1, 2, 3, 4, 5, 6, 7, 9, 10, 11 | Audit landing page (Learn More) | Cold -- practices running ads | Lead gen |
 | 8 | Audit landing page (Learn More) | Warm -- Dr. Laleh followers | Awareness/engagement |
+| 12, 13 | Audit landing page (Learn More) | Cold -- Phase 2 awareness angles | Lead gen |
 
 **Note:** All cold traffic ads route to the audit landing page. The booking link (Cade's existing Google Meet link) is on the landing page as the primary CTA. No ads use "Book Now" or direct to the booking link as a primary CTA -- they go through the landing page first.
 
@@ -223,6 +262,7 @@ We'll audit your dental practice's ad account for free. An ads expert will pull 
 
 **Phase 2 (Weeks 3-4):**
 - Add Ads 6, 7 (these need creative assets -- screenshots, photos)
+- Add Ads 12, 13 (new awareness angles: problem-unaware and agency-switch. Copy only, reuse existing statics)
 - Kill bottom 3-4 performers from Phase 1
 - Scale winners
 

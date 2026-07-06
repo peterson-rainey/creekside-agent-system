@@ -49,7 +49,7 @@ The number one mistake we see in dental ad accounts: optimizing for leads instea
 
 When we took over Dr. Laleh's account, the first thing we changed was what the campaigns were optimizing for. Same budget, completely different results. 50 consultations a month jumped to 105. Return on ad spend went from 2.7X to 5.7X.
 
-That's the kind of thing we look for in the audit. Takes 30 minutes.
+That's the kind of thing we look for in the audit. My partner Cade runs it. He's the one who manages our dental ad accounts day to day, and he's the same person who would manage yours if we ever worked together. He'll pull up your account live and walk through it with you. Takes 30 minutes.
 
 [LINK: Book Your Free Ad Account Audit with Cade]
 
