@@ -88,6 +88,8 @@ These rules apply to both profiles. Profile-specific voice framing is in the pro
 
 Internalize the profile's identity, booking calendar, voice frame, service scope, and any overrides. All subsequent steps execute with that profile active. When a shared doc says "the profile's booking calendar," use the URL from the loaded profile doc.
 
+**Step 0.5 (followup and nurture only): Recent Contact Check.** Read `docs/recent-contact-check.md` and execute the check in full before doing anything else. If recent contact is found, stop and present the findings to the operator. Do not proceed to Step 1 unless the check is clear or the operator explicitly overrides.
+
 **Step 1:** Read `docs/context-retrieval.md` and execute the context detection and retrieval process.
 
 **Step 2:** Read `docs/response-guidelines.md` for universal rules. This is the PRIMARY rule source. Internalize all rules BEFORE generating anything.
