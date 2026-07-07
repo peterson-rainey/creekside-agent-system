@@ -1,7 +1,7 @@
 ---
 name: upwork-proposal-agent
 description: "Generates Upwork proposals for Samuel Rainey or Lindsey (Creekside Marketing). Accepts a job description, optional profile (samuel/lindsey), and optional proposal style. Runs fit screening, matches case studies from the database, then generates a ready-to-paste proposal."
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, Read
+tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, Read, Bash
 model: sonnet
 status: active
 ---
@@ -93,24 +93,47 @@ Apply the rules from that file to analyze the job description for red and yellow
 
 ### Step 4: Validate Output
 
-Before presenting the proposal, scan it for ALL of the following. If ANY violation is found, rewrite or regenerate -- NEVER output a proposal with a known violation. Output is pasted directly into Upwork with no human review.
+Run the deterministic validation script. This step is mandatory. Output is pasted directly into Upwork with no human review.
 
-1. Em-dashes: Replace with commas or periods
-2. Bold text (** or __): Remove entirely
-3. Markdown headers (#): Remove entirely
-4. Bullet lists: Remove unless job post uses them and you are addressing each point
-5. Hourly rate or per-hour pricing: Any figure expressed as $/hr, hourly, "per hour", or similar -- remove entirely. Creekside does not quote hourly rates. If pricing was mentioned at all, replace with a call-deferral or retainer framing.
-6. Below-minimum ad budget endorsement: Does the proposal validate, endorse, or accept any client-stated ad budget below $3,000/month per platform? If yes, remove or rewrite. Never affirm a sub-minimum budget is workable.
-7. Performance or results guarantees: Any language promising outcomes, guaranteeing ROI, offering pay-for-performance, commission, or rev-share. Remove entirely.
-8. Subject line or email headers: Any "Subject:" line or email-style header. Remove entirely.
-9. Missing sign-off (Samuel proposals): Proposal must end with two blank lines followed by "Samuel". If absent, add it.
-10. PLACEHOLDER SCAN (highest priority): Scan for any unfilled template artifact:
-    - Square-bracket tokens: [RATE], [CLIENT], [NAME], [X], or any [...] pattern
-    - Curly-brace tokens: {{...}} or {...}
-    - Angle-bracket tokens: <insert...> or similar
-    - Literal strings: TBD, TODO, XXX
-    - Dollar-blank patterns: $___, $[amount], or similar
-    If ANY placeholder is found, the proposal MUST be regenerated with real values. Never output a proposal containing a placeholder. Output is pasted directly into Upwork with no human review -- a placeholder sent to a client is a critical failure.
+**Script:** `.claude/agents/upwork-proposal-agent/validate_proposal.py`
+
+```bash
+# Write proposal to a temp file, then validate
+TMPFILE=$(mktemp /tmp/proposal_XXXXXX.txt)
+cat > "$TMPFILE" << 'PROPOSAL_EOF'
+<paste proposal text here>
+PROPOSAL_EOF
+python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE"
+EXIT_CODE=$?
+rm -f "$TMPFILE"
+```
+
+**Obey the verdict:**
+- **PASS (exit 0):** Proceed to Step 5.
+- **WARN (exit 1):** The script outputs `---FIXED---` followed by auto-corrected text. Use the fixed text as the proposal. Proceed to Step 5.
+- **BLOCK (exit 2):** The proposal contains a critical violation (hourly rate, email address, or placeholder bracket). Rewrite the proposal from scratch addressing the reported issue. Re-run validation after rewriting. Maximum 2 rewrite attempts. If still BLOCK after 2 attempts, present the error to the user and do not output the proposal.
+
+**What the script catches:**
+
+BLOCK (must rewrite):
+- Hourly rates in any form: $X/hr, $X per hour, $X an hour, $X hourly, "Hourly with Time Tracker works", or any acceptance of hourly billing
+- Email addresses (Upwork compliance)
+- Placeholder brackets, curly-brace tokens, angle-bracket inserts, TBD/TODO/XXX, dollar-blank patterns
+
+WARN (auto-fixed by script):
+- Em-dashes (both unicode em-dash and " -- ")
+- Bold or italic markdown
+- Markdown headers
+- Markdown links (converted to plain URL)
+
+WARN (reported but NOT auto-stripped -- agent decides):
+- Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 5.
+
+**Manual checks the script does not cover** (still required before Step 5):
+- Below-minimum ad budget endorsement: Does the proposal validate, endorse, or accept any client-stated ad budget below $3,000/month per platform? If yes, rewrite.
+- Performance or results guarantees: Any language promising outcomes, guaranteeing ROI, offering pay-for-performance, commission, or rev-share. Remove entirely.
+- Subject line or email headers: Any "Subject:" line or email-style header. Remove entirely.
+- Missing sign-off (Samuel proposals): Proposal must end with two blank lines followed by "Samuel". If absent, add it.
 
 ### Step 5: Log to Database
 
@@ -141,6 +164,15 @@ Copy the proposal text to the clipboard using pbcopy.
 ## Screening Question Rules
 
 These rules apply to BOTH profiles (Samuel and Lindsey) whenever the job or user provides screening questions or additional questions to answer (separate Q&A fields attached to the job posting).
+
+DIRECT-NUMBER RULE (mandatory -- applies to proposals AND screening answers):
+When a job description or screening question asks for a specific figure (peak monthly spend managed, annual spend managed, typical ROAS, number of accounts, years of experience, etc.), give ONE concrete number first, then context. Never answer with a range only. Never deflect with vague language ("it varies," "typically quite substantial," "I won't quote a single hero number"). If you have a truthful, verifiable figure from the case study or context data available to you, lead with it. If no truthful specific figure exists, state that plainly rather than substituting a range or a dodge ("I don't have a single-account figure to cite, but our largest client ran $X/month"). Fabricating a number is never an option.
+
+Examples of prohibited responses to "What is your peak monthly spend managed?":
+- "I've managed budgets ranging from $10K to $100K+." (range-only -- BLOCK)
+- "Our team has overseen substantial ad spend across multiple clients." (vague deflection -- BLOCK)
+
+Acceptable response: "Peak single-account monthly spend I've personally managed is $85K (South River Mortgage, Google Ads). Total portfolio at peak was over $300K/month across all clients."
 
 ANTI-DUPLICATION (mandatory):
 Before writing any screening answer, take stock of the proposal you just generated: what points did you make, what angles did you use, what examples or stories did you tell, what specific phrases or statistics appeared? Write that inventory mentally. Then make every screening answer cover DIFFERENT material.
