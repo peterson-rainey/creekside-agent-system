@@ -40,11 +40,11 @@ BLOCK_PATTERNS = [
     # Email addresses (Upwork compliance -- never include any email address)
     (r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', "email_address"),
 
-    # Placeholder brackets: [text] but not [No ...] or URLs
-    (r'\[(?!No |no |http)[A-Za-z][^\]]{1,}\]', "placeholder_brackets"),
+    # Placeholder brackets: [text] but not [No ...], URLs, or markdown links [text](url)
+    (r'\[(?!No |no |http)[A-Za-z][^\]]{1,}\](?!\()', "placeholder_brackets"),
     # Curly-brace tokens
     (r'\{\{[^}]+\}\}', "placeholder_curly"),
-    (r'\{[A-Za-z][^}]+\}', "placeholder_curly"),
+    (r'(?<!\{)\{[A-Za-z][^}]+\}(?!\})', "placeholder_curly"),
     # Angle-bracket insert tokens
     (r'<insert\b', "placeholder_angle"),
     # Literal placeholder strings
@@ -79,10 +79,11 @@ def check_and_fix_warns(text):
     issues = []
     fixed = text
 
-    # 1. Em-dashes (unicode U+2014) -> comma
+    # 1. Em-dashes (unicode U+2014) -> comma (consume surrounding whitespace to avoid
+    #    "word , word" spacing artifacts)
     if '\u2014' in fixed:
         issues.append(("em_dash", "\u2014"))
-        fixed = fixed.replace('\u2014', ',')
+        fixed = re.sub(r'\s*\u2014\s*', ', ', fixed)
 
     # 2. Double-hyphen em dash " -- " -> ", " (skip inside URLs)
     if ' -- ' in fixed:
@@ -165,7 +166,7 @@ def main():
         text = sys.stdin.read().strip()
 
     if not text:
-        print("VERDICT: BLOCK", file=sys.stderr)
+        print("VERDICT: BLOCK")
         print("ISSUES: empty_proposal", file=sys.stderr)
         sys.exit(2)
 

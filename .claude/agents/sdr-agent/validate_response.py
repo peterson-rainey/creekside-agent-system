@@ -186,10 +186,11 @@ def check_and_fix_warns(text):
             if len(sentence) < len(fixed) * 0.5:
                 fixed = (fixed[:start] + fixed[end:]).strip()
 
-    # 4. Em dashes -> commas
+    # 4. Em dashes -> commas (consume surrounding whitespace to avoid
+    #    "word , word" spacing artifacts)
     if '\u2014' in fixed:
         issues.append(("em_dash", "\u2014"))
-        fixed = fixed.replace('\u2014', ',')
+        fixed = re.sub(r'\s*\u2014\s*', ', ', fixed)
     # Double-hyphen em dash (but not in URLs)
     if ' -- ' in fixed:
         # Don't replace inside URLs
