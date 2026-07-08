@@ -62,6 +62,7 @@ Scans to perform (in order):
 - Subject line scan: search for "Subject:" or any email-style header at the top. Remove entirely.
 - Sign-off scan: confirm the proposal ends with two blank lines followed by "Samuel" with no hyphen or prefix. If absent, add it.
 - Placeholder scan: search for [...], {{...}}, <insert...>, TBD, TODO, XXX, $___. If found, regenerate with real values.
+- Below-minimum budget scan: search for any language validating, endorsing, or accepting a client-stated ad budget below $3,000/month. Rewrite or remove if found.
 - Word count: count the words in the final proposal. Standard cap is 350; multi-question posts cap at 400. If over the cap, trim and re-scan everything.
 
 After all scans, output a validation checklist in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself):
@@ -74,4 +75,5 @@ Validation:
 - Subject line scan: [PASS / FAIL]
 - Sign-off scan: [PASS / FAIL]
 - Placeholder scan: [PASS / FAIL]
+- Below-minimum budget scan: [PASS / FAIL]
 - Word count: [actual count] words ([cap] cap): [PASS / FAIL]
