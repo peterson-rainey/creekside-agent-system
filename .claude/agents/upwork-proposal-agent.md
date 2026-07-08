@@ -149,6 +149,8 @@ Perform each check by re-reading the final proposal text for the relevant patter
 - Subject line or email headers: Any "Subject:" line or email-style header. Remove entirely.
 - Missing sign-off (Samuel proposals): Proposal must end with two blank lines followed by "Samuel". If absent, add it.
 - Word count: Count the words in the final proposal and apply the word-count check defined in the style file. The check must state the actual counted number, the applicable limit or range, and PASS or FAIL. If over cap, trim and re-run all checks. If under minimum, expand and re-run all checks.
+- Forbidden words and phrases (required whenever the script did NOT run): Scan the final text for the WARN-tier lists above -- forbidden words, banned phrases, fluff openers, formal transitions, and (lindsey profile only) Lindsey persona phrases. Replace any hit with plain language. When the script DID run, resolve every WARN it reported instead.
+- Agency disclosure: If the fit check raised the FULL-TIME EMPLOYEE ROLE flag (or any fit rule that mandates disclosure), the proposal MUST contain an explicit sentence disclosing the agency/contractor model per fit-check.md rule 3. If the flag fired and the sentence is missing, add it and re-run all checks. If no such flag fired, this check is N/A.
 
 **Validation checklist (required output):** After completing all checks, include the following block in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself). Fill in each line with the actual result:
 
