@@ -96,14 +96,14 @@ QUALITY CHECK:
 FINAL CHECK: Before outputting, you MUST perform each scan by re-reading the final proposal text character-by-character for the relevant patterns. Do not assert compliance without actually scanning. If any edit is made after a scan, re-run the full scan before outputting. Every check must be performed and its result shown in the validation checklist (see below). If any check fails, fix and re-scan -- never output a proposal alongside a failed check.
 
 Scans to perform (in order):
-- Em-dash scan: search the proposal for the em-dash character (--) and for " -- " (space-dash-dash-space). Rewrite any sentence containing either.
+- Em-dash scan: search the proposal for the literal em dash character "—" (U+2014), the en dash character "–" (U+2013), and the " -- " double-hyphen form (space-dash-dash-space). Rewrite any sentence containing any of these.
 - Bold marker scan: search for ** or __. Rewrite any sentence containing them.
 - Hourly rate scan: search for $/hr, /hr, per hour, hourly, an hour, or similar phrasing. Remove entirely.
 - Performance guarantee scan: search for guarantee, ROI promise, pay-for-performance, commission, rev-share. Remove entirely.
 - Subject line scan: search for "Subject:" or any email-style header at the top. Remove entirely.
 - Sign-off scan: confirm the proposal does NOT end with any name, sign-off, or closing label. It ends after the profile video line.
 - Placeholder scan: search for [...], {{...}}, <insert...>, TBD, TODO, XXX, $___. If found, regenerate with real values.
-- Below-minimum budget scan: search for any language validating, endorsing, or accepting a client-stated ad budget below $3,000/month. Rewrite or remove if found.
+- Below-minimum budget scan: search for any language validating, endorsing, or accepting a client-stated ad budget below $3,000/month. This includes feasibility claims ("it can work," "similar budgets," "tight but doable") and citing a sub-$3k client case study as evidence a sub-minimum budget is viable. Rewrite if found: acknowledge the stated budget, state results start at $3,000/month, frame it as a constraint not a plan.
 - Word count: count the words in the final proposal. Standard range is 200-300; multi-question posts cap at 350; never under 200 or over 350. If outside range, trim or expand and re-scan.
 
 After all scans, output a validation checklist in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself):
