@@ -168,6 +168,47 @@ Klaviyo uses cursor-based pagination. The response includes `links.next` with th
 
 ---
 
+## OpenAI Ads
+
+**Base URL:** `https://api.ads.openai.com/v1`
+**Auth type:** Bearer (`Authorization: Bearer {key}`)
+**Rate limits:** 600 req/min per endpoint, 1,200 req/min per account
+**READ-ONLY for contractors (v1).** No write endpoints are documented here -- do not attempt POST/PATCH/DELETE calls.
+
+Keys are per ad account (OpenAI has no agency/MCC layer). Stored keys exist for: Fusion Dental (Alex Antipov Dental Corp. account), The Tooth Co, Chattanooga Skydiving.
+
+### Common Endpoints
+
+| What contractor asks for | Endpoint | Method | Notes |
+|---|---|---|---|
+| All campaigns | `/campaigns` | GET | Paginated: `?limit=100`, then pass `after=[last_id]` while `has_more` is true. |
+| Single campaign | `/campaigns/[campaign_id]` | GET | |
+| Daily campaign metrics | `/campaigns/[campaign_id]/insights` | GET | `?time_granularity=daily&limit=[days]` plus the `fields[]` params below. Rows are newest-first; `readable_time` is the date. |
+
+### CRITICAL: the `fields[]` quirk
+
+Insights return ONLY impressions unless you explicitly request metrics using array syntax:
+
+```
+fields[]=impressions&fields[]=clicks&fields[]=spend&fields[]=ctr&fields[]=cpc&fields[]=cpm&fields[]=readable_time
+```
+
+- Plain `fields=impressions,clicks` returns 400 (invalid_type).
+- Do NOT request `conversions` -- it requires a separate `time_ranges` request mode that is not supported yet (returns 400 if requested via fields[]).
+- Always include `readable_time` in fields[] or the date column disappears from the response.
+
+### Prefer the database for historical data
+
+Daily metrics are synced to Supabase every day at 13:48 UTC. For trend/historical questions, query these instead of the live API (via `contractor_query()`):
+
+- `openai_ad_accounts` -- account registry (account_id, account_name, client_id)
+- `openai_campaigns` -- campaign records (campaign_id, account_id, campaign_name, status)
+- `openai_insights_daily` -- daily metrics per campaign (date, impressions, clicks, spend, ctr, cpc, cpm)
+
+Use the live API only for current-state checks (e.g., "is campaign X active right now?").
+
+---
+
 ## Asking the Contractor for Missing Info
 
 When a template variable is needed ({store}, {account}, {dc}):
