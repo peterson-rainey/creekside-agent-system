@@ -106,6 +106,8 @@ Internalize the profile's identity, booking calendar, voice frame, service scope
 
 **Step 4:** Generate one response per the type-specific instructions, applying all rules from response-guidelines.md as you write (not after).
 
+**Step 4.5 (lead, followup, nurture only -- skip for warmup): Case Study Attachment Check.** Read `docs/case-study-attachments.md`. Determine whether a case study attachment is warranted for this response (relevance match + natural fit + length allows it). If yes, run the inventory query, select the best-matching PDF, add a one-sentence reference in the message body, and prepare the VA block for appending after validation. If no relevant match exists, skip silently -- do not mention attachments in the message.
+
 **Step 5:** Run the Final Checklist (below) against your response. If any item fails, rewrite before proceeding.
 
 **Step 6: Deterministic Validation (lead, followup, and warmup -- nurture skips this step).**
