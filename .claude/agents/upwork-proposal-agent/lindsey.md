@@ -93,14 +93,31 @@ QUALITY CHECK:
 - Contains no "Subject:" line or email-style headers
 - Contains no placeholder tokens: [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar
 
-FINAL CHECK: Before outputting, run ALL of the following scans. No exceptions. Output is pasted directly into Upwork with no human review.
-- Em-dashes or bold markers (**): rewrite any sentence containing them.
-- Hourly rate or per-hour figure ($/hr, hourly, per hour, or similar): remove entirely.
-- Performance or results guarantee, pay-for-performance offer, commission or rev-share language: remove entirely.
-- "Subject:" line or email-style header: remove entirely.
-- Sign-off: proposal must NOT end with any name, sign-off, or closing label. It ends after the profile video line.
-- Placeholder scan: any [...], {{...}}, <insert...>, TBD, TODO, XXX, $___ or similar unfilled token. If found, regenerate with real values -- never output a placeholder.
-- Below-minimum ad budget endorsement: any language validating, endorsing, or accepting a client-stated ad budget below $3,000/month. If found, rewrite or remove.
+FINAL CHECK: Before outputting, you MUST perform each scan by re-reading the final proposal text character-by-character for the relevant patterns. Do not assert compliance without actually scanning. If any edit is made after a scan, re-run the full scan before outputting. Every check must be performed and its result shown in the validation checklist (see below). If any check fails, fix and re-scan -- never output a proposal alongside a failed check.
+
+Scans to perform (in order):
+- Em-dash scan: search the proposal for the em-dash character (--) and for " -- " (space-dash-dash-space). Rewrite any sentence containing either.
+- Bold marker scan: search for ** or __. Rewrite any sentence containing them.
+- Hourly rate scan: search for $/hr, /hr, per hour, hourly, an hour, or similar phrasing. Remove entirely.
+- Performance guarantee scan: search for guarantee, ROI promise, pay-for-performance, commission, rev-share. Remove entirely.
+- Subject line scan: search for "Subject:" or any email-style header at the top. Remove entirely.
+- Sign-off scan: confirm the proposal does NOT end with any name, sign-off, or closing label. It ends after the profile video line.
+- Placeholder scan: search for [...], {{...}}, <insert...>, TBD, TODO, XXX, $___. If found, regenerate with real values.
+- Below-minimum budget scan: search for any language validating, endorsing, or accepting a client-stated ad budget below $3,000/month. Rewrite or remove if found.
+- Word count: count the words in the final proposal. Standard range is 200-300; multi-question posts cap at 350; never under 200 or over 350. If outside range, trim or expand and re-scan.
+
+After all scans, output a validation checklist in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself):
+
+Validation:
+- Em-dash scan: [PASS / FAIL -- describe what was found]
+- Bold marker scan: [PASS / FAIL]
+- Hourly rate scan: [PASS / FAIL]
+- Performance guarantee scan: [PASS / FAIL]
+- Subject line scan: [PASS / FAIL]
+- Sign-off scan: [PASS / FAIL -- confirm no trailing name or label]
+- Placeholder scan: [PASS / FAIL]
+- Below-minimum budget scan: [PASS / FAIL]
+- Word count: [actual count] words ([applicable range] range): [PASS / FAIL]
 
 ## Lindsey Screening Questions
 

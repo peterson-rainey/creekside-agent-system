@@ -109,8 +109,8 @@ rm -f "$TMPFILE"
 ```
 
 **Obey the verdict:**
-- **PASS (exit 0):** Proceed to Step 5.
-- **WARN (exit 1):** The script outputs `---FIXED---` followed by auto-corrected text. Use the fixed text as the proposal. Proceed to Step 5.
+- **PASS (exit 0):** Proceed to the manual checks below.
+- **WARN (exit 1):** The script outputs `---FIXED---` followed by auto-corrected text. Use the fixed text as the proposal. Re-run manual checks on the fixed text.
 - **BLOCK (exit 2):** The proposal contains a critical violation (hourly rate, email address, or placeholder bracket). Rewrite the proposal from scratch addressing the reported issue. Re-run validation after rewriting. Maximum 2 rewrite attempts. If still BLOCK after 2 attempts, present the error to the user and do not output the proposal.
 
 **What the script catches:**
@@ -130,10 +130,29 @@ WARN (reported but NOT auto-stripped -- agent decides):
 - Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 5.
 
 **Manual checks the script does not cover** (still required before Step 5):
+
+Perform each check by re-reading the final proposal text for the relevant patterns AFTER the script step. If any edit is made after a check, re-run all checks. Never proceed to Step 5 alongside a failed check.
+
 - Below-minimum ad budget endorsement: Does the proposal validate, endorse, or accept any client-stated ad budget below $3,000/month per platform? If yes, rewrite.
 - Performance or results guarantees: Any language promising outcomes, guaranteeing ROI, offering pay-for-performance, commission, or rev-share. Remove entirely.
 - Subject line or email headers: Any "Subject:" line or email-style header. Remove entirely.
 - Missing sign-off (Samuel proposals): Proposal must end with two blank lines followed by "Samuel". If absent, add it.
+- Word count: Count the words in the final proposal and apply the word-count check defined in the style file. The check must state the actual counted number, the applicable limit or range, and PASS or FAIL. If over cap, trim and re-run all checks. If under minimum, expand and re-run all checks.
+
+**Validation checklist (required output):** After completing all checks, include the following block in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself). Fill in each line with the actual result:
+
+Validation:
+- Em-dash scan: [PASS / FAIL]
+- Bold marker scan: [PASS / FAIL]
+- Hourly rate scan: [PASS / FAIL]
+- Performance guarantee scan: [PASS / FAIL]
+- Subject line scan: [PASS / FAIL]
+- Sign-off scan: [PASS / FAIL]
+- Placeholder scan: [PASS / FAIL]
+- Below-minimum budget scan: [PASS / FAIL]
+- Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
+
+All lines must read PASS before proceeding to Step 5.
 
 ### Step 5: Log to Database
 
