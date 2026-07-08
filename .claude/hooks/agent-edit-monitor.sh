@@ -25,8 +25,12 @@ IS_CLAUDE_MD=false
 
 IS_CONTRACTOR_SKILL=false
 
-if echo "$FILE" | grep -qE '\.claude/agents/.*\.md$'; then
+if echo "$FILE" | grep -qE '\.claude/agents/[^/]+\.md$'; then
   IS_AGENT=true
+  IS_TRACKED=true
+elif echo "$FILE" | grep -qE '\.claude/agents/.*\.md$'; then
+  # Nested agent docs/templates (e.g. agents/<name>/docs/*.md): commit only.
+  # NOT IS_AGENT -- must never be synced to agent_definitions as fake agents.
   IS_TRACKED=true
 elif echo "$FILE" | grep -qE '\.claude/skills/.*\.md$'; then
   IS_SKILL=true
@@ -57,10 +61,15 @@ fi
 LOG_FILE="/tmp/claude-agent-edits-$(date +%Y%m%d).jsonl"
 CLAUDE_DIR="$(echo "$FILE" | sed 's|/agents/.*||;s|/contractor-skills/.*||;s|/skills/.*||;s|/scheduled-tasks/.*||')"
 
+# Resolve the git repo root. The old check ([ -d "$CLAUDE_DIR/.git" ]) never
+# matched because .claude/ is a subdirectory of the repo, not a repo itself --
+# so auto-commit silently never fired.
+REPO_DIR=$(git -C "$(dirname "$FILE")" rev-parse --show-toplevel 2>/dev/null)
+
 # Determine if new or modified (subshell to avoid changing cwd)
 IS_NEW="true"
-if [ -d "$CLAUDE_DIR/.git" ]; then
-  if (cd "$CLAUDE_DIR" && git log --oneline -1 -- "$(echo "$FILE" | sed "s|$CLAUDE_DIR/||")" 2>/dev/null) | grep -q .; then
+if [ -n "$REPO_DIR" ]; then
+  if (cd "$REPO_DIR" && git log --oneline -1 -- "$(echo "$FILE" | sed "s|$REPO_DIR/||")" 2>/dev/null) | grep -q .; then
     IS_NEW="false"
   fi
 fi
@@ -102,9 +111,9 @@ jq -cn \
   >> "$LOG_FILE" 2>/dev/null
 
 # Auto-commit and push to GitHub (subshell to avoid changing cwd, background)
-if [ -d "$CLAUDE_DIR/.git" ]; then
+if [ -n "$REPO_DIR" ]; then
   (
-    cd "$CLAUDE_DIR"
+    cd "$REPO_DIR"
     git add -A 2>/dev/null
     # Only commit if there are staged changes
     if ! git diff --cached --quiet 2>/dev/null; then
