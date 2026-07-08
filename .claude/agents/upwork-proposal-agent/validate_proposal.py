@@ -159,6 +159,95 @@ def check_report_only_warns(text, profile="samuel"):
             if m:
                 issues.append((category, m.group()))
 
+    # 6. Bare URLs -- any raw URL or bare domain in proposal text.
+    # Matches http(s)://, www., or bare domains like creeksidemarketingpros.com.
+    # Anchored on a TLD whitelist to avoid false-positives on decimals (4.5x, 1.2M)
+    # and common abbreviations. Requires a word-boundary before the domain segment.
+    #
+    # Interaction with markdown_link: check_and_fix_warns() converts [text](url) to a
+    # plain URL before this function is called (when auto-fix runs). Both checks may
+    # fire on a proposal that contains markdown links -- markdown_link fires on the
+    # original text, bare_url fires on the fixed text. This is the expected behavior
+    # and is acceptable: the agent sees both warnings and knows a URL is present.
+    # When bare_url is called via check_report_only_warns(text, ...) from validate(),
+    # `text` is the ORIGINAL text, so bare_url fires on raw http/https/www/bare-domain
+    # occurrences in the original, independently of the markdown_link auto-fix.
+    BARE_URL_PATTERN = (
+        r'(?:'
+        r'https?://\S+'                             # http:// or https:// URLs
+        r'|www\.\S+'                                # www. prefixed
+        r'|\b[a-z0-9](?:[a-z0-9-]*[a-z0-9])?'     # bare domain label (no hyphens at edges)
+        r'(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)*' # optional extra subdomains
+        r'\.'                                       # dot before TLD
+        r'(?:com|net|org|io|co|ai)'                 # TLD whitelist
+        r'\b'
+        r')'
+    )
+    m = re.search(BARE_URL_PATTERN, text, re.IGNORECASE)
+    if m:
+        issues.append(("bare_url", m.group()))
+
+    # 7. Numbered list -- lines starting with "1." "2." "3)" etc.
+    # NOTE: The existing bullets check (check_and_fix_warns, step 6) uses the pattern
+    # r'^\s*[-*]\s' which matches only dash/asterisk bullets. It does NOT cover numbered
+    # lines. This check is therefore not redundant -- it catches a distinct formatting
+    # pattern that the bullets check misses.
+    if re.search(r'^\s*\d+[.)]\s', text, re.MULTILINE):
+        issues.append(("numbered_list",
+                        "numbered list detected -- remove; use prose or unnumbered form"))
+
+    # 8. Colon header -- a short standalone line (1-6 words) ending in a colon,
+    # functioning as a section label (e.g. "Audiences:", "How I'd run it:").
+    # Does NOT flag colons mid-paragraph: only matches when the entire line is 1-6 words
+    # ending with a colon and nothing after it (optional trailing whitespace only).
+    # Word characters allowed: letters, digits, apostrophes, hyphens, slashes, +, &.
+    COLON_HEADER_PATTERN = (
+        r"^(?:[A-Za-z0-9'/+&-]+\s){0,5}[A-Za-z0-9'/+&-]+:\s*$"
+    )
+    if re.search(COLON_HEADER_PATTERN, text, re.MULTILINE):
+        m2 = re.search(COLON_HEADER_PATTERN, text, re.MULTILINE)
+        issues.append(("colon_header",
+                        f"section-header colon detected: {m2.group().strip()!r}"))
+
+    # 9. Salutation opener -- first non-empty line starts with a greeting.
+    # Styles mandate opening with the strategic insight, never a greeting.
+    first_line = next((ln for ln in text.splitlines() if ln.strip()), "")
+    SALUTATION_PATTERN = r'^(?:Hi[,\s]|Hi there|Hello[,\s]|Hey[,\s]|Dear\s)'
+    if re.match(SALUTATION_PATTERN, first_line, re.IGNORECASE):
+        issues.append(("salutation_opener",
+                        f"proposal opens with a greeting: {first_line[:50]!r}"))
+
+    # 10. All-caps header -- a standalone line of 1-4 words where every alphabetic
+    # word is fully uppercase and at least one word is 3+ letters.
+    # Excludes lines containing digits+units (e.g. "4X ROAS") and lines that are
+    # part of flowing prose. Only fires when the line is standalone (its own line).
+    def _is_allcaps_header(line):
+        stripped = line.strip()
+        if not stripped:
+            return False
+        words = stripped.split()
+        if not (1 <= len(words) <= 4):
+            return False
+        alpha_words = [w for w in words if re.search(r'[A-Za-z]', w)]
+        if not alpha_words:
+            return False
+        # Exclude if any word contains a digit (catches "4X", "B2B" units inline)
+        if any(re.search(r'\d', w) for w in words):
+            return False
+        # Every alphabetic word must be fully uppercase
+        if not all(w == w.upper() for w in alpha_words):
+            return False
+        # At least one word must be 3+ purely alphabetic letters
+        if not any(re.fullmatch(r'[A-Z]{3,}', w) for w in alpha_words):
+            return False
+        return True
+
+    for line in text.splitlines():
+        if _is_allcaps_header(line):
+            issues.append(("allcaps_header",
+                            f"all-caps standalone line detected: {line.strip()!r}"))
+            break  # report the first occurrence only
+
     return issues
 
 
