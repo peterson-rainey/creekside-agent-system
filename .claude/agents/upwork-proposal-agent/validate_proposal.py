@@ -248,10 +248,59 @@ def check_report_only_warns(text, profile="samuel"):
                             f"all-caps standalone line detected: {line.strip()!r}"))
             break  # report the first occurrence only
 
+    # 11. Lindsey sign-off check (profile=lindsey only, report-only -- no auto-fix).
+    #
+    # Lindsey proposals must NOT end with any name sign-off or closing phrase.
+    # Flag conservatively: only fire when the last meaningful content looks like
+    # a name-only line or an explicit closing-phrase line.
+    #
+    # Two conditions trigger the warning:
+    #   a. A standalone line of 1-2 capitalized words (e.g. "Lindsey", "Samuel",
+    #      "Best wishes") following a blank line -- classic sign-off pattern.
+    #   b. An explicit closing phrase ("Best,", "Thanks,", "Regards,", "Cheers,",
+    #      "Talk soon,", "Sincerely,", "Warmly,") in the last 2 non-empty lines.
+    #
+    # Does NOT fire on prose that happens to end a paragraph -- requires either
+    # the blank-line separator or an explicit closing keyword.
+    if profile == "lindsey":
+        tail = text.rstrip()
+        # Split into lines and collect the last few non-empty ones.
+        all_lines = tail.splitlines()
+
+        # Check condition a: last non-empty line is 1-2 capitalized words after a blank.
+        # Walk from the end: find last non-empty line and whether a blank precedes it.
+        non_empty_lines = [ln for ln in all_lines if ln.strip()]
+        last_line = non_empty_lines[-1].strip() if non_empty_lines else ""
+        # Determine if there is a blank line before the last non-empty line.
+        blank_before_last = False
+        if len(all_lines) >= 2:
+            # Find index of the last non-empty line, then check the line before it.
+            for idx in range(len(all_lines) - 1, -1, -1):
+                if all_lines[idx].strip():
+                    # Found last non-empty line at idx. Check if idx-1 exists and is blank.
+                    if idx > 0 and not all_lines[idx - 1].strip():
+                        blank_before_last = True
+                    break
+
+        SIGNOFF_NAME_PATTERN = r'^[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?$'
+        is_name_line = bool(re.match(SIGNOFF_NAME_PATTERN, last_line))
+
+        # Check condition b: explicit closing phrase in last 2 non-empty lines.
+        CLOSING_KW = (
+            r'\b(?:Best|Thanks|Regards|Cheers|Talk\s+soon|Sincerely|Warmly)\b'
+        )
+        last_two = ' '.join(non_empty_lines[-2:]) if len(non_empty_lines) >= 2 else last_line
+        has_closing_kw = bool(re.search(CLOSING_KW, last_two, re.IGNORECASE))
+
+        if (blank_before_last and is_name_line) or has_closing_kw:
+            issues.append(("lindsey_signoff",
+                            f"Lindsey proposals must not end with a sign-off name or closing phrase: "
+                            f"{last_line!r}"))
+
     return issues
 
 
-def check_and_fix_warns(text):
+def check_and_fix_warns(text, profile="samuel"):
     """Check for WARN-level issues and auto-fix where possible.
     Returns (fixed_text, issues_found).
     """
@@ -313,10 +362,104 @@ def check_and_fix_warns(text):
         issues.append(("markdown_link", f"[{md_links[0][0]}]({md_links[0][1]})"))
         fixed = re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)', r'\2', fixed)
 
-    # Clean up double spaces and excess blank lines from removals
-    fixed = re.sub(r'  +', ' ', fixed)
-    fixed = re.sub(r'\n{3,}', '\n\n', fixed)
-    fixed = fixed.strip()
+    # 8. Samuel sign-off checks (profile=samuel only).
+    #
+    # These three checks are mutually exclusive -- exactly one fires per proposal.
+    # Evaluation order:
+    #   a. signoff_prefix  -- "Samuel" present at end but preceded by a closing word
+    #                         or hyphen on the same or immediately preceding line.
+    #   b. signoff_spacing -- "Samuel" present at end but no blank line before it.
+    #   c. missing_signoff -- "Samuel" not present at end at all.
+    #
+    # "End" is defined after stripping trailing whitespace. Mid-text occurrences of
+    # the word "Samuel" are ignored -- only the final token matters.
+    #
+    # CLOSING_WORDS patterns that constitute an unwanted prefix:
+    #   - A standalone line immediately before "Samuel" that is a closing phrase:
+    #     "Best,", "Best", "Talk soon,", "Thanks,", "Regards,", "Cheers,"
+    #   - A hyphen/dash directly attached or space-separated before "Samuel" on the
+    #     same line: "-Samuel", "- Samuel"
+    if profile == "samuel":
+        tail = fixed.rstrip()  # strip trailing whitespace for all checks below
+
+        # Check whether "Samuel" appears as the last token of the (stripped) text.
+        ends_with_samuel = bool(re.search(r'Samuel\s*$', tail))
+
+        if ends_with_samuel:
+            # --- check a: signoff_prefix ---
+            # Patterns for a forbidden prefix on the same line as Samuel or
+            # on the immediately preceding non-empty line.
+            #
+            # Same-line patterns: "- Samuel", "-Samuel"
+            same_line_prefix = re.search(
+                r'(?:[-\u2013\u2014]\s*)Samuel\s*$', tail
+            )
+            # Preceding-line patterns: "Best,\nSamuel", "Best\nSamuel", etc.
+            # Match: optional blank lines, then a closing word line, then
+            # optional whitespace lines, then "Samuel" at very end.
+            CLOSING_WORDS_PATTERN = (
+                r'(?:Best|Talk\s+soon|Thanks|Regards|Cheers|Sincerely|Warmly)'
+                r',?\s*\n'             # closing word, optional comma, newline
+                r'\s*Samuel\s*$'       # then Samuel at end (allowing only ws in between)
+            )
+            preceding_line_prefix = re.search(CLOSING_WORDS_PATTERN, tail, re.IGNORECASE)
+
+            if same_line_prefix or preceding_line_prefix:
+                issues.append(("signoff_prefix",
+                                "sign-off has prefix (closing word or hyphen) before Samuel"))
+                # Auto-fix: remove everything from the offending prefix up to and
+                # including it, leave exactly \n\nSamuel at the end.
+                # Strip trailing "Samuel" and any closing/hyphen junk before it,
+                # then re-append the correct ending.
+                body = re.sub(
+                    r'(?:\n\s*(?:Best|Talk\s+soon|Thanks|Regards|Cheers|Sincerely|Warmly),?\s*)?'
+                    r'(?:[-\u2013\u2014]\s*)?Samuel\s*$',
+                    '',
+                    tail,
+                    flags=re.IGNORECASE,
+                )
+                fixed = body.rstrip() + '\n\nSamuel'
+
+            else:
+                # --- check b: signoff_spacing ---
+                # "Samuel" IS at the end, no forbidden prefix. Check that there is
+                # exactly a blank line (two newlines) before "Samuel".
+                # A blank line requires at least \n\n before "Samuel" (after stripping).
+                has_blank_line = bool(re.search(r'\n\n\s*Samuel\s*$', tail))
+                if not has_blank_line:
+                    issues.append(("signoff_spacing",
+                                    "Samuel present but no blank line before it"))
+                    # Auto-fix: strip everything after the last paragraph content,
+                    # remove the trailing Samuel (with any single-newline), then
+                    # re-append \n\nSamuel.
+                    body = re.sub(r'\n?\s*Samuel\s*$', '', tail)
+                    fixed = body.rstrip() + '\n\nSamuel'
+                # else: correct spacing -- no issue to append
+
+        else:
+            # --- check c: missing_signoff ---
+            issues.append(("missing_signoff", "proposal does not end with 'Samuel'"))
+            # Auto-fix: append \n\nSamuel to the current fixed text (already processed
+            # by earlier fixes above). We append to `fixed` (not `tail`) to preserve
+            # any other auto-fix changes made above, but use rstrip() first to avoid
+            # trailing whitespace before the sign-off.
+            fixed = fixed.rstrip() + '\n\nSamuel'
+
+    # Clean up double spaces and excess blank lines from removals.
+    # NOTE: We do NOT run the general \n{3,} collapse or strip() after sign-off fixes
+    # because they would destroy the carefully placed \n\nSamuel ending.
+    # Instead, only clean the body portion (everything before the final Samuel
+    # if a samuel sign-off was added/fixed), or the whole text for non-samuel profiles.
+    if profile == "samuel" and fixed.endswith('\n\nSamuel'):
+        body = fixed[:-len('\n\nSamuel')]
+        body = re.sub(r'  +', ' ', body)
+        body = re.sub(r'\n{3,}', '\n\n', body)
+        body = body.strip()
+        fixed = body + '\n\nSamuel'
+    else:
+        fixed = re.sub(r'  +', ' ', fixed)
+        fixed = re.sub(r'\n{3,}', '\n\n', fixed)
+        fixed = fixed.strip()
 
     return fixed, issues
 
@@ -327,7 +470,7 @@ def validate(text, profile="samuel"):
     warn_issues includes both auto-fixable and report-only issues.
     """
     block_issues = check_blocks(text)
-    fixed_text, auto_fix_issues = check_and_fix_warns(text)
+    fixed_text, auto_fix_issues = check_and_fix_warns(text, profile=profile)
     report_only_issues = check_report_only_warns(text, profile=profile)
 
     all_warn_issues = auto_fix_issues + report_only_issues
