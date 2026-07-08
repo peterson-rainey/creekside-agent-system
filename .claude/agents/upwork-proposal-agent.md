@@ -163,6 +163,8 @@ Validation:
 - Sign-off scan: [PASS / FAIL]
 - Placeholder scan: [PASS / FAIL]
 - Below-minimum budget scan: [PASS / FAIL]
+- Forbidden words/phrases scan: [PASS / FAIL]
+- Agency disclosure: [PASS / FAIL / N/A -- no flag requiring disclosure]
 - Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
 
 All lines must read PASS before proceeding to Step 5.
