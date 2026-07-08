@@ -52,7 +52,7 @@ At Creekside, an agent is a markdown file in `.claude/agents/`, not application 
 |------|-----------|---------|
 | **creekside-agent-system** | `/Users/petersonrainey/C-Code - Rag database/` | RAG database, agents, hooks, skills, pipelines config, CLAUDE.md. This is the current working directory. |
 | **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `creekside-marketing/creekside-dashboard` |
-| **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack (legacy), Google Chat, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
+| **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack (ingestion-only), Google Chat, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
 | **creekside-website** | `/Users/petersonrainey/creekside-website/` | Live website (creeksidemarketingpros.com). Astro 5 + Tailwind 4. Hosted by web designer Jonathan. GitHub: `drybonez235/creekside` |
 
 **creekside-tools** (`~/creekside-tools/`) is the PUBLIC free marketing tools site -- completely separate. NEVER add internal features there.
