@@ -173,7 +173,7 @@ Klaviyo uses cursor-based pagination. The response includes `links.next` with th
 **Base URL:** `https://api.ads.openai.com/v1`
 **Auth type:** Bearer (`Authorization: Bearer {key}`)
 **Rate limits:** 600 req/min per endpoint, 1,200 req/min per account
-**READ-ONLY for contractors (v1).** No write endpoints are documented here -- do not attempt POST/PATCH/DELETE calls.
+**Writes allowed with confirmation.** Contractors may make write calls (create/update/pause campaigns), but ONLY after showing the contractor the exact change (endpoint, method, body) and getting an explicit "yes". Verify state with a GET before and after every mutation. Write endpoints follow the platform docs (`docs_url` in `platform_configs`) -- they are not enumerated here yet, so confirm the endpoint against the docs before calling. Never DELETE anything.
 
 Keys are per ad account (OpenAI has no agency/MCC layer). Stored keys exist for: Fusion Dental (Alex Antipov Dental Corp. account), The Tooth Co, Chattanooga Skydiving.
 
