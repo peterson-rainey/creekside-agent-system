@@ -99,14 +99,20 @@ Run the deterministic validation script. This step is mandatory. Output is paste
 
 ```bash
 # Write proposal to a temp file, then validate
+# Pass --profile lindsey when the active profile is Lindsey (determined in Step 1)
 TMPFILE=$(mktemp /tmp/proposal_XXXXXX.txt)
 cat > "$TMPFILE" << 'PROPOSAL_EOF'
 <paste proposal text here>
 PROPOSAL_EOF
+# For Samuel (default): no --profile flag needed
 python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE"
+# For Lindsey: add --profile lindsey
+# python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE" --profile lindsey
 EXIT_CODE=$?
 rm -f "$TMPFILE"
 ```
+
+Use the appropriate command based on the active profile from Step 1: omit `--profile` for Samuel; append `--profile lindsey` for Lindsey.
 
 **Obey the verdict:**
 - **PASS (exit 0):** Proceed to the manual checks below.
@@ -128,6 +134,11 @@ WARN (auto-fixed by script):
 
 WARN (reported but NOT auto-stripped -- agent decides):
 - Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 5.
+- Forbidden words (report-only): delve, leverage, harness, foster, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative, unlock
+- Banned phrases (report-only): "feel free to", "moving forward", "I'd be happy to" / "Id be happy to"
+- Fluff openers (report-only, START of proposal only): "Good question", "Great question", "Thanks for the detail"
+- Formal transitions (report-only, sentence-start capitalized): "Additionally,", "Furthermore,", "Moreover,", "That said,"
+- Lindsey persona violations (report-only, --profile lindsey only): "our team", "my team", "Creekside", "our agency", "as an agency"
 
 **Manual checks the script does not cover** (still required before Step 5):
 

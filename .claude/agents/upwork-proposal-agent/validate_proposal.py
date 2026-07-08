@@ -3,19 +3,19 @@
 Deterministic Upwork proposal validator.
 
 Usage:
-    python3 validate_proposal.py <proposal_file>
-    echo "proposal text" | python3 validate_proposal.py
+    python3 validate_proposal.py <proposal_file> [--profile samuel|lindsey]
+    echo "proposal text" | python3 validate_proposal.py [--profile samuel|lindsey]
 
 Exit codes:
     0 = PASS (no issues)
-    1 = WARN (auto-fixed, fixed text written to stdout)
+    1 = WARN (auto-fixed, fixed text written to stdout after ---FIXED---)
     2 = BLOCK (must rewrite, issues written to stderr)
 
 Output format:
     VERDICT: PASS|WARN|BLOCK
     ISSUES: issue1; issue2; ...
     ---FIXED---
-    (auto-fixed proposal text, only if WARN)
+    (auto-fixed proposal text, only if WARN and auto-fixable changes were made)
 """
 import re
 import sys
@@ -61,6 +61,53 @@ BLOCK_PATTERNS = [
 # Each: (pattern, category, replacement_or_None)
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# WARN patterns -- report-only (no auto-fix)
+# These are checked and reported but the text is NOT modified.
+# ---------------------------------------------------------------------------
+
+# Forbidden words (word-boundary, case-insensitive)
+FORBIDDEN_WORDS = [
+    "delve", "leverage", "harness", "foster", "empower", "elevate",
+    "seamlessly", "robust", "pivotal", "comprehensive", "cutting-edge",
+    "game-changing", "transformative", "unlock",
+]
+
+# Banned phrases (case-insensitive substring/pattern matches)
+# Using raw patterns so we can do regex-level precision.
+# "I'd be happy to" / "I'd be happy to" -- match with optional apostrophe,
+# but do NOT match bare "happy to" (e.g. "Happy to talk through..." is approved).
+BANNED_PHRASES = [
+    (r"\bfeel free to\b", "feel_free_to"),
+    (r"\bmoving forward\b", "moving_forward"),
+    (r"\bI'?d be happy to\b", "id_be_happy_to"),
+]
+
+# Fluff openers -- only flag when the phrase is at the START of the proposal
+FLUFF_OPENERS = [
+    (r"^Good question[\.,!]?", "fluff_opener_good_question"),
+    (r"^Great question[\.,!]?", "fluff_opener_great_question"),
+    (r"^Thanks for the detail[\.,!]?", "fluff_opener_thanks_for_detail"),
+]
+
+# Formal transitions -- only flag at the start of a sentence (capitalized, sentence-start)
+FORMAL_TRANSITIONS = [
+    (r"(?:^|(?<=\. ))Additionally,", "formal_transition_additionally"),
+    (r"(?:^|(?<=\. ))Furthermore,", "formal_transition_furthermore"),
+    (r"(?:^|(?<=\. ))Moreover,", "formal_transition_moreover"),
+    (r"(?:^|(?<=\. ))That said,", "formal_transition_that_said"),
+]
+
+# Lindsey persona violations -- only when --profile lindsey is passed
+# Do NOT flag bare "we"/"our"/"us" -- only the specific phrases below
+LINDSEY_PERSONA_PHRASES = [
+    (r"\bour team\b", "lindsey_our_team"),
+    (r"\bmy team\b", "lindsey_my_team"),
+    (r"\bCreekside\b", "lindsey_creekside"),
+    (r"\bour agency\b", "lindsey_our_agency"),
+    (r"\bas an agency\b", "lindsey_as_an_agency"),
+]
+
 
 def check_blocks(text):
     """Check for BLOCK-level issues. Returns list of (category, match_text)."""
@@ -69,6 +116,49 @@ def check_blocks(text):
         m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
         if m:
             issues.append((category, m.group()))
+    return issues
+
+
+def check_report_only_warns(text, profile="samuel"):
+    """Check for WARN-level report-only issues. Returns list of (category, match_text).
+    These do NOT modify the text -- they are flagged for agent review only.
+    """
+    issues = []
+
+    # 1. Forbidden words (word-boundary, case-insensitive)
+    for word in FORBIDDEN_WORDS:
+        pattern = r'\b' + re.escape(word) + r'\b'
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            issues.append(("forbidden_word", m.group()))
+
+    # 2. Banned phrases (case-insensitive)
+    for pattern, category in BANNED_PHRASES:
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            issues.append((category, m.group()))
+
+    # 3. Fluff openers -- only at START of proposal (after stripping leading whitespace)
+    stripped = text.lstrip()
+    for pattern, category in FLUFF_OPENERS:
+        m = re.match(pattern, stripped, re.IGNORECASE)
+        if m:
+            issues.append((category, m.group().strip()))
+
+    # 4. Formal transitions -- sentence-start, case-sensitive capitalized
+    # We look for these at the start of a line or after a sentence-ending period+space.
+    for pattern, category in FORMAL_TRANSITIONS:
+        m = re.search(pattern, text, re.MULTILINE)
+        if m:
+            issues.append((category, m.group()))
+
+    # 5. Lindsey persona violations (only when profile == lindsey)
+    if profile == "lindsey":
+        for pattern, category in LINDSEY_PERSONA_PHRASES:
+            m = re.search(pattern, text, re.IGNORECASE)
+            if m:
+                issues.append((category, m.group()))
+
     return issues
 
 
@@ -142,25 +232,37 @@ def check_and_fix_warns(text):
     return fixed, issues
 
 
-def validate(text):
+def validate(text, profile="samuel"):
     """
     Run full validation. Returns (verdict, block_issues, warn_issues, fixed_text).
+    warn_issues includes both auto-fixable and report-only issues.
     """
     block_issues = check_blocks(text)
-    fixed_text, warn_issues = check_and_fix_warns(text)
+    fixed_text, auto_fix_issues = check_and_fix_warns(text)
+    report_only_issues = check_report_only_warns(text, profile=profile)
+
+    all_warn_issues = auto_fix_issues + report_only_issues
 
     if block_issues:
-        return "BLOCK", block_issues, warn_issues, text
-    elif warn_issues:
-        return "WARN", block_issues, warn_issues, fixed_text
+        return "BLOCK", block_issues, all_warn_issues, text
+    elif all_warn_issues:
+        return "WARN", block_issues, all_warn_issues, fixed_text
     else:
         return "PASS", [], [], text
 
 
 def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Validate an Upwork proposal.")
+    parser.add_argument("proposal_file", nargs="?", help="Path to proposal text file (reads stdin if omitted)")
+    parser.add_argument("--profile", default="samuel", choices=["samuel", "lindsey"],
+                        help="Proposal profile (default: samuel)")
+    args = parser.parse_args()
+
     # Read proposal text from file argument or stdin
-    if len(sys.argv) > 1:
-        with open(sys.argv[1], 'r') as f:
+    if args.proposal_file:
+        with open(args.proposal_file, 'r') as f:
             text = f.read().strip()
     else:
         text = sys.stdin.read().strip()
@@ -170,7 +272,7 @@ def main():
         print("ISSUES: empty_proposal", file=sys.stderr)
         sys.exit(2)
 
-    verdict, block_issues, warn_issues, fixed_text = validate(text)
+    verdict, block_issues, warn_issues, fixed_text = validate(text, profile=args.profile)
 
     # Build issues list
     all_issues = []
