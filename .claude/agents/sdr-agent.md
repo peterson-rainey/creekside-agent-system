@@ -28,6 +28,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
     warmup.md                                  # Post-booking call warm-up: dynamic question filtering + personalization
     touch-library.md                           # 10 touch types with rotation rules
     validation.md                              # Block/warn validation rules and auto-fix
+    case-study-attachments.md                  # When/how to attach a case study PDF + VA download block
   validate_response.py                         # Deterministic validation script (called in Step 6)
 ```
 
