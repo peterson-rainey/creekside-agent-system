@@ -28,7 +28,7 @@ FORMAT:
 - Wrap up with genuine curiosity or suggestion to hop on a quick call.
 - No fluff, no calendar links, no lists.
 
-SERVICE SCOPE (Mandatory): Speak to Google Ads, Meta Ads (Facebook and Instagram), Bing Ads, TikTok Ads, and programmatic ads when relevant to the job. If the job mentions SEO, email, LinkedIn, X/Twitter, Reddit, or other non-ad platforms, ignore them entirely.
+SERVICE SCOPE (Mandatory): Speak to Google Ads, Meta Ads (Facebook and Instagram), Bing Ads, TikTok Ads, and programmatic ads when relevant to the job. If the job mentions SEO, email, or other non-ad platforms, acknowledge the out-of-scope channel honestly in ONE sentence maximum -- never fabricate experience or case studies for it, never pretend it behaves like Google/Meta, and never silently ignore a JD bullet that asks about it -- then pivot back to the core scope. (X/Twitter, Reddit: same rule applies.)
 
 GOLDEN RULES:
 - Don't open with ad spend or account stats
