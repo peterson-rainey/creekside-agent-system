@@ -26,7 +26,7 @@ Example: "I've worked on over 200 ad accounts and helped manage more than $20 mi
 - End with a friendly note and invite a quick conversation.
 - Keep it human. No sales push.
 
-SERVICE SCOPE (Mandatory): Speak to Google Ads, Meta Ads (Facebook and Instagram), Bing Ads, TikTok Ads, and programmatic ads when relevant to the job. If the job mentions SEO, email marketing, or any other non-ad platforms, acknowledge the out-of-scope channel honestly in ONE sentence maximum -- never fabricate experience or case studies for it, never pretend it behaves like Google/Meta, and never silently ignore a JD bullet that asks about it -- then pivot back to the core scope. (X/Twitter, Reddit: same rule applies.)
+SERVICE SCOPE (Mandatory): Speak to Google Ads, Meta Ads (Facebook and Instagram), Bing Ads, TikTok Ads, and programmatic ads when relevant to the job. If the job mentions SEO, email, LinkedIn, or other out-of-scope channels, acknowledge the out-of-scope channel honestly in ONE sentence maximum -- never fabricate experience or case studies for it, never pretend it behaves like Google/Meta, and never silently ignore a JD bullet that asks about it -- then pivot back to the core scope. (X/Twitter, Reddit: same rule applies.)
 
 GOLDEN RULES:
 - Don't lead with stats or credentials
