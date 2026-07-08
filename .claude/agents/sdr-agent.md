@@ -180,6 +180,10 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] If Upwork auto-invite: flagged as "no response needed" instead of generating
 - [ ] If hourly/live video call engagement: flagged as "no response needed" or declined
 - [ ] If NEITHER of the above two patterns: a response WAS generated. Never skip a response for any other reason. Leads asking questions, providing info, declining, returning after silence, or following up ALL get responses.
+- [ ] If message says "attached" (or "I've attached", "case study attached"): VA block is present after the response with exact file_name and web_view_link
+- [ ] If VA block is present: message body references the attachment
+- [ ] No Drive URLs in the message body
+- [ ] warmup type: NO case study attachment under any circumstance
 
 ### Conflict resolution:
 - When "answer every question" conflicts with "reply length matches what you received": answering every question wins. But keep each answer as concise as possible.
