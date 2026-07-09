@@ -27,7 +27,7 @@ Both Meta Ads and Google Ads are accessible via PipeBoard connectors. These inhe
 - **Google Ads connector**: `mcp__claude_ai_Pipeboard_google__*` tools (list_google_ads_customers, get_google_ads_campaigns, get_google_ads_campaign_metrics, execute_google_ads_gaql_query, etc.)
 - **Meta Ads connector**: `mcp__claude_ai_PipeBoard__*` tools (get_ad_accounts, get_insights, get_campaigns, get_adsets, get_ads, get_ad_creatives, etc.)
 - **Google Merchant Center + GA4**: Python API calls using the shared OAuth token at `~/gdrive_pipeline/token_mc_ga4.json`. No MCP tool exists for these -- run Python inline via Bash. See usage pattern below.
-- **Database**: `mcp__claude_ai_Supabase__execute_sql` -- route through `SELECT contractor_query('your SQL')` for safety
+- **Database**: `mcp__claude_ai_Supabase__execute_sql` -- **ALL SQL MUST go through `SELECT contractor_query('your SQL')`**. NEVER use raw `execute_sql` directly. The raw tool runs as postgres (superuser) and bypasses every protection. `contractor_query()` is the only server-side enforcement that works in ALL session types (CLI, Co-work, Chat). This is not optional.
 
 For the full reference (API keys, auth details, troubleshooting): `SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'`
 
@@ -195,6 +195,45 @@ SELECT contractor_query('SELECT * FROM list_api_keys(''client name'')')
 ```
 
 Supported platforms: Klaviyo, Mailchimp, Shopify, ActiveCampaign, SendGrid, GoHighLevel, HubSpot.
+
+## Scope Boundaries (what contractors can and cannot access)
+
+The ads@creeksidemarketingpros.com Claude account is SEPARATE from Peterson's and Cade's personal Claude accounts. Contractors only have access to connectors configured on ads@:
+
+**Allowed (configured on ads@):**
+- Supabase database (via `contractor_query()` ONLY -- never raw execute_sql)
+- PipeBoard Google Ads connector
+- PipeBoard Meta Ads connector
+- Google Merchant Center + GA4 (via Python, shared OAuth token)
+- Claude-in-Chrome (browser automation on the contractor's OWN browser only)
+
+**Off-limits (these exist on Peterson's or Cade's personal accounts, NOT on ads@):**
+- Gmail, Google Calendar, Google Drive, Slack, ClickUp, Era Context, or any other connector not listed above
+- If a contractor session somehow sees these tools, do NOT use them. They belong to another account and would act as that person. Report it to Peterson in ClickUp immediately.
+
+**Database writes -- contractor_query() is mandatory:**
+- `contractor_query()` blocks DDL, writes to protected tables (agent_definitions, system_users, scheduled_agents, system_registry, prompt_config, api_cost_limits), reads on sensitive tables (system_users, vault, env_secrets, client_api_keys), and function/policy changes.
+- For the few writes contractors need (e.g., report mode toggle), use the self-service write functions listed above.
+- If you need a write that `contractor_query()` blocks, message Peterson in ClickUp. NEVER bypass it with raw execute_sql.
+
+## Browser Automation Rules
+
+Before any Claude-in-Chrome work, pull the Browser Registry + Account Guard SOP from the database:
+```sql
+SELECT contractor_query($$SELECT content FROM agent_knowledge WHERE title = 'Browser Registry + Account Guard -- Claude-in-Chrome multi-user protocol'$$);
+```
+
+Key rules (the SOP has the full protocol):
+1. **Select your browser by device ID, never by label.** Labels like "Browser 1" shift constantly and are unreliable.
+2. **Account guard before any page action.** Verify the logged-in identity matches you. If it doesn't, abort.
+3. **If the guard fails (timeout, unresponsive), abort.** A guard that can't run is a failed guard.
+4. **Never drive a browser you don't own.** If you see Peterson's, Cade's, or another contractor's browser listed, do not touch it.
+5. **Disconnect when done.** Don't leave your extension connected when you're not actively using browser automation.
+
+For screenshots specifically, also pull:
+```sql
+SELECT contractor_query($$SELECT content FROM agent_knowledge WHERE title = 'SOP: Chrome MCP Screenshot Pipeline'$$);
+```
 
 ## Rules
 - **Never mention** repos, git, paths, cloning, MCP, CLI, npm, or any technical infrastructure to the contractor.
