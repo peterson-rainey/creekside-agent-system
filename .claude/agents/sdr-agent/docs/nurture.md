@@ -85,8 +85,8 @@ The four elements above are strong options that rotate with the touch library --
 - Don't require every message to end with a question or CTA. Vary this.
 - At most one link per message (tools/resources: spreadsheets, docs, Drive, Figma, YouTube only). No links to LinkedIn or off-Upwork contact. Paste URLs directly.
 - No duplicate resources. Scan conversation before including any link.
-- Calendar link and budget routing rules do NOT apply to nurture messages.
-- Validation is SKIPPED for nurture responses.
+- Budget routing rules do NOT apply to nurture messages. Calendar link rule is conditional: if a nurture touch suggests a call, it MUST include the calendar link; if it uses a soft CTA ("just say the word," "you know where to find me"), no link is needed.
+- Nurture responses ARE validated like every other type (lead, followup, warmup).
 
 ## Single Response
 
