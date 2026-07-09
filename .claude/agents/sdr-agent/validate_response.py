@@ -26,7 +26,6 @@ import sys
 BLOCK_PATTERNS = [
     # Hourly rates: any $/hr figure
     (r'\$\d[\d,]*\s*/\s*h(?:ou)?r', "hourly_rate"),
-    (r'\$\d[\d,]*\s+per\s+hour', "hourly_rate"),
     (r'\$\d[\d,]*\s*hourly', "hourly_rate"),
 
     # Placeholder brackets: [text] but not [No ...], URLs, or markdown links [text](url)
@@ -112,8 +111,8 @@ BLOCK_PATTERNS = [
     # Retainer word orders: amount + monthly + retainer, or retainer keyword-first with amount
     (r'\$[\d,]+[Kk]?(?:/mo(?:nth)?|(?:\s+(?:a|per)\s+month))?\s+monthly\s+retainer', "pricing_retainer_fee"),
     (r'[\d,]+[Kk](?:/mo(?:nth)?|(?:\s+(?:a|per)\s+month))?\s+monthly\s+retainer', "pricing_retainer_fee"),
-    (r'retainer\s+(?:is|of|runs|at)\s+\$[\d,]+[Kk]?', "pricing_retainer_fee"),
-    (r'retainer\s+(?:is|of|runs|at)\s+[\d,]+[Kk]', "pricing_retainer_fee"),
+    (r'retainer\s+(?:is|of|runs(?:\s+at)?|at)\s+\$[\d,]+[Kk]?', "pricing_retainer_fee"),
+    (r'retainer\s+(?:is|of|runs(?:\s+at)?|at)\s+[\d,]+[Kk]', "pricing_retainer_fee"),
 
     # Setup fee variants: hyphen and space
     (r'\$[\d,]+[Kk]?\s*set[- ]up\s+fee', "pricing_setup_fee"),
@@ -124,7 +123,7 @@ BLOCK_PATTERNS = [
 
     # Timeline: within N months / in N months
     (r'\bwithin\s+\d+\s+months?\b(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
-    (r'\bin\s+\d+\s+months?\b(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
+    (r'\bin\s+\d+\s+months?\b(?!\s+ago)(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
 
     # Pricing policy: disqualification language
     (r'\bhave\s+to\s+pass\s+on\b', "disqualification_language"),
@@ -277,6 +276,32 @@ def check_and_fix_warns(text):
             end = match_end
         return start, end
 
+    def _remove_phrase_only(text, m):
+        """
+        Fallback when the full-sentence removal guard fires (sentence >= 50% of text).
+        Remove only the matched phrase plus an adjacent comma/space, then clean up
+        spacing and capitalize the following character if it now opens the text.
+        """
+        start, end = m.start(), m.end()
+        # Consume a trailing comma+space or leading comma+space around the phrase
+        if end < len(text) and text[end] == ',':
+            end += 1
+            if end < len(text) and text[end] == ' ':
+                end += 1
+        elif start > 0 and text[start - 1] == ' ' and start > 1 and text[start - 2] == ',':
+            start -= 2
+        elif start > 0 and text[start - 1] in (' ', ','):
+            start -= 1
+        result = (text[:start] + text[end:]).strip()
+        result = re.sub(r'  +', ' ', result)
+        # Capitalize the new first alphabetical character if not a URL
+        if result and not result.startswith(('http://', 'https://', 'www.')):
+            for i, ch in enumerate(result):
+                if ch.isalpha():
+                    result = result[:i] + ch.upper() + result[i + 1:]
+                    break
+        return result
+
     for pat in SETUP_SENTENCES:
         m = re.search(pat, fixed, re.IGNORECASE)
         if m:
@@ -285,6 +310,9 @@ def check_and_fix_warns(text):
             sentence = fixed[start:end].strip()
             if len(sentence) < len(fixed) * 0.5:  # Don't remove if it's most of the response
                 fixed = (fixed[:start] + fixed[end:]).strip()
+            else:
+                # Guard fired: remove only the matched phrase to prevent re-triggering
+                fixed = _remove_phrase_only(fixed, m)
 
     # 3. Seal clapping (remove the sentence)
     for pat in SEAL_CLAPPING:
@@ -295,6 +323,9 @@ def check_and_fix_warns(text):
             sentence = fixed[start:end].strip()
             if len(sentence) < len(fixed) * 0.5:
                 fixed = (fixed[:start] + fixed[end:]).strip()
+            else:
+                # Guard fired: remove only the matched phrase to prevent re-triggering
+                fixed = _remove_phrase_only(fixed, m)
 
     # 4. Em dashes -> commas (consume surrounding whitespace to avoid
     #    "word , word" spacing artifacts)
@@ -339,8 +370,8 @@ def check_and_fix_warns(text):
         r'another\s+agency',
         r'other\s+agencies',
         r'previous\s+agency',
-        r'their\s+(?:last\s+|previous\s+|current\s+|old\s+)?agency',
-        r'(?:his|her)\s+(?:last\s+|previous\s+|current\s+|old\s+)?agency',
+        r'their\s+(?:last|previous|current|old)\s+agency',
+        r'(?:his|her)\s+(?:last|previous|current|old)\s+agency',
     ]
 
     agency_matches = list(re.finditer(r'\bagency\b', fixed, re.IGNORECASE))
@@ -478,7 +509,45 @@ def check_and_fix_warns(text):
     # Collapse whitespace before a comma: "word , word" -> "word, word"
     fixed = re.sub(r'\s+,', ',', fixed)
     # Remove a comma that starts a sentence (after sentence-ending punctuation + space, or at text start)
-    fixed = re.sub(r'(?:(?<=[.?!])\s+|^),\s*', ' ', fixed).lstrip()
+    # and capitalize the first alphabetical character of the remaining text (unless it's a URL).
+    def _remove_leading_comma_and_capitalize(m):
+        rest = m.string[m.end():]
+        # If the remainder starts with a URL, don't capitalize
+        if rest.startswith(('http://', 'https://', 'www.')):
+            return ' '
+        # Capitalize the first alphabetical character
+        for i, ch in enumerate(rest):
+            if ch.isalpha():
+                # Return the replacement (space) -- the rest of the string is untouched by re.sub
+                # We can't mutate rest here; instead signal via a marker and handle below.
+                break
+        return ' '
+
+    # Use re.sub with a helper that tracks positions needing capitalization
+    _cap_positions = []
+
+    def _comma_sub(m):
+        rest = m.string[m.end():]
+        if not rest.startswith(('http://', 'https://', 'www.')):
+            # Find first alpha char in rest and record its absolute position
+            for i, ch in enumerate(rest):
+                if ch.isalpha():
+                    _cap_positions.append(m.end() + i - len(m.group()) + 1)
+                    break
+        return ' '
+
+    fixed = re.sub(r'(?:(?<=[.?!])\s+|^),\s*', _comma_sub, fixed).lstrip()
+    # Apply capitalizations (offset shifts by -len(match)+1 per substitution -- simpler: re-scan)
+    # Since positions are now stale after sub, re-scan for lowercase chars that should be upper.
+    # Better approach: do a second pass to capitalize first alpha char of the whole string
+    # if a comma was removed from the very start.
+    if _cap_positions:
+        # Re-capitalize the first alpha character of the fixed string (covers text-start comma removal)
+        if fixed and not fixed.startswith(('http://', 'https://', 'www.')):
+            for i, ch in enumerate(fixed):
+                if ch.isalpha():
+                    fixed = fixed[:i] + ch.upper() + fixed[i + 1:]
+                    break
     # Clean up double spaces and double newlines from removals
     fixed = re.sub(r'  +', ' ', fixed)
     fixed = re.sub(r'\n{3,}', '\n\n', fixed)
