@@ -185,7 +185,7 @@ Summaries are for FINDING records. Raw text is for ANSWERING questions.
 ### Common Query Routing
 | User asks about... | Query |
 |---|---|
-| What to work on next | `get_pending_action_items(10)` |
+| What to work on next | `get_whats_next(14, 30)` -- live ClickUp + Fathom + Gmail, ranked churn > revenue > internal. NEVER `get_pending_action_items` (stale, unmaintained) |
 | Recent sessions / prior work | `chat_sessions ORDER BY session_date DESC LIMIT 5` |
 | What changed recently | `get_recent_changes(7)` |
 | Outstanding admin questions | `admin_questions WHERE status = 'open'` |
