@@ -148,7 +148,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No internal fee percentages or plan amounts leaked
 - [ ] If pricing was asked: Stage-1 answer is "completely custom and performance-based, case by case" with the call CTA -- no numbers. Numbers/tiers only under Stage-2 conditions (see docs/response-guidelines.md Pricing Rules).
 - [ ] Sub-$5K lead routed to Jay (not kept on the active profile's calendar)
-- [ ] No budget recommendation under $1,000/month
+- [ ] No ad budget recommendation under $3,000/month per platform
 
 ### Calendar check:
 - [ ] If call suggested: real calendar link is present. Use the profile's booking calendar (from the loaded profile doc) for the default $5K+ path | Jay: https://calendar.app.google/nFP1Brwxz1TsetBA6
