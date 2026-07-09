@@ -80,7 +80,7 @@ BLOCK_PATTERNS = [
     (r"\bthat'?s\s+our\s+minimum\b", "pricing_spend_floor"),
 
     # Pricing policy: disqualification language
-    (r'\bhave\s+to\s+pass\b', "disqualification_language"),
+    (r'\bhave\s+to\s+pass\s+on\b', "disqualification_language"),
     (r'\bgoing\s+to\s+pass\s+on\s+this\b', "disqualification_language"),
     (r'\bbudget\s+is\s+(?:just\s+)?too\s+low\b', "disqualification_language"),
     (r'\btoo\s+low\s+for\s+our\s+services\b', "disqualification_language"),
