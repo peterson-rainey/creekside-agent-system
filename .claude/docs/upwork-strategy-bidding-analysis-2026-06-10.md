@@ -539,5 +539,33 @@ Top 5 by volume: "watch my profile video" (44 mentions), "just wrapped a campaig
 - Interviewing-at-apply-time signal untested (ghost-job signature) — would need capturing the panel value at apply
 - Qualifying-questions regime flip — investigate answer quality post-Queenie
 - `competitor_avg_earned` 100% NULL in DB (sheet col exists; sync drops it)
-- Client-profile UI fields never recorded (rating, reviews, hire rate, open jobs, member since…) — now partially auto-captured by `scripts/upwork_client_stats_sync.py` (daily 5 PM) for open jobs going forward
+- ~~Client-profile UI fields never recorded~~ RESOLVED: manually backfilled to sheet cols AJ-AV for all rows since Dec 1 2025 (87-89% fill); analysis in Section 22. Auto-capture for open jobs continues via `scripts/upwork_client_stats_sync.py`
 - Webapp at ~/upwork-proposal-generator/ is downgraded; uncommitted edits there are moot
+- NEW 2026-07-09: fresh-month confirmation needed for hire90+ and reviews50+ conditional skips (Section 22)
+- NEW 2026-07-09: live spot-check UI "Payment Method: Unverified" vs API payment_verified — they disagree on 62/94 rows; likely measuring different things (billing method vs identity verification)
+
+---
+
+## 22. Client-Panel Backfill Analysis (2026-07-09) — Section 18 scan executed
+
+**Data:** Sheet cols AJ-AV (Payment Method, rating, # reviews, location, jobs posted, hire rate, open jobs, total spent, # hires, active hires, avg hourly rate paid, hours paid, member since) manually backfilled from the client About panel for all applications since Dec 1 2025. Fill 87-89%. Window: n=2,593 cold Outreach, baseline 24.3% view / 11.6% reply / 4.2% call / 15 won. Join and enrichment verified deterministically (0 mismatches on 2,593 rows; SQL re-run matched Python). QC'd by qc-reviewer-agent 2026-07-09.
+
+### Confirmed findings
+1. **Payment method Unverified = hard skip.** 94 apps, 13.8% view, 2.1% reply (2 replies), 0 calls, 0 wins, month record 0-4. Costs 802 connects for nothing. Not a new-account proxy. IMPORTANT: this is the UI panel value (col AJ). The DB/API `payment_verified` boolean remains an artifact (no FALSE rows ever) AND disagrees with the UI on 62/94 unverified rows — always use the UI value.
+2. **Col AT is the REAL client avg hourly rate paid** (1/652 match vs avg_bid_rate — not the old avg-bid artifact). **No rate sweet spot exists**: <$15 payers reply 13.7% (5 wins), $15-30 10.2%, $50+ 12.8% (1 win). The old "hist $50-90 sweet spot" was always the avg-BID signal (Section 2), never client history. Never discount our rate for cheap-paying clients — they convert fine at our rate.
+3. **Bonferroni-surviving skip pairs** (each worse than either component alone): nonUS & hire90+ (3.7% reply, 0 calls, n=164, z=-5.40); hire90+ & comp20+ (4.0%, n=224, z=-5.25); reviews50+ & comp20+ (3.3%, n=150, z=-3.99); unverified & hires0 (1.1%, n=89, z=-3.40). Pattern: established/high-hire-rate/heavily-reviewed clients only respond to cold proposals when competition is low or they're US.
+4. **Dead-job (open<10%) prediction unchanged**: client-panel fields do NOT predict dead jobs; worldwide (z=+3.73) and comp20+ (z=+2.06) still do. Client fields predict WHO gets replied to; saturation/worldwide predict whether the client engages at all. One addition: hires=0 clients message nobody 37.9% vs 27.7%.
+5. **Non-signals (tested, do not build rules)**: client rating (5.0 vs <4.7 — nothing), jobs posted, total spent (even $0-spent replies 14.1%), # hires, active hires, hours paid, avg rate paid (finding 2), open jobs (also invalidated by capture-time volatility — struck entirely).
+6. **Composite pre-apply score** (count of: unverified, hire90+, reviews50+, nonUS, comp20+, worldwide; scoreable on 89% of rows): 0 flags = 35.5% view / 18.7% reply / 7.6% call / 9 won; 3+ flags = 12.8 / 3.6 / 1.7 / 0 won (n=360). Cutting 3+ saves 17.7% of connects (verified 6,167/34,903) for 0 wins and ~6 calls over 7 months. **CAVEAT: in-sample — flags were selected on this same data; expect shrinkage out-of-sample. Directional until a fresh month confirms.**
+
+### Watch list (NOT rules)
+- Hire rate 90%+ alone (z=-2.40, 1-6 months) — likely invite-hirers; holds within jobs-posted strata at 1-4 and 20+
+- Reviews 50+ alone (z=-1.94) — fails multiple-comparison correction
+- Account age 6y+ (z=-1.97), open jobs 0 (z=-2.05) — weak, uncorrected
+- Profile unfillable at backfill = mild negative itself (unfilled rows: 9.0% reply, 0 wins, n=277 — survivorship confirmed but doesn't bias within-filled comparisons)
+
+### Timing-bias exposure (values are current-state, not at-apply)
+Safe: member since, rating, payment method (rarely reverts). Moderate: reviews, hire rate, hires, spent (drift upward post-apply — why fresh-month confirmation is required). Invalid: open jobs, active hires (too volatile — excluded from all rules).
+
+### Method
+Month-stratified inverse-variance z per Analysis Rule 6, Agresti-adjusted proportions, min stratum n=5/side, min cell n=80, interaction-beats-best-single criterion enforced, ~145 total tests, Bonferroni z≈3.3. Scripts archived in session; data: /tmp/upwork_clean.json (regenerable from sheet + DB).
