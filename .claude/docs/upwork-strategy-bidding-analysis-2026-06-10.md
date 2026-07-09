@@ -40,6 +40,9 @@ All findings below meet the significance standard unless marked otherwise: month
 - **Tight-budget language in description = fine** (contrarian scan).
 - **Short descriptions (<200 chars) = NOT a flag** (3.3% vs 5.2% call, p=0.34; platform data shows clients message normally).
 - **"Not sure" hours-per-week / NOT_SURE engagement = best repliers** (19-20%). Undecided clients are open to being sold.
+- **3+ screening questions = PRIORITIZE** — NEW 2026-07-09. Within <20 props: 44.4% view / 19.7% reply / 3 wins (n=178) vs 30.7/15.3 for 0 questions. View z=+3.26 (borderline Bonferroni), 7-0 months. NOT a low-competition proxy. Never skip a job because it has questions. See Section 23.
+- **"Cover letter not required" = PRIORITIZE, not spam** — NEW 2026-07-09. Within <20 props: 40.2% view / 19.3% reply / 5 wins (n=257) vs 31.4/15.4 when required. 7-0 months (sub-Bonferroni — prioritization, not a rule). See Section 23.
+- **90+ JSS requirement = fine, slightly positive** — NEW 2026-07-09. 34.6% view / 14.9% reply (n=208). We qualify; the requirement filters weak competitors.
 
 ### Timing
 - **Apply ASAP — but only because it catches jobs while proposal count is low.** Within proposal bands, timing has no effect (props<20 & 12-24h: 16.1% reply, 10.7% call, 3 wins, n=112).
@@ -233,6 +236,8 @@ Rate spread (max - min) itself is a signal: tight = client knows what they want.
 
 When Upwork recommends 6+ freelancers, reply drops to 8.5% and 0 wins. Client gets flooded with handpicked suggestions.
 
+**UPDATE 2026-07-09 (Section 23 scan): direction confirmed, but capped at CAUTION.** In the Dec+ window: sheet-captured 6+ recs = 13.6% view / 8.5% reply / 0 wins (n=177); holds within <20-prop jobs. HOWEVER, the sheet value and DB `total_recommended` disagree on 23% of rows (381/1,680) — the count drifts after apply, so the at-apply value is unknowable from our data. Also unconfirmed whether the recommended count is even visible to Queenie pre-apply. Status: caution/deprioritize, NOT a skip rule.
+
 ---
 
 ## 11. Connect Cost Signal
@@ -246,6 +251,8 @@ When Upwork recommends 6+ freelancers, reply drops to 8.5% and 0 wins. Client ge
 | **21+** | 78 | **6.1%** | 2.6% | **0** |
 
 9-12 is the sweet spot. 21+ = Upwork's signal the job is saturated. Skip.
+
+**REVISED 2026-07-09 (full Dec+ window, n=2,415 non-boosted):** 17-20 connects is FINE (27.2% view / 12.8% reply / 7 wins, n=997) — the old 3-month dip was noise. The skip at **21+** stands (13.7% view / 7.4% reply / 0 wins, n=175). NEW: very cheap jobs (**≤8 connects**) also underperform (19.4% view / 9.0% reply, n=346) — Upwork prices connects by job value, so ultra-cheap = low-value post. Best range: 9-20.
 
 ---
 
@@ -569,3 +576,30 @@ Safe: member since, rating, payment method (rarely reverts). Moderate: reviews, 
 
 ### Method
 Month-stratified inverse-variance z per Analysis Rule 6, Agresti-adjusted proportions, min stratum n=5/side, min cell n=80, interaction-beats-best-single criterion enforced, ~145 total tests, Bonferroni z≈3.3. Scripts archived in session; data: /tmp/upwork_clean.json (regenerable from sheet + DB).
+
+---
+
+## 23. Full-Sheet Scan — Remaining Columns (2026-07-09, QC'd)
+
+Scanned every column not covered by Sections 1-22 (scripts, verticals, boost, connects, screening questions, cover letter, English/JSS requirements, recommendations, invites, timezone, category) against the Dec 1+ cold-outreach window (n=2,593, enriched outcomes, month-stratified, ~30 tests → Bonferroni z≈3.1-3.3). QC'd by qc-reviewer-agent 2026-07-09; enrichment discrepancies in the QC re-run were resolved in favor of the verified ClickUp enrichment (QC's re-run used raw `messaged`, which undercounts — e.g., JSS segment: 31 enriched replies vs 20 raw).
+
+### Positive (prioritize, added to Section 1 green lights)
+1. **3+ screening questions**: 44.4% view / 19.7% reply / 3 wins within <20 props (n=178) vs 30.7/15.3 for 0 questions. View z=+3.26, 7-0 months. Avg competition nearly identical (17.9 vs 20.9) — not a proxy. Serious clients write questions; fewer freelancers finish those applications.
+2. **Cover letter not required**: 40.2% view / 19.3% reply / 5 wins within <20 props (n=257) vs 31.4/15.4 required. 7-0 months, sub-Bonferroni.
+3. **90+ JSS required**: 34.6% view / 14.9% reply (n=208).
+
+### Negative
+4. **Connects 21+ skip re-confirmed; 17-20 rehabilitated; ≤8 weak** (Section 11 revised).
+5. **Upwork recommended 6+ = caution only** (Section 10 updated — field drifts post-apply, sheet vs DB disagree on 23% of rows; both versions still show the effect and 0 wins).
+6. **Google-vertical jobs underperform Meta**: 9.7% vs 13.3% reply, 3 vs 8 wins; persists controlled (<20 props & US-only: 14.3% vs 17.8%). Google jobs also more saturated (40% vs 36% hit 20+ props). Prioritization when rationing connects, not a skip.
+7. **Boosting doesn't pay**: 71 boosted bids, 1,011 connects: +4pts view, baseline reply, 0 calls, 0 wins. Default: don't boost.
+
+### Non-findings
+- **Scripts**: no statistically significant difference between 'strategic' and 'claude V2' when controlled (same months, <20 props, US-only: 15.8% vs 15.4% enriched reply). 'Case study + Strategic' raw 9.0% view is job-mix — 46/67 uses were on 20+ prop jobs. Unproven, not bad.
+- ecom vs service: gap nearly vanishes controlled (14.0 vs 16.7 within good cells) — watch only.
+- Unanswered invites, persons-to-hire, English proficiency requirement, client timezone: nothing significant.
+
+### Caveats
+- **Fill window**: the API-backfill columns (questions, cover letter, JSS, recommendations) are ~88-93% filled Dec-Apr, 70% May, 15% June, 0% July — findings are effectively Dec-May data. Missing rows perform worse (8.5% reply), consistent with the Section 22 survivorship note; doesn't bias within-filled comparisons.
+- Bonferroni-clean: only recommended-6+ (view) and screening-questions-3+ (view, borderline). Cover-letter-No and Google-vertical act on month records / z≈2.8-3.0 — prioritization guidance, not rules.
+- Open item: confirm whether Queenie can see the Upwork-recommended count pre-apply before any rule uses it.
