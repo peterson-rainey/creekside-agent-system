@@ -1,6 +1,6 @@
 # Touch Library (For Rotation and Variability)
 
-Infer which touch types have already been used from the conversation history. Never repeat a touch type until all applicable types for this lead have been used. Vary message length: alternate one-liners with 2-3 sentence touches.
+Infer which touch types have already been used from the conversation history. Never repeat a touch type until all applicable types for this lead have been used. Vary message length: alternate one-liners with 2-3 sentence touches. Before selecting a touch type, also scan the full thread for any stat, case study, insight, or angle already used in a prior outbound message -- never reuse one even if it would fit the chosen type.
 
 ## Available Touch Types
 
