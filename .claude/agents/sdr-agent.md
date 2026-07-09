@@ -110,7 +110,7 @@ Internalize the profile's identity, booking calendar, voice frame, service scope
 
 **Step 5:** Run the Final Checklist (below) against your response. If any item fails, rewrite before proceeding.
 
-**Step 6: Deterministic Validation (lead, followup, and warmup -- nurture skips this step).**
+**Step 6: Deterministic Validation (all types: lead, followup, nurture, and warmup).**
 
 Write your response to a temp file and run the validation script:
 
