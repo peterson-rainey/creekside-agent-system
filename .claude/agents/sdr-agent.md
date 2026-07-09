@@ -146,7 +146,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 ### Pricing check:
 - [ ] No hourly rates quoted ($95/hr, $250/hr)
 - [ ] No internal fee percentages or plan amounts leaked
-- [ ] If pricing was asked: said "performance-based, custom, starts at $1K/month"
+- [ ] If pricing was asked: Stage-1 answer is "completely custom and performance-based, case by case" with the call CTA -- no numbers. Numbers/tiers only under Stage-2 conditions (see docs/response-guidelines.md Pricing Rules).
 - [ ] Sub-$5K lead routed to Jay (not kept on the active profile's calendar)
 - [ ] No budget recommendation under $1,000/month
 
