@@ -50,6 +50,34 @@ BLOCK_PATTERNS = [
     # Off-platform contact info: email addresses (Upwork compliance -- never
     # include any email address in a response, even Creekside's own)
     (r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', "email_address"),
+
+    # Pricing policy: retainer/onboarding/setup-fee constructions
+    # Dollar/number adjacent to a fee keyword is the signal.
+    # A bare dollar amount alone (e.g. "$5,000/month in ad spend") must NOT block.
+    (r'\$[\d,]+[Kk]?(?:/mo(?:nth)?)?\s*(?:flat\s+)?retainer', "pricing_retainer_fee"),
+    (r'[\d,]+[Kk]?\s*(?:/mo(?:nth)?)?\s*(?:flat\s+)?retainer', "pricing_retainer_fee"),
+    (r'\$[\d,]+[Kk]?\s*onboarding\s*fee', "pricing_onboarding_fee"),
+    (r'onboarding\s*fee\s*(?:of\s*)?\$[\d,]+[Kk]?', "pricing_onboarding_fee"),
+    (r'\$[\d,]+[Kk]?\s*setup\s*fee', "pricing_setup_fee"),
+    (r'setup\s*fee\s*(?:of\s*)?\$[\d,]+[Kk]?', "pricing_setup_fee"),
+    (r'one[- ]time\s+\$[\d,]+[Kk]?\s*setup', "pricing_setup_fee"),
+    (r'\$[\d,]+[Kk]?\s*flat\s*fee', "pricing_flat_fee"),
+    (r'flat\s*fee\s*(?:of\s*)?\$[\d,]+[Kk]?', "pricing_flat_fee"),
+
+    # Pricing policy: spend-floor/minimum-as-condition-of-working-together
+    (r'\bour\s+floor\b', "pricing_spend_floor"),
+    (r'\bhard\s+(?:cap|minimum)\s+of\s+.{0,20}minimum', "pricing_spend_floor"),
+    (r"\bminimum\s+I'?d\s+want\s+to\s+see\b", "pricing_spend_floor"),
+    (r'\bminimum\s+for\s+any\s+client\b', "pricing_spend_floor"),
+    (r"\bthat'?s\s+our\s+minimum\b", "pricing_spend_floor"),
+
+    # Pricing policy: disqualification language
+    (r'\bhave\s+to\s+pass\b', "disqualification_language"),
+    (r'\bgoing\s+to\s+pass\s+on\s+this\b', "disqualification_language"),
+    (r'\bbudget\s+is\s+(?:just\s+)?too\s+low\b', "disqualification_language"),
+    (r'\btoo\s+low\s+for\s+our\s+services\b', "disqualification_language"),
+    (r"don'?t\s+have\s+options\s+that\s+low\b", "disqualification_language"),
+    (r"\bwe\s+probably\s+aren'?t\s+the\s+right\s+fit\b", "disqualification_language"),
 ]
 
 # Structural BLOCK: call suggested without a real URL
@@ -309,6 +337,30 @@ def check_and_fix_warns(text):
             if 'on a call' not in context and 'on the call' not in context and 'during the call' not in context:
                 issues.append(("pre_call_work_offer", m.group()))
                 # Don't auto-fix these -- they need contextual rewriting by the agent
+
+    # 13. Percentage-of-spend tiers (report-only WARN -- no auto-fix)
+    # Allowed as Stage 2 answer only (lead already got custom/performance answer
+    # AND explicitly asked for a rough range). Validator can't see conversation
+    # stage, so it flags for human/agent review.
+    # Anchor on "% of ad spend" or "percent of" near a number, or tier step-downs.
+    # Avoid triggering on unrelated ROAS percentages like "ROAS at 4.5x while spend
+    # scaled 20%" by requiring the ad-spend context phrase.
+    tier_patterns = [
+        r'\b\d+\s*%\s*of\s*ad\s*spend\b',
+        r'\bpercentage\s+of\s+(?:ad\s+)?spend\b',
+        r'\b\d+\s*percent\s+of\s+(?:ad\s+)?spend\b',
+        r'\bstep(?:ping)?\s+down\s+to\s+\d+\s*%',
+    ]
+    for pat in tier_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append((
+                "pricing_tier_detected",
+                f"{m.group()} -- percentage tiers detected: allowed ONLY as "
+                "Stage 2 answer (lead already got the custom/performance-based "
+                "answer and explicitly asked for a rough range)",
+            ))
+            break  # One WARN is enough; don't stack duplicates
 
     # Clean up double spaces and double newlines from removals
     fixed = re.sub(r'  +', ' ', fixed)
