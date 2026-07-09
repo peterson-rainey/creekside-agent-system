@@ -252,19 +252,38 @@ def check_and_fix_warns(text):
             issues.append(("banned_phrase", m.group()))
             fixed = re.sub(pat, replacement, fixed, flags=re.IGNORECASE)
 
-    # 7. "agency" as standalone word
-    # Replace but preserve case context
+    # 7. "agency" as standalone word (self-description ban)
+    # Exempt when "agency" clearly refers to the lead's past/other agencies in a
+    # question or past-experience context. The ban covers describing OURSELVES as
+    # an agency -- not asking the lead about their history with other agencies.
+    AGENCY_PAST_EXPERIENCE_PATTERNS = [
+        r'worked\s+with\s+an\s+agency',
+        r'an\s+agency\s+or\s+freelancer',
+        r'your\s+(?:last|previous|current|prior)\s+agency',
+        r'experience\s+with\s+an?\s+agency',
+        r'past\s+agency',
+        r'another\s+agency',
+        r'other\s+agencies',
+        r'previous\s+agency',
+    ]
+
     agency_matches = list(re.finditer(r'\bagency\b', fixed, re.IGNORECASE))
     for m in reversed(agency_matches):  # reverse to preserve positions
-        context = fixed[max(0, m.start()-30):m.end()+30].lower()
-        # Skip if quoting the lead or in a compound noun we can't cleanly replace
+        context = fixed[max(0, m.start()-50):m.end()+50].lower()
+
+        # Skip: past-experience/question context (lead's agencies, not ours)
+        if any(re.search(p, context) for p in AGENCY_PAST_EXPERIENCE_PATTERNS):
+            continue
+
+        # Skip: negation -- covered by "defining by negation" rule
+        if 'not an agency' in context or "aren't an agency" in context:
+            continue
+
+        # Self-description replacements
         if 'your agency' in context or 'their agency' in context or 'the agency' in context:
             replacement = 'marketing company'
         elif 'an agency' in context:
             replacement = 'a marketing company'
-        elif 'not an agency' in context or "aren't an agency" in context:
-            # Negation -- skip this, covered by "defining by negation" rule
-            continue
         else:
             replacement = 'paid ads team'
         issues.append(("agency_word", m.group()))

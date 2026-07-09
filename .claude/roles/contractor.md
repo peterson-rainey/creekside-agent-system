@@ -206,7 +206,7 @@ The ads@creeksidemarketingpros.com Claude account is SEPARATE from Peterson's an
 **Allowed (configured on ads@):**
 - Supabase database (via `contractor_query()` ONLY -- never raw execute_sql)
 - PipeBoard Google Ads connector
-- PipeBoard Meta Ads connector
+- PipeBoard Meta Ads connector (check current status in `SELECT contractor_query($$SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'$$)` -- has had intermittent OAuth issues)
 - Google Merchant Center + GA4 (via Python, shared OAuth token)
 - Claude-in-Chrome (browser automation on the contractor's OWN browser only)
 
@@ -214,10 +214,12 @@ The ads@creeksidemarketingpros.com Claude account is SEPARATE from Peterson's an
 - Gmail, Google Calendar, Google Drive, Slack, ClickUp, Era Context, or any other connector not listed above
 - If a contractor session somehow sees these tools, do NOT use them. They belong to another account and would act as that person. Report it to Peterson in ClickUp immediately.
 
-**Database writes -- contractor_query() is mandatory:**
-- `contractor_query()` blocks DDL, writes to protected tables (agent_definitions, system_users, scheduled_agents, system_registry, prompt_config, api_cost_limits), reads on sensitive tables (system_users, vault, env_secrets, client_api_keys), and function/policy changes.
-- For the few writes contractors need (e.g., report mode toggle), use the self-service write functions listed above.
-- If you need a write that `contractor_query()` blocks, message Peterson in ClickUp. NEVER bypass it with raw execute_sql.
+**Database enforcement -- contractor_query() for reads, scoped execute_sql for writes:**
+- `contractor_query()` blocks: DDL, writes to protected tables (agent_definitions, system_users, scheduled_agents, system_registry, prompt_config, api_cost_limits), reads on sensitive tables (system_users, vault, env_secrets, cade_secrets, client_api_keys), and function/policy changes.
+- To see what API keys a client has, use `list_api_keys('client name')` via contractor_query() -- this is the approved proxy through the client_api_keys block.
+- For writes to allowed tables (e.g., agent_knowledge), use execute_sql directly per the routing rules in the Ad platform connectors section above.
+- For the few structured writes (e.g., report mode toggle), use the self-service write functions listed above.
+- If you need a write that is blocked, message Peterson in ClickUp.
 
 ## Browser Automation Rules
 

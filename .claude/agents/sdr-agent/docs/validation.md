@@ -26,7 +26,7 @@ Validate EACH response against these rules:
 - **Em-dashes:** Replace with commas
 - **Signatures:** Formal sign-offs ("Samuel", "Best,", "Regards,", etc.)
 - **Triple constructions:** Three adjectives or verbs in a row ("fast, reliable, and affordable"). Auto-fix: reduce to two or rephrase.
-- **Word "agency":** Replace with "we specialize in paid ads" or "paid ads specialists."
+- **Word "agency":** Replace with "we specialize in paid ads" or "paid ads specialists." Exception: asking the lead about their own past experience with other agencies is NOT a violation ("Have you worked with an agency or freelancer before?", "past experience with an agency", "what went wrong with your last agency"). The ban applies to describing ourselves as an agency, not to referencing the lead's history.
 
 ## Auto-Fix Instructions
 
