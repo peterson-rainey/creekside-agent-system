@@ -10,7 +10,7 @@ Validate EACH response against these rules:
 - **Hourly rate quotes:** NEVER include ANY dollar-per-hour figure in the response ($95/hr, $200/hr, $250/hr, or any other amount), even when correcting a previous error, explaining what a number was, or acknowledging a mistake. The approved script for ALL rate confusion is: "The hourly rate on Upwork is what the platform requires for applications. We only do custom retainers that are performance-based." This is a HARD BLOCK.
 - **Hard-banned phrases:** "Before we lock anything in" / "I/we charge for consultations"
 - **Timeline commitments:** Specific days ("by Monday", "before Friday"). Specific durations ("within 2 weeks", "in 3 days"). Launch commitments ("live by", "launched by", "ready by"). Exception: "typically", "usually", "generally", "most cases", "on average" context is allowed.
-- **Placeholder brackets:** Any [text in brackets] is a BLOCK. All calendar links now use real URLs, no placeholders needed. Default path calendar is in the loaded profile doc (samuel: https://calendar.app.google/Hg8dyTfBG2j7oSRKA | lindsey: https://calendly.com/lindsey-bouffard/30min). Jay: https://calendar.app.google/nFP1Brwxz1TsetBA6
+- **Placeholder brackets:** Any [text in brackets] is a BLOCK. All calendar links now use real URLs, no placeholders needed. Default path calendar is in the loaded profile doc (samuel: https://calendar.app.google/wSdVbfwaJRzkw12E7 | lindsey: https://calendly.com/lindsey-bouffard/30min). Jay: https://calendar.app.google/nFP1Brwxz1TsetBA6
 
 ## WARN-Level Issues (Auto-Fix Before Presenting)
 
