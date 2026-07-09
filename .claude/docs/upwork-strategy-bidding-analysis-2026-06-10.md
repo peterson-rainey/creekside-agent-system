@@ -21,6 +21,7 @@ All findings below meet the significance standard unless marked otherwise: month
 | **Low bid <$10** (the "Low" in the bid range panel) — NEW 2026-06-10 | View -17.9pts (z=-5.99, **loses 0-12 months**), reply -7.0pts (z=-3.20, p=0.0007, 2-10). Independent of avg-bid pool: inside the good $40-90 pool, low<$10 still drops view 35.8→21.1, reply 17.5→12.4. Signals race-to-bottom flood. Replicated on fresh sheet pull. |
 | **Worldwide (no US-only requirement)** — exception: <10 proposals | US-only req: 14.6% reply / 6.0% call vs worldwide 9.3% / 2.4% (post-era 6.5% / 1.6%). 11-1 months, +6.1pts. `local_market_only` beats client country as the geo signal. Exception verified: worldwide & <10 props = 14.9% reply / 5.4% call / 5 wins (n=423). |
 | **Min ≤$10/hr AND max $20-40** | 6.9% reply, 1.1% call, 0 wins (n=87). Do NOT extend to max $60+ (11.4%/4.4%, near baseline — tested and rejected 2026-06-10). Min ≤$10 & max $40-60 is actually a top cell (20.9% reply). |
+| **Payment method Unverified** (client About panel) — NEW 2026-07-09 | 0 wins, 0 calls, 2 replies in 94 apps (2.1% reply, 13.8% view), loses 0-4 months. Not a new-account proxy (new accounts overall reply 10.0%). Keyed to the UI panel value (sheet col AJ), NOT the API boolean. See Section 22. |
 
 ### Soft skips / cautions
 | Rule | Evidence |
@@ -29,6 +30,8 @@ All findings below meet the significance standard unless marked otherwise: month
 | High bid $200+ on hourly display | Reply -4.8pts, p=0.03, months 3-8 — does NOT survive multiple-comparison correction; mostly overlaps stealth-fixed (project-total bids). Caution, not a rule. |
 | Full-time + project length <6 months — exception: <10 proposals | Weak: 11.2% reply, 3.7% call, **0 wins in 356**, vs 13.2/5.2 baseline. Keep as low-priority filter. |
 | Hist-$90+ avg-bid pools | Predicts non-opening (+30.2pts dead, 4-0 months) but FAILS significance on reply (p=0.24). Do not cut on this alone. |
+| Hire rate 90%+ AND (20+ proposals OR non-US client) — NEW 2026-07-09 | 3.7-4.0% reply, 0 wins (n=164/224). Bonferroni-survivor. Confirm on a fresh month before hard-coding. Hire 90%+ alone is watch-list only (z=-2.40, 1-6). |
+| 50+ client reviews AND 20+ proposals — NEW 2026-07-09 | 3.3% reply, 0 wins (n=150). Bonferroni-survivor. Confirm on a fresh month. Reviews 50+ ALONE is NOT a skip (fails multiple-comparison correction). |
 
 ### Green lights (explicitly OK or positive)
 - **"No agencies" language = POSITIVE.** Best-closing segment: 2-3 wins in ~45 apps (Conor Perrin, Joseph Adler, likely Waseem Ballou — his job_description row is a known scrape dupe), ~5-8x baseline win rate, p≈0.02. Red flag removed from upwork-proposal-agent 2026-06-10 (commit 13cd23c).
@@ -140,7 +143,7 @@ V2 vs strategic head-to-head (Mar-Apr): no significant difference. Script choice
 ## 5. Myths / Tested Non-Signals
 
 Do NOT build rules on these:
-- Script choice among live modes (p=0.26) | fixed vs hourly | intermediate vs expert | rate bracket per se | cover-letter length (pre-era effect GONE post-era) | invites_sent | proposal velocity (props/hr) | payment_verified (data artifact — no real False rows) | short job descriptions | Expert/Guru title words | hist-rate missing (slightly BETTER than recorded)
+- Script choice among live modes (p=0.26) | fixed vs hourly | intermediate vs expert | rate bracket per se | cover-letter length (pre-era effect GONE post-era) | invites_sent | proposal velocity (props/hr) | payment_verified DB/API boolean (data artifact — no real False rows. NOTE 2026-07-09: the UI "Payment Method" panel value, sheet col AJ, IS a valid strong signal — see Section 22. API field and UI panel disagree on 62/94 unverified rows; the skip rule keys off the UI value, which is what's visible pre-apply) | short job descriptions | Expert/Guru title words | hist-rate missing (slightly BETTER than recorded)
 - **Boost:** reply-neutral within-month (1-1, -0.6pts; the earlier "boost hurts" was month-mix confounding). Still skip on cost grounds — pays extra for no reply lift.
 - **Qualifying questions: REGIME-FLIPPED.** 2+ questions dominant Aug'25-Feb'26, REVERSED Mar-May'26. Do not use either way until answer quality post-Queenie is investigated.
 
@@ -393,7 +396,7 @@ Re-built the ClickUp enrichment fresh from the DB and diffed row-by-row against 
 
 ---
 
-## 18. Planned: Exhaustive 2-Way / 3-Way Interaction Scan (BLOCKED on client-data backfill)
+## 18. Exhaustive 2-Way / 3-Way Interaction Scan (EXECUTED 2026-07-09 — results in Section 22; spec retained for method reference)
 
 **Goal:** once client variables are backfilled, scan ALL variable pairs and triples for combinations that show a distinct, significant DECREASE in performance (skip-rule mining).
 
