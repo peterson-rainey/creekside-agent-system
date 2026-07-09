@@ -508,46 +508,29 @@ def check_and_fix_warns(text):
     # Clean up punctuation artifacts from phrase removals
     # Collapse whitespace before a comma: "word , word" -> "word, word"
     fixed = re.sub(r'\s+,', ',', fixed)
-    # Remove a comma that starts a sentence (after sentence-ending punctuation + space, or at text start)
-    # and capitalize the first alphabetical character of the remaining text (unless it's a URL).
-    def _remove_leading_comma_and_capitalize(m):
-        rest = m.string[m.end():]
-        # If the remainder starts with a URL, don't capitalize
-        if rest.startswith(('http://', 'https://', 'www.')):
-            return ' '
-        # Capitalize the first alphabetical character
-        for i, ch in enumerate(rest):
-            if ch.isalpha():
-                # Return the replacement (space) -- the rest of the string is untouched by re.sub
-                # We can't mutate rest here; instead signal via a marker and handle below.
-                break
-        return ' '
+    # Remove a comma that starts a sentence (after sentence-ending punctuation + space, or at text
+    # start) and capitalize the first alphabetical character of the remainder (unless it's a URL).
+    _LEADING_COMMA_RE = re.compile(r'(?:(?<=[.?!])\s+|^),\s*')
 
-    # Use re.sub with a helper that tracks positions needing capitalization
-    _cap_positions = []
-
-    def _comma_sub(m):
-        rest = m.string[m.end():]
-        if not rest.startswith(('http://', 'https://', 'www.')):
-            # Find first alpha char in rest and record its absolute position
-            for i, ch in enumerate(rest):
+    def _strip_leading_comma(text):
+        """Remove sentence-leading commas and capitalize the following word."""
+        result = text
+        for m in reversed(list(_LEADING_COMMA_RE.finditer(text))):
+            # Text that will follow the removed comma
+            rest_start = m.end()
+            rest = text[rest_start:]
+            replacement = ' '
+            result = result[:m.start()] + replacement + rest
+        result = result.lstrip()
+        # Capitalize first alphabetical character unless the text starts with a URL
+        if result and not result.startswith(('http://', 'https://', 'www.')):
+            for i, ch in enumerate(result):
                 if ch.isalpha():
-                    _cap_positions.append(m.end() + i - len(m.group()) + 1)
+                    result = result[:i] + ch.upper() + result[i + 1:]
                     break
-        return ' '
+        return result
 
-    fixed = re.sub(r'(?:(?<=[.?!])\s+|^),\s*', _comma_sub, fixed).lstrip()
-    # Apply capitalizations (offset shifts by -len(match)+1 per substitution -- simpler: re-scan)
-    # Since positions are now stale after sub, re-scan for lowercase chars that should be upper.
-    # Better approach: do a second pass to capitalize first alpha char of the whole string
-    # if a comma was removed from the very start.
-    if _cap_positions:
-        # Re-capitalize the first alpha character of the fixed string (covers text-start comma removal)
-        if fixed and not fixed.startswith(('http://', 'https://', 'www.')):
-            for i, ch in enumerate(fixed):
-                if ch.isalpha():
-                    fixed = fixed[:i] + ch.upper() + fixed[i + 1:]
-                    break
+    fixed = _strip_leading_comma(fixed)
     # Clean up double spaces and double newlines from removals
     fixed = re.sub(r'  +', ' ', fixed)
     fixed = re.sub(r'\n{3,}', '\n\n', fixed)
