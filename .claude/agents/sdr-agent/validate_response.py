@@ -29,15 +29,15 @@ BLOCK_PATTERNS = [
     (r'\$\d[\d,]*\s+per\s+hour', "hourly_rate"),
     (r'\$\d[\d,]*\s*hourly', "hourly_rate"),
 
-    # Placeholder brackets: [text] but not [No ...] or URLs like [link]
-    (r'\[(?!No |no |http)[A-Za-z][^\]]{1,}\]', "placeholder_brackets"),
+    # Placeholder brackets: [text] but not [No ...], URLs, or markdown links [text](url)
+    (r'\[(?!No |no |http)[A-Za-z][^\]]{1,}\](?!\()', "placeholder_brackets"),
 
     # Timeline commitments: specific days
     (r'\b(?:by|before)\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b', "timeline_day"),
     # Timeline commitments: specific durations (unless softened)
     (r'\bwithin\s+\d+\s+(?:days?|weeks?|business days?)\b(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
-    # Launch commitments
-    (r'\b(?:live|launched|ready|done)\s+by\b', "timeline_launch"),
+    # Launch commitments: only block when "by" is followed by a temporal expression
+    (r'\b(?:live|launched|ready|done)\s+by\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|tomorrow|next\s+(?:week|month)|end\s+of|the\s+weekend|January|February|March|April|May|June|July|August|September|October|November|December|\d)', "timeline_launch"),
 
     # Hard-banned phrases
     (r'[Bb]efore we lock anything in', "banned_before_lock"),
@@ -78,6 +78,26 @@ BLOCK_PATTERNS = [
     (r"\bminimum\s+I'?d\s+want\s+to\s+see\b", "pricing_spend_floor"),
     (r'\bminimum\s+for\s+any\s+client\b', "pricing_spend_floor"),
     (r"\bthat'?s\s+our\s+minimum\b", "pricing_spend_floor"),
+
+    # Hourly phrasing: "$50 an hour" / "$50 per hour"
+    (r'\$\d[\d,]*(?:\.\d+)?\s*(?:an|per)\s+h(?:ou)?r', "hourly_rate"),
+
+    # Retainer word orders: amount + monthly + retainer, or retainer keyword-first with amount
+    (r'\$[\d,]+[Kk]?(?:/mo(?:nth)?|(?:\s+(?:a|per)\s+month))?\s+monthly\s+retainer', "pricing_retainer_fee"),
+    (r'[\d,]+[Kk](?:/mo(?:nth)?|(?:\s+(?:a|per)\s+month))?\s+monthly\s+retainer', "pricing_retainer_fee"),
+    (r'retainer\s+(?:is|of|runs|at)\s+\$[\d,]+[Kk]?', "pricing_retainer_fee"),
+    (r'retainer\s+(?:is|of|runs|at)\s+[\d,]+[Kk]', "pricing_retainer_fee"),
+
+    # Setup fee variants: hyphen and space
+    (r'\$[\d,]+[Kk]?\s*set[- ]up\s+fee', "pricing_setup_fee"),
+    (r'[\d,]+[Kk]\s*set[- ]up\s+fee', "pricing_setup_fee"),
+    (r'set[- ]up\s+fee\s*(?:(?:of|is|runs|:|-{1,2})\s*)?\$[\d,]+[Kk]?', "pricing_setup_fee"),
+    # Onboarding without "fee": "Onboarding is/runs/costs $X"
+    (r'\bonboarding\s+(?:is|runs|costs)\s+\$[\d,]+[Kk]?', "pricing_onboarding_fee"),
+
+    # Timeline: within N months / in N months
+    (r'\bwithin\s+\d+\s+months?\b(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
+    (r'\bin\s+\d+\s+months?\b(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
 
     # Pricing policy: disqualification language
     (r'\bhave\s+to\s+pass\s+on\b', "disqualification_language"),
@@ -160,6 +180,11 @@ FORMAL_TRANSITIONS = [
 ]
 
 
+SPEND_FLOOR_NEGATION = re.compile(
+    r"(?:no\s+|there'?s\s+no\s+|there\s+is\s+no\s+|without\s+a\s+)",
+    re.IGNORECASE,
+)
+
 def check_blocks(text):
     """Check for BLOCK-level issues. Returns list of (category, match_text)."""
     issues = []
@@ -167,6 +192,11 @@ def check_blocks(text):
     for pattern, category in BLOCK_PATTERNS:
         m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
         if m:
+            # Negation guard for spend-floor patterns
+            if category == "pricing_spend_floor":
+                prefix = text[max(0, m.start() - 20):m.start()]
+                if SPEND_FLOOR_NEGATION.search(prefix):
+                    continue
             issues.append((category, m.group()))
 
     # Structural: call suggested without calendar URL
@@ -190,21 +220,41 @@ def check_and_fix_warns(text):
             issues.append(("fluff_opener", m.group().strip()))
             # Remove the opener and any trailing whitespace/punctuation
             fixed = fixed[m.end():].lstrip(' ,.')
-            # Capitalize the new first character
-            if fixed:
+            # Capitalize the new first character (skip if it starts with a URL)
+            if fixed and not fixed.startswith(('http://', 'https://', 'www.')):
                 fixed = fixed[0].upper() + fixed[1:]
 
     # 2. Setup sentences (remove the sentence containing them)
+    def _find_sentence_bounds(text, match_start, match_end):
+        """Find sentence start/end treating '.', '?', '!' as boundaries."""
+        # Find sentence start: rfind over all terminators, take the rightmost
+        s_dot = text.rfind('.', 0, match_start)
+        s_que = text.rfind('?', 0, match_start)
+        s_exc = text.rfind('!', 0, match_start)
+        start_marker = max(s_dot, s_que, s_exc)
+        start = start_marker + 1 if start_marker >= 0 else 0
+        # Find sentence end: find over all terminators, take the leftmost found
+        candidates = []
+        e_dot = text.find('.', match_end)
+        e_que = text.find('?', match_end)
+        e_exc = text.find('!', match_end)
+        if e_dot >= 0:
+            candidates.append(e_dot)
+        if e_que >= 0:
+            candidates.append(e_que)
+        if e_exc >= 0:
+            candidates.append(e_exc)
+        if candidates:
+            end = min(candidates) + 1
+        else:
+            end = match_end
+        return start, end
+
     for pat in SETUP_SENTENCES:
         m = re.search(pat, fixed, re.IGNORECASE)
         if m:
             issues.append(("setup_sentence", m.group()))
-            # Remove from start of sentence to the period/end
-            # Find sentence boundaries
-            start = fixed.rfind('.', 0, m.start())
-            start = start + 1 if start >= 0 else 0
-            end = fixed.find('.', m.end())
-            end = end + 1 if end >= 0 else m.end()
+            start, end = _find_sentence_bounds(fixed, m.start(), m.end())
             sentence = fixed[start:end].strip()
             if len(sentence) < len(fixed) * 0.5:  # Don't remove if it's most of the response
                 fixed = (fixed[:start] + fixed[end:]).strip()
@@ -214,10 +264,7 @@ def check_and_fix_warns(text):
         m = re.search(pat, fixed, re.IGNORECASE)
         if m:
             issues.append(("seal_clapping", m.group()))
-            start = fixed.rfind('.', 0, m.start())
-            start = start + 1 if start >= 0 else 0
-            end = fixed.find('.', m.end())
-            end = end + 1 if end >= 0 else m.end()
+            start, end = _find_sentence_bounds(fixed, m.start(), m.end())
             sentence = fixed[start:end].strip()
             if len(sentence) < len(fixed) * 0.5:
                 fixed = (fixed[:start] + fixed[end:]).strip()
@@ -265,6 +312,8 @@ def check_and_fix_warns(text):
         r'another\s+agency',
         r'other\s+agencies',
         r'previous\s+agency',
+        r'their\s+(?:last\s+|previous\s+|current\s+|old\s+)?agency',
+        r'(?:his|her)\s+(?:last\s+|previous\s+|current\s+|old\s+)?agency',
     ]
 
     agency_matches = list(re.finditer(r'\bagency\b', fixed, re.IGNORECASE))
@@ -279,15 +328,24 @@ def check_and_fix_warns(text):
         if 'not an agency' in context or "aren't an agency" in context:
             continue
 
-        # Self-description replacements
-        if 'your agency' in context or 'their agency' in context or 'the agency' in context:
+        # Self-description replacements ("their agency" is now exempt via past-experience patterns above)
+        if 'your agency' in context or 'the agency' in context:
             replacement = 'marketing company'
-        elif 'an agency' in context:
-            replacement = 'a marketing company'
+            issues.append(("agency_word", m.group()))
+            fixed = fixed[:m.start()] + replacement + fixed[m.end():]
         else:
-            replacement = 'paid ads team'
-        issues.append(("agency_word", m.group()))
-        fixed = fixed[:m.start()] + replacement + fixed[m.end():]
+            # Check if preceded by article "an" to replace "an agency" as a unit
+            look_back = fixed[max(0, m.start()-4):m.start()]
+            an_match = re.search(r'\b([Aa])n\s+$', look_back)
+            if an_match:
+                article_start = m.start() - len(an_match.group())
+                repl = 'A marketing company' if an_match.group(1) == 'A' else 'a marketing company'
+                issues.append(("agency_word", fixed[article_start:m.end()]))
+                fixed = fixed[:article_start] + repl + fixed[m.end():]
+            else:
+                replacement = 'paid ads team'
+                issues.append(("agency_word", m.group()))
+                fixed = fixed[:m.start()] + replacement + fixed[m.end():]
 
     # 8. Defining by negation
     negation_patterns = [
@@ -389,6 +447,11 @@ def check_and_fix_warns(text):
             ))
             break  # One WARN is enough; don't stack duplicates
 
+    # Clean up punctuation artifacts from phrase removals
+    # Collapse whitespace before a comma: "word , word" -> "word, word"
+    fixed = re.sub(r'\s+,', ',', fixed)
+    # Remove a comma that starts a sentence (after sentence-ending punctuation + space, or at text start)
+    fixed = re.sub(r'(?:(?<=[.?!])\s+|^),\s*', ' ', fixed).lstrip()
     # Clean up double spaces and double newlines from removals
     fixed = re.sub(r'  +', ' ', fixed)
     fixed = re.sub(r'\n{3,}', '\n\n', fixed)
@@ -421,8 +484,10 @@ def main():
         text = sys.stdin.read().strip()
 
     if not text:
-        print("VERDICT: BLOCK", file=sys.stderr)
-        print("ISSUES: empty_response", file=sys.stderr)
+        print("VERDICT: BLOCK")
+        print("ISSUES: BLOCK:empty_response:empty")
+        print("---BLOCKED---")
+        print("  empty_response: empty", file=sys.stderr)
         sys.exit(2)
 
     verdict, block_issues, warn_issues, fixed_text = validate(text)
