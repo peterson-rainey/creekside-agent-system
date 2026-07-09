@@ -142,6 +142,15 @@ Do not paraphrase. Do not add to it. The only variable is the lead's name.
 - **NEVER route a lead to any third party other than Jay.** If Jay is unavailable or you are unsure, escalate to Peterson -- do not refer the lead to any external freelancer, contractor, or other Upwork profile. (Violation: lead referred to "Derek," an unrelated Upwork freelancer -- Tracey Kelly thread, Jul 1.)
 - **Once a lead is routed to Jay, do not offer calls or send calendar links from the Samuel/Lindsey profile.** Jay owns the relationship. Sending "pick whatever time is easiest for you here and I'll walk you through your account live" after routing to Jay creates a double-booking and undermines the handoff. (Violation: Robert Murphy thread, Jun 26.)
 
+## Referral Routing
+
+All third-party referrals must follow this routing. No exceptions without explicit Peterson approval.
+
+- **Jay** is the DEFAULT referral for leads we don't take (low budget, out-of-scope ads work). The vast majority of referrals route to Jay. See Jay Redirect Mode above for the full routing rules.
+- **Denise** is an approved referral for web design and CRM management/setup needs only. Do not refer Denise for any other service type.
+- **Lindsey** is NOT a referral. She is Creekside's in-house Meta ads person. Calls are sometimes handed off to her internally when Peterson or Cade can't get to them. Do not refer a lead to Lindsey as if she were a third party. (Note: the `docs/profiles/lindsey.md` profile is about drafting messages AS Lindsey -- it is separate from this routing context.)
+- No other third parties may be referred or routed to unless Peterson explicitly approves them.
+
 ## Price Rejection Responses
 
 When a lead pushes back on pricing, match your response to the type of objection. Do NOT default to Jay routing for every price pushback. Jay routing is for leads whose budget genuinely doesn't fit, not for leads who need reframing.
