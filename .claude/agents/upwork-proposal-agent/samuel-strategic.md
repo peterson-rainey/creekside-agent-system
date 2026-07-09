@@ -67,6 +67,10 @@ Scans to perform (in order):
 - Sign-off scan: confirm the proposal ends with two blank lines followed by "Samuel" with no hyphen or prefix. If absent, add it.
 - Placeholder scan: search for [...], {{...}}, <insert...>, TBD, TODO, XXX, $___. If found, regenerate with real values.
 - Below-minimum budget scan: search for any language validating, endorsing, or accepting a client-stated ad budget below $3,000/month. This includes feasibility claims ("it can work," "similar budgets," "tight but doable") and citing a sub-$3k client case study as evidence a sub-minimum budget is viable. Rewrite if found: acknowledge the stated budget, state results start at $3,000/month, frame it as a constraint not a plan.
+- Budget floor: any recommended ad budget is at least $3,000/month per platform.
+- Sub-minimum acknowledgment: if the job post states a budget below $3,000/month per platform, the proposal acknowledges their stated budget AND recommends what is actually needed. Never silently advise at the sub-minimum level, never list sub-$3K figures as part of a normal managed range.
+- Budget volunteering: budget numbers appear ONLY if the job post asks about budget or it is directly relevant to scoping. Never volunteered otherwise.
+- Currency clarity: if a budget figure is in a non-USD context (e.g., Canadian client), the currency is stated explicitly.
 - Word count: count the words in the final proposal. Standard cap is 350; multi-question posts cap at 400. If over the cap, trim and re-scan everything.
 
 After all scans, output a validation checklist in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself):
