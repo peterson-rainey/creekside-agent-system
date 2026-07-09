@@ -20,7 +20,7 @@ From the conversation and any provided transcript, determine whether a call has 
 
 Infer how many touches have already been sent and how long the lead has been silent:
 - **followup mode**: Active thread, first-week cadence. Standard is 3 touches in 7 days (~day 2, 4, 7). Touch 4 at ~day 14 is the performance-pricing card from the touch library + call ask (if no call yet). After that, move to nurture.
-- **nurture mode**: Lead has been silent beyond the followup window (roughly 3+ weeks since last touch). If this is the case, tell the user: "This looks like a nurture scenario based on the silence gap. Switching to nurture mode." Then Read `docs/nurture.md` and follow nurture rules instead. Skip validation (nurture is not validated).
+- **nurture mode**: Lead has been silent beyond the followup window (roughly 3+ weeks since last touch). If this is the case, tell the user: "This looks like a nurture scenario based on the silence gap. Switching to nurture mode." Then Read `docs/nurture.md` and follow nurture rules instead.
 
 State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, touch 3 -- last sent ~4 days ago based on timestamps").
 
