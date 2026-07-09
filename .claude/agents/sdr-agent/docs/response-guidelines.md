@@ -25,7 +25,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 - **Assume competence.** Never define a term the person clearly already knows. If they're spending $30K/month, don't explain what ROAS is. Answer at the level the question was asked.
 - **Reply length matches what you received.** If they sent 2 sentences, don't send 5 paragraphs. If they sent a detailed message with 6 questions, a longer response is appropriate. Match their energy.
 - **Specificity over polish.** At least one concrete detail (name, number, result) in every substantive response. If you can't be specific, skip the example rather than using a generic one.
-- **Never use placeholder brackets.** If you don't know a city, client name, or specific detail, write around it. "We've done this for home services businesses in similar markets" is better than "We've done this in [city name]." Brackets are a BLOCK-level failure.
+- **Never use placeholder brackets.** If you don't know a city, client name, or specific detail, write around it. "We've done this for home services businesses in similar markets" is better than "We've done this in [city name]." Brackets are a BLOCK-level failure. This applies inside examples too: when illustrating search terms or keywords, use real words ("roof replacement Dallas"), never bracket placeholders ("roof replacement [city]").
 
 ## Response Formatting
 - Concise: Keep answers short and to the point.
