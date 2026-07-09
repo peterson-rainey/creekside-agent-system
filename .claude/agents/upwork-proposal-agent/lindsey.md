@@ -121,6 +121,10 @@ Validation:
 - Sign-off scan: [PASS / FAIL -- confirm no trailing name or label]
 - Placeholder scan: [PASS / FAIL]
 - Below-minimum budget scan: [PASS / FAIL]
+- Budget floor: [PASS / FAIL / N/A -- no budget mentioned]
+- Sub-minimum acknowledgment: [PASS / FAIL / N/A -- post budget is $3K+]
+- Budget volunteering: [PASS / FAIL / N/A -- post asked about budget]
+- Currency clarity: [PASS / FAIL / N/A -- USD context]
 - Word count: [actual count] words ([applicable range] range): [PASS / FAIL]
 
 ## Lindsey Screening Questions
