@@ -14,9 +14,19 @@ This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-cal
 
 ---
 
-## Step W1: Read the Conversation and Extract Answered Questions
+## Step W0: Inventory What the Lead Already Answered
 
-Before generating anything, scan the FULL conversation thread AND any job description for evidence that each of the 7 discovery questions has already been answered.
+Before doing anything else, scan the FULL conversation thread, the job description, AND any pre-call or screening answers the lead submitted. For every piece of information they have already provided, note it. Then map those answers against the 7 discovery questions below and mark each one ANSWERED or UNANSWERED.
+
+**This step is the most important part of warmup generation.** The #1 real-world failure has been asking leads questions they already answered -- their budget, years in business, website, and past-agency experience -- because the agent skipped reading the full thread before drafting. Do not skip this step. Do not skim. If the lead answered something in an Upwork screening question, in their job description, or anywhere in the conversation, it is ANSWERED.
+
+Build an explicit answered/unanswered inventory before writing a single word of the message (see Step W1 format below). Only the UNANSWERED questions go in the message.
+
+---
+
+## Step W1: Map Answers to the 7 Discovery Questions
+
+Using the inventory from Step W0, build the answered/unanswered list:
 
 ### The 7 Discovery Questions
 
@@ -41,6 +51,10 @@ Q5 (years in business): [ANSWERED -- "been open 5 years"] / [UNANSWERED]
 Q6 (avg yearly revenue): [UNANSWERED]
 Q7 (website): [ANSWERED -- "creeksidedental.com"] / [UNANSWERED]
 ```
+
+**Budget is pre-qualification.** If Q3 (ad spend / budget) is still UNANSWERED after W0, it is MANDATORY in the message. Budget is the pre-qualification lever before the call. Every other question can be skipped if answered; Q3 cannot.
+
+**Protect the booked call.** The call is already booked. Nothing in the warmup may jeopardize it: no pricing discussion, no spend floors or minimums, no disqualification language. Keep it short and low-friction. If the lead's answers later reveal a low budget, that is handled on the call or afterward (Jay routing) -- never in the warmup.
 
 ---
 
@@ -74,7 +88,7 @@ Keep it to 1-2 sentences. No fluff. No "I look forward to hearing from you."
 Send the profile video nudge (one natural sentence) + a brief personalized forward-look to the call. No questions.
 
 Example tone:
-> If you haven't yet, worth checking out my profile video before we chat. It covers how we work and answers most of the setup questions upfront. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the [their specific topic] side of things on the call.
+> If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the [their specific topic] side of things on the call.
 
 **(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
 
@@ -83,13 +97,13 @@ Example tone:
 ### Case C: Some questions unanswered (1-6 remaining)
 
 Structure:
-1. One natural sentence nudging the profile video (skip if video already mentioned).
-2. A brief context line showing you've read their info (reference one specific detail from the conversation).
-3. Ask ONLY the unanswered questions.
+1. One short, specific opening line referencing something they already shared (shows you read it).
+2. One natural sentence nudging the profile video (skip if video already mentioned).
+3. A brief framing line -- it is fine to say something like "So I can better prep for our call, a few quick things:" or similar -- then ask ONLY the unanswered questions.
 
 Keep it conversational. Do NOT use a numbered list for the questions -- write them as natural flowing sentences unless there are 4+ unanswered, in which case a short list is acceptable for readability.
 
-Do NOT include a preamble like "So I can better prep for our call." That's filler. Just ask.
+Profile video line examples: "If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio." / "Worth checking out my profile video before we chat, it covers how we work and answers most of the setup questions upfront."
 
 ---
 
@@ -109,9 +123,9 @@ Even here, personalize the intro beyond "looking forward to speaking with you." 
 
 All standard voice rules from sdr-agent.md and validation.md apply. Additionally:
 
-- The profile video nudge must feel natural. NOT: "I definitely recommend going to my profile to check out my intro video." Instead: "Worth checking out my profile video before we chat" or "If you haven't already, take a look at my profile video."
+- The profile video nudge should feel natural. Both formal and casual phrasing are acceptable: "If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio" is approved and encouraged. "Worth checking out my profile video before we chat" is also fine. Match the tone of the thread.
 - After the profile video nudge, optionally mention our YouTube channel (samuel profile only): "We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1". Separate from the profile video nudge, not a replacement. Do NOT include the YouTube channel reference in Lindsey's warmup messages -- see the lindsey profile doc.
-- Don't frame the questions as "so I can better prep." Just ask them.
+- A brief prep-framing sentence ("So I can better prep for our call...") is realistic and natural -- it is not filler, it is fine to use.
 - No fluff closings. A forward-look sentence is fine if it's specific (references their situation).
 - Keep the whole message under 150 words unless you have 5+ unanswered questions.
 
@@ -161,9 +175,9 @@ Follow the same output format as the main router (Step 7):
 
 **Message:**
 
-> Take a look at my profile video if you haven't. It walks through exactly how we work and covers most setup questions upfront. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1
+> If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1
 >
-> What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
+> So I can better prep for our call, a few quick things: What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
 
 **(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
 
@@ -172,4 +186,3 @@ Note what this message does NOT do:
 - Does not ask about current strategy (they already told us)
 - Does not ask about ad spend (they already told us)
 - Does not use "looking forward to speaking with you" as a generic close
-- Does not say "so I can better prep for our call" -- just asks

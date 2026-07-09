@@ -27,7 +27,10 @@ Both Meta Ads and Google Ads are accessible via PipeBoard connectors. These inhe
 - **Google Ads connector**: `mcp__claude_ai_Pipeboard_google__*` tools (list_google_ads_customers, get_google_ads_campaigns, get_google_ads_campaign_metrics, execute_google_ads_gaql_query, etc.)
 - **Meta Ads connector**: `mcp__claude_ai_PipeBoard__*` tools (get_ad_accounts, get_insights, get_campaigns, get_adsets, get_ads, get_ad_creatives, etc.)
 - **Google Merchant Center + GA4**: Python API calls using the shared OAuth token at `~/gdrive_pipeline/token_mc_ga4.json`. No MCP tool exists for these -- run Python inline via Bash. See usage pattern below.
-- **Database**: `mcp__claude_ai_Supabase__execute_sql` -- **ALL SQL MUST go through `SELECT contractor_query('your SQL')`**. NEVER use raw `execute_sql` directly. The raw tool runs as postgres (superuser) and bypasses every protection. `contractor_query()` is the only server-side enforcement that works in ALL session types (CLI, Co-work, Chat). This is not optional.
+- **Database**: `mcp__claude_ai_Supabase__execute_sql` -- routing rules:
+  - **ALL READS (SELECT):** MUST go through `SELECT contractor_query('your SELECT ...')`. NEVER use raw `execute_sql` for reads. The raw tool runs as postgres (superuser) and bypasses every read protection (sensitive tables, vault, secrets). `contractor_query()` is the only server-side enforcement that works in ALL session types (CLI, Co-work, Chat). This is not optional.
+  - **WRITES (INSERT/UPDATE):** `contractor_query()` is architecturally read-only (wraps SQL in a SELECT subquery, so INSERT/UPDATE fails). For writes to ALLOWED tables (e.g., `agent_knowledge`), use `execute_sql` directly. ALWAYS validate first (e.g., `SELECT validate_new_knowledge(...)` via `contractor_query()`). NEVER write to protected tables: `agent_definitions`, `system_users`, `system_registry`, `scheduled_agents`, `prompt_config`, `api_cost_limits`. In CLI, hooks enforce this; in Co-work/Chat, you must self-enforce.
+  - **NEVER:** DROP, TRUNCATE, DELETE without WHERE, CREATE/ALTER FUNCTION, CREATE/DROP POLICY, or any DDL.
 
 For the full reference (API keys, auth details, troubleshooting): `SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'`
 
