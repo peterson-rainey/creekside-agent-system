@@ -54,7 +54,7 @@ Draft must:
 - Match Peterson's tone for this audience type
 - Be the right length for thread position
 - Include a clear next step or question when appropriate
-- For leads: include Calendly link (https://calendly.com/peterson-creekside) if scheduling is relevant
+- For leads: include booking link (https://calendar.app.google/wSdVbfwaJRzkw12E7) if scheduling is relevant
 
 ## MANDATORY: communication-style-agent Handoff
 
