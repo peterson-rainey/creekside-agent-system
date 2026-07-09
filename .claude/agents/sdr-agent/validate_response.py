@@ -36,8 +36,35 @@ BLOCK_PATTERNS = [
     (r'\b(?:by|before)\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b', "timeline_day"),
     # Timeline commitments: specific durations (unless softened)
     (r'\bwithin\s+\d+\s+(?:days?|weeks?|business days?)\b(?!\s*(?:typically|usually|generally|on average))', "timeline_duration"),
-    # Launch commitments: only block when "by" is followed by a temporal expression
-    (r'\b(?:live|launched|ready|done)\s+by\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|tomorrow|next\s+(?:week|month)|end\s+of|the\s+weekend|January|February|March|April|May|June|July|August|September|October|November|December|\d)', "timeline_launch"),
+    # Launch commitments: only block when "by" is followed by a temporal expression.
+    # Temporal expressions include:
+    #   - Named days (Mon-Sun), optionally preceded by "the"
+    #   - tomorrow / next week / next month
+    #   - end/beginning/start/middle of ... (optionally preceded by "the")
+    #   - the weekend
+    #   - named months
+    #   - any digit (existing catch-all for "by 3pm", "by 2026", etc.)
+    #   - digit ordinals: "the 15th", "the 1st"
+    #   - word ordinals ONLY when followed by "of the/a month/year/week"
+    #     (so "by the second call" does NOT match, but "by the first of the month" does)
+    (
+        r'\b(?:live|launched|ready|done)\s+by\s+'
+        r'(?:'
+            r'(?:the\s+)?(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)'
+            r'|tomorrow'
+            r'|next\s+(?:week|month)'
+            r'|(?:the\s+)?(?:end|beginning|start|middle)\s+of'
+            r'|the\s+weekend'
+            r'|(?:January|February|March|April|May|June|July|August|September|October|November|December)'
+            r'|\d'
+            r'|(?:the\s+)?\d{1,2}(?:st|nd|rd|th)'
+            r'|(?:the\s+)?(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth'
+                r'|eleventh|twelfth|thirteenth|fourteenth|fifteenth|sixteenth|seventeenth'
+                r'|eighteenth|nineteenth|twentieth|twenty[-\s]first|twenty[-\s]second'
+                r'|twenty[-\s]third|thirtieth|thirty[-\s]first)\s+of\s+(?:the\s+|a\s+)?(?:month|year|week)'
+        r')',
+        "timeline_launch"
+    ),
 
     # Hard-banned phrases
     (r'[Bb]efore we lock anything in', "banned_before_lock"),
