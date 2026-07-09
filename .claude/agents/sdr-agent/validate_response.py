@@ -54,12 +54,20 @@ BLOCK_PATTERNS = [
     # Pricing policy: retainer/onboarding/setup-fee constructions
     # Dollar/number adjacent to a fee keyword is the signal.
     # A bare dollar amount alone (e.g. "$5,000/month in ad spend") must NOT block.
-    (r'\$[\d,]+[Kk]?(?:/mo(?:nth)?)?\s*(?:flat\s+)?retainer', "pricing_retainer_fee"),
-    (r'[\d,]+[Kk]?\s*(?:/mo(?:nth)?)?\s*(?:flat\s+)?retainer', "pricing_retainer_fee"),
+    # Retainer patterns: require $ OR K/k suffix to avoid bare numbers.
+    # Allow "a month" / "per month" as alternatives to /mo between amount and retainer.
+    (r'\$[\d,]+[Kk]?(?:/mo(?:nth)?|(?:\s+(?:a|per)\s+month))?\s*(?:flat\s+)?retainer', "pricing_retainer_fee"),
+    (r'[\d,]+[Kk](?:/mo(?:nth)?|(?:\s+(?:a|per)\s+month))?\s*(?:flat\s+)?retainer', "pricing_retainer_fee"),
+    # Onboarding fee: amount before keyword ($-required or K/k suffix)
     (r'\$[\d,]+[Kk]?\s*onboarding\s*fee', "pricing_onboarding_fee"),
-    (r'onboarding\s*fee\s*(?:of\s*)?\$[\d,]+[Kk]?', "pricing_onboarding_fee"),
+    (r'[\d,]+[Kk]\s*onboarding\s*fee', "pricing_onboarding_fee"),
+    # Onboarding fee: keyword before amount (widen bridge: of/is/runs/:/-- optional)
+    (r'onboarding\s*fee\s*(?:(?:of|is|runs|:|-{1,2})\s*)?\$[\d,]+[Kk]?', "pricing_onboarding_fee"),
+    # Setup fee: amount before keyword ($-required or K/k suffix)
     (r'\$[\d,]+[Kk]?\s*setup\s*fee', "pricing_setup_fee"),
-    (r'setup\s*fee\s*(?:of\s*)?\$[\d,]+[Kk]?', "pricing_setup_fee"),
+    (r'[\d,]+[Kk]\s*setup\s*fee', "pricing_setup_fee"),
+    # Setup fee: keyword before amount (widen bridge: of/is/runs/:/-- optional)
+    (r'setup\s*fee\s*(?:(?:of|is|runs|:|-{1,2})\s*)?\$[\d,]+[Kk]?', "pricing_setup_fee"),
     (r'one[- ]time\s+\$[\d,]+[Kk]?\s*setup', "pricing_setup_fee"),
     (r'\$[\d,]+[Kk]?\s*flat\s*fee', "pricing_flat_fee"),
     (r'flat\s*fee\s*(?:of\s*)?\$[\d,]+[Kk]?', "pricing_flat_fee"),
