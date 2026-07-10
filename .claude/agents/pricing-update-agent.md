@@ -472,27 +472,16 @@ If the upload fails with a 401/403, the refresh token may be revoked. Tell Peter
 
 ## Step 10: Update the Website
 
-### 10a. pricing.astro
-File: `~/creekside-website/src/pages/pricing.astro`
+### 10a. _pricing.astro
+File: `~/creekside-website/src/pages/_pricing.astro`
 
-**IMPORTANT:** The current website pricing page shows three plans (Plan A Growth, Plan B Shared, Plan C Retainer) with OLD pricing numbers. The pricing model is now a single plan. This requires a layout redesign, not just number updates.
+**IMPORTANT — page is currently OFFLINE:** On 2026-06-05 Jonathan took the pricing page offline by renaming `pricing.astro` to `_pricing.astro` (commit 3226eac). The underscore prefix makes Astro skip the route, so `/pricing/` does not build. The file itself is ALREADY the single-plan layout (redesign completed 2026-05-25, commit 1a6dddf): one centered pricing card + fee-scaling chart section. Do NOT redesign the layout.
 
-Read `docs/website-pricing-template.md` for the complete single-plan HTML template to replace the Pricing Cards section:
+What to do on a pricing change:
+1. Read `~/creekside-website/src/pages/_pricing.astro` and update the pricing numbers in place within the existing single-plan layout (card values, fee-scaling chart breakpoints/rates/cap, Chart.js calculation constants, `<meta description>` if it mentions numbers).
+2. `docs/website-pricing-template.md` remains available as a reference for placeholder semantics (`[RATE1]`, `[BREAKPOINT1]`, `[CAP]`, `[MINIMUM]`, `[ONBOARDING]`, `[THRESHOLD]` = minimum/rate1), but the template has already been applied — only the numbers change.
 
-```
-Read /Users/petersonrainey/C-Code - Rag database/.claude/agents/pricing-update-agent/docs/website-pricing-template.md
-```
-
-The template includes:
-- Replacement for the 3-column pricing cards section (new single centered card)
-- Replacement for the "Comparison Chart" section (new single fee-scaling chart section)
-- Replacement for the "Which Plan" section (new "How Pricing Works" explainer)
-- Updated Chart.js fee calculation functions (single plan math)
-- Updated y-axis max and chart labels
-
-When applying the template, use the new pricing parameters to fill in the placeholders `[RATE1]`, `[RATE2]`, `[RATE3]`, `[BREAKPOINT1]`, `[BREAKPOINT2]`, `[CAP]`, `[MINIMUM]`, `[ONBOARDING]`, `[THRESHOLD]` (= minimum/rate1).
-
-Also update the page `<meta description>` at the top from the three-plan description to a single-plan description.
+**GUARDRAIL — never republish the page yourself.** Do NOT rename `_pricing.astro` back to `pricing.astro`. The page was taken offline deliberately. Update the numbers so the file stays current, then ASK Peterson whether he wants the `/pricing/` route re-enabled. Only rename if he explicitly says yes.
 
 ### 10b. structuredData.ts
 File: `~/creekside-website/src/data/structuredData.ts`
