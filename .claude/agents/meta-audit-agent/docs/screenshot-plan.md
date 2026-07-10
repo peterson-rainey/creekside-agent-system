@@ -95,13 +95,13 @@ The reliable workaround is to drive the **account selector UI** inside the SPA. 
 
 1. **Create tab group once for the whole pass** (first capture only):
    ```
-   mcp__Claude_in_Chrome__tabs_create_mcp
+   mcp__claude-in-chrome__tabs_create_mcp
    ```
    Hold the returned `tabGroupId`. Reuse for all subsequent navigations.
 
 2. **Initial warm-load** (first navigate in the pass only): land on the user's default Ads Manager URL with NO `act=` and NO `business_id=`:
    ```
-   mcp__Claude_in_Chrome__navigate  url=https://adsmanager.facebook.com/adsmanager/manage/campaigns
+   mcp__claude-in-chrome__navigate  url=https://adsmanager.facebook.com/adsmanager/manage/campaigns
    ```
    Wait 8 seconds. Verify ready (Step 5 below). Meta will route to the user's default ad account; this lets the SPA shell hydrate.
 
@@ -115,7 +115,7 @@ The reliable workaround is to drive the **account selector UI** inside the SPA. 
 
 4. **Direct URL is the fallback only**: If the account is already in the same BM as the user's default (i.e. no BM switch needed), URL nav works fine:
    ```
-   mcp__Claude_in_Chrome__navigate  url=<resolved URL with act_>
+   mcp__claude-in-chrome__navigate  url=<resolved URL with act_>
    ```
    Wait 6s on cold load, 2s on warm intra-app routes.
 
@@ -139,7 +139,7 @@ The reliable workaround is to drive the **account selector UI** inside the SPA. 
 
    a) **Visual confirmation via Chrome MCP** (Claude sees the image inline, can verify content):
       ```
-      mcp__Claude_in_Chrome__computer  action=screenshot  tabId=<id>  save_to_disk=true
+      mcp__claude-in-chrome__computer  action=screenshot  tabId=<id>  save_to_disk=true
       ```
       Note: `save_to_disk=true` does NOT return a file path the agent's Bash can read on macOS. Treat this call as visual-confirmation only -- use it to confirm the right view loaded before the disk capture.
 
@@ -187,8 +187,8 @@ The reliable workaround is to drive the **account selector UI** inside the SPA. 
 
 11. **At the end of the screenshot pass, tear down**. Per Standing Rule 11, every tab MUST be closed:
     ```
-    mcp__Claude_in_Chrome__tabs_context_mcp        # list tabs
-    mcp__Claude_in_Chrome__tabs_close_mcp tabId=X  # one call per tab, sequential
+    mcp__claude-in-chrome__tabs_context_mcp        # list tabs
+    mcp__claude-in-chrome__tabs_close_mcp tabId=X  # one call per tab, sequential
     ```
     Swallow "no longer exists" errors as success.
 
