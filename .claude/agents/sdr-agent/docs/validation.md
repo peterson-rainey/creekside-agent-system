@@ -27,6 +27,9 @@ Validate EACH response against these rules:
 - **Signatures:** Formal sign-offs ("Samuel", "Best,", "Regards,", etc.)
 - **Triple constructions:** Three adjectives or verbs in a row ("fast, reliable, and affordable"). Auto-fix: reduce to two or rephrase.
 - **Word "agency":** Replace with "we specialize in paid ads" or "paid ads specialists." Exception: asking the lead about their own past experience with other agencies is NOT a violation ("Have you worked with an agency or freelancer before?", "past experience with an agency", "what went wrong with your last agency"). The ban applies to describing ourselves as an agency, not to referencing the lead's history.
+- **Anti-fabrication client counts:** Any specific client/account count (`\d+\+?\s*(active\s+)?(accounts|clients)`) triggers a WARN. The agent must confirm the number appears in verified retrieved context before using it. Rephrase to "a number of accounts" if unverified. No auto-fix.
+- **Anti-fabrication geographic claims:** "all 50 states" triggers a WARN. Only state geographic coverage if it appears in verified company rules or retrieved context. No auto-fix.
+- **Bare fee terminology:** "management fee", "onboarding fee", "setup fee", "monthly cap" (without a dollar amount) triggers a WARN. Approved rephrase: "our pricing is custom and performance-based." Exception: these phrases inside an approved Stage-2 percentage-tier presentation are acceptable -- since the script cannot see conversation stage, this is WARN (not BLOCK) so the agent reviews it. No auto-fix.
 
 ## Auto-Fix Instructions
 
