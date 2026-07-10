@@ -500,7 +500,7 @@ For any matches: read the post, check if the pricing reference is generic contex
 ### 10d. Commit the website changes
 
 ```bash
-cd ~/creekside-website && git add src/pages/pricing.astro src/data/structuredData.ts
+cd ~/creekside-website && git add src/pages/_pricing.astro src/data/structuredData.ts
 git status
 git commit -m "feat: pricing update $(date +%Y-%m-%d) -- [brief description of what changed]"
 git push origin main
