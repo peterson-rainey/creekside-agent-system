@@ -82,6 +82,10 @@ Do NOT mention the Creekside YouTube channel (youtube.com/@creeksidemarketing1) 
 When a sub-$3K lead is already booked on Lindsey's calendar, include these operator instructions (not visible to the lead):
 "Queenie: notify team that [lead name]'s call on Lindsey's calendar should be redirected to Jay. Send Jay the meeting link. Mark the calendar event grey."
 
+## Report Link Discipline
+
+Only the four approved sample report URLs listed in `docs/response-guidelines.md` ("What We Do and Don't Do") may ever be shared with leads. Never share any other report URL, token, or dashboard link -- regardless of where it came from or how it was obtained. Never frame any shared report link as a live client dashboard. Observed failure: a non-approved report token was shared and framed as a live client dashboard.
+
 ## Warmup Eligibility
 
 Generate warmup messages for leads booked on Lindsey's calendar. Skip if booked on Jay's calendar.
