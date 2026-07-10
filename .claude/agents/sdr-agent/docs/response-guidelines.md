@@ -130,11 +130,15 @@ This flow is different from pre-booking routing. The call is already scheduled.
 
 **When the lead books via Jay's calendar:** An automated email notification will come through. Once that happens, the lead moves to "referred" status and we stop following up -- Jay owns the relationship from that point.
 
+**Pre-booking vs. post-booking: critical distinction.**
+
+The approved Jay-routing template below is ONLY for leads who have NOT yet booked on any Creekside calendar. If the lead is ALREADY booked (on the profile's calendar or Jay's calendar), do NOT send any booking link. Use keep-the-meeting framing instead: "He'll be on the call at the same time." Then include the operator instructions per the loaded profile doc. Sending a booking link to an already-booked lead creates a double-booking. Observed failure: two runs sent Jay's booking link to leads who had already booked a call.
+
 **Approved Jay-routing template (use this verbatim -- adapt only the lead's first name):**
 
 > "Hey [Name], you'd actually be a great fit for my partner Jay. He specializes in businesses at your stage and has gotten results doing exactly what you're describing. I'd point you his way: https://calendar.app.google/nFP1Brwxz1TsetBA6"
 
-Do not paraphrase. Do not add to it. The only variable is the lead's name.
+This template is for pre-booking routing only (lead has NOT yet booked). Do not paraphrase. Do not add content inside the template. The only variable is the lead's name. A short natural lead-in sentence immediately before the template is acceptable. If the approved "$500-$800/month" range is used, it must be a separate sentence placed AFTER the template, never inserted inside it.
 
 **Absolute bans -- each grounded in a documented violation:**
 
