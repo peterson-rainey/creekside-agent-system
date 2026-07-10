@@ -147,6 +147,19 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | data-promotion-agent | Promote contributor data to authoritative dataset |
 | sop-refinement-agent | Auto-refine SOPs from session execution data (scheduled) |
 
+## Topic Layer (direct SQL, no agent needed)
+
+For "everything about X", "how do I do X", or cross-platform topic questions, use the topic layer before falling back to raw search:
+
+| Question shape | Query |
+|----------------|-------|
+| "Everything we have on [topic]" (optionally per client) | `SELECT * FROM get_topic_360('topic', client_id, 10);` -- resolves 38 canonical topics AND aliases (e.g. 'GHL', 'pixel', 'lookalikes') |
+| "How do I do X" / training video lookup | `agent_knowledge` entries titled `Loom How-To Index -- <category>` (6 categories, weekly auto-refresh) |
+| Valid topic list | `SELECT name, category, aliases FROM topic_taxonomy ORDER BY category, name;` |
+| Taxonomy feels incomplete | `agent_knowledge` entry 'Topic Taxonomy Gap Report (weekly auto-refresh)' |
+
+get_topic_360 complements (does not replace) `search_all` + `keyword_search_all`: use it when the question is topic-shaped rather than free-text. Always pull raw text via `get_full_content` before answering specifics.
+
 ## Decision Frameworks (formats to use, not agents to spawn)
 
 When a request triggers one of the patterns below, USE the named format. These are not agents — they are output structures that produced unusually clear results. Pull the canonical version from `agent_knowledge` before applying.
