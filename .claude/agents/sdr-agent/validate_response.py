@@ -583,6 +583,28 @@ def check_and_fix_warns(text):
             ))
             break  # One WARN is enough per response; don't stack duplicates
 
+    # 15a. Dollar-magnitude phrases derived from pricing tiers (WARN, no auto-fix -- FIX G)
+    # Stage-2 percentage tiers (20%/15%/10% of ad spend) must NEVER be converted into
+    # dollar figures or dollar-magnitude phrases. Percentages only; exact numbers on the call.
+    # Patterns:
+    #   - "(low|mid|high) four/five/six figures" -- dollar-magnitude qualifiers
+    #   - "$X-$Y/month" or "$X-$Yk/month" in a pricing context (near "management", "fee",
+    #     "our pricing", "per month") -- catches tier-derived ranges like "$3-5K/month"
+    # Kept as WARN (not BLOCK) to avoid false positives on ad spend guidance.
+    dollar_magnitude_patterns = [
+        (r'\b(?:low|mid|high)[- ]?(?:four|five|six)[- ]figures?\b',
+         "pricing_dollar_magnitude -- dollar-magnitude phrase (e.g. 'mid-four-figures per month') "
+         "may be a tier-derived dollar conversion; percentages only in Stage-2 pricing answers"),
+        (r'\$\d[\d,]*[Kk]?\s*[-\u2013]\s*\$?\d[\d,]*[Kk]?\s*(?:\/month|per month|a month)\b',
+         "pricing_dollar_magnitude -- dollar range near 'per month' may be a tier-derived conversion; "
+         "percentages only in Stage-2 pricing answers"),
+    ]
+    for pat, label in dollar_magnitude_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append(("pricing_dollar_magnitude_warn", f"{m.group()} -- {label}"))
+            break  # One WARN is enough; don't stack duplicates
+
     # 15. Percentage-of-spend tiers (report-only WARN -- no auto-fix)
     # Allowed as Stage 2 answer only (lead already got custom/performance answer
     # AND explicitly asked for a rough range). Validator can't see conversation

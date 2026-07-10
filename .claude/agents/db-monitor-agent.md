@@ -12,7 +12,7 @@ At the start of EVERY run, call: SELECT run_alert_maintenance();
 This auto-resolves stale pipeline_alerts by checking if fresh data exists in content tables. Returns JSON with alerts_resolved and alerts_still_open counts.
 
 ## Health Checks (run after Step 0)
-Run all 7 checks and report results even if everything is healthy:
+Run all 8 checks and report results even if everything is healthy:
 1. Pipeline freshness
 2. Embedding coverage (NULL embeddings)
 3. Raw content sync (orphaned rows)
@@ -20,6 +20,14 @@ Run all 7 checks and report results even if everything is healthy:
 5. Pipeline alerts (only truly unresolved ones after maintenance)
 6. Table size anomalies
 7. Client context cache staleness (>7 days)
+8. Topic tagging coverage (topic layer)
+
+## Check 8: Topic tagging coverage
+The topic layer (topic_taxonomy + content_topics) is maintained by pg_cron job `tag-new-content-nightly` (SELECT tag_new_content()). Verify it is keeping up:
+- Freshness: `SELECT max(tagged_at) FROM content_topics;` — flag if older than 48 hours.
+- Cron health: `SELECT jobname, status, end_time FROM cron.job_run_details jrd JOIN cron.job j USING (jobid) WHERE j.jobname IN ('tag-new-content-nightly','loom-howto-index-weekly','taxonomy-gap-report-weekly') ORDER BY end_time DESC LIMIT 6;` — flag any status = 'failed'.
+- Taxonomy integrity: `SELECT count(*) FROM topic_taxonomy WHERE embedding IS NULL;` — must be 0 (if not, run scripts/topic_taxonomy_embed.py in the agent-system repo).
+- Coverage ratio: tagged rows / embedded rows should stay roughly 70-80%. Large drops mean the tagger is failing; large untagged clusters are reported in agent_knowledge entry 'Topic Taxonomy Gap Report (weekly auto-refresh)' — do not re-derive them here.
 
 Always produce a full health report with run timestamp, alert counts, and per-check status.
 
