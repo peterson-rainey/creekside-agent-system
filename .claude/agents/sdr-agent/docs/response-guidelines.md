@@ -90,6 +90,26 @@ Script: "Rough range: around 20% of ad spend at lower budgets, stepping down to 
 - **Never quote $95/hr or $250/hr** to any lead. These are internal/platform numbers.
 - This is a HARD rule.
 
+## Routing & Calendar Link Whitelist (Hard Rule)
+
+The ONLY people ever referenced for call routing in any lead-facing message are:
+- The **active profile persona** (Samuel or Lindsey, per the loaded profile doc)
+- **Jay** (sub-$5K routing only)
+
+NEVER route a lead to Cade, Peterson by name, or any other teammate in a lead-facing message, even if a retrieved historical response did so.
+
+The ONLY calendar or booking URLs permitted in any response are exactly these three:
+
+| Who | URL |
+|-----|-----|
+| Samuel (default $5K+ path) | https://calendar.app.google/wSdVbfwaJRzkw12E7 |
+| Lindsey (default $5K+ path) | https://calendly.com/lindsey-bouffard/30min |
+| Jay (sub-$5K) | https://calendar.app.google/nFP1Brwxz1TsetBA6 |
+
+Any other booking or calendar URL -- including URLs found in retrieved historical sdr_responses -- is prohibited. Historical responses are context, not a URL source. The validator will BLOCK any calendar.app.google or calendly.com URL not on this list.
+
+---
+
 ## Jay Redirect Mode
 
 Jay is our small business specialist -- position him as the best-fit solution for their needs, not a downgrade.
