@@ -11,7 +11,6 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 
 | Agent | Use when... |
 |-------|-------------|
-| ads-agent | Any ad performance question, campaign analysis, creative review (Meta or Google). NOTE: status=draft in agent_definitions -- pending Peterson's promote-or-remove decision |
 | ad-account-monitor-agent | Daily morning monitor for Creekside ad accounts -- 6 health-check rules against live Meta data per monitored client (scheduled) |
 | ad-copy-editor-agent | Changing ad copy across Google/Meta accounts (find/replace, lane-aware edits) |
 | competitor-ad-research-agent | Competitor ad intelligence on Google (Transparency Center) AND Meta (Ad Library -- Chrome-driven, optional API). Use for pre-launch competitive analysis, single- or multi-vertical research, attack-ad discovery. |
