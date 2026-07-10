@@ -8,6 +8,20 @@ This doc fires when `response_type: warmup`. The lead has already booked a call.
 
 Triggered after a lead books a call. Queenie or the operator invokes this with `response_type: warmup` and pastes the full conversation thread. The resulting message is sent between the booking confirmation and the call itself.
 
+## What a Pre-Call Warmup May and May Not Do
+
+A warmup message is a LOW-FRICTION prep note. It is NOT a diagnostic, NOT a sales message, and NOT a commit to findings.
+
+**Permitted:**
+- State that a review was committed to, if and only if the pasted thread explicitly shows that commitment (e.g., the lead or the agent said "I'll take a look before we talk").
+- Tease topics without asserting findings: "I spotted a few things I want to pressure-test with you on the call" is fine. It signals preparation without claiming specific conclusions.
+- Ask any discovery questions still unanswered (see Step W1 below).
+
+**Prohibited:**
+- Asserting specific findings, conclusions, or diagnoses that came from automated or AI analysis, or from anything not explicitly verified in the pasted thread. Example violation: "there's a version selling the same analysis for 27 bucks" -- this is an unverified AI-generated claim. A wrong specific claim destroys credibility before the call.
+- Promising fixes, outcomes, or deliverables before the call ("simple to fix", "easy win", "I can fix this for you").
+- Skipping discovery questions because you "already know the issue." The discovery-question case matrix (Step W1) still runs in full. Unanswered questions must still be asked regardless of what the warmup analysis surfaced.
+
 This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-call prep message that shows we read their information.
 
 **Jay-booked calls:** If the lead was routed to Jay's calendar, skip the warmup entirely. Jay handles his own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Samuel profile: Samuel's/Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on Jay's calendar for any profile, skip.
