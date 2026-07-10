@@ -78,6 +78,14 @@ The four elements above are strong options that rotate with the touch library --
 
 ---
 
+## Jay-Routed Lead Nurture Rules
+
+If the lead was previously routed to Jay (Jay's calendar link was sent or Jay was introduced as their point of contact), nurture touches follow stricter constraints:
+
+- **Value-only touches.** Every touch must stand on its own as useful information (insight, result, outcome curiosity). No hard sell.
+- **No call CTA and no calendar links from Samuel or Lindsey.** Jay owns the call relationship. Do not include the active profile's booking link or any push to book a call with Samuel/Lindsey. A soft acknowledgment that Jay can help ("Jay's still around if you want to pick things back up") is acceptable only WITHOUT a booking push.
+- **Never reuse an opener angle already used with this lead.** Before writing, scan all prior outbound messages in the thread. If the opening angle (e.g., bare status check, outcome curiosity) was already used in a previous touch to this lead, rotate to a different angle. Repeating the same opener style reads as automated.
+
 ## Nurture-Specific Rules
 
 - No taglines, no long sign-offs. Recipient knows your name.
