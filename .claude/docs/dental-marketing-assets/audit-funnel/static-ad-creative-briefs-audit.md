@@ -1,5 +1,7 @@
-# Static Ad Creative Briefs: Dental Practice Offer (Audit Funnel)
-## For Aamir
+# Static Ad Creative Briefs: Dental Practice Offer (Audit Funnel) -- V2
+## For Aamir / Claude Design chat
+
+**V2 (2026-07-10):** Rebuilt from 90-day performance data on the Creekside/Jybr ad account. The hard-offer static format (specific number + guarantee + concrete offer) is the account's cheapest converter, so the guarantee creative is now the hero. Laleh proof video is the only dental video that converts; the proof static mirrors it. Novelty/meme angles earned attention but zero conversions at ~$1.1K spend and are parked.
 
 **Funnel Role:** Ad creatives catch attention. The prospect should think "these people look like they could help me" and tap Learn More. Save the deep proof for the landing page.
 
@@ -8,32 +10,61 @@
 **Brand Notes:**
 - Creekside Marketing branding throughout (logo, colors)
 - Clean, modern, professional. Not corporate. Not overly clinical.
-- Gold accent color for highlights and key numbers
+- Gold accent color for highlights, key numbers, "Free," and guarantee numbers
 - Gray/muted for "before" states
-- All creatives need 1080x1080 (feed) and 1080x1920 (story/reels) unless noted otherwise
+- All creatives need 1080x1080 (feed) and 1080x1920 (story/reels)
+- No em dashes anywhere
+- Every creative ends on the audit action callout, never a vague "learn more"
+- **Priority order is intentional: Creatives 1 and 2 get budget first**
 
 ---
 
-## CREATIVE 1: Results/Proof (Dr. Laleh)
+## CREATIVE 1 (HERO): The Guarantee Offer
+
+**Headline (hero):** "We'll Find $10K+ of Wasted Ad Spend in Your Dental Practice's Account."
+
+**Subhead:** "Or we'll tell you your ads are dialed and leave you alone."
+
+**Checklist:**
+- Free 30-minute audit
+- Live on your ad account
+- Exact fixes, yours to keep
+- No cost, no commitment
+
+**Action callout:** "Book Your Free Audit"
+
+**Visual direction:**
+- Offer-first, text-forward. The guarantee line IS the creative.
+- Gold on "$10K+" and "Free"
+- Small "Real Client Results: $1M to $2M/mo" proof strip at the bottom
+- Creekside branding
+
+**Format:** 1080x1080 + 1080x1920
+**File name:** dental_static_guarantee_audit_v2
+
+---
+
+## CREATIVE 2: Results/Proof (Dr. Laleh)
 
 **Headline:** "$1M to $2M in Revenue. 6 Months. Same Ad Budget."
 
-**Supporting text:** "Dr. Laleh's cosmetic dental practice. 50 consultations to 105. 2.7X to 5.7X return on ad spend. Over $200K in additional monthly profit."
+**Before/after card:**
+- Before (gray/muted): 2.7X ROAS, 50 consults/mo, $1M/mo revenue
+- After (gold): 5.7X ROAS, 105 consults/mo, $2M/mo revenue, +$200K monthly profit
+
+**Anchor line (audit tie-in):** "See what the same strategy looks like on your practice. Free 30-minute audit."
 
 **Visual direction:**
-- Clean before/after stat card
-- Left side: "Before Creekside" -- 2.7X ROAS, 50 consults/mo, $1M revenue. Gray/muted treatment.
-- Right side: "After Creekside" -- 5.7X ROAS, 105 consults/mo, $2M revenue, $200K+ additional profit. Gold highlight treatment.
-- Large revenue numbers ($1M -> $2M) as the hero element, not ROAS
+- Revenue numbers ($1M to $2M) are the hero element, not ROAS
 - Small "Real Client Results" badge
 - Creekside branding at bottom
 
 **Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_results_audit_v1
+**File name:** dental_static_results_audit_v2
 
 ---
 
-## CREATIVE 2: Testimonial Screenshot
+## CREATIVE 3: Testimonial Screenshot
 
 **Headline:** "Real Message. Real Results."
 
@@ -41,31 +72,13 @@
 - Actual screenshot of Dr. Laleh's message: "We are at a record high of 100 consults! Whatever we are doing let's keep doing it!"
 - Screenshot is the centerpiece. Slightly rotated/angled for visual interest.
 - Frame it in a subtle phone or chat interface mockup so it looks like a real conversation, not a designed graphic
-- Below the screenshot: "$1M to $2M revenue. 6 months. Same budget."
+- Below the screenshot: "$1M to $2M revenue. 6 months. Same budget." plus "Free 30-minute ad account audit" callout
 - Small "Verified Client Message" badge
 - Creekside branding at bottom
 
 **Assets needed:** Dr. Laleh message screenshot (Peterson will provide)
 **Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_testimonial_audit_v1
-
----
-
-## CREATIVE 3: Before/After Practice Transformation
-
-**Headline:** "Transformations Aren't Just for Patients."
-
-**Visual direction:**
-- Split design using an actual patient smile transformation photo as the background/anchor image
-- Left side overlaid with practice stats "Before": 50 consults/mo, $1M revenue (gray/muted treatment)
-- Right side overlaid with "After": 105 consults/mo, $2M revenue, $200K+ additional profit (bright/gold treatment)
-- The patient transformation photo creates the visual metaphor -- the smile transformation IS the practice transformation
-- "Transformations aren't just for patients." as the anchor line at the bottom
-- Creekside branding
-
-**Assets needed:** Before/after patient smile photos (minimum 2-3 sets, with consent). Peterson will provide.
-**Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_beforeafter_audit_v1
+**File name:** dental_static_testimonial_audit_v2
 
 ---
 
@@ -73,17 +86,16 @@
 
 **Headline:** "You Didn't Go to Dental School to Worry About Your Ads."
 
-**Supporting text:** "We handle the ads. You handle the patients."
+**Subhead:** "We'll look at your ad account and tell you exactly what to fix. Free."
 
 **Visual direction:**
-- This one is about the feeling, not the numbers. Warm, aspirational tone. NOT dark or corporate.
-- Option A: Clean text-only design. Headline large and bold. Supporting text smaller underneath. Let the words do the work.
-- Option B: Subtle background image of a dentist in a positive moment -- smiling, working with a patient, something human. Real photo preferred over stock. Text overlaid.
-- Gold accent on "Worry About Your Ads" or on "patients"
+- Text-only, warm, aspirational. Headline huge and bold. NOT dark or corporate.
+- Gold accent on "Worry About Your Ads"
 - Creekside branding
+- Data note: this angle has the highest CTR signal of any single ad (6.88%) but has never been funded past $63. It gets a real budget this round.
 
 **Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_emotional_audit_v1
+**File name:** dental_static_emotional_audit_v2
 
 ---
 
@@ -91,77 +103,27 @@
 
 **Headline:** "$10K/Month in Ads. $60-80K in Monthly Revenue."
 
-**Supporting text:** "The Tooth Co spends $10,000 a month on ads for their cosmetic dental practice. We generate $60,000-$80,000 in monthly revenue. That's a 6-8X return on ad spend. You don't need a massive budget. You need the right strategy."
+**Subhead:** "6-8X return. You don't need a massive budget. You need the right strategy."
+
+**Anchor line:** "Find out what your budget should be producing. Free audit."
 
 **Visual direction:**
-- Clean, data-forward design similar to Creative 1 but positioned for smaller budgets
-- Hero numbers: $10K spend -> $60-80K revenue. Make the contrast obvious.
+- Clean, data-forward design similar to Creative 2 but positioned for smaller budgets
+- Hero contrast: $10K spend to $60-80K revenue. Make it obvious.
 - "6-8X ROAS" as a highlight callout
-- This creative speaks to the practice owner who sees Dr. Laleh's $110K budget and thinks "that's not me." Show them it works at their level too.
+- Speaks to the owner who sees Dr. Laleh's $110K budget and thinks "that's not me"
 - Creekside branding at bottom
 
 **Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_toothco_audit_v1
+**File name:** dental_static_toothco_audit_v2
 
 ---
 
-## CREATIVE 6: ChatGPT Ads
+## PARKED FROM V1 (per performance data)
 
-**Headline:** "We Run ChatGPT Ads for Dentists."
-
-**Supporting text:** "When patients ask ChatGPT for the best cosmetic dentist near them, our clients show up as sponsored results. This is one of the newest channels in dental advertising, and we're already generating cases from it."
-
-**Visual direction:**
-- Mock-up of a ChatGPT conversation where someone asks something like "best cosmetic dentist near me" and a sponsored dental practice result appears highlighted
-- Clean, tech-forward design. Dark background, bright accent on the sponsored result to draw the eye.
-- "New Channel. Already Running." as a subtle badge or callout
-- This is a curiosity/novelty play. Most dentists have never seen this before. The creative should make them stop and think "wait, that's a thing?"
-- Creekside branding at bottom
-
-**Assets needed:** Peterson will provide a real ChatGPT Ads screenshot if available. Otherwise Aamir mocks one up.
-**Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_chatgpt_audit_v1
-
----
-
-## CREATIVE 7: Get Clients, Not Leads
-
-**Headline:** "Leads Don't Pay Your Bills. Patients in Chairs Do."
-
-**Supporting text:** "Most dental ad campaigns are optimized for leads. More form fills. More phone calls. More names on a list. We optimize for the thing that actually matters. Revenue."
-
-**Visual direction:**
-- Bold, text-forward design. This is a messaging play, not a data play.
-- Option A: Two columns. Left: "What most agencies optimize for" with "Leads" "Form Fills" "Phone Calls" in muted/crossed-out text. Right: "What we optimize for" with "Revenue" "Patients in Chairs" "Cases Booked" in gold/highlighted text.
-- Option B: Single bold statement design. "Leads Don't Pay Your Bills." huge. "Patients in Chairs Do." underneath in gold. Clean and punchy.
-- Either way, the visual should feel like a challenge to the status quo
-- Creekside branding
-
-**Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_clientsnotleads_audit_v1
-
----
-
-## CREATIVE 8: Free Audit Promotion (NEW -- Audit Funnel Only)
-
-**Headline:** "Free Ad Account Audit. 30 Minutes."
-
-**Supporting text:** "An ads expert will pull up your campaigns live, show you where your budget is being wasted, and tell you exactly what to fix. No cost. No commitment."
-
-**Visual direction:**
-- Clean, direct design. This sells the audit itself as the value.
-- Hero element: "FREE AD ACCOUNT AUDIT" large and bold
-- Supporting details in a simple checklist format:
-  - "Live screen-share of your ad account"
-  - "Wasted spend identified"
-  - "Custom recommendations"
-  - "30 minutes with an ads expert"
-- "Book Yours Free" as the action callout
-- Creekside branding
-- Gold accent on "Free" and "30 Minutes"
-
-**Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_freeaudit_v1
+- **ChatGPT Ads novelty + meme-style:** novelty hooks earned attention (27-34% hook rates) but zero conversions at ~$1.1K spend on the video side. Park until the core set is validated.
+- **Before/After smile transformation:** fine concept, dilutes the test. Round 2 candidate. (Needs patient smile photos with consent.)
+- **Get Clients, Not Leads:** messaging play, round 2 candidate.
 
 ---
 
@@ -169,20 +131,15 @@
 
 | # | Angle | Square (1080x1080) | Story (1080x1920) | Notes |
 |---|-------|--------------------|--------------------|-------|
-| 1 | Results/Proof (Dr. Laleh) | Yes | Yes | Revenue as hero metric |
-| 2 | Testimonial Screenshot | Yes | Yes | Needs actual message screenshot |
-| 3 | Before/After Transformation | Yes | Yes | Needs patient smile photos |
+| 1 | Guarantee Offer | Yes | Yes | HERO. Gold on $10K+ and Free |
+| 2 | Results/Proof (Dr. Laleh) | Yes | Yes | Revenue as hero metric |
+| 3 | Testimonial Screenshot | Yes | Yes | Needs actual message screenshot |
 | 4 | Emotional Outcome | Yes | Yes | Text-forward, warm tone |
 | 5 | Tooth Co / Lower Budget | Yes | Yes | $10K spend proof point |
-| 6 | ChatGPT Ads | Yes | Yes | Mock-up or real screenshot |
-| 7 | Get Clients, Not Leads | Yes | Yes | Bold messaging play |
-| 8 | Free Audit Promotion | Yes | Yes | NEW -- sells the audit directly |
-| **Total** | | **8** | **8** | **16 deliverables** |
+| **Total** | | **5** | **5** | **10 deliverables** |
 
 ## ASSETS NEEDED FROM PETERSON
 
 - [ ] Dr. Laleh message screenshot ("record high 100 consults")
-- [ ] Before/after patient smile photos (minimum 2-3 sets, with consent)
-- [ ] ChatGPT Ads screenshot showing a sponsored dental result (or Aamir mocks one up)
 - [ ] Creekside brand assets (logo, colors, fonts) -- check ~/Desktop/Creekside Marketing folder
-- [ ] Conor Perrin / Tooth Co quote approval for use in creative (Trustpilot review already public)
+- [ ] Cade sign-off on the $10K wasted-spend guarantee claim (he has to back it on every audit call)
