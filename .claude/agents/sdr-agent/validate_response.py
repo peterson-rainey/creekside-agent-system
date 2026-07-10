@@ -481,7 +481,47 @@ def check_and_fix_warns(text):
                 issues.append(("pre_call_work_offer", m.group()))
                 # Don't auto-fix these -- they need contextual rewriting by the agent
 
-    # 13. Percentage-of-spend tiers (report-only WARN -- no auto-fix)
+    # 13. Anti-fabrication: suspicious client-count and geographic-coverage claims (WARN, no auto-fix)
+    # These fire on fabrication patterns observed in smoke tests. They are WARN not BLOCK because
+    # legitimate responses can sometimes contain these patterns (e.g., genuinely retrieved data).
+    # The agent must confirm the fact is in verified context before proceeding.
+    fabrication_patterns = [
+        # Client count with specific number: "90+ active accounts", "80 active clients"
+        (r'\b\d+\+?\s*(?:active\s+)?(?:accounts?|clients?)\b',
+         "fabrication_client_count -- never state a specific client count unless present in "
+         "verified retrieved context (case study table, company rules, or pasted thread)"),
+        # Geographic overclaim: "all 50 states"
+        (r'\ball\s+50\s+states\b',
+         "fabrication_geographic_claim -- never claim 'all 50 states' unless present in "
+         "verified retrieved context"),
+    ]
+    for pat, label in fabrication_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append(("fabrication_warn", f"{m.group()} -- {label}"))
+
+    # 14. Fee terminology without dollar amounts (WARN, no auto-fix)
+    # Catches bare fee phrases that slip past the BLOCK patterns (which require a dollar amount).
+    # These are WARN because stage-2 percentage-tier presentations legitimately use "management fee"
+    # as a label. Agent must review and rephrase if not in an approved stage-2 context.
+    # Approved rephrase: "our pricing is custom and performance-based" instead of "our management fee is custom"
+    bare_fee_patterns = [
+        r'\bmanagement\s+fee\b',
+        r'\bonboarding\s+fee\b',
+        r'\bsetup\s+fee\b',
+        r'\bmonthly\s+cap\b',
+    ]
+    for pat in bare_fee_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append((
+                "bare_fee_terminology",
+                f"{m.group()} -- rephrase to 'our pricing is custom and performance-based' "
+                "unless this appears inside an approved Stage-2 percentage-tier presentation",
+            ))
+            break  # One WARN is enough per response; don't stack duplicates
+
+    # 15. Percentage-of-spend tiers (report-only WARN -- no auto-fix)
     # Allowed as Stage 2 answer only (lead already got custom/performance answer
     # AND explicitly asked for a rough range). Validator can't see conversation
     # stage, so it flags for human/agent review.
