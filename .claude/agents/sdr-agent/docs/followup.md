@@ -65,6 +65,8 @@ A generic follow-up to someone who gave 30 minutes burns trust. Every post-call 
 - One clear next step per message (usually: confirm the proposal is coming, confirm a date, or ask the one decision-blocker they mentioned).
 - Still short: 2-4 sentences.
 
+**Document delivery rule (anti-fabrication, post-call):** A followup may only reference a proposal, audit, or report as sent or received if the pasted thread contains an explicit message showing it WAS sent. A stated intention ("I'll send you a proposal," "I'll get that over to you") does NOT count. If delivery is unconfirmed, do not reference the document's delivery status. Say "Wanted to follow up from our call" or reference what they discussed on the call -- not the document.
+
 ---
 
 ## Single Response
