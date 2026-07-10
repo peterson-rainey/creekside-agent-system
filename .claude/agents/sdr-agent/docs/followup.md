@@ -41,7 +41,7 @@ State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, t
 - Evidence: bare check-ins like "Is this project still open?" revived 76% of dead threads. Generic resource blasts failed at 7.6-18% (audit checklists, tool links).
 - Case studies and testimonial videos ONLY when they match the exact same vertical as this lead. Same-vertical-or-skip, never an indirect match.
 - Every touch carries some CTA, minimum a re-engagement question. Not necessarily the call ask.
-- Keep follow-ups to 1-3 sentences maximum. Brevity is mandatory.
+- **HARD CAP: 1-3 sentences maximum.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA. Brevity is mandatory and non-negotiable.
 
 **NEVER use:** "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
 
