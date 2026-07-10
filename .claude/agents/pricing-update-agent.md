@@ -523,11 +523,11 @@ Confirm the push succeeded.
 
 ## Step 11: Check SDR Agent (Structure-Only)
 
-File: `~/Downloads/creekside-sdr-main/rag-sdr-agent/src/lib/server/prompts.ts`
+Files: `.claude/agents/sdr-agent.md` and its docs under `.claude/agents/sdr-agent/docs/` (the rag-sdr-agent webapp was retired 2026-06-11 -- do NOT touch `~/Downloads/creekside-sdr-main/`).
 
 Read the pricing-relevant sections. The pricing rules say "our management fee is a percentage of ad spend that scales down as their budget grows" -- no specific numbers. This is intentional.
 
-**Rule:** For rate/cap/minimum changes, `prompts.ts` is a NO-OP. The SDR prompt intentionally avoids specific numbers.
+**Rule:** For rate/cap/minimum changes, the SDR agent docs are a NO-OP. The SDR prompt intentionally avoids specific numbers.
 
 **Exception:** If the structural pricing MODEL changes (e.g., moving from % of ad spend to a flat retainer), update `prompts.ts`. For rate/cap/minimum changes only: skip and log "SDR prompts.ts -- NO-OP (no specific numbers in file, structural model unchanged)."
 
