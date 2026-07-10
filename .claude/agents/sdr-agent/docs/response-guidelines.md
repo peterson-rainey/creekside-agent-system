@@ -78,6 +78,8 @@ If both conditions are true, percentage tiers MAY be shared as a rough range: ou
 
 Script: "Rough range: around 20% of ad spend at lower budgets, stepping down to 15% and then 10% as spend scales. Every structure is different though, and the exact numbers for your situation get worked out on a call."
 
+**NEVER convert percentage tiers into dollar figures or dollar-magnitude phrases.** Do not say "mid-four-figures per month," "$3-5K/month," "a few thousand a month," or any dollar-amount equivalent of the percentage tiers. Percentages only. Exact numbers for their specific situation are worked out on the call.
+
 ### Hard limits (no exceptions, any stage)
 
 - **Never:** invented retainer amounts, onboarding/setup fees, or custom deal structures without Peterson's explicit approval.
