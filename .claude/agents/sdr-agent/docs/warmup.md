@@ -12,6 +12,8 @@ This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-cal
 
 **Jay-booked calls:** If the lead was routed to Jay's calendar, skip the warmup entirely. Jay handles his own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Samuel profile: Samuel's/Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on Jay's calendar for any profile, skip.
 
+**No booking links in warmup messages.** The lead has already booked. Never include any calendar link (profile calendar, Jay's calendar, or any other) in a warmup message. The warmup is a pre-call prep message, not a booking prompt. Including a booking link creates a double-booking scenario. Observed failure: warmup messages included Jay's booking link sent to leads who had already booked.
+
 ---
 
 ## Step W0: Inventory What the Lead Already Answered
