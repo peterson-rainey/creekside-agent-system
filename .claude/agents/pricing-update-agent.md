@@ -118,7 +118,7 @@ Files that will be changed:
     - e0a6ec2a (Pricing Update Workflow)
     - ef471d62 (Billing training extraction)
   External repos (2 files):
-    - ~/creekside-website/src/pages/pricing.astro
+    - ~/creekside-website/src/pages/_pricing.astro  (page offline since 2026-06-05; underscore prefix disables the route)
     - ~/creekside-website/src/data/structuredData.ts
   SDR agent: prompts.ts checked (NO-OP for rate/cap changes -- skipped)
   Google Drive: 2 files uploaded
