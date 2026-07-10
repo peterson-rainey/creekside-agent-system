@@ -13,6 +13,7 @@ Pure SQL function `check_agent_prompt_drift()` that runs nightly at 4am CT via p
 ## What it checks (redesigned 2026-07-06)
 
 1. **Missing dispatcher prompt** (`drift_detected`, critical): Any enabled `ai_dispatcher` agent in `scheduled_agents` whose `system_prompt` (the prompt the dispatcher actually executes) is NULL or < 100 chars.
+1b. **Pointer prompt in dispatcher** (`drift_detected`, critical, added 2026-07-09): Any enabled `ai_dispatcher` agent whose executed prompt is 100-299 chars AND references `agent_definitions`, `.claude/agents/`, "see file", "prompt lives in", or `SELECT system_prompt`. The dispatcher sends `scheduled_agents.system_prompt` verbatim -- it never resolves pointers, so a pointer-only prompt is circular and the run executes with no real instructions. Caught in the wild: ai-analyst-agent's 113-char circular prompt evaded the < 100 rule. The < 300 length gate keeps long legit prompts that merely mention agent_definitions (e.g. fusion-weekly-report at 1074 chars) from firing.
 2. **Unconventional short prompt** (`short_prompt`, medium): Any active agent in `agent_definitions` with system_prompt < 100 chars that matches NO intentional-stub convention (file pointer "See .claude/agents/", DB pointer "Agent prompt lives in the database", "python script", "no AI prompt", "DEPRECATED", "status: needs-rebuild", "deterministic pipeline").
 
 ## What it deliberately does NOT check anymore

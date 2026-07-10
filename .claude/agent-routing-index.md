@@ -3,7 +3,7 @@
 Quick-reference for routing requests to the correct agent. Use this for fast pattern-matching. For BUILD and ACTION requests, always confirm against `agent_definitions` if the agent is unfamiliar or recently added.
 
 **Maintained by:** agent-builder-agent (adds new entries after every build)
-**Last updated:** 2026-06-04
+**Last updated:** 2026-07-09
 
 ---
 
@@ -11,7 +11,8 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 
 | Agent | Use when... |
 |-------|-------------|
-| ads-agent | Any ad performance question, campaign analysis, creative review (Meta or Google) |
+| ads-agent | Any ad performance question, campaign analysis, creative review (Meta or Google). NOTE: status=draft in agent_definitions -- pending Peterson's promote-or-remove decision |
+| ad-account-monitor-agent | Daily morning monitor for Creekside ad accounts -- 6 health-check rules against live Meta data per monitored client (scheduled) |
 | ad-copy-editor-agent | Changing ad copy across Google/Meta accounts (find/replace, lane-aware edits) |
 | competitor-ad-research-agent | Competitor ad intelligence on Google (Transparency Center) AND Meta (Ad Library -- Chrome-driven, optional API). Use for pre-launch competitive analysis, single- or multi-vertical research, attack-ad discovery. |
 | laleh-rebuttal-agent | Laleh/Lux Dental complaint rebuttals with live evidence + PDF |
@@ -70,7 +71,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | daily-status-brief | Morning brief covering calendar, action items, email, pipelines, finances |
 | clickup-task-manager-agent | ClickUp task CRUD, status updates, overdue reports |
 | google-calendar-agent | Calendar management, event creation, time-block rules |
-| call-action-item-extractor | Extract action items from call transcripts (read-only) |
+| post-call-agent | Extract deduplicated action items from sales/client call transcripts; writes approved Notes for Next Call items to the client's ClickUp weekly call notes doc |
 | action-item-closer | Daily auto-close of completed action items (scheduled) |
 | financial-analyst-agent | P&L, expenses, revenue, cash flow, budgets |
 | ghl-crm-agent | GoHighLevel CRM queries -- contacts, opportunities, calls, SMS |
@@ -105,7 +106,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | peterson-gmail-draft-agent | SCHEDULED (every 30 min, business hours Mon-Fri). Server-side draft-reply agent for Peterson's inbox (peterson@). Scans for genuine human emails, pulls Supabase RAG context, creates DRAFT replies in Peterson's voice. Never sends. Ships DISABLED -- enable after Railway Gmail OAuth confirmed and first batch reviewed. Note: overlaps with gmail-manager skill; enable deliberately. |
 | peterson-gmail-inbox-sorter-agent | SCHEDULED (3x daily Mon-Fri: 9am/12pm/4pm CT). Auto-sorts new emails in Peterson's inbox into his existing Gmail folders. Classifies via live label discovery + sampling. Archives sorted mail, marks non-important email read. Human-direct, client/lead, and urgent/money emails stay UNREAD. High-water mark ensures only new mail is touched per run. Browser delegation via Cyndi. Never sends/replies/deletes. Built by Cyndi. |
 | filter-feedback-digest | Daily auto-filter candidate digest for approval |
-| newsletter-send-agent | Peterson wants to send his weekly newsletter to GHL subscribers without opening the GHL UI. Handles opt-out suppression, shows preview + recipient count, requires explicit confirmation before sending. Admin-only (needs GHL_API_KEY). |
+| newsletter-send-agent | Peterson wants to send his weekly newsletter to GHL subscribers without opening the GHL UI. Handles opt-out suppression, shows preview + recipient count, requires explicit confirmation before sending. Admin-only (needs GHL_API_KEY). NOTE: status=draft in agent_definitions -- confirm before spawning |
 | unresponded-message-agent | Find messages 48h+ without a reply (Gmail, GChat, ClickUp). Two-pass: Pass 1 filters candidates, Pass 2 detects partial responses, selective responses, and topic-shifted conversations. Drafts replies for inbound, auto-sends ClickUp follow-ups to team, flags client gaps |
 
 ## Infrastructure & Pipelines
@@ -121,14 +122,15 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | docs-refresh | Daily system_registry counts and stale entry cleanup |
 | dedup-scanner | Weekly duplicate detection |
 | sync-agents | Sync local agent files to DB (run after agent changes) |
-| data-quality-agent | Spot-check data quality across tables |
 | data-quality-audit | Weekly Monday data quality audit |
+| agent-prompt-drift-check | Nightly pg_cron check for broken/missing agent prompts (writes pipeline_alerts) |
 
 ## Reporting
 
 | Agent | Use when... |
 |-------|-------------|
 | report-editor-agent | Edit client dashboard reports (plain language changes) |
+| fusion-weekly-report-agent | Fusion Dental Implants weekly Meta report (scheduled Mon/Thu on Railway; emails Lindsey) |
 
 ## Team & Onboarding
 
@@ -164,9 +166,7 @@ When a request triggers one of the patterns below, USE the named format. These a
 |-------|---------|
 | strategy-updater-agent | Per-client daily strategy judgment (Python orchestrator) |
 | creekside-doc-updater-agent | Company living-doc updates (Python orchestrator) |
-| session-summarizer-agent | Nightly chat_sessions cleanup |
-| sdr-prompt-tuner-agent | Daily SDR instruction updates |
-| cost-monitor | API spend limit enforcement |
+| session-summarizer-agent | Nightly chat_sessions cleanup (status=draft in agent_definitions; enabled on Railway) |
 | error-monitor | Hourly error detection |
 | industry-experience-sync | Weekly industry_experience table sync |
 | fathom-cade / gmail-cade | Cade's personal pipeline syncs |
