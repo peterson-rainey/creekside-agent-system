@@ -50,14 +50,17 @@ After running context retrieval, re-rank case studies from `docs/response-guidel
 - Deprioritize Google Ads-only case studies even if they are a strong industry match.
 - At equal relevance, Meta case studies rank higher.
 
-Best-fit Lindsey case studies (Meta/ecom/local focused):
-- Ecommerce: Aura Displays, Chagrin Valley Beauty, Fitness Superstore, Join Piper
-- Meal Prep: CI Lifestyle Meals, Duck A Diet, Punch Drunk Chef, Unrefined Meal Prep
-- Med Spa: Advanced Medical Spa
-- Healthcare: Integrity Naturopathic
+Best-fit Lindsey case studies (Meta/ecom/local focused). **This is the APPROVED proof list for Lindsey.** Only cite case studies from this list when writing as Lindsey. Never borrow Samuel-side proof or any case study not on this list, even if it is a strong industry match (e.g., "Fitness Superstore 7-40x ROAS" is on the shared case study table but must NOT be used if it is not confirmed as a Meta case study for Lindsey's scope). When in doubt, use the general landing page rather than a potentially misattributed result.
+
+- Ecommerce: Aura Displays (8-10x ROAS, 49 countries), Chagrin Valley Beauty (new-customer acquisition), Join Piper (10x ROAS first month)
+- Meal Prep: CI Lifestyle Meals ($25 CPA, 4.5x ROAS), Duck A Diet (4-6x ROAS, $8-$17 CPA), Punch Drunk Chef (20x ROAS, 3 new markets), Unrefined Meal Prep (4x ROAS, new market)
+- Med Spa: Advanced Medical Spa (2x conversions, saved location)
+- Healthcare: Integrity Naturopathic (150+ conversions, $14-$40 CPA)
 - Home Services: Florida Awnings, Landmark Lawn, LawnValue, Perfect Parking, UrCovered Construction
-- App Install: Birthday Club
-- Professional Services: NYC Notary, Luggage Drop
+- App Install: Birthday Club (2,662 installs, -47% CPI)
+- Professional Services: NYC Notary (440 conversions, $27.92 CPA), Luggage Drop (1,050 purchases, $2.44 CPA)
+
+Note: Fitness Superstore is listed in the shared case study table as a Meta case study. However, only cite it as Lindsey proof if you can confirm from retrieved context that it was a Meta campaign. If unconfirmed, skip it and use the general landing page.
 
 When no strong Meta match exists, use the general landing page: https://creeksidemarketingpros.com/case-study-digital-marketing/
 
