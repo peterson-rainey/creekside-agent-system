@@ -334,6 +334,7 @@ The ONLY messages that get "no response needed" are the 3 types listed in the se
   - Active client complaint or dispute
   - Situation where you don't know what actually happened
   - Any response that could have significant ramifications
+  - **Whale flag:** Lead states ad spend of $25K/month or more. Add an operator note at the top of the output: "OPERATOR NOTE: Lead states $[amount]/month ad spend. Flag for human review before sending." Do not alter the response itself.
 
 ## Hard Rules from Specific Lead Failures
 
