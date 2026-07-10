@@ -7,9 +7,9 @@ tools:
   - mcp__claude_ai_Gmail__search_threads
   - mcp__claude_ai_Gmail__get_thread
   - mcp__claude_ai_Gmail__create_draft
-  - mcp__claude_ai_Zapier__clickup_send_chat_message
-  - mcp__claude_ai_Zapier__clickup_get_chat_channels
-  - mcp__claude_ai_Zapier__clickup_find_the_most_recent_task
+  - mcp__claude_ai_ClickUp__clickup_send_chat_message
+  - mcp__claude_ai_ClickUp__clickup_get_chat_channels
+  - mcp__claude_ai_ClickUp__clickup_filter_tasks
 model: opus
 ---
 
