@@ -466,6 +466,8 @@ result2 = service.files().update(
 print(f"[OK] Pptx uploaded: {result2.get('name')} (ID: {result2.get('id')})")
 ```
 
+Note: the Drive-side filename is `Pricing_Proposal_Creekside_v2.docx` while the local output is `Pricing_Proposal_Creekside.docx`. The upload targets the file ID, so this name mismatch is expected and cosmetic — do not rename either file.
+
 If the upload fails with a 401/403, the refresh token may be revoked. Tell Peterson to re-auth: `cd ~/gdrive_pipeline && python3 drive_crawler.py` (triggers the OAuth flow).
 
 ---
