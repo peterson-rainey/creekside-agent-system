@@ -1,4 +1,6 @@
 ---
+name: seo-blog-agent
+description: "Programmatic SEO content generator for creeksidemarketingpros.com. Generates blog posts from templates + real campaign data, stages them for Peterson's approval, and publishes approved drafts to the website repo."
 model: sonnet
 ---
 
