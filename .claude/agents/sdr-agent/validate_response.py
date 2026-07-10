@@ -530,6 +530,27 @@ def check_and_fix_warns(text):
         if m:
             issues.append(("fabrication_warn", f"{m.group()} -- {label}"))
 
+    # 14b. Hours-scoped engagement phrasing (WARN, no auto-fix -- FIX E)
+    # We never accept, quote, or scope work by hours. When a lead requests hours-based
+    # help, address the underlying need within our engagement model (custom retainer,
+    # performance-based). Never parrot the lead's hour count or promise an hours breakdown.
+    hours_scoped_patterns = [
+        (r'\b\d+\s*[-\u2013]\s*\d+\s+hours?\b',
+         "hours_scoped_engagement -- never accept or quote hours-based scoping; "
+         "address the underlying need within our retainer/performance model"),
+        (r'\bhours?\s+breaks?\s+down\b',
+         "hours_scoped_engagement -- never promise a breakdown of how hours will be spent; "
+         "reframe around our retainer/performance engagement model"),
+        (r'\bper\s+hour\s+of\s+work\b',
+         "hours_scoped_engagement -- never reference per-hour-of-work framing; "
+         "reframe around our retainer/performance engagement model"),
+    ]
+    for pat, label in hours_scoped_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append(("hours_scoped_warn", f"{m.group()} -- {label}"))
+            break  # One WARN is enough; don't stack duplicates
+
     # 14a. "Cade" in lead-facing response (WARN, no auto-fix -- FIX A)
     # Cade is an internal team member. He must never be referenced in lead-facing messages.
     # Routing targets are the active profile persona (Samuel/Lindsey) and Jay only.
