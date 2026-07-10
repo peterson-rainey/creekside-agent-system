@@ -21,6 +21,22 @@ import re
 import sys
 
 # ---------------------------------------------------------------------------
+# Calendar URL whitelist (FIX A)
+# Any calendar.app.google or calendly.com URL not in this set is a BLOCK.
+# ---------------------------------------------------------------------------
+CALENDAR_URL_WHITELIST = {
+    "https://calendar.app.google/wSdVbfwaJRzkw12E7",   # samuel
+    "https://calendly.com/lindsey-bouffard/30min",       # lindsey
+    "https://calendar.app.google/nFP1Brwxz1TsetBA6",   # jay
+}
+
+# Regex to find any calendar.app.google or calendly.com URL in the response
+_CALENDAR_URL_RE = re.compile(
+    r'https?://(?:calendar\.app\.google|calendly\.com)/\S+',
+    re.IGNORECASE,
+)
+
+# ---------------------------------------------------------------------------
 # BLOCK patterns -- any match = response must be rewritten by the agent
 # ---------------------------------------------------------------------------
 BLOCK_PATTERNS = [
