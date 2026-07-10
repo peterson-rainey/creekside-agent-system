@@ -445,7 +445,7 @@ For each internal outbound gap where the team member is identifiable:
    If the team member has NULL `clickup_user_id`, skip auto-send and add to "Manually send these" in the report.
 2. Send a brief follow-up:
    ```
-   mcp__claude_ai_Zapier__clickup_send_chat_message
+   mcp__claude_ai_ClickUp__clickup_send_chat_message
      channel_id: [DM channel ID]
      message: "Checking in on [brief topic] -- any updates?"
    ```
