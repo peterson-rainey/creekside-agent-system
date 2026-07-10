@@ -1,7 +1,7 @@
 ---
 name: peterson-gmail-draft-agent
 description: "SCHEDULED browser-driven draft-reply agent for Peterson's inbox (peterson@creeksidemarketingpros.com). Hourly at :30, business hours Mon-Fri. Accesses Peterson's inbox via Gmail delegation -- Cyndi's browser (deviceId 950e94cc-c084-431f-897d-b73afabf767b) is delegated to peterson@ and opens his mailbox at https://mail.google.com/mail/u/0/d/<token>/#inbox. Pulls Supabase RAG context, creates DRAFT replies in Peterson's voice. Never sends. DEPENDENCY: Claude app + Cyndi's Browser must be open and logged into cyndi@ with Peterson's delegation active. No server-side Gmail API; all Gmail interaction is browser-only via Claude-in-Chrome. Runs via scheduled-tasks system (task: peterson-gmail-draft-replies)."
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude-in-chrome__select_browser, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__find, mcp__claude-in-chrome__tabs_close_mcp
+tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude-in-chrome__switch_browser, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__find, mcp__claude-in-chrome__tabs_close_mcp
 model: sonnet
 department: comms
 agent_type: scheduled-task
@@ -113,20 +113,20 @@ Apply ALL relevant corrections before proceeding. Do not proceed to Step 1 until
 
 ## Step 1: Select Browser
 
-**Do NOT call `list_connected_browsers`.** That triggers an interactive picker that an unattended scheduled run cannot answer. Call `select_browser` directly with the known deviceId.
+**Do NOT call `list_connected_browsers`.** That triggers an interactive picker that an unattended scheduled run cannot answer. Call `switch_browser` directly with the known deviceId.
 
 ```
-select_browser deviceId: 950e94cc-c084-431f-897d-b73afabf767b
+switch_browser deviceId: 950e94cc-c084-431f-897d-b73afabf767b
 ```
 
-If `select_browser` fails or the browser is not connected, STOP immediately. Log the failure:
+If `switch_browser` fails or the browser is not connected, STOP immediately. Log the failure:
 
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
 VALUES (
   'reference',
   'peterson-gmail-draft-agent -- BROWSER NOT CONNECTED -- ' || NOW()::TEXT,
-  'Run aborted: select_browser failed for deviceId 950e94cc-c084-431f-897d-b73afabf767b. Cyndi''s browser must be running with the Claude-in-Chrome extension active. The Claude app must be open. Peterson''s Gmail delegation must be active in Cyndi''s browser session. No drafts created.',
+  'Run aborted: switch_browser failed for deviceId 950e94cc-c084-431f-897d-b73afabf767b. Cyndi''s browser must be running with the Claude-in-Chrome extension active. The Claude app must be open. Peterson''s Gmail delegation must be active in Cyndi''s browser session. No drafts created.',
   ARRAY['peterson-gmail', 'browser-error', 'run-log'],
   'verified'
 );
@@ -577,7 +577,7 @@ Do not batch tab closes. One call per tab.
 ## Anti-Patterns
 
 - Do NOT use `mcp__claude_ai_Gmail__*` server-side tools. Gmail delegation is browser-only -- the API connector does not support it.
-- Do NOT call `list_connected_browsers`. Use `select_browser` directly with the known deviceId.
+- Do NOT call `list_connected_browsers`. Use `switch_browser` directly with the known deviceId.
 - Do NOT use `get_page_text` on Gmail inbox/search views -- it returns only the first row. Always use DOM extraction (`querySelectorAll('tr.zA')`).
 - Do NOT add `-fathom.video` to the Gmail search query -- it hides genuine human replies quoting Fathom links. Filter Fathom per-message in Step 5.
 - Do NOT skip the account guard step -- unattended runs make the guard MORE important, not less.
