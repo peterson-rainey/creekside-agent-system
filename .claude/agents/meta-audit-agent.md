@@ -1,7 +1,7 @@
 ---
 name: meta-audit-agent
 description: "Runs comprehensive Meta Ads audits (80-item checklist, JSM-Sensate + B2B Rocket Phase 1/2/3 structure) against a live ad account via PipeBoard MCP, then produces a Creekside-branded audit.pdf (Tailwind blue palette, cover with KPI tiles, Health Snapshot status table, 12 numbered sections with embedded UI screenshots) plus a Loom Recording Brief for Lindsey/Scott freelance screen-recorders. Output lands in ~/Desktop/meta-audit-<slug>-<date>/. Use when Peterson, Cade, or any team member needs a Meta audit for a client or prospect. Accepts an account ID (act_XXXXXX) or account name."
-tools: Read, Glob, Bash, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_PipeBoard__get_account_info, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_adsets, mcp__claude_ai_PipeBoard__get_adset_details, mcp__claude_ai_PipeBoard__get_ads, mcp__claude_ai_PipeBoard__get_ad_creatives, mcp__claude_ai_PipeBoard__get_creative_details, mcp__claude_ai_PipeBoard__get_pixels, mcp__claude_ai_PipeBoard__get_custom_audiences, mcp__claude_ai_PipeBoard__get_insights, mcp__desktop-commander__write_pdf, mcp__Claude_in_Chrome__navigate, mcp__Claude_in_Chrome__computer, mcp__Claude_in_Chrome__tabs_create_mcp, mcp__Claude_in_Chrome__tabs_context_mcp, mcp__Claude_in_Chrome__tabs_close_mcp, mcp__Claude_in_Chrome__javascript_tool, mcp__Claude_in_Chrome__read_page
+tools: Read, Glob, Bash, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_PipeBoard__get_account_info, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_adsets, mcp__claude_ai_PipeBoard__get_adset_details, mcp__claude_ai_PipeBoard__get_ads, mcp__claude_ai_PipeBoard__get_ad_creatives, mcp__claude_ai_PipeBoard__get_creative_details, mcp__claude_ai_PipeBoard__get_pixels, mcp__claude_ai_PipeBoard__get_custom_audiences, mcp__claude_ai_PipeBoard__get_insights, mcp__desktop-commander__write_pdf, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_close_mcp, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__read_page
 model: opus
 department: client-services
 agent_type: worker
@@ -357,7 +357,7 @@ Pick the top-N findings by severity (CRITICAL > HIGH), preferring EASY-SELL FLAG
 Confirm Chrome MCP is available and Meta is logged in. If unavailable, SKIP this step, set `screenshots_captured = 0`, and flag the gap in the PDF.
 
 ```
-Try: mcp__Claude_in_Chrome__tabs_context_mcp (no args)
+Try: mcp__claude-in-chrome__tabs_context_mcp (no args)
 If error / unavailable -> skip screenshot pass, continue to Step 6
 ```
 
@@ -366,9 +366,9 @@ If error / unavailable -> skip screenshot pass, continue to Step 6
 For each selected finding:
 
 1. Resolve the URL from the recipe in `screenshot-plan.md`. Substitute `{ACT}` and `{ACT_NO_PREFIX}` placeholders.
-2. **Navigate**: `mcp__Claude_in_Chrome__navigate url=<resolved URL>`
+2. **Navigate**: `mcp__claude-in-chrome__navigate url=<resolved URL>`
 3. **Wait**: 6s on the first navigate of the pass (cold load); 2s on subsequent same-domain navigates; 6s on cross-domain transitions.
-4. **Verify ready** via `mcp__Claude_in_Chrome__javascript_tool`:
+4. **Verify ready** via `mcp__claude-in-chrome__javascript_tool`:
    ```js
    (() => {
      const t = (document.body && document.body.innerText) || "";
@@ -380,7 +380,7 @@ For each selected finding:
    If `ready=false`: wait 4 more seconds and retry once. If still not ready, screenshot anyway and flag as low-confidence.
 5. **Auth check**: if the URL contains `login.php` or `checkpoint` or the page text contains "Log in to Facebook", STOP the pass and report: "Meta session not authenticated. Log into Meta Ads Manager in Chrome and re-run."
 6. **Optional UI prep** (e.g., click a status badge to open a side panel): use `javascript_tool` to click by text match. Wait 1 second.
-7. **Screenshot**: `mcp__Claude_in_Chrome__computer action=screenshot save_to_disk=true`. Capture the returned file path.
+7. **Screenshot**: `mcp__claude-in-chrome__computer action=screenshot save_to_disk=true`. Capture the returned file path.
 8. **Move + rename** via Bash:
    ```bash
    mv "<returned_path>" "$AUDIT_DIR/screenshots/NN-<finding-slug>.png"
@@ -392,8 +392,8 @@ For each selected finding:
 
 Per Standing Rule 11, every tab created must be closed before exit:
 ```
-mcp__Claude_in_Chrome__tabs_context_mcp        # list tabs
-mcp__Claude_in_Chrome__tabs_close_mcp tabId=X  # one call per tab, sequential
+mcp__claude-in-chrome__tabs_context_mcp        # list tabs
+mcp__claude-in-chrome__tabs_close_mcp tabId=X  # one call per tab, sequential
 ```
 
 Swallow `Tab <id> no longer exists` and `tab group no longer exists` errors as success.
