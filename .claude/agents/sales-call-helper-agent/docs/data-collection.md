@@ -42,21 +42,22 @@ ORDER BY modified_at DESC
 LIMIT 5
 ```
 
-### Step 6: Pull SDR Response History (If Upwork Lead)
+### Step 6: Pull Upwork Conversation History (If Upwork Lead)
 If the lead source is Upwork or the leads.source field indicates SDR outreach:
 ```sql
-SELECT conversation_id, turn_index, response_pattern, immediate_context,
-  full_response, outcome, ai_summary
-FROM sdr_responses
-WHERE lead_name ILIKE '%LEAD_NAME%'
-ORDER BY conversation_date DESC, turn_index ASC
-LIMIT 20
+SELECT id, room_name, message_count, first_message_at, last_message_at
+FROM upwork_conversations
+WHERE room_name ILIKE '%LEAD_NAME%'
+ORDER BY last_message_at DESC
+LIMIT 5
 ```
 
-If SDR responses exist, pull full text for the most recent conversation:
+If conversations exist, pull the full message thread for the most recent one:
 ```sql
-SELECT * FROM get_full_content_batch('sdr_responses', ARRAY['id1', 'id2', 'id3'])
+SELECT messages FROM upwork_conversations WHERE id = 'CONVERSATION_ID'
 ```
+
+Historical fallback only (frozen since 2026-06, do not treat as current): `sdr_responses` via `WHERE lead_name ILIKE '%LEAD_NAME%'`.
 
 ### Step 7: Determine Pricing Recommendation
 Retrieve current pricing tiers from agent_knowledge — do not hardcode values:
