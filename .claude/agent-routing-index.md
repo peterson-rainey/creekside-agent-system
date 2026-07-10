@@ -165,6 +165,7 @@ When a request triggers one of the patterns below, USE the named format. These a
 |-------|---------|
 | strategy-updater-agent | Per-client daily strategy judgment (Python orchestrator) |
 | creekside-doc-updater-agent | Company living-doc updates (Python orchestrator) |
+| client-core-doc-updater-agent | Per-client ClickUp Info/Project Info doc updater (Python orchestrator + direct CLI invocation). Keeps human-readable ClickUp docs current as contacts, budgets, operators, tracking setup, or engagement terms change. |
 | session-summarizer-agent | Nightly chat_sessions cleanup (status=draft in agent_definitions; enabled on Railway) |
 | error-monitor | Hourly error detection |
 | industry-experience-sync | Weekly industry_experience table sync |
