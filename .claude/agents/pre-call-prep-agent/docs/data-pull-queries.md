@@ -122,10 +122,13 @@ Peterson has already read the Upwork chat directly, but the ClickUp comments may
 
 #### SDR / Upwork History (supplementary)
 ```sql
-SELECT id, title, created_at, ai_summary FROM sdr_responses
-WHERE ai_summary ILIKE '%PERSON_NAME%' OR ai_summary ILIKE '%COMPANY_NAME%'
-ORDER BY created_at DESC LIMIT 5;
+SELECT id, room_name, message_count, first_message_at, last_message_at
+FROM upwork_conversations
+WHERE room_name ILIKE '%PERSON_NAME%' OR room_name ILIKE '%COMPANY_NAME%'
+ORDER BY last_message_at DESC LIMIT 5;
 ```
+Pull the thread for a match: `SELECT messages FROM upwork_conversations WHERE id = 'ID';`
+(`sdr_responses` is frozen historical data as of 2026-06 -- only query it as an explicit last-resort fallback.)
 
 #### Warm-Up Messaging Sent
 The warm-up SOP sends resource messages before the call. Report: how many were sent and which resources were shared (this tells Peterson what the prospect has already seen).
