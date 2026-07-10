@@ -211,6 +211,7 @@ BANNED_PHRASES = [
     (r"\butilize\b", "use"),
     (r"\bfacilitate\b", "help with"),
     (r"\bdelve\b", "dig into"),
+    (r'[Ll]ook\s+forward\s+to\s+hearing\s+back\b', ""),
 ]
 
 FORMAL_TRANSITIONS = [
