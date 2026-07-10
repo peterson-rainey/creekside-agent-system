@@ -261,7 +261,7 @@ Tag every claim:
 - ALWAYS update the cache before finishing (Call 7)
 - Never include `char_count` in raw_content INSERTs (generated column)
 - NEVER spawn child processes, use Bash, or run external commands — all work is SQL via execute_sql
-- Some clients communicate exclusively via Slack (e.g., Retirement Income Solutions). If gchat count is 0 and slack count is also 0, check whether the client has a Slack channel that isn't synced to the DB. Note this gap in the output: "Slack channel may exist but is not synced to DB -- check manually."
+- Slack is INGESTION-ONLY at Creekside -- the daily pipeline reads a few client channels (e.g., medwriter, tiami-nightlark) into the brain. If gchat count is 0, check `slack_messages` for an ingested channel before concluding there is no communication history. If both are 0, note: "No synced communication channel found -- check manually."
 
 ## Additional Data Source: Contractor Pre-work Spreadsheets
 
