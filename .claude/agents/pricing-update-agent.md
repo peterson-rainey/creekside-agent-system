@@ -654,7 +654,7 @@ Output files: [list with sizes]
 - Pricing_Plans.pptx: [UPLOADED / FAILED]
 
 ### Website (creekside-website)
-- pricing.astro: [UPDATED -- single-plan layout applied]
+- _pricing.astro: [UPDATED -- numbers updated in existing single-plan layout; page remains offline unless Peterson approves re-enabling the route]
 - structuredData.ts: [UPDATED / no pricing numbers found]
 - Blog scan: [N files found with old values / none found]
 - Git commit: [hash]
