@@ -247,6 +247,19 @@ def check_blocks(text):
         if 'https://' not in text and 'http://' not in text:
             issues.append(("missing_calendar_link", "(call suggested but no URL)"))
 
+    # Calendar URL whitelist check (FIX A)
+    # Any calendar.app.google or calendly.com URL that is not in the whitelist is a BLOCK.
+    for url_match in _CALENDAR_URL_RE.finditer(text):
+        url = url_match.group().rstrip('.,;)')  # strip trailing punctuation
+        if url not in CALENDAR_URL_WHITELIST:
+            issues.append((
+                "non_whitelisted_calendar_url",
+                f"{url} -- only approved URLs are samuel: "
+                "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
+                "lindsey: https://calendly.com/lindsey-bouffard/30min | "
+                "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6"
+            ))
+
     return issues
 
 
@@ -515,6 +528,17 @@ def check_and_fix_warns(text):
         m = re.search(pat, fixed, re.IGNORECASE)
         if m:
             issues.append(("fabrication_warn", f"{m.group()} -- {label}"))
+
+    # 14a. "Cade" in lead-facing response (WARN, no auto-fix -- FIX A)
+    # Cade is an internal team member. He must never be referenced in lead-facing messages.
+    # Routing targets are the active profile persona (Samuel/Lindsey) and Jay only.
+    cade_match = re.search(r'\bCade\b', fixed)
+    if cade_match:
+        issues.append((
+            "internal_name_cade",
+            "Cade -- internal team member must not appear in lead-facing text; "
+            "routing targets are the active profile persona and Jay only",
+        ))
 
     # 14. Fee terminology without dollar amounts (WARN, no auto-fix)
     # Catches bare fee phrases that slip past the BLOCK patterns (which require a dollar amount).
