@@ -193,6 +193,7 @@ Summaries are for FINDING records. Raw text is for ANSWERING questions.
 | Failed agent runs | `agent_run_history WHERE status IN ('failure','timeout') AND started_at > NOW() - interval '24h'` |
 | System health (all-in-one) | `system_health_dashboard()` |
 | SOPs and procedures | `agent_knowledge WHERE type = 'sop' AND title ILIKE '%keyword%'` |
+| Everything on a topic / "how do I do X" | `get_topic_360('topic', client_id)` -- resolves 38 canonical topics + aliases across 19 tables. Training videos: agent_knowledge entries titled `Loom How-To Index -- <category>`. Topic list: `SELECT name, category, aliases FROM topic_taxonomy` |
 | Schema, columns, relationships | `SELECT content FROM agent_knowledge WHERE id = '104ec927-073d-4a8e-aaaa-6fa66c6abd66';` |
 
 ### agent_knowledge Types (filter by type for targeted results)
