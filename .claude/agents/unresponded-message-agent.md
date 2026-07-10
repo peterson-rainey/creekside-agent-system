@@ -439,7 +439,7 @@ Draft guidelines:
 For each internal outbound gap where the team member is identifiable:
 1. Look up their ClickUp DM channel:
    ```
-   mcp__claude_ai_Zapier__clickup_get_chat_channels
+   mcp__claude_ai_ClickUp__clickup_get_chat_channels
    ```
    Filter for the team member's DM channel. Cade's DM is `8cqc1ym-20257` (hardcoded -- his ClickUp email differs from his creeksidemarketingpros.com email).
    If the team member has NULL `clickup_user_id`, skip auto-send and add to "Manually send these" in the report.
