@@ -82,6 +82,7 @@ The four elements above are strong options that rotate with the touch library --
 
 - No taglines, no long sign-offs. Recipient knows your name.
 - Vary length and tone. Sometimes a single sentence; sometimes 2-3 for warmth.
+- **HARD CAP: 1-3 sentences per touch.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA in the same message. (Exception: the Byren gold-standard example above is longer because it is a post-call nurture re-open with a full insight section; use that structure only when explicitly building that type of touch. Standard nurture touches stay at 1-3 sentences.)
 - Don't require every message to end with a question or CTA. Vary this.
 - At most one link per message (tools/resources: spreadsheets, docs, Drive, Figma, YouTube only). No links to LinkedIn or off-Upwork contact. Paste URLs directly.
 - No duplicate resources. Scan conversation before including any link.
