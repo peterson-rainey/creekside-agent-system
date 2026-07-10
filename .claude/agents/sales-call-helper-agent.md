@@ -31,7 +31,7 @@ Arm Peterson with everything he needs to run an effective sales call in under 3 
 
 ## Scope
 CAN do:
-- Pull lead context from `leads`, `fathom_entries`, `gmail_summaries`, `gdrive_operations`, `gdrive_marketing`, `sdr_responses`
+- Pull lead context from `leads`, `fathom_entries`, `gmail_summaries`, `gdrive_operations`, `gdrive_marketing`, `upwork_conversations` (`sdr_responses` is frozen historical data -- fallback only)
 - Load Peterson's proven sales methodology and objection responses from `agent_knowledge`
 - Generate talking points, questions, objection responses, pricing guidance, and competitive positioning
 - Flag red flags from prior interactions
