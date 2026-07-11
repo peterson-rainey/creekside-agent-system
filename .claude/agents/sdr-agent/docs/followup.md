@@ -69,9 +69,12 @@ Before suggesting a resource, scan conversation for resources already shared. Ne
 
 **Goal: begin onboarding, not book another call.** The call already happened. Do NOT suggest scheduling another call unless 6+ months have passed (see "Post-Call Goal Shift" in context-retrieval.md).
 
+**EXCEPTION -- call 6+ months ago:** When the call is 6 months or older, the onboarding context is stale. Goal switches to re-engagement: book a fresh discovery call. CTA must include the profile's calendar link (samuel: https://calendar.app.google/wSdVbfwaJRzkw12E7 | lindsey: https://calendly.com/lindsey-bouffard/30min). Reference the old call only as past context, never as current facts. Observed failure: post-call followup on a 7-month-old call that included stats and hesitation from that call as if current, with no re-engagement CTA.
+
 A generic follow-up to someone who gave 30 minutes burns trust. Every post-call followup MUST reference specifics from the transcript: their stated pain points, goals, questions they raised, or agreed next steps.
 
 - **CTA = onboarding next steps:** Send the onboarding doc, get account access, confirm proposal details, answer the one thing holding them back. NOT "let's hop on another call."
+- **CTA for 6-month-old calls:** Fresh call re-engagement with the profile's calendar link. No onboarding push.
 - If no transcript was retrieved (degraded mode), limit to a bare status question. Do NOT fabricate call references.
 - Reference what they said in your own words. Do not quote or parrot them back.
 - One clear next step per message (usually: confirm the proposal is coming, confirm a date, or ask the one decision-blocker they mentioned).
