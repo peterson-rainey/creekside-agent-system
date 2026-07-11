@@ -90,7 +90,8 @@ If the lead was previously routed to Jay (Jay's calendar link was sent or Jay wa
 
 - No taglines, no long sign-offs. Recipient knows your name.
 - Vary length and tone. Sometimes a single sentence; sometimes 2-3 for warmth.
-- **HARD CAP: 1-3 sentences per touch.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA in the same message. (Exception: the Byren gold-standard example above is longer because it is a post-call nurture re-open with a full insight section; use that structure only when explicitly building that type of touch. Standard nurture touches stay at 1-3 sentences.)
+- **HARD CAP: 1-3 sentences per touch -- non-negotiable.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA in the same message. (Exception: the Byren gold-standard example above is longer because it is a post-call nurture re-open with a full insight section; use that structure only when explicitly building that type of touch. Standard nurture touches stay at 1-3 sentences.)
+- **A lead's stated preference for longer messages does NOT override the cap.** If a lead said "send me detail or don't bother," the 1-3 sentence cap still applies to a standard nurture touch. The Byren long-form exception requires a post-call re-open with a genuine insight section -- it is not unlocked by any lead preference. Observed failure: multi-paragraph touch sent because the lead requested detail in a prior message.
 - Don't require every message to end with a question or CTA. Vary this.
 - At most one link per message (tools/resources: spreadsheets, docs, Drive, Figma, YouTube only). No links to LinkedIn or off-Upwork contact. Paste URLs directly.
 - No duplicate resources. Scan conversation before including any link.
