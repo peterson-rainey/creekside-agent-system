@@ -1,0 +1,145 @@
+[
+  {
+    "runid": "W01",
+    "scenario": "W01",
+    "verdict": "PASS",
+    "reasons": [
+      "Case A correctly detected (all 7 answered + video mentioned): no discovery questions, no video nudge, no YouTube mention",
+      "Brief 2-sentence personalized note referencing their specifics ($150 per booked job, $8K spend, drop-off/account structure)",
+      "No pricing, no disqualification, nothing that jeopardizes the call",
+      "Full answered inventory (Q1-Q7) present in Context Retrieved"
+    ]
+  },
+  {
+    "runid": "W02",
+    "scenario": "W02",
+    "verdict": "PASS",
+    "reasons": [
+      "Case B correctly detected (all answered, video not mentioned): profile video nudge included, zero discovery questions asked",
+      "YouTube channel mention (youtube.com/@creeksidemarketing1) present as a separate sentence, which is allowed for samuel profile",
+      "Personalized forward-look referencing their situation ($6K split between two platforms, $80 CPA target, thoughts on allocation)"
+    ]
+  },
+  {
+    "runid": "W03a",
+    "scenario": "W03",
+    "verdict": "PASS",
+    "reasons": [
+      "Correctly extracted answers buried in JD + screening: Q1, Q2, Q3, Q5, Q7 marked answered; did not re-ask budget, website, years, or agency history",
+      "Asked only Q4 ('what does a good lead cost look like for you') and Q6 ('what's the business doing in annual revenue')",
+      "Video nudge included (video not mentioned anywhere in thread)",
+      "Answered/unanswered inventory present in Context Retrieved"
+    ]
+  },
+  {
+    "runid": "W03b",
+    "scenario": "W03",
+    "verdict": "PASS",
+    "reasons": [
+      "Q1/Q2/Q3/Q5/Q7 correctly inventoried as answered from JD + screening; no re-asks",
+      "Asked only Q4 ('what are you targeting per lead or per roofing job') and Q6 ('what's the business running at revenue-wise')",
+      "Video nudge included",
+      "Answered/unanswered inventory present in Context Retrieved"
+    ]
+  },
+  {
+    "runid": "W03c",
+    "scenario": "W03",
+    "verdict": "PASS",
+    "reasons": [
+      "Q1/Q2/Q3/Q5/Q7 correctly inventoried as answered; no re-asks of budget/website/years/agency",
+      "Asked only Q4 ('do you have a target cost per lead you need to hit') and Q6 ('what's your annual revenue looking like')",
+      "Video nudge included",
+      "Answered/unanswered inventory present in Context Retrieved"
+    ]
+  },
+  {
+    "runid": "W04",
+    "scenario": "W04",
+    "verdict": "PASS",
+    "reasons": [
+      "Case D correctly detected (bare thread, all 7 unanswered): video nudge + short-list of all 7 questions",
+      "Q3 budget included ('What's your monthly ad spend or what are you planning to invest?')",
+      "All 7 questions covered (Q5/Q6 compressed into one line, acceptable as short list)",
+      "No generic 'looking forward to speaking with you' close; personalized to the extent possible (references the Friday call)"
+    ]
+  },
+  {
+    "runid": "W05a",
+    "scenario": "W05",
+    "verdict": "PASS",
+    "reasons": [
+      "Q3 (ad spend) correctly flagged UNANSWERED and MANDATORY, and asked ('what's your current monthly ad spend or what you're planning to invest')",
+      "Did not re-ask revenue, years, website, agency history, or ROAS; referenced known facts ($3M, freelancer miss, 3x ROAS) as personalization only",
+      "Also asked Q2 (current strategy), which is genuinely unanswered and not on the forbidden re-ask list",
+      "Video nudge included"
+    ]
+  },
+  {
+    "runid": "W05b",
+    "scenario": "W05",
+    "verdict": "PASS",
+    "reasons": [
+      "Q3 asked ('what's the monthly ad spend you're working with or planning to invest'); flagged MANDATORY in inventory",
+      "No re-asks of revenue, years, website, agency history, or ROAS; those appear only as personalization",
+      "Video nudge included"
+    ]
+  },
+  {
+    "runid": "W05c",
+    "scenario": "W05",
+    "verdict": "PASS",
+    "reasons": [
+      "Q3 asked ('what's your current monthly ad spend or what are you planning to invest'); flagged MANDATORY in inventory",
+      "No re-asks of revenue, years, website, agency history, or ROAS",
+      "Video nudge included"
+    ]
+  },
+  {
+    "runid": "W06a",
+    "scenario": "W06",
+    "verdict": "PASS",
+    "reasons": [
+      "No warmup message generated; agent explicitly states lead is booked on Jay's calendar and warmup is skipped per eligibility rules ('Jay handles his own pre-call prep')",
+      "No discovery-question message produced; validation correctly skipped"
+    ]
+  },
+  {
+    "runid": "W06b",
+    "scenario": "W06",
+    "verdict": "PASS",
+    "reasons": [
+      "No warmup message generated; explicit skip statement citing warmup eligibility rule for Jay-booked calls",
+      "No discovery-question message produced"
+    ]
+  },
+  {
+    "runid": "W06c",
+    "scenario": "W06",
+    "verdict": "PASS",
+    "reasons": [
+      "No warmup message generated; explicit skip with rule citations ('skip the warmup entirely. Jay handles his own pre-call prep' / 'Skip if booked on Jay's calendar')",
+      "No discovery-question message produced"
+    ]
+  },
+  {
+    "runid": "W07",
+    "scenario": "W07",
+    "verdict": "PASS",
+    "reasons": [
+      "No pricing content in any form: no ranges, no percentages, no fee terms, no revisit of the pricing question",
+      "Asked only unanswered questions: Q1 (prior help, explicitly allowed by rubric), Q4 (target cost per new member / ROAS), Q6 (yearly revenue); did not re-ask spend, years, or website",
+      "Video nudge included; message is ~115 words, under the 150-word cap"
+    ]
+  },
+  {
+    "runid": "W08",
+    "scenario": "W08",
+    "verdict": "PASS",
+    "reasons": [
+      "Video correctly counted as WATCHED via content reference (broad match point): no video nudge, no YouTube mention",
+      "Only Q1 asked ('have you worked with anyone on the Google Ads side before, or has this been managed in-house?'), which the rubric explicitly allows; all other answered facts not re-asked",
+      "Short, personalized minimal Case C referencing broad match, $120 booked-move target, and $7K spend; no pricing"
+    ]
+  }
+]

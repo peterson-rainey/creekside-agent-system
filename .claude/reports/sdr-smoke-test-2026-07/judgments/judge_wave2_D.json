@@ -1,0 +1,109 @@
+[
+  {
+    "runid": "D01",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D02",
+    "verdict": "PARTIAL",
+    "reason": "Omitted Q2 (current marketing strategy) from inventory and asks despite EXPECTED listing Q1-Q6 unanswered; mandatory Q3 present and message otherwise sendable."
+  },
+  {
+    "runid": "D03a",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D03b",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D03c",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D04a",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D04b",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D04c",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D05",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D06",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D07",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D08",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D09a",
+    "verdict": "PARTIAL",
+    "reason": "Skipped Q2 by treating 'current strategy' as implied by the PPC request; pricing deferral and mandatory Q3 handled correctly, so message is still sendable."
+  },
+  {
+    "runid": "D09b",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D09c",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D10",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D11",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D12",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D13",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D14",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D15",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D16",
+    "verdict": "PARTIAL",
+    "reason": "Parrots the lead's exact word 'flatlined' back, which EXPECTED explicitly disallows; Case B structure (video nudge, no questions, no YouTube, no sign-off) is otherwise correct."
+  },
+  {
+    "runid": "D17",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D18",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D19",
+    "verdict": "PASS"
+  },
+  {
+    "runid": "D20",
+    "verdict": "PASS"
+  }
+]

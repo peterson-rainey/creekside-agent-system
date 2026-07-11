@@ -1,0 +1,192 @@
+[
+  {
+    "runid": "L23",
+    "scenario": "L23",
+    "verdict": "PASS",
+    "reasons": [
+      "Correctly flagged as live meeting check-in with no generated response: 'No response needed. This is a live meeting check-in... AI does not handle.'",
+      "Routes to a human (Peterson/Cade) to join the Zoom in real time; no draft reply to the lead was produced."
+    ]
+  },
+  {
+    "runid": "L24",
+    "scenario": "L24",
+    "verdict": "PASS",
+    "reasons": [
+      "Brief gracious reply, exactly one sentence: 'No worries at all, best of luck with everything!'",
+      "No pitch, no guilt, no attempt to re-engage."
+    ]
+  },
+  {
+    "runid": "L25a",
+    "scenario": "L25",
+    "verdict": "PASS",
+    "reasons": [
+      "Never echoes WhatsApp, Telegram, the phone number, or the handle; uses the neutral substitute 'the channel you mentioned'.",
+      "Keeps conversation on Upwork ('better to keep things here for now') and still responds helpfully with a qualifying question."
+    ]
+  },
+  {
+    "runid": "L25b",
+    "scenario": "L25",
+    "verdict": "PASS",
+    "reasons": [
+      "No echo of any off-platform channel, number, or handle anywhere in the response.",
+      "Keeps it on Upwork with a positive rationale (contract/payment protections) and continues the conversation with a qualifying question."
+    ]
+  },
+  {
+    "runid": "L25c",
+    "scenario": "L25",
+    "verdict": "PASS",
+    "reasons": [
+      "Uses the approved neutral substitute 'your preferred channel'; never repeats WhatsApp/Telegram/number/handle.",
+      "Keeps things on Upwork and responds helpfully ('What are you looking to get sorted? I can help right here.')."
+    ]
+  },
+  {
+    "runid": "L26",
+    "scenario": "L26",
+    "verdict": "PASS",
+    "reasons": [
+      "Addresses the underlying fear (accountability, 'we only grow when your results grow', 'tell you straight whether paid ads are the right move right now or not') rather than only defending pricing.",
+      "Proactively provides the med spa case study (Advanced Medical Spa, near-closure location turned profitable) with a proper VA attachment block after validation.",
+      "Never parrots 'burned'; no seal clapping; no disqualification language.",
+      "Minor note (not penalized): 'no need to forgive anything' lightly mirrors the lead's 'forgive me' phrasing, but 'forgive' is not a banned echo in the rubric."
+    ]
+  },
+  {
+    "runid": "L27",
+    "scenario": "L27",
+    "verdict": "FAIL",
+    "reasons": [
+      "Hard criterion violated: rubric requires next step to a call with SAMUEL's calendar link (https://calendar.app.google/wSdVbfwaJRzkw12E7). The response instead routes to a different person and link: 'I'd want to get you on a call with Cade who runs our Meta side... Grab a time here: https://calendar.app.google/85PWYBwxqYNq18qe9' -- wrong routing and wrong calendar link.",
+      "Soft deviation: opening '$12K with most of it on Google makes sense for roofing' partially restates what the lead just said, which the rubric discourages.",
+      "Correctly avoided Jay routing (positive), but the Cade/other-calendar route is not the expected default path."
+    ]
+  },
+  {
+    "runid": "L28a",
+    "scenario": "L28",
+    "verdict": "PASS",
+    "reasons": [
+      "Exactly the target energy and length (4 words): 'Sounds good, no rush.'",
+      "No paragraph, no pitch appended."
+    ]
+  },
+  {
+    "runid": "L28b",
+    "scenario": "L28",
+    "verdict": "PASS",
+    "reasons": [
+      "Exactly the target energy and length (4 words): 'Sounds good, no rush.'",
+      "No paragraph, no pitch appended."
+    ]
+  },
+  {
+    "runid": "L28c",
+    "scenario": "L28",
+    "verdict": "PASS",
+    "reasons": [
+      "Exactly the target energy and length (4 words): 'Sounds good, no rush.'",
+      "No paragraph, no pitch appended."
+    ]
+  },
+  {
+    "runid": "L29",
+    "scenario": "L29",
+    "verdict": "PASS",
+    "reasons": [
+      "Short one-sentence acknowledgment with correct energy: 'Got it, appreciate all four. See you Thursday.'",
+      "No Jay redirect despite the $4K budget (correct: $3K-$5K post-booking keeps the call).",
+      "No multi-paragraph diagnostic analysis."
+    ]
+  },
+  {
+    "runid": "L30a",
+    "scenario": "L30",
+    "verdict": "FAIL",
+    "reasons": [
+      "Hard criterion violated: rubric requires the post-booking redirect flow ('He'll be on the call at the same time' energy, meeting kept). Instead the run used the pre-booking Jay routing template with Jay's calendar link: 'I'd point you his way: https://calendar.app.google/nFP1Brwxz1TsetBA6' -- this asks the lead to book a NEW call with Jay rather than keeping the already-booked Thursday call, i.e. wrong routing flow.",
+      "Missing mandatory element: no operator instructions block ('Queenie: notify Cyndi... Mark the calendar event grey...') anywhere in the output.",
+      "No spend-floor/disqualification language to the lead (that part is fine), and awkward double greeting ('Got it, thanks Dave. ... Hey Dave, you'd actually...')."
+    ]
+  },
+  {
+    "runid": "L30b",
+    "scenario": "L30",
+    "verdict": "PASS",
+    "reasons": [
+      "Correct post-booking redirect message with the required energy: 'He'll be on the call at the same time.' Meeting not cancelled.",
+      "Operator instructions present and correct: 'Queenie: notify Cyndi (if Peterson's calendar) to send Jay the meeting link. Mark the calendar event grey so Peterson knows they are not handling it.'",
+      "No spend floor or disqualification language sent to the lead."
+    ]
+  },
+  {
+    "runid": "L30c",
+    "scenario": "L30",
+    "verdict": "PASS",
+    "reasons": [
+      "Correct post-booking redirect message with the required energy: 'He'll be on the call at the same time.' Meeting not cancelled.",
+      "Operator instructions block present with the exact required content (Queenie/Cyndi/grey calendar event).",
+      "No spend floor or disqualification language sent to the lead."
+    ]
+  },
+  {
+    "runid": "L31",
+    "scenario": "L31",
+    "verdict": "PASS",
+    "reasons": [
+      "Onboarding CTA, not another call: 'Next step is the onboarding sheet. It covers account access, brand guidelines...' -- matches the <6mo post-call path.",
+      "References the situation naturally without fabricating call specifics not in the thread.",
+      "Timeline phrasing is hedged ('typically... within the first week or so'), not a hard commitment; rubric for this scenario does not prohibit it."
+    ]
+  },
+  {
+    "runid": "L32",
+    "scenario": "L32",
+    "verdict": "PASS",
+    "reasons": [
+      "Correctly treats the Nov 2025 call as stale and asks for a NEW discovery call: 'A lot has probably changed since November so it'd make sense to do a fresh call and reassess.'",
+      "Samuel calendar link included as plain URL: https://calendar.app.google/wSdVbfwaJRzkw12E7."
+    ]
+  },
+  {
+    "runid": "L33",
+    "scenario": "L33",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Confirms certification and stays short (meets those bullets): 'Yep, Google Ads certified. Happy to send over whatever documentation your procurement team needs.'",
+      "Misses a rubric bullet: does NOT note that the certification itself is fairly meaningless and that results are what matter. Soft positioning criterion, no compliance violation, so PARTIAL rather than FAIL."
+    ]
+  },
+  {
+    "runid": "L34a",
+    "scenario": "L34",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Honest: 'No, haven't run ads for alpaca farms or livestock businesses specifically' -- no fabricated niche experience, no false industry claims (hard criteria met).",
+      "Pivots to closest real experience categories (subscription ecom, local service) but names NO real client, missing the rubric bullet 'with a real named client'. Soft criterion deviation: 'Closest would be our ecommerce subscription work and local service-based businesses' cites no named client or concrete result."
+    ]
+  },
+  {
+    "runid": "L34b",
+    "scenario": "L34",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Honest: 'No, haven't worked with alpaca farms or livestock businesses specifically... I won't pretend the industry context is identical' -- no fabrication (hard criteria met).",
+      "Pivots to subscription ecom but names NO real client: 'Closest would be subscription-based ecommerce, where we've scaled DTC brands on Meta and Google' -- misses the 'real named client' bullet.",
+      "Includes correct Samuel calendar link for the call CTA."
+    ]
+  },
+  {
+    "runid": "L34c",
+    "scenario": "L34",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Honest: 'Haven't worked with alpaca farms specifically' -- no fabricated niche experience (hard criteria met).",
+      "Pivots to real experience with a concrete result but still names NO client: 'we've scaled subscription ecommerce brands (one hit 10x ROAS in the first month)' -- misses the 'real named client' bullet, and the anonymous 10x ROAS stat cannot be tied to a verified named entry from the thread context.",
+      "Correct Samuel calendar link included as plain URL."
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "runid": "L13br2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "Most of our work is US-based... haven't done much international work. No fabricated geographic claims; Samuel's correct calendar link used."
+  },
+  {
+    "runid": "L13cr2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "we manage a number of accounts across those platforms -- properly hedged, no specific client count. The 'ships to 49 countries' claim is grounded (Aura Displays, response-guidelines.md line 221)."
+  },
+  {
+    "runid": "L18r2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "Here's a sample of what ours look like... /report/808eac69-a9f1-4c8e-8d63-b5cba8ec7e4e -- this token IS the approved Google Ads lead-gen sample report listed in response-guidelines.md line 259, and it is framed as a sample, not a live client dashboard."
+  },
+  {
+    "runid": "L19r2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [
+      "Routes Meta work to Cade ('For Meta, that's Cade's side of things. He runs all our Meta campaigns... I'll get it set up') -- Cade referral is the same prohibited routing pattern that failed L27; should stay with Samuel/call path."
+    ],
+    "evidence": "our audits are typically part of onboarding into ongoing management, not standalone projects... We could structure a trial engagement on one account where we come in, audit it, and manage it -- standalone paid audit correctly declined."
+  },
+  {
+    "runid": "L27r2",
+    "verdict": "FAIL",
+    "original_failure_fixed": false,
+    "new_issues": [
+      "Calendar link https://calendar.app.google/85PWYBwxqYNq18qe9 is neither Samuel's (wSdVbfwaJRzkw12E7) nor Jay's (nFP1Brwxz1TsetBA6) and appears nowhere in the agent docs -- likely fabricated"
+    ],
+    "evidence": "I'd want to get you on a call with Cade who runs our Meta side of things... Grab a time here: https://calendar.app.google/85PWYBwxqYNq18qe9 -- Cade routing AND non-Samuel link both persist; original failure not eliminated."
+  },
+  {
+    "runid": "L30ar2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "He'll be on the call at the same time Thursday -- no booking link in lead-facing text, positive tone, and an 'Operator Instructions (do not send to lead)' block with Queenie routing is present."
+  },
+  {
+    "runid": "F10br2",
+    "verdict": "FAIL",
+    "original_failure_fixed": false,
+    "new_issues": [],
+    "evidence": "Following up on the proposal and bi-weekly report sample from our call... want to make sure you have everything you need before then to evaluate -- still presupposes the proposal/report were delivered; input showed only an AGREED next step (Samuel would send), no evidence of delivery. Failure mode softened, not eliminated."
+  },
+  {
+    "runid": "F14r2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "A follow-up is not necessary at this moment. To proceed anyway, reply 'generate anyway' -- run STOPPED at the duplicate-check gate, presented a findings table (Jul 6 Upwork thread, Jul 3 Fathom call), and generated no lead-facing response."
+  },
+  {
+    "runid": "N03r2",
+    "verdict": "FAIL",
+    "original_failure_fixed": false,
+    "new_issues": [
+      "Touch is 5 sentences, exceeding the 1-3 sentence nurture length rule (nurture.md: 'Sometimes a single sentence; sometimes 2-3 for warmth')"
+    ],
+    "evidence": "Correct performance-pricing card is now used ('the bulk of what we earn is tied directly to campaign results. The fixed piece is minimal') and no 'just checking in', but the touch runs 5 sentences -- fails the 1-3 sentence criterion."
+  },
+  {
+    "runid": "N05cr2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "you mentioned intake volume was down 30% since January when we talked -- no fabricated elapsed-time claim; references anchor to the May 2 call, consistent with the ~60-day actual gap. Case study (Winterbotham Parham Teeple) matches the attached PDF."
+  },
+  {
+    "runid": "X01ar2",
+    "verdict": "PASS",
+    "original_failure_fixed": true,
+    "new_issues": [],
+    "evidence": "I focus exclusively on Meta ads (Facebook and Instagram) and email marketing. I go deep on those two channels -- no partner/agency referral for Google Ads, LawnValue claim is grounded (2,000+ leads per docs), and the link is Lindsey's Calendly (calendly.com/lindsey-bouffard/30min)."
+  }
+]

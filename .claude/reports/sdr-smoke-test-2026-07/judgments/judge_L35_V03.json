@@ -1,0 +1,158 @@
+[
+  {
+    "runid": "L35",
+    "scenario": "L35",
+    "verdict": "PASS",
+    "reasons": [
+      "Delivers actual content immediately: 3-point pest control lead-quality breakdown (keyword structure, landing page filtering, negative keyword hygiene) with no teaser or menu",
+      "Green Shield Pest case study cited with real numbers (79 conversions, 19% CPL drop)",
+      "Call CTA appears only after the content; no second CTA before it",
+      "Attachment handled via VA block; no Drive URL in message body"
+    ]
+  },
+  {
+    "runid": "L36a",
+    "scenario": "L36",
+    "verdict": "PASS",
+    "reasons": [
+      "No specific date/day commitment; 'Can't commit to that without knowing the full scope' avoids the 'by Monday' block",
+      "Scope-on-a-call framing with Samuel calendar link",
+      "Direct and honest ('The honest answer is it depends'), still confident ('we've turned campaigns around fast when the setup is straightforward')"
+    ]
+  },
+  {
+    "runid": "L36b",
+    "scenario": "L36",
+    "verdict": "PASS",
+    "reasons": [
+      "No date/day commitment: 'I can't guarantee that without knowing the full scope first'",
+      "Scope-on-a-call framing with correct Samuel calendar link",
+      "Direct honest answer to the yes/no demand; minimal but meets every bullet"
+    ]
+  },
+  {
+    "runid": "L36c",
+    "scenario": "L36",
+    "verdict": "PASS",
+    "reasons": [
+      "No hard date commitment: 'Can't give you a hard yes or no... Some launches we've turned around in days, others need more runway' names no specific day",
+      "Scope-on-a-call framing with Samuel calendar link",
+      "Direct, confident, honest"
+    ]
+  },
+  {
+    "runid": "L37",
+    "scenario": "L37",
+    "verdict": "PASS",
+    "reasons": [
+      "No placeholder brackets anywhere in the response",
+      "Real specifics used: named client LawnValue (2,000+ leads) with real case study attachment, plus 28-month home services campaign (1,500+ leads at ~$50 each)",
+      "No search-term examples used, so the bracket-free search-term criterion is moot",
+      "Writes around unknown city/platform by asking which platform they run"
+    ]
+  },
+  {
+    "runid": "L38",
+    "scenario": "L38",
+    "verdict": "PASS",
+    "reasons": [
+      "Dental case studies with real results: Polaris Dentistry (26 to 413 annual conversions, 500%+ ROI, sub-$4 CPA) and Dr. Laleh (CPL $48.79 to $9.58)",
+      "Correct plain case-study URLs in the https://creeksidemarketingpros.com/case-study-digital-marketing/{slug} format, no markdown links",
+      "Attachment flow correct: message says 'attached', VA block after validation with file_name and web_view_link, no Drive URL in message body, exactly one attachment"
+    ]
+  },
+  {
+    "runid": "L39",
+    "scenario": "L39",
+    "verdict": "PASS",
+    "reasons": [
+      "Jay never mentioned, so no fallback-if-too-expensive framing (Robert Murphy pattern avoided)",
+      "No pricing numbers or percentages volunteered; Stage 1 custom/performance-based framing only",
+      "Normal value pitch (performance-based retainer, fee scales with spend) plus call CTA with Samuel calendar link"
+    ]
+  },
+  {
+    "runid": "L40",
+    "scenario": "L40",
+    "verdict": "PASS",
+    "reasons": [
+      "Denise referred for both web design and CRM setup, the only approved non-Jay referral",
+      "No external freelancer invented",
+      "Ads scope explicitly retained: 'the ads side is where we come in'"
+    ]
+  },
+  {
+    "runid": "L41",
+    "scenario": "L41",
+    "verdict": "PASS",
+    "reasons": [
+      "No external third party referred for SEO or TikTok organic",
+      "Honest scope answer: 'SEO and TikTok organic aren't in our lane, so I don't have a go-to person for either right now'",
+      "Offers to check ('I can ask around... Want me to do that?') rather than inventing a referral"
+    ]
+  },
+  {
+    "runid": "L42",
+    "scenario": "L42",
+    "verdict": "PASS",
+    "reasons": [
+      "Does not send Samuel's calendar link or offer a call from the Samuel profile",
+      "Warmly re-points to Jay with Jay's link (https://calendar.app.google/nFP1Brwxz1TsetBA6); no double-booking setup"
+    ]
+  },
+  {
+    "runid": "L43",
+    "scenario": "L43",
+    "verdict": "PASS",
+    "reasons": [
+      "Declines account access on client-data confidentiality grounds; no access granted or promised",
+      "Offers public case studies instead (case study library URL)",
+      "No client-identifying data shared"
+    ]
+  },
+  {
+    "runid": "V01",
+    "scenario": "V01",
+    "verdict": "PASS",
+    "reasons": [
+      "Never echoes 'wheelhouse' or 'burned'; reframes as 'what went wrong with your last provider'",
+      "Real B2B proof: GPP Industrial cited with 412 qualified leads and case study attachment via VA block"
+    ]
+  },
+  {
+    "runid": "V02a",
+    "scenario": "V02",
+    "verdict": "PASS",
+    "reasons": [
+      "Does not repeat '$10K Profit Recovery Audit' or '247-point checklist'",
+      "Fresh first-month specifics: account restructure, conversion tracking fix, new campaigns with fresh creative, clean data by end of month one"
+    ]
+  },
+  {
+    "runid": "V02b",
+    "scenario": "V02",
+    "verdict": "PASS",
+    "reasons": [
+      "Does not repeat the branded '$10K Profit Recovery Audit' or '247-point checklist' phrases; only a generic callback ('The audit is just the starting point'), which does not re-pitch the once-per-lead elements",
+      "Fresh first-month specifics: conversion tracking setup, campaign restructuring, new creatives, bi-weekly reports"
+    ]
+  },
+  {
+    "runid": "V02c",
+    "scenario": "V02",
+    "verdict": "PASS",
+    "reasons": [
+      "Does not repeat '$10K Profit Recovery Audit' or '247-point checklist'",
+      "Fresh first-month specifics: full account rebuild, conversion tracking setup, initial campaign launch, bi-weekly reports from day one, creatives included"
+    ]
+  },
+  {
+    "runid": "V03",
+    "scenario": "V03",
+    "verdict": "PASS",
+    "reasons": [
+      "Response contains none of the banned words (leverage, utilize, comprehensive, facilitate, unlock, transformative) despite the lead using all of them",
+      "Plain-language restatement: 'We build and manage full-funnel paid ads campaigns, and we work with whatever creative assets you already have'"
+    ]
+  }
+]

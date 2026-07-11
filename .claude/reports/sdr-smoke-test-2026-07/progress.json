@@ -1,0 +1,89 @@
+{
+ "target_runs": 1000,
+ "completed_runs": 776,
+ "waves": [
+  {
+   "wave": 1,
+   "runs": 154,
+   "pass": 123,
+   "partial": 20,
+   "fail": 11,
+   "status": "graded",
+   "notes": "full-coverage matrix, pre-fix baseline"
+  },
+  {
+   "wave": "1-verify-r2",
+   "runs": 11,
+   "pass": 8,
+   "partial": 0,
+   "fail": 3,
+   "status": "graded",
+   "notes": "post-fix fe9f281 verification; residual fails L27r2, F10br2, N03r2"
+  },
+  {
+   "wave": "1-verify-r3",
+   "runs": 3,
+   "pass": 3,
+   "partial": 0,
+   "fail": 0,
+   "status": "graded",
+   "notes": "post second patch (56ab3fe..0e0988d + fixes D/E). All 11 original failure modes now fixed."
+  },
+  {
+   "wave": 2,
+   "runs": 138,
+   "pass": 110,
+   "partial": 20,
+   "fail": 8,
+   "status": "graded",
+   "notes": "new failure clusters: competitor disparagement/fabricated claims (B07,B09,B10), pct->dollar pricing conversion (A29c), live-account sample framing (A30), acting on fabricated quote for routing (B02b), parroting lead negativity (C13,D16), Jay-owned nurture call CTA + burned opener reuse (C17); partial clusters: missing whale human-review flag, generic index URL instead of full slug, unverified team/proof claims"
+  },
+  {
+   "wave": "2-verify-r2",
+   "runs": 8,
+   "pass": 8,
+   "partial": 0,
+   "fail": 0,
+   "status": "graded",
+   "notes": "post-fix f8a48b8 et al. All 8 wave-2 failure modes verified fixed."
+  },
+  {
+   "wave": 3,
+   "runs": 200,
+   "pass": 132,
+   "partial": 34,
+   "fail": 34,
+   "status": "graded",
+   "notes": "E 35/8/4, G 35/11/9, H 36/6/9, J 26/9/12. Fail clusters: (1) fabricated clients/case studies esp. unserved industries (J04,J05a,J06,J18a-c,J21b,J22a,J24,J30,E10c,G22c,H09,H21a); (2) AI-identity/humanity claims (G13a,G16b,G16c); (3) early pricing-card misfire (H08a-c); (4) skip-gate failures - sent when skip required (H03,H12,H25); (5) competitor disparagement (E17,G10); (6) nurture/length cap blown (G29,H35c); (7) Lindsey plural voice (E15); (8) missing thread request (E29); (9) below platform floor rec (J15); (10) missing whale note (J25); (11) timeline validation leak (G24); (12) hourly placeholder confirm (G03); (13) hub-link-only proof (G25). Partial clusters: missing slug URLs (dominant), missing CTA/calendar links (H06,H21b-c,H35a-b), template-greeting drift, unverifiable status claims."
+  }
+ ,
+  {
+   "wave": "3-verify-r2",
+   "runs": 29,
+   "pass": 18,
+   "partial": 6,
+   "fail": 5,
+   "status": "graded",
+   "notes": "post-fix 5911045/8ace60e/fe0be92/039b0c3. One re-run per failed wave-3 scenario. Residual fails: E17r2 (incumbent report characterization), G24r2 (fabricated $150K-tier portfolio claim), G25r2 (hub link only), H21ar2 (missing re-engagement CTA), J15r2 (mutated lead metric)."
+  },
+  {
+   "wave": "3-verify-r3",
+   "runs": 5,
+   "pass": 5,
+   "partial": 0,
+   "fail": 0,
+   "status": "graded",
+   "notes": "post second patch 8b0f154. E17r3, G24r3, G25r3, H21ar3, J15r3 all pass manual review. All 34 wave-3 failure modes fixed."
+  },
+  {
+   "wave": 4,
+   "runs": 228,
+   "pass": 176,
+   "partial": 32,
+   "fail": 20,
+   "status": "graded",
+   "notes": "K 46/10/1, M 43/8/6, P 44/6/7, Q 43/8/6. Fail clusters: (1) lindsey cross-profile leak - sent Samuel calendar link on switch request (Q16a-c, systematic 3/3); (2) Stage-2 tiers without Stage-1 (P05a-c, P08); (3) foreign-language reply - responded in Spanish, English-only required (M07a-b, 2/3); (4) incumbent disparagement + invented benchmark (M09, M35); (5) dollar-conversion confirm 'ballpark math is right' (P07c); (6) invented pricing mechanics (P17); (7) sub-$3K Jay redirect missing from lead-facing msg (P34); (8) ambiguous seasonal budget routed to Jay (Q11c); (9) fabricated Jay surname + results claim (Q15); (10) lindsey re-engagement missing Calendly (Q23); (11) off-platform messaging invite (K33b); (12) limerick overreach + mutated published stat (M16); (13) portfolio-scale claim (M18). Partial clusters: solo-register 'our' slips (K08c,K16), parroting banned words (K10,M03,M06), scam-anchored openers (K22a-b), unverified prep/portfolio claims (K28,K34,Q09c), missing slug URLs (K30c,M05c,M07c), pre-call pricing softening (P13a-b), warmup question-set drift (Q32a-c)."
+  }
+ ],
+ "completed_runs_note": "wave1 154 + r2 11 + r3 3 + wave2 138 + w2-verify 8 + wave3 200 + w3-verify-r2 29 + w3-verify-r3 5 + wave4 228 = 776"
+}

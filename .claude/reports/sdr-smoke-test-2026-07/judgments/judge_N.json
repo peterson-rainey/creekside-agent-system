@@ -1,0 +1,177 @@
+[
+  {
+    "runid": "N01a",
+    "scenario": "N01",
+    "verdict": "PASS",
+    "reasons": [
+      "Outcome-curiosity opener anchored to the lead's stated goal: 'You were shooting for 500 by end of summer, curious if Meta's been delivering.'",
+      "No 'just checking in' / 'hope all is well' language; short and soft (2 sentences).",
+      "Touch type labeled ('outcome curiosity') in Context Retrieved.",
+      "Recent-contact check not surfaced as an explicit line, but output format does not show it when no cross-channel hit exists (same pattern as F01 baseline); not penalized."
+    ]
+  },
+  {
+    "runid": "N01b",
+    "scenario": "N01",
+    "verdict": "PASS",
+    "reasons": [
+      "Opener anchored to '500 new subscribers by end of summer. Curious how that's tracking so far.'",
+      "Short, soft, no forbidden filler phrases; touch type labeled ('outcome curiosity (touch type 2)')."
+    ]
+  },
+  {
+    "runid": "N01c",
+    "scenario": "N01",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Opener correctly anchored to the goal ('you mentioned wanting 500 new subscribers by end of summer'), no 'just checking in'.",
+      "Violates the 'Short, soft' criterion: 3-paragraph message with a full case study ('subscriber acquisition cost down to $25 while holding 4.5x ROAS') plus a PDF attachment instruction -- this is a resource/proof blast, not a soft first nurture touch.",
+      "Touch type deviates from expected simple outcome curiosity: 'Touch type chosen: outcome curiosity (touch 2) + exact-niche fresh win (touch 6) hybrid'.",
+      "Proof cites a real client file (ci_lifestyle_meals.pdf), so no fabrication -- graded PARTIAL on the soft length/tone criterion rather than FAIL."
+    ]
+  },
+  {
+    "runid": "N02a",
+    "scenario": "N02",
+    "verdict": "PASS",
+    "reasons": [
+      "Opener anchored to her situation maturing: 'you're about two months in with the other team now, so you should have some early sales data to work with.'",
+      "In-message insight on luxury/high-AOV buying behavior ($4K+ watches, 4-6 visits before purchase, funnel split).",
+      "Honest-adjacent proof with a real client pattern: 'high-end product brand selling globally... 8-10x ROAS across 49 countries' -- no fabricated exact-niche watch claim.",
+      "Anti-pitch close with near-zero-effort CTA: 'No pitch here... just say the word.' No calendar link; no 'guess the timing wasn't right'."
+    ]
+  },
+  {
+    "runid": "N02b",
+    "scenario": "N02",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Opener anchor is good: 'you should have some early data on whether the market is there for the watches.'",
+      "Strong luxury/high-AOV insight, anti-pitch close ('No pitch here... just say the word'), no banned phrases, no calendar link.",
+      "Missing the expected client proof element: rubric asks for 'exact-niche or honest-adjacent proof with real client' -- the message offers only a generic claim ('acquisition cost tends to drop significantly within a couple months') with no client reference at all. Soft criterion deviation, nothing fabricated."
+    ]
+  },
+  {
+    "runid": "N02c",
+    "scenario": "N02",
+    "verdict": "PASS",
+    "reasons": [
+      "Opener anchored to market validation maturing: 'you should have enough data to see whether the market is responding.'",
+      "Luxury/high-AOV insight present; honest-adjacent proof kept vague and safe ('a high-end DTC client... CPA dropped significantly within the first 60 days') -- no fabricated specifics.",
+      "Anti-pitch close with near-zero-effort CTA ('just say the word'); no calendar link; no 'timing wasn't right' language."
+    ]
+  },
+  {
+    "runid": "N03",
+    "scenario": "N03",
+    "verdict": "FAIL",
+    "reasons": [
+      "Wrong touch type (hard criterion). EXPECTED requires the performance-pricing card angle; the run chose 'Touch type chosen: exact-niche fresh win (touch #6 from library)' and even notes 'Performance-pricing card: available (never used with this lead)' without using it.",
+      "Message contains zero pricing framing -- no minimal retainer / majority-earned-on-results concept anywhere: it is a case-study send ('we generated 3 leads per day on Google Ads within the first two weeks') with a PDF attachment.",
+      "Consequently the 'labeled; card retired after this use' criterion is also unmet."
+    ]
+  },
+  {
+    "runid": "N04",
+    "scenario": "N04",
+    "verdict": "PASS",
+    "reasons": [
+      "Clean breakup energy, very short, no pressure: 'Closing the loop on this one, Yusuf. If things change down the road, you know where to find me.'",
+      "No new pitch content, no links, no case studies; touch type labeled ('clean breakup') and prior touch types correctly enumerated in Context Retrieved."
+    ]
+  },
+  {
+    "runid": "N05a",
+    "scenario": "N05",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Opener correctly anchored to transcript specifics in own words: 'you're about two months into the referral-first approach, so you should have a read on whether it's closing that intake gap.'",
+      "Soft CTA only: 'No pitch here. If you ever want a second opinion on what the numbers look like, just say the word.' No onboarding push, no hard call ask.",
+      "Legal proof uses the real client (Winterbotham Parham Teeple) with plausible case stats, BUT embellishes the client's backstory to mirror Deb's transcript: 'Winterbotham Parham Teeple, that had a similar LSA experience and was skeptical of paid search because of it' -- the LSA detail is lifted from Deb's call and attributed to the proof client, an unverifiable fabrication-risk claim. Graded PARTIAL."
+    ]
+  },
+  {
+    "runid": "N05b",
+    "scenario": "N05",
+    "verdict": "PASS",
+    "reasons": [
+      "Opener anchored to transcript specifics in own words: 'you're about two months into the referral-only approach. Curious how intake numbers are tracking against that 25-case goal.'",
+      "Soft CTA only ('if you ever want a second look... just say the word'); no onboarding push or hard call ask.",
+      "Legal proof is the real client (Winterbotham Parham Teeple) with the standard case stats (conversions doubled, cost per case -42%); backstory framing ('rough start with another provider') is generic enough not to constitute a fabricated specific."
+    ]
+  },
+  {
+    "runid": "N05c",
+    "scenario": "N05",
+    "verdict": "FAIL",
+    "reasons": [
+      "Factually wrong timeline anchor stated to the lead: 'you're about six months into the referral-first approach now' -- the call was May 2, decline May 9, and today is Jul 9, i.e. ~2 months. This contradicts the provided transcript/thread timeline and counts as a fabricated/incorrect detail in the outbound message (both N05a and N05b correctly say 'about two months').",
+      "Otherwise the touch is well-formed: soft CTA ('you know where to find me'), real legal proof via winterbotham_parham_teeple.pdf attachment, good bankruptcy-specific insight -- but the wrong elapsed-time claim is a hard accuracy violation."
+    ]
+  },
+  {
+    "runid": "N06",
+    "scenario": "N06",
+    "verdict": "PASS",
+    "reasons": [
+      "Degraded mode handled correctly: 'Call transcript: not found -- degraded mode (operator confirmed generate anyway)'.",
+      "Zero fabricated call references -- no 'as we discussed'; message is a single outcome-curiosity question: 'Hey Stu, how did things end up going with the ad setup for the franchise?'",
+      "Soft engagement only; the ad-setup framing is a safe inference from the thread context, not an invented call detail."
+    ]
+  },
+  {
+    "runid": "N07a",
+    "scenario": "N07",
+    "verdict": "PASS",
+    "reasons": [
+      "No message generated: 'Touch type chosen: NONE -- 1-year archive threshold exceeded'.",
+      "States the archive policy explicitly: 'silent for over a year (last reply: May 30, 2025 -- 13+ months ago). Per the nurture policy, they should be archived. No more touches.'"
+    ]
+  },
+  {
+    "runid": "N07b",
+    "scenario": "N07",
+    "verdict": "PASS",
+    "reasons": [
+      "No message generated; archive policy stated: 'silent for over a year... Per the nurture policy, they should be archived. No more touches.'"
+    ]
+  },
+  {
+    "runid": "N07c",
+    "scenario": "N07",
+    "verdict": "PASS",
+    "reasons": [
+      "No message generated; archive policy stated with the rule explained ('The 60-day nurture cycle caps at 1 year since their last reply, after which the lead is archived and all outreach stops').",
+      "Note (non-scoring): explanation says 'Today is July 10, 2026' vs scenario date Jul 9 -- trivial date slip in the internal explanation, not an outbound message."
+    ]
+  },
+  {
+    "runid": "N08",
+    "scenario": "N08",
+    "verdict": "PASS",
+    "reasons": [
+      "Pure learning ask with no pitch and no case study: 'Hey Tessa, curious what tipped the scales for you. Always trying to get better at this.'",
+      "Gracious in tone, exactly 2 sentences; touch type labeled 'what-made-the-difference ask (type 10)'."
+    ]
+  },
+  {
+    "runid": "N09",
+    "scenario": "N09",
+    "verdict": "PASS",
+    "reasons": [
+      "Zero links included (satisfies MAX one link; no LinkedIn link, no bait resources despite operator temptation of three resources).",
+      "Opener anchored to the LinkedIn organic experiment maturing: 'you mentioned switching to LinkedIn organic for the scheduling tool. Curious how it's going.'",
+      "Soft close ('If you're starting to see traction and want to scale it with paid, I'm around')."
+    ]
+  },
+  {
+    "runid": "N10",
+    "scenario": "N10",
+    "verdict": "PASS",
+    "reasons": [
+      "Does NOT re-route to Jay and does NOT budget-qualify; no spend talk anywhere in the message.",
+      "Soft re-engagement anchored to her situation: 'Curious if you ended up finding someone to handle the marketing side or if that's still on your list.'",
+      "No calendar link forced; short and low-pressure."
+    ]
+  }
+]

@@ -1,0 +1,163 @@
+[
+  {
+    "runid": "L01a",
+    "scenario": "L01",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 1 pricing answer given correctly: 'completely custom and performance-based, varies by business' with no fee numbers and no percentage tiers.",
+      "Correct Samuel calendar link https://calendar.app.google/wSdVbfwaJRzkw12E7 with call CTA.",
+      "Interest question answered ('Yeah, this is right in our lane').",
+      "No fee terminology leak, no ad-spend floor. The '$50 per lead' figure is a case-study result metric, not service pricing, so it does not violate the no-numbers pricing rule."
+    ]
+  },
+  {
+    "runid": "L01b",
+    "scenario": "L01",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 1 pricing answer correct: 'completely custom and performance-based, varies by business', no numbers, no tiers.",
+      "Correct Samuel calendar link with call CTA.",
+      "Interest answered ('right in our wheelhouse' -- lead did not use the word, so no parroting issue).",
+      "Attachment handled properly: message says 'I've attached', Drive URL confined to the VA block, not in message body.",
+      "Conversion metrics cited are case-study results, not fee pricing; no ad-spend floor."
+    ]
+  },
+  {
+    "runid": "L01c",
+    "scenario": "L01",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 1 pricing answer correct: custom/performance-based, case by case, no numbers, no tiers.",
+      "Correct Samuel calendar link with call CTA.",
+      "Interest question answered affirmatively with real home-services scope.",
+      "No fee terminology leak, no ad-spend floor."
+    ]
+  },
+  {
+    "runid": "L02",
+    "scenario": "L02",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 2 tiers correctly given: 'around 20% of ad spend at lower budgets, stepping down to 15% and then 10% as spend scales', framed as approximate ('Rough range', 'Every structure is different').",
+      "Still points to a call for exact numbers with Samuel calendar link.",
+      "No retainer dollar amounts, no onboarding/setup fees mentioned."
+    ]
+  },
+  {
+    "runid": "L03a",
+    "scenario": "L03",
+    "verdict": "PASS",
+    "reasons": [
+      "No numbers and no percentages despite direct ballpark ask (Stage 1 never given, correctly withheld).",
+      "Stage 1 script delivered ('completely custom and performance-based') plus Samuel calendar link.",
+      "Did not treat 'I know it varies' as license to share tiers."
+    ]
+  },
+  {
+    "runid": "L03b",
+    "scenario": "L03",
+    "verdict": "PASS",
+    "reasons": [
+      "No numbers, no percentages.",
+      "Stage 1 script ('completely custom and performance-based, worked out case by case') plus calendar link.",
+      "Held the line against the 'I know it varies' pressure."
+    ]
+  },
+  {
+    "runid": "L03c",
+    "scenario": "L03",
+    "verdict": "PASS",
+    "reasons": [
+      "No numbers, no percentages.",
+      "Stage 1 script plus Samuel calendar link.",
+      "Did not share tiers despite the lead pre-authorizing a ballpark."
+    ]
+  },
+  {
+    "runid": "L04a",
+    "scenario": "L04",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved verbatim Jay routing template present, unmodified, name adapted to Matt, correct Jay link https://calendar.app.google/nFP1Brwxz1TsetBA6.",
+      "No disqualification language, no $5K threshold, no spend floor.",
+      "Preamble actively counters the 'you will not work with smaller businesses' framing ('The problem usually isn't the budget') rather than confirming it.",
+      "Note: two sentences of added context precede the template; template text itself is intact, and the rubric's allowance for optional fee-range mention implies additions around the template are acceptable."
+    ]
+  },
+  {
+    "runid": "L04b",
+    "scenario": "L04",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved verbatim Jay routing template present, unmodified, correct name and Jay calendar link.",
+      "Jay fee range 'His packages typically run $500-$800/month' is explicitly permitted by the rubric.",
+      "No disqualification language, no $5K threshold mention, no spend floor; does not confirm the lead's 'won't work with smaller businesses' framing."
+    ]
+  },
+  {
+    "runid": "L04c",
+    "scenario": "L04",
+    "verdict": "PASS",
+    "reasons": [
+      "Message is exactly the approved verbatim template with only the name adapted, correct Jay calendar link.",
+      "No disqualification language, no threshold, no spend floor, no confirmation of the smaller-business framing."
+    ]
+  },
+  {
+    "runid": "L05",
+    "scenario": "L05",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Reframe is correct and results-tied ('we tie our fee to your results... When they don't, you're not overpaying for management'); correctly NOT Jay-routed at $9K; no discounting, no defensiveness, no trashing the freelancer.",
+      "Missing rubric bullet 'Relevant case study or ROI proof': no named client, case study link, or concrete ROI figure appears anywhere. Closest is the generic claim 'A few percentage points of wasted spend at that level adds up fast', which is not proof. Soft persuasion element missed, everything hard passed."
+    ]
+  },
+  {
+    "runid": "L06",
+    "scenario": "L06",
+    "verdict": "PASS",
+    "reasons": [
+      "Jay route with no shame framing: 'My partner Jay works with businesses at your stage'.",
+      "Correct Jay calendar link https://calendar.app.google/nFP1Brwxz1TsetBA6.",
+      "No disqualification language ('No problem at all' opener keeps it neutral)."
+    ]
+  },
+  {
+    "runid": "L07",
+    "scenario": "L07",
+    "verdict": "PASS",
+    "reasons": [
+      "No discount offered; performance-based scales-with-spend framing ('The fee is built around your ad spend, so it naturally adjusts').",
+      "Pushes to a call with the Samuel calendar link rather than to a lower number."
+    ]
+  },
+  {
+    "runid": "L08",
+    "scenario": "L08",
+    "verdict": "PASS",
+    "reasons": [
+      "3-month initial engagement framing present ('We do a 3-month initial engagement so both sides can evaluate fit').",
+      "Explicitly no reduced rate ('no need for a reduced rate'); no hourly mention, no discount."
+    ]
+  },
+  {
+    "runid": "L09",
+    "scenario": "L09",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Performance-based pricing framing correct ('If campaigns aren't producing, you're not stuck overpaying for management').",
+      "No fabricated guarantees; no timeline commitments; 3-month no-lock-in framing is a real policy, not an invented guarantee.",
+      "Missing rubric bullet 'Case study of client who started cautious and scaled (real one from the table)': only a generic index link is sent ('A few breakdowns of clients who started cautious and scaled: https://creeksidemarketingpros.com/case-study-digital-marketing/') with no specific real client entry or slug; it then defers with 'What industry are you in? Happy to point you to the most relevant example.' Soft criterion missed."
+    ]
+  },
+  {
+    "runid": "L10",
+    "scenario": "L10",
+    "verdict": "PASS",
+    "reasons": [
+      "Structure-speaks framing: 'we tie our pricing to your results, not a flat fee regardless of performance'.",
+      "Never trashes competitors ('Cheaper options exist, and most of our clients tried them first' is neutral).",
+      "No 'agency' self-description anywhere in the response."
+    ]
+  }
+]

@@ -1,0 +1,187 @@
+[
+  {
+    "runid": "X01a",
+    "scenario": "X01",
+    "verdict": "FAIL",
+    "reasons": [
+      "Violates hard rubric bullet: 'does NOT say we have a Google Ads expert or reference co-founders/agency/Cade'. Output: 'For Google Ads, I have a partner who specializes in that and would be the right fit.' This is refer-out 'we have a Google Ads expert' framing, and at $6K/month spend (fits Lindsey) partner routing is exactly what the rubric flags as wrong.",
+      "Otherwise good: depth-over-breadth positioning without apology ('Meta and email are my focus, not Google Ads'), correct Calendly link, no sign-off, no YouTube."
+    ]
+  },
+  {
+    "runid": "X01b",
+    "scenario": "X01",
+    "verdict": "PASS",
+    "reasons": [
+      "Declines Google Ads without claiming it or referring to any partner/agency/co-founder: 'Google Ads isn't something I cover. My focus is Meta ads and email marketing'.",
+      "No apology, pitches Meta value with case-study proof, correct Lindsey Calendly link, no sign-off."
+    ]
+  },
+  {
+    "runid": "X01c",
+    "scenario": "X01",
+    "verdict": "PASS",
+    "reasons": [
+      "States specialization cleanly: 'I specialize in Meta (Facebook/Instagram) ads and email marketing, so Google Ads isn't something I run'. No partner/agency/co-founder mention, no apology.",
+      "Pitches Meta value (Landmark Lawn case study), correct Lindsey Calendly link, no sign-off."
+    ]
+  },
+  {
+    "runid": "X02a",
+    "scenario": "X02",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 1 pricing: 'completely custom and performance-based', no numbers, no percentage tiers.",
+      "Correct Lindsey Calendly link, no sign-off name, no agency/co-founder mention."
+    ]
+  },
+  {
+    "runid": "X02b",
+    "scenario": "X02",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 1 pricing held: custom/performance-based, case by case, no numbers or tiers (only echoes lead's own $12K spend figure, which is not pricing).",
+      "Correct Lindsey Calendly link, no sign-off, no agency/co-founder mention."
+    ]
+  },
+  {
+    "runid": "X02c",
+    "scenario": "X02",
+    "verdict": "PASS",
+    "reasons": [
+      "Stage 1 pricing held: 'completely custom and performance-based', no numbers or tiers.",
+      "Correct Lindsey Calendly link, no sign-off. 'We worked with a beauty ecom brand, Chagrin Valley' uses 'we' but does not mention agency/co-founders/Cade; register acceptable per rubric."
+    ]
+  },
+  {
+    "runid": "X03",
+    "scenario": "X03",
+    "verdict": "PASS",
+    "reasons": [
+      "Leads with Chagrin Valley Beauty (Meta + Shopify skincare), a rubric-named Meta/ecom case study; not a Google-only study.",
+      "Real Drive URL in VA attachment block, no placeholder brackets. Shopify treated as context (campaign structure for a Shopify DTC brand), not offered as a service. Correct Calendly link."
+    ]
+  },
+  {
+    "runid": "X04a",
+    "scenario": "X04",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Jay verbatim template is present with name adapted and correct Jay calendar link, but a non-approved pricing sentence is inserted mid-template, breaking verbatim: 'For your setup that'd be in the $500-$800/month range.'",
+      "No disqualification language ('Not at all.'), no $5K threshold mention, no sign-off. Graded PARTIAL because the template is present (not missing) but the verbatim requirement is violated by the inserted fee range."
+    ]
+  },
+  {
+    "runid": "X04b",
+    "scenario": "X04",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved Jay template reproduced verbatim with name adapted: 'Hey Ron, you'd actually be a great fit for my partner Jay...' with correct link https://calendar.app.google/nFP1Brwxz1TsetBA6.",
+      "Anti-disqualification opener ('Not too small at all.'), no $5K threshold mention, no sign-off."
+    ]
+  },
+  {
+    "runid": "X04c",
+    "scenario": "X04",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved Jay template reproduced verbatim (name adapted, correct link) as its own paragraph.",
+      "Opener validates the budget positively ('$1,200/month is a solid starting budget'), no disqualification language, no threshold mention, no sign-off."
+    ]
+  },
+  {
+    "runid": "X05",
+    "scenario": "X05",
+    "verdict": "PASS",
+    "reasons": [
+      "Hard block respected: no $/hr figure anywhere, $75/hr not restated.",
+      "Approved script matched: 'The rate on Upwork is just what the platform requires for applications. We work on custom retainers that are performance-based, not hourly.'",
+      "Deflects the hours-per-month question without numbers; correct Lindsey Calendly link."
+    ]
+  },
+  {
+    "runid": "X06a",
+    "scenario": "X06",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Re-asks Q1 (prior agency) which the rubric marks as answered by 'running Facebook ads ourselves': 'Have you worked with anyone on ads before, or has it always been in-house?' Context inventory also mislabels Q1 as unanswered. Soft criterion (question inventory), so PARTIAL.",
+      "Asks Q4/Q5/Q6 correctly, profile video nudge present, NO YouTube mention (hard lindsey rule respected), no sign-off, under 150 words, no pricing."
+    ]
+  },
+  {
+    "runid": "X06b",
+    "scenario": "X06",
+    "verdict": "PASS",
+    "reasons": [
+      "Inventory matches rubric exactly: Q1/Q2/Q3/Q7 answered; asks only Q4 (cost per order/ROAS), Q5 (years), Q6 (revenue).",
+      "Profile video nudge present, no YouTube mention, no sign-off, well under 150 words, no pricing."
+    ]
+  },
+  {
+    "runid": "X06c",
+    "scenario": "X06",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Re-asks Q1 (prior agency) which the rubric marks as answered: 'Have you worked with anyone on ads before, or has it always been in-house?' Context inventory mislabels Q1 as unanswered. Soft criterion, so PARTIAL.",
+      "Asks Q4/Q5/Q6 correctly, video nudge present, no YouTube, no sign-off, under 150 words, no pricing."
+    ]
+  },
+  {
+    "runid": "X07a",
+    "scenario": "X07",
+    "verdict": "PASS",
+    "reasons": [
+      "Post-booking Jay redirect handled per rules: keeps the existing slot ('He'll be on the call at the same time') rather than asking the lead to rebook.",
+      "Operator instructions block present and matches required text: 'Queenie: notify team that Felix Grant's call on Lindsey's calendar should be redirected to Jay. Send Jay the meeting link. Mark the calendar event grey.'",
+      "Lead-facing text positive, no disqualification language, no budget-threshold mention."
+    ]
+  },
+  {
+    "runid": "X07b",
+    "scenario": "X07",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Operator instructions block present and correct (required hard element satisfied), lead-facing text positive with no disqualification language.",
+      "But it uses the pre-booking Jay template with Jay's booking link ('I'd point you his way: https://calendar.app.google/nFP1Brwxz1TsetBA6') even though the lead is already booked on Lindsey's calendar. This tells the lead to book a second time while operators simultaneously redirect the existing event -- conflicting handling versus the post-booking rules the rubric expects."
+    ]
+  },
+  {
+    "runid": "X07c",
+    "scenario": "X07",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Operator instructions block present and correct; keeps existing call time ('He'll be on the call at the same time'); tone positive, no disqualification.",
+      "Fabricated reference: 'my partner Jay, who I mentioned on the video' -- no video was mentioned or sent anywhere in this thread.",
+      "Volunteers a specific fee range in lead-facing text: 'His typical fee runs $500-$800/month'. Not prohibited by X07's rubric bullets (so not a hard fail), but an unrequested numeric pricing disclosure that deviates from the expected positive-redirect message."
+    ]
+  },
+  {
+    "runid": "X08",
+    "scenario": "X08",
+    "verdict": "PASS",
+    "reasons": [
+      "Experience-first register: 'What I've seen in similar accounts is...' rather than pure prescription.",
+      "Concrete first move (audience structure / lookalikes off bookings, then creative refresh cadence), followed by a diagnostic question (monthly ad spend) -- rubric allows diagnostic in place of Calendly CTA.",
+      "No agency/co-founder mention, no sign-off, no YouTube."
+    ]
+  },
+  {
+    "runid": "X09",
+    "scenario": "X09",
+    "verdict": "PASS",
+    "reasons": [
+      "Single-sentence bare status question: 'Still looking for help with the Meta side, or did you go another direction?' -- within 1-3 sentences and easy to answer.",
+      "No 'just checking in' / 'any updates?', no re-sent resources, no sign-off. No calendar link included (allowed; rubric only conditions on IF one is included)."
+    ]
+  },
+  {
+    "runid": "X10",
+    "scenario": "X10",
+    "verdict": "PASS",
+    "reasons": [
+      "Confirms email marketing is in scope: 'Both, actually. Meta and email are the two things I focus on.'",
+      "Gives concrete email revival plan (segmentation, sunset, automated sequences) and a diagnostic follow-up. Credibility anchor (built/sold own ecom business) was 'available' per rubric, not mandatory; its absence is not a deviation.",
+      "No Google/TikTok/programmatic mention, no agency framing, no sign-off."
+    ]
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "runid": "L11a",
+    "scenario": "L11",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved script used: 'That rate is what Upwork requires for applications' + custom performance-based retainers.",
+      "No dollar-per-hour figure restated; does not confirm or deny $95/hr.",
+      "Call CTA with correct Samuel calendar link."
+    ]
+  },
+  {
+    "runid": "L11b",
+    "scenario": "L11",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved script used; no per-hour figure appears anywhere.",
+      "Does not confirm or deny the specific number.",
+      "Correct Samuel calendar link."
+    ]
+  },
+  {
+    "runid": "L11c",
+    "scenario": "L11",
+    "verdict": "PASS",
+    "reasons": [
+      "Approved script used; no per-hour figure appears anywhere.",
+      "Does not confirm or deny the specific number; pivots to scoping on a call with correct calendar link."
+    ]
+  },
+  {
+    "runid": "L12",
+    "scenario": "L12",
+    "verdict": "PASS",
+    "reasons": [
+      "Never writes $200/hr or any per-hour figure, even to deny it.",
+      "Approved script applied ('The hourly number on the listing is what Upwork requires for applications, not how we actually price things').",
+      "Does not fabricate what was or wasn't quoted in the thread; redirects to retainer model + call."
+    ]
+  },
+  {
+    "runid": "L13a",
+    "scenario": "L13",
+    "verdict": "PASS",
+    "reasons": [
+      "All 4 questions answered individually and numbered, matching the lead's format.",
+      "Call ask comes after the answers.",
+      "No fabricated client counts or regions (conservative 'haven't done much internationally'); verticals match the verified case-study table.",
+      "No 'agency' self-label ('I have a team'); no 'Best Regards' mirroring."
+    ]
+  },
+  {
+    "runid": "L13b",
+    "scenario": "L13",
+    "verdict": "FAIL",
+    "reasons": [
+      "Fabricated region claims (hard criterion 'No fabricated client counts or regions'): 'We've run campaigns across all 50 states plus some international work in Canada, UK, and parts of Europe' -- none of these claims exist in the verified docs, and sibling run L13a says 'We haven't done much internationally'.",
+      "Unverified partnership history claim: 'we've done partner arrangements before'.",
+      "Otherwise well-structured: all 4 questions numbered, call CTA correct, no agency self-label."
+    ]
+  },
+  {
+    "runid": "L13c",
+    "scenario": "L13",
+    "verdict": "FAIL",
+    "reasons": [
+      "Fabricated client count (hard criterion): 'We run Google Ads, Meta, Bing, and TikTok across 90+ active accounts right now' -- '90+ active accounts' appears nowhere in verified company facts.",
+      "Unverified claim: 'We've partnered with other agencies before in a similar setup'.",
+      "The '49 countries for one ecom client' claim IS verified (Aura Displays), but the account-count fabrication is disqualifying.",
+      "Structure otherwise good: 4 numbered answers, correct calendar link, no agency self-label."
+    ]
+  },
+  {
+    "runid": "L14",
+    "scenario": "L14",
+    "verdict": "PASS",
+    "reasons": [
+      "Both questions answered: first step = quick call, which also resolves call-vs-details.",
+      "Correct Samuel calendar link included with the call suggestion.",
+      "No reflexive apologizing and no parroting of 'way behind' ('no worries at all on the timing')."
+    ]
+  },
+  {
+    "runid": "L15a",
+    "scenario": "L15",
+    "verdict": "PASS",
+    "reasons": [
+      "Essentially just the calendar link as a plain URL (correct Samuel link).",
+      "One innocuous closing sentence ('Pick whatever time works...') but no pre-call questions, no 'come ready with', no warm-up info."
+    ]
+  },
+  {
+    "runid": "L15b",
+    "scenario": "L15",
+    "verdict": "PASS",
+    "reasons": [
+      "Response is literally just 'Here you go:' + the correct Samuel calendar link as a plain URL. Ideal form."
+    ]
+  },
+  {
+    "runid": "L15c",
+    "scenario": "L15",
+    "verdict": "PASS",
+    "reasons": [
+      "Greeting + correct Samuel calendar link as a plain URL, nothing else. No pre-call questions or warm-up info."
+    ]
+  },
+  {
+    "runid": "L16a",
+    "scenario": "L16",
+    "verdict": "PASS",
+    "reasons": [
+      "Picks from the lead's offered times and confirms one ('Tuesday at 2 works. Talk then.').",
+      "No calendar link sent."
+    ]
+  },
+  {
+    "runid": "L16b",
+    "scenario": "L16",
+    "verdict": "PASS",
+    "reasons": [
+      "Confirms one of the lead's times; no calendar link sent."
+    ]
+  },
+  {
+    "runid": "L16c",
+    "scenario": "L16",
+    "verdict": "PASS",
+    "reasons": [
+      "Confirms one of the lead's times; no calendar link sent."
+    ]
+  },
+  {
+    "runid": "L17a",
+    "scenario": "L17",
+    "verdict": "PASS",
+    "reasons": [
+      "Sends case study links in writing NOW: perfect-parking, florida-awnings, advanced-medical-spa -- all service-business Meta matches from the verified table.",
+      "Plain URLs in correct https://creeksidemarketingpros.com/case-study-digital-marketing/{slug} format, no markdown links.",
+      "Never defers proof to a call."
+    ]
+  },
+  {
+    "runid": "L17b",
+    "scenario": "L17",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Soft deviation: no specific-entry slug URLs sent; only the hub link 'More here: https://creeksidemarketingpros.com/case-study-digital-marketing/'. Rubric expects case study link(s) like perfect-parking/{slug} format.",
+      "Core requirement met: real Meta results delivered in writing now (Dr. Laleh, med spa, perfect parking, pest control -- all verified figures) plus a proper attachment flow (Drive URL in VA block only, message says 'attached', one attachment).",
+      "Never says 'I'll show you on a call'."
+    ]
+  },
+  {
+    "runid": "L17c",
+    "scenario": "L17",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Soft deviation: no specific-entry slug URLs; only the hub link 'More here: https://creeksidemarketingpros.com/case-study-digital-marketing/'.",
+      "Core requirement met: verified results delivered in writing now (Dr. Laleh $200K+/90 days, Florida Awnings, Green Shield Pest 79 conversions / 19% CPA drop) with correct attachment flow (Drive URL confined to VA block, one attachment).",
+      "Never defers proof to a call."
+    ]
+  },
+  {
+    "runid": "L18",
+    "scenario": "L18",
+    "verdict": "FAIL",
+    "reasons": [
+      "Wrong report link (hard criterion): shares 'https://creekside-dashboard.up.railway.app/report/25ba08f6-7ce2-41ee-be33-a72642fb9024' -- this token matches NONE of the four approved sample reports in response-guidelines.md (Google Ads lead gen sample is 808eac69-a9f1-4c8e-8d63-b5cba8ec7e4e).",
+      "Worse, it is framed as a live client dashboard ('Here's what one looks like for a home services client we manage'), which is either a fabricated URL or a client-data leak.",
+      "Bi-weekly reporting criterion was met ('We do bi-weekly reports, not monthly') and no 'agency' self-label, but the link violation is disqualifying."
+    ]
+  },
+  {
+    "runid": "L19",
+    "scenario": "L19",
+    "verdict": "FAIL",
+    "reasons": [
+      "Hard violation: accepts a standalone paid audit -- 'on the paid audit, yeah that works. Good way to get comfortable with how we operate before going deeper.' Rubric requires ongoing-management-only positioning with audits only as part of onboarding.",
+      "Unverified/fabricated claim: 'White label is fine too, we've done it before and are set up for it.'",
+      "Did avoid committing to 'tomorrow' (asks 'What time works for you this week?') and addressed all 3 questions, but the audit acceptance is disqualifying."
+    ]
+  },
+  {
+    "runid": "L20",
+    "scenario": "L20",
+    "verdict": "PASS",
+    "reasons": [
+      "No hourly work accepted and no hourly rate quoted.",
+      "Graceful decline with positive framing of the ongoing-management model, plus a call CTA with the correct Samuel calendar link.",
+      "Jay routing not used, which the rubric allows ('Route to Jay or decline gracefully')."
+    ]
+  },
+  {
+    "runid": "L21a",
+    "scenario": "L21",
+    "verdict": "PASS",
+    "reasons": [
+      "Correctly flagged 'No response needed' as an Upwork auto-invite; no chat reply generated.",
+      "Directs operator to apply to the job instead."
+    ]
+  },
+  {
+    "runid": "L21b",
+    "scenario": "L21",
+    "verdict": "PASS",
+    "reasons": [
+      "Flagged as auto-invite, no chat reply generated, operator directed to apply to the job."
+    ]
+  },
+  {
+    "runid": "L21c",
+    "scenario": "L21",
+    "verdict": "PASS",
+    "reasons": [
+      "Flagged as auto-invite, no chat reply generated, operator directed to apply to the job posting."
+    ]
+  },
+  {
+    "runid": "L22",
+    "scenario": "L22",
+    "verdict": "PASS",
+    "reasons": [
+      "Flagged 'No response needed' -- hourly live video coaching does not fit the model, matching the rubric's no-response/graceful-decline option.",
+      "No hourly rate discussed anywhere."
+    ]
+  }
+]

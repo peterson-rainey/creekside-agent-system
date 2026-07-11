@@ -1,0 +1,248 @@
+[
+  {
+    "runid": "F01",
+    "scenario": "F01",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Message is a clean touch-1 bare status question ('Any word from your brother on this?'), 1 sentence, easy to answer, no 'just checking in'/'any updates?', no resource blast.",
+      "Mode stated correctly: 'pre-call followup, touch 1'.",
+      "Soft deviation: no evidence the recent contact check ran -- rubric requires 'Recent contact check runs first' but neither the Context Retrieved block nor any note mentions performing or clearing it (compare F09/F14 outputs which surface it explicitly)."
+    ]
+  },
+  {
+    "runid": "F02",
+    "scenario": "F02",
+    "verdict": "PASS",
+    "reasons": [
+      "Touch 2 uses a different angle than the Jul 2 bare status question: exact-niche fresh win / case study.",
+      "2 sentences with a clear CTA (Samuel calendar link).",
+      "Touch type labeled in Context Retrieved: 'exact-niche fresh win / case study (#6)'."
+    ]
+  },
+  {
+    "runid": "F03",
+    "scenario": "F03",
+    "verdict": "PASS",
+    "reasons": [
+      "Touch 3 is a third distinct angle (seasonal/platform trigger), not status or outcome curiosity; prior two touches correctly identified.",
+      "Warmer call push present with Samuel calendar link (https://calendar.app.google/wSdVbfwaJRzkw12E7).",
+      "3 sentences, within limit."
+    ]
+  },
+  {
+    "runid": "F04a",
+    "scenario": "F04",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "Performance-pricing card correctly chosen and labeled, Samuel calendar link present ($8K default path), first use of card, no hardcoded dollar amounts in the pricing concept itself.",
+      "Soft deviation: the card touch is diluted with an appended case study and dollar stats -- 'We ran a roofing contractor on Google Ads for 28 months and generated 1,500+ leads at about $50 each, full breakdown is attached' plus a PDF attachment. Rubric defines touch 4 as pricing concept + call ask; blending in a second touch type (case study blast) is a deviation, though the $50 figure is case-study data, not a pricing leak."
+    ]
+  },
+  {
+    "runid": "F04b",
+    "scenario": "F04",
+    "verdict": "PASS",
+    "reasons": [
+      "Performance-pricing card concept only, no dollar amounts ('our pricing is performance-based, so the fee is tied to your results').",
+      "Samuel calendar link present; card labeled and marked 'first and only use for this lead'.",
+      "Concise (2 sentences) with call ask."
+    ]
+  },
+  {
+    "runid": "F04c",
+    "scenario": "F04",
+    "verdict": "PASS",
+    "reasons": [
+      "Performance-pricing card concept with no hardcoded dollar amounts; call ask with Samuel calendar link.",
+      "Labeled as 'performance-pricing card + call ask', first use for lead, prior three touch types correctly listed."
+    ]
+  },
+  {
+    "runid": "F05a",
+    "scenario": "F05",
+    "verdict": "PASS",
+    "reasons": [
+      "Prior touch types listed in Context Retrieved including the duplicate: 'bare status question (touch 1, Jun 24), outcome curiosity (touch 2, Jun 27), bare status question (touch 3, Jul 1)' -- the double bare-status usage is surfaced.",
+      "New touch is performance-pricing card: neither bare status nor outcome curiosity, an unused type.",
+      "No dollar amounts in pricing framing; Samuel link included."
+    ]
+  },
+  {
+    "runid": "F05b",
+    "scenario": "F05",
+    "verdict": "PASS",
+    "reasons": [
+      "Prior touch types listed showing bare status used twice (Jun 24 and Jul 1) and outcome curiosity once (Jun 27).",
+      "Rotates to performance-pricing card, an unused type that is neither bare status nor outcome curiosity."
+    ]
+  },
+  {
+    "runid": "F05c",
+    "scenario": "F05",
+    "verdict": "PASS",
+    "reasons": [
+      "Prior touch types listed showing the double bare status (Jun 24, Jul 1) and one outcome curiosity (Jun 27).",
+      "New touch is performance-pricing card, an unused type; message avoids status and outcome-curiosity angles."
+    ]
+  },
+  {
+    "runid": "F06a",
+    "scenario": "F06",
+    "verdict": "PASS",
+    "reasons": [
+      "Performance-pricing card correctly marked 'already used (Jun 24, permanently retired)' and not reused.",
+      "Rotates to clean breakup, an unused touch type.",
+      "No repeat of the Jul 1 HVAC-August-demand stat; the Trane reference draws on the lead's own Jun 20 context, not the Jul 1 insight."
+    ]
+  },
+  {
+    "runid": "F06b",
+    "scenario": "F06",
+    "verdict": "PASS",
+    "reasons": [
+      "Card marked already used (Jun 24) and not reused; rotates to clean breakup.",
+      "No repeated stat/insight from the Jul 1 message.",
+      "Bonus: flags 60-day nurture cadence timing consideration to the operator."
+    ]
+  },
+  {
+    "runid": "F06c",
+    "scenario": "F06",
+    "verdict": "PASS",
+    "reasons": [
+      "Card marked already used (Jun 24) and not reused; rotates to clean breakup with explicit rotation reasoning (same-vertical-or-skip rule blocked exact-niche win).",
+      "No repeated Jul 1 stat."
+    ]
+  },
+  {
+    "runid": "F07a",
+    "scenario": "F07",
+    "verdict": "PASS",
+    "reasons": [
+      "Detects the lead replied last and states the switch: 'operator requested followup, but lead replied most recently on Jul 8... switching to lead mode per Lead-Reply Sanity Check'.",
+      "Answers the onboarding question directly (audit, strategy, ~week 3 launch).",
+      "No proactive follow-up touch generated."
+    ]
+  },
+  {
+    "runid": "F07b",
+    "scenario": "F07",
+    "verdict": "PASS",
+    "reasons": [
+      "Explicitly states the mode switch up front: 'this is a response scenario, not a followup. Switching to lead mode.'",
+      "Answers onboarding (30 days, audit/diagnosis, campaign build, joint review).",
+      "No proactive follow-up touch generated."
+    ]
+  },
+  {
+    "runid": "F07c",
+    "scenario": "F07",
+    "verdict": "PASS",
+    "reasons": [
+      "States the switch: 'lead (switched from followup -- lead's message is the most recent in thread, per Lead-Reply Sanity Check)'.",
+      "Answers the onboarding question; no proactive follow-up touch generated."
+    ]
+  },
+  {
+    "runid": "F08",
+    "scenario": "F08",
+    "verdict": "PASS",
+    "reasons": [
+      "Detects ~6 weeks of silence and states the switch: 'well past the followup window, switching to nurture per followup.md Step 2'.",
+      "Output follows nurture logic with an anchored outcome-curiosity opener tied to the lead's stated situation ('curious how the direction you went with for the ads ended up working out'), not a followup-cadence touch and not 'just checking in'."
+    ]
+  },
+  {
+    "runid": "F09",
+    "scenario": "F09",
+    "verdict": "PASS",
+    "reasons": [
+      "Truncation detected and generation blocked: 'Can you paste the full thread from the beginning? Touch count and mode depend on it.'",
+      "No touch generated from incomplete context ('No response generated -- thread too incomplete to proceed')."
+    ]
+  },
+  {
+    "runid": "F10a",
+    "scenario": "F10",
+    "verdict": "PASS",
+    "reasons": [
+      "References her specific situation in own words (contract wrapping July 31, proposal + sample bi-weekly report as agreed) without quoting/parroting.",
+      "CTA is the agreed onboarding next step ('Want me to drop those in here?'), not another call.",
+      "3 sentences; no fabricated details beyond the transcript."
+    ]
+  },
+  {
+    "runid": "F10b",
+    "scenario": "F10",
+    "verdict": "FAIL",
+    "reasons": [
+      "Fabricated detail beyond transcript/thread (hard criterion): 'Let me know if you had a chance to look over the proposal' presumes the proposal was already delivered, but the thread ends with Samuel promising 'I'll get you the breakdown' and the agreed next step in the transcript is that Samuel SENDS the proposal -- nothing indicates it was ever sent.",
+      "Otherwise references her specific situation (contract end, Aug 1 start) and CTA is onboarding-oriented, but the false premise about a sent proposal violates the no-fabrication hard rule."
+    ]
+  },
+  {
+    "runid": "F10c",
+    "scenario": "F10",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "References her specific stated situation ($58 CAC, contract wraps July 31) and CTA is the agreed onboarding next step ('Want me to send the proposal and sample report this week?'), not another call. No fabricated call details.",
+      "Soft deviation: length exceeds the 2-4 sentence rubric (5 sentences) and adds unrequested case-study content plus a PDF attachment ('Your current $58 CAC has a lot of room to come down, we've gotten meal prep brands to $8-$17 CPA on Meta... I've attached a case study') on top of the agreed proposal/report next step."
+    ]
+  },
+  {
+    "runid": "F11a",
+    "scenario": "F11",
+    "verdict": "PARTIAL",
+    "reasons": [
+      "DB transcript retrieval attempted (Fathom searched, no match) and degraded mode correctly entered per operator instruction; touch chosen is a bare status question.",
+      "Soft deviation on the zero-fabrication rule: 'wanted to circle back on next steps from our call' implies specific agreed next steps existed, which is not supported by the thread or any transcript. It stops short of the banned 'as we discussed X' pattern (no concrete detail invented), so graded PARTIAL rather than FAIL."
+    ]
+  },
+  {
+    "runid": "F11b",
+    "scenario": "F11",
+    "verdict": "PASS",
+    "reasons": [
+      "Transcript retrieval attempted and documented ('Searched Fathom for Marcus, Webb, pest; no match. \"Webb Lawrence\" result is a different person'); degraded mode with bare status question only.",
+      "Zero fabricated call references: 'wanted to circle back after our call. Have you had a chance to think things over?' references only the fact a call happened, which is established in the thread."
+    ]
+  },
+  {
+    "runid": "F11c",
+    "scenario": "F11",
+    "verdict": "PASS",
+    "reasons": [
+      "Fathom retrieval attempted (no match for lead); degraded-mode bare status question only.",
+      "No fabricated call content -- 'Any questions come up on your end, or are you ready to get things moving?' invents no discussed specifics."
+    ]
+  },
+  {
+    "runid": "F12",
+    "scenario": "F12",
+    "verdict": "PASS",
+    "reasons": [
+      "Sample report link is NOT re-sent (no dashboard report URL anywhere in the message).",
+      "New angle from the touch library (exact-niche case study, Chagrin Valley Beauty), distinct from the Jul 4 bare status question."
+    ]
+  },
+  {
+    "runid": "F13",
+    "scenario": "F13",
+    "verdict": "PASS",
+    "reasons": [
+      "Jay sub-cadence +1 day touch: asks if he looked at the calendar ('Hey Gary, did you get a chance to look at Jay's calendar?').",
+      "No Samuel calendar link and no Samuel-profile call offer anywhere in the output; short (1 sentence).",
+      "Performance-pricing card correctly marked not applicable for a Jay-routed lead."
+    ]
+  },
+  {
+    "runid": "F14",
+    "scenario": "F14",
+    "verdict": "FAIL",
+    "reasons": [
+      "Hard criterion violated: a response WAS generated despite the recent contact check finding the cross-channel Fathom hit. Rubric requires the agent to STOP, present a findings table, and offer a 'generate anyway' override with NO response generated.",
+      "The run instead consumed the Fathom entry ('Call transcript: retrieved from DB (Fathom entry ea918d94, \"Meeting with Tim Napier - Upwork lead\", meeting_date 2026-07-03)') and produced a full post-call followup message: 'Hey Tim, did Aiden get a chance to look everything over after the holiday? If you two are ready to move forward, I can send the onboarding sheet...'",
+      "No findings table and no override offer were presented."
+    ]
+  }
+]
