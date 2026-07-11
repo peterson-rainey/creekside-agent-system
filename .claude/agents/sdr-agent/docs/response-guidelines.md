@@ -55,6 +55,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 ## Budget Qualification
 - When a lead mentions their ad spend, follow the tiered routing in Company Rules to determine who to route them to.
 - **Does NOT apply to nurture messages.**
+- **Per-platform minimum viable budget: $3,000/month.** When asked how to split a budget across platforms, never recommend allocating less than $3,000/month to any single platform. A $5,500/month total budget split between two platforms does not work at that split -- recommend leading with one platform (typically Google for local services, Meta for awareness/ecom) and note that splitting requires at least $3K per platform to get meaningful data. This is a factual floor, not a sales position. Observed failure: recommended $1,500/month on Facebook, which is below minimum viable for data-driven optimization.
 
 ## Pricing Rules
 
