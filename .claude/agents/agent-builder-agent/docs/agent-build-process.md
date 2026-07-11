@@ -43,6 +43,87 @@ ORDER BY created_at DESC;
 
 For each match, decide: **Delegate** (spawn it), **Reference** (mention it), or **Incorporate** (reuse its patterns).
 
+### 1a3. Prior-Art Sweep (MANDATORY): How Similar Builds Were Done
+
+Before writing a single instruction, establish what the archetype is and how prior builds of that type were structured.
+
+**Step 1: Classify the build archetype.** Assign one (or at most two) of:
+
+| Archetype | Examples |
+|-----------|---------|
+| `scheduled-pipeline` | Gmail ingestion, ClickUp sync, Fathom daily pull |
+| `qc-validation` | qc-reviewer-agent, code-audit-agent, expert-review-agent |
+| `platform-integration-mcp` | Google Ads via MCP, Calendar agent, Gmail agent |
+| `chrome-browser-agent` | Any agent using chrome-browser-nav or chrome-screenshot-pipeline |
+| `report-deliverable-generator` | Proposal generator, financial-analyst-agent, SEO blog agent |
+| `database-analysis` | Any agent whose primary workflow is SQL queries + interpretation |
+| `conversational-advisor` | Communication-style-agent, marketing-strategy-agent |
+| `local-routine` | Pre-call prep, post-call recap, daily-status-brief |
+| `data-writer` | Agents that INSERT/UPDATE rows in Supabase |
+| `routing-orchestrator` | Agents that classify and delegate to other agents |
+
+State the archetype in the research summary. If none fits, name a new one.
+
+**Step 2: Find 2-3 exemplar agents of the same archetype.**
+```sql
+-- Find active agents with archetype-related terms in their name or description
+SELECT name, description, tools, model, department
+FROM agent_definitions
+WHERE status = 'active'
+AND (
+  description ILIKE '%ARCHETYPE_TERM%'
+  OR name ILIKE '%ARCHETYPE_TERM%'
+)
+ORDER BY name;
+```
+Then Glob and Read their actual `.md` files (and `docs/` dirs if they exist) -- do NOT rely on DB descriptions alone. Pay attention to: frontmatter structure, how they call the DB, how they handle errors, how output is formatted, and whether they use the mini-app docs/ split.
+
+```bash
+# Example: find all file-based exemplars for review
+ls /Users/petersonrainey/C-Code\ -\ Rag\ database/.claude/agents/
+```
+
+**Step 3: Search for prior build sessions and known gotchas.**
+```sql
+-- Semantic search for prior builds of this archetype
+SELECT * FROM search_all('build [archetype] agent', 15);
+
+-- Keyword search for the archetype term
+SELECT * FROM keyword_search_all('[archetype]', 15);
+
+-- Prior chat sessions that mention this archetype or similar builds
+SELECT id, session_date, title, LEFT(summary, 300) AS preview
+FROM chat_sessions
+WHERE summary ILIKE '%[archetype_term]%'
+   OR title ILIKE '%[archetype_term]%'
+ORDER BY session_date DESC
+LIMIT 10;
+
+-- Troubleshooting and correction entries for this archetype
+SELECT id, title, LEFT(content, 300) AS preview, created_at
+FROM agent_knowledge
+WHERE type IN ('troubleshooting', 'correction')
+AND (content ILIKE '%[archetype_term]%' OR title ILIKE '%[archetype_term]%')
+ORDER BY created_at DESC;
+```
+
+**Known archetype-specific gotchas to check (always verify these apply):**
+- `scheduled-pipeline` or `local-routine`: Railway agents cannot Read local `docs/` files -- keep system_prompt fully self-contained (Rule 25).
+- `chrome-browser-agent`: Live-test Chrome extraction on the actual target page BEFORE writing instructions -- do NOT assume `get_page_text` works (Rule 21/22).
+- Any agent using sub-agents: Claude Code sub-agents cannot spawn nested sub-agents.
+- `data-writer`: All INSERTs must be UPSERTs with ON CONFLICT (learning #2 from c10cd55d).
+- `platform-integration-mcp`: Contractor builds should default to Chrome browser automation, not MCP, for non-Supabase/GitHub platforms (Rule 30).
+
+**Step 4: Produce a "Prior Art" subsection in the Step 1f research summary:**
+```
+## Prior Art
+- Archetype: [name]
+- Exemplars read: [agent-name-1] (key pattern reused: ...), [agent-name-2] (key pattern reused: ...)
+- Patterns to REUSE: [list -- e.g., "same frontmatter structure as X", "use Y's query template for Z"]
+- Past mistakes to AVOID: [cite specific agent_knowledge IDs and titles -- e.g., "id abc123: Chrome get_page_text fails on cross-origin iframes"]
+- Reason to deviate from archetype (if any): [or "none -- follow established pattern"]
+```
+
 ### 1a-orig. Check What Already Exists
 ```sql
 SELECT title, content, type FROM agent_knowledge

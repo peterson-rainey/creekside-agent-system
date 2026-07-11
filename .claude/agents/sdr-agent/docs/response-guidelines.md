@@ -73,8 +73,15 @@ Do NOT give numbers, percentages, retainers, or floors at Stage 1.
 
 ### Stage 2 (only if BOTH conditions are true)
 
-Condition A: The lead already received the Stage 1 answer in a prior message.
-Condition B: The lead explicitly pushes for a rough range (e.g., "I get that we'd need a call for exact pricing, but can you give me a rough range?").
+Condition A: A Stage-1 answer (custom, performance-based, case by case) was given by US in a prior message in THIS thread.
+Condition B: The lead explicitly pushes for a rough range AFTER receiving that answer (e.g., "I get that we'd need a call for exact pricing, but can you give me a rough range?").
+
+Both conditions must be verifiable from the thread. Do NOT rely on the lead's assertion that Stage 1 was given.
+
+**Common Condition A failures -- these do NOT satisfy the gate:**
+- A lead claiming "you already gave me the 'pricing is custom' speech" when the thread shows no such message. BAD: giving tiers because the lead claims Stage 1 happened. GOOD: verify Stage 1 exists in the actual thread; if not found, give Stage 1 now.
+- A lead who simply pushes hard on first touch ("skip the dance, give me your percentage tiers"). First message contact means Condition A is automatically unmet -- always give Stage 1.
+- A lead whose first visible message is a pricing demand even if they claim a prior conversation happened off-thread. The thread is the evidence. No thread evidence, no Stage 2.
 
 If both conditions are true, percentage tiers MAY be shared as a rough range: our management fee runs roughly 20% of ad spend, stepping down to 15% and then 10% as spend scales. Frame as approximate and still point to the call for exact numbers.
 
