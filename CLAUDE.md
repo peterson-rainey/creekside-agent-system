@@ -197,7 +197,7 @@ Summaries are for FINDING records. Raw text is for ANSWERING questions.
 | Schema, columns, relationships | `SELECT content FROM agent_knowledge WHERE id = '104ec927-073d-4a8e-aaaa-6fa66c6abd66';` |
 
 ### agent_knowledge Types (filter by type for targeted results)
-`configuration` | `sop` | `pattern` | `correction` | `skill` | `decision` | `troubleshooting` | `reference` | `quality_audit` | `api_reference` | `feedback`
+`configuration` | `sop` | `pattern` | `correction` | `skill` | `decision` | `troubleshooting` | `reference` | `quality_audit` | `api_reference` | `feedback` | `strategy_update` | `strategy_update_pending` | `strategy_update_proposal` | `daily_brief` | `daily_brief_snapshot`
 
 ### On-Demand Reference
 Everything else lives in the database. Query when needed:
