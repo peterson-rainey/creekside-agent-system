@@ -563,11 +563,12 @@ def check_and_fix_warns(text):
             issues.append(("fabrication_warn", f"{m.group()} -- {label}"))
 
     # 13b. Slug-URL check: named case-study client without a slug URL (WARN, no auto-fix -- G25 fix)
-    # If the response names a known case-study client, it must also contain that client's slug URL.
-    # Hub-only responses (creeksidemarketingpros.com/case-study-digital-marketing/ with no slug)
-    # pass only when the response does NOT name a specific client.
-    # This list covers all clients in the case study table. Names that appear as substrings of
-    # other words are wrapped in word-boundary patterns to avoid false positives.
+    # Per A2 policy update: a named client is COMPLIANT when EITHER:
+    #   (a) the slug URL for that client appears in the response, OR
+    #   (b) the response explicitly references an attachment AND contains a VA attachment block
+    #       for that client (file_name or web_view_link pattern in the response).
+    # What remains banned: bare client name with no slug URL AND no attachment block.
+    # The hub-only URL (no slug) is never sufficient when a client is named.
     _CASE_STUDY_CLIENTS = [
         ("Dr. Laleh", "dr-laleh"),
         ("Polaris Dentistry", "polaris-dentistry"),
@@ -601,6 +602,15 @@ def check_and_fix_warns(text):
         ("Luggage Drop", "luggage-drop"),
     ]
     _CASE_STUDY_BASE = "creeksidemarketingpros.com/case-study-digital-marketing/"
+    # Detect whether the response contains a VA attachment block.
+    # A VA attachment block is the operator block appended after the message body,
+    # containing file_name and web_view_link fields for a case study PDF.
+    # When present, an attachment reference in the message body satisfies the proof requirement
+    # without the slug URL (per A2 policy).
+    _has_va_attachment_block = bool(
+        re.search(r'file_name\s*[:=]', fixed, re.IGNORECASE) or
+        re.search(r'web_view_link\s*[:=]', fixed, re.IGNORECASE)
+    )
     # Only run this check when the response contains the base case-study domain
     # (i.e., the response is attempting to share proof -- not a general message).
     if _CASE_STUDY_BASE in fixed:
@@ -608,12 +618,18 @@ def check_and_fix_warns(text):
             # Check if client name appears in the response (case-insensitive)
             if re.search(re.escape(client_name), fixed, re.IGNORECASE):
                 # Check if the slug URL also appears
-                if slug not in fixed.lower():
-                    issues.append((
-                        "missing_slug_url",
-                        f"{client_name} named but slug URL '.../{slug}' not found -- "
-                        "either add the full slug URL or remove the client name and use the hub page",
-                    ))
+                slug_present = slug in fixed.lower()
+                if not slug_present:
+                    # B4: exempt if VA attachment block is present (A2 policy)
+                    if _has_va_attachment_block:
+                        pass  # Named client + attached PDF + referenced = COMPLIANT
+                    else:
+                        issues.append((
+                            "missing_slug_url",
+                            f"{client_name} named but slug URL '.../{slug}' not found and no VA "
+                            "attachment block detected -- either add the full slug URL, or attach "
+                            "the case study PDF and reference it in the message body",
+                        ))
 
     # 14b. Hours-scoped engagement phrasing (WARN, no auto-fix -- FIX E)
     # We never accept, quote, or scope work by hours. When a lead requests hours-based
@@ -801,11 +817,14 @@ def check_and_fix_warns(text):
     return fixed, issues
 
 
-def validate(text):
+def validate(text, profile="samuel"):
     """
     Run full validation. Returns (verdict, block_issues, warn_issues, fixed_text).
+
+    profile: 'samuel' (default) or 'lindsey'. Passed to check_blocks for
+    profile-aware calendar URL enforcement (B1).
     """
-    block_issues = check_blocks(text)
+    block_issues = check_blocks(text, profile=profile)
     fixed_text, warn_issues = check_and_fix_warns(text)
 
     if block_issues:
@@ -817,9 +836,33 @@ def validate(text):
 
 
 def main():
+    # Parse arguments: optional --profile flag (samuel|lindsey) and file path.
+    # Accepted forms:
+    #   validate_response.py <file>
+    #   validate_response.py --profile lindsey <file>
+    #   validate_response.py <file> --profile lindsey
+    #   echo "text" | validate_response.py --profile lindsey
+    args = sys.argv[1:]
+    profile = "samuel"
+    file_path = None
+
+    i = 0
+    while i < len(args):
+        if args[i] == "--profile" and i + 1 < len(args):
+            profile = args[i + 1].lower()
+            i += 2
+        elif not args[i].startswith("--"):
+            file_path = args[i]
+            i += 1
+        else:
+            i += 1
+
+    if profile not in ("samuel", "lindsey"):
+        profile = "samuel"  # default for unrecognised values
+
     # Read response text from file argument or stdin
-    if len(sys.argv) > 1:
-        with open(sys.argv[1], 'r') as f:
+    if file_path:
+        with open(file_path, 'r') as f:
             text = f.read().strip()
     else:
         text = sys.stdin.read().strip()
@@ -831,7 +874,7 @@ def main():
         print("  empty_response: empty", file=sys.stderr)
         sys.exit(2)
 
-    verdict, block_issues, warn_issues, fixed_text = validate(text)
+    verdict, block_issues, warn_issues, fixed_text = validate(text, profile=profile)
 
     # Output verdict and issues
     all_issues = []

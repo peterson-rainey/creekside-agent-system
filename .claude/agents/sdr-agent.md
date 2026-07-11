@@ -117,11 +117,13 @@ This is a hard stop gate, not a soft advisory. The two outcomes are:
 
 **Step 6: Deterministic Validation (all types: lead, followup, nurture, and warmup).**
 
-Write your response to a temp file and run the validation script:
+Write your response to a temp file and run the validation script, passing the active profile:
 
 ```bash
 echo 'YOUR RESPONSE TEXT HERE' > /tmp/sdr_response_draft.txt
-python3 .claude/agents/sdr-agent/validate_response.py /tmp/sdr_response_draft.txt
+python3 .claude/agents/sdr-agent/validate_response.py /tmp/sdr_response_draft.txt --profile samuel
+# or for lindsey profile:
+python3 .claude/agents/sdr-agent/validate_response.py /tmp/sdr_response_draft.txt --profile lindsey
 ```
 
 Read the output:
