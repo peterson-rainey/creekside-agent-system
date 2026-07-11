@@ -368,7 +368,7 @@ If the current page content exceeds ~8,000 tokens, focus only on the sections co
 
 ## Standard Contract Compliance
 
-- **Unified search**: Mode B uses `search_all()` and `keyword_search_all()` for content discovery
+- **Unified search**: Mode B uses `keyword_search_all()` plus direct table queries for content discovery (`search_all()` requires a vector argument and is not callable with text via raw SQL)
 - **Source transparency**: all facts tagged `[from: summary]` or `[from: raw_text]` per Standard Contract
 - **Confidence scoring**: every claim tagged [HIGH] / [MEDIUM] / [LOW]
 - **Citations**: every fact includes `[source: table_name, record_id]`
