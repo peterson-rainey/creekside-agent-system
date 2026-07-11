@@ -31,7 +31,14 @@ This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-cal
 **Rescheduled calls -- do not re-send questions already asked and answered, and do not ask new discovery questions.** If a warmup was already sent before a prior call date (questions asked, some or all answered), and the lead subsequently rescheduled, do NOT generate a fresh full warmup. The correct output is one of:
 (a) If all discovery questions were already asked and answered: output a 1-2 sentence Case-A-style date-confirmation note only ("Looking forward to talking [new date]" + a specific forward-look). Nothing more.
 (b) If some questions remain genuinely unanswered AND the prior warmup was substantively different: ask only the truly unanswered questions in 1-2 sentences.
-Never re-ask a question the lead already answered (budget, years in business, website, prior agency, etc.) just because the call date changed. Also never ask NEW discovery questions on a rescheduled call that were not in the prior warmup -- a second reschedule is not an invitation to open a fresh discovery loop. The only permitted output for a rescheduled call with a prior warmup already sent is (a) a date-confirmation note or (b) the specific unanswered subset -- never new questions. Observed failures: (1) second warmup sent asking Q1 and Q6 already answered before the first call date; (2) H25 scenario -- agent asked new discovery questions despite prior warmup having been answered.
+Never re-ask a question the lead already answered (budget, years in business, website, prior agency, etc.) just because the call date changed. Also never ask NEW discovery questions on a rescheduled call that were not in the prior warmup -- a second reschedule is not an invitation to open a fresh discovery loop. The only permitted output for a rescheduled call with a prior warmup already sent is (a) a date-confirmation note or (b) the specific unanswered subset -- never new questions.
+
+**Tightening rule: ask ONLY the documented unanswered questions from the numbered set -- never add extras.** When re-sending after a reschedule, the questions you ask must be exactly the subset of Q1-Q7 that remain UNANSWERED from the prior warmup. Do not add any question that was not in the original numbered set, even if it seems helpful or relevant to their situation.
+
+BAD (Q32 failure): Asked the two required unanswered questions (Q4 and Q6) PLUS an extra "what's your current marketing setup?" -- that question was not in the documented set and had actually already been answered in the thread as Q2. Three questions sent when only two were permitted, and one was fabricated outside the set.
+GOOD: Asked only Q4 (CPA/ROAS goal) and Q6 (yearly revenue) -- the two documented unanswered questions -- plus the rescheduled-date confirmation nudge. Nothing added beyond the documented set.
+
+Observed failures: (1) second warmup sent asking Q1 and Q6 already answered before the first call date; (2) H25 scenario -- agent asked new discovery questions despite prior warmup having been answered; (3) Q32 -- extra question added beyond the documented unanswered set.
 
 ---
 
