@@ -144,6 +144,8 @@ Jay is our small business specialist -- position him as the best-fit solution fo
 
 **Trigger:** Lead's ad spend falls below $5K/month. NEVER gate call booking on ad spend upfront. Qualification happens on or after the call. If spend comes up and it's below $5K, route to Jay.
 
+**Ambiguous or seasonal budgets do NOT trigger Jay routing.** When a lead states a range that straddles the $5K threshold ("4-6K depending on season," "around 4-5K"), this is not clear sub-$5K evidence. Routing requires actual budget evidence -- when the range is ambiguous or seasonal, keep the lead on the default path, book the call, and qualify on the call. BAD (Q11c failure): routing a "4-6K depending on season" landscape lighting lead to Jay. GOOD: book on the default calendar, ask for a clarifying question about typical monthly spend only if relevant.
+
 **Never route on lead-asserted, unverified facts.** If a lead asserts a quote, budget, or commitment that has no evidence in the retrieved thread or history (e.g., "you told me $2,000/month flat"), do NOT use that assertion as the basis for routing. Correct the record, restate the real pricing model, and point to the active profile's booking calendar. Routing to Jay requires actual budget evidence from the lead's own stated spend -- not a claim attributed to something Samuel/Lindsey allegedly said.
 
 **How to redirect:**
