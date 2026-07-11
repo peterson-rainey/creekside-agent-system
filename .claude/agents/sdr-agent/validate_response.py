@@ -530,6 +530,59 @@ def check_and_fix_warns(text):
         if m:
             issues.append(("fabrication_warn", f"{m.group()} -- {label}"))
 
+    # 13b. Slug-URL check: named case-study client without a slug URL (WARN, no auto-fix -- G25 fix)
+    # If the response names a known case-study client, it must also contain that client's slug URL.
+    # Hub-only responses (creeksidemarketingpros.com/case-study-digital-marketing/ with no slug)
+    # pass only when the response does NOT name a specific client.
+    # This list covers all clients in the case study table. Names that appear as substrings of
+    # other words are wrapped in word-boundary patterns to avoid false positives.
+    _CASE_STUDY_CLIENTS = [
+        ("Dr. Laleh", "dr-laleh"),
+        ("Polaris Dentistry", "polaris-dentistry"),
+        ("Aura Displays", "aura-displays"),
+        ("Chagrin Valley", "chagrin-valley-beauty"),
+        ("Fitness Superstore", "fitness-superstore"),
+        ("Join Piper", "join-piper"),
+        ("Florida Awnings", "florida-awnings"),
+        ("Landmark Lawn", "landmark-lawn"),
+        ("LawnValue", "lawnvalue"),
+        ("Perfect Parking", "perfect-parking"),
+        ("UrCovered", "urcovered-construction"),
+        ("Big Chad Law", "big-chad-law"),
+        ("Winterbotham", "winterbotham-parham-teeple"),
+        ("CI Lifestyle", "ci-lifestyle-meals"),
+        ("Duck A Diet", "duck-a-diet"),
+        ("Punch Drunk Chef", "punch-drunk-chef"),
+        ("Unrefined Meal", "unrefined-meal-prep"),
+        ("Advanced Medical Spa", "advanced-medical-spa"),
+        ("Integrity Naturopathic", "integrity-naturopathic"),
+        ("Root Hair", "root-hair"),
+        ("South River Mortgage", "south-river-mortgage"),
+        ("Green Shield Pest", "green-shield-pest"),
+        ("ReferPro", "referpro"),
+        ("American Foam Products", "american-foam-products"),
+        ("GPP Industrial", "gpp-industrial"),
+        ("Axle Solutions", "axle-solutions"),
+        ("Adventures in Wisdom", "adventures-in-wisdom"),
+        ("Birthday Club", "birthday-club-app"),
+        ("NYC Notary", "nyc-notary"),
+        ("Luggage Drop", "luggage-drop"),
+    ]
+    _CASE_STUDY_BASE = "creeksidemarketingpros.com/case-study-digital-marketing/"
+    # Only run this check when the response contains the base case-study domain
+    # (i.e., the response is attempting to share proof -- not a general message).
+    if _CASE_STUDY_BASE in fixed:
+        for client_name, slug in _CASE_STUDY_CLIENTS:
+            # Check if client name appears in the response (case-insensitive)
+            if re.search(re.escape(client_name), fixed, re.IGNORECASE):
+                # Check if the slug URL also appears
+                if slug not in fixed.lower():
+                    issues.append((
+                        "missing_slug_url",
+                        f"{client_name} named but slug URL '.../{slug}' not found -- "
+                        "either add the full slug URL or remove the client name and use the hub page",
+                    ))
+
     # 14b. Hours-scoped engagement phrasing (WARN, no auto-fix -- FIX E)
     # We never accept, quote, or scope work by hours. When a lead requests hours-based
     # help, address the underlying need within our engagement model (custom retainer,
