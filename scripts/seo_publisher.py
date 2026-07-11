@@ -111,6 +111,39 @@ def get_oldest_draft() -> dict | None:
     return draft
 
 
+def check_queue_health():
+    """File a pipeline_alert (once) when the generation queue is fully drained.
+
+    Without this, an empty queue stalls both the remote generator and this
+    publisher silently -- happened 2026-06-22 to 2026-07-11 (19 days unnoticed).
+    """
+    pending = postgrest_get(
+        'seo_content_queue',
+        'status=in.(queued,generating,draft)&limit=1',
+        select='id',
+    )
+    if pending:
+        return
+    existing = postgrest_get(
+        'pipeline_alerts',
+        'pipeline_name=eq.seo_publisher&alert_type=eq.queue_empty&acknowledged=eq.false&limit=1',
+        select='id',
+    )
+    if existing:
+        log('Queue empty; open queue_empty alert already exists. Not re-alerting.')
+        return
+    postgrest_post('pipeline_alerts', {
+        'pipeline_name': 'seo_publisher',
+        'alert_type': 'queue_empty',
+        'severity': 'high',
+        'source': 'seo_publisher.py',
+        'message': 'SEO content queue fully drained: no queued, generating, or draft items. '
+                   'Generator and publisher are idle until seo_content_queue is refilled.',
+        'details': {'checked_at': datetime.now(timezone.utc).isoformat()},
+    })
+    log('Queue empty. Filed queue_empty pipeline_alert.')
+
+
 def extract_title(content: str) -> str:
     """Extract title from frontmatter."""
     for line in content.split('\n'):
@@ -253,6 +286,7 @@ def main():
     draft = get_oldest_draft()
     if not draft:
         log('No drafts ready to publish. Done.')
+        check_queue_health()
         return
 
     slug = draft['slug']
