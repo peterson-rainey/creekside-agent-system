@@ -24,6 +24,18 @@ Infer how many touches have already been sent and how long the lead has been sil
 
 State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, touch 3 -- last sent ~4 days ago based on timestamps").
 
+## Cadence Gate Rules (Hard -- Output NO MESSAGE when these apply)
+
+Before generating any touch, compute the cadence position from thread timestamps. The output may be "no message" with a hold-until date -- this is a valid and correct outcome that the operator needs.
+
+**Consecutive-day block:** Touches land approximately day 2, 4, 7 from silence start. Never fire two touches on back-to-back calendar days. If touch 1 went out yesterday, touch 2 is due tomorrow (~day 4), not today. Output: "Touch 2 is due ~[date]. Hold until then."
+
+**3-in-7-day limit:** Once all three of touches 1, 2, and 3 have been sent within a 7-day window, the standard cadence is complete. The next scheduled event is touch 4 (the performance-pricing card) at ~day 14. Do NOT fire the card early just because the operator requested "another touch." Output: "Standard 3-touch cadence is complete. Next touch is the day-14 performance-pricing card, due ~[date]. Hold until then."
+
+**Never fire the pricing card early.** If the operator explicitly requests "the pricing card" or "the performance-pricing card" before day 12, flag that it is early and recommend holding. If they insist and the date is within 2 days of day 14, sending with an explicit "treating day X as approaching day 14" note is acceptable.
+
+**Post-card exhaustion:** After all 4 touches are sent (including the pricing card), the lead moves to nurture pacing -- weeks between touches, not days. Never send a 5th touch (including a "breakup" message) within days of the card. Output: "All 4 cadence touches exhausted. This lead is now on nurture pacing. First nurture touch should be sent in [estimated timeframe, typically 2-4 weeks]."
+
 ---
 
 ## Pre-Call Followup Rules
