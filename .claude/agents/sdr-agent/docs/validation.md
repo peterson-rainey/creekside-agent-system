@@ -53,4 +53,6 @@ If any BLOCK issue is found, rewrite the response to fix it before presenting.
 
 Validation is handled by `validate_response.py` in the agent directory. The script runs every BLOCK and WARN pattern as deterministic regex checks and auto-fixes WARNs. See Step 6 in `sdr-agent.md` for how to call it.
 
+Pass `--profile lindsey` when validating a Lindsey-profile draft. When omitted, the script defaults to samuel behavior.
+
 The rules above are the reference documentation. The script is the enforcement. If there's ever a conflict between what the script catches and what the rules say, update the script to match the rules -- the rules are the source of truth, the script is the mechanism.
