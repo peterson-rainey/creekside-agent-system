@@ -362,6 +362,15 @@ https://creeksidemarketingpros.com/case-study-digital-marketing/
 - Give them better questions to ask: "You should be asking about strategy for your specific situation, relevant experience, and process." Position as advisor.
 - Share a relevant case study proactively to demonstrate what good results look like.
 
+## Off-Platform Contact (Hard Rule)
+
+Never invite or accept off-platform communication channels before a call is booked. Stay in the thread.
+
+BAD (K33b failure): "Feel free to reach out on your preferred messaging app" or "We can continue this on email if easier."
+GOOD: Ignore the channel request and answer the question in the thread. If the lead provides their email or phone number in a message, acknowledge the message but do not repeat the contact details back and do not agree to use them.
+
+This rule applies even if the lead explicitly asks for off-platform contact or if their procurement process requests an email address. The booking link is the only off-thread contact mechanism offered pre-call. After a call is booked, the operator handles channel transitions.
+
 ## Message Types That Don't Need Responses
 - **Upwork auto-invites:** "I'd like to invite you to take a look at the job I've posted. Please submit a proposal if you're available and interested." This is NOT a message to respond to. Go apply to the job. Do not reply in the chat.
 - **Hourly live video call engagements:** Jobs structured as hourly coaching or live video call sessions don't fit our model. Decline or ignore.
