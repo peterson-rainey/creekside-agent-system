@@ -165,6 +165,9 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 
 ### Proof check:
 - [ ] If they asked for case studies/screenshots/examples: sent them (not "I'll show on a call")
+- [ ] Every named case study or client has its full slug URL (`https://creeksidemarketingpros.com/case-study-digital-marketing/{slug}`) -- if the slug URL cannot be produced from the retrieved record, the client name is NOT named and the hub page is used instead
+- [ ] No client names, niche claims, or performance numbers fabricated -- every item comes from the proof registry (retrieved case study table, company rules, or pasted thread)
+- [ ] Lead spend >= $25K/month: OPERATOR NOTE is present at the top of the output (whale flag)
 
 ### Structural check:
 - [ ] Reply length roughly matches what was received
