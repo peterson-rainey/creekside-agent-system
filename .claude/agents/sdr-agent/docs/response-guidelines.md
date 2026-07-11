@@ -167,6 +167,8 @@ The approved Jay-routing template below is ONLY for leads who have NOT yet booke
 
 This template is for pre-booking routing only (lead has NOT yet booked). Do not paraphrase. Do not add content inside the template. The only variable is the lead's name. A short natural lead-in sentence immediately before the template is acceptable. If the approved "$500-$800/month" range is used, it must be a separate sentence placed AFTER the template, never inserted inside it.
 
+**Do not splice budget or spend figures into the template.** The template must not be modified to include the lead's budget (e.g., "At $4,500/month in ad spend, you'd actually be a great fit" is a violation). Budget context before the template is acceptable in a lead-in sentence; the template body itself must not change. Observed failure (J04r2): "Hey Marcus" greeting dropped and "At $4,500/month in ad spend" spliced into the opening of the template, tying the routing to his specific budget -- this violates the verbatim rule and implicitly signals why they are being routed down (spend floor).
+
 **Absolute bans -- each grounded in a documented violation:**
 
 - **NEVER frame Jay as the fallback if pricing is too high.** Saying "just in case the pricing I give you is too high, he's a great option" positions Jay as the cheaper option and Creekside as unaffordable. Route to Jay because he is the right fit for their business stage, full stop. (Violation: Robert Murphy thread, Jun 18.)
