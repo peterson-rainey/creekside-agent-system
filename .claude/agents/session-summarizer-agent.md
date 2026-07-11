@@ -171,10 +171,13 @@ SET title = $1,
     next_steps = $7::jsonb,
     tags = $8::text[],
     summary_generated = TRUE,
+    embedded_at = NULL,
     updated_at = NOW()
 WHERE id = $9
 RETURNING id;
 ```
+
+-- ~1,763 pending rows carry `embedded_at = '1970-01-01'` ("un-embeddable" sentinel); the Railway embeddings-processor permanently skips sentinel rows, so resetting to NULL here ensures the new summary becomes visible to semantic search (troubleshooting entry c87718ff-9865-444e-85e9-6a4c0e336780).
 
 If the UPDATE returns zero rows, fail loudly — log the id and move on.
 

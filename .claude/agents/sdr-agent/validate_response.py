@@ -647,33 +647,58 @@ def check_and_fix_warns(text):
             "routing targets are the active profile persona and Jay only",
         ))
 
-    # 14c. AI/humanity denial patterns (WARN, no auto-fix)
-    # Claiming messages are "not automated", "not templated", "hand-typed", or fabricating
-    # personal-life details to imply humanity are all banned humanity claims.
-    # These are WARN (not BLOCK) because they require contextual judgment -- the script
-    # catches the most common surface forms; the agent must also check manually.
+    # 14c. AI/humanity false-drafting-denial patterns (WARN, no auto-fix -- updated per A1 policy)
+    # NEW POLICY (A1): affirming the lead is talking to a real person is now ALLOWED.
+    # GOOD: "You're talking to a real person -- I read and send everything here myself." -- NO WARN.
+    # The remaining ban covers FALSE DRAFTING DENIAL: claiming no AI is involved in writing/drafting.
+    # These patterns fire on false blanket denials; they do NOT fire on affirmations of human sending.
     humanity_denial_patterns = [
-        (r'\bnot\s+automated\b',
-         "humanity_claim -- claiming messages are 'not automated' is a banned AI-identity claim; "
-         "use neutral process framing instead"),
-        (r'\bnot\s+templated\b',
-         "humanity_claim -- claiming messages are 'not templated' is a banned AI-identity claim; "
-         "use neutral process framing instead"),
+        (r'\bno\s+AI\s+(?:involved|used|anywhere)\b',
+         "humanity_false_drafting_denial -- blanket denial of AI involvement in drafting is false; "
+         "approved posture: 'I use tools to help draft, but I read and send everything myself'"),
         (r'\bhand[- ]typed\b',
-         "humanity_claim -- claiming messages are 'hand-typed' is a banned AI-identity claim; "
-         "use neutral process framing instead"),
-        (r'\bI\s+(?:personally\s+)?run\s+every\s+conversation\b',
-         "humanity_claim -- asserting personal handling of every conversation implies human operation; "
-         "use neutral process framing instead"),
-        (r'\bI\s+personally\s+(?:read|write|respond\s+to)\s+every\b',
-         "humanity_claim -- asserting personal reading/writing of every message implies human operation; "
-         "use neutral process framing instead"),
+         "humanity_false_drafting_denial -- claiming messages are 'hand-typed' denies AI drafting; "
+         "approved posture: 'I use tools to help draft, but I read and send everything myself'"),
+        (r'\b100\s*%\s+human\b',
+         "humanity_false_drafting_denial -- '100% human' is a false blanket denial of AI involvement; "
+         "approved posture: affirm human sending without denying AI tools"),
+        (r'\bnot\s+automated\b',
+         "humanity_false_drafting_denial -- 'not automated' may be a false process claim; "
+         "approved posture: 'I read and send everything myself'"),
+        (r'\bnot\s+templated\b',
+         "humanity_false_drafting_denial -- 'not templated' may be a false process claim; "
+         "approved posture: affirm human review without denying tools"),
     ]
     for pat, label in humanity_denial_patterns:
         m = re.search(pat, fixed, re.IGNORECASE)
         if m:
-            issues.append(("humanity_claim_warn", f"{m.group()} -- {label}"))
+            issues.append(("humanity_false_drafting_denial_warn", f"{m.group()} -- {label}"))
             break  # One WARN is enough; the agent checks the rest manually
+
+    # P07c. Dollar-conversion affirmation WARN (no auto-fix)
+    # When a lead does their own percentage-to-dollar math and asks for confirmation,
+    # affirming their calculation is identical to quoting the dollar figure yourself.
+    # This check fires when the response contains an affirmation phrase in a context
+    # that also includes a dollar figure or per-month rate -- indicating the agent
+    # may be validating the lead's conversion rather than deflecting to the call.
+    # Conservative patterns; one WARN max to avoid stacking duplicates.
+    _dollar_context_re = re.compile(r'\$\d|/month|per month', re.IGNORECASE)
+    if _dollar_context_re.search(fixed):
+        dollar_affirmation_patterns = [
+            r'the\s+(?:ballpark\s+)?math\s+(?:is|checks?\s+out|is\s+right)',
+            r'that\s+checks?\s+out',
+            r'(?:roughly|about\s+right),?\s+yes',
+        ]
+        for pat in dollar_affirmation_patterns:
+            m = re.search(pat, fixed, re.IGNORECASE)
+            if m:
+                issues.append((
+                    "dollar_conversion_affirmation_warn",
+                    f"{m.group()} -- affirming a lead's own percentage-to-dollar math is identical "
+                    "to quoting the dollar figure yourself (P07c); deflect to the call: "
+                    "'The percentage is approximate and the exact structure gets worked out on a call'",
+                ))
+                break  # One WARN max
 
     # 14. Fee terminology without dollar amounts (WARN, no auto-fix)
     # Catches bare fee phrases that slip past the BLOCK patterns (which require a dollar amount).
