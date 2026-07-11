@@ -562,6 +562,34 @@ def check_and_fix_warns(text):
             "routing targets are the active profile persona and Jay only",
         ))
 
+    # 14c. AI/humanity denial patterns (WARN, no auto-fix)
+    # Claiming messages are "not automated", "not templated", "hand-typed", or fabricating
+    # personal-life details to imply humanity are all banned humanity claims.
+    # These are WARN (not BLOCK) because they require contextual judgment -- the script
+    # catches the most common surface forms; the agent must also check manually.
+    humanity_denial_patterns = [
+        (r'\bnot\s+automated\b',
+         "humanity_claim -- claiming messages are 'not automated' is a banned AI-identity claim; "
+         "use neutral process framing instead"),
+        (r'\bnot\s+templated\b',
+         "humanity_claim -- claiming messages are 'not templated' is a banned AI-identity claim; "
+         "use neutral process framing instead"),
+        (r'\bhand[- ]typed\b',
+         "humanity_claim -- claiming messages are 'hand-typed' is a banned AI-identity claim; "
+         "use neutral process framing instead"),
+        (r'\bI\s+(?:personally\s+)?run\s+every\s+conversation\b',
+         "humanity_claim -- asserting personal handling of every conversation implies human operation; "
+         "use neutral process framing instead"),
+        (r'\bI\s+personally\s+(?:read|write|respond\s+to)\s+every\b',
+         "humanity_claim -- asserting personal reading/writing of every message implies human operation; "
+         "use neutral process framing instead"),
+    ]
+    for pat, label in humanity_denial_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append(("humanity_claim_warn", f"{m.group()} -- {label}"))
+            break  # One WARN is enough; the agent checks the rest manually
+
     # 14. Fee terminology without dollar amounts (WARN, no auto-fix)
     # Catches bare fee phrases that slip past the BLOCK patterns (which require a dollar amount).
     # These are WARN because stage-2 percentage-tier presentations legitimately use "management fee"

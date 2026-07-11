@@ -162,6 +162,8 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] If they gave specific times: picked from their times (no calendar link sent)
 - [ ] No call warm-up info before they've booked (exception: `warmup` type -- the call IS already booked)
 - [ ] If `warmup` type: did NOT ask any question the lead already answered in the thread or job description
+- [ ] If `followup` type + post-call + call was 6+ months ago: CTA is a fresh-call re-engagement with the profile's calendar link (not an onboarding push)
+- [ ] If `followup` type + touch 3: response includes a warmer call push WITH the profile's calendar link (touch 3 is the point where the call CTA becomes mandatory alongside the touch content)
 
 ### Proof check:
 - [ ] If they asked for case studies/screenshots/examples: sent them (not "I'll show on a call")
