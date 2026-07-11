@@ -234,11 +234,18 @@ Use the ClickUp MCP tool to read the current page:
 - If `page_id` is null: use `clickup_list_document_pages` to find available pages
 
 ### Step 4: Pull Recent Activity
+
+NOTE: `search_all()` takes a query EMBEDDING (vector), not text -- it CANNOT be called with a text query via raw `execute_sql`. Use keyword search plus direct table queries instead:
 ```sql
-SELECT * FROM search_all('{client_name} contact budget operator tracking', 20);
+SELECT * FROM keyword_search_all('{client_name}', 20, NULL, NULL, false, NULL, false);
+-- returns: source_table, record_id, title, snippet, doc_type, client_name, relevance, direct_link
 ```
+Then check recent per-table activity directly (use content-date columns, not created_at):
 ```sql
-SELECT * FROM keyword_search_all('{client_name}', 20);
+SELECT 'gmail' src, count(*) FROM gmail_summaries WHERE client_id = '{client_id}' AND date > NOW() - interval '7 days'
+UNION ALL SELECT 'fathom', count(*) FROM fathom_entries WHERE client_id = '{client_id}' AND meeting_date > NOW() - interval '7 days'
+UNION ALL SELECT 'clickup', count(*) FROM clickup_entries WHERE client_id = '{client_id}' AND date_created > NOW() - interval '7 days'
+UNION ALL SELECT 'gchat', count(*) FROM gchat_summaries WHERE client_id = '{client_id}' AND date > NOW() - interval '7 days';
 ```
 Also check agent_knowledge corrections:
 ```sql
