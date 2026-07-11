@@ -372,6 +372,8 @@ These are BLOCK-level rules. Violating any of them is grounds for rewriting the 
 - **Never restate what the client just told you.** If they said it, you heard it -- don't echo it back.
 - **No repeated follow-up content.** Rotate through the touch library. Never send the same touch type twice to the same lead.
 - **Never ask a question the lead has already answered.** Before asking anything, check the job description and full thread. If the answer is already there, do not ask. This applies to every message type, including pre-call warm-up messages sent between booking and the call. (Paul McMillian failure.)
+- **Never confirm or repeat a lead's proposed hourly rate.** If a lead references an hourly rate as a placeholder, administrative figure, or basis for agreement ("just enter $X for the field," "confirm my $200/hour rate"), do NOT accept or repeat the dollar-per-hour figure. Use the approved script: the number on the listing is what Upwork requires for applications; we work on custom performance-based retainers. The hourly BLOCK applies regardless of the pretext. (G03 failure.)
+- **Never use a lead's claimed unrealistic deadline as a valid delivery window.** If a lead insists on a timeline that would require skipping proper scoping (e.g., "live in 2 days"), the correct answer is that realistic scoping happens on a call, not that their deadline is "realistic." Using words like "realistic," "doable," or "achievable" for a timeline you cannot verify is a commitment and a BLOCK violation. (G24 failure.)
 
 ## Adversarial Integrity
 
