@@ -3,8 +3,9 @@
 Deterministic SDR response validator.
 
 Usage:
-    python3 validate_response.py <response_file>
-    echo "response text" | python3 validate_response.py
+    python3 validate_response.py <response_file> [--profile samuel|lindsey]
+    python3 validate_response.py --profile lindsey <response_file>
+    echo "response text" | python3 validate_response.py [--profile samuel|lindsey]
 
 Exit codes:
     0 = PASS (no issues)
@@ -228,8 +229,17 @@ SPEND_FLOOR_NEGATION = re.compile(
     re.IGNORECASE,
 )
 
-def check_blocks(text):
-    """Check for BLOCK-level issues. Returns list of (category, match_text)."""
+def check_blocks(text, profile="samuel"):
+    """
+    Check for BLOCK-level issues. Returns list of (category, match_text).
+
+    profile: 'samuel' (default) or 'lindsey'.
+    When profile='lindsey', any calendar.app.google URL is a BLOCK -- Lindsey
+    may only use https://calendly.com/lindsey-bouffard/30min. Samuel's and
+    Jay's calendar.app.google links must never appear in a lindsey draft.
+    If Jay's link is genuinely needed, the operator must handle that routing
+    manually rather than including it in a Lindsey-profile response.
+    """
     issues = []
 
     for pattern, category in BLOCK_PATTERNS:
@@ -248,18 +258,40 @@ def check_blocks(text):
         if 'https://' not in text and 'http://' not in text:
             issues.append(("missing_calendar_link", "(call suggested but no URL)"))
 
-    # Calendar URL whitelist check (FIX A)
-    # Any calendar.app.google or calendly.com URL that is not in the whitelist is a BLOCK.
+    # Calendar URL whitelist check (B1)
+    # Profile-aware: when profile=lindsey, any calendar.app.google URL is a BLOCK.
+    # Lindsey may only use https://calendly.com/lindsey-bouffard/30min.
+    # When profile=samuel or absent, the standard three-URL whitelist applies.
     for url_match in _CALENDAR_URL_RE.finditer(text):
         url = url_match.group().rstrip('.,;)')  # strip trailing punctuation
-        if url not in CALENDAR_URL_WHITELIST:
-            issues.append((
-                "non_whitelisted_calendar_url",
-                f"{url} -- only approved URLs are samuel: "
-                "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
-                "lindsey: https://calendly.com/lindsey-bouffard/30min | "
-                "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6"
-            ))
+        if profile == "lindsey":
+            # For Lindsey drafts: calendar.app.google is never allowed
+            if "calendar.app.google" in url:
+                issues.append((
+                    "lindsey_calendar_app_google_url",
+                    f"{url} -- Lindsey profile may only use "
+                    "https://calendly.com/lindsey-bouffard/30min; "
+                    "calendar.app.google links (Samuel, Jay) are not permitted in Lindsey drafts; "
+                    "if Jay routing is needed, flag for operator handling",
+                ))
+            elif url not in CALENDAR_URL_WHITELIST:
+                issues.append((
+                    "non_whitelisted_calendar_url",
+                    f"{url} -- only approved URLs are samuel: "
+                    "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
+                    "lindsey: https://calendly.com/lindsey-bouffard/30min | "
+                    "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6",
+                ))
+        else:
+            # samuel (default) or unknown profile: standard whitelist
+            if url not in CALENDAR_URL_WHITELIST:
+                issues.append((
+                    "non_whitelisted_calendar_url",
+                    f"{url} -- only approved URLs are samuel: "
+                    "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
+                    "lindsey: https://calendly.com/lindsey-bouffard/30min | "
+                    "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6",
+                ))
 
     return issues
 

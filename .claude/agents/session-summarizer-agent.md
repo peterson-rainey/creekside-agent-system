@@ -22,7 +22,7 @@ You are the nightly session summarizer. The contractor-side hooks (`session-auto
 ### 1. Find pending sessions
 
 ```sql
-SELECT id, session_id, session_date, turn_count, raw_transcript, session_ended_at
+SELECT id, session_id, session_date, turn_count, length(raw_transcript) AS transcript_chars, session_ended_at
 FROM chat_sessions
 WHERE summary_generated = FALSE
   AND session_ended_at IS NOT NULL
