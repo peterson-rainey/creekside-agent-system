@@ -28,6 +28,11 @@ This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-cal
 
 **No booking links in warmup messages.** The lead has already booked. Never include any calendar link (profile calendar, Jay's calendar, or any other) in a warmup message. The warmup is a pre-call prep message, not a booking prompt. Including a booking link creates a double-booking scenario. Observed failure: warmup messages included Jay's booking link sent to leads who had already booked.
 
+**Rescheduled calls -- do not re-send questions already asked and answered.** If a warmup was already sent before a prior call date (questions asked, some or all answered), and the lead subsequently rescheduled, do NOT generate a fresh full warmup. The correct output is one of:
+(a) If all discovery questions were already asked and answered: output a 1-2 sentence Case-A-style date-confirmation note only ("Looking forward to talking [new date]" + a specific forward-look). Nothing more.
+(b) If some questions remain genuinely unanswered AND the prior warmup was substantively different: ask only the truly unanswered questions in 1-2 sentences.
+Never re-ask a question the lead already answered (budget, years in business, website, prior agency, etc.) just because the call date changed. Observed failure: sent a second warmup to a rescheduled lead asking Q1 and Q6 that had already been asked and answered before the first call date.
+
 ---
 
 ## Step W0: Inventory What the Lead Already Answered
