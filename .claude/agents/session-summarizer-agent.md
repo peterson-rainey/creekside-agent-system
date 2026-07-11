@@ -36,6 +36,20 @@ Limit 20 keeps one run bounded. If there's a backlog, the next night clears more
 
 ### 2. For each row — parse and summarize
 
+**Fetch the transcript one session at a time — NEVER in batch.** For each session row returned in Step 1:
+
+```sql
+SELECT LEFT(raw_transcript, 150000) AS transcript_head FROM chat_sessions WHERE id = '<id>';
+```
+
+If `transcript_chars > 150000` (from the Step 1 result), also fetch the tail so the session's ending (final decisions, TODOs) is not lost:
+
+```sql
+SELECT RIGHT(raw_transcript, 30000) AS transcript_tail FROM chat_sessions WHERE id = '<id>';
+```
+
+Summarize from `transcript_head` + `transcript_tail`. If the middle was elided, note it in the summary: "Middle portion of transcript elided due to length." NEVER select `raw_transcript` unbounded and NEVER fetch more than one session's transcript per query — a batch fetch of 20 full transcripts caused the 2026-07-10/11 4M-token API failures.
+
 The `raw_transcript` is Claude Code's JSONL transcript format (one JSON object per line, typed `user` / `assistant` / `tool_use` / etc). Read it and generate:
 
 - **title** — short noun phrase, under 70 chars. What was this session about?
