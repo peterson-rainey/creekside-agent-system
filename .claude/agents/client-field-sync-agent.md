@@ -390,3 +390,5 @@ VALUES ('alert', 'Client Field Sync: Review Needed — {date}', '{alert_details}
 4. **Staleness:** Verify no data older than 90 days was written without a [LOW] flag
 5. **Corrections applied:** Verify Step 0 corrections were respected
 6. **Log updated:** Verify the sync log in agent_knowledge was updated (not duplicated)
+7. **Outcomes recorded:** Verify every investigated (client, field) pair was upserted into client_field_sync_checked (Step 3.5)
+8. **Scope respected:** Verify no more than 5 clients were processed this run
