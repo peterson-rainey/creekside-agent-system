@@ -101,6 +101,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
+| gmail-notification-dismissal-agent | SCHEDULED daily 8 AM CT (local launchd). Clears already-handled system notification emails from the [GPS] Peterson Gmail label. Deterministic -- no LLM calls. Admin-only. |
 | cyndi-gmail-intelligence-agent | SCHEDULED (~30 min, business hours). Server-side Gmail drafter for Cyndi's inbox -- scans for emails addressed to "Cyndi" (exact spelling), pulls Supabase context, creates DRAFT replies. Never sends. DISABLED pending Cyndi Gmail OAuth + Railway MCP wiring. |
 | peterson-gmail-draft-agent | SCHEDULED (every 30 min, business hours Mon-Fri). Server-side draft-reply agent for Peterson's inbox (peterson@). Scans for genuine human emails, pulls Supabase RAG context, creates DRAFT replies in Peterson's voice. Never sends. Ships DISABLED -- enable after Railway Gmail OAuth confirmed and first batch reviewed. Note: overlaps with gmail-manager skill; enable deliberately. |
 | peterson-gmail-inbox-sorter-agent | SCHEDULED (3x daily Mon-Fri: 9am/12pm/4pm CT). Auto-sorts new emails in Peterson's inbox into his existing Gmail folders. Classifies via live label discovery + sampling. Archives sorted mail, marks non-important email read. Human-direct, client/lead, and urgent/money emails stay UNREAD. High-water mark ensures only new mail is touched per run. Browser delegation via Cyndi. Never sends/replies/deletes. Built by Cyndi. |
