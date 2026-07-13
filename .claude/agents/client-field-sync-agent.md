@@ -90,7 +90,9 @@ If no gaps found (after cooldown filtering), log "No gaps detected" and exit.
 
 ### 1c: Scope cap (cost control)
 
-Process AT MOST 5 clients per run (after cooldown filtering), newest `created_at` first. Log how many gap clients were deferred to the next run. This bounds per-run cost — the backlog drains across days. (Before this cap, the 2026-07-12 run burned 41 turns / 2.9M tokens and timed out.)
+Process AT MOST 4 clients per run (after cooldown filtering), newest `created_at` first. Log how many gap clients were deferred to the next run. This bounds per-run cost — the backlog drains across days. (Before this cap, the 2026-07-12 run burned 41 turns / 2.9M tokens and timed out.)
+
+Budget roughly 5 turns per client. Batch each client's searches aggressively — one execute_sql call can contain several statements separated by semicolons. If you are running low on turns, STOP investigating and record outcomes for the clients you completed (Step 3.5) before doing anything else.
 
 ## Step 2: Search Platform Data for Each Client
 
