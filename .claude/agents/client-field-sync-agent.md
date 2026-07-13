@@ -241,7 +241,7 @@ For child clients (where `parent_client_id IS NOT NULL`), check if the parent ha
 
 ```sql
 SELECT p.website, p.business_phone, p.square_customer_id, p.gchat_url,
-       p.clickup_folder_id, p.gdrive_folder_id, p.contract_url, p.gmail_label_id
+       p.clickup_folder_id, p.gdrive_folder_id, p.contract_url
 FROM clients c
 JOIN clients p ON c.parent_client_id = p.id
 WHERE c.id = '{child_client_id}'
