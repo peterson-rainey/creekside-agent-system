@@ -282,9 +282,11 @@ SET meta_account_ids = array_append(COALESCE(meta_account_ids, '{}'), '{meta_act
 WHERE id = '{client_id}' AND (meta_account_ids IS NULL OR NOT '{meta_act_id}' = ANY(meta_account_ids));
 ```
 
-## Step 3.5: Record Investigation Outcomes (MANDATORY)
+## Step 3.5: Record Investigation Outcomes (MANDATORY, PER CLIENT)
 
-After finishing all clients, write every investigated (client, field) outcome in ONE multi-row upsert so tomorrow's run skips dead ends:
+**Record outcomes IMMEDIATELY after finishing each client — before starting the next client.** Do NOT defer this to the end of the run: if the run hits max_turns with outcomes unrecorded, tomorrow re-investigates every dead end from scratch (this exact failure happened on the 2026-07-13 verification run — 25 turns, 0 outcomes recorded).
+
+Combine the client's UPDATEs and its outcome upsert into the same execute_sql call when possible (multiple statements separated by semicolons). One multi-row upsert per client:
 
 ```sql
 INSERT INTO client_field_sync_checked (client_id, table_name, field, outcome, last_checked)
