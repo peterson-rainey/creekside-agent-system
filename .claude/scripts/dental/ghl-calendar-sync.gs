@@ -239,6 +239,22 @@ function createGhlContact(apiKey, firstName, lastName, email, tags, retries) {
     Utilities.sleep(3000 * (retries + 1));
     return createGhlContact(apiKey, firstName, lastName, email, tags, retries + 1);
   }
+
+  // GHL blocks duplicate contacts and returns 400 with the existing
+  // contact's ID in meta.contactId. Reuse that contact instead of failing.
+  // (searchGhlContact can miss contacts the create endpoint still matches.)
+  if (code === 400) {
+    var dupInfo = null;
+    try { dupInfo = JSON.parse(response.getContentText()); } catch (e) {}
+    if (dupInfo && dupInfo.meta && dupInfo.meta.contactId) {
+      Logger.log('Contact already exists (' + email + '), reusing ID: ' + dupInfo.meta.contactId);
+      for (var t = 0; t < tags.length; t++) {
+        addTagToContact(apiKey, dupInfo.meta.contactId, tags[t]);
+      }
+      return { contact: { id: dupInfo.meta.contactId } };
+    }
+  }
+
   if (code !== 200 && code !== 201) {
     throw new Error('GHL create contact failed (' + code + '): ' + response.getContentText());
   }
