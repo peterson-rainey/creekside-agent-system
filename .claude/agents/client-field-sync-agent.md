@@ -33,28 +33,40 @@ Apply any relevant corrections to your behavior before proceeding.
 
 ## Step 1: Find Clients with Gaps
 
+### 1-pre: Load the cooldown skip list
+
+Fields already investigated with no usable data are on a 14-day cooldown. Load the skip list first:
+
+```sql
+SELECT client_id, table_name, field FROM client_field_sync_checked
+WHERE outcome IN ('no_data', 'conflict')
+AND last_checked > NOW() - INTERVAL '14 days';
+```
+
+Skip every (client, field) pair on this list. If ALL of a client's missing fields are on cooldown, skip the client entirely. This is the primary cost control — without it, unfillable fields get re-investigated every day forever.
+
+**Permanently excluded fields (never treat as gaps):** `gmail_label_id` (cannot be extracted from the database — requires Gmail API) and `slack_channel_id` (Slack is ingestion-only at Creekside; NULL is the correct state for most clients).
+
 ### 1a: Clients table gaps
 ```sql
 SELECT c.id, c.name, c.parent_client_id,
   c.clickup_folder_id IS NULL as missing_clickup_folder,
   c.clickup_url IS NULL as missing_clickup_url,
   c.gdrive_folder_id IS NULL as missing_gdrive,
-  c.gmail_label_id IS NULL as missing_gmail_label,
   c.gchat_url IS NULL as missing_gchat,
   c.square_customer_id IS NULL as missing_square,
   c.contract_url IS NULL as missing_contract,
   c.website IS NULL as missing_website,
   c.business_phone IS NULL as missing_phone,
-  c.slack_channel_id IS NULL as missing_slack,
   c.assigned_team_ids = '{}' OR c.assigned_team_ids IS NULL as missing_team
 FROM clients c
 WHERE c.status = 'active'
 AND (
   c.clickup_folder_id IS NULL OR c.clickup_url IS NULL OR
-  c.gdrive_folder_id IS NULL OR c.gmail_label_id IS NULL OR
+  c.gdrive_folder_id IS NULL OR
   c.gchat_url IS NULL OR c.square_customer_id IS NULL OR
   c.contract_url IS NULL OR c.website IS NULL OR
-  c.business_phone IS NULL OR c.slack_channel_id IS NULL OR
+  c.business_phone IS NULL OR
   (c.assigned_team_ids = '{}' OR c.assigned_team_ids IS NULL)
 )
 ORDER BY c.created_at DESC;
