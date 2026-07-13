@@ -233,8 +233,7 @@ WHERE ai_summary ILIKE '%{client_name}%' AND ai_summary ILIKE '%chat.google.com%
 ORDER BY date DESC LIMIT 3;
 ```
 
-**For `gmail_label_id`:**
-This typically requires Gmail API access. Log as still-missing — cannot be extracted from database alone.
+(`gmail_label_id` is permanently excluded from the gap scan — see Step 1-pre. Do not investigate it.)
 
 ### 2f: Parent-Child Field Inheritance
 
