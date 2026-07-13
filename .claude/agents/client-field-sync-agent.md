@@ -282,6 +282,26 @@ SET meta_account_ids = array_append(COALESCE(meta_account_ids, '{}'), '{meta_act
 WHERE id = '{client_id}' AND (meta_account_ids IS NULL OR NOT '{meta_act_id}' = ANY(meta_account_ids));
 ```
 
+## Step 3.5: Record Investigation Outcomes (MANDATORY)
+
+After finishing all clients, write every investigated (client, field) outcome in ONE multi-row upsert so tomorrow's run skips dead ends:
+
+```sql
+INSERT INTO client_field_sync_checked (client_id, table_name, field, outcome, last_checked)
+VALUES
+  ('{client_id}', 'clients', '{field}', 'no_data', NOW()),
+  ('{client_id}', 'clients', '{field}', 'filled', NOW()),
+  ('{rc_id}', 'reporting_clients', '{field}', 'conflict', NOW())
+ON CONFLICT (client_id, table_name, field)
+DO UPDATE SET outcome = EXCLUDED.outcome, last_checked = NOW();
+```
+
+- `no_data` = searched all applicable sources, nothing usable found → 14-day cooldown
+- `conflict` = conflicting values logged for human review → 14-day cooldown (don't re-litigate daily)
+- `filled` = field was written → leaves the gap scan naturally (recorded for audit)
+
+For reporting_clients rows, use `rc.id` as client_id and `table_name = 'reporting_clients'`.
+
 ## Step 4: Log Results
 
 Use a SINGLE `agent_knowledge` row for this agent's sync log. On first run, INSERT. On subsequent runs, UPDATE.
