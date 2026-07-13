@@ -86,7 +86,11 @@ AND (
 );
 ```
 
-If no gaps found, log "No gaps detected" and exit.
+If no gaps found (after cooldown filtering), log "No gaps detected" and exit.
+
+### 1c: Scope cap (cost control)
+
+Process AT MOST 5 clients per run (after cooldown filtering), newest `created_at` first. Log how many gap clients were deferred to the next run. This bounds per-run cost — the backlog drains across days. (Before this cap, the 2026-07-12 run burned 41 turns / 2.9M tokens and timed out.)
 
 ## Step 2: Search Platform Data for Each Client
 
