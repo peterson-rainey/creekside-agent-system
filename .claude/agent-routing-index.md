@@ -147,7 +147,6 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 |-------|-------------|
 | correction-graduation-agent | Check graduation status of provisional corrections |
 | data-promotion-agent | Promote contributor data to authoritative dataset |
-| sop-refinement-agent | Auto-refine SOPs from session execution data (scheduled) |
 
 ## Topic Layer (direct SQL, no agent needed)
 
