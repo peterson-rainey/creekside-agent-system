@@ -265,7 +265,9 @@ WHERE title = 'quarterly-consumption-audit-agent: Run Log';
 
 Fill in all placeholder values before executing.
 
-## Step 8: Send the Email
+## Step 8: Send the Email — EXACTLY ONCE
+
+**HARD RULE: at most ONE gmail_send call per run.** If the tool result contains `"success": true`, the email is DELIVERED and the run is over — proceed to Step 9 and stop. NEVER send again to "fix", "improve", or "complete" a sent email: every retry lands as a duplicate in Peterson's inbox (the first run sent 9 duplicates this way). If you realize after a successful send that the email was imperfect, record the defect in the run log — do NOT resend. Only retry if the tool result explicitly shows an error, and at most twice.
 
 ```
 gmail_send(
