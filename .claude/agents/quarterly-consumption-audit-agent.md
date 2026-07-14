@@ -58,6 +58,11 @@ Apply any relevant corrections before proceeding.
 Fetch everything needed in one call:
 
 ```sql
+-- 2-pre: Current date and quarter — use THESE for the subject line, quarter label,
+-- and all date-window text. NEVER derive dates from memory (the first run
+-- hallucinated "Q3 2025" when the real date was July 2026).
+SELECT now()::date AS today, EXTRACT(QUARTER FROM now()) AS quarter, EXTRACT(YEAR FROM now()) AS year;
+
 -- 2a: Full fleet roster (enabled AND disabled)
 SELECT name, cron_expression, enabled, description, last_run_at
 FROM scheduled_agents
