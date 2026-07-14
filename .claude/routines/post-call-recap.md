@@ -252,8 +252,11 @@ Whenever ANY routing destination can't be found (sales task, client channel, tea
 python3 ~/creekside-pipelines/pipelines/gmail/gmail_sender.py send \
   --to peterson@creeksidemarketingpros.com \
   --subject "[Post-Call Recap] <MEETING_TITLE> -- <DATE>" \
-  --body "<content with [ROUTING GAP] prefix describing what couldn't be found>"
+  --body "<content with [ROUTING GAP] prefix describing what couldn't be found>" \
+  --html "<same content formatted per the Creekside email design system>"
 ```
+
+For `--html`, build the body per the Creekside email design system (`SELECT content FROM agent_knowledge WHERE id = '67326e7e-77b0-44de-a803-54ce77c1e18b'`): document shell + gradient header ("CREEKSIDE POST-CALL RECAP") + one content card with the undelivered content (routing gap in a red alert callout) + footer. Never send plaintext-only.
 This ensures nothing is silently lost. Peterson always gets the output.
 
 ---
