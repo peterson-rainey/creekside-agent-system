@@ -24,24 +24,20 @@ You run on Railway via the agent dispatcher. You have exactly two tools: `execut
 
 Log that this run has started BEFORE doing any analysis. If turns run out, evidence of the run must survive.
 
+`agent_knowledge` has NO unique constraint on `title` — ON CONFLICT will error (verified in the 2026-07-13 first run). Use delete-then-insert, both statements in ONE call:
+
 ```sql
+DELETE FROM agent_knowledge WHERE title = 'quarterly-consumption-audit-agent: Run Log';
 INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
 VALUES (
   'quality_audit',
   'quarterly-consumption-audit-agent: Run Log',
-  'RUN STARTED — audit in progress. Quarter: CURRENT_QUARTER. Started: NOW_TIMESTAMP. Verdicts not yet computed.',
+  'RUN STARTED — audit in progress. Verdicts not yet computed.',
   ARRAY['consumption-audit', 'run-log', 'quarterly'],
   'Automated quarterly run',
   'verified'
-)
-ON CONFLICT (title) DO UPDATE SET
-  content = EXCLUDED.content,
-  updated_at = NOW();
+);
 ```
-
-Replace `CURRENT_QUARTER` and `NOW_TIMESTAMP` with the actual values before executing.
-
-Note: `agent_knowledge` has a UNIQUE constraint on `title`. Use ON CONFLICT DO UPDATE for all agent_knowledge writes in this run.
 
 ## Step 1: Check Corrections (MANDATORY)
 
