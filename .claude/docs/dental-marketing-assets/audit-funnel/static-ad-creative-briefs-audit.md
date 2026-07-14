@@ -55,6 +55,8 @@
 
 **Anchor line (audit tie-in):** "See what the same playbook looks like on your practice. Free 30-minute audit."
 
+**Action callout:** "Book Your Free Audit"
+
 **Visual direction:**
 - Revenue numbers ($1M to $2M) are the hero element, not ROAS
 - Small "Real Client Results" badge
