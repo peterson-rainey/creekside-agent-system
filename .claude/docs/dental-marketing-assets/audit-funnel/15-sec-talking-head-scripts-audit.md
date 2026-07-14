@@ -1,137 +1,65 @@
-# 15-Second Talking Head Scripts: Dental Campaign (Audit Funnel)
+# Talking Head Video Scripts: Dental Campaign (Audit Funnel) -- V2
 ## For Cade -- Teleprompter Ready
 
+**V2 (2026-07-13):** Final recording batch selected by Peterson: 5 scripts. Guarantee/standard hook leads, Laleh proof reframed us-focused ("here's what we changed"), emotional keeps the funded slot, direct offer and clients-not-leads round out the set. V1 script bank (5 proof + 5 emotional variants + CTA framework) superseded; retrieve from git history if needed.
+
 **Format:** Talking head, direct to camera
-**Pace:** ~195 wpm (40-60 words per script)
+**Length:** 20-30 seconds (~65-100 words at ~195 wpm)
 **Tone:** Confident, conversational, not salesy
-**CTA destination:** Cade's existing Google Meet booking link
+**CTA destination:** Audit landing page (creeksidemarketingpros.com/dental-ads-audit/)
 
 ---
 
-## RESULTS/PROOF (Dr. Laleh)
+## SCRIPT 1: The 4X Standard (guarantee angle) -- PRIMARY
 
-### Scripts
+> "If you're a dental practice spending ten thousand a month or more on ads, you should be seeing at least a four X return. Most aren't. And most owners don't even know their number. We took Dr. Laleh's practice from a two point seven to a five point seven X return on the same budget. Book a free 30-minute audit. We'll pull up your account live, show you your real return, and tell you exactly what to fix. Link's below."
 
-**1. Lead with the number**
-> "What would it mean for your practice if you doubled your revenue without spending another dollar on ads? That's exactly what happened with Dr. Laleh. She went from one million to two million a month in revenue in just six months on the same ad budget."
-
-**2. Lead with the problem**
-> "Dr. Laleh was spending over a hundred thousand a month on ads and stuck at one million in revenue. We changed her strategy. Six months later, she was doing two million a month on the same budget."
-
-**3. Lead with the question (selected combo)**
-> "What would it mean for your practice if you doubled your revenue without spending another dollar on ads? That's exactly what happened with Dr. Laleh. One million to two million a month in six months. Same budget."
-
-**4. Lead with the objection flip**
-> "It's not your ad budget. It's your strategy. Dr. Laleh was stuck at one million a month in revenue. We changed what we were optimizing for. Six months later, two million a month. Same ad spend."
-
-**5. Lead with speed**
-> "Six months. That's how long it took us to take Dr. Laleh from one million to two million a month in revenue. We didn't increase her ad budget by a single dollar. We just ran it differently."
-
-### CTAs
-
-**A. Curiosity (soft)**
-> "We break the whole thing down on our site. Link's below."
-
-**B. Audit (direct)**
-> "Want to see what's going wrong in your ads? Book a free ad account audit with our team. We'll look at your account live and tell you exactly what to fix. Link's below."
-
-**C. Audit (simple)**
-> "We'll audit your ad account for free. 30 minutes with an ads expert. Link's below."
-
-### Selected Combos
-
-**Combo 1 (Script 3 + CTA C):**
-> "What would it mean for your practice if you doubled your revenue without spending another dollar on ads? Exactly what happened with Dr. Laleh. One million to two million a month in six months. We'll audit your ad account for free. 30 minutes. Link's below."
-
-**Combo 2 (Script 2 + CTA B -- recommended):**
-> "We took Dr. Laleh's cosmetic dental practice from one million to two million in revenue in six months with the same ad budget. Want to see what's going wrong in your ads? Book a free audit with our team. We'll look at your account live and tell you exactly what to fix. Link's below."
+~82 words / ~25 sec
 
 ---
 
-## CTA FRAMEWORK
+## SCRIPT 2: Six Months, Here's What We Changed (proof, us-focused)
 
-Match the CTA tone to the emotion the script leaves the viewer with:
+> "Six months. That's how long it took us to take Dr. Laleh from one million to two million a month in revenue. Same ad budget. Here's what we changed. Her campaigns were optimizing for leads, so the algorithm was buying cheap form fills. We switched the optimization to booked consultations. Fifty consults a month became one hundred five. Want to see what that same change looks like on your practice? Book a free 30-minute ad account audit. Link's below."
 
-| Feeling after script | CTA tone | Example |
-|---|---|---|
-| "That's impressive" (proof) | See what's wrong with yours | "Want to know what's holding your ads back? Free ad account audit. Link's below." |
-| "That resonates with me" (emotional) | We diagnose the problem | "Let us look at your ads and tell you what to fix. Free ad account audit below." |
-| "Maybe that could work for me" (budget) | See what yours could do | "Want to know if your budget is being wasted? Book a free ad account audit. Link's below." |
-| "Wait, what is that?" (novelty) | Come see how it works | "Most practices don't even know this exists yet. Book a free ad account audit. Link's below." |
-| "These people are focused" (identity) | See what that looks like | "We'll look at your ad account and show you exactly what's not working. Free ad account audit. Link's below." |
+~80 words / ~25 sec
 
 ---
 
-## EMOTIONAL OUTCOME
+## SCRIPT 3: Keeping You Up at Night (emotional)
 
-### Scripts
-
-**1. Dashboard anxiety**
-> "You didn't go to dental school to worry about your ads. But here you are, spending thousands a month and not sure it's actually working. Checking dashboards, wondering if the leads are real, not knowing if the money's coming back. That's not how it should work."
-
-**2. Hoping vs knowing**
-> "You didn't go to dental school to worry about your ads. But every month you're writing a check and hoping it comes back. Hoping the leads are good. Hoping the phone rings. You shouldn't be hoping. You should know exactly what your ads are producing."
-
-**3. Uncertainty is expensive**
-> "You didn't go to dental school to worry about your ads. But you know what the worst feeling is? Spending ten, twenty, fifty thousand a month and not being confident it's actually working. That uncertainty is expensive. Not just in dollars, but in every decision you're afraid to make because the numbers aren't clear."
-
-**4. The number you should know**
-> "You didn't go to dental school to worry about your ads. But right now you're spending money every month and you can't tell me exactly how many dollars come back for every dollar you put in. If you don't know that number, something is wrong. And it's exactly what we fix."
-
-**5. Keeping you up at night**
-> "You didn't go to dental school to worry about your ads. But if you're like most practice owners, that's exactly what's keeping you up at night. Not the dentistry. The money. Whether the ads are working. Whether the budget is being wasted. That's what we take off your plate."
-
-### CTAs
-
-**A. Soft fix**
-> "We can fix that. Come see how. Link's below."
-
-**B. Show the money**
-> "Let us show you where the money is going. Book a free ad account audit. Link's below."
-
-**C. Audit (direct)**
-> "Want to know exactly where your ad spend is going? Book a free ad account audit with our team. 30 minutes, we'll look at your account live and tell you what to fix."
-
-### Selected Combo
-
-**Script 5 + CTA C:**
 > "You didn't go to dental school to worry about your ads. But if you're like most practice owners, that's exactly what's keeping you up at night. Not the dentistry. The money. Whether the ads are working. Whether the budget is being wasted. That's what we take off your plate. Want to know exactly where your ad spend is going? Book a free ad account audit with our team. 30 minutes, we'll look at your account live and tell you what to fix."
 
----
-
-## DIRECT AUDIT PROMOTION
-
-### Selected Script
-
-> "We're offering a free audit of your dental practice's ad account. We'll pull up your campaigns live, show you exactly where your budget is being wasted, tell you what to fix, and give you a plan to get better results. 30 minutes with an ads expert. No cost, no commitment. Book yours below."
+~86 words / ~27 sec
+Data note: highest CTR signal of any angle (6.88%), never funded past $63. Gets a real budget this round.
 
 ---
 
-## TOOTH CO / LOWER BUDGET
+## SCRIPT 4: Direct Offer
 
-### Selected Script
+> "We're offering a free audit of your dental practice's ad account. An ads expert pulls up your campaigns live, shows you where the budget is leaking, and walks you through exactly what we'd do differently. The fixes are yours to keep, with us or without us. This is the same team that took a cosmetic practice from one million to two million a month on the same budget. 30 minutes, no cost, no commitment. Book yours below."
 
-> "You don't need a massive ad budget to get real results. The Tooth Co spends ten thousand a month on ads with us. We generate sixty to eighty thousand a month in revenue for them. That's a six to eight X return on their ad spend. Want to know if your ads are underperforming? Book a free ad account audit below. 30 minutes, we'll tell you exactly what to fix."
-
----
-
-## GET CLIENTS, NOT LEADS
-
-### Selected Script
-
-> "Most dental practices running ads are optimizing for leads. More form fills. More phone calls. More names on a list. But leads don't pay your bills. Patients in chairs do. We optimize for the thing that actually matters. Revenue. Want to see what's actually happening in your ad account? Book a free ad account audit. Link's below."
+~78 words / ~24 sec
 
 ---
 
-## CHATGPT ADS / NOVELTY
-*(Parked -- better suited for static creative)*
+## SCRIPT 5: Clients, Not Leads (positioning)
+
+> "Most dental practices running ads are optimizing for leads. More form fills. More phone calls. More names on a list. But leads don't pay your bills. Patients in chairs do. We optimize for revenue, and that's how we doubled Dr. Laleh's revenue on the same ad budget. Want to know what your account is actually optimizing for? Book a free 30-minute ad account audit. Link's below."
+
+~68 words / ~21 sec
 
 ---
 
-## PAID ADS SPECIALIST / IDENTITY
-*(In progress)*
+## RECORDING NOTES
 
----
+- One take per script minimum; grab a second take with a tighter, faster read.
+- No em dashes in delivery pacing; short declarative sentences, pause at periods.
+- Numbers are spelled out for the teleprompter; say them naturally ("two point seven X").
+- Script 1 launches first with detail targeting (not broad) -- mirrors the only converting dental video pattern (Black Shirt Laleh).
 
-## BEFORE/AFTER
-*(In progress)*
+## NOT IN THIS BATCH
+
+- Tier 3 performance guarantee ("we'll add 20 consults or you don't pay") -- needs Peterson's terms + Cade sign-off before scripting.
+- ChatGPT Ads novelty, meme angles -- parked (attention without conversions at ~$1.1K spend).
+- Before/After, Paid Ads Specialist identity -- round 2 candidates.
