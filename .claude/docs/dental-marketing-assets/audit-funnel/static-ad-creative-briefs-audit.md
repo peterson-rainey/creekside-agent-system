@@ -1,7 +1,7 @@
 # Static Ad Creative Briefs: Dental Practice Offer (Audit Funnel) -- V2
 ## For Aamir / Claude Design chat
 
-**V2 (2026-07-10):** Rebuilt from 90-day performance data on the Creekside/Jybr ad account. The hard-offer static format (specific number + guarantee + concrete offer) is the account's cheapest converter, so the guarantee creative is now the hero. Laleh proof video is the only dental video that converts; the proof static mirrors it. Novelty/meme angles earned attention but zero conversions at ~$1.1K spend and are parked.
+**V2 (2026-07-10, rev 2026-07-13):** Rebuilt from 90-day performance data on the Creekside/Jybr ad account. The hard-offer static format (specific number + concrete offer) is the account's cheapest converter, so the offer creative is the hero. 2026-07-13: hero swapped from the $10K guarantee to the 4X benchmark angle (matches Video Ad 1). Laleh proof video is the only dental video that converts; the proof static mirrors it. Novelty/meme angles earned attention but zero conversions at ~$1.1K spend and are parked.
 
 **Funnel Role:** Ad creatives catch attention. The prospect should think "these people look like they could help me" and tap Learn More. Save the deep proof for the landing page.
 
@@ -19,11 +19,11 @@
 
 ---
 
-## CREATIVE 1 (HERO): The Guarantee Offer
+## CREATIVE 1 (HERO): The 4X Benchmark
 
-**Headline (hero):** "We'll Find $10K+ of Wasted Ad Spend in Your Dental Practice's Account."
+**Headline (hero):** "Most Dental Ad Accounts Fail This Test."
 
-**Subhead:** "Or we'll tell you your ads are dialed and leave you alone."
+**Subhead:** "The standard is a 4X return minimum. Top practices hit 5-6X. Most owners don't even know their number."
 
 **Checklist:**
 - Free 30-minute audit
@@ -34,13 +34,16 @@
 **Action callout:** "Book Your Free Audit"
 
 **Visual direction:**
-- Offer-first, text-forward. The guarantee line IS the creative.
-- Gold on "$10K+" and "Free"
-- Small "Real Client Results: $1M to $2M/mo" proof strip at the bottom
+- Offer-first, text-forward. The benchmark line IS the creative.
+- Gold on "4X" and "Free"
+- Small "Real Client Results: 2.7X to 5.7X ROAS" proof strip at the bottom
 - Creekside branding
+- Aligns the hero static with the hero video ad (Script 1 / Video Ad 1)
 
 **Format:** 1080x1080 + 1080x1920
-**File name:** dental_static_guarantee_audit_v2
+**File name:** dental_static_benchmark_audit_v2
+
+**NOTE (2026-07-13):** Replaced the original "$10K+ wasted ad spend" guarantee angle. The guarantee required Cade to back the claim on every audit call and was cut before design.
 
 ---
 
@@ -125,13 +128,21 @@
 - **Before/After smile transformation:** fine concept, dilutes the test. Round 2 candidate. (Needs patient smile photos with consent.)
 - **Get Clients, Not Leads:** messaging play, round 2 candidate.
 
+## ROUND 2 CANDIDATES (from final video ad copy, 2026-07-13)
+
+Not in this batch. Build only after the core 5 validate. These mirror the approved video ad angles so winning video hooks can get a matching static.
+
+- **"Leads Don't Pay Bills. Cases Do."** -- text-forward static of the Video Ad 5 / Script 5 positioning angle. Gold on "Cases Do." Laleh proof strip + audit callout.
+- **"Where Is Your Ad Budget Leaking?"** -- text-forward static of the Video Ad 4 / Script 4 leak-check angle. Checklist of leak spots (campaign structure, budgets, targeting, tracking) + "Free 30-minute leak check" callout.
+- **"Get a Second Opinion on Your Ads. Free."** -- Video Ad 6 second-opinion angle currently has copy but no dedicated creative. Earns its own static if the Phase 2 copy performs.
+
 ---
 
 ## DELIVERABLE SUMMARY
 
 | # | Angle | Square (1080x1080) | Story (1080x1920) | Notes |
 |---|-------|--------------------|--------------------|-------|
-| 1 | Guarantee Offer | Yes | Yes | HERO. Gold on $10K+ and Free |
+| 1 | 4X Benchmark | Yes | Yes | HERO. Gold on 4X and Free |
 | 2 | Results/Proof (Dr. Laleh) | Yes | Yes | Revenue as hero metric |
 | 3 | Testimonial Screenshot | Yes | Yes | Needs actual message screenshot |
 | 4 | Emotional Outcome | Yes | Yes | Text-forward, warm tone |
@@ -142,4 +153,3 @@
 
 - [ ] Dr. Laleh message screenshot ("record high 100 consults")
 - [ ] Creekside brand assets (logo, colors, fonts) -- check ~/Desktop/Creekside Marketing folder
-- [ ] Cade sign-off on the $10K wasted-spend guarantee claim (he has to back it on every audit call)
