@@ -113,6 +113,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
+| quarterly-consumption-audit-agent | Quarterly fleet audit: which Railway + local scheduled agents are worth their cost? Produces KILL/REVIEW/KEEP verdicts based on 90-day cost, failure rates, and consumption evidence. Emails HTML report to Peterson. Runs automatically 1st Jan/Apr/Jul/Oct; can also be triggered on-demand. Admin-only. |
 | db-monitor-agent | Database health -- errors, gaps, anomalies |
 | railway-monitor-agent | Railway service health, pipeline logs, failures |
 | auto-remediation | Auto-fix embedding gaps, stale alerts, duplicates |
