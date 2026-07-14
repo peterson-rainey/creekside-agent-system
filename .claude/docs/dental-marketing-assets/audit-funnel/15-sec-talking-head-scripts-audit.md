@@ -20,9 +20,9 @@
 
 ## SCRIPT 2: Six Months, Here's What We Changed (proof, us-focused)
 
-> "Six months. That's how long it took us to take Dr. Laleh from one million to two million a month in revenue. Same ad budget. Here's what we changed. Her campaigns were optimizing for leads, so the algorithm was buying cheap form fills. We switched the optimization to booked consultations. Fifty consults a month became one hundred five. Want to see what that same change looks like on your practice? Book a free 30-minute ad account audit. Link's below."
+> "Six months. That's how long it took us to take Dr. Laleh from one million to two million a month in revenue. Same ad budget. Here's what we changed. We rebuilt the account from the ground up. What the campaigns optimize for. How the budget splits between Meta and Google. Who the ads target, high-value implant and makeover cases instead of cheap leads. And the tracking, so every dollar ties back to revenue. Fifty consults became one hundred five. Want to see what that looks like on your practice? Book a free 30-minute ad account audit. Link's below."
 
-~80 words / ~25 sec
+~99 words / ~30 sec
 
 ---
 
@@ -37,17 +37,17 @@ Data note: highest CTR signal of any angle (6.88%), never funded past $63. Gets 
 
 ## SCRIPT 4: Underperforming and You Know It (pain + direct offer)
 
-> "Your ads are underperforming and you know it. 30 minutes, free, with an ads expert who reviews dental ad accounts every day. We'll pull up your campaigns live, show you exactly where the money is leaking, and walk you through what we'd do differently. The fixes are yours to keep, with us or without us. This is the same team that took a cosmetic practice from one million to two million a month on the same budget. No cost, no commitment. Book yours below."
+> "Your ads are underperforming and you know it. 30 minutes, free, with an ads expert who reviews dental ad accounts every day. We'll go through your campaign structure, your budgets, your ad copy, your targeting, and what your spend should actually be producing. Step by step, live on your account. The fixes are yours to keep. Book yours below."
 
-~87 words / ~27 sec
+~60 words / ~19 sec
 
 ---
 
 ## SCRIPT 5: Clients, Not Leads (positioning)
 
-> "Most dental practices running ads are optimizing for leads. More form fills. More phone calls. More names on a list. But leads don't pay your bills. Patients in chairs do. We optimize for revenue, and that's how we doubled Dr. Laleh's revenue on the same ad budget. Want to know what your account is actually optimizing for? Book a free 30-minute ad account audit. Link's below."
+> "Most dental practices running ads are optimizing for leads. But leads don't pay your bills. Patients in chairs do. Dr. Laleh was spending over a hundred thousand a month and stuck at one million in revenue. We changed what her campaigns were optimizing for. Six months later, two million a month on the same budget. Want to know what your account is actually optimizing for? Book a free 30-minute ad account audit. Link's below."
 
-~68 words / ~21 sec
+~76 words / ~23 sec
 
 ---
 
