@@ -1,7 +1,7 @@
 # Static Ad Creative Briefs: Dental Practice Offer (Audit Funnel) -- V3
 ## For Aamir / Claude Design chat
 
-**V3 (2026-07-13):** Rebuilt so every static mirrors one of the six Peterson-approved ad copy sets (see facebook-ad-copy-audit.md V4). Each creative uses its ad's approved headline as the hero line, so video and static run the same angle with the same copy. The $10K guarantee angle, testimonial screenshot, and Tooth Co statics from V2 are cut or parked (see bottom).
+**V3 (2026-07-13, rev 2026-07-14):** Rebuilt so every static mirrors one of the six Peterson-approved ad copy sets (see facebook-ad-copy-audit.md V4). Each creative's hero line below is an anchor, not a mandate: the angle, offer, and key numbers are locked, but the exact wording can flex for the design. The $10K guarantee angle, testimonial screenshot, and Tooth Co statics from V2 are cut or parked (see bottom).
 
 **Funnel Role:** Ad creatives catch attention. The prospect should think "these people look like they could help me" and tap Learn More. Save the deep proof for the landing page.
 
@@ -15,6 +15,7 @@
 - All creatives need 1080x1080 (feed) and 1080x1920 (story/reels)
 - No em dashes anywhere
 - Every creative ends on the audit action callout, never a vague "learn more"
+- **Creative freedom:** hero lines and subheads are starting points. Riff on the wording, restructure, or pull a different line from the ad's primary text if it designs better. The ad headline runs under the image anyway, so the on-image line doesn't need to repeat it verbatim. What can't change: the angle, the free 30-minute audit offer, and the key numbers (4X/5-6X benchmark, 2.7X to 5.7X, $1M to $2M, 50 to 105 consults).
 - **Priority order matches launch order: Creative 1 gets budget first**
 
 ---
