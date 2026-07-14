@@ -312,7 +312,8 @@ Verify before declaring done:
 4. **KILL verdicts justified**: each has a specific signal citation, not a generic statement
 5. **Design system followed**: no `<style>` blocks, all styles inline, dollar amounts in monospace
 6. **Error sources noted**: if any data source failed or returned 0 rows unexpectedly, this is noted in the email's at-a-glance summary section — do NOT silently omit a signal
-7. **Email sent**: confirm gmail_send returned success before declaring run complete
+7. **Email sent ONCE**: exactly one gmail_send call returned success — zero duplicates
+8. **Real dates**: subject-line quarter/year and all date text came from the Step 2 `now()` query, not from memory
 
 ## Error Handling
 
