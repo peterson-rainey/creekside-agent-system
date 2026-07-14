@@ -227,16 +227,14 @@ Determine the current quarter from the current date:
 - Status pill: `<span style="background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;">🟡 REVIEW</span>`
 - Include specific next-step recommendation: "Consider adding output validation" / "Check if the daily brief is actually using this output" / etc.
 
-**5. KEEP section** (accent #65a30d) — compact data table, not individual cards
-- Table columns: Agent | Cost (90d) | Runs | Fail% | Consumption Signal
-- Sort by cost descending
-- Status pill in a "Verdict" column: `<span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;">🟢 KEEP</span>`
-- Dollar figures in monospace, right-aligned
-- If cost is $0.00 (no api_cost_tracking entry), show `$0.00` — do not leave blank
+**5. KEEP section** (accent #65a30d) — ONE compact table, size-capped
+- Show ONLY the top 10 KEEP agents by 90-day cost. Columns: Agent | Cost (90d) | Runs | Fail%
+- No pill column (the whole section is KEEP — the section header says so once)
+- Close with one plain-text line: "Plus [N] more KEEP agents, combined cost $[X.XX], all with consumption evidence."
+- Dollar figures in monospace, right-aligned; $0.00 shown explicitly, never blank
 
-**6. Disabled fleet section** (accent #94a3b8)
-- Simple table: Agent | Disabled Since (last_run_at) | Notes (first 80 chars of description)
-- One-line intro: "These agents are already disabled. Review whether they should be formally deleted from scheduled_agents."
+**6. Disabled fleet section** (accent #94a3b8) — one short paragraph, NOT a table
+- "[N] agents already disabled: [comma-separated names]. Review whether any should be formally deleted from scheduled_agents."
 
 **7. Footer**
 - `Generated [UTC timestamp] · quarterly-consumption-audit-agent · Data window: [start]–[end]`
