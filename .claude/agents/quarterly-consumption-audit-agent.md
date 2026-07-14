@@ -246,7 +246,7 @@ Determine the current quarter from the current date:
 - Dollar amounts in `font-family:ui-monospace,SFMono-Regular,Menlo,monospace`, right-aligned
 
 ### HARD SIZE LIMIT (critical — this killed the first run)
-Your ENTIRE `gmail_send` tool call (body_html + body_text + subject) must fit inside a single 8,192-token model response — roughly **12KB of HTML maximum**. The first run's full-fleet HTML exceeded this, the call kept getting truncated, and the agent sent 9 broken duplicate emails. To stay under the limit:
+Your ENTIRE `gmail_send` tool call (body_html + body_text + subject) must fit inside a single 16,384-token model response — roughly **24KB of HTML maximum**. The first run's full-fleet HTML exceeded the (then-smaller) limit, the call kept getting truncated, and the agent sent 9 broken duplicate emails. **ALWAYS include `body_html` — never send plaintext-only "to be safe."** A plaintext-only send counts as a FAILED deliverable. To stay under the limit:
 - Detailed cards ONLY for KILL and REVIEW (there are typically <8 of these combined)
 - KEEP = top-10 table + one summary line. Disabled = one paragraph. NEVER a row per agent for the full fleet.
 - Keep the plain-text fallback under 1,000 characters — headline counts + KILL/REVIEW names only
