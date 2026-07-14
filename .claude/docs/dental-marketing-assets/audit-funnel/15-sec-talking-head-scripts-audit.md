@@ -35,11 +35,11 @@ Data note: highest CTR signal of any angle (6.88%), never funded past $63. Gets 
 
 ---
 
-## SCRIPT 4: Direct Offer
+## SCRIPT 4: Underperforming and You Know It (pain + direct offer)
 
-> "We're offering a free audit of your dental practice's ad account. An ads expert pulls up your campaigns live, shows you where the budget is leaking, and walks you through exactly what we'd do differently. The fixes are yours to keep, with us or without us. This is the same team that took a cosmetic practice from one million to two million a month on the same budget. 30 minutes, no cost, no commitment. Book yours below."
+> "Your ads are underperforming and you know it. 30 minutes, free, with an ads expert who reviews dental ad accounts every day. We'll pull up your campaigns live, show you exactly where the money is leaking, and walk you through what we'd do differently. The fixes are yours to keep, with us or without us. This is the same team that took a cosmetic practice from one million to two million a month on the same budget. No cost, no commitment. Book yours below."
 
-~78 words / ~24 sec
+~87 words / ~27 sec
 
 ---
 
