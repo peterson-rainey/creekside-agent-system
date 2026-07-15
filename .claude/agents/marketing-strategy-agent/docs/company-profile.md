@@ -13,7 +13,8 @@
 ## Positioning
 - Tagline: "Senior Google and Meta ads management for US service and SaaS brands spending $10k-$100k per month. Improve ROAS in 90 days or we work free. Launch in 7 days."
 - Category: Performance Marketing, PPC Agency, Paid Social, Media Buying, Growth Marketing
-- Key differentiators: Live audits on first call, direct access to ad managers, month-to-month contracts, optimize for new customer growth (not just CPA)
+- Key differentiators: Live audits on first call, direct access to ad managers, flexible contracts (3-month minimum, then month-to-month), optimize for new customer growth (not just CPA)
+- NOTE: The "Improve ROAS in 90 days or we work free" guarantee is MARKETING ONLY (homepage/board messaging). NEVER use it in sales calls or proposals (confirmed by Peterson 2026-05-15).
 - Services NOT offered: Organic SEO, content marketing, organic social, email marketing, brand design/web dev, direct mail. Peterson's own words: "jack of all trades are masters of none."
 
 ## Dual Positioning Strategy
