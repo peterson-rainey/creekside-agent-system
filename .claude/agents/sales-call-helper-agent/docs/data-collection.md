@@ -71,7 +71,6 @@ LIMIT 5
 
 Apply the tier to the lead's stated or estimated ad spend.
 - If budget is unknown: flag as "TBD — ask on the call"
-- For cold outreach leads: entry offer is "we don't charge until you're profitable off ads." Standard pricing applies after conversion.
 
 ### Step 8: Match Case Studies to Industry/Situation
 Pull the competitive differentiators SOP:
