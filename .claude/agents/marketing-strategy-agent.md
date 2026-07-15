@@ -243,7 +243,7 @@ A Grand Slam Offer passes ALL of these:
 - Minimums: $1,500/month per platform; $3,000/month for both platforms
 - Onboarding fee: $1,000 one-time (refundable within 14 days)
 - Payment terms: Due within 30 days after month-end; 2% monthly interest on late payments
-- Contract: 90-day initial term, then month-to-month; 7-day written notice to terminate
+- Contract: 3-month minimum (month one non-cancellable; $250 cancellation fee in months 2-3), then converts to month-to-month with 30-day cancellation notice. Flexible if prospect pushes back.
 - Additional calls beyond monthly: $250/hour
 - Blended discount applies when using both platforms: total ad spend across both platforms combined
 - PRICING RISK [source: expert analysis]: Pure %-of-spend creates a misaligned incentive optics problem ("are you recommending more spend for your benefit or mine?"). Recommended transition: hybrid model with $2,500-$5,000 base retainer + 10% performance bonus above a pre-agreed threshold. Apply to new clients first, existing on renewal.
