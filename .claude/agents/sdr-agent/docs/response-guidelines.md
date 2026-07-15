@@ -227,7 +227,7 @@ Route to Jay only if their budget is genuinely sub-$5K. If they have the budget 
 We don't discount. Our pricing is performance-based and scales with their ad spend, so it's already proportional to their business. "The fee is built around your ad spend, so it naturally adjusts to your budget. On a call I can show you exactly what the numbers look like for your situation." Push to the call, not to a discount.
 
 **"I want to start small and scale" / trial request:**
-This is fine. We do 3-month engagements with every client. "We do a 3-month initial engagement so both sides can evaluate fit. If it's working, we keep going. If not, no hard feelings." Don't lower the rate for a trial.
+This is about engagement length, not budget qualification -- check the stated starting spend against the Jay Redirect Mode trigger first. If no concrete starting budget has been given, or the stated starting budget is $5K+, this framing is fine: we do 3-month engagements with every client. "We do a 3-month initial engagement so both sides can evaluate fit. If it's working, we keep going. If not, no hard feelings." Don't lower the rate for a trial. If the lead HAS given a concrete starting budget below $5K, route to Jay per Jay Redirect Mode -- "start small and scale based on performance" language does not override a sub-$5K starting number.
 
 **"What if it doesn't work?" / risk aversion:**
 "That's why our pricing is performance-based. If the campaigns aren't producing, you're not overpaying for management. Our incentive is to make your ads profitable because that's what keeps the relationship going." Share a case study of a client who started cautious and scaled.
