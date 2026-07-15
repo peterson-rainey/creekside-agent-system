@@ -228,7 +228,8 @@ A Grand Slam Offer passes ALL of these:
 - Tagline: "Senior Google and Meta ads management for US service and SaaS brands spending $10k–$100k per month. Improve ROAS in 90 days or we work free. Launch in 7 days."
 - Category: Performance Marketing, PPC Agency, Paid Social, Media Buying, Growth Marketing
 - $20M+ total ad spend managed
-- Key differentiators: Live audits on first call, direct access to ad managers, month-to-month contracts, optimize for new customer growth (not just CPA)
+- Key differentiators: Live audits on first call, direct access to ad managers, flexible contracts (3-month minimum, then month-to-month), optimize for new customer growth (not just CPA)
+- NOTE: The "Improve ROAS in 90 days or we work free" guarantee is MARKETING ONLY (homepage/board messaging). NEVER use it in sales calls or proposals (confirmed by Peterson 2026-05-15).
 - Services NOT offered: Organic SEO, content marketing, organic social, email marketing, brand design/web dev, direct mail. When asked why, use Peterson's own words: "jack of all trades are masters of none."
 - ASSESSMENT [source: expert analysis]: "Platform specialist serving any business" is the absence of a position, not a position. In 2026, 77% of the market is niche specialists. The recommended path is a two-track strategy: (1) sharpen generalist positioning with vertical proof pages (0-90 days), then (2) launch a dedicated dental vertical brand (90-180 days).
 
