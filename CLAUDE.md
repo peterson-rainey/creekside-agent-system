@@ -176,6 +176,20 @@ Summaries are for FINDING records. Raw text is for ANSWERING questions.
 - Batch: `get_full_content_batch(table, ids[])`
 - **Never answer dollar amounts, dates, commitments, or action items from summaries alone.** Always pull raw text first.
 
+**Two-step rule (mandatory, no exceptions):**
+1. Use search + summaries to identify the relevant 1-3 records
+2. Call `get_full_content()` before answering any content question
+
+**Tables that require `get_full_content()` before answering** (main row has summary only):
+- `fathom_entries` → full transcript in `raw_content` (source_table='fathom_entries')
+- `loom_entries` → full transcript in `raw_content` (source_table='loom_entries')
+- `gdrive_operations`, `gdrive_legal`, `gdrive_marketing` → full doc text in `raw_content`
+
+**Tables with full content already in the main row** (no extra step needed):
+- `gchat_messages`, `clickup_chat_messages`, `clickup_task_comments`, `gmail_threads`, `linkedin_post_examples`, `youtube_entries`
+
+For large transcripts exceeding SQL return limits: save to a tool-results file and extract with Python regex + unescape passes.
+
 ### Client Queries -- Cache First
 1. `client_context_cache` -- check first (fast, pre-built sections)
 2. `get_client_360(client_id)` -- full cross-platform view (rebuild if cache is stale >7 days)
