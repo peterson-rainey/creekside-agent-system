@@ -115,8 +115,20 @@ PAYLOAD=$(jq -n \
   } + (if $cby == "" then {} else {created_by_user_id: $cby} end)')
 
 if [ "$WRITE_TRANSCRIPT" = "true" ] && [ -n "$TRANSCRIPT_PATH" ] && [ -f "$TRANSCRIPT_PATH" ]; then
-  # Read transcript file (JSONL). Cap to ~500KB to avoid payload bloat.
-  TRANSCRIPT_RAW=$(head -c 500000 "$TRANSCRIPT_PATH" 2>/dev/null)
+  # Read transcript file (JSONL). Cap to ~500KB via HEAD+TAIL capture.
+  # Head-only capture made every save of a >500KB session byte-identical
+  # (the first 500KB never changes) AND lost the session ending — produced
+  # 1,552 duplicate chat_sessions rows by 2026-07-14.
+  FILE_BYTES=$(wc -c < "$TRANSCRIPT_PATH" 2>/dev/null | tr -d '[:space:]')
+  if [ -n "$FILE_BYTES" ] && [ "$FILE_BYTES" -gt 500000 ] 2>/dev/null; then
+    TRANSCRIPT_RAW=$(
+      head -c 250000 "$TRANSCRIPT_PATH" 2>/dev/null
+      printf '\n[... middle elided by session-autosave: transcript %s bytes total ...]\n' "$FILE_BYTES"
+      tail -c 250000 "$TRANSCRIPT_PATH" 2>/dev/null
+    )
+  else
+    TRANSCRIPT_RAW=$(cat "$TRANSCRIPT_PATH" 2>/dev/null)
+  fi
   if [ -n "$TRANSCRIPT_RAW" ]; then
     PAYLOAD=$(echo "$PAYLOAD" | jq --arg t "$TRANSCRIPT_RAW" '. + {raw_transcript: $t}')
   fi

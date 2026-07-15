@@ -55,10 +55,21 @@ REST_URL="${SUPABASE_URL_VAL%/}/rest/v1"
 STDIN_JSON=$(cat)
 TRANSCRIPT_PATH=$(echo "$STDIN_JSON" | jq -r '.transcript_path // empty' 2>/dev/null)
 
-# --- 4. Read final transcript (cap ~500KB) ---
+# --- 4. Read final transcript (cap ~500KB via HEAD+TAIL capture) ---
+# Head-only capture made every save of a >500KB session byte-identical AND
+# lost the session ending (final decisions, TODOs) — see session-autosave.sh.
 TRANSCRIPT_RAW=""
 if [ -n "$TRANSCRIPT_PATH" ] && [ -f "$TRANSCRIPT_PATH" ]; then
-  TRANSCRIPT_RAW=$(head -c 500000 "$TRANSCRIPT_PATH" 2>/dev/null)
+  FILE_BYTES=$(wc -c < "$TRANSCRIPT_PATH" 2>/dev/null | tr -d '[:space:]')
+  if [ -n "$FILE_BYTES" ] && [ "$FILE_BYTES" -gt 500000 ] 2>/dev/null; then
+    TRANSCRIPT_RAW=$(
+      head -c 250000 "$TRANSCRIPT_PATH" 2>/dev/null
+      printf '\n[... middle elided by session-finalize: transcript %s bytes total ...]\n' "$FILE_BYTES"
+      tail -c 250000 "$TRANSCRIPT_PATH" 2>/dev/null
+    )
+  else
+    TRANSCRIPT_RAW=$(cat "$TRANSCRIPT_PATH" 2>/dev/null)
+  fi
 fi
 
 # --- 5. Build UPSERT payload ---
