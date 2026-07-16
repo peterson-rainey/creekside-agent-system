@@ -190,9 +190,13 @@ Synthesize into the audit: reference stated goals, prior results, known constrai
 
 ---
 
-## Step 4: Pull Live Account Data via PipeBoard MCP
+## Step 4: Pull Live Account Data
 
-Pull data in this order. Use the `act_XXXXXX` account ID throughout.
+**Default:** Use official Meta Ads MCP tools (`mcp__claude_ai_Meta_Ads__*`). Strip the `act_` prefix for the official MCP (e.g. `"938570599860690"`). These are free and cover most accounts.
+**Fallback:** If the official MCP returns an error (e.g. "not enabled for Ads MCP"), retry each call using PipeBoard tools (`mcp__claude_ai_PipeBoard__*`) with the `act_` prefix.
+See the `ads-connector` skill for the full tool mapping.
+
+Pull data in this order. PipeBoard examples below work as fallback if the official MCP is unavailable for this account.
 
 ### 4a. Account Info
 
