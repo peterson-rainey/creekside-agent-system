@@ -43,60 +43,82 @@ If the array is empty, call the platform's account-listing tool (`get_ad_account
 
 ---
 
-## Meta Ads via PipeBoard's Meta connector
+## Meta Ads — Official Meta MCP (default) + PipeBoard (fallback)
 
-Confirmed tool surface under `mcp__claude_ai_PipeBoard__*` (Sonnet agents with pre-declared tools) or `mcp__748a69c8-a69a-40cc-97fb-98bd2c007663__*` (deferred — fetch via `ToolSearch` first).
+### Primary: Official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`)
 
-### Read operations
+Free, OAuth-based. Covers 12/15 active Creekside clients. Try these first for ALL Meta read operations.
+
+| Official MCP Tool | Purpose |
+|---|---|
+| `ads_get_ad_accounts` | List accessible ad accounts (check `is_ads_mcp_enabled` and `is_queryable`) |
+| `ads_get_ad_entities` | Unified query for campaigns, adsets, ads — set `level` param. Supports metrics + filtering + sorting when `date_preset` or `time_range` is provided |
+| `ads_insights_performance_trend` | Performance trends with GOOD/BAD direction signals |
+| `ads_get_creatives` / `ads_get_creative_ads` | Creative assets |
+| `ads_get_datasets` / `ads_get_dataset_details` | Pixel / Events Manager data |
+| `ads_get_ad_account_custom_audiences` / `ads_get_custom_audience` | Audience data |
+| `ads_get_ad_preview` | Render ad preview |
+| `ads_insights_anomaly_signal` | Anomaly detection (bonus — PipeBoard doesn't have this) |
+| `ads_insights_industry_benchmark` | Industry benchmarks (bonus) |
+| `ads_get_opportunity_score` | Optimization recommendations (bonus) |
+| `ads_library_search` | Ad Library search (bonus) |
+
+#### Standard read — campaign performance (last 30 days)
+
+```
+Tool: mcp__claude_ai_Meta_Ads__ads_get_ad_entities
+Parameters:
+  ad_account_id: "XXXXXXXXX"     # numeric only, no act_ prefix
+  level: "campaign"
+  date_preset: "last_30d"
+  fields: ["id", "name", "effective_status", "amount_spent", "impressions", "clicks", "ctr", "cpc", "cpm", "reach", "frequency", "results", "cost_per_result", "actions:link_click", "actions:omni_purchase", "cost_per_action_type", "purchase_roas"]
+```
+
+**Date preset values:** `today`, `yesterday`, `this_month`, `last_month`, `this_quarter`, `last_3d`, `last_7d`, `last_14d`, `last_30d`, `last_90d`. Custom: `time_range: '{"since":"2026-01-01","until":"2026-01-31"}'`.
+
+**Drill-down:** change `level` to `"adset"` or `"ad"`. Use `filtering` to narrow (e.g. `[{"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`).
+
+**IMPORTANT:** `ad_account_id` takes the NUMERIC ID only (e.g. `"938570599860690"`), NOT the `act_` prefixed form. Strip the `act_` prefix before calling.
+
+### Fallback: PipeBoard (`mcp__claude_ai_PipeBoard__*`)
+
+Use PipeBoard when the official MCP returns an error, for MCP-disabled accounts, for lead gen forms, and for write operations.
+
+#### Read operations (fallback)
 
 | Tool | Purpose |
 |---|---|
 | `get_ad_accounts` | List accessible Meta ad accounts |
-| `get_campaigns` / `get_campaign_details` | Campaign data |
-| `get_adsets` / `get_adset_details` | Ad set data |
-| `get_ads` / `get_ad_details` | Individual ad data |
-| `get_insights` | Spend, impressions, clicks, CTR, CPC, CPA, conversions, ROAS, reach, frequency |
+| `get_campaigns` / `get_adsets` / `get_ads` | Structure data |
+| `get_insights` | Performance metrics |
 | `get_ad_creatives` / `get_creative_details` | Creative assets |
-| `get_custom_audiences` / `get_saved_audiences` | Audience data |
-| `get_pixels` | Pixel / Events Manager listings |
-| `get_lead_gen_forms` | Lead form data |
-| `get_ad_previews` | Render ad preview |
+| `get_custom_audiences` | Audience data |
+| `get_pixels` | Pixel data |
+| `get_lead_gen_forms` | Lead form data (**PipeBoard only — no official MCP equivalent**) |
 
-### Write operations (confirm with user before executing)
+#### Write operations (confirm with user before executing)
 
 | Tool | Purpose |
 |---|---|
-| `create_campaign` / `update_campaign` | Campaign management — create, pause, resume, edit budget / schedule / objective |
-| `create_adset` / `update_adset` | Ad set management — targeting, placements, budget, schedule |
-| `create_ad` / `update_ad` | Ad management — status, creative linkage |
+| `create_campaign` / `update_campaign` | Campaign management |
+| `create_adset` / `update_adset` | Ad set management |
+| `create_ad` / `update_ad` | Ad management |
 | `create_ad_creative` / `update_ad_creative` | Creative management |
 | `create_custom_audience` / `create_lookalike_audience` | Audience building |
 | `upload_ad_image` / `upload_ad_video` | Asset uploads |
 | `duplicate_campaign` / `duplicate_adset` / `duplicate_ad` | Duplication |
 | `publish_lead_gen_draft_form` / `update_lead_gen_form_status` | Lead form management |
 
-### Bulk (Premium tier)
-
-`bulk_create_ads`, `bulk_update_ads`, `bulk_update_campaigns`, `bulk_update_adsets`, `bulk_create_ad_creatives`, `bulk_upload_ad_images`, `bulk_upload_ad_videos`, `bulk_get_insights`, `bulk_get_ad_creatives`, `bulk_search_interests`. Default batch cap is 20; can raise to 200 with explicit user confirmation.
-
-### Standard `get_insights` call — last 30 days at campaign level
+#### Standard PipeBoard `get_insights` call (fallback)
 
 ```
-Tool: get_insights
+Tool: mcp__claude_ai_PipeBoard__get_insights
 Parameters:
-  account_id: act_XXXXXXXXX      # from find_client()
+  account_id: act_XXXXXXXXX      # act_ prefix required for PipeBoard
   date_preset: "last_30d"
   level: "campaign"
   fields: ["spend","impressions","clicks","ctr","cpc","cpm","actions","cost_per_action_type","roas","reach","frequency"]
 ```
-
-**Date preset values:** `last_7d`, `last_30d`, `last_quarter`, `this_month`, `last_month`. Custom: `time_range: {"since": "2026-01-01", "until": "2026-01-31"}`.
-
-**Drill-down:** switch `level` to `"adset"` or `"ad"` and re-run, or chain `get_adsets` → `get_ads` → `get_ad_details` → `get_ad_creatives`.
-
-### Targeting & sizing
-
-`search_interests` / `search_behaviors` / `search_demographics` / `search_geo_locations` / `estimate_audience_size` / `search_pages_by_name`.
 
 ---
 
