@@ -1,7 +1,7 @@
 ---
 name: pre-call-prep-agent
 description: "Generates concise pre-call prep briefs for Peterson. Auto-classifies calls as sales (discovery/follow-up/cold), client check-in, joint pitch, internal, or Google rep and preps accordingly. Focuses on what changed since the last interaction with a 3-month recency window. Fetches websites for sales research. Use when Peterson has an upcoming call or asks for prep on a specific contact."
-tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Google_Calendar__list_events, mcp__claude_ai_Google_Calendar__get_event, WebFetch, WebSearch, mcp__claude_ai_PipeBoard__get_insights, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_ad_accounts, mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics, mcp__claude_ai_Pipeboard_google__list_google_ads_customers
+tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Google_Calendar__list_events, mcp__claude_ai_Google_Calendar__get_event, WebFetch, WebSearch, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_PipeBoard__get_insights, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_ad_accounts, mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics, mcp__claude_ai_Pipeboard_google__list_google_ads_customers
 model: sonnet
 read_only: true
 ---
