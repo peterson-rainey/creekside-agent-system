@@ -115,7 +115,11 @@ If zero rows return: write "No clients configured for monitoring today." to the 
 
 ---
 
-## Step 2: For each client, pull live Meta data via PipeBoard
+## Step 2: For each client, pull live Meta data
+
+**Default:** Use official Meta Ads MCP tools (`mcp__claude_ai_Meta_Ads__*`). Strip the `act_` prefix for the official MCP. These are free and cover most accounts.
+**Fallback:** If the official MCP returns an error (e.g. "not enabled for Ads MCP"), retry using PipeBoard tools (`mcp__claude_ai_PipeBoard__*`) with the `act_` prefix. Known PipeBoard-only accounts: LA Smiles (act_1466381181311591), MedWriter (act_673641821010879).
+See the `ads-connector` skill for the full tool mapping.
 
 Iterate sequentially through the result set. Per client, make these calls (parallelize within a single client where safe; do NOT parallelize across clients to keep the rate limits sane):
 
