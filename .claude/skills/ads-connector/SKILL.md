@@ -5,17 +5,25 @@ description: "Routing reference for live ad-platform operations at Creekside Mar
 
 # Ads Connector — Platform Routing
 
-Route the caller to the correct live source for Google or Meta ads — for READS and for CHANGES. Never warehouse metrics at read time; always hit the platform live via the right PipeBoard MCP connector.
+Route the caller to the correct live source for Google or Meta ads — for READS and for CHANGES. Never warehouse metrics at read time; always hit the platform live.
 
 ## Decision rule
 
-| Platform | Connector (all via PipeBoard) | MCP namespace | Status | Backup |
-|---|---|---|---|---|
-| Meta / Facebook / Instagram / WhatsApp / Audience Network | **PipeBoard — Meta connector** | `mcp__748a69c8-a69a-40cc-97fb-98bd2c007663__*` | **VERIFIED LIVE** — `get_ad_accounts` returned real Creekside accounts 2026-04-23 | — |
-| Google Ads (search, display, PMax, shopping, YouTube) | **PipeBoard — Google Ads connector** | `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` | **VERIFIED LIVE** — `list_google_ads_customers` returned 33 Creekside accounts 2026-04-23 | Python `google-ads` SDK pipeline in `creekside-pipelines/pipelines/google_ads/` — read-only, syncs daily into Supabase for historical trend data |
-| Both | Call the right connector per platform, then combine | — | — | — |
+| Platform | Primary connector | Fallback | Status |
+|---|---|---|---|
+| Meta / Facebook / Instagram (reads) | **Official Meta Ads MCP** `mcp__claude_ai_Meta_Ads__*` | PipeBoard `mcp__claude_ai_PipeBoard__*` | **VERIFIED LIVE 2026-07-15** — 56/68 accounts MCP-enabled, 12/15 active clients |
+| Meta (writes: create/update/pause) | **PipeBoard** `mcp__claude_ai_PipeBoard__*` | Official MCP has write tools too, but PipeBoard is proven | VERIFIED LIVE |
+| Meta (lead gen forms) | **PipeBoard only** — no official MCP equivalent | — | VERIFIED LIVE |
+| Google Ads | **PipeBoard — Google Ads connector** `mcp__claude_ai_Pipeboard_google__*` | Python `google-ads` SDK pipeline for historical data | VERIFIED LIVE 2026-04-23 |
+| Both | Call the right connector per platform, then combine | — | — |
 
-**Critical distinction:** Both connectors are PipeBoard, but they run as **separate MCP instances under different namespace UUIDs**. The Meta connector (`748a69c8-...`) and the Google Ads connector (`da1177e9-...`) have entirely different tool names and parameter shapes. Google customer IDs are 10-digit numerics (no `act_` prefix); Meta account IDs are `act_XXXXXXXXX`. Do not mix them.
+**When to fall back to PipeBoard for Meta reads:**
+- Account returns error "Ads MCP is gradually being rolled out" (`is_ads_mcp_enabled: false`)
+- Known PipeBoard-only accounts: LA Smiles (act_1466381181311591), MedWriter/Superflow (act_673641821010879)
+- Lead gen form data needed (`get_lead_gen_forms`)
+- Any official MCP tool error — retry with PipeBoard before reporting failure
+
+**ID formats:** Meta account IDs are `act_XXXXXXXXX`. Google customer IDs are 10-digit numerics (no `act_` prefix). Do not mix them.
 
 If the request is ambiguous ("ads", "campaigns", "last month's performance", "pause the underperformer" with no platform named) — ask the user which platform.
 
