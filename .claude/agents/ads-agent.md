@@ -81,7 +81,9 @@ Use this context to inform your analysis (don't repeat known findings unless ask
 
 ## Step 5A: Meta Ads Data Pull
 
-Use PipeBoard MCP tools. Tool name prefix: `mcp__claude_ai_PipeBoard__`
+**Default:** Use official Meta Ads MCP tools (`mcp__claude_ai_Meta_Ads__*`). These are free and cover most accounts. Strip the `act_` prefix when passing `ad_account_id` (e.g. `"938570599860690"`, not `"act_938570599860690"`).
+**Fallback to PipeBoard** (`mcp__claude_ai_PipeBoard__*`) when: the official MCP returns an error (e.g. "not enabled for Ads MCP"), for lead gen forms (`get_lead_gen_forms`), or for write operations. PipeBoard requires the `act_` prefix.
+See the `ads-connector` skill for the full tool mapping.
 
 ### Account resolution:
 The `meta_account_ids` from `find_client()` gives you the account IDs directly.
