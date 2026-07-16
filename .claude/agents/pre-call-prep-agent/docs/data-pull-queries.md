@@ -259,10 +259,10 @@ ORDER BY week DESC;
 Show 4-week trend with weekly rollups. Identify the metrics that matter most for THIS client's business (e.g., cost per lead for lead gen, ROAS for ecomm, cost per call for service businesses). Surface anomalies: spend 20%+ over/under budget, conversion drops, tracking gaps. Never cite ROAS targets unless confirmed in Fathom recordings or client records.
 
 **FALLBACK: If DB tables return empty (no rows for this client), pull live data via MCP:**
-- **Meta:** Use `mcp__claude_ai_PipeBoard__get_ad_accounts` to find the client's account, then `mcp__claude_ai_PipeBoard__get_campaigns` and `mcp__claude_ai_PipeBoard__get_insights` for last 30 days
+- **Meta:** Use official Meta MCP first: `mcp__claude_ai_Meta_Ads__ads_get_ad_entities` with `level: "campaign"`, `date_preset: "last_30d"`, and metrics fields. Strip `act_` prefix from account ID. If official MCP errors, fall back to PipeBoard: `mcp__claude_ai_PipeBoard__get_insights` (keep `act_` prefix).
 - **Google:** Use `mcp__claude_ai_Pipeboard_google__list_google_ads_customers` to find the account, then `mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics` for last 30 days
 
-Do NOT leave the performance section blank when MCP tools can provide live data. Flag the source: `[source: PipeBoard MCP, live pull]`
+Do NOT leave the performance section blank when MCP tools can provide live data. Flag the source: `[source: Meta Ads MCP, live pull]` or `[source: PipeBoard MCP, live pull]`
 
 #### Contractor Ad Performance Notes
 Pull recent notes the platform operator has shared about this client's campaigns -- Google Chat messages, ClickUp comments, and ads_knowledge entries.

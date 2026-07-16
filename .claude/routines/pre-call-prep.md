@@ -96,7 +96,7 @@ SELECT id, name, business_name, source, status, website, notes FROM leads WHERE 
 **Step 2:** Classify (sales/client/internal/Google rep) per the agent's type definitions
 
 **Step 3:** Pull data per call type:
-- **Client calls:** client_context_cache, prior fathom_entries, reporting_clients, clickup_entries (open tasks), revenue_by_client, square_entries, gchat_summaries, clickup_comment_threads, ads_knowledge. If meta_insights_daily/google_insights_daily return empty, use PipeBoard MCP (mcp__claude_ai_PipeBoard__get_insights) or Pipeboard Google MCP (mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics) for live ad data.
+- **Client calls:** client_context_cache, prior fathom_entries, reporting_clients, clickup_entries (open tasks), revenue_by_client, square_entries, gchat_summaries, clickup_comment_threads, ads_knowledge. If meta_insights_daily/google_insights_daily return empty, use official Meta MCP (mcp__claude_ai_Meta_Ads__ads_get_ad_entities with date_preset and metrics fields) or PipeBoard as fallback (mcp__claude_ai_PipeBoard__get_insights). For Google, use Pipeboard Google MCP (mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics) for live ad data.
 - **Sales calls:** leads, clickup_entries, clickup_comment_threads (Upwork messages live here), sdr_responses, loom_entries, gdrive_operations, gmail_summaries. WebFetch any website found. WebSearch the business if no URL.
 - **Internal calls:** team_members, reporting_clients (portfolio), last 30 days context per portfolio client, action_items, prior calls with this person.
 
