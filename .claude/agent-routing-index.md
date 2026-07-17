@@ -45,6 +45,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | Agent | Use when... |
 |-------|-------------|
 | communication-style-agent | Rewriting messages in Peterson's voice (Gmail, GChat, ClickUp, LinkedIn) |
+| newsletter-compiler-agent | Compile weekly newsletter from pasted contributor submissions (team + external partners). Returns Markdown draft + 3 subject line options for Peterson to edit. Hand off to newsletter-send-agent to deliver. |
 | content-freshness-agent | Weekly pass: identifies blog posts with stale numeric data, updates CPCs/CPAs/ROI figures from RAG database, sets lastModified frontmatter for Google AI freshness signals. Runs Monday 6 AM CT. Admin-only. |
 | faq-schema-agent | Monthly: mines real prospect questions from Fathom discovery/sales call transcripts, generates FAQ sections grounded in campaign data, injects into blog posts lacking FAQs. Improves Google rich results and AI Overview visibility. |
 | linkedin-post-agent | LinkedIn post generation (Tommy Clark methodology) |
