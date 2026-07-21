@@ -25,7 +25,9 @@ IS_CLAUDE_MD=false
 
 IS_CONTRACTOR_SKILL=false
 
-if echo "$FILE" | grep -qE '\.claude/agents/[^/]+\.md$'; then
+if echo "$FILE" | grep -qE '\.claude/agents/[^/]+\.md$' && ! echo "$FILE" | grep -qE '/CLAUDE\.md$'; then
+  # Excludes .claude/agents/CLAUDE.md (folder-rules file, not an agent --
+  # without the exclusion it gets synced to agent_definitions as a fake "CLAUDE" agent)
   IS_AGENT=true
   IS_TRACKED=true
 elif echo "$FILE" | grep -qE '\.claude/agents/.*\.md$'; then
