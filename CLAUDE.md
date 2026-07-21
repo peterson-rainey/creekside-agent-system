@@ -25,7 +25,7 @@ When operating in contractor mode, these restrictions apply regardless of sessio
 - **No ADMIN_MODE**: Do not create `.claude/ADMIN_MODE`. Only Peterson can do this manually.
 - **No destructive ops**: No `rm -rf`, `git push --force`, `git reset --hard`, `chmod 777`, child Claude CLI processes.
 - **Commit after changes**: In Co-work, auto-commit hooks don't run. Run `git add -A && git commit -m "Co-work: <summary>"` after meaningful file edits.
-- **Agent file sync**: If you edit `.claude/agents/*.md` in Co-work, the DB won't auto-update. Run `bash .claude/hooks/agent-edit-monitor.sh` manually.
+- **Agent file sync**: If you edit `.claude/agents/*.md` in Co-work, the DB won't auto-update. Run the `sync-agents` agent to sync (invoking `agent-edit-monitor.sh` bare does nothing -- it requires hook stdin JSON).
 
 ## Hard Routing Overrides (ALL users, ALL session types)
 
