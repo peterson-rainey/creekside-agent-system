@@ -61,6 +61,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | proposal-generator-agent | Formal .docx proposals, retainer quotes, audit reports -- fetches live Google Doc template and customizes for the specific lead; outputs .docx + email draft |
 | upwork-proposal-agent | Quick Upwork proposals from a job posting. Supports two profiles: `samuel` (Google/Meta/multi-platform, 4 styles) and `lindsey` (Meta Ads + email specialist, default style). Paste a job description, specify profile, get a ready-to-send proposal. Includes fit screening and case study matching. |
 | sdr-agent | Upwork conversation responses (and SDR responses generally as scope expands). Supports two profiles: `samuel` (default, unchanged behavior) and `lindsey` (Meta/email specialist persona). Handles lead, followup, nurture, and warmup types. Validates for pricing leaks, banned phrases, timeline commitments, sign-off names. Alias: upwork-sdr-agent. |
+| sdr-feedback-miner-agent | Mine ClickUp feedback Peterson gave Queenie on lead responses to generate a prioritized sdr-agent improvement digest. Use when: "what feedback have I given Queenie?", "I want to improve the SDR agent", or before any sdr-agent edit session. Read-only -- never applies changes. |
 | case-study-builder-agent | Client case studies for proposals/social proof |
 
 ## Operations & Tasks
