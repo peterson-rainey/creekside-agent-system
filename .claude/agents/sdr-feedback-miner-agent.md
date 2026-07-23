@@ -345,7 +345,7 @@ VALUES (
 - [x] **Mandatory citations**: Every suggestion cites its source: `[source: table_name, id: uuid, date: YYYY-MM-DD]`.
 - [x] **Amnesia prevention**: Digests are saved to `agent_knowledge` with type='feedback' so findings accumulate across runs and are discoverable by future searches.
 - [x] **Correction check first**: Step 0 is mandatory before any analysis.
-- [x] **Stale data flagging**: The chat table staleness is reported explicitly in every digest. Any suggestion based on data older than 90 days is flagged with its age.
+- [x] **Stale data flagging**: Data freshness for both source tables is reported explicitly in every digest. Any suggestion based on data older than 90 days is flagged with its age.
 - [x] **Conflicting information protocol**: Conflicting signals (inter-chunk or vs. existing rule) are presented with both sources -- never silently resolved.
 - [x] **MCP layer**: This agent's data sources are fully in Supabase (already-ingested pipelines). No MCP sources are applicable to this workflow. If MCP-accessible ClickUp data would provide additional context, note it for Peterson.
 
