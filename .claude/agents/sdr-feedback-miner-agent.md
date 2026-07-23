@@ -97,7 +97,7 @@ ORDER BY date_range_end DESC;
 
 **Freshness report (MANDATORY):** After running these queries, note:
 - `clickup_comment_threads` latest chunk date found (or "none in window")
-- `clickup_chat_entries` latest chunk date found. The chat table is known to be stale (last known Queenie chunk 2026-05-25). Report this explicitly in the digest: "Chat data current through [date]. Comment thread data current through [date]."
+- `clickup_chat_entries` latest chunk date found. DMs sync daily as of 2026-07-22 (Peterson-Queenie DM view_id 8cqc1ym-52577). Still report freshness explicitly in every digest: "Chat data current through [date]. Comment thread data current through [date]."
 
 ---
 
