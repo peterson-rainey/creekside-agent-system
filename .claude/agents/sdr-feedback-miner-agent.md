@@ -101,6 +101,38 @@ ORDER BY date_range_end DESC;
 
 ---
 
+## Step 2.5: Explicit Feedback Marker Pre-Filter
+
+Before fetching full content, run a cheap SQL scan to find any chunks where Peterson used the `%SDR%` marker. This is a guaranteed-capture signal -- never filtered out, always HIGH priority.
+
+**Why this step exists:** Peterson includes the literal text `%SDR%` in ClickUp comments or DMs to Queenie when he wants that message guaranteed to be captured as SDR agent feedback. The marker is optional -- unmarked feedback is still extracted via normal analysis in Step 4. But any message containing `%SDR%` bypasses all filtering and goes straight to HIGH priority.
+
+**SQL note:** `%` is the ILIKE wildcard, so the marker cannot be searched with `ILIKE '%%SDR%%'` (that matches everything containing "SDR"). Use `position()` instead, which performs exact string matching with no escaping required.
+
+```sql
+-- Scan raw_content for chunks already identified in Step 2 (both tables)
+SELECT rc.source_id, rc.source_table, rc.full_text
+FROM raw_content rc
+WHERE rc.source_table IN ('clickup_comment_threads', 'clickup_chat_entries')
+  AND rc.source_id = ANY(ARRAY[<ids from Step 2>]::uuid[])
+  AND position('%SDR%' in rc.full_text) > 0;
+```
+
+If the Step 2 chunk IDs are not yet available as a flat list, run this as a standalone scan across the full window:
+
+```sql
+SELECT rc.source_id, rc.source_table, LEFT(rc.full_text, 500) AS preview
+FROM raw_content rc
+WHERE rc.source_table IN ('clickup_comment_threads', 'clickup_chat_entries')
+  AND position('%SDR%' in rc.full_text) > 0
+  AND rc.created_at > '<WATERMARK_DATE>'::timestamptz
+ORDER BY rc.created_at DESC;
+```
+
+Store the list of marked `source_id` values as `MARKED_IDS`. These chunks MUST be included in the Step 3 full-content pull regardless of whether they appeared in the Step 2 Queenie participant filter (Peterson may have marked feedback in a thread that does not mention Queenie by name).
+
+---
+
 ## Step 3: Fetch Full Content (NO SUMMARIES FOR EXTRACTION)
 
 AI summaries are for finding records, not for extracting feedback signals. Fetch raw text for EVERY chunk found in Step 2.
