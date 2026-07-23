@@ -293,6 +293,23 @@ def check_blocks(text, profile="samuel"):
                     "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6",
                 ))
 
+    # "Cade" in lead-facing response -- profile-dependent (ruling 2026-07-23).
+    # samuel profile: Cade references are ALLOWED ("Cade, my partner" / "my
+    # co-founder"). Cade owns Meta for default-path (higher-value) leads; Jay is
+    # the Meta specialist for Jay-routed leads (especially sub-$3K/month spend).
+    # Cade's calendar URL is NOT whitelisted -- the whitelist checks above still
+    # apply, so booking CTAs stay on the profile or Jay calendars.
+    # lindsey profile: solo-freelancer persona -- any "Cade" mention is a BLOCK.
+    if profile == "lindsey":
+        cade_match = re.search(r'\bCade\b', text)
+        if cade_match:
+            issues.append((
+                "lindsey_internal_name_cade",
+                "Cade -- must never appear in a Lindsey-profile draft (solo persona, "
+                "no agency/co-founder references); lindsey routing targets are the "
+                "persona and Jay (operator-handled) only",
+            ))
+
     return issues
 
 
@@ -652,16 +669,8 @@ def check_and_fix_warns(text):
             issues.append(("hours_scoped_warn", f"{m.group()} -- {label}"))
             break  # One WARN is enough; don't stack duplicates
 
-    # 14a. "Cade" in lead-facing response (WARN, no auto-fix -- FIX A)
-    # Cade is an internal team member. He must never be referenced in lead-facing messages.
-    # Routing targets are the active profile persona (Samuel/Lindsey) and Jay only.
-    cade_match = re.search(r'\bCade\b', fixed)
-    if cade_match:
-        issues.append((
-            "internal_name_cade",
-            "Cade -- internal team member must not appear in lead-facing text; "
-            "routing targets are the active profile persona and Jay only",
-        ))
+    # 14a. "Cade" check moved to check_blocks (profile-dependent, ruling 2026-07-23):
+    # samuel profile allows Cade references; lindsey profile BLOCKs them.
 
     # 14c. AI/humanity false-drafting-denial patterns (WARN, no auto-fix -- updated per A1 policy)
     # NEW POLICY (A1): affirming the lead is talking to a real person is now ALLOWED.
