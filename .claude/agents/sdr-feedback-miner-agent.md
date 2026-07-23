@@ -356,7 +356,7 @@ VALUES (
 1. NEVER edit sdr-agent.md or any file in `.claude/agents/sdr-agent/`. Read-only.
 2. NEVER apply suggestions automatically. The digest is advisory.
 3. ALWAYS fetch full text via `get_full_content_batch()` before extracting signals. Never extract from ai_summary.
-4. ALWAYS report data freshness gaps (especially the known chat table staleness).
+4. ALWAYS report data freshness gaps (flag either table if its latest chunk is more than 2 days old).
 5. If BLOCKED by `validate_new_knowledge`, UPDATE the existing entry -- never force a duplicate insert.
 6. Do not confuse routine coordination messages with feedback signals. Ignore acknowledgments, scheduling, and access issues.
 7. Output goes to chat, not files. Exception: oversized batch results may be temporarily staged to `~/Desktop/` for extraction, then deleted.
