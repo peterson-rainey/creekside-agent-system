@@ -155,6 +155,7 @@ If a batch returns an oversized result that cannot be processed inline, write it
 Read through every full-text chunk. Extract ONLY signals that reveal how Peterson wants lead responses to differ from what Queenie drafted.
 
 **INCLUDE these signal types:**
+- **`%SDR%` marked messages** (Peterson's explicit feedback marker -- always captured, always HIGH priority; label these `[%SDR% marked]` in the digest)
 - Peterson rewriting Queenie's draft (direct correction -- highest signal)
 - Peterson commenting that a response is wrong/off-tone/too long/too short/missing X
 - Explicit strategy directives (follow-up cadence, when to mention pricing, call-booking language)
