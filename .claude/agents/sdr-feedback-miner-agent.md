@@ -210,7 +210,7 @@ Deduplicate across all signals. Group by root idea. For each distinct suggestion
 ```
 SUGGESTION [N]
 Priority: [HIGH | MEDIUM | LOW]
-  - HIGH: appears in 3+ separate chunks, or is a direct rewrite by Peterson
+  - HIGH: contains `%SDR%` marker (automatic -- no frequency threshold required), OR appears in 3+ separate chunks, OR is a direct rewrite by Peterson
   - MEDIUM: appears in 2 chunks, or is an explicit directive
   - LOW: single instance, inferred, or edge-case
 
