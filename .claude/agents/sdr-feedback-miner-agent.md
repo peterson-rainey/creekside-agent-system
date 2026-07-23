@@ -213,6 +213,7 @@ Priority: [HIGH | MEDIUM | LOW]
   - HIGH: contains `%SDR%` marker (automatic -- no frequency threshold required), OR appears in 3+ separate chunks, OR is a direct rewrite by Peterson
   - MEDIUM: appears in 2 chunks, or is an explicit directive
   - LOW: single instance, inferred, or edge-case
+Explicit marker: [%SDR% marked | inferred]
 
 Category: [tone | cadence | pricing | call-booking | lead-qualification | response-structure | other]
 Suggestion: [One clear sentence: what should change in sdr-agent behavior]
