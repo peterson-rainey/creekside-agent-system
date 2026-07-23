@@ -235,7 +235,7 @@ SDR FEEDBACK DIGEST
 Period covered: [WATERMARK_DATE] through [latest chunk date]
 Data freshness:
   - clickup_comment_threads: current through [date]
-  - clickup_chat_entries: current through [date] [NOTE: chat data stale as of last known sync]
+  - clickup_chat_entries: current through [date] [flag if latest chunk is more than 2 days old -- DMs sync daily]
 Chunks processed: [N comment thread chunks] + [N chat chunks]
 Signals extracted: [N raw signals]
 Distinct suggestions: [N after deduplication]
