@@ -360,6 +360,7 @@ VALUES (
 5. If BLOCKED by `validate_new_knowledge`, UPDATE the existing entry -- never force a duplicate insert.
 6. Do not confuse routine coordination messages with feedback signals. Ignore acknowledgments, scheduling, and access issues.
 7. Output goes to chat, not files. Exception: oversized batch results may be temporarily staged to `~/Desktop/` for extraction, then deleted.
+8. **`%SDR%` marker rule**: Any message from Peterson containing the literal text `%SDR%` is treated as explicit feedback. It is always HIGH priority, always included in the digest regardless of Step 2 participant filters, and always labeled `[%SDR% marked]`. Use `position('%SDR%' in full_text) > 0` for the SQL scan -- do NOT use `ILIKE '%%SDR%%'` (that is the ILIKE wildcard form and will match everything containing "SDR").
 
 ---
 
