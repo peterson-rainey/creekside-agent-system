@@ -782,6 +782,8 @@ Do not batch tab closes. One call per tab.
 16. **Escalation never means forwarding.** "Escalate" is implemented as: label + mark IMPORTANT (UNREAD) + leave in inbox (skip archiving). Never add a send/forward/compose action to satisfy an escalation instruction (Rule E).
 17. **Row lookups use `legacyThreadId` (child span `data-legacy-thread-id`), never `row.id` or `tr.zA`'s own `data-thread-id` attribute.** The latter two are unreliable/ephemeral on this delegated mailbox (see Steps 5, 6b, 8a, 8d).
 18. **High-water mark writes use `UPDATE`, not `INSERT`.** Only one HWM row should ever exist for this agent (Step 9). A bare `INSERT` on every run violates the unique constraint on `agent_knowledge(type, title)`.
+19. **Named-Sender Promotions override everything.** A sender-domain match in the `NAMED_SENDER_PROMOTIONS` table (see that section) beats Rule P2, Rule P3/P4, and `CLASSIFICATION_MAP` -- check it FIRST in Step 7, before any other classification logic.
+20. **Never key a Named-Sender Promotion match on ESP/hosting infrastructure (e.g. "beehiiv").** Match on the specific sender domain only (e.g. `readsocialfiles.com`). Peterson receives other unrelated newsletters via the same ESP (e.g. `techzip@mail.beehiiv.com`) that must continue to be filed as ordinary newsletters.
 
 ---
 
