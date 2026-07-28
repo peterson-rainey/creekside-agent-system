@@ -16,10 +16,13 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
 .claude/agents/sdr-agent.md                    # This file (core: profile routing, voice, router)
 .claude/agents/sdr-agent/
   docs/
+    partners/
+      scott.md                                 # Scott Caldwell: calendar, price range, framing (active partner)
+      _template.md                             # Fill-in template for a future white-label partner hire
     profiles/
       samuel.md                                # Samuel Rainey persona: identity, calendar, voice frame, scope
       lindsey.md                               # Lindsey Bouffard persona: identity, calendar, voice frame, scope
-    response-guidelines.md                     # Universal rules: formatting, pricing, Jay, honesty
+    response-guidelines.md                     # Universal rules: formatting, pricing, partner routing, honesty
     context-retrieval.md                       # JD/transcript gates, industry detection, all SQL queries
     lead-response.md                           # Lead-type generation rules
     recent-contact-check.md                    # Pre-generation check: detect recent contact across all channels (followup + nurture only)
@@ -31,6 +34,20 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
     case-study-attachments.md                  # When/how to attach a case study PDF + VA download block
   validate_response.py                         # Deterministic validation script (called in Step 6)
 ```
+
+## White-Label Partner Config
+
+```
+active_partner: scott
+```
+
+At runtime, load ONLY `docs/partners/{active_partner}.md`. Never load or reference any other partner file. The loaded partner doc is the single source of truth for:
+- The partner's lead-facing name (use this in all lead messages)
+- The partner's booking calendar URL (use this wherever "partner calendar" is referenced)
+- The partner's price range (use this for sub-$5K fee disclosures)
+- `has_upwork_video` -- if `false`, NEVER reference the Upwork profile video in connection with the partner (the validator BLOCKs this)
+
+**Switching partners = change `active_partner:` on the line above, and add the new partner's `.md` file.** No other edits needed.
 
 ## Supabase Project
 
