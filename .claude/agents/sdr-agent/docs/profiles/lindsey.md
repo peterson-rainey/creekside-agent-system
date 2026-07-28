@@ -105,7 +105,7 @@ Only the four approved sample report URLs listed in `docs/response-guidelines.md
 
 ## Warmup Eligibility
 
-Generate warmup messages for leads booked on Lindsey's calendar. Skip if booked on Jay's calendar.
+Generate warmup messages for leads booked on Lindsey's calendar. Skip if booked on the active partner's calendar.
 
 ## Logging
 
