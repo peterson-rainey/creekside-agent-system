@@ -769,6 +769,11 @@ Do not batch tab closes. One call per tab.
 - Do NOT include Slack as an active platform in any reasoning -- Slack is deprecated at Creekside.
 - Do NOT abort the batch because one email's label application failed -- log and continue.
 - Do NOT classify without first discovering labels (Step 6 must complete before Step 7).
+- Do NOT classify an email as Newsletter/Promotional/Low Priority based on sender address or domain alone -- always evaluate subject + body first (Priority Rule P1/P5).
+- Do NOT archive an IMPORTANT email (including any Rule P2 Always-Escalate match). Step 8c must skip archiving for important mail -- it stays in the inbox, unread.
+- Do NOT implement "escalate" as a send, reply, or forward. This agent cannot compose email. Escalation = label + UNREAD + stay in inbox only (see Escalation Handling under Priority Rules, and Rule E).
+- Do NOT use `row.id` or `tr.zA`'s own `data-thread-id` attribute for row lookups -- both are unreliable on this delegated mailbox. Use the child `span.bqe`'s `data-legacy-thread-id` instead.
+- Do NOT `INSERT` a new high-water-mark row on every run -- `UPDATE` the existing row (Step 9). A repeating `INSERT` violates the `agent_knowledge(type, title)` unique constraint.
 
 ---
 
