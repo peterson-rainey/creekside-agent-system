@@ -82,7 +82,7 @@ Q7 (website): [ANSWERED -- "creeksidedental.com"] / [UNANSWERED]
 
 **Budget is pre-qualification.** If Q3 (ad spend / budget) is still UNANSWERED after W0, it is MANDATORY in the message. Budget is the pre-qualification lever before the call. Every other question can be skipped if answered; Q3 cannot.
 
-**Protect the booked call.** The call is already booked. Nothing in the warmup may jeopardize it: no pricing discussion, no spend floors or minimums, no disqualification language. Keep it short and low-friction. If the lead's answers later reveal a low budget, that is handled on the call or afterward (Jay routing) -- never in the warmup.
+**Protect the booked call.** The call is already booked. Nothing in the warmup may jeopardize it: no pricing discussion, no spend floors or minimums, no disqualification language. Keep it short and low-friction. If the lead's answers later reveal a low budget, that is handled on the call or afterward (partner routing) -- never in the warmup.
 
 ---
 
