@@ -17,18 +17,79 @@ Output format:
     ISSUES: issue1; issue2; ...
     ---FIXED---
     (auto-fixed response text, only if WARN)
+
+Rules enforced (selected highlights):
+- Non-whitelisted calendar/booking URLs (BLOCK)
+- Inactive white-label partner name or calendar URL appearing in draft (BLOCK)
+- Partner-video co-reference when active partner has_upwork_video=False (BLOCK)
+- "Cade" in lindsey-profile drafts (BLOCK)
+- Pricing leaks, hourly rates, timeline commitments, placeholder brackets (BLOCK)
+- Fluff openers, setup sentences, banned phrases, em-dashes, markdown (WARN, auto-fixed)
 """
+import os
 import re
 import sys
 
 # ---------------------------------------------------------------------------
+# White-label partner registry
+# Keys are partner slugs (matching the active_partner: line in sdr-agent.md).
+# Fields:
+#   name            -- lead-facing first name used in messages
+#   calendar        -- booking URL
+#   has_upwork_video -- whether the partner is featured in the Upwork profile video
+# When has_upwork_video is False, any co-reference of the partner name + video
+# language is a BLOCK (catches real bleed: "check out my profile video where I
+# talk about [partner name]").
+# ---------------------------------------------------------------------------
+_PARTNER_REGISTRY = {
+    "jay": {
+        "name": "Jay",
+        "calendar": "https://calendar.app.google/nFP1Brwxz1TsetBA6",
+        "has_upwork_video": True,
+    },
+    "scott": {
+        "name": "Scott",
+        "calendar": "https://calendar.app.google/WZyDqnmW5kkqkReK9",
+        "has_upwork_video": False,
+    },
+}
+
+_SDR_AGENT_MD_PATH = os.path.join(
+    os.path.dirname(__file__), "..", "sdr-agent.md"
+)
+
+
+def _load_active_partner():
+    """
+    Parse active_partner: from sdr-agent.md and return the partner dict.
+    Falls back to 'scott' if the file can't be read or the line is absent.
+    Returns (slug, partner_dict).
+    """
+    default_slug = "scott"
+    try:
+        with open(_SDR_AGENT_MD_PATH, "r") as f:
+            for line in f:
+                m = re.match(r"^\s*active_partner:\s*(\S+)", line)
+                if m:
+                    slug = m.group(1).strip().lower()
+                    if slug in _PARTNER_REGISTRY:
+                        return slug, _PARTNER_REGISTRY[slug]
+    except (OSError, IOError):
+        pass
+    return default_slug, _PARTNER_REGISTRY[default_slug]
+
+
+_ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner()
+
+# ---------------------------------------------------------------------------
 # Calendar URL whitelist (FIX A)
 # Any calendar.app.google or calendly.com URL not in this set is a BLOCK.
+# The active white-label partner's calendar is dynamically added at load time.
 # ---------------------------------------------------------------------------
 CALENDAR_URL_WHITELIST = {
     "https://calendar.app.google/wSdVbfwaJRzkw12E7",   # samuel
     "https://calendly.com/lindsey-bouffard/30min",       # lindsey
-    "https://calendar.app.google/nFP1Brwxz1TsetBA6",   # jay
+    _ACTIVE_PARTNER["calendar"],                         # active white-label partner
 }
 
 # Regex to find any calendar.app.google or calendly.com URL in the response
@@ -236,9 +297,9 @@ def check_blocks(text, profile="samuel"):
     profile: 'samuel' (default) or 'lindsey'.
     When profile='lindsey', any calendar.app.google URL is a BLOCK -- Lindsey
     may only use https://calendly.com/lindsey-bouffard/30min. Samuel's and
-    Jay's calendar.app.google links must never appear in a lindsey draft.
-    If Jay's link is genuinely needed, the operator must handle that routing
-    manually rather than including it in a Lindsey-profile response.
+    the active partner's calendar.app.google links must never appear in a lindsey
+    draft. If partner routing is needed, flag for operator handling rather than
+    including the partner's link in a Lindsey-profile response.
     """
     issues = []
 
@@ -271,8 +332,8 @@ def check_blocks(text, profile="samuel"):
                     "lindsey_calendar_app_google_url",
                     f"{url} -- Lindsey profile may only use "
                     "https://calendly.com/lindsey-bouffard/30min; "
-                    "calendar.app.google links (Samuel, Jay) are not permitted in Lindsey drafts; "
-                    "if Jay routing is needed, flag for operator handling",
+                    "calendar.app.google links (Samuel, active partner) are not permitted in Lindsey drafts; "
+                    "if partner routing is needed, flag for operator handling",
                 ))
             elif url not in CALENDAR_URL_WHITELIST:
                 issues.append((
@@ -280,7 +341,7 @@ def check_blocks(text, profile="samuel"):
                     f"{url} -- only approved URLs are samuel: "
                     "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
                     "lindsey: https://calendly.com/lindsey-bouffard/30min | "
-                    "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6",
+                    f"active partner ({_ACTIVE_PARTNER['name']}): {_ACTIVE_PARTNER['calendar']}",
                 ))
         else:
             # samuel (default) or unknown profile: standard whitelist
@@ -290,15 +351,16 @@ def check_blocks(text, profile="samuel"):
                     f"{url} -- only approved URLs are samuel: "
                     "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
                     "lindsey: https://calendly.com/lindsey-bouffard/30min | "
-                    "jay: https://calendar.app.google/nFP1Brwxz1TsetBA6",
+                    f"active partner ({_ACTIVE_PARTNER['name']}): {_ACTIVE_PARTNER['calendar']}",
                 ))
 
     # "Cade" in lead-facing response -- profile-dependent (ruling 2026-07-23).
     # samuel profile: Cade references are ALLOWED ("Cade, my partner" / "my
-    # co-founder"). Cade owns Meta for default-path (higher-value) leads; Jay is
-    # the Meta specialist for Jay-routed leads (especially sub-$3K/month spend).
-    # Cade's calendar URL is NOT whitelisted -- the whitelist checks above still
-    # apply, so booking CTAs stay on the profile or Jay calendars.
+    # co-founder"). Cade owns Meta for default-path (higher-value) leads; the
+    # active white-label partner is the Meta specialist for partner-routed leads
+    # (especially sub-$3K/month spend). Cade's calendar URL is NOT whitelisted --
+    # the whitelist checks above still apply, so booking CTAs stay on the profile
+    # or active partner's calendars.
     # lindsey profile: solo-freelancer persona -- any "Cade" mention is a BLOCK.
     if profile == "lindsey":
         cade_match = re.search(r'\bCade\b', text)
@@ -307,7 +369,73 @@ def check_blocks(text, profile="samuel"):
                 "lindsey_internal_name_cade",
                 "Cade -- must never appear in a Lindsey-profile draft (solo persona, "
                 "no agency/co-founder references); lindsey routing targets are the "
-                "persona and Jay (operator-handled) only",
+                "persona and the active white-label partner (operator-handled) only",
+            ))
+
+    # ---------------------------------------------------------------------------
+    # Inactive partner bleed (BLOCK)
+    # When a partner is inactive (not the active_partner), any mention of that
+    # partner's name (word-boundary, case-insensitive) or calendar URL in a draft
+    # is a BLOCK. This catches context bleed like "check out my profile video where
+    # I talk about Jay" when Scott is the active partner.
+    # ---------------------------------------------------------------------------
+    for slug, partner in _PARTNER_REGISTRY.items():
+        if slug == _ACTIVE_PARTNER_SLUG:
+            continue  # skip the active partner -- it's allowed
+        inactive_name = partner["name"]
+        inactive_cal = partner["calendar"]
+        # Check inactive partner name (word-boundary match)
+        name_match = re.search(r'\b' + re.escape(inactive_name) + r'\b', text, re.IGNORECASE)
+        if name_match:
+            issues.append((
+                "inactive_partner_name_bleed",
+                f"{name_match.group()} -- '{inactive_name}' is an INACTIVE partner "
+                f"(active: {_ACTIVE_PARTNER['name']}); remove all references to "
+                f"inactive partners from lead-facing drafts",
+            ))
+        # Check inactive partner calendar URL (substring match -- URL is unique enough)
+        # Extract the path token from the URL as the fingerprint (avoids full URL issues)
+        cal_token = inactive_cal.rstrip("/").split("/")[-1]
+        if cal_token and cal_token in text:
+            issues.append((
+                "inactive_partner_calendar_bleed",
+                f"{inactive_cal} -- calendar URL for inactive partner '{inactive_name}'; "
+                f"use active partner '{_ACTIVE_PARTNER['name']}' calendar instead: "
+                f"{_ACTIVE_PARTNER['calendar']}",
+            ))
+
+    # ---------------------------------------------------------------------------
+    # Partner-video co-reference BLOCK
+    # When the active partner has has_upwork_video=False, any draft that contains
+    # both the partner's name and video-reference language is a BLOCK. This catches
+    # the real bleed pattern: "check out my profile video where I talk about Scott"
+    # (observed July 27 Upwork follow-ups).
+    # Patterns checked: video within ~60 chars of partner name, "profile video"
+    # combined with partner name, and explicit "video where I talk about [name]".
+    # ---------------------------------------------------------------------------
+    if not _ACTIVE_PARTNER.get("has_upwork_video", True):
+        partner_name = _ACTIVE_PARTNER["name"]
+        partner_name_re = re.escape(partner_name)
+        # Pattern 1: "video" within 60 chars of the partner name (either direction)
+        video_near_name = re.search(
+            r'(?:'
+                r'\b' + partner_name_re + r'\b.{0,60}video'
+                r'|video.{0,60}\b' + partner_name_re + r'\b'
+            r')',
+            text,
+            re.IGNORECASE | re.DOTALL,
+        )
+        # Pattern 2: "profile video" anywhere combined with partner name anywhere
+        has_profile_video = bool(re.search(r'\bprofile\s+video\b', text, re.IGNORECASE))
+        has_partner_name = bool(re.search(r'\b' + partner_name_re + r'\b', text, re.IGNORECASE))
+        if video_near_name or (has_profile_video and has_partner_name):
+            issues.append((
+                "partner_video_reference_block",
+                f"Reference to the Upwork profile video in connection with "
+                f"'{partner_name}' -- active partner has has_upwork_video=False; "
+                f"NEVER say 'profile video where I talk about {partner_name}', "
+                f"'as mentioned in the video', or any video+partner co-reference. "
+                f"The profile video features a different person.",
             ))
 
     return issues
