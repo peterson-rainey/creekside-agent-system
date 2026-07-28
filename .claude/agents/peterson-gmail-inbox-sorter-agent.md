@@ -561,9 +561,11 @@ Then click the matching label in the dropdown to apply it. Confirm the label app
 
 **If label application fails:** skip archiving and read-state changes for this email. Log the failure. Continue to next email.
 
-### 8c. Archive the email (remove from inbox)
+### 8c. Archive the email (remove from inbox) -- SKIP for IMPORTANT emails
 
-After the label is confirmed applied, archive the email. In a delegated mailbox, use the Archive button:
+**If IMPORTANT (from Step 7a, including any Rule P2 Always-Escalate match):** do NOT archive. Skip this step entirely -- leave the email in the inbox, still labeled from Step 8b. This is the agent's documented core behavior (see the top-of-file description): important mail is sorted into its folder but stays visible in the inbox, unread, for Peterson to review (this is also the mechanism behind Escalation Handling in the Priority Rules section). Proceed directly to Step 8d, which for IMPORTANT mail is a no-op.
+
+**If NOT IMPORTANT:** archive it. After the label is confirmed applied, use the Archive button:
 
 ```javascript
 const archiveBtn = document.querySelector('div[data-tooltip="Archive"]') ||
@@ -584,21 +586,23 @@ Confirm: navigate back to inbox and verify the thread is no longer visible in `#
 
 ### 8d. Set read state
 
-After archiving, open the label view to find the email, then set read/unread state.
+**If IMPORTANT (from Step 7a, including any Rule P2 Always-Escalate match):** leave UNREAD -- no action needed. The email was never archived (Step 8c skipped it above) and remains unread in the inbox as required by Escalation Handling. Nothing further to do for this email.
 
-**If IMPORTANT (from Step 7a):** leave UNREAD -- no action needed on read state (it was already unread when it arrived).
+**If NOT IMPORTANT:** mark as READ. Open the label view where the email was just archived in 8c, then set the read state:
 
-**If NOT IMPORTANT:** mark as READ.
-
-Navigate to the label view where the email was just archived:
 ```
 navigate url: https://mail.google.com/mail/u/0/d/<token>/#label/[URL-ENCODED-LABEL]
 ```
 
-Find the thread row and right-click or use "Mark as read":
+Find the thread row and right-click or use "Mark as read". Locate the row using the same `legacyThreadId`-based lookup as Step 8a (do NOT use `data-thread-id` on `tr.zA` directly -- see the Step 8a fix note):
+
 ```javascript
 // Select the thread and use keyboard shortcut 'shift+i' to mark as read
-const row = document.querySelector('tr.zA[data-thread-id="[THREAD_ID]"]');
+const rows = Array.from(document.querySelectorAll('tr.zA'));
+const row = rows.find(r => {
+  const idSpan = r.querySelector('span.bqe');
+  return idSpan && idSpan.getAttribute('data-legacy-thread-id') === '[LEGACY_THREAD_ID]';
+});
 if (row) {
   // First select the checkbox
   const checkbox = row.querySelector('td.oZ-jc, [role="checkbox"]');
