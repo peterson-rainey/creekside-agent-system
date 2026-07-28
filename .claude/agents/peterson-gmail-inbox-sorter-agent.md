@@ -413,6 +413,9 @@ Store this as an in-memory `CLASSIFICATION_MAP` object:
 }
 ```
 
+> **Observed label snapshot -- point-in-time reference only, NOT used by classification (Step 6 always discovers labels live, every run):**
+> During the 2026-07-28 live run, 95 total labels were observed. Non-client labels were: "#1. [GPS] Peterson", "#2: [GPS] To Review", "#3: [GPS] Awaiting Reply", "#4: [GPS] Snoozed", "#5: [GPS] Info", "#5: [GPS] Info/[GPS] Archive", "#5: [GPS] Info/[GPS] Finance", "#5: [GPS] Info/[GPS] Newsletter", "#5: [GPS] Info/[GPS] Nick Bandy", "#6: [GPS] Done", "#7: [GPS] VA Handling", "#8. [GPS] VA needs to handle", "Archives", "Blush Camera", "brain-processed", "Clients", "Creekside", "Helpful tips", "leads", "Partners". The remaining ~75 labels were "Clients/<Client Name>" sub-labels. This is a dated observation for human troubleshooting/context only -- it will go stale as labels are added/renamed and MUST NOT be hardcoded into 6a/6b/6c logic above. If a discrepancy between this snapshot and live discovery matters for debugging a run, that's the only use case for this note.
+
 **Also pull client/lead domains from Supabase** to augment the map for the "important" determination in Step 7:
 
 ```sql
