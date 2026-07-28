@@ -315,17 +315,23 @@ return JSON.stringify(rows.map(row => {
     : '';
   const subject = row.querySelector('.bog')?.textContent?.trim() || '';
   const snippet = row.querySelector('.y2')?.textContent?.trim() || '';
-  const threadId = row.getAttribute('data-thread-id') || '';
+  // VERIFIED DEFECT FIX (live run 2026-07-28): row.getAttribute('data-thread-id') returns EMPTY
+  // on this delegated mailbox. The stable id lives on a CHILD span, not the row itself.
+  // row.id (e.g. ":20", ":8n") is an EPHEMERAL per-render DOM id and will NOT survive
+  // navigation -- never use it as a lookup key across steps.
+  const idSpan = row.querySelector('span.bqe');
+  const legacyThreadId = idSpan ? (idSpan.getAttribute('data-legacy-thread-id') || '') : ''; // e.g. "19fa915aa6824881"
+  const threadId = idSpan ? (idSpan.getAttribute('data-thread-id') || '') : ''; // e.g. "#thread-f:1871968413652502657"
   const dateEl = row.querySelector('.xW.xY span') || row.querySelector('[title]');
   const dateTitle = dateEl ? (dateEl.getAttribute('title') || dateEl.textContent.trim()) : '';
   const isUnread = row.classList.contains('zE');
-  return { sender, subject, snippet, threadId, dateTitle, isUnread };
+  return { sender, subject, snippet, threadId, legacyThreadId, dateTitle, isUnread };
 }));
 ```
 
 If 0 rows returned: skip to Step 9 (log "no new emails since HWM").
 
-Record: sender email, subject, snippet, threadId, approximate date, isUnread. This is the candidate list.
+Record: sender email, subject, snippet, threadId, legacyThreadId, approximate date, isUnread. This is the candidate list. **`legacyThreadId` (from `span.bqe`'s `data-legacy-thread-id`) is the value to carry forward for row lookups in Step 8** -- do not rely on `row.id`, which is ephemeral and changes on re-render/navigation.
 
 **Per-run cap: 40 emails.** If more than 40 new emails are found, process the 40 oldest first (sort by dateTitle ascending). Log count of deferred emails. The next run will pick them up when the high-water mark advances.
 
