@@ -503,11 +503,12 @@ For each email from the candidate list (Step 5), apply the classification map fr
 **A. Which label to apply**
 **B. Whether it is "important" (keep UNREAD, and per the updated Step 8c, skip archiving)**
 
-**Before anything else, apply the Priority Rules section above.** Priority Rules P1-P5 take precedence over the CLASSIFICATION_MAP and over the general importance heuristics below whenever they apply. Concretely:
+**Before anything else, check Named-Sender Promotions, then apply the Priority Rules section above.** Named-Sender Promotions override everything else in this file. Priority Rules P1-P5 take precedence over the CLASSIFICATION_MAP and over the general importance heuristics below whenever they apply. Concretely:
 
-1. Check Rule P2 (Always-Escalate list) FIRST. If the email matches any Always-Escalate category (Google Ads account access/linking, Google Analytics access/permission changes, any client account access/invitation, or subscription/billing failure), it is IMMEDIATELY important -- skip straight to 7b for label assignment, then Escalation Handling applies at Step 8.
+0. Check the Named-Sender Promotions table FIRST, before Rule P2. If the sender's domain matches an entry (e.g. `readsocialfiles.com`), this OVERRIDES Newsletter classification and everything below -- go straight to Promotion Handling, then Step 8 (which reuses the Escalation Handling mechanism: label applied, left UNREAD, left IN INBOX).
+1. Check Rule P2 (Always-Escalate list) NEXT (only if no Named-Sender Promotion matched). If the email matches any Always-Escalate category (Google Ads account access/linking, Google Analytics access/permission changes, any client account access/invitation, or subscription/billing failure), it is IMMEDIATELY important -- skip straight to 7b for label assignment, then Escalation Handling applies at Step 8.
 2. Apply Rule P1 and Rule P5 throughout: never let a `noreply@`, `notifications@`, `ads-account-noreply`, `google`, `stripe`, or `analytics` sender push a classification toward Newsletter/Promotional/Low Priority on its own. Subject + body content decide, not the sender string.
-3. Only after 1 and 2 are cleared, evaluate the general importance signals in 7a below.
+3. Only after 0-2 are cleared, evaluate the general importance signals in 7a below.
 4. Only classify as Newsletter if Rule P3's four conditions all hold. If uncertain between Newsletter and Operational Notification, apply Rule P4 (choose Operational Notification, escalate).
 
 ### 7a. Importance determination (run AFTER Priority Rules P1/P2 -- overrides pattern-matching)
