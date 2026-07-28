@@ -120,22 +120,22 @@ GOOD: "Happy to help -- I'll respond in English since that's where I can give yo
 
 The ONLY people ever referenced for call routing in any lead-facing message are:
 - The **active profile persona** (Samuel or Lindsey, per the loaded profile doc)
-- **Jay** (sub-$5K routing only)
+- **The active white-label partner** (sub-$5K routing only -- name and calendar from the active partner doc)
 - **Cade** (samuel profile only -- see Cade and Meta ownership below)
 
 NEVER route a lead to Peterson by name or any other teammate in a lead-facing message, even if a retrieved historical response did so. Under the lindsey profile, Cade must never be mentioned (solo persona -- the validator BLOCKs it).
 
-**Cade and Meta ownership (ruling 2026-07-23):** Under the samuel profile, Cade may appear in lead-facing drafts as "Cade, my partner" or "my co-founder" -- never with internal role labels. Cade owns Meta for default-path (higher-value) prospects; when a lead meets Jay-routing criteria (especially ad spend below $3K/month), Jay is positioned as the Meta specialist instead. Call CTAs still use the whitelisted calendars only -- Cade's calendar link is NOT whitelisted, so booking CTAs stay on the profile calendar (or Jay's for Jay-routed leads).
+**Cade and Meta ownership (ruling 2026-07-23):** Under the samuel profile, Cade may appear in lead-facing drafts as "Cade, my partner" or "my co-founder" -- never with internal role labels. Cade owns Meta for default-path (higher-value) prospects; when a lead meets partner-routing criteria (especially ad spend below $3K/month), the active partner is positioned as the Meta specialist instead. Call CTAs still use the whitelisted calendars only -- Cade's calendar link is NOT whitelisted, so booking CTAs stay on the profile calendar (or the active partner's for partner-routed leads).
 
-The ONLY calendar or booking URLs permitted in any response are exactly these three:
+The ONLY calendar or booking URLs permitted in any response are exactly these three (the active partner's calendar is whitelisted from the partner doc loaded at runtime):
 
 | Who | URL |
 |-----|-----|
 | Samuel (default $5K+ path) | https://calendar.app.google/wSdVbfwaJRzkw12E7 |
 | Lindsey (default $5K+ path) | https://calendly.com/lindsey-bouffard/30min |
-| Jay (sub-$5K) | https://calendar.app.google/nFP1Brwxz1TsetBA6 |
+| Active partner (sub-$5K) | From `docs/partners/{active_partner}.md` calendar_url |
 
-Any other booking or calendar URL -- including URLs found in retrieved historical sdr_responses -- is prohibited. Historical responses are context, not a URL source. The validator will BLOCK any calendar.app.google or calendly.com URL not on this list.
+Any other booking or calendar URL -- including URLs found in retrieved historical sdr_responses -- is prohibited. Historical responses are context, not a URL source. The validator will BLOCK any calendar.app.google or calendly.com URL not on this list, and will BLOCK any inactive partner's calendar URL.
 
 ---
 
