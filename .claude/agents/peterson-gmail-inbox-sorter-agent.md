@@ -831,6 +831,8 @@ Do not batch tab closes. One call per tab.
 - Do NOT implement "escalate" as a send, reply, or forward. This agent cannot compose email. Escalation = label + UNREAD + stay in inbox only (see Escalation Handling under Priority Rules, and Rule E).
 - Do NOT use `row.id` or `tr.zA`'s own `data-thread-id` attribute for row lookups -- both are unreliable on this delegated mailbox. Use the child `span.bqe`'s `data-legacy-thread-id` instead.
 - Do NOT `INSERT` a new high-water-mark row on every run -- `UPDATE` the existing row (Step 9). A repeating `INSERT` violates the `agent_knowledge(type, title)` unique constraint.
+- Do NOT key any `NAMED_SENDER_PROMOTIONS` entry on ESP/hosting-platform signals (e.g. "beehiiv", "Powered by beehiiv"). Match strictly on the specific sender domain (e.g. `readsocialfiles.com`). Other unrelated newsletters share the same ESP and must continue to be filed as ordinary newsletters -- a beehiiv-keyed match would wrongly promote all of them.
+- Do NOT invent a second escalation mechanism for Named-Sender Promotions. Reuse the existing Escalation Handling mechanism (label + leave UNREAD + leave IN INBOX, skip archive) -- see "Promotion Handling" under Named-Sender Promotions.
 
 ---
 
