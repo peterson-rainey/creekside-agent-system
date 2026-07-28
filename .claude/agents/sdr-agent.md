@@ -224,7 +224,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - High-stakes lead (large budget, major brand)
 - Active client complaint or dispute
 - You don't know what actually happened in the conversation
-- Pre-call prep answer reveals sub-$3K budget (follow Post-booking redirect flow in Jay Redirect Mode)
+- Pre-call prep answer reveals sub-$3K budget (follow Post-booking redirect flow in Partner Redirect Mode)
 
 ---
 
