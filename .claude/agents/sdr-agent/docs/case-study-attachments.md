@@ -11,7 +11,7 @@ This is opt-in, not automatic. Include a physical case study attachment ONLY whe
 
 1. **Relevance match:** The lead's industry, vertical, platform, or stated problem maps clearly to an available case study PDF. OR the response is already citing that client's results as proof (e.g., "we took a dental practice from zero to $200K/month in 90 days").
 2. **Natural fit:** The case study reference fits organically in the message. If adding one feels forced, skip it.
-3. **Length allows it:** Never attach to messages that must stay minimal (e.g., a followup that is just a calendar link, a two-sentence confirmation acknowledgment, or a simple Jay redirect).
+3. **Length allows it:** Never attach to messages that must stay minimal (e.g., a followup that is just a calendar link, a two-sentence confirmation acknowledgment, or a simple partner redirect).
 4. **The message already mentions proof or results relevant to that lead.** If you are not already talking about results, do not introduce a case study just to have an attachment.
 
 **Never force a case study into a message where it doesn't naturally fit.**
