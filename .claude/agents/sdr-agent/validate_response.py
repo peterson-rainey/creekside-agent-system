@@ -407,21 +407,44 @@ def check_blocks(text, profile="samuel"):
     # ---------------------------------------------------------------------------
     # Partner-video co-reference BLOCK
     # When the active partner has has_upwork_video=False, any draft that contains
-    # both the partner's name and video-reference language is a BLOCK. This catches
-    # the real bleed pattern: "check out my profile video where I talk about Scott"
-    # (observed July 27 Upwork follow-ups).
-    # Patterns checked: video within ~60 chars of partner name, "profile video"
-    # combined with partner name, and explicit "video where I talk about [name]".
+    # both the partner's name and a reference to OUR video content is a BLOCK.
+    # This catches the real bleed pattern: "check out my profile video where I
+    # talk about Scott" (observed July 27 Upwork follow-ups).
+    #
+    # Pattern 1: a specific "our video" phrase within ~60 chars of the partner
+    # name (either direction). Bare "video ads", "video creative", "video
+    # content", "video campaigns" are NOT our Upwork profile video and must NOT
+    # fire -- only possessive/profile-specific constructions trigger this check.
+    #
+    # "Our video" phrases (word-boundary anchored):
+    #   profile video | my video | the video | intro video | video where I |
+    #   video about | video on my profile | video covers | video I
+    #
+    # Pattern 2: "profile video" anywhere combined with partner name anywhere
+    # (kept broad -- "profile video" is unambiguous regardless of proximity).
     # ---------------------------------------------------------------------------
     if not _ACTIVE_PARTNER.get("has_upwork_video", True):
         partner_name = _ACTIVE_PARTNER["name"]
         partner_name_re = re.escape(partner_name)
-        # Pattern 1: "video" within 60 chars of the partner name (either direction)
+        # Pattern 1: specific "our video" phrase within 60 chars of partner name
+        _OUR_VIDEO = (
+            r'(?:'
+            r'profile\s+video'
+            r'|my\s+video'
+            r'|the\s+video'
+            r'|intro\s+video'
+            r'|video\s+where\s+I'
+            r'|video\s+about'
+            r'|video\s+on\s+my\s+profile'
+            r'|video\s+covers'
+            r'|video\s+I\b'
+            r')'
+        )
         video_near_name = re.search(
             r'(?:'
-                r'\b' + partner_name_re + r'\b.{0,60}video'
-                r'|video.{0,60}\b' + partner_name_re + r'\b'
-            r')',
+                + _OUR_VIDEO + r'.{0,60}\b' + partner_name_re + r'\b'
+                r'|\b' + partner_name_re + r'\b.{0,60}' + _OUR_VIDEO
+            + r')',
             text,
             re.IGNORECASE | re.DOTALL,
         )

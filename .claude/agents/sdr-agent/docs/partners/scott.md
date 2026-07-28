@@ -24,7 +24,7 @@ Any video reference linking Scott to the Upwork profile video is factually wrong
 
 ## Handoff Framing (Partner Redirect Mode)
 
-Frame Scott the same way Jay was framed: as the right-fit specialist for their stage, not a downgrade. Use any of:
+Frame the active partner as the right-fit specialist for their stage, not a downgrade. Use any of:
 - "our small business specialist"
 - "my partner Scott"
 - "Scott on my team"
