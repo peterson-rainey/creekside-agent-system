@@ -449,11 +449,20 @@ If a leads table is found, query it similarly.
 For each email from the candidate list (Step 5), apply the classification map from Step 6 to determine:
 
 **A. Which label to apply**
-**B. Whether it is "important" (keep UNREAD)**
+**B. Whether it is "important" (keep UNREAD, and per the updated Step 8c, skip archiving)**
 
-### 7a. Importance determination (run FIRST -- overrides everything else)
+**Before anything else, apply the Priority Rules section above.** Priority Rules P1-P5 take precedence over the CLASSIFICATION_MAP and over the general importance heuristics below whenever they apply. Concretely:
 
-An email is IMPORTANT (keep UNREAD, leave in inbox even after labeling) if ANY of the following is true:
+1. Check Rule P2 (Always-Escalate list) FIRST. If the email matches any Always-Escalate category (Google Ads account access/linking, Google Analytics access/permission changes, any client account access/invitation, or subscription/billing failure), it is IMMEDIATELY important -- skip straight to 7b for label assignment, then Escalation Handling applies at Step 8.
+2. Apply Rule P1 and Rule P5 throughout: never let a `noreply@`, `notifications@`, `ads-account-noreply`, `google`, `stripe`, or `analytics` sender push a classification toward Newsletter/Promotional/Low Priority on its own. Subject + body content decide, not the sender string.
+3. Only after 1 and 2 are cleared, evaluate the general importance signals in 7a below.
+4. Only classify as Newsletter if Rule P3's four conditions all hold. If uncertain between Newsletter and Operational Notification, apply Rule P4 (choose Operational Notification, escalate).
+
+### 7a. Importance determination (run AFTER Priority Rules P1/P2 -- overrides pattern-matching)
+
+An email is IMPORTANT (keep UNREAD, and per Step 8c do NOT archive) if ANY of the following is true:
+
+0. **Rule P2 Always-Escalate match** (see Priority Rules section) -- checked first, above.
 
 1. **Human-direct:** The sender appears to be a real person writing directly TO Peterson -- not bulk/list/automated/no-reply mail. Signals for human-direct:
    - Sender email is a personal address (firstname.lastname@domain, not noreply@, not notifications@, etc.)
@@ -472,24 +481,25 @@ An email is IMPORTANT (keep UNREAD, leave in inbox even after labeling) if ANY o
    - Error, failed, failure, critical, urgent, alert, action required, immediate attention
    - System down, service disruption, account suspended, account locked
    - Contract, agreement, signature required, DocuSign (actual doc to sign -- not automated completion notification)
+   - Any Rule P2 Always-Escalate signal not already caught above (Google Ads/Analytics access changes, client account access/invitations, subscription/billing failures)
 
-**All other mail is NOT important** (newsletters, subscriptions, automated receipts already sorted, platform notifications, scheduled reports, calendar auto-notifications, CRM drip emails).
+**All other mail is NOT important** (newsletters meeting ALL FOUR Rule P3 conditions, subscriptions, automated receipts already sorted, platform notifications, scheduled reports, calendar auto-notifications, CRM drip emails).
 
-When uncertain whether an email is important: err toward IMPORTANT (leave UNREAD). It is better to leave something unread that shouldn't be than to mark a genuine human email as read.
+When uncertain whether an email is important: err toward IMPORTANT (leave UNREAD, do not archive). Per Rule P4, this is a hard requirement, not just a tie-break preference -- false positives (missing a real operational email) are significantly worse than one extra escalated email in front of Peterson.
 
 ### 7b. Label classification
 
 Match the email against `CLASSIFICATION_MAP` using these priority rules:
 
-1. **Exact sender domain match** in a label's `sender_domains` → assign that label (highest confidence)
+1. **Exact sender domain match** in a label's `sender_domains` → assign that label (highest confidence) -- but NEVER let this alone downgrade an email that matched Rule P2 in step 0 above (a label assignment is about which folder it goes in, not whether it's important).
 2. **Sender keyword match** in a label's `sender_keywords` → assign that label
 3. **Subject keyword match** against label's `subject_keywords`
-4. **Snippet signal match** (bulk indicators → "Newsletters" or equivalent label)
+4. **Snippet signal match** (bulk indicators → "Newsletters" or equivalent label) -- subject to Rule P3's four-condition gate before actually assigning any Newsletter-type label
 5. **Label name semantic match**: if no pattern matches, infer from the label name itself (e.g., "Receipts" label → match emails with "receipt" or "order confirmation" in subject)
 
 If no label matches with reasonable confidence: mark as "unclassified" and leave the email in inbox as-is (do not archive, do not mark read). Log it.
 
-If a label match is found: proceed to Step 8 (apply label + archive).
+If a label match is found: proceed to Step 8 (apply label; archive only if NOT important; see Escalation Handling above for Rule P2 matches specifically).
 
 ---
 
