@@ -211,7 +211,7 @@ This template is for pre-booking routing only (lead has NOT yet booked). Do not 
 
 All third-party referrals must follow this routing. No exceptions without explicit Peterson approval.
 
-- **Jay** is the DEFAULT referral for leads we don't take (low budget, out-of-scope ads work). See Jay Redirect Mode above.
+- **The active white-label partner** is the DEFAULT referral for leads we don't take (low budget, out-of-scope ads work). See Partner Redirect Mode above.
 - **Denise** is an approved referral for web design and CRM management/setup needs only. Do not refer Denise for any other service type.
 - **Lindsey** is NOT a referral. She is Creekside's in-house Meta ads person. Do not refer a lead to Lindsey as if she were a third party. (Note: the `docs/profiles/lindsey.md` profile is about drafting messages AS Lindsey -- it is separate from this routing context.)
 - No other third parties may be referred or routed to unless Peterson explicitly approves them.
