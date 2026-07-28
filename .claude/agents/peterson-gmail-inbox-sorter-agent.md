@@ -636,23 +636,41 @@ return 'not found';
 
 ## Step 9: Update High-Water Mark
 
+**VERIFIED DEFECT FIX (live run 2026-07-28, correction id `10f61ae7-5006-400e-8ee0-2da49d1fa681`):** The previous version of this step always ran `INSERT`. That violates the UNIQUE constraint on `agent_knowledge(type, title)` and fails with `23505` on every run after the first (the first run's INSERT creates the row; every subsequent run's INSERT collides with it). Fixed below to `UPDATE` the existing row in place.
+
 After processing all emails in the current batch:
 
 1. Determine `NEW_HWM`: the timestamp of the NEWEST email processed in this run (or NOW() if no emails were processed).
-2. Update the high-water mark:
+2. Update the high-water mark in place:
+
+```sql
+UPDATE agent_knowledge
+SET content = '[NEW_HWM_ISO_STRING]',
+    created_at = NOW(),
+    confidence = 'verified'
+WHERE type = 'reference'
+  AND title = 'peterson-gmail-inbox-sorter-agent -- HIGH-WATER-MARK';
+```
+
+3. **Bootstrap check (only matters on the very first run of the agent's lifetime, if no row was manually pre-inserted per the "High-water mark initialization note" below):** if the `UPDATE` above affects 0 rows, the row does not exist yet -- run a ONE-TIME `INSERT` to create it:
 
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, confidence)
-VALUES (
-  'reference',
-  'peterson-gmail-inbox-sorter-agent -- HIGH-WATER-MARK',
-  '[NEW_HWM_ISO_STRING]',
-  ARRAY['peterson-gmail-inbox-sorter', 'high-water-mark'],
-  'verified'
+SELECT 'reference',
+       'peterson-gmail-inbox-sorter-agent -- HIGH-WATER-MARK',
+       '[NEW_HWM_ISO_STRING]',
+       ARRAY['peterson-gmail-inbox-sorter', 'high-water-mark'],
+       'verified'
+WHERE NOT EXISTS (
+  SELECT 1 FROM agent_knowledge
+  WHERE type = 'reference'
+    AND title = 'peterson-gmail-inbox-sorter-agent -- HIGH-WATER-MARK'
 );
 ```
 
-The next run will load this row (most recent by `created_at`) as the new threshold. Old high-water-mark rows are NOT deleted -- they form a natural audit trail. Only the most-recent row is used (ORDER BY created_at DESC LIMIT 1).
+This `INSERT ... WHERE NOT EXISTS` form is safe to run even if the `UPDATE` above already succeeded (it will simply insert 0 rows), so there is no race condition between the two statements within a single run.
+
+The next run will load this row's `content` as the new threshold (Step 4). There is now only ever ONE high-water-mark row per this agent -- it is updated in place, not appended. (Prior to this fix, multiple rows existed and the most-recent by `created_at` was used; any pre-existing duplicate rows from before this fix are harmless and can be left as historical residue, or cleaned up manually -- they are no longer created going forward.)
 
 ---
 
