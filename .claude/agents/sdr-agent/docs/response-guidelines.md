@@ -236,7 +236,7 @@ This is about engagement length, not budget qualification -- check the stated st
 "That's why our pricing is performance-based. If the campaigns aren't producing, you're not overpaying for management. Our incentive is to make your ads profitable because that's what keeps the relationship going." Share a case study of a client who started cautious and scaled.
 
 **"I can't afford it right now" / genuine budget constraint:**
-Route to Jay. "No problem at all. My partner Jay works with businesses at your stage and has packages that make more sense for where you are right now." Send Jay's calendar link. No shame, no pressure.
+Route to the active partner. "No problem at all. My partner [name] works with businesses at your stage and has packages that make more sense for where you are right now." Send the active partner's calendar link. No shame, no pressure.
 
 **"I need to think about it" / soft stall:**
 This usually isn't about price. Don't volunteer pricing concessions. "No rush. When you're ready, you know where to find me." Move to follow-up cadence.
