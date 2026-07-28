@@ -163,6 +163,8 @@ This agent cannot send, reply, or forward (see Rule E above), and it already ope
 
 This preserves the no-send/no-forward prohibition while still surfacing the email prominently to Peterson (unread, unarchived, in inbox, correctly labeled). Do NOT add any send/forward/compose capability to this agent to implement escalation.
 
+**This is also the exact mechanism reused by Named-Sender Promotions** (see that section, above the Priority Rules section) -- the only difference is the target label is fixed by the `NAMED_SENDER_PROMOTIONS` table entry instead of derived from `CLASSIFICATION_MAP`. Do not build a separate mechanism for promotions.
+
 ---
 
 ## Standard Agent Contract
