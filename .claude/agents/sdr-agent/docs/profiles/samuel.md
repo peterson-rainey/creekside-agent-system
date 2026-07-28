@@ -41,7 +41,7 @@ Keep this as a separate, optional sentence -- not a replacement for the profile 
 ## Post-Booking Redirect Operator Instructions
 
 When a sub-$3K lead is already booked on the calendar, include these operator instructions (not visible to the lead):
-"Queenie: notify Cyndi (if Peterson's calendar) to send Jay the meeting link. Mark the calendar event grey so Peterson knows they are not handling it."
+"Queenie: notify Cyndi (if Peterson's calendar) to send [active partner name] the meeting link. Mark the calendar event grey so Peterson knows they are not handling it."
 
 ## Warmup Eligibility
 
