@@ -378,9 +378,13 @@ Extract sample rows using the same DOM scraper from Step 5. Record sender domain
 const rows = Array.from(document.querySelectorAll('tr.zA')).slice(0, 5);
 return JSON.stringify(rows.map(row => {
   const senderEl = row.querySelector('span.yP') || row.querySelector('span.zF');
+  // Same DEFECT FIX as Step 5: thread id lives on the child span, not the row.
+  const idSpan = row.querySelector('span.bqe');
+  const legacyThreadId = idSpan ? (idSpan.getAttribute('data-legacy-thread-id') || '') : '';
   return {
     sender: senderEl ? (senderEl.getAttribute('email') || senderEl.textContent.trim()) : '',
-    subject: row.querySelector('.bog')?.textContent?.trim() || ''
+    subject: row.querySelector('.bog')?.textContent?.trim() || '',
+    legacyThreadId
   };
 }));
 ```
