@@ -24,9 +24,9 @@ A warmup message is a LOW-FRICTION prep note. It is NOT a diagnostic, NOT a sale
 
 This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-call prep message that shows we read their information.
 
-**Jay-booked calls:** If the lead was routed to Jay's calendar, skip the warmup entirely. Jay handles his own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Samuel profile: Samuel's/Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on Jay's calendar for any profile, skip.
+**Partner-booked calls:** If the lead was routed to the active partner's calendar, skip the warmup entirely. The partner handles their own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Samuel profile: Samuel's/Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on the active partner's calendar for any profile, skip.
 
-**No booking links in warmup messages.** The lead has already booked. Never include any calendar link (profile calendar, Jay's calendar, or any other) in a warmup message. The warmup is a pre-call prep message, not a booking prompt. Including a booking link creates a double-booking scenario. Observed failure: warmup messages included Jay's booking link sent to leads who had already booked.
+**No booking links in warmup messages.** The lead has already booked. Never include any calendar link (profile calendar, active partner's calendar, or any other) in a warmup message. The warmup is a pre-call prep message, not a booking prompt. Including a booking link creates a double-booking scenario. Observed failure: warmup messages included the partner's booking link sent to leads who had already booked.
 
 **Rescheduled calls -- do not re-send questions already asked and answered, and do not ask new discovery questions.** If a warmup was already sent before a prior call date (questions asked, some or all answered), and the lead subsequently rescheduled, do NOT generate a fresh full warmup. The correct output is one of:
 (a) If all discovery questions were already asked and answered: output a 1-2 sentence Case-A-style date-confirmation note only ("Looking forward to talking [new date]" + a specific forward-look). Nothing more.
