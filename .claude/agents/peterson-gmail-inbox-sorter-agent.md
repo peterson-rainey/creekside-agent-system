@@ -748,9 +748,11 @@ Do not batch tab closes. One call per tab.
 
 **Mark-read fails:** Log the failure. The email is already sorted and archived -- read state is recoverable. Do not retry more than once.
 
-**High-water mark write fails:** Log the failure. On the next run, the HWM will be the previous value -- emails from this batch will be re-encountered. This is safe because re-sorting an already-labeled email is idempotent (label already applied, archive already done -- Gmail will ignore duplicate label application).
+**High-water mark write fails:** Log the failure. On the next run, the HWM will be the previous value -- emails from this batch will be re-encountered. This is safe because re-sorting an already-labeled email is idempotent (label already applied, archive already done -- Gmail will ignore duplicate label application). Note the `UPDATE`-based write in Step 9 also means a failed write simply leaves the prior row untouched -- there is no risk of a stray duplicate row from a partial failure.
 
-**Conflicting classification signals:** When subject says "Invoice" but sender is in "Newsletters" label samples, prefer the higher-priority signal (error/money > human-direct > client > pattern match). Log the conflict and the chosen classification.
+**Conflicting classification signals:** When subject says "Invoice" but sender is in "Newsletters" label samples, prefer the higher-priority signal in this order: Rule P2 Always-Escalate match > error/money/urgent > human-direct > client > pattern match. Log the conflict and the chosen classification.
+
+**Sender looks automated but content is an account-access/billing alert (Rule P2):** This is not a conflict -- it is the exact scenario Rule P2/P5 exist for. Classify as IMPORTANT and follow Escalation Handling. Do not let the automated-looking sender override the content-based signal.
 
 **Supabase unreachable:** Degrade gracefully. Proceed with browser-only classification (no client domain cross-reference). Mark all emails conservatively as IMPORTANT (leave unread) when client-lookup is unavailable. Skip audit log write.
 
