@@ -147,10 +147,11 @@ When uncertain whether an email is a Newsletter or an Operational Notification, 
 Never classify an email as low priority based solely on these sender signals: `noreply` address, `notifications@...`, `ads-account-noreply`, `google`, `stripe`, `analytics`, or any other automated-looking sender name. These same senders generate BOTH routine junk AND business-critical account/billing alerts -- the sender string cannot distinguish them. Only subject + body content can.
 
 ### Priority Ordering (apply in this order during Step 7)
-1. Rule P2 (Always-Escalate list) -- check first, before consulting `CLASSIFICATION_MAP`.
+0. **Named-Sender Promotions match** (see the Named-Sender Promotions section above) -- checked FIRST of all, before Rule P2. If matched, skip straight to Promotion Handling; nothing below in this list applies to that email.
+1. Rule P2 (Always-Escalate list) -- check next, before consulting `CLASSIFICATION_MAP`.
 2. Step 7a's existing importance signals (human-direct, client/lead, error/money/urgent).
-3. Rule P3/P4 Newsletter gate -- only reachable after 1 and 2 clear, and only if all four Rule P3 conditions hold.
-4. Step 7b `CLASSIFICATION_MAP` pattern-matching (label assignment) -- always runs to pick a label, but importance from steps 1-2 always overrides any label's implied priority.
+3. Rule P3/P4 Newsletter gate -- only reachable after 0-2 clear, and only if all four Rule P3 conditions hold.
+4. Step 7b `CLASSIFICATION_MAP` pattern-matching (label assignment) -- always runs to pick a label, but importance from steps 0-2 always overrides any label's implied priority.
 
 ### Escalation Handling (what "escalate" means for this agent)
 This agent cannot send, reply, or forward (see Rule E above), and it already operates inside peterson@'s own delegated mailbox, so "forward to Peterson" would be both a prohibited action and a functional no-op. "Escalate" is therefore implemented as its safe functional equivalent:
