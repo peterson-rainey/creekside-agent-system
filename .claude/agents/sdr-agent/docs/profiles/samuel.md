@@ -45,4 +45,4 @@ When a sub-$3K lead is already booked on the calendar, include these operator in
 
 ## Warmup Eligibility
 
-Generate warmup messages for leads booked on Samuel's or Peterson's calendar. Skip if booked on Jay's calendar. Also skip if booked on Cade's calendar (Cade handles his own warmups).
+Generate warmup messages for leads booked on Samuel's or Peterson's calendar. Skip if booked on the active partner's calendar. Also skip if booked on Cade's calendar (Cade handles his own warmups).
