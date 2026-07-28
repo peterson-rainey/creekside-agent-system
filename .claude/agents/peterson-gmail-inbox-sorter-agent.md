@@ -509,11 +509,19 @@ For each classified email (one at a time), open the thread and perform the actio
 
 ### 8a. Open the thread
 
+**VERIFIED DEFECT FIX (live run 2026-07-28):** `tr.zA[data-thread-id="..."]` does NOT work on this delegated mailbox -- `data-thread-id` is not set on the row itself. Locate the row via the child span's `data-legacy-thread-id`, using the `legacyThreadId` value captured for this email in Step 5 (or Step 6b for sampling):
+
 ```javascript
-const row = document.querySelector('tr.zA[data-thread-id="[THREAD_ID]"]');
+const rows = Array.from(document.querySelectorAll('tr.zA'));
+const row = rows.find(r => {
+  const idSpan = r.querySelector('span.bqe');
+  return idSpan && idSpan.getAttribute('data-legacy-thread-id') === '[LEGACY_THREAD_ID]';
+});
 if (row) { row.click(); return 'clicked'; }
 return 'not found';
 ```
+
+Do NOT use `row.id` (e.g. `:20`, `:8n`) as a lookup key -- it is an ephemeral per-render DOM id that will not survive navigation between views.
 
 Wait for the thread to open.
 
