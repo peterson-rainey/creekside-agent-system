@@ -145,7 +145,7 @@ python3 .claude/agents/sdr-agent/validate_response.py /tmp/sdr_response_draft.tx
 
 Read the output:
 - **VERDICT: PASS** (exit code 0) -- proceed to Step 7 with your original response.
-- **VERDICT: WARN** (exit code 1) -- the script auto-fixed WARN issues. The fixed text appears after `---FIXED---` in stdout. Use that text as your response instead of your draft. Do NOT re-add content the script removed. One exception: if the script stripped Jay's $500-$800 range while routing a sub-$5K lead, restore it (that's an approved exception).
+- **VERDICT: WARN** (exit code 1) -- the script auto-fixed WARN issues. The fixed text appears after `---FIXED---` in stdout. Use that text as your response instead of your draft. Do NOT re-add content the script removed. One exception: if the script stripped the active partner's price range while routing a sub-$5K lead, restore it (that's an approved exception).
 - **VERDICT: BLOCK** (exit code 2) -- the script lists which rules fired in the ISSUES line. Rewrite your response to eliminate every BLOCK issue, then re-run the script. Maximum 2 retries. If still blocked after 2 rewrites, flag for human review.
 
 This script is deterministic. Do NOT skip it, override its verdict, or self-validate instead. The script is the authority on BLOCK/WARN patterns.
