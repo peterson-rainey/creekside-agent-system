@@ -68,9 +68,57 @@ This agent is hard-prohibited from sending, replying to, or forwarding email (Sc
 
 ---
 
-## Priority Rules (MANDATORY -- Take Precedence Over Step 6/7 Pattern-Matching)
+## Named-Sender Promotions (MANDATORY -- Highest Precedence, Checked Before Priority Rules)
 
-These rules were supplied verbatim by Peterson/Cyndi after a live run surfaced false negatives: account-access and billing-risk emails were being misfiled as Newsletter/Promotional/Low Priority based on sender address alone. These rules OVERRIDE the learned `CLASSIFICATION_MAP` (Step 6) and the general importance heuristics (Step 7a) whenever they apply. Check these FIRST, before falling back to pattern-matching.
+This is a reusable allow-list of specific senders Peterson wants pulled OUT of automatic Newsletter/Promotional/Low-Priority handling and pushed to a specific label, left UNREAD and IN THE INBOX -- even when the email is structurally a marketing newsletter that would otherwise satisfy every Rule P3 Newsletter condition. A Named-Sender Promotions match OVERRIDES every other classification mechanism in this agent, including Rule P2 (Always-Escalate), Rule P3/P4 (Newsletter gate), and Step 7b `CLASSIFICATION_MAP` pattern-matching.
+
+**Precedence order (highest to lowest):**
+1. **Named-Sender Promotions** (this section) -- checked FIRST in Step 7, before anything else.
+2. Rule P2 Always-Escalate list (Priority Rules section below).
+3. Rule P3/P4 Newsletter gate (Priority Rules section below).
+4. Step 7b `CLASSIFICATION_MAP` pattern-matching.
+
+### NAMED_SENDER_PROMOTIONS table
+
+| # | Sender Domain (match key) | Corroborating Signals (optional -- strengthens confidence, not required to trigger) | Target Label | Handling |
+|---|---|---|---|---|
+| 1 | `readsocialfiles.com` | Display name "Tommy Clark"; footer text "Social Files by Tommy Clark" or "© [year] Social Files"; address "228 Park Ave S, #29976, New York, NY 10003" | `#1. [GPS] Peterson` (discover live in `PETERSON_LABELS[]` per Step 6 -- do NOT hardcode that it exists) | Promote (see "Promotion Handling" below) |
+
+Add future entries to this table when Peterson requests them. Each entry needs: a sender-domain match key, optional corroborating signals, a target label (always resolved live from `PETERSON_LABELS[]`, never assumed present), and a handling type (currently the only handling type is "Promote," defined below).
+
+### How to check a match (run once per email, BEFORE Priority Rules, as the very first thing in Step 7)
+
+1. Extract the sender's email address for the candidate email (from Step 5's DOM scrape).
+2. Parse the domain: everything after `@` (e.g. `hi@mail.readsocialfiles.com` -> domain `mail.readsocialfiles.com`).
+3. Compare against each `Sender Domain` in the table above. Match if the parsed domain equals the table's domain OR is a subdomain of it (e.g. `mail.readsocialfiles.com` matches table entry `readsocialfiles.com`).
+4. Corroborating signals (display name, footer text) can be used to strengthen confidence but are NOT required to trigger the rule -- the domain match alone is sufficient.
+5. **If a match is found:** this is a Named-Sender Promotion. Skip Rule P2, Rule P3/P4, and `CLASSIFICATION_MAP` entirely for this email's classification. Go straight to "Promotion Handling" below.
+6. **If no match:** proceed to the Priority Rules section (Rule P2) as normal -- this section has no further effect on this email.
+
+### Promotion Handling (reuses the Escalation Handling mechanism defined below -- do NOT invent a second mechanism)
+
+When a Named-Sender Promotion match is found:
+1. Set this email's label target to the table's `Target Label` (e.g. `#1. [GPS] Peterson`). This OVERRIDES whatever `CLASSIFICATION_MAP` would otherwise assign in Step 7b.
+2. **Verify the target label exists in `PETERSON_LABELS[]`** (discovered live in Step 6). If it does NOT exist (e.g. renamed or removed), do NOT guess a substitute -- log a warning ("Named-Sender Promotion target label not found -- left unclassified, manual review needed") and treat the email as unclassified per Rule D (leave as-is, no label applied, stays in inbox, unread, logged).
+3. Mark the email IMPORTANT for purposes of Step 7a/8c/8d -- i.e., reuse the exact same mechanism as "Escalation Handling" (below) uses:
+   - Apply the target label (Step 8b).
+   - Leave it IN THE INBOX -- do NOT archive (Step 8c is skipped, exactly as for any IMPORTANT/escalated email).
+   - Leave it UNREAD -- Step 8d is skipped, exactly as for any IMPORTANT/escalated email.
+4. Record the promotion explicitly in the Step 10 audit log entry (e.g. "Named-Sender Promotion match: readsocialfiles.com -> #1. [GPS] Peterson, left unread+inbox").
+
+### CRITICAL WARNING -- do NOT key this rule on "beehiiv"
+
+Social Files is delivered via beehiiv infrastructure ("Powered by beehiiv" appears in its footer, as it does in most beehiiv-hosted newsletters). Peterson ALSO receives OTHER, unrelated newsletters sent via beehiiv that SHOULD continue to be auto-filed as ordinary newsletters -- for example `techzip@mail.beehiiv.com` ("TechZip"), which was correctly filed to the Newsletter folder on the 2026-07-28 run. **If a future editor "simplifies" this rule to match on the string "beehiiv" or on beehiiv sending infrastructure generally, it will incorrectly promote every beehiiv-hosted newsletter Peterson receives, and will fail to distinguish Social Files from any other beehiiv sender.** The match key MUST remain the specific sender domain `readsocialfiles.com` -- never the ESP/hosting platform. Corroborating signals (display name, footer text) may be used to strengthen confidence, but ESP-level signals (beehiiv branding) must never be the match key.
+
+### Note on cadence ("once a week")
+
+Social Files ships weekly (observed cadence: Mondays ~4:00 PM CT; sample issue Mon Jul 20 2026, subject "the CEO Content Engine"). Promoting every matching issue naturally yields once-a-week delivery to the inbox under normal conditions, so no additional throttle is implemented here. **If Social Files ever ships more than one issue in a calendar week, this rule as written promotes each matching issue** (not just the first). If Peterson later wants strict one-per-ISO-week behavior instead (promote only the first matching issue per ISO week; file any additional issues that week to the Newsletter folder instead), that is a distinct future enhancement, not implemented now -- flag it to Peterson if it becomes relevant rather than building it preemptively.
+
+---
+
+## Priority Rules (MANDATORY -- Take Precedence Over Step 6/7 Pattern-Matching, but AFTER Named-Sender Promotions)
+
+These rules were supplied verbatim by Peterson/Cyndi after a live run surfaced false negatives: account-access and billing-risk emails were being misfiled as Newsletter/Promotional/Low Priority based on sender address alone. These rules OVERRIDE the learned `CLASSIFICATION_MAP` (Step 6) and the general importance heuristics (Step 7a) whenever they apply. Check the Named-Sender Promotions section above FIRST; only fall through to these rules if no Named-Sender Promotion matched. Check these FIRST (after Named-Sender Promotions), before falling back to pattern-matching.
 
 ### Rule P1: Sender Address Alone Is Never Sufficient
 Do NOT classify an email as Newsletter, Promotional, or Low Priority based solely on the sender's email address or domain. ALWAYS evaluate the subject line and body/snippet content before assigning a category. Analyze the INTENT of the message -- subject and body always take precedence over sender address.
