@@ -190,7 +190,7 @@ This flow is different from pre-booking routing. The call is already scheduled. 
 
 **Failsafe (partner can't make that time):** Send the lead: "My partner is going to be the better fit for this. He can't meet at that exact time, can we reschedule on his calendar?" Then include the active partner's calendar link (from partner doc).
 
-**Remember:** Pre-booking routing is unchanged. If budget is known before a call is booked, sub-$5K always goes straight to the active partner's calendar. The $3K-$5K carveout only applies post-booking.
+**Remember:** Pre-booking routing is unchanged. If revenue/budget signals surface before a call is booked, apply the tier table and route unqualified leads straight to the active partner's calendar. The "keep the call" carveout (meets the threshold) only applies post-booking.
 
 **Partner redirect sub-cadence (after calendar is sent and lead hasn't booked):**
 - +1 day: Follow up asking if they had a chance to look at the calendar.
