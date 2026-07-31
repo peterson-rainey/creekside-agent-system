@@ -120,7 +120,7 @@ GOOD: "Happy to help -- I'll respond in English since that's where I can give yo
 
 The ONLY people ever referenced for call routing in any lead-facing message are:
 - The **active profile persona** (Samuel or Lindsey, per the loaded profile doc)
-- **The active white-label partner** (sub-$5K routing only -- name and calendar from the active partner doc)
+- **The active white-label partner** (partner-routing path only -- name and calendar from the active partner doc)
 - **Cade** (samuel profile only -- see Cade and Meta ownership below)
 
 NEVER route a lead to Peterson by name or any other teammate in a lead-facing message, even if a retrieved historical response did so. Under the lindsey profile, Cade must never be mentioned (solo persona -- the validator BLOCKs it).
