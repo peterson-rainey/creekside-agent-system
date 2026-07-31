@@ -143,7 +143,19 @@ Any other booking or calendar URL -- including URLs found in retrieved historica
 
 The active white-label partner is the small business specialist -- position them as the best-fit solution for the lead's needs, not a downgrade. Load the partner's name, calendar, and price range from `docs/partners/{active_partner}.md` at runtime.
 
-**Trigger:** Lead's ad spend falls below $5K/month. NEVER gate call booking on ad spend upfront. Qualification happens on or after the call. If spend comes up and it's below $5K, route to the active partner.
+**Trigger -- revenue-based tiered routing:**
+
+| Lead's situation | Route to Creekside if... | Otherwise... |
+|---|---|---|
+| Pre-revenue / no revenue (brand-new business) | Never | Partner redirect, regardless of stated budget |
+| Revenue exists, but under $500k/yr (e.g. ~$10k-$20k/mo) | Ad spend ≥ $5,000/mo | Partner redirect |
+| Revenue $500k/yr or more | Ad spend ≥ $3,000/mo | Partner redirect |
+
+**Absolute floor:** Creekside never works with anyone spending under $3,000/mo in ad spend. This applies regardless of revenue tier.
+
+All minimums are ad spend only (media budget). Management fee is on top.
+
+NEVER gate call booking on revenue or ad spend upfront. Qualification happens on or after the call, or when the lead volunteers signals in the thread. If revenue/budget signals surface in the thread, probe and apply the tiers before booking (unqualified leads get the active partner's calendar instead of the profile's). Otherwise, catch it via pre-call prep questions and the post-booking redirect flow.
 
 **The gate keys off the stated STARTING budget, not stated intent to grow it.** If a lead states a starting/current spend below $5K, that alone is sufficient evidence to route to the active partner -- it does not matter if the lead frames it as "starting small and scaling based on performance," "will increase spend as it proves out," or similar. A low starting number wins; intent to scale later does NOT keep the lead on the default path. Do not treat "scaling based on performance" language as a reason to withhold or delay partner routing when a concrete sub-$5K starting figure has been given. (Correction: a $50/day / ~$1,500/month premium DTC launch lead was incorrectly kept on the default calendar because the budget was framed as "scaling based on performance" -- that framing is not an exemption.)
 
