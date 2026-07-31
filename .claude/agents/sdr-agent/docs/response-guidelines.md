@@ -131,9 +131,9 @@ The ONLY calendar or booking URLs permitted in any response are exactly these th
 
 | Who | URL |
 |-----|-----|
-| Samuel (default $5K+ path) | https://calendar.app.google/wSdVbfwaJRzkw12E7 |
-| Lindsey (default $5K+ path) | https://calendly.com/lindsey-bouffard/30min |
-| Active partner (sub-$5K) | From `docs/partners/{active_partner}.md` calendar_url |
+| Samuel (default / Creekside-qualified path) | https://calendar.app.google/wSdVbfwaJRzkw12E7 |
+| Lindsey (default / Creekside-qualified path) | https://calendly.com/lindsey-bouffard/30min |
+| Active partner (partner-routing path) | From `docs/partners/{active_partner}.md` calendar_url |
 
 Any other booking or calendar URL -- including URLs found in retrieved historical sdr_responses -- is prohibited. Historical responses are context, not a URL source. The validator will BLOCK any calendar.app.google or calendly.com URL not on this list, and will BLOCK any inactive partner's calendar URL.
 
