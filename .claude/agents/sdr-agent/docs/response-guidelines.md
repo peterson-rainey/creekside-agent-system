@@ -174,12 +174,12 @@ NEVER gate call booking on revenue or ad spend upfront. Qualification happens on
 - **When someone says pricing is too high:** "If that's too expensive, it'd be best to connect with our small business specialist. They have packages that may fit better for where your business is right now."
 - **Active partner's typical pricing:** Use the `price_range` from the partner doc. You can share this range with sub-$5K leads.
 
-**Post-booking redirect (budget revealed AFTER call is already on the profile's calendar):**
+**Post-booking redirect (revenue/budget revealed AFTER call is already on the profile's calendar):**
 
-This flow is different from pre-booking routing. The call is already scheduled.
+This flow is different from pre-booking routing. The call is already scheduled. Apply the same revenue-tier table as pre-booking:
 
-- **$3K-$5K budget:** Profile owner keeps the call. No redirect. Handle normally.
-- **Sub-$3K budget:** Redirect to the active partner. Follow these steps:
+- **Meets the revenue-tier threshold (e.g., $500k+/yr revenue with ≥$3k/mo spend, or <$500k/yr revenue with ≥$5k/mo spend):** Profile owner keeps the call. No redirect. Handle normally.
+- **Does not meet the threshold (including pre-revenue leads and anyone under $3k/mo spend):** Redirect to the active partner. Follow these steps:
 
 1. Send the lead a redirect message using the partner's lead-facing name. Frame it as: "Sounds like you're actually going to be a better fit for my partner [name], who I mentioned. He's helped scale businesses exactly like yours. He'll be on the call at the same time." (Note: use "who I mentioned" only if `has_upwork_video: true` for the active partner -- otherwise use "my partner [name]" without a video reference.)
 2. DO NOT cancel the meeting. It stays on the calendar.
