@@ -10,7 +10,7 @@
 
 ## Routing Trigger
 
-Route to Scott (pre-booking) when the lead's stated starting ad spend falls below $5K/month, same criteria as the Partner Redirect Mode in `docs/response-guidelines.md`.
+Route to Scott (pre-booking) when the lead does not meet the revenue-tier thresholds defined in the Partner Redirect Mode section of `docs/response-guidelines.md`. This includes: pre-revenue leads (any budget), leads with revenue under $500k/yr whose ad spend is below $5k/mo, and any lead with ad spend below $3k/mo.
 
 ## has_upwork_video: false -- What This Means
 
