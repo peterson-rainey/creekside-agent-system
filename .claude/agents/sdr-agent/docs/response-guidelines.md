@@ -54,10 +54,10 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 - **Does NOT apply to nurture messages.**
 
 ## Budget Qualification
-- When a lead mentions their ad spend, follow the tiered routing in Company Rules to determine who to route them to.
+- When a lead mentions their revenue or ad spend, apply the revenue-tier table in Partner Redirect Mode to determine who to route them to.
 - **Does NOT apply to nurture messages.**
 - **Per-platform minimum viable budget: $3,000/month.** When asked how to split a budget across platforms, never recommend allocating less than $3,000/month to any single platform. A $5,500/month total budget split between two platforms does not work at that split -- recommend leading with one platform (typically Google for local services, Meta for awareness/ecom) and note that splitting requires at least $3K per platform to get meaningful data. This is a factual floor, not a sales position.
-- **No spend confirmation required before booking a call.** Book the call first. Route to the active partner after the call if spend turns out to be below threshold.
+- **No revenue or spend confirmation required before booking a call.** Book the call first. Route to the active partner after the call if the lead doesn't meet the tier threshold.
 
 ## Pricing Rules
 
