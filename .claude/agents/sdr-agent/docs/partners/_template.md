@@ -17,7 +17,7 @@ Fill in all fields below when onboarding a new white-label partner. Then update 
 
 ## Routing Trigger
 
-Same as always: lead's stated starting ad spend below $5K/month.
+Same as always: lead does not meet the revenue-tier thresholds defined in the Partner Redirect Mode section of `docs/response-guidelines.md`. See that section for the full tier table.
 
 ## Handoff Framing
 
