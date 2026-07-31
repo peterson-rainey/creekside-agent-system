@@ -372,8 +372,8 @@ https://creeksidemarketingpros.com/case-study-digital-marketing/
 ## Pre-Call Prep Answers
 - When a lead answers our discovery questions (they restate each question with their answer below it), and a call is already booked: respond with 1-2 sentences. "Got it, looking forward to the call." Do NOT write a multi-paragraph diagnostic response analyzing their answers. The call is already booked.
 - **Never ask a question the lead has already answered.** Before asking anything, check the job description and full thread. If the answer is already there, do not ask. This applies to every message type, including pre-call warm-up messages. (Paul McMillian failure.)
-- **If their budget reveals sub-$3K:** Follow the "Post-booking redirect" flow in the Partner Redirect Mode section. Redirect to the active partner, keep the meeting on the calendar, instruct Queenie to notify Cyndi/Melvin.
-- **If their budget reveals $3K-$5K:** Peterson/Cade keeps the call. No redirect. Just acknowledge their answers.
+- **If their revenue/budget reveals they don't meet the tier threshold** (pre-revenue lead at any budget; <$500k/yr revenue with ad spend below $5k/mo; or any lead with ad spend below $3k/mo): Follow the "Post-booking redirect" flow in the Partner Redirect Mode section. Redirect to the active partner, keep the meeting on the calendar, instruct Queenie to notify Cyndi/Melvin.
+- **If their revenue/budget meets the tier threshold:** Peterson/Cade keeps the call. No redirect. Just acknowledge their answers.
 
 ## Frustration / Skepticism Pattern
 - When a lead says they got burned by a previous provider and is cautious: address the UNDERLYING FEAR, not just the surface pricing question.
