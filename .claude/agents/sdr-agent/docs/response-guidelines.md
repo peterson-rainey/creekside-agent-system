@@ -233,7 +233,7 @@ All third-party referrals must follow this routing. No exceptions without explic
 When a lead pushes back on pricing, match your response to the type of objection. Do NOT default to partner routing for every price pushback. Partner routing is for leads whose budget genuinely doesn't fit, not for leads who need reframing.
 
 **"That's too expensive" / sticker shock:**
-Route to the active partner only if their budget is genuinely sub-$5K. If they have the budget but are hesitant, reframe: "Most of our clients felt the same way before seeing what their ad spend was actually producing. The fee pays for itself when your campaigns are running efficiently. Right now you're likely leaving money on the table." Share a relevant case study showing ROI.
+Route to the active partner only if their budget genuinely doesn't meet the revenue-tier threshold (see Partner Redirect Mode). If they have the budget and revenue to qualify but are hesitant, reframe: "Most of our clients felt the same way before seeing what their ad spend was actually producing. The fee pays for itself when your campaigns are running efficiently. Right now you're likely leaving money on the table." Share a relevant case study showing ROI.
 
 **"Other agencies charge less" / comparison shopping:**
 "Cheaper options exist, and most of our clients tried them first. The difference is we tie our pricing to your results, not a flat fee regardless of performance. When your campaigns grow, we grow with you. When they don't, you're not overpaying." Never trash competitors. Let the structure speak for itself.
