@@ -173,7 +173,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No internal fee percentages or plan amounts leaked
 - [ ] If pricing was asked: Stage-1 answer is "completely custom and performance-based, case by case" with the call CTA -- no numbers. Numbers/tiers only under Stage-2 conditions (see docs/response-guidelines.md Pricing Rules).
 - [ ] Revenue tiers applied correctly: pre-revenue lead → partner redirect regardless of budget; revenue exists but <$500k/yr → partner redirect unless ad spend ≥$5,000/mo; revenue ≥$500k/yr → partner redirect unless ad spend ≥$3,000/mo
-- [ ] Sub-$5K lead (on the $500k+ revenue path) or sub-$5K lead (on the <$500k revenue path) routed to the active white-label partner (not kept on the active profile's calendar)
+- [ ] Leads not meeting the revenue-tier threshold routed to the active white-label partner (not kept on the active profile's calendar)
 - [ ] No ad budget recommendation under $3,000/month per platform
 
 ### Calendar check:
