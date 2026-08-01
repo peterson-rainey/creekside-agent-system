@@ -20,7 +20,7 @@ Infer which touch types have already been used from the conversation history. Ne
    ```
    Do NOT hardcode dollar amounts. Pull from DB. If pricing is not in the DB, include the concept (performance-based, result-aligned) without specific numbers and flag it in the Context Retrieved section.
 
-   On pre-call followup touch 4, pair with a call ask and the appropriate calendar link: the profile's booking calendar (from the loaded profile doc) for $5K+ leads, or the active partner's calendar_url (from the loaded partner doc) for sub-$5K leads.
+   On pre-call followup touch 4, pair with a call ask and the appropriate calendar link: the profile's booking calendar (from the loaded profile doc) for Creekside-qualified leads (per the revenue-tier table in Partner Redirect Mode, response-guidelines.md), or the active partner's calendar_url (from the loaded partner doc) for partner-routed leads.
 
 4. **Clean breakup** -- "Closing the loop on this one. No need to reply." Soft, no pressure. Final touch.
 
