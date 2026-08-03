@@ -177,7 +177,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No ad budget recommendation under $3,000/month per platform
 
 ### Calendar check:
-- [ ] If call suggested: real calendar link is present. Use the profile's booking calendar (from the loaded profile doc) for the default $5K+ path | active partner calendar (from partner doc)
+- [ ] If call suggested: real calendar link is present. Use the profile's booking calendar (from the loaded profile doc) for the default Creekside-qualified path | active partner calendar (from partner doc)
 - [ ] If they asked for a call: response is JUST the calendar link (no pre-call warm-up)
 - [ ] If they gave specific times: picked from their times (no calendar link sent)
 - [ ] No call warm-up info before they've booked (exception: `warmup` type -- the call IS already booked)
