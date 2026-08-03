@@ -44,7 +44,7 @@ active_partner: scott
 At runtime, load ONLY `docs/partners/{active_partner}.md`. Never load or reference any other partner file. The loaded partner doc is the single source of truth for:
 - The partner's lead-facing name (use this in all lead messages)
 - The partner's booking calendar URL (use this wherever "partner calendar" is referenced)
-- The partner's price range (use this for sub-$5K fee disclosures)
+- The partner's price range (use this for partner-routed lead fee disclosures)
 - `has_upwork_video` -- if `false`, NEVER reference the Upwork profile video in connection with the partner (the validator BLOCKs this)
 
 **Switching partners = change `active_partner:` on the line above, and add the new partner's `.md` file.** No other edits needed.
