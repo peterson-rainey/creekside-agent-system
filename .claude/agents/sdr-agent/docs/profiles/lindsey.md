@@ -97,7 +97,7 @@ Do NOT mention the Creekside YouTube channel (youtube.com/@creeksidemarketing1) 
 ## Post-Booking Redirect Operator Instructions
 
 When a sub-$3K lead is already booked on Lindsey's calendar, include these operator instructions (not visible to the lead):
-"Queenie: notify team that [lead name]'s call on Lindsey's calendar should be redirected to [active partner name]. Send [active partner name] the meeting link. Mark the calendar event grey."
+"Queenie: notify team that (lead's name)'s call on Lindsey's calendar should be redirected to (active partner name from loaded partner doc). Send (partner name) the meeting link. Mark the calendar event grey." (Substitute real names -- never output brackets.)
 
 ## Report Link Discipline
 
