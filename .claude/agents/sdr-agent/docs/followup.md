@@ -34,7 +34,7 @@ Before generating any touch, compute the cadence position from thread timestamps
 
 **Never fire the pricing card early.** If the operator explicitly requests "the pricing card" or "the performance-pricing card" before day 12, flag that it is early and recommend holding. If they insist and the date is within 2 days of day 14, sending with an explicit "treating day X as approaching day 14" note is acceptable.
 
-**Post-card exhaustion:** After all 4 touches are sent (including the pricing card), the lead moves to nurture pacing -- weeks between touches, not days. Never send a 5th touch (including a "breakup" message) within days of the card. Output: "All 4 cadence touches exhausted. This lead is now on nurture pacing. First nurture touch should be sent in [estimated timeframe, typically 2-4 weeks]."
+**Post-card exhaustion:** After all 4 touches are sent (including the pricing card), the lead moves to nurture pacing -- weeks between touches, not days. Never send a 5th touch (including a "breakup" message) within days of the card. Output: "All 4 cadence touches exhausted. This lead is now on nurture pacing. First nurture touch should be sent in approximately 2-4 weeks."
 
 ---
 
