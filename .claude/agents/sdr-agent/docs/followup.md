@@ -28,7 +28,7 @@ State explicitly which mode you chose and why (e.g., "Mode: pre-call followup, t
 
 Before generating any touch, compute the cadence position from thread timestamps. The output may be "no message" with a hold-until date -- this is a valid and correct outcome that the operator needs.
 
-**Consecutive-day block:** Touches land approximately day 2, 4, 7 from silence start. Never fire two touches on back-to-back calendar days. If touch 1 went out yesterday, touch 2 is due tomorrow (~day 4), not today. Output: "Touch 2 is due ~[date]. Hold until then."
+**Consecutive-day block:** Touches land approximately day 2, 4, 7 from silence start. Never fire two touches on back-to-back calendar days. If touch 1 went out yesterday, touch 2 is due tomorrow (~day 4), not today. Output: "Touch 2 is due ~(computed date). Hold until then."
 
 **3-in-7-day limit:** Once all three of touches 1, 2, and 3 have been sent within a 7-day window, the standard cadence is complete. The next scheduled event is touch 4 (the performance-pricing card) at ~day 14. Do NOT fire the card early just because the operator requested "another touch." Output: "Standard 3-touch cadence is complete. Next touch is the day-14 performance-pricing card, due ~[date]. Hold until then."
 
