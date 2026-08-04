@@ -39,7 +39,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
 ## White-Label Partner Config
 
 ```
-active_partner: scott
+active_partner: keith
 ```
 
 At runtime, load ONLY `docs/partners/{active_partner}.md`. Never load or reference any other partner file. The loaded partner doc is the single source of truth for:

@@ -52,6 +52,11 @@ _PARTNER_REGISTRY = {
         "calendar": "https://calendar.app.google/WZyDqnmW5kkqkReK9",
         "has_upwork_video": False,
     },
+    "keith": {
+        "name": "Keith",
+        "calendar": "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu",
+        "has_upwork_video": False,
+    },
 }
 
 _SDR_AGENT_MD_PATH = os.path.join(
