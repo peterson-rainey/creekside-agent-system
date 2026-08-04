@@ -98,15 +98,29 @@ Do NOT send until Peterson explicitly types "send", "confirm", "yes", "go", or e
 
 ---
 
+## Newsletter Footer (auto-appended)
+
+Every newsletter gets this footer appended automatically after Peterson's content. Do NOT ask Peterson to include it -- the agent adds it in Step 4.
+
+```
+---
+
+Know someone who'd get value from this? They can subscribe at [creeksidemarketingpros.com/newsletter](https://creeksidemarketingpros.com/newsletter/)
+```
+
+---
+
 ## Step 4: Send the Broadcast
 
-Single API call -- no loop needed. Buttondown delivers to all active subscribers automatically:
+Single API call -- no loop needed. Buttondown delivers to all active subscribers automatically.
+
+**Before sending, append the newsletter footer (above) to the end of Peterson's body content.** Add two newlines after his content, then the footer block. Do not modify his content in any other way.
 
 ```bash
 source /Users/petersonrainey/C-Code\ -\ Rag\ database/.env 2>/dev/null || export $(grep -v '^#' /Users/petersonrainey/C-Code\ -\ Rag\ database/.env | xargs) 2>/dev/null
 
 SUBJECT="[subject]"
-BODY="[email body]"
+BODY="[email body + footer appended]"
 
 curl -s -w "\n%{http_code}" -X POST \
   "https://api.buttondown.email/v1/emails" \
