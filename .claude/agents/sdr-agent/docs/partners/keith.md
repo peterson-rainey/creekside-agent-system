@@ -36,7 +36,7 @@ Never mention the $5K threshold, any spend minimum, or explain why they're going
 
 Use this verbatim for pre-booking routing (lead has NOT yet booked). Adapt only the lead's first name:
 
-> "Hey [Name], you'd actually be a great fit for my partner Keith. He specializes in businesses at your stage and has gotten results doing exactly what you're describing. I'd point you his way: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu"
+> "Hey Tanya, you'd actually be a great fit for my partner Keith. He specializes in businesses at your stage and has gotten results doing exactly what you're describing. I'd point you his way: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu"
 
 If the $500-$800/month range is used, place it as a separate sentence AFTER the template, never inside it.
 
