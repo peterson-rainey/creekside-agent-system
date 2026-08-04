@@ -116,7 +116,7 @@ Keep it to 1-2 sentences. No fluff. No "I look forward to hearing from you."
 Send the profile video nudge (one natural sentence) + a brief personalized forward-look to the call. No questions.
 
 Example tone:
-> If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the [their specific topic] side of things on the call.
+> If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the Google Ads side of things on the call.
 
 **(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
 
