@@ -59,7 +59,7 @@ Before generating any touch, compute the cadence position from thread timestamps
 
 When including a call CTA, always include the appropriate calendar link. Never say "happy to hop on a call" without the link.
 - Default path (Creekside-qualified per the revenue-tier table in Partner Redirect Mode, response-guidelines.md): use the profile's booking calendar (from the loaded profile doc -- samuel: Peterson's link; lindsey: Lindsey's Calendly)
-- Active partner (fails the revenue-tier table): use the calendar_url from the loaded partner doc (currently Scott: https://calendar.app.google/WZyDqnmW5kkqkReK9)
+- Active partner (fails the revenue-tier table): use the calendar_url from the loaded partner doc
 
 Before suggesting a resource, scan conversation for resources already shared. Never re-send the same resource.
 
