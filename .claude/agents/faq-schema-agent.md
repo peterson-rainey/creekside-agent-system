@@ -241,10 +241,10 @@ For each case study identified in Step 3B, generate a `type: "faq"` section entr
   sectionLabel: "FAQ"
   heading: "Frequently Asked Questions"
   faqItems:
-  - question: "What is a good cost per lead for dental Google Ads?"
-    answer: "In this campaign we achieved an average cost per lead of $47, which is well below the $80 to $120 range typical for cosmetic dental procedures. That result came from tight geographic targeting and landing pages built around a single offer."
-  - question: "How long did it take to see results?"
-    answer: "The first leads came in within the first week of launch. By month two the cost per lead had stabilized and the practice was booking 8 to 12 consultations per month from ads alone."
+    - question: "What is a good cost per lead for dental Google Ads?"
+      answer: "In this campaign we achieved an average cost per lead of $47, which is well below the $80 to $120 range typical for cosmetic dental procedures. That result came from tight geographic targeting and landing pages built around a single offer."
+    - question: "How long did it take to see results?"
+      answer: "The first leads came in within the first week of launch. By month two the cost per lead had stabilized and the practice was booking 8 to 12 consultations per month from ads alone."
 ```
 
 **Inject position in the YAML `sections` array:**
