@@ -299,7 +299,7 @@ After all posts have been updated:
 
 ```bash
 cd ~/creekside-website
-git add src/content/blog/
+git add src/content/blog/ src/content/case-studies/
 git status
 ```
 
