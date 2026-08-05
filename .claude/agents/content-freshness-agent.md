@@ -57,19 +57,23 @@ ORDER BY created_at DESC LIMIT 15;
 
 Apply every correction found. In particular: the Dr. Laleh / Lux Dental Spa anonymization rule is a standing correction -- any blog post mentioning a cosmetic dental practice must NOT name that client.
 
-### Step 2: Enumerate All Blog Posts
+### Step 2: Enumerate All Blog Posts and Case Studies
 
 ```bash
 ls ~/creekside-website/src/content/blog/*.md
+ls ~/creekside-website/src/content/case-studies/*.md
 ```
 
-For each post, extract the frontmatter fields using Read. Track:
+For each post and case study, extract the frontmatter fields using Read. Track:
 - `date` (original publish date)
 - `lastModified` (if present)
 - Filename (slug)
+- Content type (blog post vs case study)
 - Whether the post contains numeric data patterns: dollar figures, percentages, conversion counts, CPC/CPA/CPL/ROAS values
 
-Build a candidate list: posts that are older than 90 days AND contain numeric data patterns. Posts with a `lastModified` within 30 days are deprioritized unless a correction requires urgent update.
+For case studies: also note whether numeric metrics appear in the `sections` array YAML (e.g., key_result values, campaign stats referenced in section bodies).
+
+Build a candidate list: posts and case studies that are older than 90 days AND contain numeric data patterns. Posts with a `lastModified` within 30 days are deprioritized unless a correction requires urgent update.
 
 ### Step 3: Pull Current Campaign Data from the RAG Database
 
