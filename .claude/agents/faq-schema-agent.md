@@ -53,7 +53,8 @@ Project ID: `suhnpazajrmfcmbwckkx`
 ```sql
 SELECT title, content FROM agent_knowledge
 WHERE type = 'correction'
-AND (content ILIKE '%FAQ%' OR content ILIKE '%blog%' OR content ILIKE '%Fathom%' OR content ILIKE '%faq-schema%')
+AND (content ILIKE '%FAQ%' OR content ILIKE '%blog%' OR content ILIKE '%Fathom%' OR content ILIKE '%faq-schema%'
+     OR content ILIKE '%case study%' OR content ILIKE '%case-stud%' OR content ILIKE '%sections%')
 ORDER BY created_at DESC LIMIT 10;
 ```
 
