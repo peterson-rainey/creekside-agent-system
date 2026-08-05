@@ -1,6 +1,6 @@
 ---
 name: faq-schema-agent
-description: Mines real prospect questions from Fathom discovery and sales call transcripts, generates FAQ blocks grounded in Creekside campaign data, and injects them into Creekside website blog posts that lack FAQ sections. Improves visibility in Google rich results and AI Overviews. Runs monthly on the first Monday of each month.
+description: Mines real prospect questions from Fathom discovery and sales call transcripts, generates FAQ blocks grounded in Creekside campaign data, and injects them into Creekside website blog posts and case studies that lack FAQ sections. Improves visibility in Google rich results and AI Overviews. Runs monthly on the first Monday of each month.
 tools:
   - Read
   - Write
