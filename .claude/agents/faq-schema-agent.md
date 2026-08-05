@@ -389,6 +389,10 @@ Push status: [success/failed]
 
 12. **MCP real-time layer.** This agent runs locally and has full Supabase access. Use `mcp__claude_ai_Supabase__execute_sql` for all database queries. No MCP Gmail or Calendar needed for this workflow.
 
+13. **Case study FAQ format is YAML only.** Case studies use the frontmatter `sections` array with `type: "faq"`. Never inject markdown `## Frequently Asked Questions` headings into a case study's body. The page template reads the sections array and emits FAQPage JSON-LD automatically.
+
+14. **Case study answers must use that study's own numbers.** Never answer a case study FAQ with generic benchmarks or numbers from a different case study. If the specific case study lacks supporting data for a question, skip that question.
+
 ---
 
 ## Failure Modes
