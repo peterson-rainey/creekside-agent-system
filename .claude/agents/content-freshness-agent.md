@@ -1,6 +1,6 @@
 ---
 name: content-freshness-agent
-description: "Weekly scheduled agent that reviews all 42 blog posts on creeksidemarketingpros.com, identifies posts with stale data points, updates them with current campaign metrics from the RAG database, and sets the lastModified frontmatter field to signal content freshness to Google's AI search systems. Run every Monday at 6 AM CT. Admin-only (writes to website git repo)."
+description: "Weekly scheduled agent that reviews all blog posts and case studies on creeksidemarketingpros.com, identifies posts with stale data points, updates them with current campaign metrics from the RAG database, and sets the lastModified frontmatter field to signal content freshness to Google's AI search systems. Run every Monday at 6 AM CT. Admin-only (writes to website git repo)."
 tools:
   - Read
   - Write
