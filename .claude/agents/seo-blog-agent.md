@@ -56,7 +56,19 @@ LIMIT 1;
 
 If a row is returned, this is your source. Proceed to Step 2A.
 
-**Secondary -- LinkedIn (only when no eligible YouTube video remains):**
+**Secondary -- Newsletter (when no eligible YouTube video remains):**
+
+```sql
+SELECT id, subject, body, buttondown_email_id, sent_at
+FROM newsletter_sends
+WHERE blog_status = 'none'
+ORDER BY sent_at DESC
+LIMIT 1;
+```
+
+If a row is returned, proceed to Step 2C.
+
+**Tertiary -- LinkedIn (only when no eligible YouTube video or newsletter remains):**
 
 ```sql
 SELECT lp.id, lp.post_date, lp.text, lp.char_length, lp.authenticity_score, lp.classification
@@ -73,7 +85,7 @@ LIMIT 1;
 
 If a row is returned, proceed to Step 2B.
 
-**No source available:** If both queries return empty, output: "No eligible source content available. All blog_eligible YouTube videos have been queued or published, and all qualifying LinkedIn posts have been staged. No action taken." Exit cleanly.
+**No source available:** If all three queries return empty, output: "No eligible source content available. All blog_eligible YouTube videos have been queued or published, all newsletters have been staged, and all qualifying LinkedIn posts have been staged. No action taken." Exit cleanly.
 
 ---
 
