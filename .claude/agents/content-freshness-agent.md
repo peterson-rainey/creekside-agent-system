@@ -171,7 +171,7 @@ After all updates are complete:
 
 ```bash
 cd ~/creekside-website
-git add src/content/blog/*.md
+git add src/content/blog/*.md src/content/case-studies/*.md
 git status
 git commit -m "content-freshness: update stale data points in [N] blog posts
 
