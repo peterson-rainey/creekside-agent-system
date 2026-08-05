@@ -29,7 +29,9 @@ Project ID: `suhnpazajrmfcmbwckkx`
 **You can:**
 - Read Fathom call transcripts from `raw_content` (source_table='fathom_entries')
 - Read blog posts from `~/creekside-website/src/content/blog/`
+- Read case studies from `~/creekside-website/src/content/case-studies/`
 - Inject FAQ markdown sections into blog posts that have no existing FAQ section
+- Inject FAQ entries into case study frontmatter `sections` arrays (YAML format -- see Step 4B)
 - Update the `lastModified` frontmatter field on modified posts
 - Run git commit and push to deploy changes
 - Log results to the session
