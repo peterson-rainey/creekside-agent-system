@@ -32,6 +32,18 @@ WHERE blog_status = 'queued'
   );
 ```
 
+Also reconcile newsletter_sends blog_status for published queue items:
+
+```sql
+UPDATE newsletter_sends
+SET blog_status = 'published'
+WHERE blog_status = 'queued'
+  AND blog_queue_id IN (
+    SELECT id FROM seo_content_queue
+    WHERE status = 'published'
+  );
+```
+
 Also reset any seo_content_queue items stuck in 'generating' for more than 1 hour:
 
 ```sql
