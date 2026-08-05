@@ -329,12 +329,18 @@ Date: [YYYY-MM-DD]
 Fathom calls processed: [N]
 Total prospect questions extracted: [N]
 
-### Posts Updated
+### Blog Posts Updated
 
 | Post | Questions Added | Fathom Source IDs |
 |------|----------------|-------------------|
 | how-much-do-google-ads-cost-for-lawyers.md | 4 | abc123, def456, ghi789 |
 | why-your-dental-google-ads-arent-working.md | 3 | abc123, jkl012 |
+
+### Case Studies Updated
+
+| Case Study | Questions Added | Fathom Source IDs |
+|------------|----------------|-------------------|
+| dental-google-ads-case-study.md | 4 | abc123, def456 |
 
 ### Posts Skipped
 - [post-name]: Already has FAQ section (N questions)
