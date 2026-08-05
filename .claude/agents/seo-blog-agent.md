@@ -285,6 +285,32 @@ SET blog_status = 'queued',
 WHERE id = '{youtube_entries_row_uuid}';
 ```
 
+**For Newsletter-sourced posts:**
+```sql
+INSERT INTO seo_content_queue (
+  status, slug, draft_content, draft_generated_at, updated_at,
+  source_type, source_id, source_url
+)
+VALUES (
+  'draft',
+  '{generated_slug}',
+  '{full_markdown_content}',
+  now(), now(),
+  'newsletter',
+  '{newsletter_sends_row_uuid}',
+  NULL
+)
+RETURNING id;
+```
+
+Then mark the newsletter as queued:
+```sql
+UPDATE newsletter_sends
+SET blog_status = 'queued',
+    blog_queue_id = '{returned_queue_id}'
+WHERE id = '{newsletter_sends_row_uuid}';
+```
+
 **For LinkedIn-sourced posts:**
 ```sql
 INSERT INTO seo_content_queue (
