@@ -1,6 +1,6 @@
 ---
 name: seo-blog-agent
-description: "SEO blog generator for creeksidemarketingpros.com. Transforms human-made source content (Creekside YouTube video transcripts, Peterson's LinkedIn posts) into SEO-optimized blog posts. Stages drafts for the daily publisher. Never generates content from keywords or templates alone."
+description: "SEO blog generator for creeksidemarketingpros.com. Transforms human-made source content (Creekside YouTube video transcripts, Buttondown newsletters, Peterson's LinkedIn posts) into SEO-optimized blog posts. Stages drafts for the daily publisher. Never generates content from keywords or templates alone."
 model: sonnet
 ---
 
