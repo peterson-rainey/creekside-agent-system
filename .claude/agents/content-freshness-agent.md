@@ -163,6 +163,8 @@ image: "..."
 
 If `lastModified` does not yet exist in the frontmatter, add it after the `date` line.
 
+**Case study `lastModified` rule:** Roll the `lastModified` date forward ONLY when a substantive content update was actually made (a verified metric was changed). Never bump `lastModified` on a case study without a real change -- a bare date bump with no content change is not a legitimate freshness signal and violates the "no fabrication" rule.
+
 ### Step 6: Git Commit and Push
 
 After all updates are complete:
