@@ -117,7 +117,7 @@ Replace `id1`, `id2`, etc. with the actual UUIDs from Step 2's query results. Ba
 
 Store extracted questions in a working list: `[question text, source_id, category, verbatim_or_cleaned]`
 
-### Step 3: Identify Posts to Update
+### Step 3A: Identify Blog Posts to Update
 
 Scan all blog posts in the website repo:
 
@@ -152,6 +152,30 @@ For each post, read its frontmatter (title, category, tags) and check whether it
 - Do NOT force a match -- if a question doesn't fit a post topic, skip it for that post
 
 **Target:** 3 to 5 questions per post. Minimum 3 to make an FAQ section worthwhile.
+
+### Step 3B: Identify Case Studies to Update
+
+Scan all case studies in the website repo:
+
+```
+~/creekside-website/src/content/case-studies/*.md
+```
+
+For each case study, read its frontmatter to identify:
+- `title`, `category` / vertical (e.g., dental, legal, home services)
+- `channel` or platform (Google Ads, Meta Ads, etc.)
+- Existing `sections` array -- check if any entry already has `type: "faq"` with 3 or more faqItems
+
+**Skip a case study if:**
+- Its `sections` array already contains a `type: "faq"` entry with 3 or more faqItems
+
+**Match questions to case studies:**
+- Match by vertical AND channel -- a dental Google Ads case study should receive questions like "What is a good cost per lead for dental Google Ads?"
+- Questions must be answerable using that specific case study's own numbers (CPL, ROAS, conversion counts, budget ranges shown in the case study)
+- Do NOT force a match and do NOT invent numbers -- if the case study's data doesn't support an answer, skip that question for that case study
+- Never answer with generic industry benchmarks on a case study; every answer must cite the case study's own results
+
+**Target:** 3 to 5 questions per case study. Minimum 3.
 
 ### Step 4: Generate FAQ Blocks
 
