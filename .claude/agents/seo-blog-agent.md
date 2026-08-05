@@ -342,8 +342,8 @@ Note: The local publisher (`scripts/seo_publisher.py`) picks up draft rows at 3 
 ### Step 6: Report
 
 Output a summary:
-- Source type (YouTube / LinkedIn)
-- Source title or first 80 chars of LinkedIn post
+- Source type (YouTube / Newsletter / LinkedIn)
+- Source title, newsletter subject, or first 80 chars of LinkedIn post
 - Source URL (if YouTube)
 - Generated post title
 - Slug
