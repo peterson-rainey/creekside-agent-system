@@ -130,11 +130,13 @@ If a row is returned, proceed to Step 2B.
 3. The source URL for staging is null (newsletters do not get attributed with an external link).
 
 4. **Newsletter-specific transformation rules:**
+   - **Strip before transforming:** Remove the standard newsletter footer block ("Know someone who'd get value from this? They can subscribe at...") before generating the post. Also strip any Buttondown template syntax (e.g., `{{ subscriber.metadata.first_name }}`, `{{ subscriber.email }}`) -- replace personalization tokens with natural prose (e.g., replace "Hey {{ subscriber.metadata.first_name }}," with a direct opening like "Here's what's been working in paid ads this week.").
    - The entire newsletter becomes ONE blog post -- do not split by contributor section.
    - Preserve the original newsletter structure and contributor sections as much as possible. Use the newsletter's natural sections as the basis for the blog post's H2 structure.
    - Contributor attributions (e.g., "**Cade -- Paid Media**") should be preserved as subheadings or callout blocks within the post.
    - Expand for SEO where needed: add a TL;DR block, Key Data table, FAQ section, CTA, and internal links. But do not rewrite the newsletter's core content -- the expansion wraps around the original, not replaces it.
    - The post title should be derived from the newsletter subject line, made more SEO-distinctive.
+   - Do NOT attribute the post back to the newsletter itself (newsletters are not publicly accessible URLs). The post stands on its own.
    - If the newsletter body is under 1,500 words, expand by: (a) adding deeper context around each contributor's point using RAG database knowledge, (b) adding a FAQ section with 3-5 questions the newsletter content naturally answers, (c) adding the standard CTA and author bio blocks. The goal is to reach the 1,500-word floor while keeping the newsletter's voice and structure intact.
 
 ---
