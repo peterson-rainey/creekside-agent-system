@@ -179,6 +179,26 @@ VALUES (
 
 ---
 
+## Step 6: Save to Newsletter Archive (for Blog Pipeline)
+
+After a successful send, save the full newsletter content to `newsletter_sends` so the SEO blog pipeline can transform it into a blog post automatically.
+
+```sql
+INSERT INTO newsletter_sends (subject, body, buttondown_email_id, sent_at)
+VALUES (
+  '[SUBJECT]',
+  '[FULL EMAIL BODY as sent, including footer]',
+  '[Buttondown email ID from Step 4 response]',
+  now()
+);
+```
+
+This is non-negotiable -- every sent newsletter feeds the blog pipeline. The `seo-blog-agent` picks up rows with `blog_status='none'` and transforms them into SEO blog posts. No confirmation needed for this step; it runs automatically after a successful send.
+
+If the INSERT fails (e.g., duplicate `buttondown_email_id`), log a warning but do NOT fail the overall send report. The newsletter was already delivered successfully.
+
+---
+
 ## Failure Modes
 
 | Situation | Response |
