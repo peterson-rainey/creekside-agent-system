@@ -136,6 +136,8 @@ For each candidate post, Read the full file. Scan for numeric data patterns:
 
 **Staleness threshold:** A number is stale if the current verified value differs by more than 25% AND the post is older than 90 days without a recent `lastModified`.
 
+**Case study staleness rule:** For case studies, refresh metrics ONLY when the RAG database contains a newer VERIFIED number for that specific client (e.g., an updated `case_studies` table row or a recent Fathom session confirming new campaign results). Never substitute numbers from a different client's account. Never invent or estimate -- if you cannot cite a specific DB record proving the new value, leave the case study unchanged. Metrics in case studies typically live in the YAML `sections` array; update them there, not in body prose.
+
 ### Step 5: Apply Updates (Conservative)
 
 For each stale data point identified:
