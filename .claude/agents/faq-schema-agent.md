@@ -42,6 +42,7 @@ Project ID: `suhnpazajrmfcmbwckkx`
 - Modify blog posts that already have a well-formed FAQ section (3 or more questions)
 - Use Dr. Laleh's or Lux Dental Spa's names in FAQ answers -- anonymize as "a dental aesthetics practice in Southern California"
 - Skip posts with no relevant questions just to hit a number -- quality over quantity
+- Add case study FAQs as body prose -- case study FAQs go ONLY in the frontmatter `sections` array as YAML (never as markdown headings in the body)
 
 ---
 
