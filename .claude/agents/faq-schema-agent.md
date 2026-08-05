@@ -177,9 +177,9 @@ For each case study, read its frontmatter to identify:
 
 **Target:** 3 to 5 questions per case study. Minimum 3.
 
-### Step 4: Generate FAQ Blocks
+### Step 4A: Generate FAQ Blocks for Blog Posts
 
-For each post identified in Step 3, generate a FAQ section:
+For each blog post identified in Step 3A, generate a FAQ section:
 
 **Answer generation rules:**
 - Answers must be grounded in real Creekside campaign data from the database
@@ -200,7 +200,7 @@ ORDER BY created_at DESC LIMIT 10;
 - Do NOT use the same question verbatim on more than two different posts -- rephrase for context
 - Do NOT mention Dr. Laleh or Lux Dental Spa by name -- use "a dental aesthetics practice in Southern California" or "one of our dental clients"
 
-**FAQ markdown format:**
+**FAQ markdown format (blog posts):**
 
 ```markdown
 ## Frequently Asked Questions
@@ -223,6 +223,35 @@ Look for: "---\n\n**Not sure" or "---\n\nWe offer" or "---\n\n[Get Your" or "---
 The FAQ section goes immediately BEFORE this "---" divider.
 If no CTA, look for "**About the Author**" -- inject before that.
 ```
+
+### Step 4B: Generate FAQ Entries for Case Studies (YAML format)
+
+For each case study identified in Step 3B, generate a `type: "faq"` section entry to inject into the frontmatter `sections` array.
+
+**Answer generation rules (case studies):**
+- Every answer MUST be grounded exclusively in that case study's own numbers -- CPL, ROAS, budget, conversion counts, timelines shown in the case study
+- Never substitute generic industry benchmarks; if the case study doesn't have a number to support the answer, do not include that question
+- Write in Peterson's voice: direct, practical, data-backed, no em dashes, uses "we" not "I"
+- Do NOT mention Dr. Laleh or Lux Dental Spa by name -- use the anonymized description already present in that case study
+
+**Case study YAML format:**
+
+```yaml
+- type: "faq"
+  sectionLabel: "FAQ"
+  heading: "Frequently Asked Questions"
+  faqItems:
+  - question: "What is a good cost per lead for dental Google Ads?"
+    answer: "In this campaign we achieved an average cost per lead of $47, which is well below the $80 to $120 range typical for cosmetic dental procedures. That result came from tight geographic targeting and landing pages built around a single offer."
+  - question: "How long did it take to see results?"
+    answer: "The first leads came in within the first week of launch. By month two the cost per lead had stabilized and the practice was booking 8 to 12 consultations per month from ads alone."
+```
+
+**Inject position in the YAML `sections` array:**
+- Add the `type: "faq"` entry BEFORE any highlight-box or final CTA section that may exist in the `sections` array
+- If the sections array has no highlight-box or CTA entry, append the FAQ entry at the end of the array
+- Use 2-space indentation for list items to match the existing sections array formatting
+- The page template auto-emits FAQPage JSON-LD from `type: "faq"` entries -- no additional action needed
 
 ### Step 5: Update Frontmatter and Inject FAQ
 
