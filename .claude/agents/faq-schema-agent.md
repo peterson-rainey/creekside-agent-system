@@ -250,7 +250,7 @@ For each case study identified in Step 3B, generate a `type: "faq"` section entr
 **Inject position in the YAML `sections` array:**
 - Add the `type: "faq"` entry BEFORE any highlight-box or final CTA section that may exist in the `sections` array
 - If the sections array has no highlight-box or CTA entry, append the FAQ entry at the end of the array
-- Use 2-space indentation for list items to match the existing sections array formatting
+- Use 4-space indentation for `faqItems` children (each `- question:` item is indented 4 spaces beyond the `faqItems:` key) to match the existing sections array formatting
 - The page template auto-emits FAQPage JSON-LD from `type: "faq"` entries -- no additional action needed
 
 ### Step 5A: Update Blog Post Frontmatter and Inject FAQ
