@@ -253,9 +253,9 @@ For each case study identified in Step 3B, generate a `type: "faq"` section entr
 - Use 2-space indentation for list items to match the existing sections array formatting
 - The page template auto-emits FAQPage JSON-LD from `type: "faq"` entries -- no additional action needed
 
-### Step 5: Update Frontmatter and Inject FAQ
+### Step 5A: Update Blog Post Frontmatter and Inject FAQ
 
-For each post being updated:
+For each blog post being updated:
 
 1. **Add or update `lastModified` frontmatter field:**
 
@@ -275,6 +275,23 @@ lastModified: "2026-06-06"  # ← add this line
    - No markdown formatting errors (missing `###`, broken newlines)
    - The `lastModified` date is present in frontmatter
    - Post title, description, body content, and slug are unchanged
+
+### Step 5B: Update Case Study Frontmatter and Verify YAML
+
+For each case study being updated:
+
+1. **Inject the `type: "faq"` entry** into the `sections` array at the correct position (before highlight-box or CTA if present, otherwise at the end of the array).
+
+2. **Add or update `lastModified` frontmatter field** (same pattern as 5A).
+
+3. **Verify YAML structure** by re-reading the modified file and confirming:
+   - The injected block parses as valid YAML (no missing quotes, no broken indentation, no tabs -- YAML requires spaces)
+   - `type: "faq"` is present
+   - `sectionLabel`, `heading`, and `faqItems` are all present
+   - Each faqItem has both `question` and `answer` fields
+   - `faqItems` count matches what was generated (3 to 5)
+   - 2-space indentation is consistent with surrounding sections array entries
+   - Case study title, slug, description, and body content are unchanged
 
 ### Step 6: Git Commit and Push
 
