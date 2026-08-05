@@ -423,6 +423,13 @@ Push status: [success/failed]
 - Present both data points in the answer: "We typically recommend $2,000 to $3,000 per month, though some accounts start as low as $1,500..."
 - Tag the answer with [MEDIUM] confidence
 
+**Broken YAML injection (case studies):**
+- After injecting a `type: "faq"` section into a case study's `sections` array, the file fails to parse (Astro build error, malformed frontmatter, or YAML linting error)
+- Re-read the file immediately after injection and visually verify: consistent 2-space indentation, no tab characters, all string values properly quoted, no stray characters outside the array
+- Common causes: tabs instead of spaces, missing quotes on values containing colons, misaligned list item indentation
+- If uncertain, use the Edit tool to re-apply the block with explicit spacing rather than attempting inline repair
+- Log the case study filename and the YAML error in the run report under "Issues Encountered"
+
 ---
 
 ## Amnesia Prevention
