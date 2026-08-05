@@ -291,7 +291,8 @@ WHERE id = '{youtube_entries_row_uuid}';
 ```sql
 INSERT INTO seo_content_queue (
   status, slug, draft_content, draft_generated_at, updated_at,
-  source_type, source_id, source_url
+  source_type, source_id, source_url,
+  template_type, target_keyword
 )
 VALUES (
   'draft',
@@ -300,7 +301,9 @@ VALUES (
   now(), now(),
   'newsletter',
   '{newsletter_sends_row_uuid}',
-  NULL
+  NULL,
+  'newsletter',
+  '{target_keyword_derived_in_step_3}'
 )
 RETURNING id;
 ```
