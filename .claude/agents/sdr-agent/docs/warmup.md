@@ -65,7 +65,7 @@ Using the inventory from Step W0, build the answered/unanswered list:
 | 3 | What's your current monthly ad spend, or what are you planning to invest? | Any dollar amount for ad budget, spend, or investment. Approximate ranges count ("around $5K", "looking to spend $10K+"). |
 | 4 | What's your target cost per acquisition or ROAS goal? | Any mention of CPA target, ROAS goal, cost per lead target, return goals, or efficiency benchmarks. |
 | 5 | How long have you been in business? | Years in business, founding year, "been doing this for X years", or context that makes it obvious (e.g., "we're a new brand"). |
-| 6 | What is your average yearly revenue? | Any revenue figure, whether monthly or annual. Annual run rate counts. Saying "we're a startup with no revenue yet" counts. |
+| 6 | What's your average monthly revenue? | Any revenue figure, whether monthly or annual. Annual run rate counts. Saying "we're a startup with no revenue yet" counts. |
 | 7 | Please share a link to your website | A URL, domain, or any "our website is..." mention. The job description URL field counts if present. |
 
 Build a simple answered/unanswered list:
