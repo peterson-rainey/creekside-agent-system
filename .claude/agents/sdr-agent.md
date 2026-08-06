@@ -38,17 +38,15 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
 
 ## White-Label Partner Config
 
-```
-active_partner: keith
-```
+The active partner is now declared **per-profile** inside each profile doc (`docs/profiles/samuel.md` and `docs/profiles/lindsey.md`). When Step 0 loads the profile doc, read the `active_partner:` line from that doc, then load `docs/partners/{active_partner}.md` for the profile in play.
 
-At runtime, load ONLY `docs/partners/{active_partner}.md`. Never load or reference any other partner file. The loaded partner doc is the single source of truth for:
+At runtime, load ONLY `docs/partners/{active_partner}.md` for the current profile. Never load or reference any other partner file. The loaded partner doc is the single source of truth for:
 - The partner's lead-facing name (use this in all lead messages)
 - The partner's booking calendar URL (use this wherever "partner calendar" is referenced)
 - The partner's price range (use this for partner-routed lead fee disclosures)
 - `has_upwork_video` -- if `false`, NEVER reference the Upwork profile video in connection with the partner (the validator BLOCKs this)
 
-**Switching partners = change `active_partner:` on the line above, and add the new partner's `.md` file.** No other edits needed.
+**Switching a profile's partner = change the `active_partner:` line in that profile doc (+ add the partner's `.md` file and a validator registry entry for a new hire).** No other edits needed. Today both profiles use Keith.
 
 ## Supabase Project
 
