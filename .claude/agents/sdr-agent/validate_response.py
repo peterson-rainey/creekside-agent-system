@@ -63,43 +63,88 @@ _SDR_AGENT_MD_PATH = os.path.join(
     os.path.dirname(__file__), "..", "sdr-agent.md"
 )
 
+_PROFILES_DIR = os.path.join(
+    os.path.dirname(__file__), "docs", "profiles"
+)
 
-def _load_active_partner():
+
+def _load_active_partner(profile="samuel"):
     """
-    Parse active_partner: from sdr-agent.md and return the partner dict.
-    Falls back to 'scott' if the file can't be read or the line is absent.
+    Parse active_partner: from the profile doc matching `profile`, then fall
+    back to sdr-agent.md's global line, then fall back to the registry default.
+
+    Resolution order:
+      1. docs/profiles/{profile}.md  active_partner: line
+      2. sdr-agent.md                active_partner: line (legacy global)
+      3. Hardcoded default: 'keith'
+
     Returns (slug, partner_dict).
     """
-    default_slug = "scott"
+    default_slug = "keith"
+    slug = None
+
+    # 1. Try the profile doc first
+    profile_path = os.path.join(_PROFILES_DIR, f"{profile}.md")
     try:
-        with open(_SDR_AGENT_MD_PATH, "r") as f:
+        with open(profile_path, "r") as f:
             for line in f:
                 m = re.match(r"^\s*active_partner:\s*(\S+)", line)
                 if m:
                     slug = m.group(1).strip().lower()
-                    if slug in _PARTNER_REGISTRY:
-                        return slug, _PARTNER_REGISTRY[slug]
+                    break
     except (OSError, IOError):
         pass
-    return default_slug, _PARTNER_REGISTRY[default_slug]
+
+    # 2. Fall back to sdr-agent.md global line
+    if slug is None or slug not in _PARTNER_REGISTRY:
+        try:
+            with open(_SDR_AGENT_MD_PATH, "r") as f:
+                for line in f:
+                    m = re.match(r"^\s*active_partner:\s*(\S+)", line)
+                    if m:
+                        slug = m.group(1).strip().lower()
+                        break
+        except (OSError, IOError):
+            pass
+
+    # 3. Fall back to hardcoded default
+    if slug is None or slug not in _PARTNER_REGISTRY:
+        slug = default_slug
+
+    return slug, _PARTNER_REGISTRY[slug]
 
 
-_ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner()
+# Module-level load uses default profile (samuel) for the whitelist set.
+# Per-profile resolution happens inside check_blocks() at call time.
+_ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("samuel")
 
 # ---------------------------------------------------------------------------
 # Calendar URL whitelist (FIX A)
-# Any calendar.app.google or calendly.com URL not in this set is a BLOCK.
+# Any calendar.app.google, calendar.google.com/calendar/..., or calendly.com
+# URL not in this set is a BLOCK.
 # The active white-label partner's calendar is dynamically added at load time.
+# NOTE: Per-profile partner resolution happens inside check_blocks() at call
+# time, so the module-level whitelist uses the samuel-profile active partner.
+# check_blocks() rebuilds the effective whitelist per profile at runtime.
 # ---------------------------------------------------------------------------
 CALENDAR_URL_WHITELIST = {
     "https://calendar.app.google/wSdVbfwaJRzkw12E7",   # samuel
     "https://calendly.com/lindsey-bouffard/30min",       # lindsey
-    _ACTIVE_PARTNER["calendar"],                         # active white-label partner
+    _ACTIVE_PARTNER["calendar"],                         # active white-label partner (samuel profile default)
 }
 
-# Regex to find any calendar.app.google or calendly.com URL in the response
+# Regex to find any calendar.app.google, calendar.google.com/calendar/...,
+# or calendly.com URL in the response.
+# Covers:
+#   https://calendar.app.google/<token>
+#   https://calendar.google.com/calendar/u/0/appointments/schedules/<token>
+#   https://calendly.com/<path>
 _CALENDAR_URL_RE = re.compile(
-    r'https?://(?:calendar\.app\.google|calendly\.com)/\S+',
+    r'https?://(?:'
+    r'calendar\.app\.google'
+    r'|calendar\.google\.com/calendar(?:/[^\s,;)]*)?'
+    r'|calendly\.com'
+    r')/[^\s,;)]*',
     re.IGNORECASE,
 )
 
@@ -300,13 +345,28 @@ def check_blocks(text, profile="samuel"):
     Check for BLOCK-level issues. Returns list of (category, match_text).
 
     profile: 'samuel' (default) or 'lindsey'.
-    When profile='lindsey', any calendar.app.google URL is a BLOCK -- Lindsey
-    may only use https://calendly.com/lindsey-bouffard/30min. Samuel's and
-    the active partner's calendar.app.google links must never appear in a lindsey
-    draft. If partner routing is needed, flag for operator handling rather than
-    including the partner's link in a Lindsey-profile response.
+
+    Calendar URL enforcement (profile-aware):
+      - samuel: standard whitelist (Samuel's calendar + Lindsey's Calendly +
+        the profile's active partner calendar). Any other booking URL is a BLOCK.
+      - lindsey: Samuel's calendar (https://calendar.app.google/wSdVbfwaJRzkw12E7)
+        is ALWAYS a BLOCK. Lindsey's Calendly + the lindsey-profile's active partner
+        calendar are allowed. Any other URL is a BLOCK.
+        The lindsey-profile active partner's calendar is loaded per-profile at
+        call time, so Keith's calendar.google.com URL is whitelisted for Lindsey
+        when Keith is Lindsey's active partner.
     """
     issues = []
+
+    # Resolve the active partner for THIS profile (profile-aware, not module-level).
+    active_partner_slug, active_partner = _load_active_partner(profile)
+
+    # Build the effective whitelist for this profile + partner combination.
+    _effective_whitelist = {
+        "https://calendar.app.google/wSdVbfwaJRzkw12E7",   # samuel
+        "https://calendly.com/lindsey-bouffard/30min",       # lindsey
+        active_partner["calendar"],                          # active partner for THIS profile
+    }
 
     for pattern, category in BLOCK_PATTERNS:
         m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
@@ -325,38 +385,39 @@ def check_blocks(text, profile="samuel"):
             issues.append(("missing_calendar_link", "(call suggested but no URL)"))
 
     # Calendar URL whitelist check (B1)
-    # Profile-aware: when profile=lindsey, any calendar.app.google URL is a BLOCK.
-    # Lindsey may only use https://calendly.com/lindsey-bouffard/30min.
-    # When profile=samuel or absent, the standard three-URL whitelist applies.
+    # Profile-aware:
+    #   - lindsey: Samuel's calendar.app.google URL is ALWAYS a BLOCK.
+    #     Lindsey's Calendly + the lindsey-profile's active partner calendar are
+    #     allowed (even when the partner uses a calendar.google.com URL).
+    #   - samuel: standard effective whitelist applies.
+    _SAMUEL_CALENDAR = "https://calendar.app.google/wSdVbfwaJRzkw12E7"
     for url_match in _CALENDAR_URL_RE.finditer(text):
         url = url_match.group().rstrip('.,;)')  # strip trailing punctuation
         if profile == "lindsey":
-            # For Lindsey drafts: calendar.app.google is never allowed
-            if "calendar.app.google" in url:
+            if url == _SAMUEL_CALENDAR:
+                # Samuel's calendar is always blocked on lindsey profile
                 issues.append((
-                    "lindsey_calendar_app_google_url",
-                    f"{url} -- Lindsey profile may only use "
-                    "https://calendly.com/lindsey-bouffard/30min; "
-                    "calendar.app.google links (Samuel, active partner) are not permitted in Lindsey drafts; "
-                    "if partner routing is needed, flag for operator handling",
+                    "lindsey_blocked_calendar_url",
+                    f"{url} -- Samuel's booking calendar must never appear in a "
+                    "Lindsey-profile draft (Cross-Profile Routing Prohibition); "
+                    "use Lindsey's Calendly or the active partner's calendar instead",
                 ))
-            elif url not in CALENDAR_URL_WHITELIST:
+            elif url not in _effective_whitelist:
                 issues.append((
                     "non_whitelisted_calendar_url",
-                    f"{url} -- only approved URLs are samuel: "
-                    "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
-                    "lindsey: https://calendly.com/lindsey-bouffard/30min | "
-                    f"active partner ({_ACTIVE_PARTNER['name']}): {_ACTIVE_PARTNER['calendar']}",
+                    f"{url} -- only approved URLs for lindsey profile are: "
+                    "https://calendly.com/lindsey-bouffard/30min | "
+                    f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
         else:
             # samuel (default) or unknown profile: standard whitelist
-            if url not in CALENDAR_URL_WHITELIST:
+            if url not in _effective_whitelist:
                 issues.append((
                     "non_whitelisted_calendar_url",
                     f"{url} -- only approved URLs are samuel: "
                     "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
                     "lindsey: https://calendly.com/lindsey-bouffard/30min | "
-                    f"active partner ({_ACTIVE_PARTNER['name']}): {_ACTIVE_PARTNER['calendar']}",
+                    f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
 
     # "Cade" in lead-facing response -- profile-dependent (ruling 2026-07-23).
@@ -379,14 +440,15 @@ def check_blocks(text, profile="samuel"):
 
     # ---------------------------------------------------------------------------
     # Inactive partner bleed (BLOCK)
-    # When a partner is inactive (not the active_partner), any mention of that
-    # partner's name (word-boundary, case-insensitive) or calendar URL in a draft
-    # is a BLOCK. This catches context bleed like "check out my profile video where
-    # I talk about Jay" when Scott is the active partner.
+    # When a partner is inactive (not the active_partner for THIS profile), any
+    # mention of that partner's name (word-boundary, case-insensitive) or calendar
+    # URL in a draft is a BLOCK. This catches context bleed like "check out my
+    # profile video where I talk about Jay" when Keith is the active partner.
+    # Uses active_partner_slug resolved per-profile above.
     # ---------------------------------------------------------------------------
     for slug, partner in _PARTNER_REGISTRY.items():
-        if slug == _ACTIVE_PARTNER_SLUG:
-            continue  # skip the active partner -- it's allowed
+        if slug == active_partner_slug:
+            continue  # skip the active partner for this profile -- it's allowed
         inactive_name = partner["name"]
         inactive_cal = partner["calendar"]
         # Check inactive partner name (word-boundary match)
@@ -395,7 +457,7 @@ def check_blocks(text, profile="samuel"):
             issues.append((
                 "inactive_partner_name_bleed",
                 f"{name_match.group()} -- '{inactive_name}' is an INACTIVE partner "
-                f"(active: {_ACTIVE_PARTNER['name']}); remove all references to "
+                f"(active for {profile}: {active_partner['name']}); remove all references to "
                 f"inactive partners from lead-facing drafts",
             ))
         # Check inactive partner calendar URL (substring match -- URL is unique enough)
@@ -405,8 +467,8 @@ def check_blocks(text, profile="samuel"):
             issues.append((
                 "inactive_partner_calendar_bleed",
                 f"{inactive_cal} -- calendar URL for inactive partner '{inactive_name}'; "
-                f"use active partner '{_ACTIVE_PARTNER['name']}' calendar instead: "
-                f"{_ACTIVE_PARTNER['calendar']}",
+                f"use active partner '{active_partner['name']}' calendar instead: "
+                f"{active_partner['calendar']}",
             ))
 
     # ---------------------------------------------------------------------------
@@ -428,8 +490,8 @@ def check_blocks(text, profile="samuel"):
     # Pattern 2: "profile video" anywhere combined with partner name anywhere
     # (kept broad -- "profile video" is unambiguous regardless of proximity).
     # ---------------------------------------------------------------------------
-    if not _ACTIVE_PARTNER.get("has_upwork_video", True):
-        partner_name = _ACTIVE_PARTNER["name"]
+    if not active_partner.get("has_upwork_video", True):
+        partner_name = active_partner["name"]
         partner_name_re = re.escape(partner_name)
         # Pattern 1: specific "our video" phrase within 60 chars of partner name
         _OUR_VIDEO = (
@@ -680,21 +742,42 @@ def check_and_fix_warns(text):
         fixed = re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)', r'\2', fixed)
 
     # 11. Signatures (trailing)
+    # Anchored to end-of-text to avoid false positives on mid-sentence name mentions.
+    # Catches:
+    #   Bare names:              "Samuel" / "Lindsey" (with optional preceding newline)
+    #   Dash-prefixed names:     "- Lindsey" / "– Lindsey" / "— Lindsey"
+    #   Full names/initials:     "Lindsey Bouffard" / "Lindsey B." / "Samuel Rainey"
+    #   Closing + name on line:  "Thanks, Lindsey" / "Talk soon, Samuel"
+    #   Multi-line closings:     "Best,\nLindsey Bouffard"
+    #   Standalone closings:     "Best," / "Regards," / "Cheers,"
+    # All patterns are stripped as WARN (auto-fix: remove the signature block).
+    _PERSONA_NAME_RE = (
+        r'(?:Lindsey(?:\s+Bouffard|\s+B\.)?|Samuel(?:\s+Rainey)?)'
+    )
     sig_patterns = [
-        r'\n\s*Samuel\s*$',
-        r'\n\s*Lindsey\s*$',
+        # Bare persona names at end (with optional preceding newline/whitespace)
+        r'(?:\n\s*|\s+)' + _PERSONA_NAME_RE + r'\s*$',
+        # Dash/en-dash/em-dash prefixed persona names at end
+        r'[\n\s]*[-\u2013\u2014]\s*' + _PERSONA_NAME_RE + r'\s*$',
+        # "Closing phrase, Name" on final line (Thanks, Lindsey / Talk soon, Samuel)
+        r'[\n\s]*(?:Thanks|Talk\s+soon|Best|Cheers|Take\s+care|Warm\s+wishes|Sincerely|Regards|Looking\s+forward)[,\s]+' + _PERSONA_NAME_RE + r'\s*$',
+        # Multi-line: "Best,\nLindsey Bouffard" -- closing line then name line
+        r'[\n\s]*(?:Best|Regards|Thanks|Cheers|Warm\s+wishes|Sincerely|Take\s+care)[,\s]*\n\s*' + _PERSONA_NAME_RE + r'\s*$',
+        # Standalone closing lines (no name)
         r'\n\s*Best,?\s*$',
         r'\n\s*Regards,?\s*$',
         r'\n\s*Best regards,?\s*$',
         r'\n\s*Kind regards,?\s*$',
         r'\n\s*Warm regards,?\s*$',
         r'\n\s*Cheers,?\s*$',
+        r'\n\s*Sincerely,?\s*$',
     ]
     for pat in sig_patterns:
         m = re.search(pat, fixed, re.IGNORECASE | re.MULTILINE)
         if m:
             issues.append(("signature", m.group().strip()))
             fixed = fixed[:m.start()].rstrip()
+            break  # one signature strip per run; re-runs handle stacked patterns
 
     # 12. Pre-call work offers (unless "on a/the call" nearby)
     precall_patterns = [
