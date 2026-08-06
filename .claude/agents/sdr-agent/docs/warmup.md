@@ -207,7 +207,7 @@ Follow the same output format as the main router (Step 7):
 >
 > If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1
 >
-> So I can better prep for our call, a few quick things: What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's the revenue running at now? And go ahead and drop your website link if you have one.
+> So I can better prep for our call, a few quick things: What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's revenue running at in an average month? And go ahead and drop your website link if you have one.
 
 **(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
 
