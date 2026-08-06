@@ -137,6 +137,7 @@ Run these checks mentally before presenting. If any fail, fix before presenting.
 |---|---|---|
 | Version A is complete without context | Yes -- any reader understands it | Requires background or setup |
 | Version B is screenshot-worthy | Yes -- provokes reaction | Bland or requires explanation |
+| Cold audience | A stranger who doesn't run ads gets the point | Uses undefined jargon or unnamed platform |
 | Em dashes | Zero (`—`) | Any instance |
 | Curly quotes | Zero | Any instance |
 | Character count A | <= 280 | > 280 |
@@ -144,6 +145,12 @@ Run these checks mentally before presenting. If any fail, fix before presenting.
 | Tier 1 banned words | None | Any: delve, tapestry, beacon, realm, landscape, testament, symphony, labyrinth, cornerstone, mosaic, odyssey, cacophony, kaleidoscope, unwavering, multifaceted, holistic, spearhead |
 | Sounds like Peterson | Yes -- practitioner, direct | Sounds like generic social media copy |
 | Hashtags | None (or max 1 justified) | Multiple |
+| Tricolon | Zero three-part parallel lists | Any "X, Y, and Z" with similar clause lengths |
+| Reframe structure | Zero "It's not X. It's Y." | Any reframe/flip construction |
+| Parenthetical definition | Zero "(they call it X)" | Any clean parenthetical definition |
+| Dramatic pause | No theatrical short sentence after long one | Short sentence used for dramatic effect |
+| Tidy closer | Trails off or ends with question/casual thought | Clean quotable punchline that wraps with a bow |
+| Abstract metaphor | Concrete language (dollars, %, platform mechanics) | "half the picture", "painting an incomplete picture", etc. |
 
 ---
 
