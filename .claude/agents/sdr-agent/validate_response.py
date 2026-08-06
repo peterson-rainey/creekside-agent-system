@@ -755,14 +755,16 @@ def check_and_fix_warns(text):
         r'(?:Lindsey(?:\s+Bouffard|\s+B\.)?|Samuel(?:\s+Rainey)?)'
     )
     sig_patterns = [
-        # Bare persona names at end (with optional preceding newline/whitespace)
-        r'(?:\n\s*|\s+)' + _PERSONA_NAME_RE + r'\s*$',
+        # Multi-line: "Best,\nLindsey Bouffard" or "Talk soon,\nLindsey Bouffard"
+        # (closing keyword + optional comma + newline + persona name).
+        # MUST come before the bare-name pattern to strip both lines in one pass.
+        r'[\n\s]*(?:Best|Regards|Thanks|Cheers|Warm\s+wishes|Sincerely|Take\s+care|Talk\s+soon|Looking\s+forward)[,\s]*\n\s*' + _PERSONA_NAME_RE + r'\s*$',
+        # "Closing phrase, Name" on a SINGLE final line (e.g. "Thanks, Lindsey")
+        r'[\n\s]*(?:Thanks|Talk\s+soon|Best|Cheers|Take\s+care|Warm\s+wishes|Sincerely|Regards|Looking\s+forward)[,\s]+' + _PERSONA_NAME_RE + r'\s*$',
         # Dash/en-dash/em-dash prefixed persona names at end
         r'[\n\s]*[-\u2013\u2014]\s*' + _PERSONA_NAME_RE + r'\s*$',
-        # "Closing phrase, Name" on final line (Thanks, Lindsey / Talk soon, Samuel)
-        r'[\n\s]*(?:Thanks|Talk\s+soon|Best|Cheers|Take\s+care|Warm\s+wishes|Sincerely|Regards|Looking\s+forward)[,\s]+' + _PERSONA_NAME_RE + r'\s*$',
-        # Multi-line: "Best,\nLindsey Bouffard" -- closing line then name line
-        r'[\n\s]*(?:Best|Regards|Thanks|Cheers|Warm\s+wishes|Sincerely|Take\s+care)[,\s]*\n\s*' + _PERSONA_NAME_RE + r'\s*$',
+        # Bare persona names at end (with optional preceding newline/whitespace)
+        r'(?:\n\s*|\s+)' + _PERSONA_NAME_RE + r'\s*$',
         # Standalone closing lines (no name)
         r'\n\s*Best,?\s*$',
         r'\n\s*Regards,?\s*$',
@@ -771,6 +773,7 @@ def check_and_fix_warns(text):
         r'\n\s*Warm regards,?\s*$',
         r'\n\s*Cheers,?\s*$',
         r'\n\s*Sincerely,?\s*$',
+        r'\n\s*Talk\s+soon,?\s*$',
     ]
     for pat in sig_patterns:
         m = re.search(pat, fixed, re.IGNORECASE | re.MULTILINE)
