@@ -49,7 +49,17 @@ WHERE classification = 'authentic'
 ORDER BY random() LIMIT 3;
 ```
 
-Study these for: sentence length variation, casual hedges, parenthetical asides, how ideas trail off rather than conclude cleanly. This is NOT about the content of those posts -- it is about rhythm and register.
+Study these for: sentence length variation, casual hedges, how ideas trail off rather than conclude cleanly. This is NOT about the content of those posts -- it is about rhythm and register.
+
+**Peterson's public voice (LinkedIn/Twitter) has these traits (from 1,400+ message analysis):**
+- Self-deprecating humor with "lol" and "haha" -- use sparingly but authentically (1 per tweet max, and only when it genuinely fits)
+- Always backs claims with a specific number ($200K MRR, 19x ROAS, sub-$3,500 cost per case) -- never "great results"
+- Avg sentence length ~16 words. Never exceeds 25 words even in complex explanations.
+- Uses "just" as his #1 softener (27% of all messages). "here's the thing" as a transition. "but" and "so" for connectors -- NEVER "furthermore" or "moreover"
+- Challenges conventional wisdom: "I always thought X was all hype" / "I used to think that"
+- Uses semicolons occasionally -- distinctive and authentic
+- Contractions always. "don't" not "do not." No exceptions.
+- Exclamation marks at ~9% frequency -- only genuine reactions, never manufactured
 
 ---
 
