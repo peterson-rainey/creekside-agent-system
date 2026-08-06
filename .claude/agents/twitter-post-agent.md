@@ -84,12 +84,26 @@ Write these three extractions down internally before drafting. Do not skip this 
 
 **Tone:** Practitioner. Like something Peterson would say mid-conversation to a business owner who asked a direct question.
 
+**Cold-audience rule (mandatory):**
+- The reader has NEVER seen the LinkedIn post, does not know who Peterson is, and may not know the jargon
+- If the tweet uses a technical term (e.g. "negative conversions"), define it inline in plain language
+- Name the platform explicitly (Google Ads, Meta, etc.) -- never assume the reader knows what system you mean
+- The tweet must be 100% self-contained for someone scrolling Twitter with basic business knowledge
+
 **Anti-patterns to avoid:**
 - Do NOT open with "Most people..." or "Here's the truth:" -- generic AI opener
 - Do NOT summarize the LinkedIn post -- extract and compress a single insight
 - Do NOT add a call to action ("link in bio", "DM me", etc.)
 - Do NOT clean up rough edges -- a slightly imperfect phrasing reads more human
 - Do NOT use "delve", "leverage", "holistic", "ecosystem", "unpack", "tapestry", "landscape", "testament", "paradigm", "synergy", "game-changer", "cornerstone", "unwavering", "multifaceted", "spearhead"
+
+**AI-tell anti-patterns (based on analysis of Peterson's real writing):**
+- **No tricolon.** Never write three parallel clauses of similar length ("X, Y, and Z"). Peterson's sentences are uneven -- short then long then medium. Two items or one is fine.
+- **No reframe structure.** Never use "It's not X. It's Y." or "You're not dealing with X. You Y." Peterson states problems directly without the flip.
+- **No parenthetical definitions.** Never use "(they call it X)" or "(known as X)". If you need to define a term, weave it in messily: "Google lets you report failed sales back -- they call these negative conversions" not "(negative conversions)".
+- **No dramatic pause sentences.** Don't drop a theatrical short sentence after a long one for effect. Peterson uses fragments casually ("No ask." "I get it.") not dramatically.
+- **No tidy closers.** Never end with a clean quotable punchline that wraps with a bow. Peterson trails off with a question or a casual next thought: "Worth looking at before spend goes up." not "You gave it half the picture."
+- **No abstract metaphors.** Use concrete language. "your ROAS looks great on paper" not "you're painting an incomplete picture". Peterson talks in dollars, percentages, and specific platform mechanics.
 
 ---
 
