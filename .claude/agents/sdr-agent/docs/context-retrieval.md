@@ -159,6 +159,8 @@ Filter out initial proposals: responses at turn_index=1 that match the active pr
 
 Deduplicate by first 200 characters of full_response to prevent canned message bias.
 
+**Historical pricing is NOT quotable.** Retrieved sdr_responses are reference for voice, structure, and objection handling ONLY. Any pricing specifics inside them -- dollar retainers, setup fees, monthly amounts (e.g., "$1,500 setup / $1,500 a month"), old packages -- are historical and superseded. NEVER quote, adapt, or confirm a dollar figure because it appears in a retrieved past response. The ONLY current pricing policy is the two-stage model in `docs/response-guidelines.md` (Stage 1: custom and performance-based, defer to call; Stage 2: percentage-of-ad-spend tiers only). Observed failure: agent quoted "$1,500 setup and $1,500/mo management" pulled from retrieved history -- this is a leak, not proof.
+
 ### Discovery Call Insights
 ```sql
 SELECT * FROM logged_search_all(
