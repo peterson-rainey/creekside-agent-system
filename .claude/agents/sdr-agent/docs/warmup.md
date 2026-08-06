@@ -80,7 +80,7 @@ Q6 (avg monthly revenue): [UNANSWERED]
 Q7 (website): [ANSWERED -- "creeksidedental.com"] / [UNANSWERED]
 ```
 
-**Budget is pre-qualification.** If Q3 (ad spend / budget) is still UNANSWERED after W0, it is MANDATORY in the message. Budget is the pre-qualification lever before the call. Every other question can be skipped if answered; Q3 cannot.
+**Budget AND revenue are pre-qualification.** If Q3 (ad spend / budget) or Q6 (average monthly revenue) is still UNANSWERED after W0, it is MANDATORY in the message. These two answers determine the revenue-tier qualification (see Partner Redirect Mode in `docs/response-guidelines.md`), so both must be known before the call to decide whether the lead is worth talking to. Work the revenue question in however it fits naturally, but never drop it. Every other question can be skipped if answered; Q3 and Q6 cannot.
 
 **Protect the booked call.** The call is already booked. Nothing in the warmup may jeopardize it: no pricing discussion, no spend floors or minimums, no disqualification language. Keep it short and low-friction. If the lead's answers later reveal a low budget, that is handled on the call or afterward (partner routing) -- never in the warmup.
 
