@@ -76,7 +76,7 @@ Q2 (current strategy): [ANSWERED -- "running Google Ads right now"] / [UNANSWERE
 Q3 (ad spend): [ANSWERED -- "$3K/month currently"] / [UNANSWERED]
 Q4 (CPA/ROAS goal): [UNANSWERED]
 Q5 (years in business): [ANSWERED -- "been open 5 years"] / [UNANSWERED]
-Q6 (avg yearly revenue): [UNANSWERED]
+Q6 (avg monthly revenue): [UNANSWERED]
 Q7 (website): [ANSWERED -- "creeksidedental.com"] / [UNANSWERED]
 ```
 
