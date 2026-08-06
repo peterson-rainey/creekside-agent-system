@@ -120,10 +120,12 @@ Write these three extractions down internally before drafting. Do not skip this 
 - No hashtags
 - No emojis unless genuinely fitting
 - No em dashes
+- Must still make sense to a cold audience -- name the platform, avoid undefined jargon
+- All AI-tell anti-patterns from Version A apply here too (no tricolon, no reframe, no tidy closer, no abstract metaphors, no parenthetical definitions, no dramatic pauses)
 
-**Tone:** Hot take. The kind of thing a confident practitioner says in a Slack message or a text to a peer, not to a LinkedIn audience. Slightly blunter than Version A.
+**Tone:** Hot take. The kind of thing a confident practitioner says in a text to a peer, not to a LinkedIn audience. Slightly blunter than Version A.
 
-**The test:** Could someone screenshot this and repost it without context and have it stand on its own as a strong opinion? If yes, it's Quote-Style material. If it requires the LinkedIn post for context, rewrite it.
+**The test:** Could someone screenshot this and repost it without context and have it stand on its own as a strong opinion? If yes, it's Quote-Style material. If it requires the LinkedIn post for context, rewrite it. Must also pass the cold-audience test -- would someone who doesn't run ads still get the point?
 
 ---
 
