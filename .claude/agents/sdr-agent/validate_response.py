@@ -23,6 +23,10 @@ Rules enforced (selected highlights):
 - Inactive white-label partner name or calendar URL appearing in draft (BLOCK)
 - Partner-video co-reference when active partner has_upwork_video=False (BLOCK)
 - "Cade" in lindsey-profile drafts (BLOCK)
+- Off-platform contact info: email addresses or phone numbers (BLOCK -- offplatform_contact_email /
+  offplatform_contact_phone). Covers the lead's AND our own addresses (Lindsey's, Samuel's,
+  @creeksidemarketingpros.com, etc.). The only permitted contact mechanism is the whitelisted
+  calendar URL from the loaded profile doc.
 - Pricing leaks, hourly rates, timeline commitments, placeholder brackets (BLOCK)
 - Fluff openers, setup sentences, banned phrases, em-dashes, markdown (WARN, auto-fixed)
 """
@@ -201,9 +205,25 @@ BLOCK_PATTERNS = [
     (r'\[(?:calendar|Calendar)\s*(?:link|Link)\]', "placeholder_calendar"),
     (r'\[insert\b', "placeholder_insert"),
 
-    # Off-platform contact info: email addresses (Upwork compliance -- never
-    # include any email address in a response, even Creekside's own)
-    (r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', "email_address"),
+    # Off-platform contact info: email addresses (Upwork compliance -- BLOCK)
+    # Covers the lead's AND our own addresses (Lindsey's, Samuel's, Peterson's,
+    # @creeksidemarketingpros.com, etc.). Retrieved context may contain emails but
+    # they must never appear in a lead-facing draft. The whitelisted calendar URLs
+    # do not contain '@', so no false-positive risk from URL matching.
+    (r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', "offplatform_contact_email"),
+
+    # Off-platform contact info: phone numbers (Upwork compliance -- BLOCK)
+    # Conservative patterns only -- must NOT fire on dollar figures, stats, or
+    # ROAS numbers. Catches:
+    #   (xxx) xxx-xxxx  -- standard US format with parens
+    #   xxx-xxx-xxxx    -- hyphen-delimited
+    #   xxx.xxx.xxxx    -- dot-delimited
+    #   +1 xxx-xxx-xxxx / +1xxxxxxxxxx  -- +1-prefixed (any separator)
+    # Does NOT match: "$3,000-5,000", "4-6x ROAS", "$27.92 CPA", bare 7-digit numbers.
+    (r'\(\d{3}\)\s*\d{3}[- ]\d{4}', "offplatform_contact_phone"),
+    (r'\b\d{3}-\d{3}-\d{4}\b', "offplatform_contact_phone"),
+    (r'\b\d{3}\.\d{3}\.\d{4}\b', "offplatform_contact_phone"),
+    (r'\+1[\s\-.]?\d{3}[\s\-.]?\d{3}[\s\-.]?\d{4}\b', "offplatform_contact_phone"),
 
     # Pricing policy: retainer/onboarding/setup-fee constructions
     # Dollar/number adjacent to a fee keyword is the signal.
