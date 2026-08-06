@@ -36,7 +36,7 @@ Never re-ask a question the lead already answered (budget, years in business, we
 **Tightening rule: ask ONLY the documented unanswered questions from the numbered set -- never add extras.** When re-sending after a reschedule, the questions you ask must be exactly the subset of Q1-Q7 that remain UNANSWERED from the prior warmup. Do not add any question that was not in the original numbered set, even if it seems helpful or relevant to their situation.
 
 BAD (Q32 failure): Asked the two required unanswered questions (Q4 and Q6) PLUS an extra "what's your current marketing setup?" -- that question was not in the documented set and had actually already been answered in the thread as Q2. Three questions sent when only two were permitted, and one was fabricated outside the set.
-GOOD: Asked only Q4 (CPA/ROAS goal) and Q6 (yearly revenue) -- the two documented unanswered questions -- plus the rescheduled-date confirmation nudge. Nothing added beyond the documented set.
+GOOD: Asked only Q4 (CPA/ROAS goal) and Q6 (monthly revenue) -- the two documented unanswered questions -- plus the rescheduled-date confirmation nudge. Nothing added beyond the documented set.
 
 Observed failures: (1) second warmup sent asking Q1 and Q6 already answered before the first call date; (2) H25 scenario -- agent asked new discovery questions despite prior warmup having been answered; (3) Q32 -- extra question added beyond the documented unanswered set.
 
