@@ -112,6 +112,13 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | newsletter-send-agent | Peterson wants to send his weekly newsletter to GHL subscribers without opening the GHL UI. Handles opt-out suppression, shows preview + recipient count, requires explicit confirmation before sending. Admin-only (needs GHL_API_KEY). NOTE: status=draft in agent_definitions -- confirm before spawning |
 | unresponded-message-agent | Find messages 48h+ without a reply (Gmail, GChat, ClickUp). Two-pass: Pass 1 filters candidates, Pass 2 detects partial responses, selective responses, and topic-shifted conversations. Drafts replies for inbound, auto-sends ClickUp follow-ups to team, flags client gaps |
 
+## Brain & Knowledge Maintenance (Routines -- not spawnable agents)
+
+| Routine | Runs when... |
+|---------|-------------|
+| brain-steward | Weekly Tue 7AM CT. Consumes Monday audit fleet outputs: auto-archives confirmed-stale knowledge, fixes registry drift, acknowledges known alert patterns. Bundles uncertain items as proposals for Peterson's approval. Also researches new Claude Code RAG practices, GitHub skills, Anthropic changelog updates. |
+| brain-steward-followup | Weekly Wed 8AM CT. Checks for Peterson's approval responses on brain-steward proposals and executes approved items. Self-completing loop. |
+
 ## Infrastructure & Pipelines
 
 | Agent | Use when... |
