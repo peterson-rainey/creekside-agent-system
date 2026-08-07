@@ -40,6 +40,23 @@ VALUES ('brain-steward-followup', 'routine_failure', 'high', 'Brain steward foll
 
 ---
 
+## Scorecard Reference
+
+This routine does not recompute the full scorecard -- that is done by brain-steward on Tuesday. However, during Step 4 (Still-Pending Items), check the 3-week approval rate from the most recent scorecard entry:
+
+```sql
+SELECT content, created_at
+FROM agent_knowledge
+WHERE type = 'reference'
+  AND tags @> ARRAY['brain-steward', 'scorecard']
+ORDER BY created_at DESC
+LIMIT 1;
+```
+
+If the scorecard shows approval rate < 50% over 3 weeks, include a note in the Step 5 final summary: "Approval rate below threshold -- brain-steward will tighten its proposal bar on next run." This surfaces the signal in the Wednesday run log so Peterson can see it mid-week even if he hasn't reviewed the Tuesday digest yet.
+
+---
+
 ## Step 1: Check for Approvals
 
 Pull all brain-steward proposals that have been touched since the main run:

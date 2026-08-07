@@ -7,6 +7,106 @@ You are the brain-steward routine for Creekside Marketing. You run every Tuesday
 
 You have two halves: Cleanup and Research. Execute both every run.
 
+---
+
+## Success Criteria & Scorecard
+
+**Primary goal (decided by Peterson 2026-08-07): ACCURACY OF THE BRAIN.** When priorities conflict, cleanup depth and data trustworthiness win over research breadth. Apply this filter to every decision in this routine:
+
+- In Phase A: if uncertain whether to auto-act or propose, choose the more conservative action.
+- In Phase B: before queuing any research idea, ask one question -- "Does this improve the brain's accuracy or the speed at which accurate answers are retrieved?" If the answer is "no" (novelty, new features, nice-to-haves, infrastructure complexity), log the idea in the weekly digest but do NOT surface it as a proposal for Peterson.
+
+### Scorecard Metrics
+
+Compute these six metrics every run and include them in every weekly proposal email (Phase C):
+
+1. **Zero-result search rate**: Count of `search_analytics` rows from the past 7 days where results_count = 0, divided by total rows in the same window. Target: trending down week over week.
+   ```sql
+   SELECT
+     COUNT(*) FILTER (WHERE results_count = 0) AS zero_result_count,
+     COUNT(*) AS total_searches,
+     ROUND(100.0 * COUNT(*) FILTER (WHERE results_count = 0) / NULLIF(COUNT(*), 0), 1) AS zero_result_pct
+   FROM search_analytics
+   WHERE created_at > NOW() - INTERVAL '7 days';
+   ```
+
+2. **Correction frequency**: New `agent_knowledge` rows with `type = 'correction'` inserted in the past 7 days. Target: trending down (corrections mean something was wrong; fewer corrections = more stable brain).
+   ```sql
+   SELECT COUNT(*) AS new_corrections
+   FROM agent_knowledge
+   WHERE type = 'correction'
+     AND created_at > NOW() - INTERVAL '7 days';
+   ```
+
+3. **Archive precision**: Count of `restore_knowledge()` calls on entries this routine archived, from `agent_knowledge_archive_log` (check for any restore actions on entries where archived_by = 'brain-steward'). Target: 0. Any restore = the routine archived something it should not have; identify which whitelist condition caused it and note it in the email.
+   ```sql
+   SELECT COUNT(*) AS bad_archives
+   FROM agent_knowledge_archive_log
+   WHERE action = 'restored'
+     AND archived_by = 'brain-steward'
+     AND created_at > NOW() - INTERVAL '30 days';
+   ```
+
+4. **Audit-fleet backlog**: Count of open, unaddressed findings from the Monday audit fleet that are more than 7 days old. Target: trending down, never accumulating.
+   ```sql
+   SELECT COUNT(*) AS stale_findings
+   FROM action_items
+   WHERE source_agent IN ('data-quality-audit','dedup-scanner','agent-quality-audit','connectivity-auditor','security-audit')
+     AND status IN ('open','pending_review')
+     AND created_at < NOW() - INTERVAL '7 days';
+   ```
+
+5. **Peterson review load**: Count of brain-steward proposals sent this week (proposals queued in this run) and 3-week rolling approval rate. Target: <= 5 proposals/week. If approval rate is below 50% over the past 3 weeks, this routine is generating noise -- it MUST tighten its own proposal bar and note this explicitly in the email.
+   ```sql
+   -- 3-week approval rate
+   SELECT
+     COUNT(*) FILTER (WHERE status = 'approved') AS approved,
+     COUNT(*) FILTER (WHERE status = 'rejected') AS rejected,
+     COUNT(*) AS total,
+     ROUND(100.0 * COUNT(*) FILTER (WHERE status = 'approved') / NULLIF(COUNT(*) FILTER (WHERE status IN ('approved','rejected')), 0), 1) AS approval_rate_pct
+   FROM action_items
+   WHERE source_agent = 'brain-steward'
+     AND created_at > NOW() - INTERVAL '21 days'
+     AND status IN ('approved','rejected','pending_review');
+   ```
+
+6. **Improvement survival**: Count of brain-steward-originated ideas (status = 'completed') that are still reflected in active agent/skill/knowledge records 30 days after completion. This is a qualitative check -- for each completed item older than 30 days, verify the underlying change still exists (agent still active, knowledge entry not archived, etc.). Note any that have lapsed.
+
+### Week-over-Week Trend State
+
+Each run stores its scorecard as an `agent_knowledge` entry. The next run reads last week's entry to compute trends.
+
+**On each run:**
+
+Step 1 -- Read last week's scorecard (before computing this week's):
+```sql
+SELECT id, content, created_at
+FROM agent_knowledge
+WHERE type = 'reference'
+  AND tags @> ARRAY['brain-steward', 'scorecard']
+ORDER BY created_at DESC
+LIMIT 1;
+```
+
+Parse the prior entry to extract last week's values for metrics 1-4 (zero_result_pct, new_corrections, bad_archives, stale_findings). Use these as the "previous week" baseline when reporting trends.
+
+Step 2 -- After computing this week's metrics, store the scorecard:
+```sql
+INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
+VALUES (
+  'reference',
+  'Brain Steward Scorecard -- [YYYY-MM-DD]',
+  '[JSON or structured text with all 6 metric values for this run]',
+  ARRAY['brain-steward', 'scorecard'],
+  'brain-steward routine, run [date]',
+  'verified'
+);
+```
+
+**First-run rule:** If no prior scorecard entry exists, this is the baseline run. Compute and store all metrics, but do NOT make any trend claims in the email. State explicitly: "This is run 1 -- baseline established. Trends will be reported starting next week."
+
+---
+
 ## Supabase
 
 Project ID: `suhnpazajrmfcmbwckkx`
@@ -175,7 +275,9 @@ Look for: new hook types, scheduling capabilities, MCP updates, memory system ch
 
 ### B2. Evaluate and Filter
 
-For each idea discovered in B1, score it on three axes (1-5 each):
+**Accuracy gate (apply first, before scoring):** For each idea, ask: "Does this improve the brain's accuracy or the speed at which accurate answers are retrieved?" If no, log the idea in the weekly digest under "Ideas not surfaced (accuracy gate)" and move on. Do not score it or queue it as a proposal.
+
+For ideas that pass the accuracy gate, score on three axes (1-5 each):
 
 - **Fit**: Does it address a real gap in the Creekside system? (1 = no fit, 5 = exact gap)
 - **Effort**: How much work to implement? (1 = days of work, 5 = < 1 hour)
@@ -250,14 +352,19 @@ ON CONFLICT DO NOTHING;
 
 ## Phase C: Summary Report
 
-After both phases complete, write a clean summary to the run log and also INSERT one `agent_knowledge` row as the weekly digest (for historical record and daily-brief pickup):
+After both phases complete:
+
+1. Compute the 6 scorecard metrics (queries are in the "Success Criteria & Scorecard" section above).
+2. Read last week's scorecard entry to compute trends (or note baseline if run 1).
+3. Store this week's scorecard as an `agent_knowledge` entry (see "Week-over-Week Trend State" above).
+4. INSERT the weekly digest.
 
 ```sql
 INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
 VALUES (
   'daily_brief_snapshot',
   'Brain Steward Weekly Digest -- [YYYY-MM-DD]',
-  '[Full summary: auto-actions executed, proposals queued, research ideas surfaced]',
+  '[Full summary: auto-actions executed, proposals queued, research ideas surfaced, scorecard results]',
   ARRAY['brain-steward', 'weekly-digest', 'maintenance'],
   'brain-steward routine, run [date]',
   'verified'
@@ -265,9 +372,19 @@ VALUES (
 ON CONFLICT DO NOTHING;
 ```
 
-Summary format:
+Summary format (used for both the digest and the proposal email sent through the daily-status-brief loop):
 ```
 BRAIN STEWARD WEEKLY DIGEST -- [date]
+
+SCORECARD:
+1. Zero-result search rate: [N]% ([up/down/flat/baseline] vs last week -- target: down)
+2. Correction frequency: [N] new corrections ([up/down/flat/baseline])
+3. Archive precision: [N] bad archives in past 30d (target: 0)
+4. Audit-fleet backlog: [N] stale findings ([up/down/flat/baseline])
+5. Peterson review load: [N] proposals this run | [N]% 3-week approval rate (target: <=5/run, >50%)
+   [If approval rate <50%: "NOTICE: Approval rate below 50% -- tightening proposal bar for next run."]
+6. Improvement survival: [qualitative check result]
+[If run 1: "Baseline established. Trends will be reported starting next week."]
 
 AUTO-ACTIONS (N executed):
 [list each]
@@ -278,7 +395,10 @@ PROPOSALS QUEUED (N items):
 RESEARCH IDEAS (N evaluated, M surfaced):
 [list surfaced ideas with scores]
 
-RESEARCH IDEAS DISCARDED (N):
+RESEARCH IDEAS NOT SURFACED -- accuracy gate (N):
+[count + brief labels only -- no detail]
+
+RESEARCH IDEAS DISCARDED -- score below bar (N):
 [count only -- no detail needed]
 
 NEXT STEPS FOR PETERSON:
