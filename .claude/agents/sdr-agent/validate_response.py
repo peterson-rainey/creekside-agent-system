@@ -1054,6 +1054,31 @@ def check_and_fix_warns(text):
             ))
             break  # One WARN is enough; don't stack duplicates
 
+    # 16. Reply word count (WARN, no auto-fix)
+    # Follow-up replies over 200 words have a 44.6% drop-off rate vs 15.7% under 200.
+    # Initial proposals are exempt -- the validator cannot distinguish them, so this
+    # is a WARN to let the agent decide whether the cap applies.
+    word_count = len(fixed.split())
+    if word_count > 200:
+        issues.append((
+            "reply_length_excessive",
+            f"reply_length_excessive -- {word_count} words exceeds the 200-word follow-up cap "
+            "(data: 44.6% drop-off at 200+ vs 15.7% under 200). Shorten the reply or confirm "
+            "this is an initial proposal (exempt).",
+        ))
+
+    # 17. Question count (WARN, no auto-fix)
+    # Exactly 1 question is optimal (16.0% drop). 2 = 39.3%, 3+ = 50%+.
+    # Count "?" characters as a proxy for questions.
+    question_count = fixed.count('?')
+    if question_count >= 2:
+        issues.append((
+            "excessive_questions",
+            f"excessive_questions -- {question_count} questions detected; optimal is exactly 1 "
+            "(data: 1 question = 16.0% drop, 2 = 39.3%, 3+ = 50%+). Remove questions until "
+            "only 1 remains.",
+        ))
+
     # Clean up punctuation artifacts from phrase removals
     # Collapse whitespace before a comma: "word , word" -> "word, word"
     fixed = re.sub(r'\s+,', ',', fixed)
