@@ -38,13 +38,13 @@ Compute these six metrics every run and include them in every weekly proposal em
      AND created_at > NOW() - INTERVAL '7 days';
    ```
 
-3. **Archive precision**: Count of `restore_knowledge()` calls on entries this routine archived, from `agent_knowledge_archive_log` (check for any restore actions on entries where archived_by = 'brain-steward'). Target: 0. Any restore = the routine archived something it should not have; identify which whitelist condition caused it and note it in the email.
+3. **Archive precision**: Count of `restore_knowledge()` calls on entries this routine archived, from `agent_knowledge_archive_log`. Check for any restore actions on entries where `performed_by = 'brain-steward'`. Target: 0. Any restore = the routine archived something it should not have; identify which whitelist condition caused it and note it in the email.
    ```sql
    SELECT COUNT(*) AS bad_archives
    FROM agent_knowledge_archive_log
    WHERE action = 'restored'
-     AND archived_by = 'brain-steward'
-     AND created_at > NOW() - INTERVAL '30 days';
+     AND performed_by = 'brain-steward'
+     AND performed_at > NOW() - INTERVAL '30 days';
    ```
 
 4. **Audit-fleet backlog**: Count of open, unaddressed findings from the Monday audit fleet that are more than 7 days old. Target: trending down, never accumulating.
@@ -58,16 +58,19 @@ Compute these six metrics every run and include them in every weekly proposal em
 
 5. **Peterson review load**: Count of brain-steward proposals sent this week (proposals queued in this run) and 3-week rolling approval rate. Target: <= 5 proposals/week. If approval rate is below 50% over the past 3 weeks, this routine is generating noise -- it MUST tighten its own proposal bar and note this explicitly in the email.
    ```sql
-   -- 3-week approval rate
+   -- 3-week approval rate: count brain-steward proposals by their tag outcome
    SELECT
-     COUNT(*) FILTER (WHERE status = 'approved') AS approved,
-     COUNT(*) FILTER (WHERE status = 'rejected') AS rejected,
+     COUNT(*) FILTER (WHERE tags @> ARRAY['approved']) AS approved,
+     COUNT(*) FILTER (WHERE tags @> ARRAY['rejected']) AS rejected,
      COUNT(*) AS total,
-     ROUND(100.0 * COUNT(*) FILTER (WHERE status = 'approved') / NULLIF(COUNT(*) FILTER (WHERE status IN ('approved','rejected')), 0), 1) AS approval_rate_pct
-   FROM action_items
-   WHERE source_agent = 'brain-steward'
-     AND created_at > NOW() - INTERVAL '21 days'
-     AND status IN ('approved','rejected','pending_review');
+     ROUND(
+       100.0 * COUNT(*) FILTER (WHERE tags @> ARRAY['approved'])
+       / NULLIF(COUNT(*) FILTER (WHERE tags @> ARRAY['approved'] OR tags @> ARRAY['rejected']), 0),
+     1) AS approval_rate_pct
+   FROM agent_knowledge
+   WHERE tags @> ARRAY['brain-steward']
+     AND type = 'strategy_update_proposal'
+     AND created_at > NOW() - INTERVAL '21 days';
    ```
 
 6. **Improvement survival**: Count of brain-steward-originated ideas (status = 'completed') that are still reflected in active agent/skill/knowledge records 30 days after completion. This is a qualitative check -- for each completed item older than 30 days, verify the underlying change still exists (agent still active, knowledge entry not archived, etc.). Note any that have lapsed.
@@ -75,6 +78,16 @@ Compute these six metrics every run and include them in every weekly proposal em
 ### Week-over-Week Trend State
 
 Each run stores its scorecard as an `agent_knowledge` entry. The next run reads last week's entry to compute trends.
+
+**Determine the trust period before each run:**
+```sql
+SELECT COUNT(*) AS prior_scorecard_count
+FROM agent_knowledge
+WHERE type = 'reference'
+  AND tags @> ARRAY['brain-steward', 'scorecard'];
+```
+
+If `prior_scorecard_count < 4`, you are in the **trust period** (first 4 weeks). During the trust period, auto-archive never executes -- ALL archive candidates go to the proposal queue instead. State this explicitly in the digest.
 
 **On each run:**
 
@@ -171,22 +184,24 @@ ORDER BY severity DESC, created_at ASC;
 ```
 
 ```sql
--- Pull improvement-scanner proposals pending review (inserted as action_items)
-SELECT id, title, description, category, priority, status, source_agent, context, created_at
-FROM action_items
-WHERE status IN ('open', 'pending_review')
-  AND source_agent = 'improvement-scanner'
-ORDER BY priority DESC, created_at ASC;
+-- Pull improvement-scanner proposals pending review
+-- improvement-scanner writes agent_knowledge rows with type='strategy_update_proposal'
+-- and tags containing 'improvement-scanner' and 'pending-review'
+SELECT id, title, tags, LEFT(content, 400) AS content_preview, created_at
+FROM agent_knowledge
+WHERE type = 'strategy_update_proposal'
+  AND tags @> ARRAY['improvement-scanner', 'pending-review']
+ORDER BY created_at ASC;
 ```
 
 ```sql
--- Pull stale agent_knowledge entries (not accessed in 180+ days, low usage)
-SELECT id, title, type, tags, created_at, updated_at, usage_count, archived_at
+-- Pull stale agent_knowledge entries (not updated in 365+ days, not corrections/SOPs/config)
+-- NOTE: usage_count is never incremented by any system function -- do NOT filter on it
+SELECT id, title, type, tags, created_at, updated_at
 FROM agent_knowledge
 WHERE archived_at IS NULL
-  AND usage_count < 2
-  AND updated_at < NOW() - INTERVAL '180 days'
-  AND type NOT IN ('correction', 'sop')  -- corrections and SOPs are never auto-archived
+  AND updated_at < NOW() - INTERVAL '365 days'
+  AND type NOT IN ('correction', 'sop', 'configuration')
 ORDER BY updated_at ASC
 LIMIT 30;
 ```
@@ -195,17 +210,19 @@ LIMIT 30;
 
 Classify every item from A1 into one of two buckets using the whitelist below.
 
+**TRUST PERIOD CHECK (do first):** If `prior_scorecard_count < 4` (determined in the scorecard section above), skip the auto-archive row entirely -- ALL archive candidates automatically become PROPOSAL items regardless of age. Note this in the auto-action log.
+
 **AUTO-ACTION whitelist** (execute immediately without Peterson, log everything):
 
-| Item type | Condition | Action |
-|---|---|---|
-| pipeline_alert | alert_type = 'embedding_gap' and severity != 'critical' | `UPDATE pipeline_alerts SET acknowledged = true, resolved_by = 'brain-steward', resolution_note = 'Auto-resolved: known embedding gap pattern' WHERE id = ?` |
-| pipeline_alert | alert_type = 'stale_alert' | Acknowledge and resolve |
-| pipeline_alert | alert_type = 'duplicate_group' | Acknowledge (auto-remediation handles the fix) |
-| agent_knowledge | usage_count = 0 AND updated_at < 365 days ago AND type NOT IN ('correction','sop','configuration') | Archive via `SELECT archive_knowledge(id, reason, 'brain-steward')` |
-| system_registry | entry exists with status != 'active' but matching agent_definition IS active | `UPDATE system_registry SET status = 'active', updated_at = NOW() WHERE name = ? AND entry_type = 'agent'` |
-| system_registry | agent_definition status = 'deprecated' but system_registry.status = 'active' | `UPDATE system_registry SET status = 'inactive', updated_at = NOW() WHERE name = ?` |
-| action_item | improvement-scanner proposal, status = 'open', created_at > 30 days ago and NO response | Mark as 'pending_review' with note 'Awaiting Peterson approval -- surfaced in brain-steward weekly digest' |
+| Item type | Condition | Action | Trust period |
+|---|---|---|---|
+| pipeline_alert | alert_type = 'embedding_gap' and severity != 'critical' | `UPDATE pipeline_alerts SET acknowledged = true, resolved_by = 'brain-steward', resolution_note = 'Auto-resolved: known embedding gap pattern' WHERE id = ?` | Always allowed |
+| pipeline_alert | alert_type = 'stale_alert' | Acknowledge and resolve | Always allowed |
+| pipeline_alert | alert_type = 'duplicate_group' | Acknowledge (auto-remediation handles the fix) | Always allowed |
+| agent_knowledge | updated_at older than 365 days AND type NOT IN ('correction','sop','configuration') AND hard cap of 20 archives per run -- overflow goes to PROPOSAL | Archive via `SELECT archive_knowledge(id, reason, 'brain-steward')` | BLOCKED during trust period -- send to PROPOSAL queue instead |
+| system_registry | entry exists with status != 'active' but matching agent_definition IS active | `UPDATE system_registry SET status = 'active', updated_at = NOW() WHERE name = ? AND entry_type = 'agent'` | Always allowed |
+| system_registry | agent_definition status = 'deprecated' but system_registry.status = 'active' | `UPDATE system_registry SET status = 'inactive', updated_at = NOW() WHERE name = ?` | Always allowed |
+| improvement-scanner proposal | type='strategy_update_proposal', tags @> ['improvement-scanner','pending-review'], created_at older than 30 days with no approval/rejection tag | Include in digest as 'stale -- awaiting Peterson' with no DB mutation | Always allowed (no write) |
 
 **EVERYTHING ELSE goes to the PROPOSAL queue.** Never auto-act on:
 - Anything touching protected files (CLAUDE.md, hooks, settings, roles)
@@ -216,40 +233,69 @@ Classify every item from A1 into one of two buckets using the whitelist below.
 
 ### A3. Execute Auto-Actions
 
-For each item in the AUTO bucket:
-1. Execute the action via `execute_sql`
-2. Log to `agent_knowledge_archive_log` for archive actions (done automatically by `archive_knowledge()`)
-3. Track: action type, item ID, item title, reason
+**Before executing any auto-actions, INSERT an intent log entry:**
+```sql
+INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
+VALUES (
+  'reference',
+  'Brain Steward Auto-Action Intent -- [YYYY-MM-DD]',
+  '[List every planned auto-action: action type, item ID, item title, reason]',
+  ARRAY['brain-steward', 'auto-action-log'],
+  'brain-steward routine, run [date]',
+  'verified'
+)
+RETURNING id;
+```
+Save the returned id as INTENT_LOG_ID.
+
+Then execute each action via `execute_sql`. For archive actions, `archive_knowledge()` logs automatically to `agent_knowledge_archive_log` with `performed_by = 'brain-steward'`.
+
+Track per-action: action type, item ID, item title, reason, success/failure.
+
+After all actions complete, UPDATE the intent log row with results:
+```sql
+UPDATE agent_knowledge
+SET content = content || E'\n\n--- RESULTS ---\n[Per-action results: succeeded/failed/skipped]'
+WHERE id = 'INTENT_LOG_ID';
+```
 
 Report format for auto-actions:
 ```
 AUTO-ACTIONS EXECUTED (N total):
 - [action type]: [item title/id] -- [reason]
 - ...
+[If trust period: "TRUST PERIOD ACTIVE (run N of 4) -- archive auto-actions suppressed, N archive candidates moved to PROPOSAL queue."]
 ```
 
 ### A4. Bundle Proposals
 
-For each item in the PROPOSAL bucket, write a structured proposal entry. Each proposal becomes one `action_item` row:
+For each item in the PROPOSAL bucket, write a structured proposal as an `agent_knowledge` row. This is the format brief-reply-handler reads -- proposals must be `type='strategy_update_proposal'` with `tags` including `'brain-steward'` and `'pending-review'`.
 
 ```sql
-INSERT INTO action_items (title, description, category, priority, status, source, source_agent, context)
+INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
 VALUES (
+  'strategy_update_proposal',
   '[Short action title]',
-  '[What: specific change. Why: evidence from audit output. Risk: low/medium. Reversible: yes/no. Estimated effort: X min]',
-  '[category: data_quality | infrastructure | agent_improvement | documentation | process_improvement]',
-  [priority: 1-10 based on severity and impact],
-  'pending_review',
-  'brain-steward-weekly',
-  'brain-steward',
-  '[Source: which audit agent flagged this, what the raw finding was]'
-)
-ON CONFLICT DO NOTHING;
+  'WHAT: [specific change]
+
+WHY: [evidence from audit output]
+
+HOW: [step-by-step: which tables, agents, or files are affected]
+
+RISK: [low/medium/high -- reversible: yes/no]
+
+ESTIMATED EFFORT: [X min]
+
+SOURCE: [which audit agent flagged this, what the raw finding was]',
+  ARRAY['brain-steward', 'pending-review'],
+  'brain-steward weekly run [date]',
+  'verified'
+);
 ```
 
-Group proposals by category. Within each category, order by priority (highest first).
+Group proposals by category (data_quality, infrastructure, agent_improvement, documentation, process_improvement). Within each category, order by priority.
 
-Brief-reply-handler picks these up from `action_items WHERE status = 'pending_review' AND source_agent = 'brain-steward'` and surfaces them in the daily-status-brief [ACTION NEEDED] section.
+Brief-reply-handler picks up `agent_knowledge WHERE type='strategy_update_proposal' AND tags @> ARRAY['pending-review']` and surfaces them in the daily-status-brief [ACTION NEEDED] section. When Peterson approves via email reply, brief-reply-handler flips the proposal's tags from `'pending-review'` to `'approved'` and creates an `action_items` row with `source_agent='brief_reply_handler'`, `status='open'`, title prefixed `[Approved]`. When Peterson rejects, it flips tags to `'rejected'`.
 
 ---
 
@@ -331,28 +377,95 @@ Apply any corrections from qc-reviewer-agent before surfacing.
 
 ### B5. Queue Approved Research Ideas as Proposals
 
-Each QC-passed idea becomes an `action_items` row:
+Each QC-passed idea becomes an `agent_knowledge` row using the same proposal format as A4:
 
 ```sql
-INSERT INTO action_items (title, description, category, priority, status, source, source_agent, context)
+INSERT INTO agent_knowledge (type, title, content, tags, source_context, confidence)
 VALUES (
+  'strategy_update_proposal',
   'Research idea: [Name]',
-  '[Full implementation plan from B3, post-QC]',
-  'agent_improvement',
-  [priority: Fit score * 2],
-  'pending_review',
-  'brain-steward-research',
-  'brain-steward',
-  '[Source URL and search query that found this]'
-)
-ON CONFLICT DO NOTHING;
+  'WHAT: [description]
+
+WHY: [gap it fills]
+
+HOW: [implementation plan from B3, post-QC]
+
+SCORES: Fit=[N] Effort=[N] Risk=[N] Total=[N]
+
+QUICK WIN or DEEP BUILD: [classify]',
+  ARRAY['brain-steward', 'pending-review', 'research'],
+  '[Source URL and search query that found this]',
+  'verified'
+);
 ```
+
+---
+
+## Phase A5: Contractor Session Mining
+
+Read the last 7 days of contractor chat sessions and mine them for two signals.
+
+**Step 1: Get contractor user IDs.**
+```sql
+SELECT id, name FROM system_users
+WHERE role = 'contractor' AND is_active = true
+ORDER BY name;
+```
+
+**Step 2: Pull recent contractor sessions (cap at 20, prioritize those with key_decisions).**
+```sql
+SELECT
+  cs.id, cs.session_date, cs.title, cs.summary,
+  cs.key_decisions, cs.items_pending,
+  su.name AS contractor_name, su.id AS contractor_user_id
+FROM chat_sessions cs
+JOIN system_users su ON su.id = cs.created_by_user_id
+WHERE su.role = 'contractor'
+  AND cs.session_date > CURRENT_DATE - INTERVAL '7 days'
+ORDER BY
+  (cs.key_decisions IS NOT NULL AND array_length(cs.key_decisions, 1) > 0) DESC,
+  cs.session_date DESC
+LIMIT 20;
+```
+
+If no contractor sessions are found in the past 7 days, log "0 contractor sessions in window" in the digest and skip the rest of A5.
+
+**Step 3: For each session, scan summary and key_decisions for two signal types:**
+
+Signal A -- Friction, errors, or blockers:
+- Repeated errors, tool failures, workarounds that needed more than one attempt
+- Questions that suggest the system lacked documentation or guidance
+- Steps that required Peterson/Cade intervention that shouldn't have
+
+Signal B -- Reusable systems or patterns:
+- Scripts, queries, or workflows the contractor built that solved a general problem
+- Patterns they discovered (e.g., "this table has this quirk")
+- Approaches that could become a shared skill, SOP, or agent improvement
+
+**Step 4: For sessions where the summary signals something notable (friction or reusable pattern), pull the full transcript:**
+```sql
+SELECT full_text FROM raw_content
+WHERE source_table = 'chat_sessions'
+  AND source_id = '[cs.id]'
+LIMIT 1;
+```
+Only do this for sessions where the summary clearly warrants it. Cap at 5 deep-reads per run.
+
+**Step 5: Generate proposals for each signal found.**
+
+Use the same `strategy_update_proposal` format as A4. Tag with `ARRAY['brain-steward', 'pending-review', 'contractor-insight']`. Include in the `content` field:
+- Contractor name (for credit)
+- Session date
+- The specific friction or pattern observed
+- Proposed fix or generalization (SOP, skill, agent edit, agent_knowledge entry)
+
+**Step 6: Cap and queue.** If more than 5 contractor-insight proposals are generated, rank by impact and queue only the top 5. Log the rest in the digest as "lower-priority contractor insights (not queued this run)."
 
 ---
 
 ## Phase C: Summary Report
 
-After both phases complete:
+After all phases complete:
 
 1. Compute the 6 scorecard metrics (queries are in the "Success Criteria & Scorecard" section above).
 2. Read last week's scorecard entry to compute trends (or note baseline if run 1).
@@ -385,6 +498,7 @@ SCORECARD:
    [If approval rate <50%: "NOTICE: Approval rate below 50% -- tightening proposal bar for next run."]
 6. Improvement survival: [qualitative check result]
 [If run 1: "Baseline established. Trends will be reported starting next week."]
+[If trust period: "TRUST PERIOD ACTIVE (run N of 4) -- archive auto-actions suppressed."]
 
 AUTO-ACTIONS (N executed):
 [list each]
@@ -401,8 +515,16 @@ RESEARCH IDEAS NOT SURFACED -- accuracy gate (N):
 RESEARCH IDEAS DISCARDED -- score below bar (N):
 [count only -- no detail needed]
 
+CONTRACTOR SESSION INSIGHTS (N sessions reviewed):
+[For each proposal generated: contractor name, session date, signal type (friction/reusable), brief description]
+[If 0 sessions: "No contractor sessions found in the past 7 days."]
+[If lower-priority insights not queued: "N additional lower-priority insights logged but not queued."]
+
+STALE IMPROVEMENT-SCANNER PROPOSALS (>30 days, no decision):
+[list titles and age -- no DB mutation]
+
 NEXT STEPS FOR PETERSON:
-- Review N pending_review action_items (brief-reply-handler will surface these)
+- Review N pending_review proposals (brief-reply-handler will surface these)
 - [Any flagged items that need immediate attention]
 ```
 
@@ -424,7 +546,9 @@ VALUES ('brain-steward', 'dependency_missing', 'medium',
 
 **archive_knowledge() returns NOT FOUND:** Log the ID, skip that item, continue.
 
-**Duplicate action_item:** `ON CONFLICT DO NOTHING` handles this. Never fail on a duplicate key.
+**Duplicate proposal:** Use `ON CONFLICT DO NOTHING` or check for existing title before inserting. Never fail on a duplicate.
+
+**Contractor session query returns 0 rows:** Log "0 contractor sessions in window" in the digest. Skip A5 gracefully.
 
 ---
 
@@ -434,8 +558,10 @@ VALUES ('brain-steward', 'dependency_missing', 'medium',
 2. Never touch `agent_definitions.system_prompt` directly (edit the .md file instead -- not applicable in this automated context; flag as proposal instead).
 3. Never modify protected files (CLAUDE.md, hooks, settings, roles). Flag for Peterson.
 4. If an item is in the AUTO whitelist but you have ANY doubt about impact, move it to PROPOSAL.
-5. Every auto-action must be logged before execution (log intent), then confirmed after (log result).
+5. Every auto-action must be logged before execution (intent log entry), then confirmed after (update intent log with results).
 6. Auto-actions are limited to the whitelist above. No expanding the whitelist mid-run.
+7. Archive auto-actions are capped at 20 per run. Overflow goes to PROPOSAL queue.
+8. During the trust period (prior_scorecard_count < 4), archive auto-actions are suppressed entirely.
 
 ---
 
