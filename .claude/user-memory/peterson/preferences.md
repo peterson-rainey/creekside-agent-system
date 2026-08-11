@@ -12,6 +12,14 @@
 - Search existing processes before improvising
 - Use pbcopy for clipboard, not terminal echo
 
+## Analysis expectations
+- Always provide statistically significant answers, not anecdotal observations
+- Pull the FULL dataset (or as much as reasonable), not a sample
+- Run proper significance tests (z-test, t-test, Mann-Whitney) with p-values
+- Report effect sizes (Cohen's d) alongside p-values
+- Control for confounds (recency bias, selection bias, month effects) before drawing conclusions
+- State clearly when data is insufficient to draw a conclusion
+
 ## System preferences
 - Verify Railway deploys after pushing
 - Test-first for scheduling changes
