@@ -68,7 +68,7 @@ These rules are derived from statistical analysis of 841 Upwork conversations (p
 
 ## Call Booking & Calendar Link
 - When suggesting a call on the default Creekside-qualified path, ALWAYS include the profile's booking calendar link (from the loaded profile doc) -- paste the full URL directly. Never say "happy to hop on a call" without a way to book.
-- **When they ask for a call:** Just send the calendar link. No pre-call questions, no "it'd help to know," no "come ready with." Call warm-up happens AFTER they book, not before.
+- **When they ask for a call:** Just send the calendar link. No pre-call questions, no "it'd help to know," no "come ready with." Call warm-up happens AFTER they book, not before. (Data: replies under 100 words when they ask for a call convert at 2.3x the rate of longer replies)
 - **When they give specific available times:** Do NOT send a calendar link. Check the calendar, pick from their offered times, and confirm. Sending a calendar link when they gave you times ignores what they said.
 - **Pivoting away from hourly or scope does NOT drop the call CTA.** When declining hourly work or reframing an hours-scoped request, the response must still include the call CTA with the calendar link. Pivoting is not a reason to omit the next step. Observed failure (G03r2): the hourly-rate script was applied correctly but the calendar link was dropped entirely. State the retainer model AND include the call CTA in the same response.
 - **Does NOT apply to nurture messages.**
