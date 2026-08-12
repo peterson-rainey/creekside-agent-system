@@ -31,8 +31,8 @@ Example: "Have you tried separating your retargeting audiences by time since las
 L2 (Diagnostic If/Then): "Are you currently [doing X]? [What that usually means]. [Better approach]."
 Example: "Are you currently optimizing your Meta campaigns for purchases, or are you still on add-to-cart? That one setting changes everything downstream. If Meta is learning from shallow events, it finds people who browse but never buy, and your CPA looks fine on paper but actual revenue tells a different story."
 
-L3 (Root Cause): "Quick question before anything else: [root cause question]? [Why it matters]."
-Example: "Quick question before anything else: when you say your ads aren't converting, are you seeing low click-through rates or are people clicking but not buying? Those are two completely different problems with completely different fixes, and most agencies treat them the same way."
+L3 (Root Cause): "[Root cause question]? [Why it matters]."
+Example: "When you say your ads aren't converting, are you seeing low click-through rates or are people clicking but not buying? Those are two completely different problems with completely different fixes, and most agencies treat them the same way."
 
 L4 (Missing Piece): "Do you know [specific metric]? [What it reveals]. [How it changes the approach]."
 Example: "Do you know what your actual cost per acquired customer is after returns and refunds? Most DTC brands I work with are tracking ROAS on the front end but losing 15-25% on the back end, which means the campaigns that look best in Ads Manager are sometimes the worst performers in reality."
