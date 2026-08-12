@@ -1079,6 +1079,48 @@ def check_and_fix_warns(text):
             "only 1 remains.",
         ))
 
+    # 18. Name-as-greeting opener (WARN, no auto-fix)
+    # Do not start a reply by addressing the lead by name like an email salutation.
+    # Pattern: first non-whitespace word is a capitalized name immediately followed by a comma.
+    # E.g., "Hey Anthony," / "Ann Mari," / "Boris, you asked..."
+    # Also catches "Hey [Name]," constructions.
+    _name_greeting_re = re.compile(
+        r'^\s*(?:Hey\s+|Hi\s+)?([A-Z][a-zA-Z\-\']+(?:\s+[A-Z][a-zA-Z\-\']+)?)\s*,',
+    )
+    _name_greeting_m = _name_greeting_re.match(fixed)
+    if _name_greeting_m:
+        issues.append((
+            "name_as_greeting_opener",
+            f"{_name_greeting_m.group().strip()} -- do not open a chat reply by addressing the "
+            "lead by name like an email salutation; drop the name opener and start with the "
+            "substance (name-as-greeting rule, response-guidelines.md Communication Style)",
+        ))
+
+    # 19. Dramatic update opener in first sentence (WARN, no auto-fix)
+    # When a lead shares new info, don't dramatize the update with phrases like
+    # "that changes everything" / "real change from where things stood" / etc.
+    # Check only in the first sentence (up to first period/exclamation/question mark).
+    _first_sentence_end = re.search(r'[.!?]', fixed)
+    _first_sentence = fixed[:_first_sentence_end.start() + 1] if _first_sentence_end else fixed
+    _dramatic_update_patterns = [
+        r'\bchanges?\s+everything\b',
+        r'\bthat\s+changes?\b',
+        r'\breal\s+change\b',
+        r'\bcompletely\s+changes?\b',
+        r'\btotally\s+changes?\b',
+        r'\bchanges?\s+the\s+picture\b',
+    ]
+    for _dp in _dramatic_update_patterns:
+        _dm = re.search(_dp, _first_sentence, re.IGNORECASE)
+        if _dm:
+            issues.append((
+                "dramatic_update_opener",
+                f"{_dm.group()} -- never open by dramatizing new info from the lead; "
+                "acknowledge briefly and go straight to substance "
+                "(response-guidelines.md Zero-Tolerance Fluff Rules)",
+            ))
+            break  # One WARN is enough
+
     # Clean up punctuation artifacts from phrase removals
     # Collapse whitespace before a comma: "word , word" -> "word, word"
     fixed = re.sub(r'\s+,', ',', fixed)
