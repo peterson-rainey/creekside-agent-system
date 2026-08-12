@@ -209,6 +209,7 @@ Validation:
 - Below-minimum budget scan: [PASS / FAIL]
 - Forbidden words/phrases scan: [PASS / FAIL]
 - Agency disclosure: [PASS / FAIL / N/A -- no flag requiring disclosure]
+- Number/math sanity check: [PASS / FAIL / N/A -- no figures in proposal]
 - Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
 
 All lines must read PASS before proceeding to Step 5. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
