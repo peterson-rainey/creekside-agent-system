@@ -40,7 +40,7 @@ The user provides:
    - Samuel styles (default `strategic`): `strategic`, `strategic_dq`, `strategic_exp`, `v2`.
    - Lindsey: Always `lindsey_default`. No other styles.
 
-If the user does not specify a profile, default to `samuel`. If the user does not specify a style, default to `strategic` for Samuel.
+If the user does not specify a profile, default to `samuel`. If the user does not specify a style for Samuel, the style is assigned by the Step 0 A/B alternation (not a flat default -- see Step 0).
 
 ---
 
