@@ -148,7 +148,7 @@ Run the validator. Handle the verdict. Fix any issues. Re-run. Repeat until PASS
 
 1. **PASS (exit 0):** All checks clear. Proceed to the manual checks below.
 2. **WARN (exit 1):**
-   - If the script output `---FIXED---` text, adopt that as the proposal.
+   - If the script output `---FIXED---` text, adopt that exact text as the proposal. Do not edit the `---FIXED---` text in any way. Any change after adopting it, however small, requires re-running the validator before proceeding.
    - For report-only WARNs (diagnostic_question_missing, opens_with_I, forbidden words, etc.): fix each issue in the proposal text yourself.
    - Re-run the validator on the corrected text. Do NOT proceed until verdict is PASS.
 3. **BLOCK (exit 2):** Rewrite the proposal from scratch addressing every BLOCK issue. Re-run the validator. Do NOT proceed until verdict is PASS.
@@ -156,6 +156,8 @@ Run the validator. Handle the verdict. Fix any issues. Re-run. Repeat until PASS
 Maximum 3 total validator runs. If still not PASS after 3 attempts, present the errors to the user and do not output the proposal.
 
 This script is deterministic. Do NOT skip it, override its verdict, or self-validate instead. The script is the authority on BLOCK/WARN patterns.
+
+**The proposal presented in Step 6 MUST be byte-identical to the exact text that produced the final PASS verdict.** If any edit is made after a PASS -- for any reason, including cleanup, rephrasing, or manual checks -- the validator must be re-run before output. Self-asserting PASS without having run the script is prohibited.
 
 **What the script catches:**
 
