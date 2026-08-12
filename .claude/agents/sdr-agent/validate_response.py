@@ -897,7 +897,7 @@ def check_and_fix_warns(text):
             # Check if client name appears in the response (case-insensitive)
             if re.search(re.escape(client_name), fixed, re.IGNORECASE):
                 # Check if the slug URL also appears
-                slug_present = slug in fixed.lower()
+                slug_present = f"/{slug}" in fixed.lower()
                 if not slug_present:
                     # B4: exempt if VA attachment block is present (A2 policy)
                     if _has_va_attachment_block:
