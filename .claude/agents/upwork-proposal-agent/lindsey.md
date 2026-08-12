@@ -40,7 +40,7 @@ Example: "Do you know what your actual cost per acquired customer is after retur
 L5 (Challenge the Assumption): "[Restate their goal]. The real question is [deeper question]. [Why that matters more]."
 Example: "Scaling to $50K/month in Meta spend sounds straightforward, but the real question is whether your current creative and audience structure can handle that volume without tanking efficiency. Have you tested what happens to your CPA when you push daily budget past $500? That inflection point is usually where things break."
 
-RULES: First sentence must be a question or lead into one within two sentences. Build from their words. Must be specific to their situation. Must demonstrate expertise. Never open with "I."
+RULES: The question is the FIRST words of the proposal -- no preamble or setup before it ("Quick question", "Before anything else", "One question first", "Before anything gets built", or similar). First sentence must be a question or lead into one within two sentences. Build from their words. Must be specific to their situation. Must demonstrate expertise. Never open with "I."
 
 ## Lindsey Proposal Structure
 
