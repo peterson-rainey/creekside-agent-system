@@ -58,7 +58,12 @@ Compute these six metrics every run and include them in every weekly proposal em
 
 5. **Peterson review load**: Count of brain-steward proposals sent this week (proposals queued in this run) and 3-week rolling approval rate. Target: <= 5 proposals/week. If approval rate is below 50% over the past 3 weeks, this routine is generating noise -- it MUST tighten its own proposal bar and note this explicitly in the email.
    ```sql
-   -- 3-week approval rate: count brain-steward proposals by their tag outcome
+   -- 3-week approval rate: count brain-steward proposals by their tag outcome.
+   -- NOTE: brief-reply-handler writes a third outcome tag 'applied' for machine-applied
+   -- fact-change proposals. 'applied' is intentionally excluded from both the approved and
+   -- rejected counts below -- it represents auto-remediation actions, not Peterson review
+   -- decisions. Brain-steward proposals are always type='improvement' and always receive
+   -- 'approved' or 'rejected' from Peterson, so this metric is accurate for this routine.
    SELECT
      COUNT(*) FILTER (WHERE tags @> ARRAY['approved']) AS approved,
      COUNT(*) FILTER (WHERE tags @> ARRAY['rejected']) AS rejected,
