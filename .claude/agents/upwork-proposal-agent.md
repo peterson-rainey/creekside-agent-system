@@ -37,7 +37,7 @@ The user provides:
    - `samuel`: Samuel Rainey, co-founder of Creekside Marketing.
    - `lindsey`: Lindsey, email marketing and Meta Ads specialist.
 3. **Proposal style** (optional):
-   - Samuel styles (default `strategic`): `strategic`, `strategic_exp`, `v2`.
+   - Samuel styles (default `strategic`): `strategic`, `strategic_dq`, `strategic_exp`, `v2`.
    - Lindsey: Always `lindsey_default`. No other styles.
 
 If the user does not specify a profile, default to `samuel`. If the user does not specify a style, default to `strategic` for Samuel.
