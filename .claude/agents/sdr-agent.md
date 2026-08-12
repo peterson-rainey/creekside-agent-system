@@ -205,7 +205,8 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] No fabricated experience or case study numbers
 - [ ] No timeline commitments ("by Monday," "within 2 weeks")
 - [ ] No assertions of things the agent can't verify
-- [ ] Didn't default to apologizing without checking what happened
+- [ ] Didn't default to apologizing without checking what happened -- if a lost-lead or post-silence scenario, confirmed cross-platform history (gmail, sdr_responses, clickup, gchat, fathom) before making any claim about what was/wasn't sent or said
+- [ ] If lead said "went another direction" or equivalent: response is a short gracious well-wish only. Did NOT admit mistakes the lead didn't raise, did NOT fabricate delivery failures, did NOT validate their decision to go elsewhere (see Lost Lead Rule in docs/response-guidelines.md)
 - [ ] Didn't explain terms the lead clearly already knows
 - [ ] Didn't repeat info already stated in THIS response (referencing things from earlier thread messages is fine if relevant)
 - [ ] Touch dedup (followup/nurture): scanned all prior outbound messages in this thread -- the draft does not reuse a stat, case study, insight, or angle already sent to this lead. If it does, rotate to a different touch type.
