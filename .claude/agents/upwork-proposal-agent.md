@@ -91,33 +91,45 @@ DO NOT read this file before Step 2 is complete. The fit check must not influenc
 
 Apply the rules from that file to analyze the job description for red and yellow flags. If the profile is Lindsey, also apply the Lindsey overrides at the bottom of that file. This is a separate analysis that must not retroactively change the proposal generated in Step 2.
 
-### Step 4: Validate Output
+### Step 4: Validate Output (loop until PASS)
 
-Run the deterministic validation script. This step is mandatory. Output is pasted directly into Upwork with no human review.
+Run the deterministic validation script. This step is mandatory. Output is pasted directly into Upwork with no human review. Loop until the validator returns PASS.
 
 **Script:** `.claude/agents/upwork-proposal-agent/validate_proposal.py`
 
 ```bash
 # Write proposal to a temp file, then validate
-# Pass --profile lindsey when the active profile is Lindsey (determined in Step 1)
+# Pass --profile and --style matching the active profile/style from Steps 1-2
 TMPFILE=$(mktemp /tmp/proposal_XXXXXX.txt)
 cat > "$TMPFILE" << 'PROPOSAL_EOF'
 <paste proposal text here>
 PROPOSAL_EOF
-# For Samuel (default): no --profile flag needed
-python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE"
-# For Lindsey: add --profile lindsey
-# python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE" --profile lindsey
+# Samuel strategic (default):
+python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE" --style strategic
+# Samuel strategic_exp:
+# python3 "...validate_proposal.py" "$TMPFILE" --style strategic_exp
+# Samuel v2:
+# python3 "...validate_proposal.py" "$TMPFILE" --style v2
+# Lindsey:
+# python3 "...validate_proposal.py" "$TMPFILE" --profile lindsey --style lindsey_default
 EXIT_CODE=$?
 rm -f "$TMPFILE"
 ```
 
-Use the appropriate command based on the active profile from Step 1: omit `--profile` for Samuel; append `--profile lindsey` for Lindsey.
+**Validate-fix-revalidate loop (mandatory):**
 
-**Obey the verdict:**
-- **PASS (exit 0):** Proceed to the manual checks below.
-- **WARN (exit 1):** The script outputs `---FIXED---` followed by auto-corrected text. Use the fixed text as the proposal. Re-run manual checks on the fixed text.
-- **BLOCK (exit 2):** The proposal contains a critical violation (hourly rate, email address, or placeholder bracket). Rewrite the proposal from scratch addressing the reported issue. Re-run validation after rewriting. Maximum 2 rewrite attempts. If still BLOCK after 2 attempts, present the error to the user and do not output the proposal.
+Run the validator. Handle the verdict. Fix any issues. Re-run. Repeat until PASS. Maximum 3 total attempts.
+
+1. **PASS (exit 0):** All checks clear. Proceed to the manual checks below.
+2. **WARN (exit 1):**
+   - If the script output `---FIXED---` text, adopt that as the proposal.
+   - For report-only WARNs (diagnostic_question_missing, opens_with_I, forbidden words, etc.): fix each issue in the proposal text yourself.
+   - Re-run the validator on the corrected text. Do NOT proceed until verdict is PASS.
+3. **BLOCK (exit 2):** Rewrite the proposal from scratch addressing every BLOCK issue. Re-run the validator. Do NOT proceed until verdict is PASS.
+
+Maximum 3 total validator runs. If still not PASS after 3 attempts, present the errors to the user and do not output the proposal.
+
+This script is deterministic. Do NOT skip it, override its verdict, or self-validate instead. The script is the authority on BLOCK/WARN patterns.
 
 **What the script catches:**
 
@@ -133,6 +145,8 @@ WARN (auto-fixed by script):
 - Markdown links (converted to plain URL)
 
 WARN (reported but NOT auto-stripped -- agent decides):
+- Diagnostic question missing (strategic style only): first 200 chars must contain a "?" -- the diagnostic question opener
+- Opens with "I": proposal must not start with the word "I"
 - Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 5.
 - Forbidden words (report-only): delve, leverage, harness, foster, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative, unlock
 - Banned phrases (report-only): "feel free to", "moving forward", "I'd be happy to" / "Id be happy to"

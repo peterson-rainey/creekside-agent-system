@@ -119,11 +119,25 @@ def check_blocks(text):
     return issues
 
 
-def check_report_only_warns(text, profile="samuel"):
+def check_report_only_warns(text, profile="samuel", style="strategic"):
     """Check for WARN-level report-only issues. Returns list of (category, match_text).
     These do NOT modify the text -- they are flagged for agent review only.
     """
     issues = []
+
+    # 0a. Diagnostic question opener (strategic style only).
+    # The first ~200 characters must contain a "?" -- the strategic style
+    # requires opening with a diagnostic question before the insight.
+    if style == "strategic":
+        if '?' not in text[:200]:
+            issues.append(("diagnostic_question_missing",
+                            "strategic style requires a diagnostic question in the opening"))
+
+    # 0b. Opens with "I" -- proposals should never start with the word "I".
+    first_line = next((ln for ln in text.splitlines() if ln.strip()), "")
+    if re.match(r'^I\b', first_line.strip()):
+        issues.append(("opens_with_I",
+                        "proposal opens with 'I' -- open with a diagnostic question or their business"))
 
     # 1. Forbidden words (word-boundary, case-insensitive)
     for word in FORBIDDEN_WORDS:
@@ -464,14 +478,14 @@ def check_and_fix_warns(text, profile="samuel"):
     return fixed, issues
 
 
-def validate(text, profile="samuel"):
+def validate(text, profile="samuel", style="strategic"):
     """
     Run full validation. Returns (verdict, block_issues, warn_issues, fixed_text).
     warn_issues includes both auto-fixable and report-only issues.
     """
     block_issues = check_blocks(text)
     fixed_text, auto_fix_issues = check_and_fix_warns(text, profile=profile)
-    report_only_issues = check_report_only_warns(text, profile=profile)
+    report_only_issues = check_report_only_warns(text, profile=profile, style=style)
 
     all_warn_issues = auto_fix_issues + report_only_issues
 
@@ -490,6 +504,9 @@ def main():
     parser.add_argument("proposal_file", nargs="?", help="Path to proposal text file (reads stdin if omitted)")
     parser.add_argument("--profile", default="samuel", choices=["samuel", "lindsey"],
                         help="Proposal profile (default: samuel)")
+    parser.add_argument("--style", default="strategic",
+                        choices=["strategic", "strategic_exp", "v2", "lindsey_default"],
+                        help="Proposal style (default: strategic)")
     args = parser.parse_args()
 
     # Read proposal text from file argument or stdin
@@ -504,7 +521,7 @@ def main():
         print("ISSUES: empty_proposal", file=sys.stderr)
         sys.exit(2)
 
-    verdict, block_issues, warn_issues, fixed_text = validate(text, profile=args.profile)
+    verdict, block_issues, warn_issues, fixed_text = validate(text, profile=args.profile, style=args.style)
 
     # Build issues list
     all_issues = []
