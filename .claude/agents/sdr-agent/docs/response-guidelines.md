@@ -8,6 +8,7 @@ These rules apply to ALL response types unless explicitly noted otherwise.
 - Original Thought Focus: Focus on original thought and value, not mirroring the client's approach.
 - Use Real Business Examples: When communicating, always provide examples directly related to businesses similar to theirs, especially those we have worked with successfully. Be specific, highlighting successful outcomes. Never fabricate details.
 - Don't say "agency": Say "we specialize in paid ads" or "paid ads specialists."
+- **NO NAME-AS-GREETING:** Do not open a reply by addressing the lead by name as if it were an email header ("Hey Anthony,", "Ann Mari,", "Boris, you asked..."). In messaging/chat context, you don't address someone by name at the top of every reply. Drop it. Using the lead's name mid-message when it flows naturally is fine -- just not as the opener.
 
 ## Zero-Tolerance Fluff Rules
 - **NO FLUFF OPENERS:** First sentence must be the answer. See validation.md WARN list for the full banned opener list.
