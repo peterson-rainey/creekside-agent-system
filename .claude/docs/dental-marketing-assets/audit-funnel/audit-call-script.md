@@ -33,7 +33,7 @@
 **Mental checklist:**
 - What is their likely biggest problem? (Form a hypothesis from what you can see before the call)
 - Are they a real fit? ($5K+ monthly ad spend or willingness to get there, cosmetic and implant focus)
-- If under $50K revenue or under $5K/month ad spend, route to Baran after the audit
+- If under $50K revenue or under $5K/month ad spend, route to Keith after the audit
 
 ---
 
@@ -201,10 +201,10 @@ Key objections and responses are identical:
 
 **After the audit, if the practice is under $50K/month revenue or under $5K/month ad spend:**
 
-"Based on what you're telling me, I think there's a better fit for you. We have a partner who specializes in practices at your stage. Let me connect you. [Route to Baran]"
+"Based on what you're telling me, I think there's a better fit for you. We have a partner who specializes in practices at your stage. Let me connect you. [Route to Keith]"
 
-Baran link: https://calendly.com/baran-creeksidemarketingpros/30min
-Creekside gets 25% commission on deals Baran closes from these referrals.
+Keith link: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu
+Creekside gets 20% commission on deals Keith closes from these referrals.
 
 ---
 
@@ -291,7 +291,7 @@ Specialized Patient Acquisition for Cosmetic and Implant Dentistry
 
 - You are an ads expert doing a diagnosis. Not a salesperson on a pitch call.
 - You're showing them real problems in their real account. The value is immediate and obvious.
-- If they're not a fit, tell them. Route to Baran or tell them what to fix on their own.
+- If they're not a fit, tell them. Route to Keith or tell them what to fix on their own.
 - Never discount. Never negotiate on price. Compete on expertise and results.
 - After presenting findings, let the silence work. They'll ask the next question.
 - The goal is not to convince them. The goal is to show them what's broken and let the diagnosis do the convincing.

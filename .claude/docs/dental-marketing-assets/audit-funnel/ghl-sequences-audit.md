@@ -201,7 +201,7 @@ Creekside Marketing
 
 ---
 
-## SEQ 6: Baran Referral Handoff
+## SEQ 6: Keith Referral Handoff
 
 **Trigger:** Prospect disqualified on the audit call or booking form (under $50K/month revenue or under $5K/month ad spend). Stops all other sequences.
 **Timing:** Within 1 hour of disqualification
@@ -216,18 +216,18 @@ Hey [First Name],
 
 Thanks for taking the time to talk with us. Based on where your practice is right now, our program isn't the best fit yet. Our model is built for practices spending $5K+ a month on ads, and forcing that fit early would waste your money.
 
-The good news: we work with a partner who specializes in practices at your stage. His name is Baran, and he does great work getting practices to the point where a program like ours makes sense.
+The good news: we work with a partner who specializes in practices at your stage. His name is Keith, and he does great work getting practices to the point where a program like ours makes sense.
 
-Here's his calendar if you want to grab a time: https://calendly.com/baran-creeksidemarketingpros/30min
+Here's his calendar if you want to grab a time: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu
 
 And when your practice crosses $50K a month in revenue, come back. We'll do a fresh audit and pick up right where we left off.
 
 Cade
 Creekside Marketing
 
-### SMS (Day 2, if no booking with Baran)
+### SMS (Day 2, if no booking with Keith)
 
-"Hey [First Name], Cade from Creekside. Just making sure you saw my note about Baran. He's the right next step for your practice: https://calendly.com/baran-creeksidemarketingpros/30min"
+"Hey [First Name], Cade from Creekside. Just making sure you saw my note about Keith. He's the right next step for your practice: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu"
 
 ### Email (Day 5, if no booking, final touch)
 
@@ -237,9 +237,9 @@ Creekside Marketing
 
 Hey [First Name],
 
-Last note from me. Baran is who I'd send my own family to at your practice's stage. If growing your patient volume is still on your list, his calendar is here:
+Last note from me. Keith is who I'd send my own family to at your practice's stage. If growing your patient volume is still on your list, his calendar is here:
 
-https://calendly.com/baran-creeksidemarketingpros/30min
+https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu
 
 Either way, keep our audit in your back pocket for when you cross $50K a month. That offer doesn't expire.
 
@@ -254,7 +254,7 @@ Cade
 - If the prospect books a follow-up call at any point, stop the sequence
 - If the prospect signs, stop the sequence and trigger onboarding workflow
 - If the prospect replies at any point during SEQ 4 (No-Show Recovery), stop SEQ 4. A rebook re-triggers SEQ 1 automatically. Replies that need judgment get flagged for Cade to answer manually
-- Baran referrals (under $50K revenue or under $5K/month ad spend): stop this sequence, trigger SEQ 6 above
+- Keith referrals (under $50K revenue or under $5K/month ad spend): stop this sequence, trigger SEQ 6 above
 - No em dashes in any copy
 - Calendar links all point to Cade's existing Google Meet booking link
 - BUILDER NOTE (Scott): [Google Meet link] and [booking link] are merge fields, not copy. Wire them to the GHL Custom Value cades_calendar. Never ship the literal placeholder text

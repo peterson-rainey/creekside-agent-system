@@ -1,6 +1,73 @@
 # Context Detection & Retrieval
 
-## Required Context Detection (Run First)
+## Cross-Platform History Check (MANDATORY -- Run Before Any Draft, ruling 2026-08-12)
+
+Before generating ANY response, check the lead's full conversation history across ALL platforms. This is not optional and not limited to followup/nurture types. It applies to every response type, including lead responses.
+
+**Why this is mandatory:** Responses that make claims about what was or wasn't said, sent, or promised must be grounded in verified history. The McClung failure (2026-08-12) occurred because the draft claimed promised materials were never sent -- when Peterson had in fact emailed them. An unverified claim about history is worse than silence.
+
+Run these queries (in parallel where possible) using the lead's name and any identifiable company name from the thread:
+
+```sql
+-- Gmail history: check if materials, proposals, or follow-ups were sent
+SELECT id, subject, sender, recipient, message_date, LEFT(ai_summary, 400) AS summary
+FROM gmail_threads
+WHERE (subject ILIKE '%{lead_name}%' OR subject ILIKE '%{company_name}%'
+       OR ai_summary ILIKE '%{lead_name}%' OR ai_summary ILIKE '%{company_name}%')
+ORDER BY message_date DESC
+LIMIT 10;
+```
+
+```sql
+-- Prior SDR responses: what was already sent in Upwork
+SELECT id, lead_name, response_type, LEFT(full_response, 400) AS response_preview,
+       conversation_date, outcome
+FROM sdr_responses
+WHERE lead_name ILIKE '%{lead_name}%'
+ORDER BY conversation_date DESC
+LIMIT 10;
+```
+
+```sql
+-- ClickUp tasks and comments: any task tracking, internal notes, or client messages
+SELECT t.name AS task_name, t.status, c.comment_text, c.created_at
+FROM clickup_tasks t
+LEFT JOIN clickup_task_comments c ON c.task_id = t.id
+WHERE t.name ILIKE '%{lead_name}%' OR t.description ILIKE '%{lead_name}%'
+   OR c.comment_text ILIKE '%{lead_name}%'
+ORDER BY c.created_at DESC
+LIMIT 10;
+```
+
+```sql
+-- Google Chat messages: internal discussions about this lead
+SELECT id, sender_name, message_text, sent_at
+FROM gchat_messages
+WHERE message_text ILIKE '%{lead_name}%' OR message_text ILIKE '%{company_name}%'
+ORDER BY sent_at DESC
+LIMIT 10;
+```
+
+```sql
+-- Fathom transcripts: any calls with this lead
+SELECT id, meeting_title, meeting_date, LEFT(summary, 400) AS summary
+FROM fathom_entries
+WHERE meeting_title ILIKE '%{lead_name}%' OR meeting_title ILIKE '%{company_name}%'
+ORDER BY meeting_date DESC
+LIMIT 5;
+```
+
+**What to do with the results:**
+
+1. **If history is found:** Use it to ground the draft. Never contradict verified history. If materials were sent (confirmed in gmail_threads), do not claim they weren't. If a call happened, reference the actual transcript.
+2. **If history is empty or unclear:** The draft must NOT make specific claims about what was or wasn't sent, said, or promised. Use neutral language: "Happy to pick back up whenever you're ready" not "I should have followed up sooner."
+3. **For lost-lead responses specifically:** If the lead says "we went another direction," check history before writing anything. If the history shows you delivered what was promised, the draft should be a simple gracious well-wish -- do not apologize for a failure that didn't happen. If history is ambiguous, still default to the short gracious well-wish. See Lost Lead Rule in response-guidelines.md.
+
+**Rule:** Never assert that something was or wasn't sent/said/promised without verifying against these sources. If cross-platform history can't be verified, the draft must not make claims about delivery status either way.
+
+---
+
+## Required Context Detection (Run After Cross-Platform Check)
 
 Before detecting the industry, check whether critical context is missing. This gate applies to `followup` and `nurture` types primarily, but also to `lead` responses on proposal-origin threads.
 
