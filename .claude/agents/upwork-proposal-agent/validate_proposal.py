@@ -88,6 +88,10 @@ FLUFF_OPENERS = [
     (r"^Good question[\.,!]?", "fluff_opener_good_question"),
     (r"^Great question[\.,!]?", "fluff_opener_great_question"),
     (r"^Thanks for the detail[\.,!]?", "fluff_opener_thanks_for_detail"),
+    # Preamble openers -- setup phrases before the actual question (report-only)
+    (r"^Quick question\b", "fluff_opener_quick_question"),
+    (r"^One question\b", "fluff_opener_one_question"),
+    (r"^Before anything\b", "fluff_opener_before_anything"),
 ]
 
 # Formal transitions -- only flag at the start of a sentence (capitalized, sentence-start)
