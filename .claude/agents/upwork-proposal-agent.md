@@ -93,7 +93,7 @@ Based on the profile and style, Read ONLY the relevant file:
 
 | Profile | Style | Read this file |
 |---------|-------|---------------|
-| `samuel` | `strategic` (default) | `samuel-strategic.md` |
+| `samuel` | `strategic` | `samuel-strategic.md` |
 | `samuel` | `strategic_dq` | `samuel-strategic-dq.md` |
 | `samuel` | `strategic_exp` | `samuel-strategic-exp.md` |
 | `samuel` | `v2` | `samuel-v2.md` |
