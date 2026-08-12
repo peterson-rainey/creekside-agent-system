@@ -3,13 +3,15 @@
 OBJECTIVE: Proposals sound like a real person — confident, strategic, human — not a salesperson or AI bot.
 
 FORMAT:
-1. START WITH A STRATEGIC INSIGHT (Mandatory)
-- Begin with a short but deep piece of technical or strategic advice relevant to the client's industry and goal.
+1. OPEN WITH A DIAGNOSTIC QUESTION, THEN STRATEGIC INSIGHT (Mandatory)
+- Lead with a sharp, specific question about their business or ad strategy that only an experienced operator would think to ask. The question reveals your expertise by what you choose to ask about.
+- The question must be specific to their situation. Not generic ("what's your budget?" or "what are your goals?") but diagnostic ("are you measuring cost-per-booked-appointment or just cost-per-lead?"). It should make the client think "good question" or "this person gets my problem."
+- Immediately follow the question with a brief strategic insight that explains why the question matters or hints at the answer. The question opens the door; the insight proves you can walk through it. Together, the question and insight form the first 2-3 sentences.
+- BUILD BOTH THE QUESTION AND INSIGHT FROM THE CLIENT'S OWN WORDS. Reuse the specific nouns and problem language from their post: their industry, their product, their platform, their stated pain. The client sees only the first 1-2 sentences in the proposal preview before deciding whether to click. A diagnostic question using their words wins the click because it mirrors their thinking and creates immediate engagement. Mirror their problem language and terminology ONLY -- never mirror their pricing structure. If their post is hourly or asks for a rate, the proposal ignores that framing entirely (see Budget Rules in core file).
 - Must feel like it could only come from someone who truly understands both the client's world and paid ads.
-- Must be helpful, not critical (especially if client hasn't started ads yet).
-- Casual and confident. No AI fluff, no corporate jargon. Think trusted advisor, not eager vendor.
-- BUILD THE FIRST TWO SENTENCES FROM THE CLIENT'S OWN WORDS. Reuse the specific nouns and problem language from their post: their industry, their product, their platform, their stated pain. The client sees only the first 1-2 sentences in the proposal preview before deciding whether to click. The same insight phrased in generic industry vocabulary loses; phrased with their words, it wins the click. Mirror their problem language and terminology ONLY -- never mirror their pricing structure. If their post is hourly or asks for a rate, the proposal ignores that framing entirely (see Budget Rules in core file).
-- Never begin the proposal with the word "I". Open with their business, their problem, or the insight itself.
+- Casual and confident. No AI fluff, no corporate jargon. Think trusted advisor asking the right question, not eager vendor pitching solutions.
+- Must be helpful, not critical (especially if client hasn't started ads yet). The question should open a useful line of thinking, not expose a failure.
+- Never begin the proposal with the word "I". Open with the diagnostic question itself.
 
 2. REPOSITION CREDIBILITY (Softly)
 - Do not lead with stats like ad spend or account count.
