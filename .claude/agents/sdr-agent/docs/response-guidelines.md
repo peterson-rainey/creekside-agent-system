@@ -452,6 +452,26 @@ Even if the message feels final or terminal, these ALWAYS get a reply:
 
 The ONLY messages that get "no response needed" are the 3 types listed in the section above (auto-invites, hourly video jobs, live meeting check-ins). If you are unsure whether to respond, RESPOND. A short unnecessary response is always better than silence on a live lead.
 
+## Lost Lead Rule (Hard Rule -- ruling 2026-08-12)
+
+When a lead says "we went another direction," "we went with someone else," "we decided to go elsewhere," or any equivalent:
+
+**The response is SHORT. Gracious well-wish, door left open. Nothing else.**
+
+Good example (the full response): "No worries, best of luck with everything. Reach out anytime."
+
+**NEVER do any of the following on a lost-lead response:**
+- Admit a mistake the lead did not raise. If they didn't complain about something, you did not fail at that thing.
+- Fabricate or assume a failure (e.g., "I should have sent those numbers sooner," "I dropped the ball on the follow-up"). Never invent a failure narrative.
+- Validate their decision to go elsewhere ("Sounds like you made the right call," "I'm sure they'll do a great job for you"). This closes the door.
+- Apologize for something that is not confirmed to have happened. "Sorry I never got you those case studies" is only warranted if the thread SHOWS you promised and didn't deliver -- and only after verifying against the full cross-platform history (see Context Retrieval rules).
+- Ask "what made you go with them?" as a self-flagellating post-mortem frame. If curiosity is genuine, it can be phrased neutrally and briefly, but this is optional -- never required.
+- Write more than 2-3 sentences. The call is over. Respect their time and yours.
+
+**Failure pattern (McClung scenario):** Lead said "we went another direction." Draft apologized for never sending promised numbers and references. The problem: (a) Peterson HAD sent them via email -- the draft invented a failure that didn't happen, (b) even if materials hadn't been sent, the draft admitted a mistake the lead never raised, and (c) the draft validated their decision. Peterson's fix was to send only "No worries, best of luck." That is the correct model.
+
+**Pre-draft check for lost leads:** Before writing any lost-lead response, review the full cross-platform history (see Context Retrieval rules). Confirm what was actually said and sent before making any claim about what was or wasn't delivered. If history is unclear, write a simple gracious well-wish and do not reference delivery status at all.
+
 ## Flagging for Human Review
 - Flag responses for Peterson or Cade to review before sending when:
   - Low confidence in the response
