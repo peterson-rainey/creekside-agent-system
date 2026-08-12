@@ -178,7 +178,7 @@ WARN (reported but NOT auto-stripped -- agent decides):
 - Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 5.
 - Forbidden words (report-only): delve, leverage, harness, foster, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative, unlock
 - Banned phrases (report-only): "feel free to", "moving forward", "I'd be happy to" / "Id be happy to"
-- Fluff openers (report-only, START of proposal only): "Good question", "Great question", "Thanks for the detail"
+- Fluff openers (report-only, START of proposal only): "Good question", "Great question", "Thanks for the detail", "Quick question", "One question", "Before anything"
 - Formal transitions (report-only, sentence-start capitalized): "Additionally,", "Furthermore,", "Moreover,", "That said,"
 - Lindsey persona violations (report-only, --profile lindsey only): "our team", "my team", "Creekside", "our agency", "as an agency"
 
