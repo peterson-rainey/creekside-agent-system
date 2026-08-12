@@ -1104,11 +1104,11 @@ def check_and_fix_warns(text):
     _first_sentence = fixed[:_first_sentence_end.start() + 1] if _first_sentence_end else fixed
     _dramatic_update_patterns = [
         r'\bchanges?\s+everything\b',
-        r'\bthat\s+changes?\b',
-        r'\breal\s+change\b',
-        r'\bcompletely\s+changes?\b',
-        r'\btotally\s+changes?\b',
-        r'\bchanges?\s+the\s+picture\b',
+        r'\breal\s+change\s+from\b',
+        r'\bcompletely\s+changes?\s+the\b',
+        r'\btotally\s+changes?\s+the\b',
+        r'\bchanges?\s+the\s+(?:whole\s+)?picture\b',
+        r'\bchanges?\s+the\s+game\b',
     ]
     for _dp in _dramatic_update_patterns:
         _dm = re.search(_dp, _first_sentence, re.IGNORECASE)
