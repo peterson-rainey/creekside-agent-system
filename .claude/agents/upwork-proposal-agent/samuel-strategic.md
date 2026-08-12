@@ -34,7 +34,7 @@ GOLDEN RULES:
 - Don't open with ad spend or account stats
 - Don't copy or rephrase the job post
 - No flattery or over-praise
-- Never assume everything is possible. Point out tradeoffs.
+- Never assume everything is possible. Point out tradeoffs -- tradeoffs in the CLIENT's strategy and situation, not Creekside's own limitations.
 - Always lead with a real insight
 - Be clear, strategic, confident but casual
 - Never include links or URLs of any kind in the proposal
