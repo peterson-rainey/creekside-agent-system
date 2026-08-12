@@ -17,7 +17,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 ```
 .claude/agents/upwork-proposal-agent.md                    # This file (core: routing, shared rules, flow)
 .claude/agents/upwork-proposal-agent/
-  samuel-strategic.md                                      # Samuel: Strategic style (default)
+  samuel-strategic.md                                      # Samuel: Strategic style (variant A)
   samuel-strategic-dq.md                                   # Samuel: Strategic + Diagnostic Question style
   samuel-strategic-exp.md                                  # Samuel: Strategic + Experience style
   samuel-v2.md                                             # Samuel: V2 Full System style
