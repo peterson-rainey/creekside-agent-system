@@ -817,7 +817,7 @@ def check_and_fix_warns(text):
     for pat in precall_patterns:
         m = re.search(pat, fixed, re.IGNORECASE)
         if m:
-            context = fixed[max(0, m.start()-40):min(len(fixed), m.end()+40)].lower()
+            context = fixed[max(0, m.start()-40):min(len(fixed), m.end()+80)].lower()
             if 'on a call' not in context and 'on the call' not in context and 'during the call' not in context:
                 issues.append(("pre_call_work_offer", m.group()))
                 # Don't auto-fix these -- they need contextual rewriting by the agent
