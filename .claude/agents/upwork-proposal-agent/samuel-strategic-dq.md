@@ -12,6 +12,7 @@ FORMAT:
 - Casual and confident. No AI fluff, no corporate jargon. Think trusted advisor asking the right question, not eager vendor pitching solutions.
 - Must be helpful, not critical (especially if client hasn't started ads yet). The question should open a useful line of thinking, not expose a failure.
 - Never begin the proposal with the word "I". Open with the diagnostic question itself.
+- The question is the FIRST words of the proposal -- no preamble or setup before it ("Quick question", "Before anything else", "One question first", or similar).
 
 2. REPOSITION CREDIBILITY (Softly)
 - Do not lead with stats like ad spend or account count.
