@@ -3,8 +3,8 @@
 Deterministic Upwork proposal validator.
 
 Usage:
-    python3 validate_proposal.py <proposal_file> [--profile samuel|lindsey]
-    echo "proposal text" | python3 validate_proposal.py [--profile samuel|lindsey]
+    python3 validate_proposal.py <proposal_file> [--profile samuel|lindsey] [--style strategic|strategic_exp|v2|lindsey_default]
+    echo "proposal text" | python3 validate_proposal.py [--profile samuel|lindsey] [--style strategic]
 
 Exit codes:
     0 = PASS (no issues)

@@ -181,7 +181,7 @@ Validation:
 - Agency disclosure: [PASS / FAIL / N/A -- no flag requiring disclosure]
 - Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
 
-All lines must read PASS before proceeding to Step 5.
+All lines must read PASS before proceeding to Step 5. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
 
 ### Step 5: Log to Database
 
