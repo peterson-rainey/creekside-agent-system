@@ -443,7 +443,7 @@ Even if the message feels final or terminal, these ALWAYS get a reply:
 
 - Lead asks ANY question (experience, pricing, scope, technical) -- answer it
 - Lead provides information you asked for (budget, website, business details) -- acknowledge and route/next-step
-- Lead says they went with someone else -- "No worries, best of luck." (brief, gracious)
+- Lead says they went with someone else -- "No worries, best of luck." (brief, gracious) -- see Lost Lead Rule below
 - Lead follows up asking for status or re-engaging -- respond with update
 - Lead returns after silence or apologizes for delay -- welcome back, re-engage
 - Lead says they're not ready or project is on hold -- acknowledge, leave door open
