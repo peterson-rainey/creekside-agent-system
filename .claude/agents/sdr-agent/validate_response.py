@@ -1117,7 +1117,7 @@ def check_and_fix_warns(text):
     _LOST_LEAD_SIGNALS = re.compile(
         r'(?:went\s+another\s+direction|went\s+with\s+someone\s+else|'
         r'went\s+(?:a\s+)?different\s+(?:direction|way)|decided\s+to\s+go\s+elsewhere|'
-        r'no\s+worries[,\.]|best\s+of\s+luck)',
+        r'no\s+worries\b|best\s+of\s+luck)',
         re.IGNORECASE,
     )
     _SELF_INCRIMINATION_PATTERNS = [
