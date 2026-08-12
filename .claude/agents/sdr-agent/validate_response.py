@@ -28,6 +28,10 @@ Rules enforced (selected highlights):
   @creeksidemarketingpros.com, etc.). The only permitted contact mechanism is the whitelisted
   calendar URL from the loaded profile doc.
 - Pricing leaks, hourly rates, timeline commitments, placeholder brackets (BLOCK)
+- Flat-decline framing ("not a fit for us") before partner redirect (BLOCK -- flat_decline_not_fit)
+- Partner-distance language ("what he takes on is his call") (BLOCK -- flat_decline_partner_distance)
+- Self-incrimination on lost-lead responses (WARN -- self_incrimination_lost_lead_warn)
+- Validating lead's decision to go elsewhere on lost-lead responses (WARN -- defeat_validation_lost_lead)
 - Fluff openers, setup sentences, banned phrases, em-dashes, markdown (WARN, auto-fixed)
 """
 import os
@@ -280,6 +284,14 @@ BLOCK_PATTERNS = [
     (r'\btoo\s+low\s+for\s+our\s+services\b', "disqualification_language"),
     (r"don'?t\s+have\s+options\s+that\s+low\b", "disqualification_language"),
     (r"\bwe\s+probably\s+aren'?t\s+the\s+right\s+fit\b", "disqualification_language"),
+
+    # Flat-decline framing for out-of-scope requests (ruling 2026-08-12)
+    # White-label/agency requests must use affirmative partner-redirect framing,
+    # never a flat decline. "Not a fit for us" before routing a lead is banned.
+    # Pattern covers: "isn't a fit for us", "not a great fit for us", "that's not a fit for us", etc.
+    (r"(?:n'?t|not)\s+(?:a\s+)?(?:great\s+)?fit\s+for\s+us\b", "flat_decline_not_fit"),
+    (r"\bwe\s+don'?t\s+(?:take\s+on|work\s+with|handle|do)\s+(?:white.?label|agency\s+client|media.?buyer)\b", "flat_decline_not_fit"),
+    (r"\bwhat\s+he\s+takes\s+on\s+is\s+his\s+call\b", "flat_decline_partner_distance"),
 ]
 
 # Structural BLOCK: call suggested without a real URL
@@ -1095,6 +1107,41 @@ def check_and_fix_warns(text):
             "lead by name like an email salutation; drop the name opener and start with the "
             "substance (name-as-greeting rule, response-guidelines.md Communication Style)",
         ))
+
+    # 19a. Self-incrimination on lost leads (WARN, no auto-fix -- ruling 2026-08-12)
+    # When a lead says "went another direction" or similar, the draft must NOT admit
+    # mistakes the lead didn't raise, fabricate delivery failures, or validate their decision.
+    # These patterns fire when self-flagellating language appears in the same response
+    # as a lost-lead signal. False-positive risk is low because these phrases are rare
+    # in non-lost-lead contexts.
+    _LOST_LEAD_SIGNALS = re.compile(
+        r'(?:went\s+another\s+direction|went\s+with\s+someone\s+else|'
+        r'went\s+(?:a\s+)?different\s+(?:direction|way)|decided\s+to\s+go\s+elsewhere|'
+        r'no\s+worries[,\.]|best\s+of\s+luck)',
+        re.IGNORECASE,
+    )
+    _SELF_INCRIMINATION_PATTERNS = [
+        (r"\bthat'?s\s+on\s+me\b", "self_incrimination_lost_lead"),
+        (r"\bI\s+(?:dropped\s+the\s+ball|missed\s+that|should\s+have\s+(?:sent|followed|called))\b",
+         "self_incrimination_lost_lead"),
+        (r"\bmy\s+(?:fault|mistake|bad)\b", "self_incrimination_lost_lead"),
+        (r"\bI\s+(?:never|didn'?t)\s+(?:send|get|follow)\b", "self_incrimination_lost_lead"),
+        (r"\bsmart\s+(?:of\s+you|move|choice|decision)\b", "defeat_validation_lost_lead"),
+        (r"\b(?:sounds?\s+like\s+you\s+made|you\s+(?:probably\s+)?made)\s+the\s+right\s+(?:call|choice|decision)\b",
+         "defeat_validation_lost_lead"),
+    ]
+    if _LOST_LEAD_SIGNALS.search(fixed):
+        for pat, label in _SELF_INCRIMINATION_PATTERNS:
+            m = re.search(pat, fixed, re.IGNORECASE)
+            if m:
+                issues.append((
+                    "self_incrimination_lost_lead_warn",
+                    f"{m.group()} -- on a lost-lead response, never admit mistakes the lead didn't "
+                    "raise, fabricate delivery failures, or validate their decision to go elsewhere; "
+                    "keep it to a short gracious well-wish (ruling 2026-08-12, Lost Lead Rule in "
+                    "docs/response-guidelines.md)",
+                ))
+                break  # One WARN is enough; multiple patterns are additive noise
 
     # 19. Dramatic update opener in first sentence (WARN, no auto-fix)
     # When a lead shares new info, don't dramatize the update with phrases like
