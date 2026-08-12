@@ -108,6 +108,8 @@ cat > "$TMPFILE" << 'PROPOSAL_EOF'
 PROPOSAL_EOF
 # Samuel strategic (default):
 python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE" --style strategic
+# Samuel strategic_dq:
+# python3 "...validate_proposal.py" "$TMPFILE" --style strategic_dq
 # Samuel strategic_exp:
 # python3 "...validate_proposal.py" "$TMPFILE" --style strategic_exp
 # Samuel v2:
