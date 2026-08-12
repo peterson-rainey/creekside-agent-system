@@ -48,6 +48,28 @@ If the user does not specify a profile, default to `samuel`. If the user does no
 
 All paths are: `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/`
 
+### Step 0: Variant Assignment (Samuel A/B test)
+
+**Applies only when:** profile = `samuel` AND the user did NOT explicitly specify a style. Skip this step entirely if profile is `lindsey` or if the user named a style.
+
+Query the most recent Samuel A/B log entry to determine which variant to use next:
+
+```sql
+SELECT mode FROM upwork_proposal_logs
+WHERE mode IN ('strategic', 'strategic_dq')
+ORDER BY created_at DESC
+LIMIT 1;
+```
+
+Alternation rule:
+- If last mode = `strategic` -> assign `strategic_dq` for this run.
+- If last mode = `strategic_dq` -> assign `strategic` for this run.
+- If no rows exist (empty result) -> assign `strategic_dq` for this run.
+
+The assigned style flows through everything downstream: which file is Read in Step 2, the `--style` flag passed to validate_proposal.py in Step 4, and the `mode` value logged in Step 5. Step 5 logging is what advances the alternation, so the mode logged MUST be the style actually used.
+
+If the user explicitly specifies any style, that overrides the A/B assignment entirely -- do not run this query.
+
 ### Step 1: Gather Case Study Context
 
 ```sql
