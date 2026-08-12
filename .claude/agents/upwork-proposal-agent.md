@@ -197,6 +197,7 @@ Perform each check by re-reading the final proposal text for the relevant patter
 **Validation checklist (required output):** After completing all checks, include the following block in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself). Fill in each line with the actual result:
 
 Validation:
+- Validator: [PASS (run N of 3, exit 0) -- copy the actual verdict line from the script output here. Self-asserting PASS without a script run is prohibited.]
 - Em-dash scan: [PASS / FAIL]
 - Bold marker scan: [PASS / FAIL]
 - Hourly rate scan: [PASS / FAIL]
