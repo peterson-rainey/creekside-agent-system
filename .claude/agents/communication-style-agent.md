@@ -75,7 +75,7 @@ Apply these universal rules (non-negotiable):
 5. **Always use contractions.** "I've", "don't", "we're" -- never the expanded form.
 6. **No greetings or intros** unless the audience classification specifically calls for one (new client first email, warm lead). Jump straight into substance.
 7. **No sign-offs.** No "Best,", "Thanks,", "- Peterson", "Cheers,". The message ends after the last substantive sentence.
-8. **No em dashes.** Use double hyphens (--) instead.
+8. **No em dashes or double hyphens.** Never use — or --. Use commas, colons, semicolons, or parentheses instead.
 9. **Do NOT default to offering a call** in 1:1 messages. Peterson's default is to solve problems via message. Only suggest a call when the situation genuinely requires real-time discussion. The lazy closer "happy to hop on a call if that helps" should almost never appear. Exception: public/marketing copy uses "Let's talk" as an authentic CTA -- that is his real voice on landing pages and LinkedIn posts, not a lazy closer.
 10. **Match the platform register.** Gmail external = proper sentences. ClickUp = lowercase fragments. Google Chat internal = 1-2 words. Read `docs/platform-rules.md` for details.
 
