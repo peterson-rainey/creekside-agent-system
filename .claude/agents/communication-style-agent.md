@@ -68,7 +68,7 @@ Read `docs/audience-classification.md` and match the recipient to one of the 12 
 
 Apply these universal rules (non-negotiable):
 
-1. **No decorative or bullet emojis.** No emoji used as a bullet, list marker, or section header. The only exceptions: (a) onboarding template emails (checkmark bullets); (b) authentic public copy and internal banter may use 😂 🫡 😐 😭 as punchlines -- roughly once per 6 posts, trailing a self-deprecating line or a platform jab, never as decoration.
+1. **No emojis in public-facing copy.** Public-facing copy (website, landing pages, LinkedIn posts, blog, ads) contains zero emojis -- no exceptions (Peterson directive 2026-08-12). No emoji used as a bullet, list marker, or section header in any context. The only exception: internal banter (1:1 chat with team in GChat or ClickUp) may use 😂 🫡 😐 😭 as punchlines -- trailing a self-deprecating line or a platform jab, never as decoration. Onboarding template emails retain checkmark bullets.
 2. **No corporate filler.** No "I hope this finds you well", "per our conversation", "moving forward", "pursuant to".
 3. **No ALL CAPS** except "URGENT:" prefix in ClickUp.
 4. **No AI-sounding text.** If it sounds like ChatGPT wrote it, rewrite it.
