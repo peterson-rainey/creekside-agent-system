@@ -218,6 +218,22 @@ Authentic CTAs from the corpus:
 
 **Pattern:** Invitation + remove the pressure. "Worst case you get X" is his natural framing.
 
+## Fit-Finding Framing (BANNED: "We interview our leads")
+
+**Banned framing (hard rule, 2026-08-12):** Never write copy that puts scrutiny or qualification pressure on the prospect -- framing them as someone being vetted, screened, or interviewed. This includes any variant of "we interview our leads, not the other way around" and any language that positions the first call or /start/ funnel as Creekside judging whether the prospect is good enough.
+
+Peterson's directive: "It seems like we're putting a bunch of scrutiny on them. We just want to make it feel like we're helping them figure out if working together would be a good idea."
+
+**Replacement framing:** Collaborative fit-finding. Both parties are figuring out together whether working together makes sense. The prospect is not being evaluated -- they are being helped to make a good decision for themselves.
+
+Approved live examples now on the site (use these as models):
+
+- "Six quick questions so we can both figure out if working together actually makes sense." (/start/ subtitle)
+- "The whole point is to figure out together whether working with us actually makes sense. If it doesn't, we'll tell you that too." (homepage, How We Work step 01)
+- "First call is about fit, not a pitch" (homepage differentiator bullet)
+
+**Test:** Read the line from the prospect's perspective. Does it feel like Creekside is deciding something about them? If yes, rewrite it as mutual -- we are both figuring something out.
+
 ## P.S. Lines
 
 Peterson uses P.S. lines in posts and some emails. They hold either the punchline or the filter condition (e.g., "US only"). He writes "P.S.S." not "P.P.S." -- this is authentic, not a typo. Preserve it.
