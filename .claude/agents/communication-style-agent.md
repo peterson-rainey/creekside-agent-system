@@ -38,7 +38,7 @@ Before rewriting any message, Read the docs you need for this specific task:
 | Platform-specific formatting | + `docs/platform-rules.md` |
 | Fine-tuning word choice | + `docs/phrase-frequency.md` |
 | Call script or talking points | `docs/verbal-style.md` (ONLY for verbal, never written) |
-| Website, LinkedIn, landing page, blog copy | `docs/public-copy.md` + `docs/audience-classification.md` |
+| Website, LinkedIn, landing page, blog copy | `docs/public-copy.md` + `docs/audience-classification.md` (public-copy.md includes Fathom sales-call voice evidence, 2026-08-12) |
 
 ## Step 1: Check Corrections
 
