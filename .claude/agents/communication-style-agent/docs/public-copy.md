@@ -140,6 +140,7 @@ Never: symmetrical sentence pairs where two sentences mirror each other in lengt
 
 ## Quick Checklist (before submitting public copy)
 
+- [ ] Zero emojis (Peterson directive 2026-08-12: public copy is emoji-free, no exceptions)
 - [ ] No em dashes (use double hyphens -- or just a comma or period)
 - [ ] No tricolon (three parallel clauses ending a thought)
 - [ ] No "It's not X. It's Y." flip
