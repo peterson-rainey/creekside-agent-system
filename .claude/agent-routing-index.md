@@ -71,6 +71,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 |-------|-------------|
 | api-connector-agent | Contractor wants to pull data from or interact with Klaviyo, Mailchimp, Shopify, GoHighLevel, HubSpot, SendGrid, or ActiveCampaign for a client (uses vault-stored keys, never exposes raw credentials) |
 | daily-status-brief | Morning brief covering calendar, action items, email, pipelines, finances |
+| daily-operations-digest | Peterson's morning operations digest -- schedule, overdue/attention items, client updates, top priorities, decisions needed, quick wins. Reconciles ClickUp overdue via get_whats_next (not filter_tasks alone), cross-checks Gmail invites against calendar sync, filters client_health_scores noise. On-demand only, not yet scheduled. |
 | clickup-task-manager-agent | ClickUp task CRUD, status updates, overdue reports |
 | google-calendar-agent | Calendar management, event creation, time-block rules |
 | post-call-agent | Extract deduplicated action items from sales/client call transcripts; writes approved Notes for Next Call items to the client's ClickUp weekly call notes doc |
