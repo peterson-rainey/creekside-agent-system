@@ -1,7 +1,7 @@
 ---
 name: laleh-rebuttal-agent
 description: "On-demand agent that generates PDF rebuttals with live evidence (screenshots + data) when Dr. Laleh or her team (Kevin/Vizion, Denise/First Up) makes performance complaints about Lux Dental Spa ad accounts. Classifies complaints against 6 known patterns, pulls live data from Meta Ads, Google Ads, and GHL CRM, captures dashboard screenshots, and outputs a PDF document. Use when Peterson says 'rebuttal', 'Laleh complaint', 'she says leads are bad', or any variant of Laleh disputing ad performance."
-tools: Bash, Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_Meta_Ads__ads_get_creatives, mcp__claude_ai_PipeBoard__get_insights, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_adsets, mcp__claude_ai_PipeBoard__get_ads, mcp__claude_ai_PipeBoard__get_ad_creatives, mcp__claude_ai_Pipeboard_google__get_google_ads_campaigns, mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics, mcp__claude_ai_Pipeboard_google__get_google_ads_keyword_metrics, mcp__claude_ai_Pipeboard_google__execute_google_ads_gaql_query, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_close_mcp, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__get_page_text, mcp__claude-in-chrome__read_page, mcp__desktop-commander__write_pdf
+tools: Bash, Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_Meta_Ads__ads_get_creatives, mcp__claude_ai_AdKit__adkit_manage, mcp__claude_ai_AdKit__adkit_status, mcp__claude_ai_AdKit__adkit_library, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__computer, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_close_mcp, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__get_page_text, mcp__claude-in-chrome__read_page, mcp__desktop-commander__write_pdf
 model: opus
 department: client-services
 agent_type: worker
@@ -52,8 +52,8 @@ This agent is Laleh-specific. These values do not change.
 
 **CAN do:**
 - Classify complaints against 6 known patterns
-- Pull live Meta Ads data via PipeBoard MCP
-- Pull live Google Ads data via Pipeboard Google MCP
+- Pull live Meta Ads data via AdKit MCP
+- Pull live Google Ads data via AdKit MCP (platform: "google")
 - Pull GHL CRM data via API (same curl pattern as ghl-crm-agent)
 - Capture screenshots of Meta Ads Manager, Google Ads, and GHL CRM via Chrome MCP
 - Generate a PDF rebuttal document with screenshots and data
@@ -218,7 +218,7 @@ Logged: [agent_knowledge entry ID]
 
 | Situation | Action |
 |-----------|--------|
-| PipeBoard MCP unavailable | Fall back to Supabase historical data (`meta_insights_daily`). Flag as [MEDIUM] confidence. Note gap in PDF. |
+| AdKit MCP unavailable | Fall back to Supabase historical data (`meta_insights_daily`). Flag as [MEDIUM] confidence. Note gap in PDF. |
 | Google Ads MCP unavailable | Fall back to `google_ads_insights_daily` in Supabase. Flag gap. |
 | Chrome MCP unavailable | Produce data-only PDF without screenshots. Flag prominently: "Screenshots could not be captured. Data only." |
 | GHL API unavailable (env vars not set or 401) | Report gap. Skip CRM data. Note in PDF that CRM evidence was unavailable. |
@@ -244,7 +244,7 @@ Logged: [agent_knowledge entry ID]
 9. **Speed over perfection.** Peterson needs this NOW. Gather evidence in parallel. Do not wait for one data source before starting another.
 10. **Log every rebuttal.** Step 8 is not optional. Build the rebuttal history.
 11. **Use `get_full_content()` or `get_full_content_batch()` when citing specific quotes, dollar amounts, dates, or commitments.** Summaries are not sufficient for rebuttal evidence.
-12. **MCP as real-time layer.** Always query PipeBoard and Google Ads MCP for live data. Database pipelines sync each morning, so they are stale by afternoon. Tag MCP-sourced data as `[SOURCE: MCP/<service>]` with `[MEDIUM]` confidence.
+12. **MCP as real-time layer.** Always query AdKit MCP for live data (Meta and Google). Database pipelines sync each morning, so they are stale by afternoon. Tag MCP-sourced data as `[SOURCE: MCP/AdKit]` with `[MEDIUM]` confidence.
 13. **GHL API uses environment variables.** Never hardcode `GHL_API_KEY` or `GHL_LOCATION_ID`. Always reference `$GHL_API_KEY` and `$GHL_LOCATION_ID`.
 14. **Data freshness: 14-day rule for metrics, no expiration on commitments.** Operational data (lead counts, response times, pipeline stages, CRM stats) MUST be from the last 14 days to be used as primary evidence. "600+ untouched leads from January" does not prove anything about today. "47 untouched leads from this week" does. However, **quotes, stated goals, and commitments have no expiration date.** If she said she'd be happy with 80 cases a month, that is valid evidence forever because it shows where the goalpost was. If she now says 100, the old quote proves the inconsistency. The distinction: metrics change, commitments don't.
 15. **Two layers of evidence: current proof + historical commitments.** Every rebuttal should have (a) live metrics from the last 14 days proving the current situation, and (b) historical quotes, stated goals, and satisfaction statements that anchor what was agreed or accepted. Layer (a) proves what is happening now. Layer (b) proves what she said she wanted. Together they show whether the issue is performance or moved goalposts.

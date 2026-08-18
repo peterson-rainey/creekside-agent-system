@@ -14,7 +14,7 @@ RSAs cannot be edited in place. Workflow:
 
 1. **Create new RSA** with the updated headlines/descriptions/paths/final_urls. Preserve everything else from the original (pinned positions, ad group, status). Use:
    ```
-   mcp__claude_ai_Pipeboard_google__create_google_ads_responsive_search_ad
+   mcp__claude_ai_AdKit__adkit_manage (entity: "ads", action: "create", platform: "google", ad_type: "responsive_search_ad")
    customer_id: {{ cid }}
    ad_group_id: {{ ag_id }}
    headlines: [{text, pinned_position}]
@@ -25,7 +25,7 @@ RSAs cannot be edited in place. Workflow:
    status: <match original ad's status>
    ```
 
-   **Gotcha A -- PipeBoard's stricter character validator:** the dedicated tool counts dynamic-insertion `{KeyWord:fallback text}` literally (the whole `{KeyWord:...}` token), not the fallback-only length the actual Google Ads API uses. If a headline with dynamic insertion gets rejected for "exceeds 30 chars" but the fallback is <=30 chars:
+   **Gotcha A -- AdKit's stricter character validator:** the dedicated tool counts dynamic-insertion `{KeyWord:fallback text}` literally (the whole `{KeyWord:...}` token), not the fallback-only length the actual Google Ads API uses. If a headline with dynamic insertion gets rejected for "exceeds 30 chars" but the fallback is <=30 chars:
    - Try `execute_google_ads_mutate` with `resource_type: "adGroupAds"` and the full operation payload -- this hits the API directly.
    - **Gotcha A.2:** the mutate path can be blocked by a permission heuristic that rejects "complex object payloads" (returns `[object Object]`). If that happens:
      - Drop the dynamic insertion when creating via the dedicated tool.
@@ -36,7 +36,7 @@ RSAs cannot be edited in place. Workflow:
 
 3. **Remove the old RSA** via:
    ```
-   mcp__claude_ai_Pipeboard_google__execute_google_ads_mutate
+   mcp__claude_ai_AdKit__adkit_manage (entity: "mutate", action: "execute", platform: "google")
    resource_type: adGroupAds
    operations: [{ remove: "customers/{{ cid }}/adGroupAds/{{ AG_ID }}~{{ AD_ID }}" }]
    ```

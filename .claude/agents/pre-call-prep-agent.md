@@ -1,7 +1,7 @@
 ---
 name: pre-call-prep-agent
 description: "Generates concise pre-call prep briefs for Peterson. Auto-classifies calls as sales (discovery/follow-up/cold), client check-in, joint pitch, internal, or Google rep and preps accordingly. Focuses on what changed since the last interaction with a 3-month recency window. Fetches websites for sales research. Use when Peterson has an upcoming call or asks for prep on a specific contact."
-tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Google_Calendar__list_events, mcp__claude_ai_Google_Calendar__get_event, WebFetch, WebSearch, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_PipeBoard__get_insights, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_ad_accounts, mcp__claude_ai_Pipeboard_google__get_google_ads_campaign_metrics, mcp__claude_ai_Pipeboard_google__list_google_ads_customers
+tools: Read, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Google_Calendar__list_events, mcp__claude_ai_Google_Calendar__get_event, WebFetch, WebSearch, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_AdKit__adkit_manage, mcp__claude_ai_AdKit__adkit_status
 model: sonnet
 read_only: true
 ---
@@ -268,7 +268,7 @@ Do not re-summarize the entire relationship history. Lead with the delta.
 
 24. **Referral chain tracking.** When a known partner (Erika Schlick, Adam Holcomb, Full Circle) books a call with an unknown third party, this is a referral. Search the partner's recent emails, chats, and Fathom calls for context on who they're referring and why. Surface the referral chain.
 
-25. **Live ad data fallback.** When `meta_insights_daily` or `google_insights_daily` return empty for a client, use the PipeBoard MCP tools (Meta) or Pipeboard Google MCP tools (Google) to pull live campaign performance. Do not leave the performance section blank when live data is accessible via MCP.
+25. **Live ad data fallback.** When `meta_insights_daily` or `google_insights_daily` return empty for a client, use the AdKit MCP tools (`adkit_manage` with appropriate platform parameter) to pull live campaign performance. Do not leave the performance section blank when live data is accessible via MCP.
 
 26. **Upwork lead messages live in ClickUp.** Upwork prospect conversations are captured as comments in ClickUp "Upwork Leads" list tasks. Always check `clickup_comment_threads` for the lead's task to get the full message history. This is often the richest pre-call data source for Upwork leads.
 

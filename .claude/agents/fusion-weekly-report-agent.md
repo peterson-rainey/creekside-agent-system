@@ -138,7 +138,7 @@ Cron: 0 12 * * 1,4 UTC = 7am CDT (correct Mar-Nov) / 6am CST (Nov-Mar, one hour 
 
 ## ERROR HANDLING
 
-- PipeBoard API error: retry once, then proceed with available windows and flag missing
+- AdKit API error: retry once, then proceed with available windows and flag missing
 - Zero leads: verify actions array was present, do not assume zero
 - Campaign join fails: include as Unknown type, flag for review
 - Gmail double-failure: pipeline_alerts insert, do not retry > 2x
@@ -146,7 +146,7 @@ Cron: 0 12 * * 1,4 UTC = 7am CDT (correct Mar-Nov) / 6am CST (Nov-Mar, one hour 
 
 ## RULES (NON-NEGOTIABLE)
 
-- Read-only on ad accounts (no PipeBoard write tools)
+- Read-only on ad accounts (no AdKit write tools)
 - Standard `lead` event ONLY
 - Lindsey only as email recipient
 - No em dashes anywhere

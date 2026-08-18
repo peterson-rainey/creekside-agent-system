@@ -159,7 +159,7 @@ For every tool and system the agent depends on, ask: "Can a contractor use this?
 | Supabase `execute_sql` | No (contractors route through `contractor_query()`) | Use `contractor_query()` pattern |
 | GitHub repo files (Read/Glob/Grep) | No (auto-pull gives everyone the files) | Works as-is |
 | MCP Gmail, ClickUp, Calendar, Drive, Square | **Yes** | `chrome-browser-nav` skill |
-| MCP Meta Ads / Google Ads (PipeBoard) | **Yes** | `chrome-browser-nav` skill |
+| MCP Meta Ads / Google Ads (AdKit) | **Yes** | `chrome-browser-nav` skill |
 | Protected file writes | **Yes** | Not available -- scope as admin-only or remove |
 | Local scripts (`~/loom_pipeline/`, `~/gdrive_pipeline/`) | **Yes** | Not available -- note in troubleshooting |
 | ADMIN_MODE | **Yes** | Not available -- admin-only agents only |

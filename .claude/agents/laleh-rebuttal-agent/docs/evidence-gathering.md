@@ -19,9 +19,9 @@ curl -s -X GET \
   -H "Version: 2021-07-28"
 ```
 
-**Meta messaging connections** (via PipeBoard):
+**Meta messaging connections** (via AdKit):
 ```
-get_insights: account_id=act_868498138612020, date_preset="this_month",
+adkit_manage: entity="results", action="list", account_id=act_868498138612020, date_preset="this_month",
   level="account", fields=["messaging_first_reply","cost_per_messaging_first_reply","reach","frequency"]
 ```
 
@@ -39,29 +39,29 @@ curl -s -X GET \
 
 ### Type 2: Ad Fatigue
 
-**Meta frequency metric** (via PipeBoard):
+**Meta frequency metric** (via AdKit):
 ```
-get_insights: account_id=act_868498138612020, date_preset="last_30d",
+adkit_manage: entity="results", action="list", account_id=act_868498138612020, date_preset="last_30d",
   level="campaign", fields=["campaign_name","frequency","reach","impressions","spend"]
 ```
 
-**Creative rotation evidence** (via PipeBoard):
+**Creative rotation evidence** (via AdKit):
 ```
-get_ad_creatives: account_id=act_868498138612020, fields=["name","status","effective_status"]
+adkit_manage: entity="creatives", action="list", account_id=act_868498138612020, fields=["name","status","effective_status"]
 ```
 
 **Interpretation:** Industry fatigue threshold is 5-10x frequency. If current frequency < 3x, ads are NOT fatigued regardless of how long they have been running.
 
 ### Type 3: Out-of-State Leads
 
-**Meta targeting settings** (via PipeBoard):
+**Meta targeting settings** (via AdKit):
 ```
-get_adsets: account_id=act_868498138612020, fields=["name","targeting","status"]
+adkit_manage: entity="ad_sets", action="list", account_id=act_868498138612020, fields=["name","targeting","status"]
 ```
 
-**Meta geo breakdown** (via PipeBoard):
+**Meta geo breakdown** (via AdKit):
 ```
-get_insights: account_id=act_868498138612020, date_preset="last_30d",
+adkit_manage: entity="results", action="list", account_id=act_868498138612020, date_preset="last_30d",
   level="account", fields=["impressions","reach","spend"],
   breakdowns=["region"]
 ```
@@ -70,24 +70,24 @@ get_insights: account_id=act_868498138612020, date_preset="last_30d",
 
 ### Type 4: Performance Declining
 
-**Current Meta metrics** (via PipeBoard):
+**Current Meta metrics** (via AdKit):
 ```
-get_insights: account_id=act_868498138612020, date_preset="this_month",
+adkit_manage: entity="results", action="list", account_id=act_868498138612020, date_preset="this_month",
   level="account", fields=["spend","impressions","clicks","ctr","cpc","cpm","actions","cost_per_action_type","reach","frequency"]
 ```
 
-**Current Google metrics** (via Pipeboard Google):
+**Current Google metrics** (via AdKit Google):
 ```
-get_google_ads_campaign_metrics: customer_id=5948318044, date_range="THIS_MONTH"
+adkit_manage: entity="results", action="list", platform="google", customer_id=5948318044, date_range="THIS_MONTH"
 ```
 
-**Historical comparison** (from PipeBoard API, NOT from stale database):
+**Historical comparison** (from AdKit API, NOT from stale database):
 ```
-get_insights: account_id=act_868498138612020, date_preset="last_90d",
+adkit_manage: entity="results", action="list", account_id=act_868498138612020, date_preset="last_90d",
   level="account", fields=["spend","impressions","clicks","reach","frequency"],
   time_increment="monthly"
 ```
-If PipeBoard monthly breakdown is unavailable, fall back to Supabase:
+If AdKit monthly breakdown is unavailable, fall back to Supabase:
 ```sql
 SELECT date, spend, impressions, clicks, reach,
        (spend / NULLIF(clicks, 0)) as cpc
@@ -115,14 +115,14 @@ GROUP BY source_table;
 
 ### Type 6: Account Paused / Broken
 
-**Campaign status** (via PipeBoard):
+**Campaign status** (via AdKit):
 ```
-get_campaigns: account_id=act_868498138612020, fields=["name","status","effective_status","daily_budget"]
+adkit_manage: entity="campaigns", action="list", account_id=act_868498138612020, fields=["name","status","effective_status","daily_budget"]
 ```
 
-**Google campaign status** (via Pipeboard Google):
+**Google campaign status** (via AdKit Google):
 ```
-get_google_ads_campaigns: customer_id=5948318044
+adkit_manage: entity="campaigns", action="list", platform="google", customer_id=5948318044
 ```
 
 ---
@@ -181,9 +181,9 @@ When goalpost shifting is detected, also gather:
 
 **Satisfaction baselines** (from agent_knowledge, loaded in Step 1).
 
-**Historical metrics** (from PipeBoard API):
+**Historical metrics** (from AdKit API):
 ```
-get_insights: account_id=act_868498138612020, date_preset="maximum",
+adkit_manage: entity="results", action="list", account_id=act_868498138612020, date_preset="maximum",
   level="account", fields=["spend","impressions","clicks","reach","frequency"],
   time_increment="monthly"
 ```

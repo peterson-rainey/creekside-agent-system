@@ -17,7 +17,7 @@ Three skills exist in the system. Include them in the agent's methodology when t
 - **How to reference in agent file:** Add a step: "For UI-only data not available via API, use the `chrome-browser-nav` skill"
 
 ### 3. Ads MCP Connector Skill (`ads-connector`)
-- **What it does:** Routes to the correct MCP tools for live ad platform operations -- PipeBoard MCP for Meta/Facebook/Instagram (full read + write), Google Ads MCP for Google (full read + write)
+- **What it does:** Routes to the correct MCP tools for live ad platform operations -- AdKit MCP for Meta/Facebook/Instagram (full read + write via adkit_manage), AdKit MCP for Google Ads (full read + write via adkit_manage with platform: "google")
 - **When to include:** When the agent needs to read or write live campaign data, pull performance metrics, create/update/pause campaigns, manage audiences, keywords, or creatives via API
 - **How to reference in agent file:** Add a step: "For live platform data and campaign operations, use the `ads-connector` skill to route to the correct MCP tools"
 

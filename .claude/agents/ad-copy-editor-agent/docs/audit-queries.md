@@ -2,12 +2,12 @@
 
 **The audit must sweep EVERY ad surface, not just RSAs.** This was the explicit instruction from the SRM session: "audit all of the ads across all the different campaign types."
 
-For Google Ads via PipeBoard MCP:
+For Google Ads via AdKit MCP:
 
 ## 2a. Responsive Search Ads (RSAs)
 
 ```
-mcp__claude_ai_Pipeboard_google__execute_google_ads_gaql_query
+mcp__claude_ai_AdKit__adkit_manage (entity: "query", action: "execute", platform: "google")
 customer_id: {{ google_account_id_numeric }}
 gaql: |
   SELECT
@@ -122,9 +122,9 @@ Cross-reference asset_id -> these link rows to determine where each match is act
 
 ## 2h. Meta Ads (when platform=meta_ads or both)
 
-Use PipeBoard MCP:
-- `get_ads` per account -> list all ads
-- `get_ad_creatives` + `get_creative_details` per ad -> headline/body/description/CTA copy
+Use AdKit MCP:
+- `adkit_manage` with `entity: "ads"` per account -> list all ads
+- `adkit_manage` with `entity: "creatives"` per ad -> headline/body/description/CTA copy
 - Filter by status (use `effective_status` for "actually serving" determination)
 
 For Meta find/replace, the immutable rule is similar: Meta ad creatives are not directly edited -- you create a new ad with the new creative, pause/delete the old one.
