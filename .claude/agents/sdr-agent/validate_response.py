@@ -76,6 +76,11 @@ _PARTNER_REGISTRY = {
         "calendar": "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu",
         "has_upwork_video": False,
     },
+    "brady": {
+        "name": "Brady",
+        "calendar": "https://app.reclaim.ai/m/brady-tibbits/flexible-quick-meeting",
+        "has_upwork_video": True,  # Brady IS in the Upwork profile video; partner+video co-ref allowed
+    },
 }
 
 _SDR_AGENT_MD_PATH = os.path.join(
@@ -147,22 +152,24 @@ _ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("samuel")
 # check_blocks() rebuilds the effective whitelist per profile at runtime.
 # ---------------------------------------------------------------------------
 CALENDAR_URL_WHITELIST = {
-    "https://calendar.app.google/wSdVbfwaJRzkw12E7",   # samuel
+    "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (Peterson's lead-facing sales calendar)
     "https://calendly.com/lindsey-bouffard/30min",       # lindsey
     _ACTIVE_PARTNER["calendar"],                         # active white-label partner (samuel profile default)
 }
 
 # Regex to find any calendar.app.google, calendar.google.com/calendar/...,
-# or calendly.com URL in the response.
+# calendly.com, or app.reclaim.ai URL in the response.
 # Covers:
 #   https://calendar.app.google/<token>
 #   https://calendar.google.com/calendar/u/0/appointments/schedules/<token>
 #   https://calendly.com/<path>
+#   https://app.reclaim.ai/<path>  (Brady's booking domain)
 _CALENDAR_URL_RE = re.compile(
     r'https?://(?:'
     r'calendar\.app\.google'
     r'|calendar\.google\.com/calendar(?:/[^\s,;)]*)?'
     r'|calendly\.com'
+    r'|app\.reclaim\.ai'
     r')/[^\s,;)]*',
     re.IGNORECASE,
 )
@@ -406,7 +413,7 @@ def check_blocks(text, profile="samuel"):
 
     # Build the effective whitelist for this profile + partner combination.
     _effective_whitelist = {
-        "https://calendar.app.google/wSdVbfwaJRzkw12E7",   # samuel
+        "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (lead-facing sales calendar)
         "https://calendly.com/lindsey-bouffard/30min",       # lindsey
         active_partner["calendar"],                          # active partner for THIS profile
     }
@@ -433,7 +440,7 @@ def check_blocks(text, profile="samuel"):
     #     Lindsey's Calendly + the lindsey-profile's active partner calendar are
     #     allowed (even when the partner uses a calendar.google.com URL).
     #   - samuel: standard effective whitelist applies.
-    _SAMUEL_CALENDAR = "https://calendar.app.google/wSdVbfwaJRzkw12E7"
+    _SAMUEL_CALENDAR = "https://calendar.app.google/iwVAR8raqiD9a7dx6"
     for url_match in _CALENDAR_URL_RE.finditer(text):
         url = url_match.group().rstrip('.,;)')  # strip trailing punctuation
         if profile == "lindsey":
@@ -458,7 +465,7 @@ def check_blocks(text, profile="samuel"):
                 issues.append((
                     "non_whitelisted_calendar_url",
                     f"{url} -- only approved URLs are samuel: "
-                    "https://calendar.app.google/wSdVbfwaJRzkw12E7 | "
+                    "https://calendar.app.google/iwVAR8raqiD9a7dx6 | "
                     "lindsey: https://calendly.com/lindsey-bouffard/30min | "
                     f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
