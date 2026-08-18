@@ -714,6 +714,23 @@ Output files: [list with sizes]
 
 ---
 
+## Critic Spec (Tier 3)
+
+The following checks apply to all pricing update runs. qc-reviewer-agent evaluates these per-check when reviewing output from pricing-update-agent. BLOCK checks must pass before any file or DB changes; WARN findings are surfaced to the caller.
+
+1. Explicit "yes" / "proceed" / "go ahead" from Peterson was received in Step 1 BEFORE any file, DB, or website change was made. Implicit approval (Peterson provided new numbers = implicit consent) is NOT sufficient. A pricing cascade is irreversible in several external systems. -- BLOCK
+2. A git tag was created at the start of Step 2 BEFORE the first file edit. If the tag is missing from the output, the rollback point does not exist. -- BLOCK
+3. Grandfathered client overrides (Village Repair / Fusion Dental) were NOT touched. `pricing_override` logic was NOT modified. -- BLOCK
+4. The minimum threshold calculation (minimum / rate1 = breakeven spend) is present in the output and mathematically correct. -- BLOCK
+5. All four proposal scripts (proposal_chart.py, build_docx.py, build_lead_docx.py, build_slides.py) exited 0. If any script failed, the run halted at that point and did not proceed to Google Drive or website steps. -- BLOCK
+6. The verification grep (Step 13) ran against all changed files and reported either CLEAN or listed specific unresolved matches for Peterson's review. A skipped verification step is a BLOCK. -- BLOCK
+7. The Cade ClickUp notification (Step 12) included the new pricing structure in full (onboarding, minimum, rates, cap). A notification that says "pricing updated" without the actual numbers does not satisfy this check. -- WARN
+8. The website `_pricing.astro` file was NOT renamed from underscore-prefix back to `pricing.astro` unless Peterson explicitly approved re-enabling the route. -- BLOCK
+9. The `pricing-reference.md` file (Step 15) was updated with the new current values after confirming all changes are live. -- WARN
+10. All old pricing numbers appearing in verification grep that are NOT in the exempt list (history sections, canonical examples, pricing_override JSON blocks, decision entries tagged pricing-exception) were either resolved or flagged to Peterson before the run was declared complete. -- BLOCK
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+
 ## Access Requirements
 
 This agent requires:
