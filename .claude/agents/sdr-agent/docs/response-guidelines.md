@@ -456,6 +456,8 @@ If a lead shares their own calendar or booking link, or asks us to book on THEIR
 
 Cross-reference: never assume or promise availability (S4/W26). That rule still governs -- do not guess what's open. The distinction is that S11 governs the counter-offer behavior; S4 governs the availability-assumption behavior. Both apply simultaneously.
 
+Precedence vs. the 6-month-old-call calendar mandate (followup.md): that mandate governs the OUTBOUND re-engagement touch only. Once the lead replies with their own calendar or booking link, S11 wins -- accept theirs, do not send our calendar link.
+
 BAD (Mike Da failure): lead asked for more flexible times; response repeated the same Tue/Wed slots already offered in the thread.
 GOOD: acknowledge their constraint, confirm we'll work around their schedule. No calendar link in the response.
 
