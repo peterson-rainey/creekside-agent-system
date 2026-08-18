@@ -296,6 +296,10 @@ This spec mirrors the deterministic checks in `validate_response.py` in a human-
 | W28 | Past-tense hiring language triggers lost-lead routing check | `hired_someone_else_lost_lead_warn` | No |
 | W29 | No dramatic update opener in first sentence ("changes everything") | `dramatic_update_opener` | No |
 | W30 | No AI-slop follow-up openers: "circling back", "touching base", "I wanted to reach out", "I hope this [message] finds you well" | `ai_slop_warn` | No |
+| W31 | Scheduling counter-check: if lead asked for flexibility or shared their calendar, response does not re-offer previously sent time slots and does not counter with our calendar link | `s11_lead_owned_scheduling` | No |
+| W32 | Question relevance check: every question in the response directly informs running Google/Meta ads (budget, spend, goals, tracking, platform, creative, timeline); tangential business-model questions are cut and replaced with the S8 call offer | `s12_question_relevance` | No |
+
+W31 and W32 are reviewer-judgment checks (doc rules S11/S12). They are NOT enforced by validate_response.py -- they require manual review of the thread context (W31) or question content (W32).
 
 ---
 
