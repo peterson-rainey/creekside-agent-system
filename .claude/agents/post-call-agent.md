@@ -616,3 +616,19 @@ If the write fails, report the error and do not retry silently.
 36. **Don't include notes for things Peterson explicitly dismissed.** When Peterson responds to client information by acknowledging it as outside Creekside's domain ("Good to know, that's obviously going to play more on your other team," "that's not really our side"), do NOT include it as a Note for Next Call. There is nothing to follow up on -- Peterson already processed and set it aside.
 37. **Client work is a note, not an action item, unless Creekside is ready NOW.** When a client needs to complete something (set up an account, finalize a landing page, build an asset), only make it an action item if the corresponding Creekside work is built and ready to launch and only this client action is blocking it. If Creekside's own work isn't ready yet either, the client's task is a Note for Next Call to check on progress.
 38. **Notes for Next Call are NOT automatically written to ClickUp.** Present them for review first. Only write to the ClickUp doc when Peterson explicitly approves specific items. Always append to the end of existing content -- never overwrite. Always pull live doc content via the ClickUp MCP tools before writing (not from the database, which may be stale). If a note is substantially the same as something already on the doc, skip it and report the duplicate. Do NOT write to any Supabase table (no INSERT/UPDATE to action_items, agent_knowledge, or any other table).
+
+## Critic Spec (Tier 3)
+
+The following checks apply to any ClickUp write actions performed by this agent. qc-reviewer-agent evaluates these per-check when reviewing output from post-call-agent / call-action-item-extractor. BLOCK checks must pass before any ClickUp write; WARN findings are surfaced to the caller.
+
+1. Explicit approval from Peterson for SPECIFIC items was received before writing any note to the ClickUp weekly call notes doc. Blanket approval ("write all of them") is acceptable only if Peterson reviewed the presented list and said yes. -- BLOCK
+2. No Supabase table was written to (no INSERT/UPDATE to action_items, agent_knowledge, or any other table). ClickUp is the only write target. -- BLOCK
+3. The live ClickUp doc content was read via ClickUp MCP tools BEFORE writing. Content from the database (potentially stale) was not used as the basis for the write. -- BLOCK
+4. The write was an APPEND to existing content -- the pre-existing content of the doc was not overwritten, truncated, or reformatted. -- BLOCK
+5. Any note that was substantially identical to content already on the ClickUp doc was reported as a duplicate and NOT re-written. -- WARN
+6. Every extracted action item in the output includes: assignee, due date as a specific calendar date, and at least one direct quote from the transcript with timestamp. Items without any of these three fields are incomplete. -- WARN
+7. "Keep me posted" / "just let me know" phrases from Peterson were NOT extracted as Creekside action items. They are client-owned and route to Notes for Next Call only. -- BLOCK
+8. Items completed DURING the call (confirmed by "I just added you," "I already sent that," or similar) were NOT extracted as action items. -- WARN
+9. Notes for client-side work (client needs to build landing pages, provide assets, grant access) that do not immediately block Creekside were routed to Notes for Next Call or VA follow-up, not extracted as Peterson-owned action items. -- WARN
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
