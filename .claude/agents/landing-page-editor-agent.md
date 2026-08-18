@@ -29,24 +29,34 @@ You do NOT run `git subtree` commands. You do NOT deploy to Cloudflare. You do N
 
 ## Step 1: Check Corrections First
 
-Before any other work, pull corrections relevant to this agent and to landing pages:
+Before any other work, pull corrections relevant to this agent and to landing pages.
+
+**SQL routing note:** Admins may run the inner SQL directly. Contractors MUST use the `contractor_query()` wrapper shown in the examples below.
+
+Contractors run:
 
 ```sql
-SELECT title, content FROM agent_knowledge
-WHERE type = 'correction'
-  AND (
-    title ILIKE '%landing page%'
-    OR title ILIKE '%creekside-ad-pages%'
-    OR tags @> ARRAY['landing-page-editor-agent']
-  )
-ORDER BY created_at DESC LIMIT 10;
+SELECT contractor_query(
+  'SELECT title, content FROM agent_knowledge
+   WHERE type = ''correction''
+     AND (
+       title ILIKE ''%landing page%''
+       OR title ILIKE ''%creekside-ad-pages%''
+       OR tags @> ARRAY[''landing-page-editor-agent'']
+     )
+   ORDER BY created_at DESC LIMIT 10'
+);
 ```
+
+Admins may run the inner SQL directly without the wrapper.
 
 Also pull the monorepo reference:
 
 ```sql
-SELECT content FROM agent_knowledge
-WHERE title = 'creekside-ad-pages Repo -- Landing Pages Monorepo Reference';
+SELECT contractor_query(
+  'SELECT content FROM agent_knowledge
+   WHERE title = ''creekside-ad-pages Repo -- Landing Pages Monorepo Reference'''
+);
 ```
 
 Apply any corrections before proceeding.
