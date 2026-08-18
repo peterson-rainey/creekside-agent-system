@@ -124,7 +124,7 @@ Parameters:
 
 ## Google Ads via PipeBoard's Google Ads connector
 
-**Connection status: VERIFIED LIVE as of 2026-04-23.** `list_google_ads_customers` returned 33 queryable Creekside accounts under MCC `5680424954` (Creekside Marketing). One account (`2617643180` — HostSwitch) is accessible but not under the MCC. 11 additional IDs are in the list but deactivated (`CUSTOMER_NOT_ENABLED`) and cannot be queried.
+**Connection status: SLOT-LIMITED since 2026-08.** The Pipeboard subscription was downgraded to a plan with **3 ad-account slots per billing cycle** (resets on the 14th). Only the 3 claimed accounts work at this tier; all other accounts get a slot-blocked refusal (error mentions `slot`, `blocked`, `over_budget`, or "upgrade"). **For slot-blocked accounts, do NOT retry — fall back immediately per `reference/google-ads-fallback.md` (Tier 2: Dashboard API `https://creekside-dashboard.up.railway.app/api/google/*`, read-only, live).** Check current slot claims with `manage_account_slots` action=view. Historical MCC context: 33 queryable accounts under MCC `5680424954`, HostSwitch (`2617643180`) outside the MCC, 11 deactivated IDs (`CUSTOMER_NOT_ENABLED`).
 
 **Namespace:** `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — always `ToolSearch` first). Separate from the Meta PipeBoard namespace despite both being PipeBoard connectors.
 
