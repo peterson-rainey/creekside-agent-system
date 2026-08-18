@@ -83,13 +83,25 @@ Collect from the user:
 
 ## Step 3a: Git Pull (Both Modes -- Always)
 
-Before any file work, pull the latest from main:
+Before any file work, ensure the local clone exists and is up to date.
+
+**Pre-check -- clone if missing:**
+
+```bash
+if [ ! -d ~/creekside-ad-pages ]; then
+  git clone https://github.com/Drybonez235/creekside-ad-pages.git ~/creekside-ad-pages
+fi
+```
+
+Then pull the latest from main:
 
 ```bash
 cd ~/creekside-ad-pages && git pull origin main
 ```
 
-If this fails (network error, merge conflict), stop and report the error. Do not proceed with stale files.
+**If pull fails with a network error:** Stop and report the error. Do not proceed with stale files.
+
+**If pull fails with a merge conflict:** Run `git merge --abort` to restore a clean state, then stop and ping Peterson before doing any file work. Do not attempt manual conflict resolution.
 
 ---
 
