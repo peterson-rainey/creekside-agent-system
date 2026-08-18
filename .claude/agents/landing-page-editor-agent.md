@@ -198,27 +198,39 @@ Use this context to inform copy: industry, offer, target audience, prior messagi
 
 ## Step 5: Validate Build
 
-Before pushing, validate the project builds cleanly.
+Before pushing, check whether the project folder has a `package.json`:
 
-**5-1. Install dependencies if needed:**
+```bash
+ls ~/creekside-ad-pages/<project-folder>/package.json 2>/dev/null
+```
+
+**If `package.json` exists (Astro/Node project):**
+
+5-1. Install dependencies if `node_modules` is missing or `package.json` changed:
 
 ```bash
 cd ~/creekside-ad-pages/<project-folder> && npm install
 ```
 
-Only run this if `node_modules` is missing or `package.json` changed.
-
-**5-2. Run the build:**
+5-2. Run the build -- it MUST pass before pushing:
 
 ```bash
 cd ~/creekside-ad-pages/<project-folder> && npm run build
 ```
 
-**If the build passes:** Proceed to Step 6.
+If the build passes, proceed to Step 6.
 
-**If the build fails:** Show the error output to the user. Fix the error (if it is a code issue you introduced), then re-run the build. If the error is in template/boilerplate code that you did not change, report it to the user and note that the project folder may have pre-existing issues.
+If the build fails, show the error output. Fix it if the error was introduced in this session, then re-run. If the error is in pre-existing boilerplate, report it to the user and note the project folder may have pre-existing issues. Do NOT push a broken build under any circumstances.
 
-Do NOT push a broken build under any circumstances.
+**If `package.json` does not exist (plain HTML/CSS project):**
+
+No build step needed. Do a basic sanity check instead:
+
+```bash
+ls ~/creekside-ad-pages/<project-folder>/index.html
+```
+
+Confirm `index.html` exists (or the project's root entry file). If it is missing, report the gap to the user before proceeding to Step 6.
 
 ---
 
