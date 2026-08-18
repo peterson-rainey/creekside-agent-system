@@ -1,6 +1,6 @@
 # Wave 5 Regression Cases -- 2026-08-18 Batch Edit
 
-Added cases covering: partner affirmative framing, lost-lead via "I hired", availability assumption, short call-booking response, brady/lindsey partner redirect, outside-link blocking, new calendar URL.
+Added cases covering: partner affirmative framing, lost-lead via "I hired", availability assumption, short call-booking response, brady/lindsey partner redirect, outside-link blocking, new calendar URL, stale-link path (R-I1), verbatim-closer reuse (R-J1), new AI-slop phrases (R-K1), lead-owned scheduling / S11 (R-L1), ads-relevant questions / S12 (R-M1).
 
 ---
 
