@@ -16,7 +16,7 @@ Load `docs/partners/keith.md` at runtime. To switch Samuel's partner, change the
 
 ## Booking Calendar (Default Path, Creekside-Qualified Leads)
 
-https://calendar.app.google/wSdVbfwaJRzkw12E7
+https://calendar.app.google/iwVAR8raqiD9a7dx6
 
 Use this link anywhere a "profile booking calendar" is referenced in the shared docs. Samuel's calendar is Peterson's calendar.
 
