@@ -14,7 +14,7 @@ Route the caller to the correct live source for Google or Meta ads — for READS
 | Meta / Facebook / Instagram (reads) | **Official Meta Ads MCP** `mcp__claude_ai_Meta_Ads__*` | PipeBoard `mcp__claude_ai_PipeBoard__*` | **VERIFIED LIVE 2026-07-15** — 56/68 accounts MCP-enabled, 12/15 active clients |
 | Meta (writes: create/update/pause) | **PipeBoard** `mcp__claude_ai_PipeBoard__*` | Official MCP has write tools too, but PipeBoard is proven | VERIFIED LIVE |
 | Meta (lead gen forms) | **PipeBoard only** — no official MCP equivalent | — | VERIFIED LIVE |
-| Google Ads | **PipeBoard — Google Ads connector** `mcp__claude_ai_Pipeboard_google__*` | Python `google-ads` SDK pipeline for historical data | VERIFIED LIVE 2026-04-23 |
+| Google Ads | **PipeBoard — Google Ads connector** `mcp__claude_ai_Pipeboard_google__*` | **Dashboard API → Chrome UI** — full 3-tier chain in `reference/google-ads-fallback.md` (Supabase `google_ads_insights_daily` for historical only) | SLOT-LIMITED since 2026-08 (3 accounts/cycle) |
 | Both | Call the right connector per platform, then combine | — | — |
 
 **When to fall back to PipeBoard for Meta reads:**
