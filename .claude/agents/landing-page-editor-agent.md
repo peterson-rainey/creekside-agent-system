@@ -140,7 +140,7 @@ Read and apply these rules to all copy you write.
 **4a-2. Check if a template folder exists:**
 
 ```bash
-ls ~/creekside-ad-pages/canvas-homes-landing-page/
+ls ~/creekside-ad-pages/canvas-homes-landing-page/ 2>/dev/null
 ```
 
 If it exists, copy it to the new slug (using the OS cp command, not git subtree):
