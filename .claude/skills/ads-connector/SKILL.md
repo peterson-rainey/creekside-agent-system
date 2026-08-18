@@ -78,11 +78,11 @@ Parameters:
 
 **IMPORTANT:** `ad_account_id` takes the NUMERIC ID only (e.g. `"938570599860690"`), NOT the `act_` prefixed form. Strip the `act_` prefix before calling.
 
-### Fallback: AdKit (`mcp__claude_ai_AdKit__*`)
+### Primary: AdKit (`mcp__claude_ai_AdKit__adkit_*`)
 
-Use AdKit when the official MCP returns an error, for MCP-disabled accounts, for lead gen forms, and for write operations.
+Try AdKit first for ALL Meta operations — reads, writes, and lead gen forms.
 
-#### Read operations (fallback)
+#### Read operations
 
 | Tool | Purpose |
 |---|---|
