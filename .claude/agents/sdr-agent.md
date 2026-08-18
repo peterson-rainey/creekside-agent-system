@@ -295,6 +295,7 @@ This spec mirrors the deterministic checks in `validate_response.py` in a human-
 | W27 | No self-blame phrases mid-conversation ("I was sloppy", "I was careless") | `self_blame_phrase_warn` | No |
 | W28 | Past-tense hiring language triggers lost-lead routing check | `hired_someone_else_lost_lead_warn` | No |
 | W29 | No dramatic update opener in first sentence ("changes everything") | `dramatic_update_opener` | No |
+| W30 | No AI-slop follow-up openers: "circling back", "touching base", "I wanted to reach out", "I hope this [message] finds you well" | `ai_slop_warn` | No |
 
 ---
 
