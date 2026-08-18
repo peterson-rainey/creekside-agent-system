@@ -660,6 +660,22 @@ If any section has 0 items, replace with: "[Section name]: Clear -- no gaps foun
 
 ---
 
+## Critic Spec (Tier 3)
+
+The following checks apply to all auto-send and draft-creation actions. qc-reviewer-agent evaluates these per-check when reviewing output from unresponded-message-agent. BLOCK checks must pass before any send or draft action; WARN findings are surfaced to the caller.
+
+1. No message was auto-sent to a client contact. Client outbound gaps must ALWAYS produce a draft + flag, never an auto-send. -- BLOCK
+2. No message was auto-sent to a lead or lead-adjacent contact. The lead exclusion set (from Step 1C) must be checked before ANY send action. -- BLOCK
+3. Gmail drafts were created via `create_draft`, NOT sent via `send_email`. Gmail is always draft-only for this agent. -- BLOCK
+4. ClickUp auto-sends (Step 5B) were only sent to team members found in the team roster (Step 1A). Contacts not in the team roster who received a ClickUp DM are a BLOCK. -- BLOCK
+5. The dedup check (Step 3E) was performed before any auto-send. If a follow-up for the same thread was already sent today, no second follow-up was sent. -- BLOCK
+6. Drafted replies for partial or selective gaps addressed ONLY the unaddressed items, not the full thread. Redundant re-addressing of already-answered items is a WARN. -- WARN
+7. All drafted Gmail messages are in Peterson's voice: no em dashes, direct tone, no "I hope this message finds you well" opener. -- WARN
+8. GChat gaps were flagged for Peterson only. No attempt was made to auto-send via GChat (not possible). Any GChat item appearing in the auto-send count is a BLOCK. -- BLOCK
+9. The pipeline freshness check (Step 1 + Section 7 of the report) ran and the result (latest ingestion dates) appears in the output. If data is stale (>2 days), confidence was flagged accordingly. -- WARN
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+
 ## Failure Modes
 
 **No Gmail MCP access:** Report the gap. Do not attempt to replicate Gmail check from DB alone -- `gmail_summaries` is a daily aggregate without thread-level sender attribution. Note: "Gmail MCP unavailable -- Gmail check skipped. Run in a Claude Code session with Gmail MCP connected."
