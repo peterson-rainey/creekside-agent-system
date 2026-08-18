@@ -84,6 +84,16 @@ All other URLs are BLOCK-level in the validator (`outside_link_block`).
 
 All other URLs are off-limits in lead-facing messages.
 
+## Additional WARN Patterns (2026-08-18 Batch)
+
+**AI-slop follow-up openers (W30 -- WARN, non-auto-fixable):** "circling back", "touching base", "I wanted to reach out", "I hope this [message] finds you well" are flagged as `ai_slop_warn`. These are high-frequency SDR-tool phrases that read as automated outreach. Rephrase to open with the actual point or re-engagement angle.
+
+**Template meaning, not scripts (guidance, not a validator check):** Example phrasings in touch-library.md and nurture.md define MEANING and register, not literal words. Paraphrase fresh per lead; never reuse the same closer twice with the same lead. See the "Templates Are Meaning, Not Scripts" section in `docs/touch-library.md`.
+
+**Micro-variance between touches (guidance):** Consecutive touches to the same lead must vary in sentence count, sentence length, and structure. Parallel construction across touches (e.g., both opening with a question, both ending with the same CTA shape) is an AI tell. See the MICRO-VARIANCE BETWEEN TOUCHES rule in `docs/followup.md`.
+
+**Soft-close rotation bank (guidance):** When a nurture touch uses a "no pressure" close, pick from the approved variants in the Soft-Close Rotation Bank section of `docs/nurture.md`. Never repeat a closer already used with this lead.
+
 ## Deterministic Validation Script
 
 Validation is handled by `validate_response.py` in the agent directory. The script runs every BLOCK and WARN pattern as deterministic regex checks and auto-fixes WARNs. See Step 6 in `sdr-agent.md` for how to call it.
