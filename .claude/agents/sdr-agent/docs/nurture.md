@@ -88,6 +88,7 @@ If the lead was previously routed to the active white-label partner (partner's c
 
 ## Nurture-Specific Rules
 
+- **Template meaning, not script:** Example phrasings in the touch library and this doc define the MEANING and register of a touch, not the literal words. Paraphrase fresh for each lead. Never reuse the same closer phrasing twice with the same lead -- scan prior outbound messages before writing. See the "Templates Are Meaning, Not Scripts" section in `docs/touch-library.md`.
 - No taglines, no long sign-offs. Recipient knows your name.
 - Vary length and tone. Sometimes a single sentence; sometimes 2-3 for warmth.
 - **HARD CAP: 1-3 sentences per touch -- non-negotiable for unprompted touches into silence.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA in the same message. (Exception: the Byren gold-standard example above is longer because it is a post-call nurture re-open with a full insight section; use that structure only when explicitly building that type of touch. Standard nurture touches stay at 1-3 sentences.)
