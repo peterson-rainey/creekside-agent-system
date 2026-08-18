@@ -124,7 +124,7 @@ Parameters:
 
 **Connection status: ACTIVE via AdKit since 2026-08-17 (PipeBoard fully deprecated).** Fresh subscription, no account-slot limits. If a call errors (rate limit, timeout, access refusal), fall back per `reference/google-ads-fallback.md` (Tier 2: Dashboard API `https://creekside-dashboard.up.railway.app/api/google/*`, read-only, live). Historical MCC context: 33 queryable accounts under MCC `5680424954`, HostSwitch (`2617643180`) outside the MCC, 11 deactivated IDs (`CUSTOMER_NOT_ENABLED`).
 
-**Namespace:** `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — always `ToolSearch` first). Separate from the Meta AdKit namespace despite both being AdKit connectors.
+**Namespace:** `mcp__claude_ai_AdKit__adkit_*` (deferred — always `ToolSearch` first). Same AdKit server as the Meta connector.
 
 **Customer ID format:** 10-digit numeric (e.g. `9133281551`). No `act_` prefix. MCC manager ID is separate.
 
