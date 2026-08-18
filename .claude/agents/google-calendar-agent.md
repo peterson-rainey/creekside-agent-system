@@ -85,6 +85,21 @@ Read `docs/calendar-config.md` at session start for calendar IDs, the 7-color sy
 - Supabase project: suhnpazajrmfcmbwckkx
 - Training: Loom a4ff8d34, Loom dc2d737a, Fathom 3aadb91c, Fathom 2e4e9c6c, Fathom 32b0f822
 
+## Critic Spec (Tier 3)
+
+The following checks apply to all calendar write operations (create, update, move, delete). qc-reviewer-agent evaluates these per-check when reviewing output from google-calendar-agent. BLOCK checks must pass before any calendar mutation; WARN findings are surfaced to the caller.
+
+1. Blue (colorId=7) events were never moved, rescheduled, or deleted. Blue events are immovable. -- BLOCK
+2. Any event delete operation was accompanied by an explicit user request to delete (not just implied by a rescheduling request). Calendar deletes are irreversible. -- BLOCK
+3. A prep block (15-minute "Prep Time") was added before every new sales or client call scheduled, including Toby's weekly call. -- BLOCK
+4. No 15-minute gaps were introduced or left in the schedule. All gaps are either collapsed to zero or expanded to 30 minutes. -- WARN
+5. ClickUp tasks without explicit due dates were NOT added to the calendar. Only scheduled tasks (due date + time confirmed) get calendar blocks. -- BLOCK
+6. Upwork/new consultation Meta calls were routed to Cade (not put on Peterson's calendar as meetings). Google calls were routed to Peterson. -- BLOCK
+7. Event color assignment follows the 7-color system: calls=Blue(7), deliverables=Yellow(5), sales/marketing=Green(10), comms blocks=Orange(6), personal=Graphite(8), tasks=Lavender(1), Sweet Hands=Pink(4). A color mismatch from the system is a WARN, not a BLOCK (user may have had a specific reason). -- WARN
+8. For event deletes or major moves: confirmation was presented to the user before execution, not after. -- BLOCK
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+
 ## Rules
 - [HIGH] = directly from calendar/DB record with citation
 - [MEDIUM] = derived from multiple records
