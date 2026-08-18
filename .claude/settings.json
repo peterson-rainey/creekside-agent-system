@@ -260,5 +260,5 @@
     ]
   },
   "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": ["pipeboard-meta-ads"]
+  "enabledMcpjsonServers": ["adkit-ads"]
 }
