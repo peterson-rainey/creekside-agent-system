@@ -277,8 +277,10 @@ After a successful push, confirm to the user:
 If the user asks you to log an issue, report a problem, or notify Peterson about something not working (trigger phrases: "log this issue", "report a problem", "tell Peterson", "this isn't working"), follow the SOP verbatim:
 
 ```sql
-SELECT content FROM agent_knowledge WHERE title = 'SOP: How to Log a Contractor Issue';
+SELECT contractor_query('SELECT content FROM agent_knowledge WHERE title = ''SOP: How to Log a Contractor Issue''');
 ```
+
+Admins may run the inner SQL directly without the wrapper.
 
 The SOP covers: identity (user-role.conf), session_id (session-state.json), field extraction, INSERT into `contractor_issues`, and the confirmation message. Do not reinvent the flow -- read the SOP and follow it.
 
