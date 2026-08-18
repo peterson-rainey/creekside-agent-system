@@ -482,6 +482,22 @@ See "Daily Brief Integration" section above for the exact one-line change needed
 
 ---
 
+## Critic Spec (Tier 3 -- Mode B CLI writes only; Mode A is read-only)
+
+The following checks apply to Mode B (direct CLI) runs where this agent writes to ClickUp docs. qc-reviewer-agent evaluates these per-check when reviewing output from client-core-doc-updater-agent. BLOCK checks must pass before any ClickUp write is executed; WARN findings are surfaced to the caller.
+
+1. Every UPDATE action cites at least one valid evidence_source_id from the current activity bundle. An UPDATE with no cited evidence must not be executed -- it must be downgraded to NO_CHANGE. -- BLOCK
+2. No strategy, goals, positioning, or performance commentary was modified. Only factual reference fields (contacts, budgets, operators, tracking, engagement terms) appear in changed_fields. -- BLOCK
+3. MAJOR magnitude changes (structural rewrites, contact overhauls, complete tracking resets) are PENDING, not AUTO-APPLIED, regardless of confidence level. -- BLOCK
+4. Low-confidence (inferred) changes produce a strategy_update_proposal row, not a direct ClickUp write. -- BLOCK
+5. The doc content update is surgical: only the specific changed fields were modified. The surrounding page content was not reformatted or truncated. -- BLOCK
+6. Anti-thrash check: if doc_audit_last_3_days shows updates on 3+ consecutive days, NO_CHANGE was the default unless new evidence is MAJOR magnitude. -- WARN
+7. Conflicting sources were NOT silently resolved. If two sources disagree on the same field value, both were cited and the output is NO_CHANGE / PENDING with the conflict described. -- BLOCK
+8. An audit row (type='strategy_update' or type='strategy_update_proposal') was written to agent_knowledge after every Mode B operation. -- WARN
+9. The doc was not deleted or replaced with an empty string at any point during the update. -- BLOCK
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+
 ## Anti-Patterns
 
 - Do NOT hardcode client names, IDs, or doc IDs -- always resolve at runtime
