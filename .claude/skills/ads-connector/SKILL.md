@@ -11,10 +11,10 @@ Route the caller to the correct live source for Google or Meta ads — for READS
 
 | Platform | Primary connector | Fallback | Status |
 |---|---|---|---|
-| Meta / Facebook / Instagram (reads) | **Official Meta Ads MCP** `mcp__claude_ai_Meta_Ads__*` | AdKit `mcp__claude_ai_AdKit__*` | **VERIFIED LIVE 2026-07-15** — 56/68 accounts MCP-enabled, 12/15 active clients |
-| Meta (writes: create/update/pause) | **AdKit** `mcp__claude_ai_AdKit__adkit_*` | Official MCP has write tools too, but AdKit is proven | VERIFIED LIVE |
-| Meta (lead gen forms) | **AdKit only** — no official MCP equivalent | — | VERIFIED LIVE |
-| Google Ads | **AdKit — Google Ads connector** `mcp__claude_ai_AdKit__adkit_*` | **Dashboard API → Chrome UI** — full 3-tier chain in `reference/google-ads-fallback.md` (Supabase `google_ads_insights_daily` for historical only) | SLOT-LIMITED since 2026-08 (3 accounts/cycle) |
+| Meta / Facebook / Instagram (reads) | **AdKit** `mcp__claude_ai_AdKit__adkit_*` | Official Meta Ads MCP `mcp__claude_ai_Meta_Ads__*` (free, OAuth) | AdKit PRIMARY since 2026-08-17 (PipeBoard deprecated) |
+| Meta (writes: create/update/pause) | **AdKit** `mcp__claude_ai_AdKit__adkit_*` | Official MCP has write tools too, but AdKit is proven | ACTIVE |
+| Meta (lead gen forms) | **AdKit only** — no official MCP equivalent | — | ACTIVE |
+| Google Ads | **AdKit — Google Ads connector** `mcp__claude_ai_AdKit__adkit_*` | **Dashboard API → Chrome UI** — full 3-tier chain in `reference/google-ads-fallback.md` (Supabase `google_ads_insights_daily` for historical only) | ACTIVE — AdKit primary since 2026-08-17 |
 | Both | Call the right connector per platform, then combine | — | — |
 
 **When to fall back to AdKit for Meta reads:**
