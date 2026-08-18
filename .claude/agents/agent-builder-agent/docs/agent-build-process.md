@@ -544,5 +544,32 @@ Budget limits: $10/day normal, $25/day hard max.
 - Complex agents: Opus (~$0.30-2.00/run)
 
 ### 7c. Run QC -- spawn qc-reviewer-agent with full build artifacts
-### 7d. Handle QC Results: PASS -> present. WARN -> fix and re-run. FAIL -> fix and re-run until PASS.
+
+Pass to qc-reviewer-agent:
+- The agent .md file (full contents)
+- The build type and risk tier
+- The agent name (so qc-reviewer can load the critic spec from the .md and evaluate output against it)
+
+**Fresh-context rule (mandatory):** The adversarial QC pass MUST run as a spawned qc-reviewer sub-agent -- NEVER as in-context self-critique by the generating agent. Same-context self-critique is structurally unreliable (the generating agent shares the same blind spots). The adversarial value comes from a cold-start reader who was not present during generation. Do not ask yourself "is this good?" -- spawn qc-reviewer and let it evaluate independently.
+
+### 7d. Handle QC Results -- LOOP CAP ENFORCED
+
+**BLOCK findings (any section rated FAIL):**
+1. Collect ALL BLOCK findings from the qc-reviewer output.
+2. Attach the specific BLOCK findings to a revision prompt and make ONE revision pass.
+3. Re-spawn qc-reviewer (fresh context) on the revised artifact.
+4. If the SAME BLOCK finding re-fires on the re-check: STOP. Escalate to Peterson immediately with: (a) the specific finding, (b) both the original and revised versions of the affected section, and (c) why the finding cannot be resolved without human input. DO NOT attempt a third retry.
+
+**WARN findings:**
+Fix the issue in the artifact OR surface it to Peterson with a one-line explanation. NEVER loop on a WARN. Deliver with the WARN noted in the build report.
+
+**PASS:**
+Deliver.
+
 ### 7e. Include QC result in final output.
+
+The build report must include:
+- QC verdict (PASS / WARN / BLOCK)
+- Any WARN findings and how they were resolved or surfaced
+- Confirmation that qc-reviewer was spawned as a fresh-context sub-agent (not in-context self-review)
+- For Tier 2/3 builds: confirmation that the critic spec was evaluated per-check by qc-reviewer
