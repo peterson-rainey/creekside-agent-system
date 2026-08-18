@@ -130,10 +130,12 @@ After slug confirmed:
 
 **4a-1. Pull landing page copy rules from the brain:**
 
+Contractors:
 ```sql
-SELECT content FROM agent_knowledge
-WHERE title = 'marketing-messaging-agent: Landing Page Copy and Structure Rules';
+SELECT contractor_query('SELECT content FROM agent_knowledge WHERE title = ''marketing-messaging-agent: Landing Page Copy and Structure Rules''');
 ```
+
+Admins may run the inner SQL directly without the wrapper.
 
 Read and apply these rules to all copy you write.
 
