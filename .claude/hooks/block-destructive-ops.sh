@@ -78,7 +78,8 @@ if echo "$CHECK" | grep -qiE 'git\s+push\s+.*(-f|--force)'; then
   exit 2
 fi
 
-if echo "$CHECK" | grep -qiE 'git\s+branch\s+(-D|--delete\s+--force)'; then
+# Case-SENSITIVE: -D is force delete, -d is safe delete (git refuses unmerged)
+if echo "$CHECK" | grep -qE 'git\s+branch\s+(-D|--delete\s+--force|--force)'; then
   echo "BLOCKED: Force branch delete requires user approval." >&2
   exit 2
 fi
