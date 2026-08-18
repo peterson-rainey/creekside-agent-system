@@ -46,7 +46,7 @@ At Creekside, an agent is a markdown file in `.claude/agents/`, not application 
 - **Git repo**: `https://github.com/peterson-rainey/creekside-agent-system.git` -- all agent files, hooks, skills, and settings live here. Auto-committed on every change. This is the source of truth for local files -- do NOT duplicate file content in the database.
 - **System architecture**: Read `ARCHITECTURE.md` in the repo root for a comprehensive reference on how the entire system works (tables, functions, agents, hooks, pipelines, search, access control). Consult it when you need to understand how something connects.
 
-## Repository Map (4 separate repos -- NEVER confuse them)
+## Repository Map (5 separate repos -- NEVER confuse them)
 
 | Repo | Local Path | Purpose |
 |------|-----------|---------|
