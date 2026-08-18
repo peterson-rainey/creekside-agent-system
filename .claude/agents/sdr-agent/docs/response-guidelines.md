@@ -247,9 +247,9 @@ The approved partner-routing template below is ONLY for leads who have NOT yet b
 
 **Approved partner-routing template (use this verbatim -- substitute the lead's first name, the active partner's lead-facing name, and the partner's calendar URL from the loaded partner doc):**
 
-> "Hey Tanya, you'd actually be a great fit for my partner Keith. He specializes in businesses at your stage and has gotten results doing exactly what you're describing. I'd point you his way: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1rM42oKd0V45PouVuipnzu1DvAy-uNRHnTgnnVaasVqfpOk1ekphBNJ0qYAvm-XgeH41ztaTFu"
+> "Hey Tanya, you'd actually be a great fit for my partner [active partner name]. He specializes in businesses at your stage and has gotten results doing exactly what you're describing. I'd point you his way: [active partner calendar URL from partner doc]"
 
-The example above uses "Tanya" and "Keith" as illustration. At runtime, substitute the lead's actual first name and the active partner's lead-facing name and calendar_url from the loaded partner doc. NEVER output bracket placeholders like `[Name]` or `[partner name]` -- the message must be complete and ready to paste.
+The example above uses "Tanya" as illustration. Substitute the lead's actual first name, the active partner's lead-facing name, and calendar_url from the loaded partner doc. NEVER output bracket placeholders in the final message. At runtime, substitute the lead's actual first name and the active partner's lead-facing name and calendar_url from the loaded partner doc. NEVER output bracket placeholders like `[Name]` or `[partner name]` -- the message must be complete and ready to paste.
 
 This template is for pre-booking routing only (lead has NOT yet booked). Do not paraphrase. Do not add content inside the template. The only variables are the lead's name and the partner's name/URL from the active partner doc. A short natural lead-in sentence immediately before the template is acceptable. If the approved price range is used, it must be a separate sentence placed AFTER the template, never inserted inside it.
 
