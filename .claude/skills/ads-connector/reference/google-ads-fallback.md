@@ -6,24 +6,22 @@ When pulling Google Ads data, ALWAYS follow this waterfall. Do NOT skip tiers. S
 
 ---
 
-## Tier 1: Google Ads MCP (Pipeboard Google)
+## Tier 1: Google Ads MCP (AdKit)
 
-**Try this first.** Full read + write surface, live data.
+**Try this first.** Full read + write surface, live data. PipeBoard is fully deprecated as of 2026-08-17 -- AdKit is a fresh subscription with no account-slot limits.
 
-- **Namespace:** `mcp__claude_ai_Pipeboard_google__*` (pre-declared) or `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred)
-- **How to call:** Use `ToolSearch` to fetch the tool schema, then call it directly
-- **Example:** `list_google_ads_customers`, `get_google_ads_campaign_metrics`, `execute_google_ads_gaql_query`
+- **Namespace:** `mcp__claude_ai_AdKit__adkit_*` (deferred -- use `ToolSearch` to fetch the schema first)
+- **How to call:** Use `ToolSearch` (e.g. query "adkit google campaigns") to fetch the tool schema, then call it directly
+- **Example capabilities:** account list, campaign metrics, arbitrary GAQL queries
 
 **Escalate to Tier 2 when you see ANY of these:**
 - Error message containing `rate limit`, `quota exceeded`, `RESOURCE_EXHAUSTED`, `429`, or `too many requests`
-- **Slot/plan-limit refusals**: error containing `slot`, `blocked`, `over_budget`, `already in use by another Pipeboard user`, `upgrade to any paid plan`, or any message about account limits/billing cycle
+- Plan/permission refusals (billing, account-access, or upgrade messages)
 - Timeout with no response after 30+ seconds
 - Generic MCP connection error or `503`
-- Any Pipeboard-specific throttle message
+- Any AdKit-specific throttle message
 
-**SLOT LIMIT (as of 2026-08-17):** The Pipeboard plan allows only **3 ad-account slots per billing cycle** (resets on the 14th). Currently claimed: Canvas Homes (Google `8835651880`), Doctor Laleh (Google `5948318044`), Lux Dental Spa (Meta `act_868498138612020`). **Every other account is slot-blocked at Tier 1 -- go straight to Tier 2 for those accounts. Do not retry Tier 1; retries cannot unblock a slot refusal.**
-
-**When rate-limited or slot-blocked:** Log the error, tell the user "Google Ads MCP is unavailable (Pipeboard rate/slot limit), falling back to Dashboard API", then proceed to Tier 2.
+**When escalating:** Log the error, tell the user "Google Ads MCP is unavailable (AdKit issue), falling back to Dashboard API", then proceed to Tier 2.
 
 ---
 
