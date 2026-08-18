@@ -231,6 +231,72 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 
 ---
 
+## Critic Spec (Rule 33 Anti-Drift)
+
+This spec mirrors the deterministic checks in `validate_response.py` in a human-readable format. It enables `qc-reviewer-agent` to audit any sdr-agent output without running the script. Each check is atomic and binary (PASS/FAIL). Ordered BLOCK checks first, then WARN checks.
+
+### BLOCK Checks (any FAIL = response must be rewritten)
+
+| # | Check | BLOCK Tag |
+|---|-------|-----------|
+| B1 | No calendar/booking URL present that is not on the whitelist (samuel: `iwVAR8raqiD9a7dx6`, lindsey: `calendly.com/lindsey-bouffard/30min`, active partner from partner doc) | `non_whitelisted_calendar_url` |
+| B2 | Samuel's calendar URL does not appear in a lindsey-profile response | `lindsey_blocked_calendar_url` |
+| B3 | No inactive partner name (Jay, Scott, or any name not matching the active partner) in response | `inactive_partner_name_bleed` |
+| B4 | No inactive partner calendar URL in response | `inactive_partner_calendar_bleed` |
+| B5 | If active partner has `has_upwork_video=False`: no co-reference of partner name + profile video language | `partner_video_reference_block` |
+| B6 | No email address of any kind in response (lead's, ours, creeksidemarketingpros.com) | `offplatform_contact_email` |
+| B7 | No US phone number in response | `offplatform_contact_phone` |
+| B8 | No hourly rate quoted (no `$X/hr` or `$X per hour`) | `hourly_rate` |
+| B9 | No placeholder brackets in response ([text] not in whitelist) | `placeholder_brackets` |
+| B10 | No timeline commitment by named day ("by Monday") | `timeline_day` |
+| B11 | No timeline commitment by duration ("within 2 weeks") | `timeline_duration` |
+| B12 | No launch commitment with temporal anchor ("live by", "launched by") | `timeline_launch` |
+| B13 | No hard-banned phrase ("before we lock anything in", "I/we charge for consultations") | `banned_before_lock` / `banned_charge_consult` |
+| B14 | No dollar-amount fee constructions (retainer, setup fee, onboarding fee, flat fee) | `pricing_retainer_fee` / `pricing_setup_fee` / `pricing_onboarding_fee` / `pricing_flat_fee` |
+| B15 | No spend-floor language ("our floor", "that's our minimum") | `pricing_spend_floor` |
+| B16 | No disqualification language ("have to pass on", "budget is too low") | `disqualification_language` |
+| B17 | No flat-decline framing for partner-redirect cases ("not a fit for us") | `flat_decline_not_fit` |
+| B18 | No partner-distance language ("what he takes on is his call") | `flat_decline_partner_distance` |
+| B19 | No outside link URLs (non-whitelisted: no youtube.com, creeksidemarketingpros.com homepage, etc.) | `outside_link_block` |
+| B20 | "Cade" does not appear in a lindsey-profile response | `lindsey_internal_name_cade` |
+| B21 | Call suggested without a real booking URL in the response | `missing_calendar_link` |
+
+### WARN Checks (auto-fixable WARNs produce `---FIXED---` output; others require agent review)
+
+| # | Check | WARN Tag | Auto-fix? |
+|---|-------|----------|-----------|
+| W1 | No fluff opener ("Good questions,", "Thanks for the detail", etc.) | `fluff_opener` | Yes |
+| W2 | No setup sentence ("I'll be honest", "Fair question", "you asked for honest so here it is") | `setup_sentence` | Yes |
+| W3 | No seal clapping ("Smart thinking", "can tell the difference between X and Y", "that one thing changes everything") | `seal_clapping` | Yes |
+| W4 | No em-dash (— or " -- ") | `em_dash` | Yes |
+| W5 | No formal transitions ("Furthermore", "Moreover", "Additionally", "In conclusion") | `formal_transition` | Yes |
+| W6 | No banned phrases ("I'd be happy to", "I'd love to", "Feel free to", etc.) | `banned_phrase` | Yes |
+| W7 | "Agency" not used to describe ourselves | `agency_word` | Yes |
+| W8 | No defining-by-negation ("We don't do hourly") | `defining_by_negation` | Yes |
+| W9 | No markdown formatting (bold, italic, headers, bullets) | `markdown_*` | Yes |
+| W10 | No trailing signature (Samuel, Lindsey, Best,) | `signature` | Yes |
+| W11 | No pre-call work offer without "on a call" context | `pre_call_work_offer` | No |
+| W12 | No specific client count claimed without verified context | `fabrication_client_count` | No |
+| W13 | No "all 50 states" geographic overclaim | `fabrication_geographic_claim` | No |
+| W14 | Named case study client has slug URL or VA attachment block | `missing_slug_url` | No |
+| W15 | No hours-scoped phrasing ("5-10 hours", "hours break down") | `hours_scoped_warn` | No |
+| W16 | No false drafting-denial ("hand-typed", "no AI involved", "100% human") | `humanity_false_drafting_denial_warn` | No |
+| W17 | No dollar-conversion affirmation when dollar figures present | `dollar_conversion_affirmation_warn` | No |
+| W18 | No bare fee terminology without dollar amount ("management fee", "setup fee") | `bare_fee_terminology` | No |
+| W19 | No dollar-magnitude phrases derived from pricing tiers ("mid-four-figures") | `pricing_dollar_magnitude_warn` | No |
+| W20 | Percentage-of-spend tiers present only in Stage-2 conditions | `pricing_tier_detected` | No |
+| W21 | Reply under 200 words (or confirmed initial proposal) | `reply_length_excessive` | No |
+| W22 | At most 1 question in response | `excessive_questions` | No |
+| W23 | Response does not open with "Hey Name," or "Name," as email-style salutation | `name_as_greeting_opener` / `name_comma_dm_opener` | Partial (auto-strips) |
+| W24 | No self-incrimination on lost-lead response ("that's on me", "I dropped the ball") | `self_incrimination_lost_lead_warn` | No |
+| W25 | No validating lead's decision to go elsewhere on lost-lead response | `defeat_validation_lost_lead` | No |
+| W26 | No availability-assumption phrases ("should be wide open", "I'll make it work") | `availability_assumption_warn` | No |
+| W27 | No self-blame phrases mid-conversation ("I was sloppy", "I was careless") | `self_blame_phrase_warn` | No |
+| W28 | Past-tense hiring language triggers lost-lead routing check | `hired_someone_else_lost_lead_warn` | No |
+| W29 | No dramatic update opener in first sentence ("changes everything") | `dramatic_update_opener` | No |
+
+---
+
 ## Log to Database
 
 After presenting, log the generation:
