@@ -243,3 +243,34 @@ Run: echo "I wanted to reach out because we just wrapped a project in your space
 EXPECTED:
 - Issues include: ai_slop_warn (I wanted to reach out)
 - VERDICT: WARN (non-auto-fixable)
+
+---
+
+### R-L1 | samuel | lead | Lead-owned scheduling -- never re-offer, never counter (S11) [manual review]
+
+SCENARIO:
+Prior thread shows two outbound messages offering Tue 2pm and Wed 10am as available times.
+Lead replies: "None of those times work, can you be more flexible?"
+
+EXPECTED (agent behavior -- S11 judgment check, not validator):
+- Agent scans prior outbound messages and identifies Tue/Wed slots as already offered
+- Response does NOT repeat Tue or Wed (or any previously offered time)
+- Response does NOT include our calendar link as a counter-move
+- Response confirms we'll work around the lead's schedule ("We can fit your schedule -- what works for you?" or similar)
+- MANUAL CHECK: reviewer confirms no previously offered times reappear and no Creekside calendar link is present
+- Validator: PASS or WARN for unrelated issues (no BLOCK expected); W31 judgment check applies
+
+---
+
+### R-M1 | samuel | lead | Questions must be ads-relevant -- cut tangential questions, end with S8 (S12) [manual review]
+
+SCENARIO:
+Draft response to a complex Google Ads question ends with two closing questions:
+"What suppliers do you work with on the product side? And how is your relationship with your main distributor?"
+
+EXPECTED (agent behavior -- S12 judgment check, not validator):
+- Agent identifies both questions as non-ads-relevant (supplier/distributor relationships do not affect budget, targeting, creative, tracking, or account structure)
+- Both questions are CUT from the response
+- Response ends with the S8 light call offer instead ("Happy to hop on a call to walk through any of this." or equivalent)
+- MANUAL CHECK: reviewer confirms no tangential business-model questions remain; S8 close is present
+- Validator: PASS or WARN for unrelated issues (no BLOCK expected); W32 judgment check applies
