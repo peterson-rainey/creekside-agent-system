@@ -1,7 +1,7 @@
 ---
 name: ads-agent
-description: "Universal ads platform agent for Creekside Marketing. Pulls live Meta Ads data via PipeBoard MCP and Google Ads data via the dashboard API. Resolves clients via find_client(). Edits report notes and writes findings to ads_knowledge. Use when anyone (Peterson, Cade, contractors, freelancers) needs ad performance data, campaign analysis, creative review, or report updates for Meta or Google Ads."
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_Meta_Ads__ads_get_creatives, mcp__claude_ai_Meta_Ads__ads_get_datasets, mcp__claude_ai_Meta_Ads__ads_get_ad_account_custom_audiences, mcp__claude_ai_PipeBoard__get_insights, mcp__claude_ai_PipeBoard__get_ads, mcp__claude_ai_PipeBoard__get_ad_accounts, mcp__claude_ai_PipeBoard__get_campaigns, mcp__claude_ai_PipeBoard__get_adsets, mcp__claude_ai_PipeBoard__get_ad_creatives, mcp__claude_ai_PipeBoard__get_creative_details, mcp__claude_ai_PipeBoard__get_pixels, mcp__claude_ai_PipeBoard__get_lead_gen_forms, mcp__claude_ai_PipeBoard__create_campaign, mcp__claude_ai_PipeBoard__update_campaign, mcp__claude_ai_PipeBoard__create_adset, mcp__claude_ai_PipeBoard__update_adset, mcp__claude_ai_PipeBoard__create_ad, mcp__claude_ai_PipeBoard__update_ad, WebFetch
+description: "Universal ads platform agent for Creekside Marketing. Pulls live Meta Ads data via AdKit MCP and Google Ads data via AdKit MCP. Resolves clients via find_client(). Edits report notes and writes findings to ads_knowledge. Use when anyone (Peterson, Cade, contractors, freelancers) needs ad performance data, campaign analysis, creative review, or report updates for Meta or Google Ads."
+tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_Meta_Ads__ads_get_creatives, mcp__claude_ai_Meta_Ads__ads_get_datasets, mcp__claude_ai_Meta_Ads__ads_get_ad_account_custom_audiences, mcp__claude_ai_AdKit__adkit_manage, mcp__claude_ai_AdKit__adkit_status, mcp__claude_ai_AdKit__adkit_library, mcp__claude_ai_AdKit__adkit_studio, mcp__claude_ai_AdKit__adkit_upload_file, WebFetch
 model: sonnet
 ---
 
@@ -57,7 +57,7 @@ Report: "I couldn't find a client matching '[name]' in the system. Check for typ
 
 Determine what data to pull based on the user's request:
 
-- **Meta Ads request** → Use PipeBoard MCP tools with `meta_account_ids` from `find_client()`
+- **Meta Ads request** → Use AdKit MCP tools with `meta_account_ids` from `find_client()`
 - **Google Ads request** → Use WebFetch on dashboard API with `google_account_ids` from `find_client()`
 - **Both platforms** → Pull both in sequence; present together
 
@@ -82,7 +82,7 @@ Use this context to inform your analysis (don't repeat known findings unless ask
 ## Step 5A: Meta Ads Data Pull
 
 **Default:** Use official Meta Ads MCP tools (`mcp__claude_ai_Meta_Ads__*`). These are free and cover most accounts. Strip the `act_` prefix when passing `ad_account_id` (e.g. `"938570599860690"`, not `"act_938570599860690"`).
-**Fallback to PipeBoard** (`mcp__claude_ai_PipeBoard__*`) when: the official MCP returns an error (e.g. "not enabled for Ads MCP"), for lead gen forms (`get_lead_gen_forms`), or for write operations. PipeBoard requires the `act_` prefix.
+**Fallback to AdKit** (`mcp__claude_ai_AdKit__adkit_manage`) when: the official MCP returns an error (e.g. "not enabled for Ads MCP"), for lead gen forms, or for write operations. Use `adkit_manage` with the appropriate entity and action parameters.
 See the `ads-connector` skill for the full tool mapping.
 
 ### Account resolution:
@@ -91,8 +91,10 @@ If empty, call `get_ad_accounts` to list all accessible accounts and match by cl
 
 ### Standard performance pull (last 30 days):
 ```
-Tool: mcp__claude_ai_PipeBoard__get_insights
+Tool: mcp__claude_ai_AdKit__adkit_manage
 Parameters:
+  entity: "results"
+  action: "list"
   account_id: [from find_client()]
   date_preset: "last_30d"
   level: "campaign"
@@ -100,9 +102,9 @@ Parameters:
 ```
 
 ### Drill down as needed:
-- Ad set level: `get_adsets` + `get_insights` with `level: "adset"`
-- Ad level: `get_ads` + `get_ad_details`
-- Creatives: `get_ad_creatives` + `get_creative_details`
+- Ad set level: `adkit_manage` with `entity: "ad_sets"` + `entity: "results"` with `level: "adset"`
+- Ad level: `adkit_manage` with `entity: "ads"` + `entity: "results"`
+- Creatives: `adkit_manage` with `entity: "creatives"`
 
 ### Date range options:
 - `date_preset: "last_7d"` — last 7 days
@@ -114,23 +116,23 @@ Parameters:
 
 ## Step 5B: Google Ads Data Pull
 
-Use PipeBoard MCP's Google Ads connector. MCP namespace: `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — fetch schemas via `ToolSearch` before calling).
+Use AdKit MCP with `platform: "google"` for Google Ads data. All Google Ads operations go through `mcp__claude_ai_AdKit__adkit_manage` with the `platform: "google"` parameter.
 
 See the `ads-connector` skill for full routing, the `ads-ui-navigation` skill for UI fallback, and the read-only `google_ads` Python pipeline in `creekside-pipelines/pipelines/google_ads/` for historical trend queries against Supabase.
 
 ### Get account list:
 ```
-list_google_ads_customers
+mcp__claude_ai_AdKit__adkit_manage with entity: "accounts", action: "list", platform: "google"
 ```
 Returns every Creekside-accessible account; all active clients live under MCC `568-042-4954`. Filter by `can_query_metrics: true` before calling any metrics tool (MCC-level entries return false).
 
 ### Get performance data:
 Use the purpose-built read tools (each takes a `customer_id`, returned by `list_google_ads_customers`). Customer IDs are 10-digit numerics (no dashes, no `act_` prefix):
-- `get_google_ads_campaign_metrics` — campaign-level spend/impressions/clicks/conversions
-- `get_google_ads_ad_group_metrics` — ad group breakdown
-- `get_google_ads_keyword_metrics` — keyword-level
-- `get_google_ads_search_terms_report` — actual queries triggering ads
-- `execute_google_ads_gaql_query` — arbitrary GAQL when the structured tools aren't enough
+- `adkit_manage` with `entity: "results", platform: "google"` — campaign-level spend/impressions/clicks/conversions
+- `adkit_manage` with `entity: "results", level: "ad_group", platform: "google"` — ad group breakdown
+- `adkit_manage` with `entity: "keywords", platform: "google"` — keyword-level
+- `adkit_manage` with `entity: "search_terms", platform: "google"` — actual queries triggering ads
+- `adkit_manage` with custom GAQL via `query` parameter — arbitrary GAQL when the structured tools aren't enough
 
 The `google_account_ids[]` from `find_client()` gives you the customer IDs to pass.
 
@@ -172,7 +174,7 @@ Always return results in this shape. Use a markdown table for the summary row, t
 - [Red flag or opportunity]
 ```
 
-**Citation format:** `[source: PipeBoard/Meta, account_id, date_range]` or `[source: Dashboard/Google, account_id, date_range]`
+**Citation format:** `[source: AdKit/Meta, account_id, date_range]` or `[source: AdKit/Google, account_id, date_range]`
 
 ---
 
@@ -243,13 +245,13 @@ Always confirm with the user what you're about to write before executing. Show t
 5. Log the action in `ads_knowledge` as `knowledge_type: 'account_decision'`
 
 **Allowed without confirmation (read-only):**
-- Any `get_*` PipeBoard tool
+- Any read-only AdKit tool call
 - Any WebFetch GET request
 - Any Supabase SELECT
 - Any `ads_knowledge` INSERT (adding knowledge)
 
 **Requires confirmation (write operations):**
-- Any `create_*`, `update_*`, `duplicate_*` PipeBoard tool
+- Any AdKit write operation (`adkit_manage` with `action: "create"`, `"update"`, `"duplicate"`)
 - Any `reporting_clients` UPDATE
 
 ---
@@ -335,7 +337,7 @@ Produce the 7-section client-ready audit defined in the Audit Report Format SOP:
 
 ## Reference: Meta Account ID Format
 
-Meta account IDs are formatted as `act_XXXXXXXXX`. When using PipeBoard tools, pass the full `act_XXXXXXXXX` format unless the tool specifies otherwise.
+Meta account IDs are formatted as `act_XXXXXXXXX`. When using AdKit tools, pass the full `act_XXXXXXXXX` format unless the tool specifies otherwise.
 
 ## Reference: Correction on Dashboard Notes
 

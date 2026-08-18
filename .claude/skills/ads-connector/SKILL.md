@@ -1,6 +1,6 @@
 ---
 name: ads-connector
-description: "Routing reference for live ad-platform operations at Creekside Marketing — both READING data and MAKING CHANGES. Meta / Facebook / Instagram reads default to the official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`, free, OAuth). PipeBoard MCP (`mcp__claude_ai_PipeBoard__*`) is the fallback for MCP-disabled accounts, lead gen forms, and write operations. Google Ads is handled via PipeBoard MCP's Google Ads connector (`mcp__claude_ai_Pipeboard_google__*`) — SLOT-LIMITED since 2026-08 to 3 accounts/cycle; all other accounts must use the Dashboard API fallback (see reference/google-ads-fallback.md). A read-only Google Ads Python SDK pipeline backs up historical data in Supabase. Use whenever a user or agent asks how to pull, query, read, create, update, pause, duplicate, or otherwise manage ads, ad sets, campaigns, creatives, audiences, pixels, keywords, or lead forms on either platform. Do NOT use for historical trend queries against Supabase tables (e.g. meta_insights_daily, google_ads_insights_daily) — this skill is for live, direct-from-platform operations."
+description: "Routing reference for live ad-platform operations at Creekside Marketing — both READING data and MAKING CHANGES. Meta / Facebook / Instagram reads default to the official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`, free, OAuth). AdKit MCP (`mcp__claude_ai_AdKit__*`) is the fallback for MCP-disabled accounts, lead gen forms, and write operations. Google Ads is handled via AdKit MCP's Google Ads connector (`mcp__claude_ai_AdKit__adkit_*`) — SLOT-LIMITED since 2026-08 to 3 accounts/cycle; all other accounts must use the Dashboard API fallback (see reference/google-ads-fallback.md). A read-only Google Ads Python SDK pipeline backs up historical data in Supabase. Use whenever a user or agent asks how to pull, query, read, create, update, pause, duplicate, or otherwise manage ads, ad sets, campaigns, creatives, audiences, pixels, keywords, or lead forms on either platform. Do NOT use for historical trend queries against Supabase tables (e.g. meta_insights_daily, google_ads_insights_daily) — this skill is for live, direct-from-platform operations."
 ---
 
 # Ads Connector — Platform Routing
@@ -11,17 +11,17 @@ Route the caller to the correct live source for Google or Meta ads — for READS
 
 | Platform | Primary connector | Fallback | Status |
 |---|---|---|---|
-| Meta / Facebook / Instagram (reads) | **Official Meta Ads MCP** `mcp__claude_ai_Meta_Ads__*` | PipeBoard `mcp__claude_ai_PipeBoard__*` | **VERIFIED LIVE 2026-07-15** — 56/68 accounts MCP-enabled, 12/15 active clients |
-| Meta (writes: create/update/pause) | **PipeBoard** `mcp__claude_ai_PipeBoard__*` | Official MCP has write tools too, but PipeBoard is proven | VERIFIED LIVE |
-| Meta (lead gen forms) | **PipeBoard only** — no official MCP equivalent | — | VERIFIED LIVE |
-| Google Ads | **PipeBoard — Google Ads connector** `mcp__claude_ai_Pipeboard_google__*` | **Dashboard API → Chrome UI** — full 3-tier chain in `reference/google-ads-fallback.md` (Supabase `google_ads_insights_daily` for historical only) | SLOT-LIMITED since 2026-08 (3 accounts/cycle) |
+| Meta / Facebook / Instagram (reads) | **Official Meta Ads MCP** `mcp__claude_ai_Meta_Ads__*` | AdKit `mcp__claude_ai_AdKit__*` | **VERIFIED LIVE 2026-07-15** — 56/68 accounts MCP-enabled, 12/15 active clients |
+| Meta (writes: create/update/pause) | **AdKit** `mcp__claude_ai_AdKit__adkit_*` | Official MCP has write tools too, but AdKit is proven | VERIFIED LIVE |
+| Meta (lead gen forms) | **AdKit only** — no official MCP equivalent | — | VERIFIED LIVE |
+| Google Ads | **AdKit — Google Ads connector** `mcp__claude_ai_AdKit__adkit_*` | **Dashboard API → Chrome UI** — full 3-tier chain in `reference/google-ads-fallback.md` (Supabase `google_ads_insights_daily` for historical only) | SLOT-LIMITED since 2026-08 (3 accounts/cycle) |
 | Both | Call the right connector per platform, then combine | — | — |
 
-**When to fall back to PipeBoard for Meta reads:**
+**When to fall back to AdKit for Meta reads:**
 - Account returns error "Ads MCP is gradually being rolled out" (`is_ads_mcp_enabled: false`)
-- Known PipeBoard-only accounts: LA Smiles (act_1466381181311591), MedWriter/Superflow (act_673641821010879)
+- Known AdKit-only accounts: LA Smiles (act_1466381181311591), MedWriter/Superflow (act_673641821010879)
 - Lead gen form data needed (`get_lead_gen_forms`)
-- Any official MCP tool error — retry with PipeBoard before reporting failure
+- Any official MCP tool error — retry with AdKit before reporting failure
 
 **ID formats:** Meta account IDs are `act_XXXXXXXXX`. Google customer IDs are 10-digit numerics (no `act_` prefix). Do not mix them.
 
@@ -43,7 +43,7 @@ If the array is empty, call the platform's account-listing tool (`get_ad_account
 
 ---
 
-## Meta Ads — Official Meta MCP (default) + PipeBoard (fallback)
+## Meta Ads — Official Meta MCP (default) + AdKit (fallback)
 
 ### Primary: Official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`)
 
@@ -58,7 +58,7 @@ Free, OAuth-based. Covers 12/15 active Creekside clients. Try these first for AL
 | `ads_get_datasets` / `ads_get_dataset_details` | Pixel / Events Manager data |
 | `ads_get_ad_account_custom_audiences` / `ads_get_custom_audience` | Audience data |
 | `ads_get_ad_preview` | Render ad preview |
-| `ads_insights_anomaly_signal` | Anomaly detection (bonus — PipeBoard doesn't have this) |
+| `ads_insights_anomaly_signal` | Anomaly detection (bonus — AdKit doesn't have this) |
 | `ads_insights_industry_benchmark` | Industry benchmarks (bonus) |
 | `ads_get_opportunity_score` | Optimization recommendations (bonus) |
 | `ads_library_search` | Ad Library search (bonus) |
@@ -80,9 +80,9 @@ Parameters:
 
 **IMPORTANT:** `ad_account_id` takes the NUMERIC ID only (e.g. `"938570599860690"`), NOT the `act_` prefixed form. Strip the `act_` prefix before calling.
 
-### Fallback: PipeBoard (`mcp__claude_ai_PipeBoard__*`)
+### Fallback: AdKit (`mcp__claude_ai_AdKit__*`)
 
-Use PipeBoard when the official MCP returns an error, for MCP-disabled accounts, for lead gen forms, and for write operations.
+Use AdKit when the official MCP returns an error, for MCP-disabled accounts, for lead gen forms, and for write operations.
 
 #### Read operations (fallback)
 
@@ -94,7 +94,7 @@ Use PipeBoard when the official MCP returns an error, for MCP-disabled accounts,
 | `get_ad_creatives` / `get_creative_details` | Creative assets |
 | `get_custom_audiences` | Audience data |
 | `get_pixels` | Pixel data |
-| `get_lead_gen_forms` | Lead form data (**PipeBoard only — no official MCP equivalent**) |
+| `get_lead_gen_forms` | Lead form data (**AdKit only — no official MCP equivalent**) |
 
 #### Write operations (confirm with user before executing)
 
@@ -109,12 +109,12 @@ Use PipeBoard when the official MCP returns an error, for MCP-disabled accounts,
 | `duplicate_campaign` / `duplicate_adset` / `duplicate_ad` | Duplication |
 | `publish_lead_gen_draft_form` / `update_lead_gen_form_status` | Lead form management |
 
-#### Standard PipeBoard `get_insights` call (fallback)
+#### Standard AdKit `get_insights` call (fallback)
 
 ```
-Tool: mcp__claude_ai_PipeBoard__get_insights
+Tool: mcp__claude_ai_AdKit__adkit_get_insights
 Parameters:
-  account_id: act_XXXXXXXXX      # act_ prefix required for PipeBoard
+  account_id: act_XXXXXXXXX      # act_ prefix required for AdKit
   date_preset: "last_30d"
   level: "campaign"
   fields: ["spend","impressions","clicks","ctr","cpc","cpm","actions","cost_per_action_type","roas","reach","frequency"]
@@ -122,11 +122,11 @@ Parameters:
 
 ---
 
-## Google Ads via PipeBoard's Google Ads connector
+## Google Ads via AdKit's Google Ads connector
 
-**Connection status: SLOT-LIMITED since 2026-08.** The Pipeboard subscription was downgraded to a plan with **3 ad-account slots per billing cycle** (resets on the 14th). Only the 3 claimed accounts work at this tier; all other accounts get a slot-blocked refusal (error mentions `slot`, `blocked`, `over_budget`, or "upgrade"). **For slot-blocked accounts, do NOT retry — fall back immediately per `reference/google-ads-fallback.md` (Tier 2: Dashboard API `https://creekside-dashboard.up.railway.app/api/google/*`, read-only, live).** Check current slot claims with `manage_account_slots` action=view. Historical MCC context: 33 queryable accounts under MCC `5680424954`, HostSwitch (`2617643180`) outside the MCC, 11 deactivated IDs (`CUSTOMER_NOT_ENABLED`).
+**Connection status: SLOT-LIMITED since 2026-08.** The AdKit subscription was downgraded to a plan with **3 ad-account slots per billing cycle** (resets on the 14th). Only the 3 claimed accounts work at this tier; all other accounts get a slot-blocked refusal (error mentions `slot`, `blocked`, `over_budget`, or "upgrade"). **For slot-blocked accounts, do NOT retry — fall back immediately per `reference/google-ads-fallback.md` (Tier 2: Dashboard API `https://creekside-dashboard.up.railway.app/api/google/*`, read-only, live).** Check current slot claims with `manage_account_slots` action=view. Historical MCC context: 33 queryable accounts under MCC `5680424954`, HostSwitch (`2617643180`) outside the MCC, 11 deactivated IDs (`CUSTOMER_NOT_ENABLED`).
 
-**Namespace:** `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — always `ToolSearch` first). Separate from the Meta PipeBoard namespace despite both being PipeBoard connectors.
+**Namespace:** `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — always `ToolSearch` first). Separate from the Meta AdKit namespace despite both being AdKit connectors.
 
 **Customer ID format:** 10-digit numeric (e.g. `9133281551`). No `act_` prefix. MCC manager ID is separate.
 
@@ -222,11 +222,11 @@ This pipeline is a **backup data-ingestion path**, not a real-time connector. If
 
 ---
 
-## Known API-side gotchas (PipeBoard + Google Ads / Meta APIs)
+## Known API-side gotchas (AdKit + Google Ads / Meta APIs)
 
 Surfaced from the 2026-04-28 ad-copy-editor build (SRM 55→62 compliance run). Encode these in any agent that uses the ads MCPs.
 
-### G1. PipeBoard tools have stricter validators than the underlying platform APIs
+### G1. AdKit tools have stricter validators than the underlying platform APIs
 
 `create_google_ads_responsive_search_ad` counts the literal string `{KeyWord:fallback text}` against the 30-character headline limit and rejects, even though the Google Ads API itself only counts the fallback text. A headline like `{KeyWord:Trusted by High-Net Owners}` (36 literal chars, 26-char fallback) is valid in the API but rejected by the dedicated tool.
 
@@ -252,9 +252,9 @@ Meta ad creatives behave the same way for substantive copy changes — recreate-
 
 Not soft-deleted. Cannot edit, pause, or modify ads inside. Always exclude from edit scope (`AND campaign.status != 'REMOVED'` in audit queries). Surface them in reports for transparency, but mark them read-only.
 
-### G5. PipeBoard MCP rate-limits across all clients
+### G5. AdKit MCP rate-limits across all clients
 
-Error message: `"Google Ads API platform quota exhausted on Pipeboard's side"`. Hit during the SRM run mid-verification. The fallback: pause and retry in 10–60 minutes, or do the action via UI if time-sensitive. Do not silently retry in a loop — that burns the rate-limit window further.
+Error message: `"Google Ads API platform quota exhausted on AdKit's side"`. Hit during the SRM run mid-verification. The fallback: pause and retry in 10–60 minutes, or do the action via UI if time-sensitive. Do not silently retry in a loop — that burns the rate-limit window further.
 
 ### G6. Large GAQL results write to disk, not inline
 
@@ -294,11 +294,11 @@ Classify every match before mutating. Escalate unclassified matches to the user 
 
 ## Fallback: Google Ads / Meta Ads UI (when the MCP can't do it)
 
-**Routing principle:** try the PipeBoard MCP first. If the needed operation isn't in the MCP's tool surface, do it in the UI via Chrome automation. Do not invent MCP tools that don't exist.
+**Routing principle:** try the AdKit MCP first. If the needed operation isn't in the MCP's tool surface, do it in the UI via Chrome automation. Do not invent MCP tools that don't exist.
 
 **How to fall back:** route the task through the `chrome-screenshot-pipeline` skill (for screenshots / visual capture) or use Chrome MCP tools (`mcp__Claude_in_Chrome__*`) to navigate, read, click, and type in the authenticated Ads UI tab. Never use `screencapture`.
 
-### Known UI-only operations (not in either PipeBoard connector)
+### Known UI-only operations (not in either AdKit connector)
 
 Use the UI when the user asks for any of these. This list is not exhaustive — if the MCP doesn't surface a tool for the task, assume UI fallback.
 
@@ -312,7 +312,7 @@ Use the UI when the user asks for any of these. This list is not exhaustive — 
 - PMax search-theme / category reports (Insights tab for PMax)
 - Account access / user management
 - Field-level change history beyond what the API exposes
-- Conversion action setup wizard (API can do it but PipeBoard doesn't currently wrap it)
+- Conversion action setup wizard (API can do it but AdKit doesn't currently wrap it)
 
 **Meta Ads UI-only:**
 - Delivery troubleshooting ("Why isn't this delivering")
@@ -337,7 +337,7 @@ Use the UI when the user asks for any of these. This list is not exhaustive — 
 ### What NOT to do
 
 - Don't fabricate an MCP tool name because you think one should exist.
-- Don't ask PipeBoard to add a capability mid-session — that's a separate conversation with Peterson.
+- Don't ask AdKit to add a capability mid-session — that's a separate conversation with Peterson.
 - Don't automate the UI for operations that already have an MCP tool. MCP is faster and more reliable; UI is the fallback.
 
 ---
@@ -352,6 +352,6 @@ Use the UI when the user asks for any of these. This list is not exhaustive — 
 
 When presenting numbers pulled via either connector, cite the source:
 
-- `[source: PipeBoard/Meta, act_XXXXXXXXX, last_30d]`
+- `[source: AdKit/Meta, act_XXXXXXXXX, last_30d]`
 - `[source: Google Ads MCP, customer_id, last_30_days]`
 - `[source: Supabase/google_ads_insights_daily, customer_id, date_range]` (backup pipeline)

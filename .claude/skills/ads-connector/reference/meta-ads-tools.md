@@ -10,7 +10,7 @@ Default for all Meta read operations. Free, OAuth-based. Try these first.
 |---|---|---|
 | `ads_get_ad_accounts` | List accessible ad accounts | Check `is_ads_mcp_enabled` before querying |
 | `ads_get_ad_entities` | Campaigns, adsets, ads — unified query with `level` param | Supports metrics when `date_preset` or `time_range` provided |
-| `ads_insights_performance_trend` | Performance trends with direction signals | Bonus: not in PipeBoard |
+| `ads_insights_performance_trend` | Performance trends with direction signals | Bonus: not in AdKit |
 | `ads_insights_anomaly_signal` | Anomaly detection | Bonus |
 | `ads_insights_industry_benchmark` | Industry benchmarks | Bonus |
 | `ads_insights_auction_ranking_benchmarks` | Auction ranking vs competitors | Bonus |
@@ -60,11 +60,11 @@ Parameters:
 
 ---
 
-## Fallback: PipeBoard (`mcp__claude_ai_PipeBoard__*`)
+## Fallback: AdKit (`mcp__claude_ai_AdKit__*`)
 
 Use when official MCP returns errors, for MCP-disabled accounts, lead gen forms, and as a write fallback.
 
-### PipeBoard-only operations (no official MCP equivalent)
+### AdKit-only operations (no official MCP equivalent)
 
 | Tool | Purpose |
 |---|---|
@@ -81,12 +81,12 @@ Use when official MCP returns errors, for MCP-disabled accounts, lead gen forms,
 | `get_custom_audiences` | Audience data |
 | `get_pixels` | Pixel data |
 
-### Standard PipeBoard `get_insights` (fallback)
+### Standard AdKit `get_insights` (fallback)
 
 ```
-Tool: mcp__claude_ai_PipeBoard__get_insights
+Tool: mcp__claude_ai_AdKit__adkit_get_insights
 Parameters:
-  account_id: act_XXXXXXXXX      # act_ prefix REQUIRED for PipeBoard
+  account_id: act_XXXXXXXXX      # act_ prefix REQUIRED for AdKit
   date_preset: "last_30d"
   level: "campaign"
   fields: ["spend","impressions","clicks","ctr","cpc","cpm","actions","cost_per_action_type","roas","reach","frequency"]

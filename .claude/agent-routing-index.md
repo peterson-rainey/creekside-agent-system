@@ -23,8 +23,8 @@ For simple lookups, quick metrics pulls, or when contractors need raw data:
 
 | Platform | MCP tools | Key entry points |
 |----------|-----------|-----------------|
-| Google Ads | `mcp__claude_ai_Pipeboard_google__*` | `list_google_ads_customers` (account list), `get_google_ads_campaign_metrics` (performance), `execute_google_ads_gaql_query` (custom queries) |
-| Meta Ads | **Default:** `mcp__claude_ai_Meta_Ads__*` (official MCP). **Fallback:** `mcp__claude_ai_PipeBoard__*` (MCP-disabled accounts, lead gen forms, writes) | `ads_get_ad_accounts`, `ads_get_ad_entities` (unified query with `level` param), `ads_insights_performance_trend`. PipeBoard fallback: `get_insights`, `get_campaigns`/`get_adsets`/`get_ads` |
+| Google Ads | `mcp__claude_ai_AdKit__adkit_*` | `list_google_ads_customers` (account list), `get_google_ads_campaign_metrics` (performance), `execute_google_ads_gaql_query` (custom queries) |
+| Meta Ads | **Default:** `mcp__claude_ai_Meta_Ads__*` (official MCP). **Fallback:** `mcp__claude_ai_AdKit__adkit_*` (MCP-disabled accounts, lead gen forms, writes) | `ads_get_ad_accounts`, `ads_get_ad_entities` (unified query with `level` param), `ads_insights_performance_trend`. AdKit fallback: `get_insights`, `get_campaigns`/`get_adsets`/`get_ads` |
 | Historical data | Supabase `execute_sql` | `meta_insights_daily`, `google_ads_insights_daily` tables |
 
 Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'`

@@ -1,6 +1,6 @@
 ---
 name: ads-ui-navigation
-description: "Reliable navigation of the live Google Ads and Meta Ads Manager UIs via Claude in Chrome. Use when an agent needs to read or modify something in the ad-platform UI that the PipeBoard MCP connectors don't expose (recommendations tab, asset strength ratings, Insights tab, delivery troubleshooting, policy detail, billing, Business Manager writes, etc.). Handles OAuth / login state detection, the Google Ads splash + Meta skeleton/spinner animation blind spots, client-side routing, ad-blocker blockers, tab lifecycle, and the navigate+action race condition. Read-only by default — any UI write requires explicit user confirmation. Pairs with ads-connector (MCP-first routing) and chrome-screenshot-pipeline (screenshot capture). Do NOT use for screenshots (use chrome-screenshot-pipeline) or for things PipeBoard already does (use ads-connector)."
+description: "Reliable navigation of the live Google Ads and Meta Ads Manager UIs via Claude in Chrome. Use when an agent needs to read or modify something in the ad-platform UI that the AdKit MCP connectors don't expose (recommendations tab, asset strength ratings, Insights tab, delivery troubleshooting, policy detail, billing, Business Manager writes, etc.). Handles OAuth / login state detection, the Google Ads splash + Meta skeleton/spinner animation blind spots, client-side routing, ad-blocker blockers, tab lifecycle, and the navigate+action race condition. Read-only by default — any UI write requires explicit user confirmation. Pairs with ads-connector (MCP-first routing) and chrome-screenshot-pipeline (screenshot capture). Do NOT use for screenshots (use chrome-screenshot-pipeline) or for things AdKit already does (use ads-connector)."
 ---
 
 # Ads UI Navigation
@@ -9,13 +9,13 @@ Reliable, error-tolerant navigation of the Google Ads and Meta Ads Manager UIs v
 
 ## When to use this skill
 
-- An ad agent needs something from the UI that isn't in PipeBoard's MCP surface (Recommendations apply/dismiss, Insights tab, asset strength ratings, policy detail, Meta delivery troubleshooting, Events Manager test tool, Business Manager writes, billing, etc.).
+- An ad agent needs something from the UI that isn't in AdKit's MCP surface (Recommendations apply/dismiss, Insights tab, asset strength ratings, policy detail, Meta delivery troubleshooting, Events Manager test tool, Business Manager writes, billing, etc.).
 - An agent needs to read a page an MCP tool doesn't expose (PMax asset insights, Shopping product-group hierarchy, Change history with field-level detail).
 - An agent needs to perform a UI write action a user authorized (pause a campaign via the UI, apply a recommendation).
 
 ## When NOT to use this skill
 
-- **Anything PipeBoard MCP can do** -- always try `ads-connector` first. UI is slower and fragile.
+- **Anything AdKit MCP can do** -- always try `ads-connector` first. UI is slower and fragile.
 - **Screenshots** -- use `chrome-screenshot-pipeline`. This skill navigates; that one captures.
 - **Data pulls that exist in Supabase** -- query the warehouse instead of scraping the UI.
 - **Login / 2FA / CAPTCHA** -- this skill does NOT handle auth. Stop and ask the user.
