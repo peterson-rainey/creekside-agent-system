@@ -73,7 +73,7 @@ if echo "$CHECK" | grep -qiE '\bALTER\s+TABLE\b.*\bDROP\s+COLUMN\b'; then
 fi
 
 # --- GIT DESTRUCTIVE OPS ---
-if echo "$CHECK" | grep -qiE 'git\s+push\s+.*(-f|--force)'; then
+if echo "$CHECK" | grep -qiE 'git\s+push[^&|;]*(\s-f\b|--force\b)'; then
   echo "BLOCKED: Force push can overwrite remote history. Use regular push." >&2
   exit 2
 fi
