@@ -156,7 +156,7 @@ The ONLY calendar or booking URLs permitted in any response are exactly these th
 
 | Who | URL |
 |-----|-----|
-| Samuel (default / Creekside-qualified path) | https://calendar.app.google/wSdVbfwaJRzkw12E7 |
+| Samuel (default / Creekside-qualified path) | https://calendar.app.google/iwVAR8raqiD9a7dx6 |
 | Lindsey (default / Creekside-qualified path) | https://calendly.com/lindsey-bouffard/30min |
 | Active partner (partner-routing path) | From `docs/partners/{active_partner}.md` calendar_url |
 
