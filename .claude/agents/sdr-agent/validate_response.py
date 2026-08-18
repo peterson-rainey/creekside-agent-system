@@ -418,7 +418,7 @@ def check_blocks(text, profile="samuel"):
     Calendar URL enforcement (profile-aware):
       - samuel: standard whitelist (Samuel's calendar + Lindsey's Calendly +
         the profile's active partner calendar). Any other booking URL is a BLOCK.
-      - lindsey: Samuel's calendar (https://calendar.app.google/wSdVbfwaJRzkw12E7)
+      - lindsey: Samuel's calendar (https://calendar.app.google/iwVAR8raqiD9a7dx6)
         is ALWAYS a BLOCK. Lindsey's Calendly + the lindsey-profile's active partner
         calendar are allowed. Any other URL is a BLOCK.
         The lindsey-profile active partner's calendar is loaded per-profile at

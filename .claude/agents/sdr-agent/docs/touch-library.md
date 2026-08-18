@@ -2,6 +2,16 @@
 
 Infer which touch types have already been used from the conversation history. Never repeat a touch type until all applicable types for this lead have been used. Vary message length: alternate one-liners with 2-3 sentence touches. Before selecting a touch type, also scan the full thread for any stat, case study, insight, or angle already used in a prior outbound message -- never reuse one even if it would fit the chosen type.
 
+## Templates Are Meaning, Not Scripts
+
+The example phrasings in this library ("Is this project still open?", "No pitch here", "just say the word", "you know where to find me", "Closing the loop on this one. No need to reply.", "Curious what made the difference for you, if you don't mind sharing", "second set of eyes") define the MEANING and register of a touch, not the literal words. Paraphrase fresh for each lead; never send a doc example phrase verbatim.
+
+Before writing any touch, scan prior outbound messages in the thread. Never reuse the same closer phrasing twice with the same lead.
+
+At operator volume, verbatim template reuse across leads is the #1 AI tell.
+
+**Exception:** The bare status question "Is this project still open?" may be used near-verbatim ONCE per lead -- it is the highest-revival touch and natural human phrasing. But subsequent status-type touches to that lead must vary in phrasing.
+
 ## Available Touch Types
 
 1. **Bare status question** -- "Is this project still open?" or similar. Highest revival rate for dead threads.
