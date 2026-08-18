@@ -43,41 +43,6 @@ If the array is empty, call the platform's account-listing tool (`get_ad_account
 
 ## Meta Ads — AdKit (default) + Official Meta MCP (fallback)
 
-### Fallback: Official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`)
-
-Free, OAuth-based. Use when AdKit errors, or for the bonus tools below (anomaly signals, benchmarks, opportunity score, Ad Library) that AdKit doesn't have. Note: some accounts are MCP-disabled on the official side (`is_ads_mcp_enabled: false`) — those are AdKit-only.
-
-| Official MCP Tool | Purpose |
-|---|---|
-| `ads_get_ad_accounts` | List accessible ad accounts (check `is_ads_mcp_enabled` and `is_queryable`) |
-| `ads_get_ad_entities` | Unified query for campaigns, adsets, ads — set `level` param. Supports metrics + filtering + sorting when `date_preset` or `time_range` is provided |
-| `ads_insights_performance_trend` | Performance trends with GOOD/BAD direction signals |
-| `ads_get_creatives` / `ads_get_creative_ads` | Creative assets |
-| `ads_get_datasets` / `ads_get_dataset_details` | Pixel / Events Manager data |
-| `ads_get_ad_account_custom_audiences` / `ads_get_custom_audience` | Audience data |
-| `ads_get_ad_preview` | Render ad preview |
-| `ads_insights_anomaly_signal` | Anomaly detection (bonus — AdKit doesn't have this) |
-| `ads_insights_industry_benchmark` | Industry benchmarks (bonus) |
-| `ads_get_opportunity_score` | Optimization recommendations (bonus) |
-| `ads_library_search` | Ad Library search (bonus) |
-
-#### Standard read — campaign performance (last 30 days)
-
-```
-Tool: mcp__claude_ai_Meta_Ads__ads_get_ad_entities
-Parameters:
-  ad_account_id: "XXXXXXXXX"     # numeric only, no act_ prefix
-  level: "campaign"
-  date_preset: "last_30d"
-  fields: ["id", "name", "effective_status", "amount_spent", "impressions", "clicks", "ctr", "cpc", "cpm", "reach", "frequency", "results", "cost_per_result", "actions:link_click", "actions:omni_purchase", "cost_per_action_type", "purchase_roas"]
-```
-
-**Date preset values:** `today`, `yesterday`, `this_month`, `last_month`, `this_quarter`, `last_3d`, `last_7d`, `last_14d`, `last_30d`, `last_90d`. Custom: `time_range: '{"since":"2026-01-01","until":"2026-01-31"}'`.
-
-**Drill-down:** change `level` to `"adset"` or `"ad"`. Use `filtering` to narrow (e.g. `[{"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`).
-
-**IMPORTANT:** `ad_account_id` takes the NUMERIC ID only (e.g. `"938570599860690"`), NOT the `act_` prefixed form. Strip the `act_` prefix before calling.
-
 ### Primary: AdKit (`mcp__claude_ai_AdKit__adkit_*`)
 
 Try AdKit first for ALL Meta operations — reads, writes, and lead gen forms.
@@ -117,6 +82,41 @@ Parameters:
   level: "campaign"
   fields: ["spend","impressions","clicks","ctr","cpc","cpm","actions","cost_per_action_type","roas","reach","frequency"]
 ```
+
+### Fallback: Official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`)
+
+Free, OAuth-based. Use when AdKit errors, or for the bonus tools below (anomaly signals, benchmarks, opportunity score, Ad Library) that AdKit doesn't have. Note: some accounts are MCP-disabled on the official side (`is_ads_mcp_enabled: false`) — those are AdKit-only.
+
+| Official MCP Tool | Purpose |
+|---|---|
+| `ads_get_ad_accounts` | List accessible ad accounts (check `is_ads_mcp_enabled` and `is_queryable`) |
+| `ads_get_ad_entities` | Unified query for campaigns, adsets, ads — set `level` param. Supports metrics + filtering + sorting when `date_preset` or `time_range` is provided |
+| `ads_insights_performance_trend` | Performance trends with GOOD/BAD direction signals |
+| `ads_get_creatives` / `ads_get_creative_ads` | Creative assets |
+| `ads_get_datasets` / `ads_get_dataset_details` | Pixel / Events Manager data |
+| `ads_get_ad_account_custom_audiences` / `ads_get_custom_audience` | Audience data |
+| `ads_get_ad_preview` | Render ad preview |
+| `ads_insights_anomaly_signal` | Anomaly detection (bonus — AdKit doesn't have this) |
+| `ads_insights_industry_benchmark` | Industry benchmarks (bonus) |
+| `ads_get_opportunity_score` | Optimization recommendations (bonus) |
+| `ads_library_search` | Ad Library search (bonus) |
+
+#### Standard read — campaign performance (last 30 days)
+
+```
+Tool: mcp__claude_ai_Meta_Ads__ads_get_ad_entities
+Parameters:
+  ad_account_id: "XXXXXXXXX"     # numeric only, no act_ prefix
+  level: "campaign"
+  date_preset: "last_30d"
+  fields: ["id", "name", "effective_status", "amount_spent", "impressions", "clicks", "ctr", "cpc", "cpm", "reach", "frequency", "results", "cost_per_result", "actions:link_click", "actions:omni_purchase", "cost_per_action_type", "purchase_roas"]
+```
+
+**Date preset values:** `today`, `yesterday`, `this_month`, `last_month`, `this_quarter`, `last_3d`, `last_7d`, `last_14d`, `last_30d`, `last_90d`. Custom: `time_range: '{"since":"2026-01-01","until":"2026-01-31"}'`.
+
+**Drill-down:** change `level` to `"adset"` or `"ad"`. Use `filtering` to narrow (e.g. `[{"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`).
+
+**IMPORTANT:** `ad_account_id` takes the NUMERIC ID only (e.g. `"938570599860690"`), NOT the `act_` prefixed form. Strip the `act_` prefix before calling.
 
 ---
 
