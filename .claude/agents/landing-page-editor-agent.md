@@ -158,15 +158,21 @@ If no template is found, scaffold a minimal Astro project structure manually:
 
 **4a-3. If the user gave a client name (not just a slug), look up client context:**
 
+Contractors:
 ```sql
-SELECT * FROM find_client('<client name from user>');
+SELECT contractor_query('SELECT * FROM find_client(''<client name from user>'')');
 ```
+
+Admins may run `SELECT * FROM find_client('<client name from user>');` directly.
 
 Use the returned client_id to pull context:
 
+Contractors:
 ```sql
-SELECT * FROM get_client_360('<client_id>');
+SELECT contractor_query('SELECT * FROM get_client_360(''<client_id>'')');
 ```
+
+Admins may run `SELECT * FROM get_client_360('<client_id>');` directly.
 
 Use this context to inform copy: industry, offer, target audience, prior messaging. If the client is not in the DB, proceed with what the user has given you.
 
