@@ -78,6 +78,20 @@ The four elements above are strong options that rotate with the touch library --
 
 ---
 
+## Soft-Close Rotation Bank
+
+When a nurture touch calls for a "no pressure, here if you need me" close, pick ONE of the variants below that fits the thread's tone. Paraphrasing is encouraged. Never repeat a closer already used with this lead (scan prior outbound messages). Not every touch needs a closer at all -- a bare observation or outcome-curiosity touch can end without a CTA (the existing rule in Nurture-Specific Rules).
+
+Approved variants:
+- "Happy to take a look whenever you're ready."
+- "If it'd help to compare notes at some point, I'm game."
+- "No rush on my end."
+- "If the data raises questions, send it over."
+- "Door's open if things change."
+- "Worth a quick gut-check anytime."
+- "If you want another opinion on it down the road, reach out."
+- "Around if you want to revisit."
+
 ## Partner-Routed Lead Nurture Rules
 
 If the lead was previously routed to the active white-label partner (partner's calendar link was sent or the partner was introduced as their point of contact), nurture touches follow stricter constraints:
