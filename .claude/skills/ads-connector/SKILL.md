@@ -107,7 +107,7 @@ Try AdKit first for ALL Meta operations — reads, writes, and lead gen forms.
 | `duplicate_campaign` / `duplicate_adset` / `duplicate_ad` | Duplication |
 | `publish_lead_gen_draft_form` / `update_lead_gen_form_status` | Lead form management |
 
-#### Standard AdKit `get_insights` call (fallback)
+#### Standard AdKit `get_insights` call
 
 ```
 Tool: mcp__claude_ai_AdKit__adkit_get_insights
