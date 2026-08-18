@@ -41,11 +41,11 @@ If the array is empty, call the platform's account-listing tool (`get_ad_account
 
 ---
 
-## Meta Ads — Official Meta MCP (default) + AdKit (fallback)
+## Meta Ads — AdKit (default) + Official Meta MCP (fallback)
 
-### Primary: Official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`)
+### Fallback: Official Meta Ads MCP (`mcp__claude_ai_Meta_Ads__*`)
 
-Free, OAuth-based. Covers 12/15 active Creekside clients. Try these first for ALL Meta read operations.
+Free, OAuth-based. Use when AdKit errors, or for the bonus tools below (anomaly signals, benchmarks, opportunity score, Ad Library) that AdKit doesn't have. Note: some accounts are MCP-disabled on the official side (`is_ads_mcp_enabled: false`) — those are AdKit-only.
 
 | Official MCP Tool | Purpose |
 |---|---|
