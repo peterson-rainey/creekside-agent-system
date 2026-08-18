@@ -58,7 +58,7 @@ VARIATION C — Insight, requirements, experience, close
 Use when they have specific bullets or requirements.
 Address each requirement explicitly in prose, then brief experience mention, then close.
 BAD (conceptual): "I understand subscription models and how to test efficiently."
-GOOD (explicit): "On your requirements — I handle creative testing in-house (AI-assisted video works for rapid angle testing), have S2S tracking setup experience for several SaaS products, and the subscription model is actually where most of my work is."
+GOOD (explicit): "On your requirements, creative testing runs in-house (AI-assisted video works for rapid angle testing), we have S2S tracking setup experience for several SaaS products, and the subscription model is actually where most of our work is."
 
 VARIATION D — Insight, tactical plan, close
 Use for execution-focused posts. No experience paragraph needed.
