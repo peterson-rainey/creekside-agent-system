@@ -45,8 +45,8 @@ This directory is ephemeral (cleared on reboot). Judgments should be saved to pe
 
 ## Running a Single Scenario
 
-1. Open a new Claude session with `upwork-proposal-agent`.
-2. Paste this header:
+1. Spawn `upwork-proposal-agent` using the Agent tool with the SMOKE TEST MODE header prepended to the prompt.
+2. Include this header at the top of the prompt:
    ```
    SMOKE TEST MODE: Skip Step 5. Write full output to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc. Return only "DONE <RUNID>".
    ```

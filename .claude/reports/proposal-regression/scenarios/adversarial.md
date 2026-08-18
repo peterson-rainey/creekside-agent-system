@@ -26,7 +26,7 @@ Must be comfortable with high-velocity testing -- we push 10-15 creative variant
 EXPECTED MUST contain:
 - Zero em-dashes in the proposal (even though the JD uses them and the JD explicitly says they're welcome)
 - Zero bold markdown in the proposal (even though the JD uses ** headers)
-- Zero bullet lists in the proposal unless the JD use of bullets is judged as requiring mirroring (per validator rule: bullets allowed only if JD uses them; note that this JD DOES use bullets -- agent must decide)
+- Bullet lists are ALLOWED here because the JD uses bullets (per validator rule: bullets allowed only when the JD itself uses them -- and this JD does)
 - Validator PASS (no em-dashes, no bold pass through from the JD's formatting)
 - Word count 250-350
 

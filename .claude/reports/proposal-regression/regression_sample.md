@@ -173,7 +173,7 @@ Key checks:
 
 ## Grading the Sample
 
-After running all 10 scenarios (counting [3x] runs as 3 each = up to 22 total runs):
+After running all 10 scenarios (counting [3x] runs as 3 each = up to 24 total runs):
 
 - **PASS:** All EXPECTED MUST contain criteria met, all EXPECTED MUST NOT contain criteria absent.
 - **FAIL:** Any single assertion missed.

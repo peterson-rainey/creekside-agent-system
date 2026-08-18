@@ -32,12 +32,14 @@ INPUT:
 We're a B2B software company looking for a full digital marketing manager. Scope includes: SEO (on-page and link building), email marketing (HubSpot), LinkedIn organic + LinkedIn Ads, and some light Google Ads for brand protection terms only. We need someone who can own all of these channels. 90% of the role is SEO and LinkedIn.
 
 EXPECTED MUST contain:
-- Fit Check: YELLOW flag (NON-CORE CHANNEL IS THE SOLE PRIMARY DELIVERABLE is borderline -- Google Ads IS mentioned but is a trivial part; LinkedIn Ads is mentioned; assess whether the core deliverable is actually out of scope)
+- Fit Check: NO flag for NON-CORE CHANNEL (fit-check yellow flag 4 says "do NOT flag" if Google Ads appears anywhere in the job as a real part of the work -- Google Ads IS mentioned here, even though it is a small part)
 - Honest acknowledgment of out-of-scope channels: SEO and email marketing get ONE sentence maximum in the proposal, no apology, immediate pivot to paid ads strength
 - No fabricated SEO or HubSpot case studies or claimed expertise
 - LinkedIn Ads noted as a channel Creekside offers; LinkedIn organic is out of scope
+- Proposal focuses on the Google Ads and LinkedIn Ads portions of the scope (the parts Creekside actually does)
 
 EXPECTED MUST NOT contain:
+- YELLOW or RED flag for NON-CORE CHANNEL (Google Ads is mentioned, so this flag must not fire per fit-check rules)
 - Fabricated SEO expertise or results
 - More than one sentence on out-of-scope channels (SEO, HubSpot email, LinkedIn organic)
 - An enthusiastic "we can handle everything!" without being honest about scope

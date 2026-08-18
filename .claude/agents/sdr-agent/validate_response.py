@@ -342,6 +342,10 @@ SETUP_SENTENCES = [
     r"Fair question\b",
     r"I'll give you a straight answer\b",
     r"To be transparent\b",
+    # S7: setup-sentence pattern -- announcing honesty instead of just being honest
+    r"you\s+asked\s+for\s+honest(?:,?\s+so\s+here\s+it\s+is)?",
+    r"you\s+want\s+(?:me\s+to\s+be\s+)?honest(?:,?\s+(?:so\s+)?here\s+it\s+is)?",
+    r"since\s+you\s+(?:want|asked\s+for)\s+(?:me\s+to\s+be\s+)?honest",
 ]
 
 SEAL_CLAPPING = [
@@ -352,6 +356,10 @@ SEAL_CLAPPING = [
     r"That's the right question",
     r"You're thinking about this the right way",
     r"Smart thinking",
+    # S1: AI-slop pattern -- complimenting lead's discernment
+    r"can\s+tell\s+the\s+difference\s+between",
+    # S2: AI-slop pattern -- dramatizing impact of one thing
+    r"that\s+one\s+(?:thing|detail|factor)\s+changes?\s+everything",
 ]
 
 BANNED_PHRASES = [
@@ -577,6 +585,55 @@ def check_blocks(text, profile="samuel"):
                 f"'as mentioned in the video', or any video+partner co-reference. "
                 f"The profile video features a different person.",
             ))
+
+    # ---------------------------------------------------------------------------
+    # Outside-link BLOCK (D4 -- ruling 2026-08-18)
+    # Verbal references to the Upwork profile video or YouTube channel ARE allowed.
+    # Sending any outside LINK is NOT allowed.
+    #
+    # Whitelisted URL prefixes (any URL starting with these is OK):
+    #   - calendar/booking domains (already checked above via _CALENDAR_URL_RE)
+    #   - creeksidemarketingpros.com/case-study-digital-marketing/ (proof links)
+    #   - creekside-dashboard.up.railway.app/report/ (sample report links)
+    #
+    # Any other URL (creeksidemarketingpros.com home page, youtube.com, etc.) is a BLOCK.
+    #
+    # Implementation: find all http(s) URLs in the text, skip whitelisted ones,
+    # BLOCK the rest. Calendar/booking URLs are already checked above; we skip
+    # those here to avoid double-reporting.
+    # ---------------------------------------------------------------------------
+    _LINK_WHITELIST_PREFIXES = (
+        # Case study proof links
+        "https://creeksidemarketingpros.com/case-study-digital-marketing/",
+        "http://creeksidemarketingpros.com/case-study-digital-marketing/",
+        # Sample report links
+        "https://creekside-dashboard.up.railway.app/report/",
+        "http://creekside-dashboard.up.railway.app/report/",
+    )
+    _CALENDAR_DOMAINS = (
+        "calendar.app.google",
+        "calendar.google.com",
+        "calendly.com",
+        "app.reclaim.ai",
+    )
+    _all_url_re = re.compile(r'https?://\S+', re.IGNORECASE)
+    for _url_m in _all_url_re.finditer(text):
+        url_raw = _url_m.group().rstrip('.,;)>')
+        # Skip booking/calendar domains (already handled above)
+        if any(dom in url_raw.lower() for dom in _CALENDAR_DOMAINS):
+            continue
+        # Skip whitelisted proof/report prefixes
+        if any(url_raw.startswith(pfx) for pfx in _LINK_WHITELIST_PREFIXES):
+            continue
+        # Any remaining URL is a BLOCK -- outside link not permitted in lead-facing message
+        issues.append((
+            "outside_link_block",
+            f"{url_raw} -- sending outside links in lead-facing Upwork messages is not allowed "
+            "(D4 ruling 2026-08-18); verbal references to YouTube/profile video are permitted, "
+            "but URLs must not be pasted; only whitelisted URLs are allowed: calendar/booking "
+            "links, case study URLs (...com/case-study-digital-marketing/...), and approved "
+            "sample report links (creekside-dashboard.up.railway.app/report/...)",
+        ))
 
     return issues
 
@@ -1185,6 +1242,101 @@ def check_and_fix_warns(text):
                 "(response-guidelines.md Zero-Tolerance Fluff Rules)",
             ))
             break  # One WARN is enough
+
+    # 20. Name-comma DM opener (WARN -- S2)
+    # Starting a DM response with "Name," or "Hey Name," as an email-style opener.
+    # The existing name_as_greeting_opener check (rule 18) catches "Hey Name," and similar
+    # constructions. This rule extends to bare "Name," openers not preceded by Hey/Hi,
+    # AND fires even when the existing check already caught it (idempotent -- only one fires
+    # because they check different regex patterns, but both add to the issues list).
+    # Pattern: line starts with a capitalized word immediately followed by a comma, where the
+    # word is not a common sentence opener (so, well, yes, no, ok, sure, etc.).
+    _COMMON_OPENERS = {
+        'so', 'well', 'yes', 'no', 'ok', 'okay', 'sure', 'right', 'look', 'listen',
+        'honestly', 'honestly', 'actually', 'anyway', 'alright', 'alright',
+    }
+    _bare_name_comma_re = re.compile(r'^\s*([A-Z][a-zA-Z\-\']{1,})\s*,')
+    _bnc_m = _bare_name_comma_re.match(fixed)
+    if _bnc_m:
+        candidate = _bnc_m.group(1).lower()
+        # Only flag if NOT already caught by rule 18 (Hey/Hi Name,) AND not a common opener
+        _already_caught_by_18 = bool(re.match(
+            r'^\s*(?:Hey\s+|Hi\s+)([A-Z][a-zA-Z\-\']+(?:\s+[A-Z][a-zA-Z\-\']+)?)\s*,', fixed
+        ))
+        if not _already_caught_by_18 and candidate not in _COMMON_OPENERS:
+            issues.append((
+                "name_comma_dm_opener",
+                f"{_bnc_m.group().strip()} -- do not open a DM reply with the lead's name as "
+                "a comma-salutation (S2); this is a chat thread, not an email; drop the name "
+                "opener and start with the substance",
+            ))
+            # Auto-fix: strip the leading 'Name, ' and capitalize the remainder
+            fixed = fixed[_bnc_m.end():].lstrip()
+            if fixed and not fixed.startswith(('http://', 'https://', 'www.')):
+                fixed = fixed[0].upper() + fixed[1:]
+
+    # 21. Availability-assumption phrases (WARN -- S4)
+    # Never promise or assume Peterson's/Cade's availability. The calendar is the only source.
+    _availability_patterns = [
+        r'\bshould\s+be\s+wide\s+open\b',
+        r"\bI'?ll\s+make\s+it\s+work\b",
+        r'\bany\s+time\s+works\b',
+        r'\banytime\s+works\b',
+        r'\bwe\s+can\s+definitely\s+make\s+that\s+work\b',
+        r'\bwide\s+open\s+(?:this|next)\s+week\b',
+        r'\bpretty\s+(?:flexible|open)\s+(?:this|next)\s+week\b',
+    ]
+    for pat in _availability_patterns:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append((
+                "availability_assumption_warn",
+                f"{m.group()} -- never assume or promise availability (S4); the calendar link "
+                "is the only availability source; replace with: 'Go ahead and grab a time here: "
+                "[calendar link]'",
+            ))
+            break  # One WARN is enough
+
+    # 22. Self-blame phrases in any context (WARN -- S6 extension)
+    # The existing self_incrimination check (rule 19a) covers lost-lead contexts.
+    # This rule extends the ban to self-blame phrases in ALL contexts -- even when the
+    # lead did not say "went another direction." Never open mid-conversation by admitting
+    # a fault the lead didn't raise, when the answer can be worded another way.
+    _SELF_BLAME_PATTERNS = [
+        r"\bI\s+was\s+sloppy\b",
+        r"\bthat\s+was\s+sloppy\s+of\s+me\b",
+        r"\bI\s+was\s+careless\b",
+        r"\bthat\s+was\s+careless\s+of\s+me\b",
+        r"\bI\s+was\s+hasty\b",
+        r"\bthat\s+was\s+hasty\b",
+    ]
+    for pat in _SELF_BLAME_PATTERNS:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append((
+                "self_blame_phrase_warn",
+                f"{m.group()} -- never use self-blame phrases mid-conversation (S6); if a "
+                "correction is needed, weave it in matter-of-factly without flagellating; "
+                "avoid phrases like 'I was sloppy' when the answer can be worded another way",
+            ))
+            break  # One WARN is enough
+
+    # 23. Past-tense hiring language = lost lead (WARN -- S10)
+    # "I hired [someone]" / "we hired [someone]" = they hired a different provider.
+    # Route to lost-lead handling (60-day nurture). Never respond as if WE were hired.
+    _HIRED_SIGNALS = re.compile(
+        r'\b(?:I|we)\s+(?:already\s+)?hired\b'
+        r'|\bwent\s+with\s+(?:someone|another|a\s+(?:different|new))',
+        re.IGNORECASE,
+    )
+    # Only fire if NOT already a lost-lead signal (avoid double-WARN)
+    if _HIRED_SIGNALS.search(fixed) and not _LOST_LEAD_SIGNALS.search(fixed):
+        issues.append((
+            "hired_someone_else_lost_lead_warn",
+            "Past-tense hiring language detected (S10) -- 'I hired' / 'we went with someone' "
+            "means they hired a different provider, not us; route to Lost Lead Rule "
+            "(short gracious well-wish + 60-day nurture); never respond as if WE were hired",
+        ))
 
     # Clean up punctuation artifacts from phrase removals
     # Collapse whitespace before a comma: "word , word" -> "word, word"
