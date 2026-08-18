@@ -40,6 +40,20 @@ Validate EACH response against these rules:
 - **Anti-fabrication geographic claims:** "all 50 states" triggers a WARN. Only state geographic coverage if it appears in verified company rules or retrieved context. No auto-fix.
 - **Bare fee terminology:** "management fee", "onboarding fee", "setup fee", "monthly cap" (without a dollar amount) triggers a WARN. Approved rephrase: "our pricing is custom and performance-based." Exception: these phrases inside an approved Stage-2 percentage-tier presentation are acceptable -- since the script cannot see conversation stage, this is WARN (not BLOCK) so the agent reviews it. No auto-fix.
 
+- **Name-comma DM opener (S2):** Starting a DM response with the lead's name + comma as an opener (e.g., "Jerry, good questions" / "Patrick," at the start of the message) is a WARN. This is a DM thread, not an email -- drop the name opener entirely. (Distinct from the name-as-greeting BLOCK which targets "Hey [Name]," openers; this catches bare "Name," openers too.) Auto-fix: strip the leading name-comma opener.
+- **Availability-assumption phrases (S4):** "should be wide open," "I'll make it work," "any time works," "we can definitely make that work" in the context of scheduling/availability. The calendar is the only availability source. Auto-fix: not applicable -- the agent must rephrase to point to the calendar link.
+- **Self-blame phrases (S6 extension -- mid-conversation):** "I was sloppy," "I was careless," "I dropped the ball," "that was sloppy of me," "I was hasty" -- these self-blame phrases are banned even outside lost-lead contexts. If an error occurred, correct it matter-of-factly without flagellating. Auto-fix: not applicable -- agent must reword. (The existing lost-lead WARN covers the lost-lead context; this extends the rule to all contexts.)
+
+## WARN Semantics (S5 -- Framework)
+
+**What BLOCK means:** The response MUST be rewritten to eliminate the BLOCK issue. After rewriting, re-run the validator. Maximum 1 retry; if still BLOCK after 1 rewrite, escalate to Peterson. A BLOCK verdict alone drives the loop guard -- not WARNs.
+
+**What WARN means:** Two cases:
+1. **Auto-fixable WARNs** (fluff openers, setup sentences, seal clapping, em-dashes, banned phrases, signatures, formal transitions, markdown, triple constructions, agency word): The validator auto-fixes these deterministically and outputs the fixed text after `---FIXED---`. Use the fixed text. No regeneration required.
+2. **Non-auto-fixable WARNs** (hours-scoped phrasing, fabrication claims, bare fee terminology, reply length, question count, name-comma opener, availability phrases, self-blame, dollar-magnitude): Surfaced alongside the draft for agent review. The agent must decide whether to revise. A WARN alone NEVER triggers full regeneration -- only a BLOCK does.
+
+**Loop guard:** The BLOCK retry limit is 1 (one rewrite, then escalate). WARN retries are not counted -- WARNs do not drive the retry loop.
+
 ## Auto-Fix Instructions
 
 - Remove fluff openers, setup sentences, seal clapping
