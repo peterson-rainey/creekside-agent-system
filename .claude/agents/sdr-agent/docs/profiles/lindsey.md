@@ -15,10 +15,10 @@ No sign-off name. Responses end after the final sentence. Never sign "Lindsey", 
 ## Active Partner
 
 ```
-active_partner: keith
+active_partner: brady
 ```
 
-Load `docs/partners/keith.md` at runtime. To switch Lindsey's partner, change the `active_partner:` line above and add the new partner's `.md` file. No other edits needed.
+Load `docs/partners/brady.md` at runtime. To switch Lindsey's partner, change the `active_partner:` line above and add the new partner's `.md` file. No other edits needed.
 
 ## Booking Calendar (Default Path, Creekside-Qualified Leads)
 
