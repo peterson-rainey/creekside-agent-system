@@ -220,7 +220,21 @@ cd ~/creekside-ad-pages/<project-folder> && npm run build
 
 If the build passes, proceed to Step 6.
 
-If the build fails, show the error output. Fix it if the error was introduced in this session, then re-run. If the error is in pre-existing boilerplate, report it to the user and note the project folder may have pre-existing issues. Do NOT push a broken build under any circumstances.
+If the build fails with a Node engine or version error (e.g., "The engine `node` is incompatible with this module" or "requires Node >=22.12"), the machine's system Node is too old (Astro 7 requires Node >=22.12). Retry the build using a pinned Node version:
+
+```bash
+cd ~/creekside-ad-pages/<project-folder> && npx -y node@22.12.0 ./node_modules/astro/bin/astro.mjs build
+```
+
+If `npm install` skipped native optional dependencies and the build errors about missing bindings (e.g., `@rolldown/binding-darwin-*` or `@astrojs/compiler-binding-*`), install the exact locked versions without touching the rest of `node_modules`:
+
+```bash
+cd ~/creekside-ad-pages/<project-folder> && npm install --no-save <exact package name and version from the error>
+```
+
+Do NOT run `rm -rf node_modules` to recover from missing bindings -- this is a banned destructive operation. Always use `npm install --no-save` with the exact locked version instead.
+
+If the build fails for any other reason, show the error output. Fix it if the error was introduced in this session, then re-run. If the error is in pre-existing boilerplate, report it to the user and note the project folder may have pre-existing issues. Do NOT push a broken build under any circumstances.
 
 **If `package.json` does not exist (plain HTML/CSS project):**
 
