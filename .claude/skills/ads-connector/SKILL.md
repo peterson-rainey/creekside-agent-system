@@ -17,11 +17,9 @@ Route the caller to the correct live source for Google or Meta ads — for READS
 | Google Ads | **AdKit — Google Ads connector** `mcp__claude_ai_AdKit__adkit_*` | **Dashboard API → Chrome UI** — full 3-tier chain in `reference/google-ads-fallback.md` (Supabase `google_ads_insights_daily` for historical only) | ACTIVE — AdKit primary since 2026-08-17 |
 | Both | Call the right connector per platform, then combine | — | — |
 
-**When to fall back to AdKit for Meta reads:**
-- Account returns error "Ads MCP is gradually being rolled out" (`is_ads_mcp_enabled: false`)
-- Known AdKit-only accounts: LA Smiles (act_1466381181311591), MedWriter/Superflow (act_673641821010879)
-- Lead gen form data needed (`get_lead_gen_forms`)
-- Any official MCP tool error — retry with AdKit before reporting failure
+**When to fall back to the official Meta MCP for Meta reads:**
+- Any AdKit tool error — retry with the official Meta MCP before reporting failure
+- Official-MCP-only bonus tools needed: anomaly signals, industry benchmarks, opportunity score, Ad Library search
 
 **ID formats:** Meta account IDs are `act_XXXXXXXXX`. Google customer IDs are 10-digit numerics (no `act_` prefix). Do not mix them.
 
