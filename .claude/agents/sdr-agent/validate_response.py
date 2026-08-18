@@ -356,10 +356,21 @@ SEAL_CLAPPING = [
     r"That's the right question",
     r"You're thinking about this the right way",
     r"Smart thinking",
-    # S1: AI-slop pattern -- complimenting lead's discernment
-    r"can\s+tell\s+the\s+difference\s+between",
-    # S2: AI-slop pattern -- dramatizing impact of one thing
-    r"that\s+one\s+(?:thing|detail|factor)\s+changes?\s+everything",
+]
+
+# AI-slop patterns that read as seal-clapping but are embedded mid-sentence;
+# reported as WARN but NOT auto-removed (sentence removal would garble the text).
+# The agent must rewrite to remove these naturally.
+AI_SLOP_WARN = [
+    # S1: complimenting lead's discernment as an embedded clause
+    # Allows optional adverbs between "can" and "tell" (e.g. "can clearly tell")
+    (r"can\s+(?:\w+\s+)?tell\s+the\s+difference\s+between",
+     "ai_slop_warn -- 'can tell the difference between' is AI seal-clapping; "
+     "rewrite the sentence to remove this compliment to the lead's discernment"),
+    # S2: dramatizing impact of a single thing
+    (r"that\s+one\s+(?:thing|detail|factor)\s+changes?\s+everything",
+     "ai_slop_warn -- 'that one thing changes everything' is AI-slop dramatization; "
+     "rewrite to communicate the actual point without dramatizing"),
 ]
 
 BANNED_PHRASES = [
@@ -730,6 +741,14 @@ def check_and_fix_warns(text):
             else:
                 # Guard fired: remove only the matched phrase to prevent re-triggering
                 fixed = _remove_phrase_only(fixed, m)
+
+    # 3b. AI-slop patterns (WARN, no auto-fix -- S1, S2)
+    # These are embedded mid-sentence constructions; sentence removal would garble the text.
+    # Reported as WARN; the agent must rewrite the sentence naturally.
+    for pat, label in AI_SLOP_WARN:
+        m = re.search(pat, fixed, re.IGNORECASE)
+        if m:
+            issues.append(("ai_slop_warn", f"{m.group()} -- {label}"))
 
     # 4. Em dashes -> commas (consume surrounding whitespace to avoid
     #    "word , word" spacing artifacts)
