@@ -66,17 +66,21 @@ Validate EACH response against these rules:
 
 If any BLOCK issue is found, rewrite the response to fix it before presenting.
 
-## Outside Links Rule (D2)
+## Outside Links Rule (D2 / D4)
 
 **Verbal references to the Upwork profile video or YouTube channel ARE allowed.** Saying "go to my profile and watch the video there" or "check out my YouTube channel" in text is permitted.
 
-**Sending any outside LINK is NOT allowed.** This includes creeksidemarketingpros.com URLs, youtube.com URLs, and any other non-whitelisted URL. The validator BLOCKs all non-whitelisted URLs in the calendar/booking URL category (see above). For other URL types (website, YouTube, etc.), the agent must self-enforce this rule -- the validator's URL check covers booking/calendar domains; the agent is responsible for not inserting other domain links.
+**Sending any outside LINK is NOT allowed.** This includes creeksidemarketingpros.com homepage URLs, youtube.com URLs, and any other non-whitelisted URL.
+
+**Validator coverage (as of 2026-08-18):** The validator now BLOCKs all non-whitelisted URLs including website and YouTube links (`outside_link_block`). Prior to this fix, the validator only caught booking/calendar domains -- an Aug 7 warm-up draft that contained website + YouTube links would NOT have been caught by the validator (it was a validator gap, not a non-agent message). This gap is now closed.
 
 Whitelisted links (may always appear in a response):
 - The active profile's booking calendar URL (from loaded profile doc)
 - The active partner's booking calendar URL (from loaded partner doc)
 - Creekside case study URLs: creeksidemarketingpros.com/case-study-digital-marketing/...
 - Sample report URLs: creekside-dashboard.up.railway.app/report/...
+
+All other URLs are BLOCK-level in the validator (`outside_link_block`).
 
 All other URLs are off-limits in lead-facing messages.
 
