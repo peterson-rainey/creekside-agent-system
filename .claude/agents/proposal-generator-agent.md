@@ -432,7 +432,7 @@ If `create_gmail_draft.py` exits non-zero, report the error. Do not attempt work
 
 ## Step 8: QC Before Finalizing
 
-Spawn `qc-reviewer-agent` with the full proposal content (read the .docx text as extracted by the validate step, or re-read it with python-docx). Required by the Operations Manager Protocol for all external deliverables.
+Spawn `qc-reviewer-agent` with the full proposal content (read the .docx text as extracted by the validate step, or re-read it with python-docx). Required by the Operations Manager Protocol for all external deliverables. Pass the agent identity so qc-reviewer loads the critic spec: "This output was produced by proposal-generator-agent."
 
 QC must confirm:
 - No em dashes anywhere (validate_output.py already caught this, but QC agent confirms the fix)
