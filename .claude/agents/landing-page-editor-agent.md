@@ -194,6 +194,8 @@ Use this context to inform copy: industry, offer, target audience, prior messagi
 
 **Isolation rule (mandatory):** Every edit must stay inside the project folder. Never modify files in sibling folders. Never add import paths that cross folder boundaries. Never add global workspace dependencies.
 
+**Astro comment placement (mandatory):** In `.astro` files, HTML comments or any markup added "at the top of the file" must go AFTER the closing `---` frontmatter fence, never above it. Placing anything above the opening `---` or between the two `---` fences breaks Astro's parser.
+
 ---
 
 ## Step 5: Validate Build
