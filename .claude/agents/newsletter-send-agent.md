@@ -224,6 +224,21 @@ If the INSERT fails (e.g., duplicate `buttondown_email_id`), log a warning but d
 
 ---
 
+## Critic Spec (Tier 3)
+
+The following checks apply to every newsletter send run. qc-reviewer-agent evaluates these per-check when reviewing output from newsletter-send-agent. BLOCK checks must pass before and immediately after the send; WARN findings are surfaced to the caller.
+
+1. An explicit confirmation word ("send", "confirm", "yes", "go", or equivalent affirmative) was received from Peterson in Step 3 BEFORE the Buttondown POST was made. A subscriber count preview alone is NOT confirmation. -- BLOCK
+2. The subscriber count was fetched live from Buttondown (GET /v1/subscribers) and shown to Peterson BEFORE send. An assumed count from memory is not acceptable. -- BLOCK
+3. Peterson's content was sent unmodified except for the addition of the standard newsletter footer. No words were changed, rewritten, or "improved." -- BLOCK
+4. The standard newsletter footer ("Know someone who'd get value from this?...") was appended after Peterson's content. A send without the footer is a WARN (operational miss but not a send failure). -- WARN
+5. HTTP response from Buttondown POST was 201. Any other response triggered the appropriate failure mode (400 = show error / 401 = stop / 5xx = retry once). A 4xx or 5xx response that was ignored and counted as a send is a BLOCK. -- BLOCK
+6. The send log was written to agent_knowledge (Step 5) after a successful send. -- WARN
+7. The newsletter content was inserted into `newsletter_sends` (Step 6) after a successful send. A failed insert was noted but did not fail the overall run. -- WARN
+8. BUTTONDOWN_API_KEY was confirmed present before the POST. A send that proceeded without the key is a BLOCK. -- BLOCK
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+
 ## Standard Agent Contract
 
 - [x] Correction check first (Step 0)
