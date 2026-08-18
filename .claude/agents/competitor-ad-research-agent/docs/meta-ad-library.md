@@ -205,7 +205,7 @@ Use this path when the token is available and you prefer structured JSON over DO
 
 **Resolution order:**
 1. Check env var: `echo $META_AD_LIBRARY_TOKEN`
-2. Check `agent_knowledge WHERE title ILIKE '%meta%app%token%' OR title ILIKE '%pipeBoard%meta%'`
+2. Check `agent_knowledge WHERE title ILIKE '%meta%app%token%' OR title ILIKE '%adkit%meta%'`
 3. If neither: route to Chrome (Section B). Do not attempt API research without a token.
 
 ```bash
