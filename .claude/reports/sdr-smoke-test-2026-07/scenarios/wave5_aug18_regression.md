@@ -190,3 +190,56 @@ Run: echo "You asked for honest, so here it is: your current campaigns are burni
 EXPECTED:
 - Issues include: setup_sentence (you asked for honest so here it is)
 - VERDICT: WARN (auto-fixed, opener stripped)
+
+---
+
+### R-I1 | samuel | followup | Stale-link path -- 6-month-old-call followup must use new calendar URL
+
+VALIDATOR ONLY TEST:
+Run: echo "It has been a while since we talked. If you want to reconnect and see where things stand, grab a time here: https://calendar.app.google/iwVAR8raqiD9a7dx6" | python3 .claude/agents/sdr-agent/validate_response.py --profile samuel
+
+EXPECTED:
+- VERDICT: PASS (or WARN for unrelated issues only)
+- No calendar BLOCK (new URL is whitelisted)
+- Confirms the stale-link path: a 6-month-old-call followup that correctly uses the NEW samuel calendar passes validation. Any draft using the old URL (wSdVbfwaJRzkw12E7) would BLOCK.
+
+---
+
+### R-J1 | samuel | nurture | Verbatim-closer-reuse detection (manual-review case)
+
+NOTE: This is a MANUAL REVIEW case. The validator does not detect same-lead closer reuse (it has no thread history). The agent must scan prior outbound messages before writing.
+
+SCENARIO:
+- Thread shows two prior outbound nurture touches, both ending with "just say the word."
+- Operator requests a third nurture touch.
+
+EXPECTED (agent behavior, not validator):
+- Agent scans thread before generating the third touch
+- Agent does NOT use "just say the word" again as the closer
+- Agent picks a different variant from the Soft-Close Rotation Bank in nurture.md (e.g., "Door's open if things change." or "No rush on my end.")
+- MANUAL CHECK: reviewer confirms the closer in the draft does not match either prior closer
+
+---
+
+### R-K1 | samuel | followup | New AI-slop phrases fire WARN
+
+VALIDATOR ONLY TEST -- "circling back":
+Run: echo "Just circling back on this. Still interested?" | python3 .claude/agents/sdr-agent/validate_response.py --profile samuel
+
+EXPECTED:
+- Issues include: ai_slop_warn (circling back)
+- VERDICT: WARN (non-auto-fixable -- agent must rephrase)
+
+VALIDATOR ONLY TEST -- "touching base":
+Run: echo "Touching base to see if you had a chance to look things over." | python3 .claude/agents/sdr-agent/validate_response.py --profile samuel
+
+EXPECTED:
+- Issues include: ai_slop_warn (touching base)
+- VERDICT: WARN (non-auto-fixable)
+
+VALIDATOR ONLY TEST -- "I wanted to reach out":
+Run: echo "I wanted to reach out because we just wrapped a project in your space." | python3 .claude/agents/sdr-agent/validate_response.py --profile samuel
+
+EXPECTED:
+- Issues include: ai_slop_warn (I wanted to reach out)
+- VERDICT: WARN (non-auto-fixable)

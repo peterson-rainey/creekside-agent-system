@@ -137,6 +137,12 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | data-quality-audit | Weekly Monday data quality audit |
 | agent-prompt-drift-check | Nightly pg_cron check for broken/missing agent prompts (writes pipeline_alerts) |
 
+## Landing Pages
+
+| Agent | Use when... |
+|-------|-------------|
+| landing-page-editor-agent | Create a landing page for a new client, edit copy or layout on an existing landing page, or publish landing page changes to GitHub (creekside-ad-pages monorepo). Contractor-safe. |
+
 ## Reporting
 
 | Agent | Use when... |
