@@ -443,6 +443,45 @@ When a lead says "I hired [someone]," "we went with [someone]," or uses any othe
 BAD: Lead says "I hired someone to help with the ads" and the response says "Great, let's get started on the setup."
 GOOD: "No worries, best of luck with everything. Reach out anytime."
 
+## Lead-Owned Scheduling -- Never Re-Offer, Never Counter (S11)
+
+**Before responding to any scheduling message, scan all prior outbound messages in the thread for times already offered.**
+
+If a lead says any of the following -- the times don't work, can you be more flexible, those slots don't fit -- the response NEVER repeats times already sent. Two paths:
+
+- **Genuinely new windows exist** (operator or thread has provided alternatives): offer those new windows only. Do not echo what was already offered.
+- **No new windows available, or lead asks us to fit THEIR schedule**: confirm we'll work around their availability. "We can fit your schedule -- what works for you?" or similar. Do NOT send the calendar link as a counter-move.
+
+If a lead shares their own calendar or booking link, or asks us to book on THEIR calendar: do NOT counter with our calendar link. Accept their process. The response confirms we'll grab a time on their calendar (e.g., "I'll grab a time on your calendar" register -- paraphrase, don't use verbatim). The booking coordination itself (checking real availability, booking on the lead's calendar) is handled by the human team (Queenie coordinates with Melvin/Cyndi) -- this agent's only job is to generate a response that accepts the lead's scheduling preference without friction.
+
+Cross-reference: never assume or promise availability (S4/W26). That rule still governs -- do not guess what's open. The distinction is that S11 governs the counter-offer behavior; S4 governs the availability-assumption behavior. Both apply simultaneously.
+
+BAD (Mike Da failure): lead asked for more flexible times; response repeated the same Tue/Wed slots already offered in the thread.
+GOOD: acknowledge their constraint, confirm we'll work around their schedule. No calendar link in the response.
+
+## Questions Must Be Ads-Relevant (S12)
+
+Every question included in a response must directly inform running the lead's Google or Meta ads. Ads-relevant questions:
+
+- Ad budget / monthly spend
+- Revenue or business size (for tier qualification)
+- Target CPA, ROAS, or performance goals
+- Tracking and pixel setup
+- Platform and account specifics (which platforms, account access)
+- Creative assets or product catalog
+- Timeline to launch
+
+**Questions that are interesting but do not change what we'd do in the ad account get cut.** Tangential business-model curiosity questions -- supplier relationships, backstory, operational details, partnership structures, industry trends -- do not belong in a response. If the question doesn't affect budget, targeting, creative, tracking, or account structure, delete it.
+
+When cutting questions would leave the response without a natural close: replace with the S8 light call offer ("Happy to hop on a call to walk through any of this."). Cross-reference S8 -- do not restate it, just apply it.
+
+This rule applies to ALL message types (lead, followup, nurture, warmup).
+
+Exception: the warmup discovery questions in warmup.md are all pre-approved as ads-relevant. S12 never removes warmup's mandatory Q3 (ad spend) or Q6 (average monthly revenue). Those are pre-cleared; do not apply S12 scrutiny to them.
+
+BAD (Elements Gallery failure): a complex Google Ads answer that ended with two questions about the lead's supplier relationships and business model -- not relevant to what we'd do in the ad account.
+GOOD: cut those final questions; close with the S8 call offer instead.
+
 ## Pre-Call Prep Answers
 - When a lead answers our discovery questions (they restate each question with their answer below it), and a call is already booked: respond with 1-2 sentences. "Got it, looking forward to the call." Do NOT write a multi-paragraph diagnostic response analyzing their answers. The call is already booked.
 - **Never ask a question the lead has already answered.** Before asking anything, check the job description and full thread. If the answer is already there, do not ask. This applies to every message type, including pre-call warm-up messages. (Paul McMillian failure.)
