@@ -19,7 +19,7 @@ Output format:
     (auto-fixed response text, only if WARN)
 
 Rules enforced (selected highlights):
-- Non-whitelisted calendar/booking URLs (BLOCK)
+- Non-whitelisted calendar/booking URLs (BLOCK) -- includes app.reclaim.ai/* for Brady
 - Inactive white-label partner name or calendar URL appearing in draft (BLOCK)
 - Partner-video co-reference when active partner has_upwork_video=False (BLOCK)
 - "Cade" in lindsey-profile drafts (BLOCK)
@@ -32,7 +32,18 @@ Rules enforced (selected highlights):
 - Partner-distance language ("what he takes on is his call") (BLOCK -- flat_decline_partner_distance)
 - Self-incrimination on lost-lead responses (WARN -- self_incrimination_lost_lead_warn)
 - Validating lead's decision to go elsewhere on lost-lead responses (WARN -- defeat_validation_lost_lead)
+- Past-tense hiring language = lost lead (WARN -- hired_someone_else_lost_lead_warn) [S10]
+- Availability-assumption phrases (WARN -- availability_assumption_warn) [S4]
+- Self-blame phrases in any context (WARN -- self_blame_phrase_warn) [S6]
+- Name-comma DM opener (WARN -- name_comma_dm_opener) [S2]
 - Fluff openers, setup sentences, banned phrases, em-dashes, markdown (WARN, auto-fixed)
+
+WARN vs BLOCK semantics (S5):
+  BLOCK = must rewrite + re-validate; max 1 retry, then escalate to Peterson.
+  WARN (auto-fixable) = validator strips/replaces the phrase deterministically; use the
+    ---FIXED--- output. No regeneration required.
+  WARN (non-auto-fixable) = surfaced alongside the draft; agent reviews and decides whether
+    to revise. A WARN alone NEVER triggers full regeneration.
 """
 import os
 import re
