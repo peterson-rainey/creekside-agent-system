@@ -111,6 +111,26 @@ Reasoning: [why]
 Model: [sonnet|opus]
 ```
 
+### Decision 2.5: Risk Tier (MANDATORY -- applies to ALL new agent builds, including Skills)
+
+Risk tier is ORTHOGONAL to complexity. Complexity selects the build process and model. Risk tier selects validation requirements. Tier is keyed on reversibility and blast radius of the agent's actions -- NOT simply whether it reads or writes.
+
+| Tier | Definition | Examples | Validation Requirements |
+|------|-----------|---------|------------------------|
+| **Tier 1** | Read-only / internal reports. All actions reversible or zero external impact. | financial-analyst-agent, qc-reviewer-agent, marketing-strategy-agent | No additional validation stage required. |
+| **Tier 2** | Produces external-facing output that a human will act on or share. Writes files or DB rows but does NOT write to external systems. | proposal-generator-agent, linkedin-post-agent, case-study-builder-agent, newsletter-compiler-agent | Critic spec in the agent's .md file (Step 4.5). Adversarial QC pass via fresh-context qc-reviewer sub-agent. Max 1 loop-back on BLOCK findings. |
+| **Tier 3** | Writes directly to external systems: ad platforms, outbound messages, client-facing docs, production platform mutates, payment ops. | ad-copy-editor-agent, google-calendar-agent, unresponded-message-agent, pricing-update-agent | Plan/write stage separation (Step 4 must include an explicit human-approval gate before any write). Critic spec in the .md file. Embedded deterministic validator script (Step 4.5 / 4.6). Adversarial QC pass. Regression eval set. |
+
+**Default is Tier 1.** Upgrade if the agent will send, post, mutate, or irreversibly modify anything outside the local repo and Supabase.
+
+**Railway/scheduled agents:** This tier framework applies to CLI-executed agents only. Railway agents run inside Python orchestrators that enforce their own validation harnesses. Document the tier in the agent file for reference, but do NOT add a CLI validator script to Railway agents -- the Railway equivalent is orchestrator-level validation (Python harness runs validator + a second SDK call as critic). This is documented as the intended pattern; it is not built as part of this framework.
+
+State your risk tier:
+```
+Risk Tier: [1|2|3]
+Reasoning: [why -- cite what external system is written to, or confirm read-only]
+```
+
 ### Decision 3: Route to Docs
 
 After classifying, Read the docs files needed for this build:
