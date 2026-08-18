@@ -271,8 +271,21 @@ Do NOT push until the user responds with an affirmative.
 
 After explicit user confirmation:
 
+Before staging, run `git status` and review the output. Build and install side effects that must NOT be committed:
+- `package-lock.json` metadata-only churn (lockfile changed by `npm install` with no real dependency change)
+- `.wrangler/` state files or any other tool-generated state directories
+
+Restore any such files before staging:
+
 ```bash
-cd ~/creekside-ad-pages && git add <project-folder>/ && git commit -m "<project-folder>: <summary>" && git push origin main
+cd ~/creekside-ad-pages && git restore package-lock.json  # if only metadata changed
+cd ~/creekside-ad-pages && git restore .wrangler/         # if present and unintended
+```
+
+Then stage only the intentionally changed files by name -- never blindly stage the entire folder:
+
+```bash
+cd ~/creekside-ad-pages && git add <project-folder>/path/to/file1 <project-folder>/path/to/file2 && git commit -m "<project-folder>: <summary>" && git push origin main
 ```
 
 Commit message format: `<project-folder>: <what changed>`. Example: `canvas-homes-landing-page: update hero copy and CTA`.
