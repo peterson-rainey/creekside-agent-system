@@ -54,6 +54,7 @@ At Creekside, an agent is a markdown file in `.claude/agents/`, not application 
 | **creekside-dashboard** | `/Users/petersonrainey/creekside-dashboard/` | Internal ops dashboard (clients, billing, team, scorecard, Upwork funnel). Password-gated. Deployed on Railway. GitHub: `creekside-marketing/creekside-dashboard` |
 | **creekside-pipelines** | `/Users/petersonrainey/creekside-pipelines/` | Data pipelines (Gmail, ClickUp, Slack (ingestion-only), Google Chat, Meta, Square, Upwork, etc.). Deployed on Railway. GitHub: `peterson-rainey/creekside-pipelines` |
 | **creekside-website** | `/Users/petersonrainey/creekside-website/` | Live website (creeksidemarketingpros.com). Astro 5 + Tailwind 4. Hosted by web designer Jonathan. GitHub: `drybonez235/creekside` |
+| **creekside-ad-pages** | `/Users/petersonrainey/creekside-ad-pages/` | Client landing pages monorepo. One folder per landing page project (e.g. `canvas-homes-landing-page`), Astro + Cloudflare. Publish = push to main; Jonathan deploys via git subtree (NEVER run subtree commands). Contractors use `landing-page-editor-agent`. GitHub: `Drybonez235/creekside-ad-pages` (public). Full rules: agent_knowledge "creekside-ad-pages Repo -- Landing Pages Monorepo Reference" |
 
 **creekside-tools** (`~/creekside-tools/`) is the PUBLIC free marketing tools site -- completely separate. NEVER add internal features there.
 
