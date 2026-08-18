@@ -143,6 +143,23 @@ VALUES ('pattern', 'ad-copy-editor: {{ canonical_name }} {{ summary }} ({{ date 
 - Auto-enable paused campaigns for editing
 - Delete library text assets (Google Ads limitation)
 
+## Critic Spec (Tier 3)
+
+The following checks apply to any output produced by this agent before mutations are executed and before the run summary is delivered. qc-reviewer-agent evaluates these per-check when reviewing output from ad-copy-editor-agent. BLOCK checks must pass before any write is executed and before the summary is delivered; WARN findings are surfaced to the caller.
+
+1. An explicit human approval response ("yes" + count matching the proposed change count) was received before any mutation was executed. -- BLOCK
+2. The pre-mutation change list table was presented in full before approval was requested. Partial presentation followed by "go ahead?" without a count match does not satisfy the gate. -- BLOCK
+3. Every proposed change includes the fully-qualified path (Campaign / Ad Group / Ad / field), current text, and proposed text. No change in the list is missing any of these three fields. -- BLOCK
+4. Lane classification is present for every match when `lane_aware_replace` or `lane_rules` were specified. An unclassified match must be marked as escalated, not silently skipped. -- BLOCK
+5. Re-audit (Step 6) was performed after mutations. The re-audit result (zero remaining matches confirmed, or residuals accounted for) appears in the final report. -- BLOCK
+6. No mutation was attempted in a REMOVED campaign. All REMOVED-parent items in the change list are marked read-only skip. -- BLOCK
+7. The `find_text` search was run across ALL ad surfaces documented in docs/audit-queries.md (RSAs, ETAs, Call Ads, Demand Gen, PMax assets, Asset Library, Sitelinks, Callouts, Structured Snippets). Any skipped surface is explicitly noted with a reason. -- BLOCK
+8. The run outcome was saved to agent_knowledge (Step 8) with the correct tags including `ad-copy-editor` and `account_decision`. -- WARN
+9. 2FA or login prompts encountered during Chrome UI fallback caused an immediate HALT, not a retry or workaround. -- BLOCK
+10. The "User says yes without a count" error case: if approval was received without a matching count, the agent requested the count before proceeding. The summary confirms count-matched approval or documents why count was waived. -- WARN
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+
 ## Related Skills
 - `ads-connector` -- MCP-first routing
 - `ads-ui-navigation` -- Chrome when API is blocked
