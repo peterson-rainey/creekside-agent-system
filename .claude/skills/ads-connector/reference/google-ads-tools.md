@@ -1,8 +1,8 @@
 # Google Ads Tool Reference
 
-**Connection status: VERIFIED LIVE as of 2026-04-23.** `list_google_ads_customers` returned 33 queryable Creekside accounts under MCC `5680424954` (Creekside Marketing). One account (`2617643180` -- HostSwitch) is accessible but not under the MCC. 11 additional IDs are deactivated (`CUSTOMER_NOT_ENABLED`).
+**Connection status: ACTIVE via AdKit since 2026-08-17 (PipeBoard fully deprecated).** Fresh subscription, no account-slot limits. Account inventory (verified 2026-04-23 under the old connector, re-verify via the account-list call): 33 queryable Creekside accounts under MCC `5680424954` (Creekside Marketing). One account (`2617643180` -- HostSwitch) is accessible but not under the MCC. 11 additional IDs are deactivated (`CUSTOMER_NOT_ENABLED`).
 
-**Namespace:** `mcp__claude_ai_Pipeboard_google__*` (pre-declared) or `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred via `ToolSearch`).
+**Namespace:** `mcp__claude_ai_AdKit__adkit_*` (deferred -- fetch schemas via `ToolSearch` first). Tool names below are functional names; the live AdKit tools may carry an `adkit_` prefix.
 
 **Customer ID format:** 10-digit numeric (e.g. `9133281551`). No `act_` prefix. MCC manager ID is separate.
 
