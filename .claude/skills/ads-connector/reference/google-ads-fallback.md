@@ -14,13 +14,16 @@ When pulling Google Ads data, ALWAYS follow this waterfall. Do NOT skip tiers. S
 - **How to call:** Use `ToolSearch` to fetch the tool schema, then call it directly
 - **Example:** `list_google_ads_customers`, `get_google_ads_campaign_metrics`, `execute_google_ads_gaql_query`
 
-**Rate limit detection (escalate to Tier 2 when you see these):**
+**Escalate to Tier 2 when you see ANY of these:**
 - Error message containing `rate limit`, `quota exceeded`, `RESOURCE_EXHAUSTED`, `429`, or `too many requests`
+- **Slot/plan-limit refusals**: error containing `slot`, `blocked`, `over_budget`, `already in use by another Pipeboard user`, `upgrade to any paid plan`, or any message about account limits/billing cycle
 - Timeout with no response after 30+ seconds
 - Generic MCP connection error or `503`
 - Any Pipeboard-specific throttle message
 
-**When rate-limited:** Log the error, tell the user "Google Ads MCP is rate-limited (Pipeboard issue), falling back to Dashboard API", then proceed to Tier 2.
+**SLOT LIMIT (as of 2026-08-17):** The Pipeboard plan allows only **3 ad-account slots per billing cycle** (resets on the 14th). Currently claimed: Canvas Homes (Google `8835651880`), Doctor Laleh (Google `5948318044`), Lux Dental Spa (Meta `act_868498138612020`). **Every other account is slot-blocked at Tier 1 -- go straight to Tier 2 for those accounts. Do not retry Tier 1; retries cannot unblock a slot refusal.**
+
+**When rate-limited or slot-blocked:** Log the error, tell the user "Google Ads MCP is unavailable (Pipeboard rate/slot limit), falling back to Dashboard API", then proceed to Tier 2.
 
 ---
 
