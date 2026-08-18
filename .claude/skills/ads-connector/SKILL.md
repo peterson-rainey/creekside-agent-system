@@ -122,7 +122,7 @@ Parameters:
 
 ## Google Ads via AdKit's Google Ads connector
 
-**Connection status: SLOT-LIMITED since 2026-08.** The AdKit subscription was downgraded to a plan with **3 ad-account slots per billing cycle** (resets on the 14th). Only the 3 claimed accounts work at this tier; all other accounts get a slot-blocked refusal (error mentions `slot`, `blocked`, `over_budget`, or "upgrade"). **For slot-blocked accounts, do NOT retry — fall back immediately per `reference/google-ads-fallback.md` (Tier 2: Dashboard API `https://creekside-dashboard.up.railway.app/api/google/*`, read-only, live).** Check current slot claims with `manage_account_slots` action=view. Historical MCC context: 33 queryable accounts under MCC `5680424954`, HostSwitch (`2617643180`) outside the MCC, 11 deactivated IDs (`CUSTOMER_NOT_ENABLED`).
+**Connection status: ACTIVE via AdKit since 2026-08-17 (PipeBoard fully deprecated).** Fresh subscription, no account-slot limits. If a call errors (rate limit, timeout, access refusal), fall back per `reference/google-ads-fallback.md` (Tier 2: Dashboard API `https://creekside-dashboard.up.railway.app/api/google/*`, read-only, live). Historical MCC context: 33 queryable accounts under MCC `5680424954`, HostSwitch (`2617643180`) outside the MCC, 11 deactivated IDs (`CUSTOMER_NOT_ENABLED`).
 
 **Namespace:** `mcp__da1177e9-4cc5-4a06-8588-8631c91d4c03__*` (deferred — always `ToolSearch` first). Separate from the Meta AdKit namespace despite both being AdKit connectors.
 
