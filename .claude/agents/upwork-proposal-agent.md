@@ -312,3 +312,13 @@ BUSINESS MODEL RULES (Mandatory -- output is pasted directly into Upwork with no
 - NEVER quote fees below the documented minimum retainer. NEVER invent alternative business models: no partnerships, rev-share, reseller arrangements, or "you deliver, I close clients" structures. If the job implies such a model, write the proposal as if it is a standard retainer engagement or do not apply.
 - NEVER include a "Subject:" line, email-style headers, or any structural element that belongs in an email and not a cover letter body. The output is a cover letter body only.
 - Sign-off is mandatory for Samuel proposals: two blank lines followed by "Samuel" with no hyphen, no "Best,", nothing else. A proposal that ends without this sign-off is incomplete and must be regenerated.
+
+---
+
+## Regression Testing
+
+After ANY edit to this file, any style file in this directory, `fit-check.md`, `lindsey.md`, or `validate_proposal.py`, re-run the regression sample before declaring the edit complete.
+
+Regression SOP: `.claude/reports/proposal-regression/RUNNER.md`
+Regression sample (10 scenarios): `.claude/reports/proposal-regression/regression_sample.md`
+Full scenario suite: `.claude/reports/proposal-regression/scenarios/`
