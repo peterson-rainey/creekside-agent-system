@@ -371,6 +371,19 @@ AI_SLOP_WARN = [
     (r"that\s+one\s+(?:thing|detail|factor)\s+changes?\s+everything",
      "ai_slop_warn -- 'that one thing changes everything' is AI-slop dramatization; "
      "rewrite to communicate the actual point without dramatizing"),
+    # E1-E4: generic follow-up openers that read as automated outreach (AI tell)
+    (r"\bcircling\s+back\b",
+     "ai_slop_warn -- 'circling back' is a high-frequency AI/SDR-tool phrase; "
+     "rephrase the re-engagement naturally"),
+    (r"\btouching\s+base\b",
+     "ai_slop_warn -- 'touching base' is a high-frequency AI/SDR-tool phrase; "
+     "rephrase the re-engagement naturally"),
+    (r"\bI\s+wanted\s+to\s+reach\s+out\b",
+     "ai_slop_warn -- 'I wanted to reach out' is a high-frequency AI/SDR opener; "
+     "rephrase to lead with the actual point"),
+    (r"\bI\s+hope\s+this\s+(?:message\s+)?finds\s+you\s+well\b",
+     "ai_slop_warn -- 'I hope this [message] finds you well' is a banned opener; "
+     "rephrase to open with substance"),
 ]
 
 BANNED_PHRASES = [
