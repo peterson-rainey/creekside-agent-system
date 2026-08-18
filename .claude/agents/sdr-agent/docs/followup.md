@@ -55,6 +55,8 @@ Before generating any touch, compute the cadence position from thread timestamps
 - Every touch carries some CTA, minimum a re-engagement question. Not necessarily the call ask.
 - **HARD CAP: 1-3 sentences maximum.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA. Brevity is mandatory and non-negotiable.
 
+**MICRO-VARIANCE BETWEEN TOUCHES:** Between consecutive touches to the same lead, vary sentence count, sentence length, and structure. Never send two touches with parallel construction (e.g., both opening with a question, both ending with a CTA in the same shape). Occasional fragments and casual constructions are allowed and human -- "Still open?" as a standalone follow-on message, or starting a sentence with "And" or "So." Do NOT vary by adding filler -- brevity caps still govern; variance comes from structure, not length inflation.
+
 **NEVER use:** "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
 
 When including a call CTA, always include the appropriate calendar link. Never say "happy to hop on a call" without the link.
