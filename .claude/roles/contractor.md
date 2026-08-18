@@ -25,7 +25,7 @@ When a contractor asks you to do something, search in this order:
 Both Meta Ads and Google Ads are accessible via AdKit connectors. These inherit automatically from the shared ads@creeksidemarketingpros.com Claude account -- no manual setup needed. When talking to contractors, call these "connectors" or "platform access" -- never say "MCP" or tool namespace strings.
 
 - **Google Ads connector**: `mcp__claude_ai_AdKit__adkit_manage` with `platform: "google"`. Supports campaigns, ad groups, ads, keywords, results, and research. If a call fails, fall back to the Dashboard API (read-only, live): `GET https://creekside-dashboard.up.railway.app/api/google/insights?account_id=[10-digit id]&date_range=last_30_days` (also `/api/google/accounts`, `/api/google/campaigns?account_id=`, `/api/google/keywords?account_id=`). Full chain in the `ads-connector` skill's `reference/google-ads-fallback.md`. Tell the contractor "pulling this through our backup connection" -- never mention connector details.
-- **Meta Ads connector**: Default: `mcp__claude_ai_Meta_Ads__*` (official Meta MCP -- ads_get_ad_accounts, ads_get_ad_entities, ads_insights_performance_trend). Fallback: `mcp__claude_ai_AdKit__adkit_manage` with `platform: "meta"` for MCP-disabled accounts or lead gen forms.
+- **Meta Ads connector**: Primary: `mcp__claude_ai_AdKit__adkit_manage` with `platform: "meta"` (accounts, insights, campaigns, ad sets, ads, creatives, lead gen forms, writes). Fallback: `mcp__claude_ai_Meta_Ads__*` (official Meta MCP -- reads plus bonus tools like ads_insights_anomaly_signal, benchmarks, Ad Library search).
 - **Google Merchant Center + GA4**: Python API calls using the shared OAuth token at `~/gdrive_pipeline/token_mc_ga4.json`. No MCP tool exists for these -- run Python inline via Bash. See usage pattern below.
 - **Database**: `mcp__claude_ai_Supabase__execute_sql` -- routing rules:
   - **ALL READS (SELECT):** MUST go through `SELECT contractor_query('your SELECT ...')`. NEVER use raw `execute_sql` for reads. The raw tool runs as postgres (superuser) and bypasses every read protection (sensitive tables, vault, secrets). `contractor_query()` is the only server-side enforcement that works in ALL session types (CLI, Co-work, Chat). This is not optional.
@@ -125,7 +125,7 @@ If unclear whether it's an SDR task, ask: "Is this a lead conversation you want 
 | Generate a proposal for this job / write an Upwork proposal / proposal for [job desc] | Spawn `upwork-proposal-agent`. Paste the full job description. Optionally specify style: strategic, case_study_strategy, strategic_exp, or v2. |
 | Respond to this Upwork conversation / SDR response / reply to this lead / followup message / nurture message / "SDR:" prefix | Spawn `sdr-agent`. Paste the full conversation. Optionally specify type: lead, followup, nurture, or warmup. |
 | Edit/update a client report, change report visuals, fix report data | Spawn `report-editor-agent`. It handles everything: file lookup, edit, validation, push. |
-| Ad performance, ROAS, creative analysis, campaign metrics | Search for an active agent first. If none, use official Meta MCP (`mcp__claude_ai_Meta_Ads__*`) for Meta, AdKit (`mcp__claude_ai_AdKit__adkit_manage`) for Google or Meta fallback. Check the `ads-connector` skill for routing details. |
+| Ad performance, ROAS, creative analysis, campaign metrics | Search for an active agent first. If none, use AdKit (`mcp__claude_ai_AdKit__adkit_manage`) for both Google and Meta. Official Meta MCP (`mcp__claude_ai_Meta_Ads__*`) is the Meta fallback; Dashboard API is the Google fallback. Check the `ads-connector` skill for routing details. |
 | Pause/enable campaigns, change budgets, manage ad accounts | Same as above -- active agent first, then AdKit directly, then `ads-connector` skill. |
 | Pull data from Klaviyo, Mailchimp, Shopify, or other platforms | Spawn `api-connector-agent`. It checks for a stored key, calls the platform API securely, and shows results. If no key is stored, it tells you to ask Peterson. |
 | Client info, history, status, what's going on with a client | Query `client_context_cache` first (`SELECT * FROM client_context_cache WHERE client_name ILIKE '%name%'`). For deeper info, use `get_client_360(client_id)` or spawn `client-context-agent` if active. |
@@ -206,7 +206,7 @@ The ads@creeksidemarketingpros.com Claude account is SEPARATE from Peterson's an
 **Allowed (configured on ads@):**
 - Supabase database (via `contractor_query()` ONLY -- never raw execute_sql)
 - AdKit Google Ads connector
-- AdKit Meta Ads connector (check current status in `SELECT contractor_query($$SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'$$)` -- has had intermittent OAuth issues)
+- AdKit Meta Ads connector (current status in `SELECT contractor_query($$SELECT content FROM agent_knowledge WHERE title = 'Platform MCP Access Reference for Contractors'$$)`)
 - Google Merchant Center + GA4 (via Python, shared OAuth token)
 - Claude-in-Chrome (browser automation on the contractor's OWN browser only)
 
