@@ -66,6 +66,20 @@ Validate EACH response against these rules:
 
 If any BLOCK issue is found, rewrite the response to fix it before presenting.
 
+## Outside Links Rule (D2)
+
+**Verbal references to the Upwork profile video or YouTube channel ARE allowed.** Saying "go to my profile and watch the video there" or "check out my YouTube channel" in text is permitted.
+
+**Sending any outside LINK is NOT allowed.** This includes creeksidemarketingpros.com URLs, youtube.com URLs, and any other non-whitelisted URL. The validator BLOCKs all non-whitelisted URLs in the calendar/booking URL category (see above). For other URL types (website, YouTube, etc.), the agent must self-enforce this rule -- the validator's URL check covers booking/calendar domains; the agent is responsible for not inserting other domain links.
+
+Whitelisted links (may always appear in a response):
+- The active profile's booking calendar URL (from loaded profile doc)
+- The active partner's booking calendar URL (from loaded partner doc)
+- Creekside case study URLs: creeksidemarketingpros.com/case-study-digital-marketing/...
+- Sample report URLs: creekside-dashboard.up.railway.app/report/...
+
+All other URLs are off-limits in lead-facing messages.
+
 ## Deterministic Validation Script
 
 Validation is handled by `validate_response.py` in the agent directory. The script runs every BLOCK and WARN pattern as deterministic regex checks and auto-fixes WARNs. See Step 6 in `sdr-agent.md` for how to call it.
