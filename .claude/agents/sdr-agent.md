@@ -17,7 +17,8 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
 .claude/agents/sdr-agent/
   docs/
     partners/
-      keith.md                                 # Keith: calendar, price range, framing (active partner)
+      keith.md                                 # Keith: calendar, price range, framing (samuel active partner)
+      brady.md                                 # Brady Tibbits: reclaim.ai calendar, price range, framing (lindsey active partner)
       scott.md                                 # Scott Caldwell: calendar, price range, framing (inactive -- historical)
       _template.md                             # Fill-in template for a future white-label partner hire
     profiles/
