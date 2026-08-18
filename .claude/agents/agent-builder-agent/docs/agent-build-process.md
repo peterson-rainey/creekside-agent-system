@@ -299,6 +299,71 @@ Standard structure: YAML frontmatter, Role, Goal, Supabase Project, Scope, Metho
 ### 4d. Evaluate whether to split into docs/
 Ask: "Does this agent have conditional paths, reference data, or domain knowledge that isn't needed on every invocation?" If yes, split into core + `docs/`. See `docs/quality-gates.md` for the criteria and patterns. This is about structure, not line count.
 
+### Step 4.5: Generate Critic Spec (MANDATORY for Tier 2 and Tier 3 builds)
+
+For Tier 1 builds, skip this step entirely.
+
+For Tier 2 and Tier 3 builds: embed a machine-readable critic spec section DIRECTLY IN THE AGENT'S MAIN .md FILE (never in a separate docs/validation.md file -- the spec must travel with the agent in agent_definitions.system_prompt so it is always portable and discoverable by qc-reviewer-agent).
+
+**Why in the main .md:** agent-edit-monitor.sh syncs the main .md to agent_definitions.system_prompt. A spec in docs/ would not sync to the DB and would not be available to qc-reviewer-agent when it loads the spec at review time.
+
+**Format:** An enumerated list of ATOMIC BINARY checks. Each check must be answerable yes/no. Each check must be tagged BLOCK (output must not be delivered if this fails) or WARN (flag for human review but do not block delivery).
+
+**How to derive the checks:** Research the specific risk surface of THIS agent:
+1. Mine `agent_knowledge` for corrections and feedback entries that name this agent or its domain. Each past failure becomes a BLOCK check.
+2. Think through the agent's external writes: what goes wrong if the wrong data is written? What assumptions could be violated? What does the sdr-agent's validate_response.py protect against -- use that as a structural reference.
+3. Enumerate every irreversible action the agent can take. Each must have a BLOCK check.
+
+**Format to use -- insert this section near the end of the agent's .md file:**
+
+```markdown
+## Critic Spec (Tier [2|3])
+
+The following checks apply to any output produced by this agent. qc-reviewer-agent evaluates these per-check when this agent's output is reviewed. Checks marked BLOCK must pass before output is delivered; WARN findings are surfaced to the caller for resolution.
+
+1. [CHECK DESCRIPTION] -- [BLOCK|WARN]
+2. [CHECK DESCRIPTION] -- [BLOCK|WARN]
+...
+
+Reference implementation: sdr-agent/validate_response.py (the deterministic enforcement model these checks are based on).
+```
+
+**Minimum check count:** 5 for Tier 2, 8 for Tier 3. More is better -- err toward specificity.
+
+### Step 4.6: Embedded Deterministic Validator (Tier 3 builds where rules are enumerable)
+
+For Tier 3 builds: if the agent already has a mini-app directory structure OR if the critic spec has more than ~6 enumerable (non-judgment) rules, produce a validator script that the agent invokes as its FINAL workflow stage via Bash.
+
+**Model:** `.claude/agents/sdr-agent/validate_response.py` -- PASS/WARN/BLOCK exit semantics (exit 0/1/2), BLOCK items written to stderr, WARN items auto-fixed where possible with fixed text to stdout.
+
+**Placement:** `.claude/agents/[agent-name]/validate_output.py` (or `validate_[domain].py` if more specific).
+
+**Rule split:** Enumerable rules (URL whitelists, banned phrases, required fields, format checks, count assertions) go in the script. Judgment rules (tone, completeness, strategic fit) stay in the critic spec for the adversarial qc-reviewer pass.
+
+**Agent workflow instruction:** The agent's .md must include a step that says:
+```
+Run: python3 .claude/agents/[agent-name]/validate_output.py [output-file]
+- Exit 0 (PASS): proceed to delivery
+- Exit 1 (WARN): review auto-fixed output, then deliver
+- Exit 2 (BLOCK): DO NOT deliver. Attach stderr findings to a revision prompt and regenerate once.
+  If the same BLOCK re-fires on the re-check: escalate to Peterson. No second retry.
+```
+
+If the agent is NOT mini-app-structured and has fewer than 6 enumerable rules, skip the script. The critic spec + qc-reviewer parameterization suffices.
+
+### Step 4.7: Regression Eval Set (Tier 2 and Tier 3 builds)
+
+For Tier 2 and Tier 3 builds: ship a small eval/regression set alongside the agent. This generalizes the sdr-agent regression-suite rule.
+
+**Size:** 10-20 representative cases. Include both PASS and FAIL cases. Each case must have:
+- Input (the user request or input data)
+- Expected verdict (PASS / WARN / BLOCK, and which specific check fires on failures)
+- Brief rationale
+
+**Placement:** `.claude/agents/[agent-name]/tests/regression_cases.md` (or `.json` if the validator script reads it directly).
+
+**Rule:** After ANY edit to a Tier 2/3 agent's .md or validator script, re-run a regression sample (spot-check 5-10 cases). If a case that previously passed now fails, the edit introduced a regression -- fix before shipping. If no validator script exists, manually walk through 5 representative cases against the critic spec.
+
 ### Required Sections (Every Agent Must Have):
 1. YAML Frontmatter -- name, description, tools, model
 2. Title + Intro -- role and personality
