@@ -2,7 +2,9 @@
 ## New flows, text additions, newsletter bridge, and SDR dental pointers
 
 All copy uses Peterson's voice. No em dashes. Casual texts. Plain-text emails.
-Ad strategy context: 6-platform positioning (Google, Meta, TikTok, ChatGPT Ads, Programmatic, Bing), Dr. Laleh case study (5.7X ROAS, 105 consults, $200K+ additional monthly profit), Tooth Co ($60-80K/mo from $10K spend), Fusion Dental (4X ROAS, 5,000+ leads in 90 days), 3X ROAS guarantee, geographic exclusivity, progressive bracket pricing ($3K minimum).
+Ad strategy context: 6-platform positioning (Google, Meta, TikTok, ChatGPT Ads, Programmatic, Bing), Dr. Laleh case study (5.7X ROAS, 105 consults, $200K+ additional monthly profit), Tooth Co ($60-80K/mo from $10K spend), Fusion Dental (4X ROAS, 5,000+ leads in 90 days, $18.62 CPL -- sourced from project_dental_marketing_plan.md), 3X ROAS guarantee, geographic exclusivity, progressive bracket pricing ($3K minimum).
+
+**IMPORTANT: The master CRM plan (CRM-Automation-Plan-Creekside.md) still references "Barron" as the referral partner throughout. As of 2026-08-12, the referral partner is Keith McGonigle. The CRM plan needs a separate update pass to replace all Barron references with Keith before any implementer builds from it. This includes the `barron-referral` tag (should become `keith-referral`), pipeline stage 11 labels, custom field defaults, and stage transition notes.**
 
 ---
 
@@ -56,11 +58,11 @@ STOP CONDITIONS: Tag "lead-magnet-delivered" added OR contact moves to Lost
 [If/Else] Tag "lead-magnet-delivered" exists? -> YES: Go to COMPLETED-EXIT. NO: Continue
 [Action] Send Email: "Last Chance for Your Blueprint"
 
---- NURTURE EXIT ---
-[Wait] 3 days
+--- NURTURE EXIT (Day 17, no completion) ---
 [If/Else] Tag "lead-magnet-delivered" exists? -> YES: Go to COMPLETED-EXIT. NO: Continue
 [Action] Add Tag: "nurture-pool" (triggers SEQ 1 with newsletter bridge)
 [Action] Remove Tag: "seq-form-abandonment"
+NOTE: No extra wait here. The newsletter bridge in SEQ 1 handles pacing (Day 1 intro email, Day 2 Buttondown enrollment, Day 5 first content).
 
 --- COMPLETED-EXIT ---
 [Action] Remove Tag: "seq-form-abandonment"
@@ -185,7 +187,7 @@ These pair with the 5 existing emails (Days 2, 4, 7, 14, 30). Blueprint delivery
 
 **Text 1 -- Day 1 (day after blueprint delivered, before Email 1 on Day 2)**
 ```
-Hey {{contact.first_name}}, it's Peterson from Creekside. Did you get a chance to look at your Paid Ads Blueprint? Check out the platform gap analysis on page 2. That's where the biggest opportunities usually are. Let me know if you have any questions.
+Hey {{contact.first_name}}, it's Peterson from Creekside. Did you get a chance to look at your Paid Ads Blueprint? Check out the platform gap analysis section. That's where the biggest opportunities usually are. Let me know if you have any questions.
 ```
 
 **Text 2 -- Day 3 (between Email 1 Day 2 and Email 2 Day 4)**
@@ -449,7 +451,9 @@ These go into the SDR agent as guidance for when the lead came through the denta
 
 6. **Never quote dollar figures from call transcripts or sdr_responses.** If you need specific numbers the prospect shared, reference them indirectly: "Based on the budget range you mentioned on our call" rather than quoting the exact figure.
 
-7. **Tone:** Same as pre-call. Direct, specific, no fluff. These people already know who you are. They need a reason to act, not another introduction.
+7. **Handle the contract objection.** If they're worried about being locked in: "We start with a 90-day agreement so we have enough runway to actually optimize your campaigns and prove the results. After that, it goes month-to-month. No long-term lock-in. Most agencies lock you in for 12 months. We don't, because we'd rather keep you by performing than by contract."
+
+8. **Tone:** Same as pre-call. Direct, specific, no fluff. These people already know who you are. They need a reason to act, not another introduction.
 
 ---
 
