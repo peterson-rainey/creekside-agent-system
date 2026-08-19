@@ -34,6 +34,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles prof
     touch-library.md                           # 10 touch types with rotation rules
     validation.md                              # Block/warn validation rules and auto-fix
     case-study-attachments.md                  # When/how to attach a case study PDF + VA download block
+    dental-funnel.md                           # Source overlay: dental marketing funnel leads (source: dental_funnel)
   validate_response.py                         # Deterministic validation script (called in Step 6)
 ```
 
