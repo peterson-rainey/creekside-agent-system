@@ -9,7 +9,7 @@ This overlay applies ONLY when `source: dental_funnel` is specified. It provides
 ## Key Differences from Upwork Leads
 
 - These leads found Creekside through paid ads, not Upwork. They visited creeksidemarketingpros.com/dental/, may have received a personalized Paid Ads Blueprint, and may have booked or had a call with Cade.
-- **Cade is the dental sales contact, not Peterson.** Calendar links for dental funnel leads point to Cade's calendar: `{{custom_values.cades_calendar}}` in GHL, or the Google Calendar appointment link.
+- **Cade is the dental sales contact, not Peterson.** Calendar links for dental funnel leads should point to Cade's calendar, not the profile's default. However, Cade's calendar URL (`{{custom_values.cades_calendar}}` in GHL) is not in the validator whitelist, so use the profile's whitelisted calendar URL in the draft AND always add this operator note at the top of your output: `OPERATOR NOTE: This is a dental funnel lead. Before sending, replace the calendar link with Cade's booking URL, or route this lead to Cade directly in GHL.` This note is mandatory on every dental_funnel response that includes a calendar link.
 - **Upwork compliance rules do NOT apply** to dental funnel leads. These conversations happen via email, SMS, or GHL, not Upwork. Off-platform contact info restrictions are irrelevant here.
 - The conversation format may be email threads, SMS threads, or GHL conversation logs rather than Upwork messages.
 
