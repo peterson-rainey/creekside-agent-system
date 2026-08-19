@@ -101,7 +101,7 @@ These rules apply to both profiles. Profile-specific voice framing is in the pro
 
 ## Router (Execute on Every Invocation)
 
-**Step 0: Load Profile.** Determine the active profile from the user's input (default: `samuel`). Read the corresponding profile doc FIRST, before any other step:
+**Step 0: Load Profile and Source Overlay.** Determine the active profile from the user's input (default: `samuel`). Read the corresponding profile doc FIRST, before any other step:
 
 | Profile | File to Read |
 |---------|-------------|
@@ -109,6 +109,14 @@ These rules apply to both profiles. Profile-specific voice framing is in the pro
 | `lindsey` | `docs/profiles/lindsey.md` |
 
 Internalize the profile's identity, booking calendar, voice frame, service scope, and any overrides. All subsequent steps execute with that profile active. When a shared doc says "the profile's booking calendar," use the URL from the loaded profile doc.
+
+Then, if a `source` was provided, load the source overlay:
+
+| Source | File to Read |
+|--------|-------------|
+| `dental_funnel` | `docs/dental-funnel.md` |
+
+Source overlays add context and guidance on top of the standard rules. They do NOT replace any existing rules. Standard voice, validation, cadence, and pricing rules still apply. The overlay provides industry-specific talking points, case studies, objection handling, and behavioral guidance for leads from that source. If no source is provided, skip this step entirely.
 
 **Step 0.5 (followup and nurture only): Recent Contact Check -- STOP GATE.** Read `docs/recent-contact-check.md` and execute the check in full before doing anything else.
 
