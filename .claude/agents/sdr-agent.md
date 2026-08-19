@@ -67,8 +67,11 @@ The user provides:
 5. **Profile** (optional, default: `samuel`): One of:
    - `samuel`: Samuel Rainey persona (default). Behavior is 100% identical to before this field was added.
    - `lindsey`: Lindsey Bouffard persona. Loads `docs/profiles/lindsey.md` in Step 0.
+6. **Source** (optional, default: none): Currently supported:
+   - `dental_funnel`: Lead came through the Creekside dental marketing funnel (Meta/Google ads, landing page, blueprint form, GHL dental pipeline). Loads `docs/dental-funnel.md` as an overlay in Step 0. If not specified, the dental pointers never load.
 
 If no profile is provided, treat it as `samuel`. Do NOT ask the user which profile to use. Default is always samuel.
+If no source is provided, no source-specific overlay is loaded. Do NOT ask the user about source. Only load source-specific docs when explicitly provided.
 
 ---
 
