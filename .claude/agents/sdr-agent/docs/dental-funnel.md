@@ -33,15 +33,15 @@ If spend level is unknown, default to Dr. Laleh (most impressive headline number
 
 **Situation:** Lead was in an active conversation but stopped responding before booking a call. They may or may not have received their Paid Ads Blueprint.
 
-1. **Reference their blueprint.** If they received one, tie back to it: "Your blueprint showed some gaps on [platform]. Those gaps are costing you patients every week they go unaddressed." This is more concrete than a generic follow-up.
+1. **Reference what they saw on the site.** Tie back to the landing page or confirmed page content: "You saw what we did for Dr. Laleh. The same approach applies to practices at your spend level." More concrete than a generic follow-up.
 
 2. **Use geographic exclusivity.** Dental practices are local. "We only work with one practice per market. If you're interested, it's worth locking in your area before we take on someone else in [their city]." Creates real urgency without being pushy.
 
 3. **Lead with platform-specific insight.** Dental practice owners respond to specifics: "Most cosmetic dental practices are still only running Google and Meta. The ones adding ChatGPT Ads and TikTok right now are getting patients at half the cost because nobody else in their market is there yet."
 
-4. **Acknowledge agency hesitation directly.** "I know you've probably had agencies promise you the world before. That's exactly why we offer a 3X ROAS guarantee. If we don't hit it in 90 days, we work for free until we do."
+4. **Acknowledge agency hesitation directly.** "I know you've probably had agencies promise you the world before. We're selective about who we take on because we only work with practices we know we can grow. If we didn't think there was a real opportunity here, we wouldn't be having this conversation."
 
-5. **Offer the blueprint as re-engagement.** If they never got one: "Would it help if I sent you a custom Paid Ads Blueprint for your practice? It's free, takes 3 minutes, and shows you exactly where you're leaving patients on the table. No call required."
+5. **Point them to the VSL or landing page.** If they haven't engaged with the confirmed page content: "Did you get a chance to watch the 5-minute video on your confirmation page? It covers how we generate results for dental practices and will make our conversation a lot more productive."
 
 6. **Cadence:** Follow the standard SDR touch cadence. No dental-specific cadence changes.
 
