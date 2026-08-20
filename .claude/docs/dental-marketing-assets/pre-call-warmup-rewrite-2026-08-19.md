@@ -69,7 +69,7 @@ Here's what happens after our call if we both decide it's a good fit:
 3. Campaigns go live within 2 weeks of signing
 4. You get regular reporting tied to actual revenue, not vanity metrics
 
-No pressure on the call. If we're not the right fit, we'll tell you. We turn down about 40% of the practices that reach out because we'd rather be honest than take your money.
+No pressure on the call. If we're not the right fit, we'll tell you. We're selective about who we take on because we'd rather be honest than take your money.
 
 To get the most out of our time, it helps to have:
 - A rough idea of your monthly ad spend (or target budget)

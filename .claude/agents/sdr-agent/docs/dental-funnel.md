@@ -1,6 +1,6 @@
 # Dental Funnel Source Overlay
 
-This overlay applies ONLY when `source: dental_funnel` is specified. It provides dental-specific context for leads who entered through the Creekside dental marketing funnel (Meta/Google ads, landing page, blueprint form, GHL dental pipeline). These are NOT Upwork leads.
+This overlay applies ONLY when `source: dental_funnel` is specified. It provides dental-specific context for leads who entered through the Creekside dental marketing funnel (Meta/Google ads, landing page, qualification form, GHL dental pipeline). These are NOT Upwork leads.
 
 **This is an overlay, not a replacement.** All standard SDR rules (voice, validation, cadence, pricing, touch library) still apply. This doc adds industry-specific talking points, case studies, and behavioral guidance.
 
