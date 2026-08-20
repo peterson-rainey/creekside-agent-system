@@ -2,7 +2,7 @@
 ## New flows, text additions, newsletter bridge, and SDR dental pointers
 
 All copy uses Peterson's voice. No em dashes. Casual texts. Plain-text emails.
-Ad strategy context: 6-platform positioning (Google, Meta, TikTok, ChatGPT Ads, Programmatic, Bing), Dr. Laleh case study (5.7X ROAS, 105 consults, $200K+ additional monthly profit), Tooth Co ($60-80K/mo from $10K spend), Fusion Dental (4X ROAS, 5,000+ leads in 90 days, $18.62 CPL -- sourced from project_dental_marketing_plan.md), 3X ROAS guarantee, geographic exclusivity, progressive bracket pricing ($3K minimum).
+Ad strategy context: 6-platform positioning (Google, Meta, TikTok, ChatGPT Ads, Programmatic, Bing), Dr. Laleh case study (5.7X ROAS, 105 consults, $200K+ additional monthly profit), Tooth Co ($60-80K/mo from $10K spend), Fusion Dental (4X ROAS, 5,000+ leads in 90 days, $18.62 CPL -- sourced from project_dental_marketing_plan.md), geographic exclusivity, progressive bracket pricing ($3K minimum).
 
 **IMPORTANT: The master CRM plan (CRM-Automation-Plan-Creekside.md) still references "Barron" as the referral partner throughout. As of 2026-08-12, the referral partner is Keith McGonigle. The CRM plan needs a separate update pass to replace all Barron references with Keith before any implementer builds from it. This includes the `barron-referral` tag (should become `keith-referral`), pipeline stage 11 labels, custom field defaults, and stage transition notes.**
 
@@ -408,19 +408,19 @@ These go into the SDR agent as guidance for when the lead came through the denta
 
 ### Pre-Call Ghost (conversation started, never booked)
 
-**Context:** Dental funnel lead was in an active conversation (Upwork, email, or direct message) but stopped responding before booking a call. They may have received their blueprint.
+**Context:** Dental funnel lead was in an active conversation (email, SMS, or GHL) but stopped responding before booking a call.
 
 **Dental-specific pointers:**
 
-1. **Reference their blueprint.** If they received one, call back to it: "I know your blueprint showed some gaps on [platform]. Those gaps are costing you patients every week they go unaddressed." This is more concrete than a generic follow-up.
+1. **Reference what they saw on the site.** Tie back to the landing page or confirmed page content: "You saw what we did for Dr. Laleh. The same approach applies to practices at your spend level." More concrete than a generic follow-up.
 
 2. **Use the geographic exclusivity angle.** Dental practices are local businesses. "We only work with one practice per market. If you're interested, it's worth locking in your area before we bring on someone else in [their city]." This creates real urgency without being pushy.
 
 3. **Lead with platform-specific insight.** Dental practice owners respond to specifics, not generalities. Instead of "we can help with your ads," try: "Most cosmetic dental practices are still only running Google and Meta. The ones adding ChatGPT Ads and TikTok right now are getting patients at half the cost because nobody else in their market is there yet."
 
-4. **Acknowledge the hesitation directly.** Dental practice owners have been burned by agencies. Don't dance around it: "I know you've probably had agencies promise you the world before. That's exactly why we offer a 3X ROAS guarantee. If we don't hit it in 90 days, we work for free until we do."
+4. **Acknowledge the hesitation directly.** Dental practice owners have been burned by agencies. Don't dance around it: "I know you've probably had agencies promise you the world before. We're selective about who we take on because we only work with practices we know we can grow. If we didn't think there was a real opportunity here, we wouldn't be having this conversation."
 
-5. **Offer the blueprint as a re-engagement tool.** If they never got their blueprint: "Would it help if I sent you a custom Paid Ads Blueprint for your practice? It's free, takes 3 minutes, and shows you exactly where you're leaving patients on the table. No call required."
+5. **Point them to the VSL or landing page.** If they haven't engaged with the confirmed page content: "Did you get a chance to watch the 5-minute video on your confirmation page? It covers how we generate results for dental practices and will make our conversation a lot more productive."
 
 6. **Cadence:** Follow the standard SDR touch cadence (3-in-7d for active threads, day 14 pricing touch, 60-day nurture). No dental-specific cadence changes needed.
 
@@ -468,4 +468,4 @@ These go into the SDR agent as guidance for when the lead came through the denta
 - Calendar links use GHL Custom Value `cades_calendar`
 - Blueprint form links use [BLUEPRINT FORM LINK] placeholder (wire to actual URL)
 - Newsletter enrollment uses Buttondown API (existing Creekside Buttondown account)
-- All copy leverages the 6-platform positioning, case study proof points, and 3X ROAS guarantee from the dental ad strategy
+- All copy leverages the 6-platform positioning and case study proof points from the dental ad strategy
