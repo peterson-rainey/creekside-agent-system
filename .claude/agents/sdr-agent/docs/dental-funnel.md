@@ -70,7 +70,11 @@ If spend level is unknown, default to Dr. Laleh (most impressive headline number
 
 6. **Never quote dollar figures from call transcripts or sdr_responses.** If you need specific numbers the prospect shared, reference them indirectly: "Based on the budget range you mentioned on our call" rather than quoting the exact figure.
 
-7. **Tone:** Direct, specific, no fluff. These people already know who you are. They need a reason to act, not another introduction.
+7. **Handle the contract objection.** If they're worried about being locked in: "We start with a 90-day agreement so we have enough runway to actually optimize your campaigns and prove the results. After that, it goes month-to-month. No long-term lock-in. Most agencies lock you in for 12 months. We don't, because we'd rather keep you by performing than by contract."
+
+8. **Acknowledge agency hesitation.** "I know you've probably had agencies promise you the world before. We're selective about who we take on because we only work with practices we know we can grow. If we didn't think there was a real opportunity, we wouldn't have gotten on the call."
+
+9. **Tone:** Direct, specific, no fluff. These people already know who you are. They need a reason to act, not another introduction.
 
 ---
 
