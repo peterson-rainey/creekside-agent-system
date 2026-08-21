@@ -398,7 +398,11 @@ The SOP covers: identity (user-role.conf), session_id (session-state.json), fiel
 ## Access Requirements
 
 **GitHub push access (Drybonez235/creekside-ad-pages):**
-This repo is owned by Jonathan (Drybonez235). To push, your GitHub account must be added as a collaborator. If `git push` returns a 403:
+This repo is owned by Jonathan (Drybonez235). To push, your GitHub account must be added as a collaborator.
+
+**Before your first landing page session:** Ask Peterson to have Jonathan add your GitHub username as a collaborator on `Drybonez235/creekside-ad-pages`. Do this before starting any work -- it prevents a blocked push at the end of a completed session.
+
+If `git push` returns a 403 despite having been added:
 - Do NOT retry or use workarounds
 - Log an issue (see Issue Logging above) or message Peterson directly
 - Peterson will ask Jonathan to add your GitHub username as a collaborator on `Drybonez235/creekside-ad-pages`
