@@ -468,6 +468,17 @@ Use the same `strategy_update_proposal` format as A4. Tag with `ARRAY['brain-ste
 
 ---
 
+## Phase A6: Architecture Doc Staleness Check
+
+Check the last commit date of `ARCHITECTURE.md`:
+```bash
+cd "/Users/petersonrainey/C-Code - Rag database" && git log -1 --format=%ad --date=short -- ARCHITECTURE.md
+```
+
+If the last commit is more than 60 days old, queue ONE proposal (same A4 format, category: documentation) titled "Refresh ARCHITECTURE.md", listing the major system changes since that date (pull from `get_recent_changes(60)` and recent `agent_knowledge` decision entries). Do NOT edit the file yourself -- the refresh happens in an interactive session after Peterson approves. If a "Refresh ARCHITECTURE.md" proposal is already pending-review, skip (no duplicate). Report the check result in the weekly digest either way.
+
+---
+
 ## Phase C: Summary Report
 
 After all phases complete:
