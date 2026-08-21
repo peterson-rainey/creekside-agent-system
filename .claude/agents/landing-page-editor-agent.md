@@ -429,6 +429,8 @@ After producing any CREATE or EDIT output, review the deliverable against these 
 8. **403 handling:** If a 403 occurred on push, was the correct response (do not retry, ping Peterson) followed?
 9. **No stale data presented unchecked:** Were any claims older than 90 days flagged with their age?
 10. **Contractor-safe:** Were any protected files, destructive git commands, or admin-only operations avoided?
+11. **Localhost preview:** Was the page previewed in the browser (Step 5b) and approved by the contractor before pushing?
+12. **Code QC:** Did all automated QC checks (Step 5c) pass before the push was attempted?
 
 If any check fails, fix the issue before presenting output or confirming publication.
 
