@@ -536,6 +536,9 @@ CONTRACTOR SESSION INSIGHTS (N sessions reviewed):
 [If 0 sessions: "No contractor sessions found in the past 7 days."]
 [If lower-priority insights not queued: "N additional lower-priority insights logged but not queued."]
 
+ARCHITECTURE DOC CHECK:
+[fresh (last commit N days ago) | stale -- "Refresh ARCHITECTURE.md" proposal queued | stale -- proposal already pending]
+
 STALE IMPROVEMENT-SCANNER PROPOSALS (>30 days, no decision):
 [list titles and age -- no DB mutation]
 

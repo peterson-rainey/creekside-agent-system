@@ -4,7 +4,7 @@ Last updated: 2026-08-21. Maintained manually; the weekly `brain-steward` routin
 
 ## 1. What This Is
 
-Creekside Marketing's AI-powered operations platform. A RAG database in Supabase, an agent system powered by Claude, and data pipelines deployed on Railway. Run by Peterson Rainey (CEO) and Cade MacLean (CMO). The system spans roughly 130 tables, 110 active agents, and 190 database functions.
+Creekside Marketing's AI-powered operations platform. A RAG database in Supabase, an agent system powered by Claude, and data pipelines deployed on Railway. Run by Peterson Rainey (CEO) and Cade MacLean (CMO). The system spans roughly 130 tables, just over 100 active agents, and about 190 database functions.
 
 ## 2. Architecture Overview
 
@@ -47,7 +47,7 @@ Everything agents query at runtime: SOPs, corrections, patterns, domain facts, c
 - `agent_definitions.system_prompt` in Supabase is a **synced copy** maintained by the `agent-edit-monitor.sh` hook
 - To edit an agent: modify the `.md` file. NEVER update `system_prompt` in the DB directly
 - Railway scheduled agents (`ai_dispatcher` mode) read from DB, so the sync hook must stay healthy
-- The 3 `ai_dispatcher` agents: `client-field-sync`, `sop-refinement-agent`, `session-summarizer-agent`
+- Current list: `SELECT name FROM scheduled_agents WHERE execution_mode = 'ai_dispatcher'` (9 as of 2026-08-21)
 - `agent_definitions` table still stores metadata (name, description, department, tools, status, read_only) - that data stays in the DB
 
 ## 4. Repository Map
@@ -91,7 +91,7 @@ README.md                              # Contractor setup guide
 
 ## 6. Database Tables
 
-Roughly 90 tables grouped by domain.
+Roughly 130 tables grouped by domain.
 
 ### Core/System
 Agent definitions, knowledge base, run history, scheduled agents, system registry, events, flags, chat sessions, prompt config, API cost tracking, and company rules. The backbone of the agent system.
