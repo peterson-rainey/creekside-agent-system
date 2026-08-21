@@ -3,6 +3,7 @@
 *
 !.gitignore
 !CLAUDE.md
+!ARCHITECTURE.md
 !README.md
 !.claude/
 !.claude/**

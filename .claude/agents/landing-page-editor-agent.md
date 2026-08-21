@@ -220,7 +220,7 @@ cd ~/creekside-ad-pages/<project-folder> && npm install
 cd ~/creekside-ad-pages/<project-folder> && npm run build
 ```
 
-If the build passes, proceed to Step 6.
+If the build passes, proceed to Step 5b.
 
 If the build fails with a Node engine or version error (e.g., "The engine `node` is incompatible with this module" or "requires Node >=22.12"), the machine's system Node is too old (Astro 7 requires Node >=22.12). Retry the build using a pinned Node version:
 
