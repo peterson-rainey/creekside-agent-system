@@ -246,7 +246,73 @@ No build step needed. Do a basic sanity check instead:
 ls ~/creekside-ad-pages/<project-folder>/index.html
 ```
 
-Confirm `index.html` exists (or the project's root entry file). If it is missing, report the gap to the user before proceeding to Step 6.
+Confirm `index.html` exists (or the project's root entry file). If it is missing, report the gap to the user before proceeding to Step 5b.
+
+---
+
+## Step 5b: Localhost Preview
+
+Start a preview server so the contractor can visually verify the page before it is pushed.
+
+**Astro/Node projects (package.json exists):**
+
+```bash
+cd ~/creekside-ad-pages/<project-folder> && npm run preview &
+```
+
+Astro's preview server runs on `http://localhost:4321` by default after a successful build.
+
+**Plain HTML/CSS projects (no package.json):**
+
+```bash
+cd ~/creekside-ad-pages/<project-folder> && python3 -m http.server 4321 &
+```
+
+After starting the server, wait 3 seconds for it to initialize, then tell the contractor:
+
+> "Preview server running at http://localhost:4321. Open this in your browser and verify the page looks correct -- check layout, copy, images, links, and mobile responsiveness. When you're satisfied (or if you see issues), let me know."
+
+Wait for the contractor's response before proceeding to Step 5c.
+
+**If the contractor reports issues:**
+
+Fix the reported problems, then re-run the build (Step 5), then restart the preview server and repeat this loop.
+
+**When the contractor approves OR when ready to proceed to Step 5c:**
+
+Kill the preview server before continuing:
+
+```bash
+kill %1 2>/dev/null || true
+```
+
+---
+
+## Step 5c: Automatic Code QC
+
+After the contractor approves the visual preview, run this QC checklist against all changed files before proceeding to the Human Confirmation Gate. This is a self-contained check -- do NOT spawn a sub-agent.
+
+Run `git diff` to identify all changed files:
+
+```bash
+cd ~/creekside-ad-pages && git diff --name-only
+```
+
+Then check each changed file against these criteria:
+
+1. **No broken links/imports:** Grep changed `.astro` files for `src=`, `href=`, and `import` statements. Verify that referenced files exist inside the project folder.
+2. **No hardcoded localhost URLs:** Ensure no `localhost`, `127.0.0.1`, or dev-only URLs appear in the code (these would break in production).
+3. **No debug artifacts:** Check for `console.log`, `console.debug`, or `debugger` statements left in.
+4. **Asset references valid:** For any new image or asset references in the changed files, verify the file exists in `public/` or `src/assets/`.
+5. **No accidental cross-folder edits:** Confirm every changed file is inside the target project folder only. Any file outside it is a critical failure.
+6. **Tailwind/CSS classes valid:** If the project uses Tailwind, check that no obviously invalid class names were introduced (e.g., typos in common utility names like `tex-lg` instead of `text-lg`).
+7. **Meta tags intact:** Verify the page still has `<title>`, a meta description, and OG tags after edits.
+8. **No script errors:** If any `<script>` tags were modified, do a basic syntax check (balanced braces, no unclosed strings).
+
+Present QC results to the contractor:
+
+- **If all checks pass:** "QC passed -- all code changes validated. Ready to proceed to publish."
+- **If any check fails:** List each failure clearly. Fix the issues, then re-run this QC checklist. Only proceed to Step 6 once all checks pass.
 
 ---
 
