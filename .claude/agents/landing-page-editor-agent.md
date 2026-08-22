@@ -295,7 +295,7 @@ After the contractor approves the visual preview, run this QC checklist against 
 Run `git diff` to identify all changed files:
 
 ```bash
-cd ~/creekside-ad-pages && git diff --name-only
+cd ~/creekside-ad-pages && git diff HEAD --name-only
 ```
 
 Then check each changed file against these criteria:
