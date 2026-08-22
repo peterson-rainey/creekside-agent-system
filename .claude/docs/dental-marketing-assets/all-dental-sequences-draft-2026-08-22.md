@@ -407,18 +407,16 @@ P.S. Calendar's here if you ever want to talk through your account: {{ custom_va
 
 ## Month 3 (30 days after Month 2): Platform Updates
 
-**Subject:** Something changed in dental ads this month
+**Subject:** The thing that quietly kills dental ad performance
 
 ```
 Hey {{ contact.first_name }},
 
-Quick heads up on something that might affect your ads.
+The ad platforms change how they serve dental-related ads more often than most practices realize. Targeting restrictions, creative approval rules, and bidding algorithms shift every few months. Most practices don't notice until their costs jump or their reach drops.
 
-The ad platforms keep changing how they serve dental-related ads. Targeting restrictions, creative approval rules, and bidding algorithms shift every few months. Most practices don't notice until their costs jump or their reach drops.
+We keep all our client accounts updated as these changes roll out. If you're running your own campaigns or working with another team, make sure they're staying on top of it. It's the kind of thing that quietly eats into your results if nobody's watching.
 
-We keep all our client accounts updated as these changes roll out. If you're running your own campaigns or working with another team, make sure they're staying on top of platform updates. It's the kind of thing that quietly eats into your results if nobody's watching.
-
-If you want to know what specifically changed and whether it affects your practice, just reply and I'll fill you in.
+If you want to know what to look out for and whether it affects your practice, just reply and I'll fill you in.
 
 Cade
 Creekside Marketing
@@ -460,11 +458,11 @@ Tooth Co came to us spending around $10,000 a month on ads. They had decent traf
 
 We rebuilt their campaign structure around high-value services, set up proper attribution from ad click to booked consultation, and diversified their ad presence across Google and Meta.
 
-Within 3 months: $60,000 to $80,000 per month in new revenue directly attributed to ads. From $10K in monthly spend.
+Within 3 months: 6-8X return on ad spend. $60,000 to $80,000 per month in new revenue directly attributed to ads. From $10K in monthly spend.
 
 Real quote from the owner: "They immediately got to work and I've seen collections jump instantly 25-33% monthly. Can't recommend them enough."
 
-If your situation's changed and you want to talk, my calendar is here: {{ custom_values.cades_calendar }}
+If anything here sounds familiar to your situation, just reply and we can talk through it.
 
 Cade
 Creekside Marketing
