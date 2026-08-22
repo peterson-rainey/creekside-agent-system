@@ -276,7 +276,7 @@ Wait for the contractor's response before proceeding to Step 5c.
 
 **If the contractor reports issues:**
 
-Fix the reported problems, then re-run the build (Step 5), then restart the preview server and repeat this loop.
+Fix the reported problems, then re-run the build (Step 5), restart the preview server, and repeat this loop. After the contractor approves the preview, re-run Step 5c (Code QC) on the updated changes before proceeding.
 
 **When the contractor approves OR when ready to proceed to Step 5c:**
 
