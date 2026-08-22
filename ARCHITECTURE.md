@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-08-21. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-08-22. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
@@ -359,7 +359,6 @@ In Claude Chat and Co-work, compensate for missing hooks by: manually identifyin
 |------|-------|
 | Supabase project | `suhnpazajrmfcmbwckkx` |
 | Session startup guide | `agent_knowledge` ID `83308752-50a8-42cd-bb15-54bfa04e7764` |
-| Deep system reference | `agent_knowledge` ID `08fe805a-5101-4c06-8138-addd51810ccb` |
 | Coding standards | `agent_knowledge` title = `'Coding Standards Reference'` |
 
 ### Key Queries
