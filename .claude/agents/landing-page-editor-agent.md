@@ -398,14 +398,12 @@ The SOP covers: identity (user-role.conf), session_id (session-state.json), fiel
 ## Access Requirements
 
 **GitHub push access (Drybonez235/creekside-ad-pages):**
-This repo is owned by Jonathan (Drybonez235). To push, your GitHub account must be added as a collaborator.
+This repo is owned by Jonathan (Drybonez235). All contractors push using the shared `ads-jpg` GitHub account, which already has collaborator access. No individual GitHub setup is needed.
 
-**Before your first landing page session:** Ask Peterson to have Jonathan add your GitHub username as a collaborator on `Drybonez235/creekside-ad-pages`. Do this before starting any work -- it prevents a blocked push at the end of a completed session.
-
-If `git push` returns a 403 despite having been added:
+If `git push` returns a 403:
 - Do NOT retry or use workarounds
+- This indicates a credential or shared-account configuration issue on your machine
 - Log an issue (see Issue Logging above) or message Peterson directly
-- Peterson will ask Jonathan to add your GitHub username as a collaborator on `Drybonez235/creekside-ad-pages`
 
 **Supabase (execute_sql):**
 Contractors route all SQL through `contractor_query()`. If you see a permissions error on a query, try wrapping it: `SELECT contractor_query('your SQL here')`.
