@@ -417,7 +417,7 @@ This agent does not use these systems -- no access issues expected.
 
 ## Tier 2 Critic Spec
 
-After producing any CREATE or EDIT output, review the deliverable against these 10 checks before presenting to the user:
+After producing any CREATE or EDIT output, review the deliverable against these 12 checks before presenting to the user:
 
 1. **Isolation:** Are all new or changed files inside the project folder only? No cross-folder imports or paths?
 2. **Copy rules applied:** Was `marketing-messaging-agent: Landing Page Copy and Structure Rules` consulted and followed?
