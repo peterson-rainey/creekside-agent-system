@@ -22,7 +22,7 @@ Ad (pain-point talking head) -> Landing page (/dental-ads-audit/) -> Qualificati
 ### SMS 1 (immediate)
 
 ```
-Hey {{ contact.first_name }}, you're booked! Before your call, watch the 5-minute video on your confirmation page if you haven't already. It'll make our conversation a lot more productive. Talk soon. | Cade, Creekside
+Hey {{ contact.first_name }}, you're booked! Before your call, watch the 5-minute video on your confirmation page if you haven't already. It'll make our conversation a lot more productive. Talk soon. Cade, Creekside
 ```
 
 ### Email 1 (5 minutes after)
@@ -55,7 +55,7 @@ Creekside Marketing
 ### SMS 2
 
 ```
-Hey {{ contact.first_name }}, our call is tomorrow. If you can, have your ad account login handy so we can look at your numbers together. If not, no worries. See you tomorrow. | Cade
+Hey {{ contact.first_name }}, our call is tomorrow. If you can, have your ad account login handy so we can look at your numbers together. If not, no worries. See you tomorrow. Cade
 ```
 
 ### Email 2 (9:30 AM)
@@ -98,7 +98,7 @@ Creekside Marketing
 ### SMS 3
 
 ```
-Hey {{ contact.first_name }}, our call is today. We only work with one practice per market, so if your area is still open, today's a good day to lock it in. Check your calendar invite for the meeting link. | Cade
+Hey {{ contact.first_name }}, our call is today. We only work with one practice per market, so if your area is still open, today's a good day to lock it in. Check your calendar invite for the meeting link. Cade
 ```
 
 ### Email 3 (8:30 AM)
@@ -137,7 +137,7 @@ Creekside Marketing
 ## SMS 1 (1 hour after no-show)
 
 ```
-Hey {{ contact.first_name }}, looks like we missed each other for our call today. No worries, things come up. Here's a link to grab a new time: {{ custom_values.cades_calendar }} | Cade, Creekside Marketing
+Hey {{ contact.first_name }}, looks like we missed each other for our call today. No worries, things come up. Here's a link to grab a new time: {{ custom_values.cades_calendar }} Cade, Creekside Marketing
 ```
 
 ## Email 1 (1 hour after no-show, 5 min after SMS 1)
@@ -161,7 +161,7 @@ Creekside Marketing
 ## SMS 2 (Day 1 morning, 9:00 AM contact timezone)
 
 ```
-Hey {{ contact.first_name }}, no worries about yesterday. Things come up. Here's a link to grab a new time whenever works for you: {{ custom_values.cades_calendar }} | Cade
+Hey {{ contact.first_name }}, no worries about yesterday. Things come up. Here's a link to grab a new time whenever works for you: {{ custom_values.cades_calendar }} Cade
 ```
 
 ## Email 2 (Day 1, 1:00 PM contact timezone)
@@ -183,7 +183,7 @@ Creekside Marketing
 ## SMS 3 (Day 3 morning, 9:00 AM contact timezone)
 
 ```
-Hey {{ contact.first_name }}, last text from me on this. If you still want to talk through your ad strategy, here's the calendar: {{ custom_values.cades_calendar }}. If the timing just isn't right, totally fine. | Cade
+Hey {{ contact.first_name }}, last text from me on this. If you still want to talk through your ad strategy, here's the calendar: {{ custom_values.cades_calendar }}. If the timing just isn't right, totally fine. Cade
 ```
 
 ## Email 3 (Day 3, 1:00 PM contact timezone)
@@ -221,7 +221,7 @@ Creekside Marketing
 ### SMS 1
 
 ```
-Hey {{ contact.first_name }}, thanks for filling out the form. You qualified, which means we think there's a real opportunity for your practice. Grab a time to talk through it: {{ custom_values.cades_calendar }} | Cade, Creekside
+Hey {{ contact.first_name }}, thanks for filling out the form. You qualified, which means we think there's a real opportunity for your practice. Grab a time to talk through it: {{ custom_values.cades_calendar }} Cade, Creekside
 ```
 
 ### Email 1 (30 min after SMS 1)
@@ -258,7 +258,7 @@ Creekside Marketing
 ### SMS 2
 
 ```
-Hey {{ contact.first_name }}, quick question. Are you currently running ads for your practice, or thinking about starting? Either way, worth a conversation. {{ custom_values.cades_calendar }} | Cade
+Hey {{ contact.first_name }}, quick question. Are you currently running ads for your practice, or thinking about starting? Either way, worth a conversation. {{ custom_values.cades_calendar }} Cade
 ```
 
 ### Email 2 (30 min after SMS 2)
@@ -292,7 +292,7 @@ Creekside Marketing
 ### SMS 3
 
 ```
-Hey {{ contact.first_name }}, we only take one dental practice per market. If your area is still open, it's worth a conversation before that changes: {{ custom_values.cades_calendar }} | Cade
+Hey {{ contact.first_name }}, we only take one dental practice per market. If your area is still open, it's worth a conversation before that changes: {{ custom_values.cades_calendar }} Cade
 ```
 
 ### Email 3 (30 min after SMS 3)
