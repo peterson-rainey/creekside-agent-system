@@ -253,6 +253,11 @@ Railway runs Python data sync scripts on cron schedules. Each pipeline pulls dat
 
 **Active pipelines:** Gmail, ClickUp, Google Calendar, Fathom, Google Ads, Meta Ads, Square, Upwork, Google Drive, Loom, Google Chat
 
+**Local pipelines (Peterson's Mac, NOT Railway):** Three sync jobs run locally in standalone folders, each with its own README documenting scripts, conventions, and gotchas:
+- `~/gdrive_pipeline/` -- Google Drive shared-drive crawl + Gmail attachment filing (Railway has no Drive pipeline; this is the real one)
+- `~/loom_pipeline/` -- Loom transcript sync via browser scraping (the Railway `pipelines/loom/` script is a health-check stub only)
+- `~/youtube_pipeline/` -- YouTube channel transcript sync (launchd `com.creekside.youtube-sync`, feeds the SEO blog generator)
+
 **Monitoring:**
 ```sql
 SELECT * FROM get_all_pipeline_status();  -- Current health of all pipelines
