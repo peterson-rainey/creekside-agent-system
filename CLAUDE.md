@@ -44,7 +44,7 @@ At Creekside, an agent is a markdown file in `.claude/agents/`, not application 
 ## Infrastructure
 - **Supabase project**: `suhnpazajrmfcmbwckkx` -- use `execute_sql` MCP tool. Use `SUPABASE_SERVICE_ROLE_KEY` for writes (anon key silently fails).
 - **Git repo**: `https://github.com/peterson-rainey/creekside-agent-system.git` -- all agent files, hooks, skills, and settings live here. Auto-committed on every change. This is the source of truth for local files -- do NOT duplicate file content in the database.
-- **System architecture**: Read `ARCHITECTURE.md` in the repo root for a comprehensive reference on how the entire system works (tables, functions, agents, hooks, pipelines, search, access control). Consult it when you need to understand how something connects.
+- **System architecture**: Read `ARCHITECTURE.md` in the repo root for a comprehensive reference on how the entire system works (tables, functions, agents, hooks, pipelines, search, access control). Consult it when you need to understand how something connects. When a session makes an architectural change (new/removed table, agent pattern, pipeline, hook, repo, or scheduled routine), update the relevant ARCHITECTURE.md section and its "Last updated" date in the same session.
 
 ## Repository Map (5 separate repos -- NEVER confuse them)
 
