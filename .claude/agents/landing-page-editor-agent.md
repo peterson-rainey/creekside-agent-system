@@ -257,15 +257,15 @@ Start a preview server so the contractor can visually verify the page before it 
 **Astro/Node projects (package.json exists):**
 
 ```bash
-cd ~/creekside-ad-pages/<project-folder> && npm run preview &
+cd ~/creekside-ad-pages/<project-folder> && npm run preview & PREVIEW_PID=$!; echo "Preview PID: $PREVIEW_PID"
 ```
 
-Astro's preview server runs on `http://localhost:4321` by default after a successful build.
+Astro's preview server runs on `http://localhost:4321` by default after a successful build. Save the PID printed above for cleanup.
 
 **Plain HTML/CSS projects (no package.json):**
 
 ```bash
-cd ~/creekside-ad-pages/<project-folder> && python3 -m http.server 4321 &
+cd ~/creekside-ad-pages/<project-folder> && python3 -m http.server 4321 & PREVIEW_PID=$!; echo "Preview PID: $PREVIEW_PID"
 ```
 
 After starting the server, wait 3 seconds for it to initialize, then tell the contractor:
@@ -280,10 +280,16 @@ Fix the reported problems, then re-run the build (Step 5), restart the preview s
 
 **When the contractor approves OR when ready to proceed to Step 5c:**
 
-Kill the preview server before continuing:
+Kill the preview server by PID before continuing:
 
 ```bash
-kill %1 2>/dev/null || true
+kill $PREVIEW_PID 2>/dev/null || true
+```
+
+If the PID variable was lost (e.g., different shell session), fall back to port-based cleanup:
+
+```bash
+lsof -ti:4321 | xargs kill 2>/dev/null || true
 ```
 
 ---
