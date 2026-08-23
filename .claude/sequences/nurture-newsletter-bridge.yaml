@@ -1,0 +1,215 @@
+sequence:
+  id: nurture-newsletter-bridge
+  name: Nurture Newsletter Bridge
+  description: >
+    Long-term nurture for dental leads who didn't book after initial sequences.
+    6 monthly value emails from Cade, then a handoff email introducing Peterson,
+    then Buttondown newsletter enrollment. After enrollment, Buttondown handles
+    everything.
+
+trigger:
+  type: tag_added
+  tag: nurture-pool
+
+re_entry: false
+
+on_entry:
+  - action: add_tag
+    tag: seq-monthly-nurture
+  - action: remove_tag
+    tag: seq-noshow-recovery
+  - action: remove_tag
+    tag: seq-form-nobook
+  - action: remove_tag
+    tag: seq-precall-warmup
+
+exit_conditions:
+  - type: field_set
+    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date set = re-engaged
+    condition: field_has_value
+
+on_exit:
+  - action: remove_tag
+    tag: seq-monthly-nurture
+  - action: remove_tag
+    tag: nurture-pool
+
+on_completion:
+  - action: remove_tag
+    tag: seq-monthly-nurture
+  - action: remove_tag
+    tag: nurture-pool
+
+messages:
+  - id: month-1
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 4320  # Day 3 (3 days after entry)
+    subject: "What's actually working in cosmetic dental ads right now"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Quick thought for you.
+
+      We've been running patient acquisition campaigns across cosmetic dental accounts this quarter, and there's a clear pattern: practices that run ads on more than one platform are generating significantly more consultations than single-platform practices at the same budget.
+
+      Most practices are still putting everything into one platform and hoping for the best. The ones pulling ahead are diversifying their ad spend and optimizing for booked consultations, not just leads.
+
+      If you want to see the data behind this, just reply and I'll send it over. No pitch, just the numbers.
+
+      Talk soon,
+      Cade
+      Creekside Marketing
+
+      P.S. If your situation's changed and you want to revisit working together, here's my calendar: {{ custom_values.cades_calendar }}
+
+  - id: month-2
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 47520  # Day 33 (30 days after Month 1)
+    subject: "How a cosmetic dental practice cut their cost per consultation by 52%"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Wanted to share a quick win from one of our cosmetic dental clients.
+
+      The situation: They were spending $110K/month on ads with a high cost per consultation. Their previous team had them running broad targeting with generic creative and optimizing for form fills instead of revenue.
+
+      What we changed:
+      - Shifted optimization from leads to booked consultations and revenue
+      - Restructured campaigns around high-value services (veneers, implants)
+      - Built platform-specific creative instead of running the same ads everywhere
+
+      Result: Consultations jumped from 50 to 105 per month. Cost per consultation dropped from ~$2,200 to ~$1,050. Over $200,000 in additional monthly profit. Same budget.
+
+      Not saying your situation is identical, but the patterns tend to rhyme.
+
+      Cade
+      Creekside Marketing
+
+      P.S. Calendar's here if you ever want to talk through your account: {{ custom_values.cades_calendar }}
+
+  - id: month-3
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 90720  # Day 63 (30 days after Month 2)
+    subject: "The thing that quietly kills dental ad performance"
+    body: |
+      Hey {{ contact.first_name }},
+
+      The ad platforms change how they serve dental-related ads more often than most practices realize. Targeting restrictions, creative approval rules, and bidding algorithms shift every few months. Most practices don't notice until their costs jump or their reach drops.
+
+      We keep all our client accounts updated as these changes roll out. If you're running your own campaigns or working with another team, make sure they're staying on top of it. It's the kind of thing that quietly eats into your results if nobody's watching.
+
+      If you want to know what to look out for and whether it affects your practice, just reply and I'll fill you in.
+
+      Cade
+      Creekside Marketing
+
+  - id: month-4
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 133920  # Day 93 (30 days after Month 3)
+    subject: "2-minute fix that could save you money on ads"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Here's something you can do today that most practices miss:
+
+      Go into your Google Ads account, click Campaigns > Settings > Locations. Change from "Presence or interest" to "Presence only." This stops showing your ads to people who are just researching your area but don't actually live there. For dental practices, this is one of the biggest sources of wasted spend we see.
+
+      It takes 2 minutes and we've seen it reduce wasted spend by 10-25% for practices running local campaigns.
+
+      Try it and let me know what happens.
+
+      Cade
+      Creekside Marketing
+
+  - id: month-5
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 177120  # Day 123 (30 days after Month 4)
+    subject: "$60K in new monthly revenue from $10K in ad spend"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Here's what happened with a cosmetic dental practice that started where a lot of our clients start.
+
+      Tooth Co came to us spending around $10,000 a month on ads. They had decent traffic but their campaigns were structured wrong. Broad targeting, no conversion tracking beyond form fills, and creative that looked like every other dental ad in their market.
+
+      We rebuilt their campaign structure around high-value services, set up proper attribution from ad click to booked consultation, and diversified their ad presence across Google and Meta.
+
+      Within 3 months: 6-8X return on ad spend. $60,000 to $80,000 per month in new revenue directly attributed to ads. From $10K in monthly spend.
+
+      Real quote from the owner: "They immediately got to work and I've seen collections jump instantly 25-33% monthly. Can't recommend them enough."
+
+      If anything here sounds familiar to your situation, just reply and we can talk through it.
+
+      Cade
+      Creekside Marketing
+
+  - id: month-6
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 220320  # Day 153 (30 days after Month 5)
+    subject: "5,000 leads in 90 days for an implant practice"
+    body: |
+      Hey {{ contact.first_name }},
+
+      One more result I wanted to share.
+
+      Fusion Dental Implants is a full-arch implant practice with 2 locations in Northern California. They're competing head-to-head with ClearChoice and Nubia in their market.
+
+      We ran campaigns across Meta, Google, Programmatic, and ChatGPT Ads simultaneously. The result: 5,000+ leads in 90 days at $18.62 average cost per lead. 4X return on ad spend. 30-40 arches per month at $36K-$38K average case value.
+
+      The key was going multi-platform instead of putting everything into one channel. Each platform reaches a different slice of patients, and when you stack them, the numbers compound.
+
+      Whether you do veneers, implants, or general cosmetic work, the multi-platform approach applies the same way.
+
+      Cade
+      Creekside Marketing
+
+  - id: newsletter-handoff
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 230400  # Day 160 (7 days after Month 6)
+    subject: "Introducing you to someone"
+    body: |
+      Hey {{ contact.first_name }},
+
+      I've enjoyed staying in touch over the past few months. I hope the tips and case studies have been useful, even if the timing hasn't been right for us to work together.
+
+      I want to introduce you to my partner Peterson Rainey. He writes a newsletter specifically for business owners about marketing, growth, and how to get more out of your ad spend. It's free, it's practical, and it's the kind of stuff you can actually apply to your practice.
+
+      You'll start getting it in the next week or so. If it's not for you, there's an unsubscribe link at the bottom of every email. One click and you're out.
+
+      And if your situation ever changes and you want to revisit working together, you know where to find me:
+      {{ custom_values.cades_calendar }}
+
+      It's been good connecting with you.
+
+      Cade
+      Creekside Marketing
+
+  - id: buttondown-enroll
+    channel: API
+    timing:
+      type: offset
+      offset_minutes: 233280  # Day 162 (2 days after handoff email)
+    api_action: buttondown_enroll
+    api_config:
+      endpoint: "https://api.buttondown.com/v1/subscribers"
+      method: POST
+      auth_header: "Token {{ env.BUTTONDOWN_API_KEY }}"
+      payload:
+        email: "{{ contact.email }}"
+        metadata:
+          source: dental_nurture
+          first_name: "{{ contact.first_name }}"

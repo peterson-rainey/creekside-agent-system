@@ -1,0 +1,161 @@
+sequence:
+  id: pre-call-warmup
+  name: Pre-Call Warm-Up
+  description: >
+    Warms up dental leads between booking and their strategy call with Cade.
+    6 messages (3 SMS + 3 email) across 3 pairs: immediately after booking,
+    day before the call, and morning of the call.
+
+trigger:
+  type: field_set
+  field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+  condition: field_has_value
+
+re_entry: true
+
+on_entry:
+  - action: add_tag
+    tag: seq-precall-warmup
+  - action: move_opportunity_stage
+    stage_id: "8ad8a351-f55b-4fdc-b79d-41e2ba86e092"  # call booked
+  - action: remove_tag
+    tag: seq-noshow-recovery
+  - action: remove_tag
+    tag: seq-form-nobook
+  - action: remove_tag
+    tag: seq-monthly-nurture
+
+exit_conditions:
+  - type: opportunity_stage_change
+    stage_ids:
+      - "467179c4-29d2-47e1-8fc0-e3d9425c5674"  # no show
+      - "98081afc-a861-4316-85c7-813198bbad3f"    # Lost
+      - "211e19ab-0615-40ff-a04a-d966250831c5"    # Referred
+
+on_exit:
+  - action: remove_tag
+    tag: seq-precall-warmup
+
+messages:
+  - id: sms-1
+    channel: SMS
+    timing:
+      type: immediate
+    body: >
+      Hey {{ contact.first_name }}, you're booked! Check out the short video
+      on your confirmation page before our call if you get a chance.
+      Cade, Creekside
+
+  - id: email-1
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 5
+    subject: "You're booked. One thing before your call"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Your strategy call is confirmed. You'll find the details in your calendar invite.
+
+      Before we talk, there's a short video on the page you just came from that's worth watching:
+
+      https://creeksidemarketingpros.com/dental/start/confirmed/
+
+      We're selective about who we work with. We only take on practices we know we can grow, and we limit the number of practices per market. The fact that you qualified means we think there's a real opportunity here.
+
+      Looking forward to it.
+
+      Cade
+      Creekside Marketing
+
+  - id: sms-2
+    channel: SMS
+    timing:
+      type: wall_clock
+      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_offset_days: -1
+      send_time: "09:00"
+      timezone: contact
+    body: >
+      Hey {{ contact.first_name }}, our call is tomorrow. If you can, have
+      your ad account login handy so we can look at your numbers together.
+      If not, no worries. See you tomorrow. Cade
+
+  - id: email-2
+    channel: Email
+    timing:
+      type: wall_clock
+      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_offset_days: -1
+      send_time: "09:30"
+      timezone: contact
+    subject: "Tomorrow: a few things worth knowing"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Quick note before our call tomorrow.
+
+      Most cosmetic dental practices we talk to have the same problem. The clinical work is excellent. Patients love the results. But the marketing isn't matching the quality of what's actually happening in the chair. The practice down the street with half your skill level is showing up everywhere online, and the patients who need veneers, implants, or smile makeovers are finding them first.
+
+      That's what we fix. We make sure the practices doing the best work are the ones patients actually find.
+
+      Here's what happens after our call if we both decide it's a good fit:
+
+      1. We audit your current ad accounts and identify exactly where money is being wasted
+      2. We build a campaign strategy specific to your practice and your market
+      3. Campaigns go live within 2 weeks of signing
+      4. You get regular reporting tied to actual revenue, not vanity metrics
+
+      No pressure on the call. If we're not the right fit, we'll tell you. We're selective about who we take on because we'd rather be honest than take your money.
+
+      To get the most out of our time, it helps to have:
+      - A rough idea of your monthly ad spend (or target budget)
+      - Access to your Google Ads or Meta Ads account (so we can look together)
+      - Any specific goals or frustrations you want to cover
+
+      If you don't have all of that, it's fine. We'll work with whatever you've got.
+
+      See you tomorrow.
+
+      Cade
+      Creekside Marketing
+
+  - id: sms-3
+    channel: SMS
+    timing:
+      type: wall_clock
+      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_offset_days: 0
+      send_time: "08:00"
+      timezone: contact
+    body: >
+      Hey {{ contact.first_name }}, our call is today. We only work with one
+      practice per market, so if your area is still open, today's a good day
+      to lock it in. Check your calendar invite for the meeting link. Cade
+
+  - id: email-3
+    channel: Email
+    timing:
+      type: wall_clock
+      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_offset_days: 0
+      send_time: "08:30"
+      timezone: contact
+    subject: "In a few hours"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Our call is today. Here's what to expect:
+
+      1. We'll ask about your practice, your patient flow, and how you're currently getting new patients
+      2. We'll identify the gaps and opportunities in your ad strategy
+      3. Honest conversation, no pitch deck
+
+      You didn't go to dental school to worry about marketing. But the reality is that Aspen, Heartland, and the corporate chains are spending six figures a month in your market. You don't have to outspend them. You just have to be smarter about where your budget goes. That's what this call is about.
+
+      Meeting link is in your calendar invite.
+
+      Talk soon.
+
+      Cade
+      Creekside Marketing

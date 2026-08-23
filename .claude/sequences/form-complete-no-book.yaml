@@ -1,0 +1,165 @@
+sequence:
+  id: form-complete-no-book
+  name: Form Complete No Book
+  description: >
+    Follows up with dental leads who completed the qualification form but
+    did not book a call within 2 hours. 7 messages (3 SMS + 4 email) over
+    14 days. If no booking by Day 17, contact enters nurture pool.
+
+trigger:
+  type: tag_added
+  tag: dental-qualified
+  delay_minutes: 120  # Wait 2 hours, then check if Booked Call Date is still empty
+  delay_condition:
+    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+    condition: field_empty
+
+re_entry: false
+
+on_entry:
+  - action: add_tag
+    tag: seq-form-nobook
+
+exit_conditions:
+  - type: field_set
+    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date set = they booked
+    condition: field_has_value
+  - type: timeout
+    timeout_days: 17
+    timeout_action:
+      - action: add_tag
+        tag: nurture-pool
+      - action: remove_tag
+        tag: seq-form-nobook
+
+on_exit:
+  - action: remove_tag
+    tag: seq-form-nobook
+
+messages:
+  - id: sms-1
+    channel: SMS
+    timing:
+      type: offset
+      offset_minutes: 120  # 2 hours after form
+    body: >
+      Hey {{ contact.first_name }}, thanks for filling out the form. You
+      qualified, which means we think there's a real opportunity for your
+      practice. Grab a time to talk through it:
+      {{ custom_values.cades_calendar }}
+      Cade, Creekside
+
+  - id: email-1
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 150  # 2.5 hours after form (30 min after SMS 1)
+    subject: "You qualified. Here's the next step"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Thanks for taking the time to fill out our form. Based on your answers, your practice is exactly the type we work with.
+
+      The next step is a 30-minute strategy call. Here's what that looks like:
+
+      1. We ask about your practice, your patient flow, and how you're currently getting new patients
+      2. We identify the gaps and opportunities in your ad strategy
+      3. Honest conversation, no pitch deck
+
+      We're selective about who we take on. We only work with practices we know we can grow, and we limit the number of practices per market. The fact that you qualified means we think there's real potential here.
+
+      Book a time that works for you:
+      {{ custom_values.cades_calendar }}
+
+      If you want to see how we get results before the call, there's a short video on this page:
+      https://creeksidemarketingpros.com/dental/start/confirmed/
+
+      Cade
+      Creekside Marketing
+
+  - id: sms-2
+    channel: SMS
+    timing:
+      type: offset
+      offset_minutes: 4320  # ~3 days (72 hours)
+    body: >
+      Hey {{ contact.first_name }}, quick question. Are you currently running
+      ads for your practice, or thinking about starting? Either way, worth a
+      conversation. {{ custom_values.cades_calendar }} Cade
+
+  - id: email-2
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 4350  # ~3 days + 30 min
+    subject: "What we did for Dr. Laleh on the same budget"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Quick story.
+
+      Dr. Laleh runs a cosmetic dental practice in California. She was spending $110,000 a month on ads and getting a 2.7X return. 50 to 60 consultations a month. Her results had been flat for over a year.
+
+      We didn't increase her budget. We changed what the campaigns were optimizing for.
+
+      The result: consultations jumped from 50 to 105 per month. Return on ad spend went from 2.7X to 5.7X. Over $200,000 in additional monthly profit. Same ad spend.
+
+      That's the kind of thing we look for on a strategy call. Whether your budget is $5K or $100K a month, the approach is the same: find where the money is being wasted and redirect it toward revenue.
+
+      Worth 30 minutes to see what's possible for your practice:
+      {{ custom_values.cades_calendar }}
+
+      Cade
+      Creekside Marketing
+
+  - id: sms-3
+    channel: SMS
+    timing:
+      type: offset
+      offset_minutes: 10080  # ~7 days
+    body: >
+      Hey {{ contact.first_name }}, we only take one dental practice per
+      market. If your area is still open, it's worth a conversation before
+      that changes: {{ custom_values.cades_calendar }} Cade
+
+  - id: email-3
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 10110  # ~7 days + 30 min
+    subject: "Your market is still open"
+    body: |
+      Hey {{ contact.first_name }},
+
+      One thing I wanted to mention: we limit the number of dental practices we work with per market. Once we take on a practice in a given area, we won't work with a competitor in that same market.
+
+      Your area is currently open. I can't guarantee how long that stays the case.
+
+      If you've been thinking about the call but haven't gotten around to it, here's the link:
+      {{ custom_values.cades_calendar }}
+
+      30 minutes, no pressure. If we're not the right fit, we'll tell you.
+
+      Cade
+      Creekside Marketing
+
+  - id: email-4
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 20160  # ~14 days
+    subject: "No pressure"
+    body: |
+      Hey {{ contact.first_name }},
+
+      I know the timing might not be right, and that's completely fine. I'm not going to keep following up about the call.
+
+      We still want to provide value though. We put out useful dental marketing content that you can apply to your practice whether we ever work together or not. You'll start seeing that in your inbox over the coming weeks.
+
+      If your situation changes and you want to revisit the conversation, the link is always here:
+      {{ custom_values.cades_calendar }}
+
+      Appreciate you taking the time to reach out.
+
+      Cade
+      Creekside Marketing

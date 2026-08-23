@@ -1,0 +1,139 @@
+sequence:
+  id: no-show-recovery
+  name: No-Show Recovery
+  description: >
+    Re-engages dental leads who missed their scheduled strategy call.
+    6 messages (3 SMS + 3 email) over 3 days. If no rebook by Day 7,
+    contact enters nurture pool.
+
+trigger:
+  type: opportunity_stage_change
+  stage_id: "467179c4-29d2-47e1-8fc0-e3d9425c5674"  # no show
+
+re_entry: true
+
+on_entry:
+  - action: add_tag
+    tag: no-show
+  - action: add_tag
+    tag: seq-noshow-recovery
+  - action: remove_tag
+    tag: seq-precall-warmup
+
+exit_conditions:
+  - type: field_set
+    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date set = rebooked
+    condition: field_has_value
+  - type: timeout
+    timeout_days: 7
+    timeout_action:
+      - action: add_tag
+        tag: nurture-pool
+      - action: remove_tag
+        tag: no-show
+      - action: remove_tag
+        tag: seq-noshow-recovery
+
+on_exit:
+  - action: remove_tag
+    tag: seq-noshow-recovery
+
+messages:
+  - id: sms-1
+    channel: SMS
+    timing:
+      type: offset
+      offset_minutes: 60
+    body: >
+      Hey {{ contact.first_name }}, looks like we missed each other for our
+      call today. No worries, things come up. Here's a link to grab a new
+      time: {{ custom_values.cades_calendar }}
+      Cade, Creekside Marketing
+
+  - id: email-1
+    channel: Email
+    timing:
+      type: offset
+      offset_minutes: 65
+    subject: "We missed each other"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Looks like we missed each other for our call today. No worries at all, things come up.
+
+      Here's a link to grab a new time whenever works for you:
+      {{ custom_values.cades_calendar }}
+
+      If something came up and you'd prefer a different time, just reply to this email and we'll find something that works.
+
+      Cade
+      Creekside Marketing
+
+  - id: sms-2
+    channel: SMS
+    timing:
+      type: wall_clock
+      anchor_field: enrolled_at
+      anchor_offset_days: 1
+      send_time: "09:00"
+      timezone: contact
+    body: >
+      Hey {{ contact.first_name }}, no worries about yesterday. Things come
+      up. Here's a link to grab a new time whenever works for you:
+      {{ custom_values.cades_calendar }} Cade
+
+  - id: email-2
+    channel: Email
+    timing:
+      type: wall_clock
+      anchor_field: enrolled_at
+      anchor_offset_days: 1
+      send_time: "13:00"
+      timezone: contact
+    subject: "Let's reschedule"
+    body: |
+      Hey {{ contact.first_name }},
+
+      No worries about yesterday. Things come up.
+
+      Here's my calendar for this week. Pick whatever works:
+      {{ custom_values.cades_calendar }}
+
+      Cade
+      Creekside Marketing
+
+  - id: sms-3
+    channel: SMS
+    timing:
+      type: wall_clock
+      anchor_field: enrolled_at
+      anchor_offset_days: 3
+      send_time: "09:00"
+      timezone: contact
+    body: >
+      Hey {{ contact.first_name }}, last text from me on this. If you still
+      want to talk through your ad strategy, here's the calendar:
+      {{ custom_values.cades_calendar }}. If the timing just isn't right,
+      totally fine. Cade
+
+  - id: email-3
+    channel: Email
+    timing:
+      type: wall_clock
+      anchor_field: enrolled_at
+      anchor_offset_days: 3
+      send_time: "13:00"
+      timezone: contact
+    subject: "Still interested in improving your ads?"
+    body: |
+      Hey {{ contact.first_name }},
+
+      Wanted to reach out one more time. If you're still interested in talking about your ad strategy, here's the calendar:
+      {{ custom_values.cades_calendar }}
+
+      In the meantime, here's something useful: practices that diversify their ads across Google, Meta, and at least one emerging platform are generating significantly more consultations than single-platform practices at the same budget.
+
+      If the timing just isn't right, no hard feelings. We'll keep sending you useful stuff.
+
+      Cade
+      Creekside Marketing
