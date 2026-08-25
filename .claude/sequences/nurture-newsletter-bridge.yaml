@@ -8,44 +8,24 @@ sequence:
     everything.
 
 trigger:
-  type: tag_added
-  tag: nurture-pool
+  type: clickup_status
+  status: "nurture"
 
 re_entry: false
 
-on_entry:
-  - action: add_tag
-    tag: seq-monthly-nurture
-  - action: remove_tag
-    tag: seq-noshow-recovery
-  - action: remove_tag
-    tag: seq-form-nobook
-  - action: remove_tag
-    tag: seq-precall-warmup
-
 exit_conditions:
-  - type: field_set
-    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date set = re-engaged
-    condition: field_has_value
-
-on_exit:
-  - action: remove_tag
-    tag: seq-monthly-nurture
-  - action: remove_tag
-    tag: nurture-pool
-
-on_completion:
-  - action: remove_tag
-    tag: seq-monthly-nurture
-  - action: remove_tag
-    tag: nurture-pool
+  - type: clickup_status
+    statuses: ["call booked"]
+    transition_to: pre-call-warmup
+  - type: clickup_status
+    statuses: ["lost", "unqualified"]
 
 messages:
   - id: month-1
     channel: Email
     timing:
       type: offset
-      offset_minutes: 4320  # Day 3 (3 days after entry)
+      offset_minutes: 4320
     subject: "What's actually working in cosmetic dental ads right now"
     body: |
       Hey {{ contact.first_name }},
@@ -62,13 +42,11 @@ messages:
       Cade
       Creekside Marketing
 
-      P.S. If your situation's changed and you want to revisit working together, here's my calendar: {{ custom_values.cades_calendar }}
-
   - id: month-2
     channel: Email
     timing:
       type: offset
-      offset_minutes: 47520  # Day 33 (30 days after Month 1)
+      offset_minutes: 47520
     subject: "How a cosmetic dental practice cut their cost per consultation by 52%"
     body: |
       Hey {{ contact.first_name }},
@@ -95,7 +73,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 90720  # Day 63 (30 days after Month 2)
+      offset_minutes: 90720
     subject: "The thing that quietly kills dental ad performance"
     body: |
       Hey {{ contact.first_name }},
@@ -113,7 +91,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 133920  # Day 93 (30 days after Month 3)
+      offset_minutes: 133920
     subject: "2-minute fix that could save you money on ads"
     body: |
       Hey {{ contact.first_name }},
@@ -133,7 +111,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 177120  # Day 123 (30 days after Month 4)
+      offset_minutes: 177120
     subject: "$60K in new monthly revenue from $10K in ad spend"
     body: |
       Hey {{ contact.first_name }},
@@ -157,7 +135,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 220320  # Day 153 (30 days after Month 5)
+      offset_minutes: 220320
     subject: "5,000 leads in 90 days for an implant practice"
     body: |
       Hey {{ contact.first_name }},
@@ -179,7 +157,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 230400  # Day 160 (7 days after Month 6)
+      offset_minutes: 230400
     subject: "Introducing you to someone"
     body: |
       Hey {{ contact.first_name }},
@@ -202,14 +180,7 @@ messages:
     channel: API
     timing:
       type: offset
-      offset_minutes: 233280  # Day 162 (2 days after handoff email)
+      offset_minutes: 233280
     api_action: buttondown_enroll
     api_config:
       endpoint: "https://api.buttondown.com/v1/subscribers"
-      method: POST
-      auth_header: "Token {{ env.BUTTONDOWN_API_KEY }}"
-      payload:
-        email: "{{ contact.email }}"
-        metadata:
-          source: dental_nurture
-          first_name: "{{ contact.first_name }}"

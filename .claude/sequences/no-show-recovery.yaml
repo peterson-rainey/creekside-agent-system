@@ -4,39 +4,24 @@ sequence:
   description: >
     Re-engages dental leads who missed their scheduled strategy call.
     6 messages (3 SMS + 3 email) over 3 days. If no rebook by Day 7,
-    contact enters nurture pool.
+    transitions to nurture.
 
 trigger:
-  type: opportunity_stage_change
-  stage_id: "467179c4-29d2-47e1-8fc0-e3d9425c5674"  # no show
+  type: clickup_status
+  status: "no show"
 
 re_entry: true
 
-on_entry:
-  - action: add_tag
-    tag: no-show
-  - action: add_tag
-    tag: seq-noshow-recovery
-  - action: remove_tag
-    tag: seq-precall-warmup
-
 exit_conditions:
-  - type: field_set
-    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date set = rebooked
-    condition: field_has_value
+  - type: clickup_status
+    statuses: ["call booked"]
+    transition_to: pre-call-warmup
+  - type: clickup_status
+    statuses: ["lost", "referred", "unqualified"]
   - type: timeout
     timeout_days: 7
-    timeout_action:
-      - action: add_tag
-        tag: nurture-pool
-      - action: remove_tag
-        tag: no-show
-      - action: remove_tag
-        tag: seq-noshow-recovery
-
-on_exit:
-  - action: remove_tag
-    tag: seq-noshow-recovery
+    transition_to: nurture-newsletter-bridge
+    transition_status: "nurture"
 
 messages:
   - id: sms-1

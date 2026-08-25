@@ -4,44 +4,31 @@ sequence:
   description: >
     Follows up with dental leads who completed the qualification form but
     did not book a call within 2 hours. 7 messages (3 SMS + 4 email) over
-    14 days. If no booking by Day 17, contact enters nurture pool.
+    14 days. If no booking by Day 17, transitions to nurture.
 
 trigger:
-  type: tag_added
-  tag: dental-qualified
-  delay_minutes: 120  # Wait 2 hours, then check if Booked Call Date is still empty
-  delay_condition:
-    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
-    condition: field_empty
+  type: clickup_status
+  status: "form complete no book"
 
 re_entry: false
 
-on_entry:
-  - action: add_tag
-    tag: seq-form-nobook
-
 exit_conditions:
-  - type: field_set
-    field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date set = they booked
-    condition: field_has_value
+  - type: clickup_status
+    statuses: ["call booked"]
+    transition_to: pre-call-warmup
+  - type: clickup_status
+    statuses: ["lost", "referred", "unqualified"]
   - type: timeout
     timeout_days: 17
-    timeout_action:
-      - action: add_tag
-        tag: nurture-pool
-      - action: remove_tag
-        tag: seq-form-nobook
-
-on_exit:
-  - action: remove_tag
-    tag: seq-form-nobook
+    transition_to: nurture-newsletter-bridge
+    transition_status: "nurture"
 
 messages:
   - id: sms-1
     channel: SMS
     timing:
       type: offset
-      offset_minutes: 120  # 2 hours after form
+      offset_minutes: 120
     body: >
       Hey {{ contact.first_name }}, thanks for filling out the form. You
       qualified, which means we think there's a real opportunity for your
@@ -53,7 +40,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 150  # 2.5 hours after form (30 min after SMS 1)
+      offset_minutes: 150
     subject: "You qualified. Here's the next step"
     body: |
       Hey {{ contact.first_name }},
@@ -81,7 +68,7 @@ messages:
     channel: SMS
     timing:
       type: offset
-      offset_minutes: 4320  # ~3 days (72 hours)
+      offset_minutes: 4320
     body: >
       Hey {{ contact.first_name }}, quick question. Are you currently running
       ads for your practice, or thinking about starting? Either way, worth a
@@ -91,7 +78,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 4350  # ~3 days + 30 min
+      offset_minutes: 4350
     subject: "What we did for Dr. Laleh on the same budget"
     body: |
       Hey {{ contact.first_name }},
@@ -116,7 +103,7 @@ messages:
     channel: SMS
     timing:
       type: offset
-      offset_minutes: 10080  # ~7 days
+      offset_minutes: 10080
     body: >
       Hey {{ contact.first_name }}, we only take one dental practice per
       market. If your area is still open, it's worth a conversation before
@@ -126,7 +113,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 10110  # ~7 days + 30 min
+      offset_minutes: 10110
     subject: "Your market is still open"
     body: |
       Hey {{ contact.first_name }},
@@ -147,7 +134,7 @@ messages:
     channel: Email
     timing:
       type: offset
-      offset_minutes: 20160  # ~14 days
+      offset_minutes: 20160
     subject: "No pressure"
     body: |
       Hey {{ contact.first_name }},

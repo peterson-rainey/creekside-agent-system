@@ -6,35 +6,20 @@ sequence:
     6 messages (3 SMS + 3 email) across 3 pairs: immediately after booking,
     day before the call, and morning of the call.
 
+# ClickUp status that triggers enrollment in this sequence
 trigger:
-  type: field_set
-  field_id: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
-  condition: field_has_value
+  type: clickup_status
+  status: "call booked"
 
 re_entry: true
 
-on_entry:
-  - action: add_tag
-    tag: seq-precall-warmup
-  - action: move_opportunity_stage
-    stage_id: "8ad8a351-f55b-4fdc-b79d-41e2ba86e092"  # call booked
-  - action: remove_tag
-    tag: seq-noshow-recovery
-  - action: remove_tag
-    tag: seq-form-nobook
-  - action: remove_tag
-    tag: seq-monthly-nurture
-
+# Exit when ClickUp status changes to any of these
 exit_conditions:
-  - type: opportunity_stage_change
-    stage_ids:
-      - "467179c4-29d2-47e1-8fc0-e3d9425c5674"  # no show
-      - "98081afc-a861-4316-85c7-813198bbad3f"    # Lost
-      - "211e19ab-0615-40ff-a04a-d966250831c5"    # Referred
-
-on_exit:
-  - action: remove_tag
-    tag: seq-precall-warmup
+  - type: clickup_status
+    statuses: ["no show"]
+    transition_to: no-show-recovery
+  - type: clickup_status
+    statuses: ["lost", "referred", "unqualified"]
 
 messages:
   - id: sms-1
@@ -72,7 +57,7 @@ messages:
     channel: SMS
     timing:
       type: wall_clock
-      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_field: booked_call_date
       anchor_offset_days: -1
       send_time: "09:00"
       timezone: contact
@@ -85,7 +70,7 @@ messages:
     channel: Email
     timing:
       type: wall_clock
-      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_field: booked_call_date
       anchor_offset_days: -1
       send_time: "09:30"
       timezone: contact
@@ -124,7 +109,7 @@ messages:
     channel: SMS
     timing:
       type: wall_clock
-      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_field: booked_call_date
       anchor_offset_days: 0
       send_time: "08:00"
       timezone: contact
@@ -137,7 +122,7 @@ messages:
     channel: Email
     timing:
       type: wall_clock
-      anchor_field: G5MN7xDI3JDv9QW8KMDf  # Booked Call Date
+      anchor_field: booked_call_date
       anchor_offset_days: 0
       send_time: "08:30"
       timezone: contact
