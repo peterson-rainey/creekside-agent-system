@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-08-22. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-08-24. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
@@ -126,7 +126,9 @@ Key tables: `raw_content` (central embedding table), `search_analytics`, `ingest
 ### Sales/Outbound
 Leads, Upwork jobs and proposals, SDR generation logs and responses, tool interview data, and industry experience records. Everything related to new business.
 
-Key tables: `leads`, `upwork_jobs`, `upwork_proposal_logs`, `sdr_generation_log`
+Key tables: `leads`, `upwork_jobs`, `upwork_leads`, `upwork_lead_status_history`, `upwork_proposal_logs`, `sdr_generation_log`
+
+`upwork_lead_status_history` (added 2026-08-25) logs every ClickUp status transition for `upwork_leads`: the pipeline `sync_leads.py` diffs incoming vs stored status each run and inserts transition rows (`source='sync'`; new leads get a NULL→status birth row). A future backfill from ClickUp's Time-in-Status API will use `source='backfill'`. The dashboard Sales tab computes no-shows and nurture saves from these transitions. `upwork_leads.salesman_inferred` holds salesperson attributions derived from ClickUp assignees/conversation evidence when the `salesman` field is empty.
 
 ### Team
 Team member records, error tracking, contractor diagnostics and issues. Also Cade-specific tables for his agents, sessions, meeting notes, and secrets.
