@@ -17,7 +17,7 @@ exit_conditions:
     statuses: ["call booked"]
     transition_to: pre-call-warmup
   - type: clickup_status
-    statuses: ["lost", "referred", "unqualified"]
+    statuses: ["lost", "referred to keith", "unqualified"]
   - type: timeout
     timeout_days: 17
     transition_to: nurture-newsletter-bridge

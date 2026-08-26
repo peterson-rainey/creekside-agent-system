@@ -19,7 +19,7 @@ exit_conditions:
     statuses: ["no show"]
     transition_to: no-show-recovery
   - type: clickup_status
-    statuses: ["lost", "referred", "unqualified"]
+    statuses: ["lost", "referred to keith", "unqualified"]
 
 messages:
   - id: sms-1
