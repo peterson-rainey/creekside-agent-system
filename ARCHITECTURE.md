@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-08-24. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-08-26. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
@@ -128,7 +128,7 @@ Leads, Upwork jobs and proposals, SDR generation logs and responses, tool interv
 
 Key tables: `leads`, `upwork_jobs`, `upwork_leads`, `upwork_lead_status_history`, `upwork_proposal_logs`, `sdr_generation_log`
 
-`upwork_lead_status_history` (added 2026-08-25) logs every ClickUp status transition for `upwork_leads`: the pipeline `sync_leads.py` diffs incoming vs stored status each run and inserts transition rows (`source='sync'`; new leads get a NULL→status birth row). A future backfill from ClickUp's Time-in-Status API will use `source='backfill'`. The dashboard Sales tab computes no-shows and nurture saves from these transitions. `upwork_leads.salesman_inferred` holds salesperson attributions derived from ClickUp assignees/conversation evidence when the `salesman` field is empty.
+`upwork_lead_status_history` (added 2026-08-25) logs every ClickUp status transition for `upwork_leads`: the pipeline `sync_leads.py` diffs incoming vs stored status each run and inserts transition rows (`source='sync'`; new leads get a NULL→status birth row). A one-time backfill from ClickUp's Time-in-Status API ran 2026-08-26 (`pipelines/upwork/backfill_status_history.py` in creekside-pipelines): 4,769 reconstructed transitions across 773 leads back to 2025-07-23, `source='backfill'` with `detected_at` = actual historical entry time (journeys reconstructed by sorting each visited status's last-entry timestamp; revisits collapsed). Pre-backfill sync rows were pruned as subsumed. `salesman_inferred` was also enriched from `call booked pete/cade/lindsey` history (+86 leads). The dashboard Sales tab computes no-shows and nurture saves from these transitions. `upwork_leads.salesman_inferred` holds salesperson attributions derived from ClickUp assignees/conversation evidence when the `salesman` field is empty.
 
 ### Team
 Team member records, error tracking, contractor diagnostics and issues. Also Cade-specific tables for his agents, sessions, meeting notes, and secrets.
