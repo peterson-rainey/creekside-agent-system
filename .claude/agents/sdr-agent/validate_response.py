@@ -482,7 +482,7 @@ def check_blocks(text, profile="samuel"):
                     "lindsey_blocked_calendar_url",
                     f"{url} -- Samuel's booking calendar must never appear in a "
                     "Lindsey-profile draft (Cross-Profile Routing Prohibition); "
-                    "use Lindsey's Calendly or the active partner's calendar instead",
+                    "use Lindsey's booking calendar or the active partner's calendar instead",
                 ))
             elif url not in _effective_whitelist:
                 issues.append((
