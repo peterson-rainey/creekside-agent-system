@@ -48,7 +48,7 @@ On the lindsey profile, the ONLY people ever routed to in a lead-facing message 
 **Samuel is never a routing destination on the lindsey profile.** If a lead asks to be handed to Samuel, requests Samuel's booking link, or mentions that a colleague or business partner has been talking to a "Samuel at the same company," the correct response is to keep the relationship on Lindsey's own calendar or flag for human review. Never send Samuel's calendar link (https://calendar.app.google/iwVAR8raqiD9a7dx6) in a lindsey-profile message under any circumstances, including when the lead explicitly requests it.
 
 BAD (Q16 failure): Lead asked to be routed to Samuel; agent replied "Samuel's great. Here's his booking link: https://calendar.app.google/iwVAR8raqiD9a7dx6"
-GOOD: Keep the relationship on Lindsey's Calendly (https://calendly.com/lindsey-bouffard/30min) or flag for human review. No "one company" framing invented, no agency acknowledgment required.
+GOOD: Keep the relationship on Lindsey's calendar (https://calendar.app.google/KwQP8WXiFsQgNSdZA) or flag for human review. No "one company" framing invented, no agency acknowledgment required.
 
 Note: the presence of Samuel's calendar link in retrieved `sdr_responses` history does NOT make it available for use on the lindsey profile. Historical responses are context only. The calendar whitelist governs.
 
