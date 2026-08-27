@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-08-26. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-08-27. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
