@@ -153,7 +153,7 @@ _ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("samuel")
 # ---------------------------------------------------------------------------
 CALENDAR_URL_WHITELIST = {
     "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (Peterson's lead-facing sales calendar)
-    "https://calendly.com/lindsey-bouffard/30min",       # lindsey
+    "https://calendar.app.google/KwQP8WXiFsQgNSdZA",   # lindsey
     _ACTIVE_PARTNER["calendar"],                         # active white-label partner (samuel profile default)
 }
 
@@ -446,7 +446,7 @@ def check_blocks(text, profile="samuel"):
     # Build the effective whitelist for this profile + partner combination.
     _effective_whitelist = {
         "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (lead-facing sales calendar)
-        "https://calendly.com/lindsey-bouffard/30min",       # lindsey
+        "https://calendar.app.google/KwQP8WXiFsQgNSdZA",   # lindsey
         active_partner["calendar"],                          # active partner for THIS profile
     }
 
@@ -488,7 +488,7 @@ def check_blocks(text, profile="samuel"):
                 issues.append((
                     "non_whitelisted_calendar_url",
                     f"{url} -- only approved URLs for lindsey profile are: "
-                    "https://calendly.com/lindsey-bouffard/30min | "
+                    "https://calendar.app.google/KwQP8WXiFsQgNSdZA | "
                     f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
         else:
