@@ -22,11 +22,9 @@ Load `docs/partners/brady.md` at runtime. To switch Lindsey's partner, change th
 
 ## Booking Calendar (Default Path, Creekside-Qualified Leads)
 
-https://calendly.com/lindsey-bouffard/30min
+https://calendar.app.google/KwQP8WXiFsQgNSdZA
 
 Use this link anywhere a "profile booking calendar" is referenced in the shared docs.
-
-NOTE FOR FUTURE UPDATE: Peterson said Lindsey will create a new link shortly. When that happens, update the URL above -- this is the only place it lives.
 
 ## Voice
 
