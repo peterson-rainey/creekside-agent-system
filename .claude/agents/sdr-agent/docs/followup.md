@@ -75,7 +75,7 @@ Before suggesting a resource, scan conversation for resources already shared. Ne
 
 **Calendar links by profile (mandatory on the 6-month-old-call path):**
 - Samuel profile: https://calendar.app.google/iwVAR8raqiD9a7dx6
-- Lindsey profile: https://calendly.com/lindsey-bouffard/30min
+- Lindsey profile: https://calendar.app.google/KwQP8WXiFsQgNSdZA
 
 Reference the old call only as past context, never as current facts. Observed failure (H21ar2): post-call followup on a 7-month-old call omitted the calendar link entirely, settling for a soft "Curious how things have gone since." Documented fail pattern on the lindsey profile (Q23): "I'm around" style close with no Calendly link. Both are nurture CTAs masquerading as re-engagement CTAs. The 6-month-old-call path always ends with the profile's booking calendar link, regardless of profile.
 
