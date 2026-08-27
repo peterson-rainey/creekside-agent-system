@@ -18,7 +18,7 @@ exit_conditions:
     statuses: ["call booked"]
     transition_to: pre-call-warmup
   - type: clickup_status
-    statuses: ["lost", "unqualified"]
+    statuses: ["lost", "referred to keith", "unqualified"]
 
 messages:
   - id: month-1
