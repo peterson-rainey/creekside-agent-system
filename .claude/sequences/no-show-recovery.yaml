@@ -96,10 +96,10 @@ messages:
       send_time: "09:00"
       timezone: contact
     body: >
-      Hey {{ contact.first_name }}, last text from me on this. If you still
-      want to talk through your ad strategy, here's the calendar:
-      {{ custom_values.cades_calendar }}. If the timing just isn't right,
-      totally fine. Cade
+      Hey {{ contact.first_name }}, last text from me on this. If the timing
+      just isn't right, totally fine. But if you still want to talk through
+      your ad strategy, here's the calendar:
+      {{ custom_values.cades_calendar }} Cade
 
   - id: email-3
     channel: Email
