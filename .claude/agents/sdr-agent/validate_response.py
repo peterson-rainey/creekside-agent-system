@@ -432,11 +432,11 @@ def check_blocks(text, profile="samuel"):
       - samuel: standard whitelist (Samuel's calendar + Lindsey's Calendly +
         the profile's active partner calendar). Any other booking URL is a BLOCK.
       - lindsey: Samuel's calendar (https://calendar.app.google/iwVAR8raqiD9a7dx6)
-        is ALWAYS a BLOCK. Lindsey's Calendly + the lindsey-profile's active partner
-        calendar are allowed. Any other URL is a BLOCK.
+        is ALWAYS a BLOCK. Lindsey's calendar.app.google link + the lindsey-profile's
+        active partner calendar are allowed. Any other URL is a BLOCK.
         The lindsey-profile active partner's calendar is loaded per-profile at
-        call time, so Keith's calendar.google.com URL is whitelisted for Lindsey
-        when Keith is Lindsey's active partner.
+        call time, so the partner's calendar URL is whitelisted for Lindsey
+        when they are Lindsey's active partner.
     """
     issues = []
 
@@ -498,7 +498,7 @@ def check_blocks(text, profile="samuel"):
                     "non_whitelisted_calendar_url",
                     f"{url} -- only approved URLs are samuel: "
                     "https://calendar.app.google/iwVAR8raqiD9a7dx6 | "
-                    "lindsey: https://calendly.com/lindsey-bouffard/30min | "
+                    "lindsey: https://calendar.app.google/KwQP8WXiFsQgNSdZA | "
                     f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
 
