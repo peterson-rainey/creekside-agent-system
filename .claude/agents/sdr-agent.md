@@ -252,7 +252,7 @@ This spec mirrors the deterministic checks in `validate_response.py` in a human-
 
 | # | Check | BLOCK Tag |
 |---|-------|-----------|
-| B1 | No calendar/booking URL present that is not on the whitelist (samuel: `iwVAR8raqiD9a7dx6`, lindsey: `calendly.com/lindsey-bouffard/30min`, active partner from partner doc) | `non_whitelisted_calendar_url` |
+| B1 | No calendar/booking URL present that is not on the whitelist (samuel: `iwVAR8raqiD9a7dx6`, lindsey: `KwQP8WXiFsQgNSdZA`, active partner from partner doc) | `non_whitelisted_calendar_url` |
 | B2 | Samuel's calendar URL does not appear in a lindsey-profile response | `lindsey_blocked_calendar_url` |
 | B3 | No inactive partner name (Jay, Scott, or any name not matching the active partner) in response | `inactive_partner_name_bleed` |
 | B4 | No inactive partner calendar URL in response | `inactive_partner_calendar_bleed` |
