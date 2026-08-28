@@ -99,7 +99,7 @@ Based on the profile and style, Read ONLY the relevant file:
 | `peterson` | `v2` | `peterson-v2.md` |
 | `lindsey` | `lindsey_default` | `lindsey.md` |
 
-Read the file, then generate the proposal following its rules plus the Formatting Rules and Budget Rules below. If profile is `samuel`, also apply the Samuel Identity Rules below. If profile is `lindsey`, the identity rules are in `lindsey.md`.
+Read the file, then generate the proposal following its rules plus the Formatting Rules and Budget Rules below. If profile is `peterson`, also apply the Peterson Identity Rules below. If profile is `lindsey`, the identity rules are in `lindsey.md`.
 
 Include the case study enrichment from Step 1 if applicable. If profile is `lindsey`, apply the Lindsey Case Study Override from `lindsey.md` to re-rank results before using them.
 

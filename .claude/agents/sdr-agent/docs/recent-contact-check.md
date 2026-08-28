@@ -125,7 +125,7 @@ ORDER BY created_at DESC
 LIMIT 5;
 ```
 
-This catches cases where a different profile (samuel or lindsey) already generated a response for this lead within the window.
+This catches cases where a different profile (peterson or lindsey) already generated a response for this lead within the window.
 
 ---
 
