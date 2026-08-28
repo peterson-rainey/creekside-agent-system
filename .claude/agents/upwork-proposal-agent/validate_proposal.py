@@ -3,8 +3,8 @@
 Deterministic Upwork proposal validator.
 
 Usage:
-    python3 validate_proposal.py <proposal_file> [--profile samuel|lindsey] [--style strategic|strategic_dq|strategic_exp|v2|lindsey_default]
-    echo "proposal text" | python3 validate_proposal.py [--profile samuel|lindsey] [--style strategic]
+    python3 validate_proposal.py <proposal_file> [--profile peterson|lindsey] [--style strategic|strategic_dq|strategic_exp|v2|lindsey_default]
+    echo "proposal text" | python3 validate_proposal.py [--profile peterson|lindsey] [--style strategic]
 
 Exit codes:
     0 = PASS (no issues)
@@ -123,7 +123,7 @@ def check_blocks(text):
     return issues
 
 
-def check_report_only_warns(text, profile="samuel", style="strategic"):
+def check_report_only_warns(text, profile="peterson", style="strategic"):
     """Check for WARN-level report-only issues. Returns list of (category, match_text).
     These do NOT modify the text -- they are flagged for agent review only.
     """
@@ -273,7 +273,7 @@ def check_report_only_warns(text, profile="samuel", style="strategic"):
     # a name-only line or an explicit closing-phrase line.
     #
     # Two conditions trigger the warning:
-    #   a. A standalone line of 1-2 capitalized words (e.g. "Lindsey", "Samuel",
+    #   a. A standalone line of 1-2 capitalized words (e.g. "Lindsey", "Peterson",
     #      "Best wishes") following a blank line -- classic sign-off pattern.
     #   b. An explicit closing phrase ("Best,", "Thanks,", "Regards,", "Cheers,",
     #      "Talk soon,", "Sincerely,", "Warmly,") in the last 2 non-empty lines.
@@ -318,7 +318,7 @@ def check_report_only_warns(text, profile="samuel", style="strategic"):
     return issues
 
 
-def check_and_fix_warns(text, profile="samuel"):
+def check_and_fix_warns(text, profile="peterson"):
     """Check for WARN-level issues and auto-fix where possible.
     Returns (fixed_text, issues_found).
     """
@@ -380,24 +380,24 @@ def check_and_fix_warns(text, profile="samuel"):
         issues.append(("markdown_link", f"[{md_links[0][0]}]({md_links[0][1]})"))
         fixed = re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)', r'\2', fixed)
 
-    # 8. Samuel sign-off checks (profile=samuel only).
+    # 8. Peterson sign-off checks (profile=peterson only).
     #
     # These three checks are mutually exclusive -- exactly one fires per proposal.
     # Evaluation order:
-    #   a. signoff_prefix  -- "Samuel" present at end but preceded by a closing word
+    #   a. signoff_prefix  -- "Peterson" present at end but preceded by a closing word
     #                         or hyphen on the same or immediately preceding line.
-    #   b. signoff_spacing -- "Samuel" present at end but no blank line before it.
-    #   c. missing_signoff -- "Samuel" not present at end at all.
+    #   b. signoff_spacing -- "Peterson" present at end but no blank line before it.
+    #   c. missing_signoff -- "Peterson" not present at end at all.
     #
     # "End" is defined after stripping trailing whitespace. Mid-text occurrences of
-    # the word "Samuel" are ignored -- only the final token matters.
+    # the word "Peterson" are ignored -- only the final token matters.
     #
     # CLOSING_WORDS patterns that constitute an unwanted prefix:
-    #   - A standalone line immediately before "Samuel" that is a closing phrase:
+    #   - A standalone line immediately before "Peterson" that is a closing phrase:
     #     "Best,", "Best", "Talk soon,", "Thanks,", "Regards,", "Cheers,"
-    #   - A hyphen/dash directly attached or space-separated before "Samuel" on the
-    #     same line: "-Samuel", "- Samuel"
-    if profile == "samuel":
+    #   - A hyphen/dash directly attached or space-separated before "Peterson" on the
+    #     same line: "-Peterson", "- Peterson"
+    if profile == "peterson":
         tail = fixed.rstrip()  # strip trailing whitespace for all checks below
 
         # Check whether "Samuel" appears as the last token of the (stripped) text.
@@ -482,7 +482,7 @@ def check_and_fix_warns(text, profile="samuel"):
     return fixed, issues
 
 
-def validate(text, profile="samuel", style="strategic"):
+def validate(text, profile="peterson", style="strategic"):
     """
     Run full validation. Returns (verdict, block_issues, warn_issues, fixed_text).
     warn_issues includes both auto-fixable and report-only issues.
