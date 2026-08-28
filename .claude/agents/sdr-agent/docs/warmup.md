@@ -82,6 +82,8 @@ Q7 (website): [ANSWERED -- "creeksidedental.com"] / [UNANSWERED]
 
 **Budget AND revenue are pre-qualification.** If Q3 (ad spend / budget) or Q6 (average monthly revenue) is still UNANSWERED after W0, it is MANDATORY in the message. These two answers determine the revenue-tier qualification (see Partner Redirect Mode in `docs/response-guidelines.md`), so both must be known before the call to decide whether the lead is worth talking to. Work the revenue question in however it fits naturally, but never drop it. Every other question can be skipped if answered; Q3 and Q6 cannot.
 
+**Answers must be sent BEFORE the call, not covered live.** Never close a warmup message with "no need to send anything beforehand, we can cover it on the call" or any equivalent. The purpose of these questions is to get the answers IN WRITING before the call. Peterson wants the pre-call answers sent ahead of time. BAD: "No need to send all this over, we can go through it together on the call." GOOD: ask the questions and let the framing naturally imply a reply is expected before the call.
+
 **Protect the booked call.** The call is already booked. Nothing in the warmup may jeopardize it: no pricing discussion, no spend floors or minimums, no disqualification language. Keep it short and low-friction. If the lead's answers later reveal a low budget, that is handled on the call or afterward (partner routing) -- never in the warmup.
 
 ---
