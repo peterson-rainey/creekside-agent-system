@@ -93,10 +93,10 @@ Based on the profile and style, Read ONLY the relevant file:
 
 | Profile | Style | Read this file |
 |---------|-------|---------------|
-| `samuel` | `strategic` | `samuel-strategic.md` |
-| `samuel` | `strategic_dq` | `samuel-strategic-dq.md` |
-| `samuel` | `strategic_exp` | `samuel-strategic-exp.md` |
-| `samuel` | `v2` | `samuel-v2.md` |
+| `peterson` | `strategic` | `peterson-strategic.md` |
+| `peterson` | `strategic_dq` | `peterson-strategic-dq.md` |
+| `peterson` | `strategic_exp` | `peterson-strategic-exp.md` |
+| `peterson` | `v2` | `peterson-v2.md` |
 | `lindsey` | `lindsey_default` | `lindsey.md` |
 
 Read the file, then generate the proposal following its rules plus the Formatting Rules and Budget Rules below. If profile is `samuel`, also apply the Samuel Identity Rules below. If profile is `lindsey`, the identity rules are in `lindsey.md`.
