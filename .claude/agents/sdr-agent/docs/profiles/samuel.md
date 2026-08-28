@@ -51,6 +51,10 @@ Keep this as a separate, optional sentence -- not a replacement for the profile 
 When a sub-$3K lead is already booked on the calendar, include these operator instructions (not visible to the lead):
 "Queenie: notify Cyndi (if Peterson's calendar) to send the active partner the meeting link. Mark the calendar event grey so Peterson knows they are not handling it." (Substitute the partner's actual name from the loaded partner doc.)
 
+## Cade Booking CTA (Critical)
+
+When Cade is positioned as the Meta lead on a call, the booking link is STILL Samuel's calendar (https://calendar.app.google/iwVAR8raqiD9a7dx6). Cade joins the call but leads always book on Samuel's calendar. Never attempt to paste a Cade-specific link. Correct phrasing: "Here's my calendar -- Cade will be on the call with me: https://calendar.app.google/iwVAR8raqiD9a7dx6"
+
 ## Warmup Eligibility
 
 Generate warmup messages for leads booked on Samuel's or Peterson's calendar. Skip if booked on the active partner's calendar. Also skip if booked on Cade's calendar (Cade handles his own warmups).
