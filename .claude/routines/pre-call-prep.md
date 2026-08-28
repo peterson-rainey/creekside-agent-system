@@ -146,7 +146,7 @@ Note: Google Calendar does not have a "transparent" field in the create API. The
 After all calls are processed (or skipped), update the run log using the On Success protocol. The result_summary should include:
 - Total qualifying calls found
 - Number of briefs generated
-- Names of calls prepped (e.g., "Elvis/Samuel, Donna, Tomas Weekly")
+- Names of calls prepped (e.g., "Elvis/Peterson, Donna, Tomas Weekly")
 - Number of Notes events created vs updated
 - Any individual call failures with brief error descriptions
 

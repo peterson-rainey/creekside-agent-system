@@ -54,9 +54,9 @@ For each conversation:
    Separate each message with a blank line.
 3. Determine response type by looking at the conversation:
    - Find the last message's sender
-   - If last sender is NOT "Samuel R." (i.e., the lead sent the last message) -> `lead`
-   - If last sender IS "Samuel R." AND total messages > 6 -> `followup`
-   - If total messages <= 6 and last sender is Samuel -> `lead` (treat as fresh thread)
+   - If last sender is NOT "Peterson R." (i.e., the lead sent the last message) -> `lead`
+   - If last sender IS "Peterson R." AND total messages > 6 -> `followup`
+   - If total messages <= 6 and last sender is Peterson -> `lead` (treat as fresh thread)
    - Override: randomly assign 1 in 7 conversations as `nurture` regardless
 
 ## Step 4: Spawn sdr-agent (in parallel)

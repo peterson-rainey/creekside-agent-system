@@ -3,9 +3,9 @@
 Deterministic SDR response validator.
 
 Usage:
-    python3 validate_response.py <response_file> [--profile samuel|lindsey]
+    python3 validate_response.py <response_file> [--profile peterson|lindsey]
     python3 validate_response.py --profile lindsey <response_file>
-    echo "response text" | python3 validate_response.py [--profile samuel|lindsey]
+    echo "response text" | python3 validate_response.py [--profile peterson|lindsey]
 
 Exit codes:
     0 = PASS (no issues)
@@ -24,7 +24,7 @@ Rules enforced (selected highlights):
 - Partner-video co-reference when active partner has_upwork_video=False (BLOCK)
 - "Cade" in lindsey-profile drafts (BLOCK)
 - Off-platform contact info: email addresses or phone numbers (BLOCK -- offplatform_contact_email /
-  offplatform_contact_phone). Covers the lead's AND our own addresses (Lindsey's, Samuel's,
+  offplatform_contact_phone). Covers the lead's AND our own addresses (Lindsey's, Peterson's,
   @creeksidemarketingpros.com, etc.). The only permitted contact mechanism is the whitelisted
   calendar URL from the loaded profile doc.
 - Pricing leaks, hourly rates, timeline commitments, placeholder brackets (BLOCK)
@@ -92,7 +92,7 @@ _PROFILES_DIR = os.path.join(
 )
 
 
-def _load_active_partner(profile="samuel"):
+def _load_active_partner(profile="peterson"):
     """
     Parse active_partner: from the profile doc matching `profile`, then fall
     back to sdr-agent.md's global line, then fall back to the registry default.
@@ -138,9 +138,9 @@ def _load_active_partner(profile="samuel"):
     return slug, _PARTNER_REGISTRY[slug]
 
 
-# Module-level load uses default profile (samuel) for the whitelist set.
+# Module-level load uses default profile (peterson) for the whitelist set.
 # Per-profile resolution happens inside check_blocks() at call time.
-_ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("samuel")
+_ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("peterson")
 
 # ---------------------------------------------------------------------------
 # Calendar URL whitelist (FIX A)
@@ -148,10 +148,10 @@ _ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("samuel")
 # URL not in this set is a BLOCK.
 # The active white-label partner's calendar is dynamically added at load time.
 # NOTE: Per-profile partner resolution happens inside check_blocks() at call
-# time, so the module-level whitelist uses the samuel-profile active partner.
+# time, so the module-level whitelist uses the peterson-profile active partner.
 # check_blocks() rebuilds the effective whitelist per profile at runtime.
 # ---------------------------------------------------------------------------
-# Cade's booking calendar -- whitelisted under the samuel profile ONLY
+# Cade's booking calendar -- whitelisted under the peterson profile ONLY
 # (Peterson ruling 2026-08-28: Cade-led calls book on Cade's calendar).
 _CADE_CALENDAR = (
     "https://calendar.google.com/calendar/appointments/schedules/"
@@ -159,10 +159,10 @@ _CADE_CALENDAR = (
 )
 
 CALENDAR_URL_WHITELIST = {
-    "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (Peterson's lead-facing sales calendar)
-    _CADE_CALENDAR,                                      # Cade (samuel profile only, Cade-led calls)
+    "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # peterson (lead-facing sales calendar)
+    _CADE_CALENDAR,                                      # Cade (peterson profile only, Cade-led calls)
     "https://calendar.app.google/KwQP8WXiFsQgNSdZA",   # lindsey
-    _ACTIVE_PARTNER["calendar"],                         # active white-label partner (samuel profile default)
+    _ACTIVE_PARTNER["calendar"],                         # active white-label partner (peterson profile default)
 }
 
 # Regex to find any calendar.app.google, calendar.google.com/calendar/...,
@@ -186,13 +186,13 @@ _CALENDAR_URL_RE = re.compile(
 # BLOCK patterns -- any match = response must be rewritten by the agent
 # ---------------------------------------------------------------------------
 BLOCK_PATTERNS = [
-    # Known-wrong Samuel calendar URL (must be replaced with iwVAR8raqiD9a7dx6).
+    # Known-wrong Peterson calendar URL (must be replaced with iwVAR8raqiD9a7dx6).
     # This URL appeared in a live response on 2026-08-18 despite the correct URL
     # being established. Explicitly BLOCK it so it can never appear in a draft.
     (
         r'calendar\.app\.google/4ierPN3nNxLMMTAz7',
         "non_whitelisted_calendar_url -- WRONG calendar URL (4ierPN3nNxLMMTAz7) detected; "
-        "replace it with the correct Samuel sales calendar: "
+        "replace it with the correct Peterson sales calendar: "
         "https://calendar.app.google/iwVAR8raqiD9a7dx6",
     ),
 
@@ -246,7 +246,7 @@ BLOCK_PATTERNS = [
     (r'\[insert\b', "placeholder_insert"),
 
     # Off-platform contact info: email addresses (Upwork compliance -- BLOCK)
-    # Covers the lead's AND our own addresses (Lindsey's, Samuel's, Peterson's,
+    # Covers the lead's AND our own addresses (Lindsey's, Peterson's, Peterson's,
     # @creeksidemarketingpros.com, etc.). Retrieved context may contain emails but
     # they must never appear in a lead-facing draft. The whitelisted calendar URLs
     # do not contain '@', so no false-positive risk from URL matching.
@@ -456,16 +456,16 @@ SPEND_FLOOR_NEGATION = re.compile(
     re.IGNORECASE,
 )
 
-def check_blocks(text, profile="samuel"):
+def check_blocks(text, profile="peterson"):
     """
     Check for BLOCK-level issues. Returns list of (category, match_text).
 
-    profile: 'samuel' (default) or 'lindsey'.
+    profile: 'peterson' (default) or 'lindsey'.
 
     Calendar URL enforcement (profile-aware):
-      - samuel: standard whitelist (Samuel's calendar + Lindsey's Calendly +
+      - peterson: standard whitelist (Peterson's calendar + Lindsey's Calendly +
         the profile's active partner calendar). Any other booking URL is a BLOCK.
-      - lindsey: Samuel's calendar (https://calendar.app.google/iwVAR8raqiD9a7dx6)
+      - lindsey: Peterson's calendar (https://calendar.app.google/iwVAR8raqiD9a7dx6)
         is ALWAYS a BLOCK. Lindsey's calendar.app.google link + the lindsey-profile's
         active partner calendar are allowed. Any other URL is a BLOCK.
         The lindsey-profile active partner's calendar is loaded per-profile at
@@ -479,11 +479,11 @@ def check_blocks(text, profile="samuel"):
 
     # Build the effective whitelist for this profile + partner combination.
     _effective_whitelist = {
-        "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (lead-facing sales calendar)
+        "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # peterson (lead-facing sales calendar)
         "https://calendar.app.google/KwQP8WXiFsQgNSdZA",   # lindsey
         active_partner["calendar"],                          # active partner for THIS profile
     }
-    # Cade's calendar is whitelisted under samuel ONLY (Peterson ruling 2026-08-28:
+    # Cade's calendar is whitelisted under peterson ONLY (Peterson ruling 2026-08-28:
     # Cade-led calls book on Cade's calendar). Under lindsey, Cade never appears,
     # so his calendar stays a BLOCK.
     if profile != "lindsey":
@@ -507,19 +507,19 @@ def check_blocks(text, profile="samuel"):
 
     # Calendar URL whitelist check (B1)
     # Profile-aware:
-    #   - lindsey: Samuel's calendar.app.google URL is ALWAYS a BLOCK.
+    #   - lindsey: Peterson's calendar.app.google URL is ALWAYS a BLOCK.
     #     Lindsey's Calendly + the lindsey-profile's active partner calendar are
     #     allowed (even when the partner uses a calendar.google.com URL).
-    #   - samuel: standard effective whitelist applies.
-    _SAMUEL_CALENDAR = "https://calendar.app.google/iwVAR8raqiD9a7dx6"
+    #   - peterson: standard effective whitelist applies.
+    _PETERSON_CALENDAR = "https://calendar.app.google/iwVAR8raqiD9a7dx6"
     for url_match in _CALENDAR_URL_RE.finditer(text):
         url = url_match.group().rstrip('.,;)')  # strip trailing punctuation
         if profile == "lindsey":
-            if url == _SAMUEL_CALENDAR:
-                # Samuel's calendar is always blocked on lindsey profile
+            if url == _PETERSON_CALENDAR:
+                # Peterson's calendar is always blocked on lindsey profile
                 issues.append((
                     "lindsey_blocked_calendar_url",
-                    f"{url} -- Samuel's booking calendar must never appear in a "
+                    f"{url} -- Peterson's booking calendar must never appear in a "
                     "Lindsey-profile draft (Cross-Profile Routing Prohibition); "
                     "use Lindsey's booking calendar or the active partner's calendar instead",
                 ))
@@ -531,11 +531,11 @@ def check_blocks(text, profile="samuel"):
                     f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
         else:
-            # samuel (default) or unknown profile: standard whitelist
+            # peterson (default) or unknown profile: standard whitelist
             if url not in _effective_whitelist:
                 issues.append((
                     "non_whitelisted_calendar_url",
-                    f"{url} -- only approved URLs are samuel: "
+                    f"{url} -- only approved URLs are peterson: "
                     "https://calendar.app.google/iwVAR8raqiD9a7dx6 | "
                     "lindsey: https://calendar.app.google/KwQP8WXiFsQgNSdZA | "
                     f"Cade (Cade-led calls): {_CADE_CALENDAR} | "
@@ -543,11 +543,11 @@ def check_blocks(text, profile="samuel"):
                 ))
 
     # "Cade" in lead-facing response -- profile-dependent (ruling 2026-07-23).
-    # samuel profile: Cade references are ALLOWED ("Cade, my partner" / "my
+    # peterson profile: Cade references are ALLOWED ("Cade, my partner" / "my
     # co-founder"). Cade owns Meta for default-path (higher-value) leads; the
     # active white-label partner is the Meta specialist for partner-routed leads
     # (especially sub-$3K/month spend). Cade's calendar URL IS whitelisted under
-    # samuel (ruling 2026-08-28) -- Cade-led calls book on Cade's calendar. Under
+    # peterson (ruling 2026-08-28) -- Cade-led calls book on Cade's calendar. Under
     # lindsey it remains a BLOCK.
     # lindsey profile: solo-freelancer persona -- any "Cade" mention is a BLOCK.
     if profile == "lindsey":
@@ -923,15 +923,15 @@ def check_and_fix_warns(text):
     # 11. Signatures (trailing)
     # Anchored to end-of-text to avoid false positives on mid-sentence name mentions.
     # Catches:
-    #   Bare names:              "Samuel" / "Lindsey" (with optional preceding newline)
+    #   Bare names:              "Peterson" / "Lindsey" (with optional preceding newline)
     #   Dash-prefixed names:     "- Lindsey" / "– Lindsey" / "— Lindsey"
-    #   Full names/initials:     "Lindsey Bouffard" / "Lindsey B." / "Samuel Rainey"
-    #   Closing + name on line:  "Thanks, Lindsey" / "Talk soon, Samuel"
+    #   Full names/initials:     "Lindsey Bouffard" / "Lindsey B." / "Peterson Rainey"
+    #   Closing + name on line:  "Thanks, Lindsey" / "Talk soon, Peterson"
     #   Multi-line closings:     "Best,\nLindsey Bouffard"
     #   Standalone closings:     "Best," / "Regards," / "Cheers,"
     # All patterns are stripped as WARN (auto-fix: remove the signature block).
     _PERSONA_NAME_RE = (
-        r'(?:Lindsey(?:\s+Bouffard|\s+B\.)?|Samuel(?:\s+Rainey)?)'
+        r'(?:Lindsey(?:\s+Bouffard|\s+B\.)?|Peterson(?:\s+Rainey)?)'
     )
     sig_patterns = [
         # Multi-line: "Best,\nLindsey Bouffard" or "Talk soon,\nLindsey Bouffard"
@@ -943,12 +943,12 @@ def check_and_fix_warns(text):
         # Dash/en-dash/em-dash prefixed persona names at end
         r'[\n\s]*[-\u2013\u2014]\s*' + _PERSONA_NAME_RE + r'\s*$',
         # Bare persona names at end (with optional preceding newline/whitespace).
-        # Also catches the Alan Schulman pattern: "...Changes how I would write it. Samuel"
-        # where "Samuel" is the final word after a sentence-ending period+space.
+        # Also catches the Alan Schulman pattern: "...Changes how I would write it. Peterson"
+        # where "Peterson" is the final word after a sentence-ending period+space.
         # The r'(?:\n\s*|\s+)' already covers the space-before-name case.
         r'(?:\n\s*|\s+)' + _PERSONA_NAME_RE + r'\s*$',
         # Lone persona name as the very last line, with no preceding whitespace requirement
-        # (handles edge case where name is appended with no space: "...it.\nSamuel" or literal "Samuel" at EOF).
+        # (handles edge case where name is appended with no space: "...it.\nPeterson" or literal "Peterson" at EOF).
         r'(?:^|\n)' + _PERSONA_NAME_RE + r'\s*$',
         # Standalone closing lines (no name)
         r'\n\s*Best,?\s*$',
@@ -1097,7 +1097,7 @@ def check_and_fix_warns(text):
             break  # One WARN is enough; don't stack duplicates
 
     # 14a. "Cade" check moved to check_blocks (profile-dependent, ruling 2026-07-23):
-    # samuel profile allows Cade references; lindsey profile BLOCKs them.
+    # peterson profile allows Cade references; lindsey profile BLOCKs them.
 
     # 14c. AI/humanity false-drafting-denial patterns (WARN, no auto-fix -- updated per A1 policy)
     # NEW POLICY (A1): affirming the lead is talking to a real person is now ALLOWED.
@@ -1450,11 +1450,11 @@ def check_and_fix_warns(text):
     return fixed, issues
 
 
-def validate(text, profile="samuel"):
+def validate(text, profile="peterson"):
     """
     Run full validation. Returns (verdict, block_issues, warn_issues, fixed_text).
 
-    profile: 'samuel' (default) or 'lindsey'. Passed to check_blocks for
+    profile: 'peterson' (default) or 'lindsey'. Passed to check_blocks for
     profile-aware calendar URL enforcement (B1).
     """
     block_issues = check_blocks(text, profile=profile)
@@ -1469,14 +1469,14 @@ def validate(text, profile="samuel"):
 
 
 def main():
-    # Parse arguments: optional --profile flag (samuel|lindsey) and file path.
+    # Parse arguments: optional --profile flag (peterson|lindsey) and file path.
     # Accepted forms:
     #   validate_response.py <file>
     #   validate_response.py --profile lindsey <file>
     #   validate_response.py <file> --profile lindsey
     #   echo "text" | validate_response.py --profile lindsey
     args = sys.argv[1:]
-    profile = "samuel"
+    profile = "peterson"
     file_path = None
 
     i = 0
@@ -1490,8 +1490,8 @@ def main():
         else:
             i += 1
 
-    if profile not in ("samuel", "lindsey"):
-        profile = "samuel"  # default for unrecognised values
+    if profile not in ("peterson", "lindsey"):
+        profile = "peterson"  # default for unrecognised values
 
     # Read response text from file argument or stdin
     if file_path:

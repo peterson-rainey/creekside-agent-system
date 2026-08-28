@@ -220,7 +220,7 @@ A Grand Slam Offer passes ALL of these:
 - Platform specialists: Google Ads and Meta Ads management ONLY
 - Team: Boutique (2-10). Peterson Rainey (CEO) + Cade (COO, 20% equity), contractor-based delivery
 - Website: creeksidemarketingpros.com | YouTube: @CreeksideMarketing1
-- Legal name on Upwork: "Samuel Rainey" (Peterson is middle name)
+- Name on Upwork: "Peterson Rainey"
 - Also used: "Ad Spend Proof" (white-label identity in some case studies)
 - AI agent services: separate venture with Tobi Aderounmu — do NOT mix with Creekside data
 
