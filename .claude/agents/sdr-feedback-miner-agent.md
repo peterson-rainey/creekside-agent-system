@@ -137,7 +137,7 @@ Record Pass A results as `PASS_A_IDS` (list of source_id values where `%SDR%` wa
 
 Run a live search directly against ClickUp to catch any content the ingestion pipeline may not yet have indexed:
 
-1. **Search:** Call `clickup_search` with keyword `%SDR%` and filter to the analysis window's created_date range (from WATERMARK_DATE through today).
+1. **Search:** Call `clickup_search` with keyword `%SDR%`. **Date filter conversion (required):** ClickUp APIs take Unix epoch MILLISECONDS, not ISO strings -- convert WATERMARK_DATE first (e.g. via SQL: `SELECT (EXTRACT(EPOCH FROM '<WATERMARK_DATE>'::timestamptz) * 1000)::bigint;`) and pass it as the created-after filter. If the tool rejects the date parameter, run the search unfiltered and discard hits whose comment date (also epoch ms) is older than the converted watermark.
 2. **For each matched task:** Call `clickup_get_task_comments` to retrieve all comments on that task.
 3. **For each comment that has replies:** Call `clickup_get_threaded_comments` using the comment id. The `%SDR%` marker is most commonly found in Queenie's Upwork Leads lead task threaded replies, not in top-level comments -- always drill into threads.
 4. **If the search surfaces any chat hits:** Call `clickup_get_chat_channel_messages` for that channel, then `clickup_get_chat_message_replies` for any message with a reply count > 0.
