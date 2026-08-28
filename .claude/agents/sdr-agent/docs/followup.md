@@ -55,6 +55,12 @@ Before generating any touch, compute the cadence position from thread timestamps
 - Every touch carries some CTA, minimum a re-engagement question. Not necessarily the call ask.
 - **HARD CAP: 1-3 sentences maximum.** Before validating, count the sentences in your draft. If over 3, cut to the single strongest idea. One idea per touch -- never stack idea + case study + CTA. Brevity is mandatory and non-negotiable.
 
+**Every follow-up must attempt to book a call OR restart the conversation.** A touch that provides information but does not lead anywhere -- no call attempt, no re-engagement question, no clear next step -- is a failed touch. Rewrite it. BAD: a message that shares a case study and ends flatly with no CTA. GOOD: share the case study and close with the calendar link or a direct re-engagement question.
+
+**EXCEPTION -- self-stated selection process:** When the lead has already stated their own process for choosing a provider (e.g., "I'll book a call with the person I find most interesting from the audits"), do NOT push the calendar link on top of that. They've already stated they'll book when ready. In that case, send only the first substantive sentence that adds value -- the booking prompt is redundant and reads as pushiness. BAD: "I'd love to chat, here's my calendar: [link]" -- they already said they'll book. GOOD: send one relevant sentence of value only.
+
+**When a lead gives no questions needing answers:** slim the message down, ask 1-2 qualifying questions, and push toward booking. Don't pad the response with information they didn't ask for.
+
 **MICRO-VARIANCE BETWEEN TOUCHES:** Between consecutive touches to the same lead, vary sentence count, sentence length, and structure. Never send two touches with parallel construction (e.g., both opening with a question, both ending with a CTA in the same shape). Occasional fragments and casual constructions are allowed and human -- "Still open?" as a standalone follow-on message, or starting a sentence with "And" or "So." Do NOT vary by adding filler -- brevity caps still govern; variance comes from structure, not length inflation.
 
 **NEVER use:** "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
