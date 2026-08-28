@@ -127,8 +127,8 @@ SELECT rc.source_id, rc.source_table, LEFT(rc.full_text, 500) AS preview
 FROM raw_content rc
 WHERE rc.source_table IN ('clickup_comment_threads', 'clickup_chat_entries')
   AND position('%SDR%' in rc.full_text) > 0
-  AND rc.created_at > '<WATERMARK_DATE>'::timestamptz
-ORDER BY rc.created_at DESC;
+  AND rc.extracted_at > '<WATERMARK_DATE>'::timestamptz
+ORDER BY rc.extracted_at DESC;
 ```
 
 Record Pass A results as `PASS_A_IDS` (list of source_id values where `%SDR%` was found).
