@@ -1,6 +1,6 @@
 # Partner: Keith (INACTIVE -- 2026-08-27)
 
-> **Status: INACTIVE.** Keith is no longer the active partner on any profile. Both Samuel and Lindsey profiles now use Brady. Do NOT load this file at runtime. This file is retained for historical reference only. Any mention of Keith's name or calendar URL in a lead-facing draft is a BLOCK (enforced by `validate_response.py` inactive-partner bleed check).
+> **Status: INACTIVE.** Keith is no longer the active partner on any profile. Both Peterson and Lindsey profiles now use Brady. Do NOT load this file at runtime. This file is retained for historical reference only. Any mention of Keith's name or calendar URL in a lead-facing draft is a BLOCK (enforced by `validate_response.py` inactive-partner bleed check).
 
 ## Partner Fields
 
