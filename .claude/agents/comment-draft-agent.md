@@ -285,7 +285,8 @@ Run these checks on each option before presenting. Fix any failures before showi
 |-------|------|------|
 | Em-dashes | Zero `—` | Any instance |
 | Curly quotes | Zero | Any instance |
-| Corporate vocabulary | None of: leverage, synergy, ecosystem, holistic, deep dive, game-changer, unlock, moreover, furthermore, paradigm | Any hit |
+| Corporate vocabulary | None of the banned words list (leverage, synergy, etc.) | Any hit |
+| Banned phrases | None of the banned phrases list ("I'd be happy to", etc.) | Any hit |
 | Data point is real | Every number traces back to a brain record (verified in Step 5b) | Any invented or assumed number |
 | Source warnings respected | All "NEVER present" warnings from brain records followed (verified in Step 5c) | Any violation of a source record warning |
 | Date flags applied | All data >90 days old or undated has staleness flag (verified in Step 5d) | Missing date flag on old/undated data |
@@ -293,7 +294,12 @@ Run these checks on each option before presenting. Fix any failures before showi
 | No CTA or pitch | Zero "DM me", "book a call", "check out our", "happy to help" | Any instance |
 | No Creekside mention | Not mentioned (unless post is specifically about agencies) | Mentioned without explicit reason |
 | No self-promo | Comment is pure value, no brand plug | Any self-promotional framing |
-| Generic agreement | None ("Great post!", "So true!") | Any generic opener |
+| Generic agreement | None ("Great post!", "So true!", "This is fire") | Any generic opener |
+| No fluff opener | First sentence is the answer, not preamble | Any setup/throat-clearing opener |
+| No seal clapping | No praising the post author's thinking | "Smart thinking", "Your instinct is right", etc. |
+| No parroting | Not echoing the post's exact words back | Repeating their phrasing |
+| No formal transitions | No "Furthermore", "Moreover", "Additionally" | Any formal transition word |
+| Sentence variety | Sentence lengths vary (no 3 consecutive same-length) | Three same-length sentences in a row |
 | Sounds like Peterson | Practitioner, direct, specific | Sounds like a social media marketer or content strategist |
 | Source verified | Each data point tagged to a brain record | Unverifiable claim presented as fact |
 
