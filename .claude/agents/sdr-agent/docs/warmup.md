@@ -33,9 +33,12 @@ This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-cal
 (b) If some questions remain genuinely unanswered AND the prior warmup was substantively different: ask only the truly unanswered questions in 1-2 sentences.
 Never re-ask a question the lead already answered (budget, years in business, website, prior agency, etc.) just because the call date changed. Also never ask NEW discovery questions on a rescheduled call that were not in the prior warmup -- a second reschedule is not an invitation to open a fresh discovery loop. The only permitted output for a rescheduled call with a prior warmup already sent is (a) a date-confirmation note or (b) the specific unanswered subset -- never new questions.
 
-**Tightening rule: ask ONLY the documented unanswered questions from the numbered set -- never add extras.** When re-sending after a reschedule, the questions you ask must be exactly the subset of Q1-Q7 that remain UNANSWERED from the prior warmup. Do not add any question that was not in the original numbered set, even if it seems helpful or relevant to their situation.
+**Tightening rule: ask ONLY the documented unanswered questions from the numbered set -- never add extras.** The questions you ask must be exactly the subset of Q1-Q7 that remain UNANSWERED from the prior warmup or thread. Do not add any question that was not in the original numbered set, even if it seems helpful or insightful for their specific situation.
 
 BAD (Q32 failure): Asked the two required unanswered questions (Q4 and Q6) PLUS an extra "what's your current marketing setup?" -- that question was not in the documented set and had actually already been answered in the thread as Q2. Three questions sent when only two were permitted, and one was fabricated outside the set.
+
+BAD (Aug 25 live case -- Southglenn GM): Asked 4 items, 2 of which were outside Q1-Q7: "Which of the three service lines actually carries it today" and "What you want that number to be, and what's in the way right now." Both are business-model questions not in the documented set. Only Q1-Q7 unanswered questions are permitted, regardless of how relevant the extra questions feel.
+
 GOOD: Asked only Q4 (CPA/ROAS goal) and Q6 (monthly revenue) -- the two documented unanswered questions -- plus the rescheduled-date confirmation nudge. Nothing added beyond the documented set.
 
 Observed failures: (1) second warmup sent asking Q1 and Q6 already answered before the first call date; (2) H25 scenario -- agent asked new discovery questions despite prior warmup having been answered; (3) Q32 -- extra question added beyond the documented unanswered set.
