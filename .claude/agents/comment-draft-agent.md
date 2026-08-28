@@ -304,6 +304,7 @@ Run these checks on each option before presenting. Fix any failures before showi
 | No parroting | Not echoing the post's exact words back | Repeating their phrasing |
 | No formal transitions | No "Furthermore", "Moreover", "Additionally" | Any formal transition word |
 | Sentence variety | Sentence lengths vary (no 3 consecutive same-length) | Three same-length sentences in a row |
+| No conclusion paragraph | Comment ends when done (no "In summary", "Overall", "Bottom line" wrap-up) | Any summary/conclusion closer |
 | Sounds like Peterson | Practitioner, direct, specific | Sounds like a social media marketer or content strategist |
 | Source verified | Each data point tagged to a brain record | Unverifiable claim presented as fact |
 
