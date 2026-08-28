@@ -151,8 +151,16 @@ _ACTIVE_PARTNER_SLUG, _ACTIVE_PARTNER = _load_active_partner("samuel")
 # time, so the module-level whitelist uses the samuel-profile active partner.
 # check_blocks() rebuilds the effective whitelist per profile at runtime.
 # ---------------------------------------------------------------------------
+# Cade's booking calendar -- whitelisted under the samuel profile ONLY
+# (Peterson ruling 2026-08-28: Cade-led calls book on Cade's calendar).
+_CADE_CALENDAR = (
+    "https://calendar.google.com/calendar/appointments/schedules/"
+    "AcZssZ3j8qaCIjB9v2DojO96hiQDzZOEkUiEnOuBJN1im-dPVtDMjXGehyCUtT_gPaYt0D4i_WxbU037"
+)
+
 CALENDAR_URL_WHITELIST = {
     "https://calendar.app.google/iwVAR8raqiD9a7dx6",    # samuel (Peterson's lead-facing sales calendar)
+    _CADE_CALENDAR,                                      # Cade (samuel profile only, Cade-led calls)
     "https://calendar.app.google/KwQP8WXiFsQgNSdZA",   # lindsey
     _ACTIVE_PARTNER["calendar"],                         # active white-label partner (samuel profile default)
 }
@@ -475,6 +483,11 @@ def check_blocks(text, profile="samuel"):
         "https://calendar.app.google/KwQP8WXiFsQgNSdZA",   # lindsey
         active_partner["calendar"],                          # active partner for THIS profile
     }
+    # Cade's calendar is whitelisted under samuel ONLY (Peterson ruling 2026-08-28:
+    # Cade-led calls book on Cade's calendar). Under lindsey, Cade never appears,
+    # so his calendar stays a BLOCK.
+    if profile != "lindsey":
+        _effective_whitelist.add(_CADE_CALENDAR)
 
     for pattern, category in BLOCK_PATTERNS:
         m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
@@ -525,6 +538,7 @@ def check_blocks(text, profile="samuel"):
                     f"{url} -- only approved URLs are samuel: "
                     "https://calendar.app.google/iwVAR8raqiD9a7dx6 | "
                     "lindsey: https://calendar.app.google/KwQP8WXiFsQgNSdZA | "
+                    f"Cade (Cade-led calls): {_CADE_CALENDAR} | "
                     f"active partner ({active_partner['name']}): {active_partner['calendar']}",
                 ))
 
@@ -532,9 +546,9 @@ def check_blocks(text, profile="samuel"):
     # samuel profile: Cade references are ALLOWED ("Cade, my partner" / "my
     # co-founder"). Cade owns Meta for default-path (higher-value) leads; the
     # active white-label partner is the Meta specialist for partner-routed leads
-    # (especially sub-$3K/month spend). Cade's calendar URL is NOT whitelisted --
-    # the whitelist checks above still apply, so booking CTAs stay on the profile
-    # or active partner's calendars.
+    # (especially sub-$3K/month spend). Cade's calendar URL IS whitelisted under
+    # samuel (ruling 2026-08-28) -- Cade-led calls book on Cade's calendar. Under
+    # lindsey it remains a BLOCK.
     # lindsey profile: solo-freelancer persona -- any "Cade" mention is a BLOCK.
     if profile == "lindsey":
         cade_match = re.search(r'\bCade\b', text)
