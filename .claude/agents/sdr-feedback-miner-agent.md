@@ -101,13 +101,15 @@ ORDER BY date_range_end DESC;
 
 ---
 
-## Step 2.5: Explicit Feedback Marker Pre-Filter
+## Step 2.5: Explicit Feedback Marker Pre-Filter -- TWO-PASS SCAN (BOTH PASSES MANDATORY)
 
-Before fetching full content, run a cheap SQL scan to find any chunks where Peterson used the `%SDR%` marker. This is a guaranteed-capture signal -- never filtered out, always HIGH priority.
+Before fetching full content, scan for any content where Peterson used the `%SDR%` marker. This is a guaranteed-capture signal -- never filtered out, always HIGH priority. Because the ClickUp ingestion pipeline may lag (pagination gaps, missing threaded replies), BOTH passes must ALWAYS run -- never skip Pass B because Pass A returned results.
 
 **Why this step exists:** Peterson includes the literal text `%SDR%` in ClickUp comments or DMs to Queenie when he wants that message guaranteed to be captured as SDR agent feedback. The marker is optional -- unmarked feedback is still extracted via normal analysis in Step 4. But any message containing `%SDR%` bypasses all filtering and goes straight to HIGH priority.
 
 **SQL note:** `%` is the ILIKE wildcard, so the marker cannot be searched with `ILIKE '%%SDR%%'` (that matches everything containing "SDR"). Use `position()` instead, which performs exact string matching with no escaping required.
+
+### Pass A -- DB scan (raw_content)
 
 ```sql
 -- Scan raw_content for chunks already identified in Step 2 (both tables)
@@ -129,7 +131,36 @@ WHERE rc.source_table IN ('clickup_comment_threads', 'clickup_chat_entries')
 ORDER BY rc.created_at DESC;
 ```
 
-Store the list of marked `source_id` values as `MARKED_IDS`. These chunks MUST be included in the Step 3 full-content pull regardless of whether they appeared in the Step 2 Queenie participant filter (Peterson may have marked feedback in a thread that does not mention Queenie by name).
+Record Pass A results as `PASS_A_IDS` (list of source_id values where `%SDR%` was found).
+
+### Pass B -- Live ClickUp API scan (MANDATORY regardless of Pass A results)
+
+Run a live search directly against ClickUp to catch any content the ingestion pipeline may not yet have indexed:
+
+1. **Search:** Call `clickup_search` with keyword `%SDR%` and filter to the analysis window's created_date range (from WATERMARK_DATE through today).
+2. **For each matched task:** Call `clickup_get_task_comments` to retrieve all comments on that task.
+3. **For each comment that has replies:** Call `clickup_get_threaded_comments` using the comment id. The `%SDR%` marker is most commonly found in Queenie's Upwork Leads lead task threaded replies, not in top-level comments -- always drill into threads.
+4. **If the search surfaces any chat hits:** Call `clickup_get_chat_channel_messages` for that channel, then `clickup_get_chat_message_replies` for any message with a reply count > 0.
+
+Collect every comment/message that contains the literal text `%SDR%`. For each, record:
+- `task_id` (or channel id for chat hits)
+- `comment_id` (or message id)
+- `date` (comment created_at)
+- Full text of the comment/message
+- Whether it appeared in Pass A results
+
+Record Pass B results as `PASS_B_HITS`.
+
+### Merge and dedupe
+
+- Combine Pass A and Pass B results.
+- Dedupe by comment id / message content (same comment found in both passes = one entry).
+- Label entries found ONLY in Pass B (absent from Pass A raw_content) with: `[source: clickup live API, task: <task_id>, comment: <comment_id>, date: <date>]` -- these have no raw_content uuid.
+- Store the combined deduplicated list as `MARKED_IDS`. These chunks MUST be included in the Step 3 full-content pull regardless of whether they appeared in the Step 2 Queenie participant filter (Peterson may have marked feedback in a thread that does not mention Queenie by name). Pass B-only hits already carry their full text -- no Step 3 pull needed for those.
+
+### Pipeline lag detection
+
+If Pass B finds `%SDR%` content that was NOT present in Pass A raw_content, record the missed comment ids in `PIPELINE_LAG_HITS`. These will be surfaced in the digest's data-freshness section in Step 7.
 
 ---
 
