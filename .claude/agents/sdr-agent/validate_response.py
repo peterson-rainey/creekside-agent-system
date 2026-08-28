@@ -912,8 +912,14 @@ def check_and_fix_warns(text):
         r'[\n\s]*(?:Thanks|Talk\s+soon|Best|Cheers|Take\s+care|Warm\s+wishes|Sincerely|Regards|Looking\s+forward)[,\s]+' + _PERSONA_NAME_RE + r'\s*$',
         # Dash/en-dash/em-dash prefixed persona names at end
         r'[\n\s]*[-\u2013\u2014]\s*' + _PERSONA_NAME_RE + r'\s*$',
-        # Bare persona names at end (with optional preceding newline/whitespace)
+        # Bare persona names at end (with optional preceding newline/whitespace).
+        # Also catches the Alan Schulman pattern: "...Changes how I would write it. Samuel"
+        # where "Samuel" is the final word after a sentence-ending period+space.
+        # The r'(?:\n\s*|\s+)' already covers the space-before-name case.
         r'(?:\n\s*|\s+)' + _PERSONA_NAME_RE + r'\s*$',
+        # Lone persona name as the very last line, with no preceding whitespace requirement
+        # (handles edge case where name is appended with no space: "...it.\nSamuel" or literal "Samuel" at EOF).
+        r'(?:^|\n)' + _PERSONA_NAME_RE + r'\s*$',
         # Standalone closing lines (no name)
         r'\n\s*Best,?\s*$',
         r'\n\s*Regards,?\s*$',

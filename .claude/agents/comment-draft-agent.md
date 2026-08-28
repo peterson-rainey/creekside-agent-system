@@ -159,7 +159,16 @@ This prevents the agent from generating a comment that contradicts something Pet
 
 ## Step 4: Generate Three Comment Options
 
-Produce three distinct drafts. Each must be grounded in at least one piece of content from the brain -- not invented.
+Produce three distinct drafts. Each must be **adapted from Peterson's actual words** found in Step 3 -- not generated from scratch. The comment should read like something Peterson already said, because it essentially IS something he already said, just reformatted for the platform.
+
+**Adaptation process:**
+1. Start with the verbatim quote or passage from Step 3d
+2. Trim it to the right length for the platform
+3. Remove client names or identifying details (anonymize to "a client" or "a [industry] business")
+4. Adjust formality for the platform (Reddit = more casual, LinkedIn = slightly more structured)
+5. Keep Peterson's specific phrasing, numbers, and sentence patterns as close to the original as possible
+
+If no verbatim quote was found (brain gap), fall back to generating in Peterson's voice using the fingerprint from Step 1, but tag the output [LOW] confidence.
 
 ### Option A -- Short (1-3 sentences)
 
