@@ -400,80 +400,80 @@ def check_and_fix_warns(text, profile="peterson"):
     if profile == "peterson":
         tail = fixed.rstrip()  # strip trailing whitespace for all checks below
 
-        # Check whether "Samuel" appears as the last token of the (stripped) text.
-        ends_with_samuel = bool(re.search(r'Samuel\s*$', tail))
+        # Check whether "Peterson" appears as the last token of the (stripped) text.
+        ends_with_peterson = bool(re.search(r'Peterson\s*$', tail))
 
-        if ends_with_samuel:
+        if ends_with_peterson:
             # --- check a: signoff_prefix ---
-            # Patterns for a forbidden prefix on the same line as Samuel or
+            # Patterns for a forbidden prefix on the same line as Peterson or
             # on the immediately preceding non-empty line.
             #
-            # Same-line patterns: "- Samuel", "-Samuel"
+            # Same-line patterns: "- Peterson", "-Peterson"
             same_line_prefix = re.search(
-                r'(?:[-\u2013\u2014]\s*)Samuel\s*$', tail
+                r'(?:[-\u2013\u2014]\s*)Peterson\s*$', tail
             )
-            # Preceding-line patterns: "Best,\nSamuel", "Best\nSamuel", etc.
+            # Preceding-line patterns: "Best,\nPeterson", "Best\nPeterson", etc.
             # Match: optional blank lines, then a closing word line, then
-            # optional whitespace lines, then "Samuel" at very end.
+            # optional whitespace lines, then "Peterson" at very end.
             CLOSING_WORDS_PATTERN = (
                 r'(?:Best|Talk\s+soon|Thanks|Regards|Cheers|Sincerely|Warmly)'
                 r',?\s*\n'             # closing word, optional comma, newline
-                r'\s*Samuel\s*$'       # then Samuel at end (allowing only ws in between)
+                r'\s*Peterson\s*$'       # then Peterson at end (allowing only ws in between)
             )
             preceding_line_prefix = re.search(CLOSING_WORDS_PATTERN, tail, re.IGNORECASE)
 
             if same_line_prefix or preceding_line_prefix:
                 issues.append(("signoff_prefix",
-                                "sign-off has prefix (closing word or hyphen) before Samuel"))
+                                "sign-off has prefix (closing word or hyphen) before Peterson"))
                 # Auto-fix: remove everything from the offending prefix up to and
-                # including it, leave exactly \n\nSamuel at the end.
-                # Strip trailing "Samuel" and any closing/hyphen junk before it,
+                # including it, leave exactly \n\nPeterson at the end.
+                # Strip trailing "Peterson" and any closing/hyphen junk before it,
                 # then re-append the correct ending.
                 body = re.sub(
                     r'(?:\n\s*(?:Best|Talk\s+soon|Thanks|Regards|Cheers|Sincerely|Warmly),?\s*)?'
-                    r'(?:[-\u2013\u2014]\s*)?Samuel\s*$',
+                    r'(?:[-\u2013\u2014]\s*)?Peterson\s*$',
                     '',
                     tail,
                     flags=re.IGNORECASE,
                 )
-                fixed = body.rstrip() + '\n\nSamuel'
+                fixed = body.rstrip() + '\n\nPeterson'
 
             else:
                 # --- check b: signoff_spacing ---
-                # "Samuel" IS at the end, no forbidden prefix. Check that there is
-                # exactly a blank line (two newlines) before "Samuel".
-                # A blank line requires at least \n\n before "Samuel" (after stripping).
-                has_blank_line = bool(re.search(r'\n\n\s*Samuel\s*$', tail))
+                # "Peterson" IS at the end, no forbidden prefix. Check that there is
+                # exactly a blank line (two newlines) before "Peterson".
+                # A blank line requires at least \n\n before "Peterson" (after stripping).
+                has_blank_line = bool(re.search(r'\n\n\s*Peterson\s*$', tail))
                 if not has_blank_line:
                     issues.append(("signoff_spacing",
-                                    "Samuel present but no blank line before it"))
+                                    "Peterson present but no blank line before it"))
                     # Auto-fix: strip everything after the last paragraph content,
-                    # remove the trailing Samuel (with any single-newline), then
-                    # re-append \n\nSamuel.
-                    body = re.sub(r'\n?\s*Samuel\s*$', '', tail)
-                    fixed = body.rstrip() + '\n\nSamuel'
+                    # remove the trailing Peterson (with any single-newline), then
+                    # re-append \n\nPeterson.
+                    body = re.sub(r'\n?\s*Peterson\s*$', '', tail)
+                    fixed = body.rstrip() + '\n\nPeterson'
                 # else: correct spacing -- no issue to append
 
         else:
             # --- check c: missing_signoff ---
-            issues.append(("missing_signoff", "proposal does not end with 'Samuel'"))
-            # Auto-fix: append \n\nSamuel to the current fixed text (already processed
+            issues.append(("missing_signoff", "proposal does not end with 'Peterson'"))
+            # Auto-fix: append \n\nPeterson to the current fixed text (already processed
             # by earlier fixes above). We append to `fixed` (not `tail`) to preserve
             # any other auto-fix changes made above, but use rstrip() first to avoid
             # trailing whitespace before the sign-off.
-            fixed = fixed.rstrip() + '\n\nSamuel'
+            fixed = fixed.rstrip() + '\n\nPeterson'
 
     # Clean up double spaces and excess blank lines from removals.
     # NOTE: We do NOT run the general \n{3,} collapse or strip() after sign-off fixes
-    # because they would destroy the carefully placed \n\nSamuel ending.
-    # Instead, only clean the body portion (everything before the final Samuel
-    # if a samuel sign-off was added/fixed), or the whole text for non-samuel profiles.
-    if profile == "samuel" and fixed.endswith('\n\nSamuel'):
-        body = fixed[:-len('\n\nSamuel')]
+    # because they would destroy the carefully placed \n\nPeterson ending.
+    # Instead, only clean the body portion (everything before the final Peterson
+    # if a peterson sign-off was added/fixed), or the whole text for non-peterson profiles.
+    if profile == "peterson" and fixed.endswith('\n\nPeterson'):
+        body = fixed[:-len('\n\nPeterson')]
         body = re.sub(r'  +', ' ', body)
         body = re.sub(r'\n{3,}', '\n\n', body)
         body = body.strip()
-        fixed = body + '\n\nSamuel'
+        fixed = body + '\n\nPeterson'
     else:
         fixed = re.sub(r'  +', ' ', fixed)
         fixed = re.sub(r'\n{3,}', '\n\n', fixed)
@@ -506,7 +506,7 @@ def main():
 
     parser = argparse.ArgumentParser(description="Validate an Upwork proposal.")
     parser.add_argument("proposal_file", nargs="?", help="Path to proposal text file (reads stdin if omitted)")
-    parser.add_argument("--profile", default="samuel", choices=["samuel", "lindsey"],
+    parser.add_argument("--profile", default="peterson", choices=["peterson", "lindsey"],
                         help="Proposal profile (default: samuel)")
     parser.add_argument("--style", default="strategic",
                         choices=["strategic", "strategic_dq", "strategic_exp", "v2", "lindsey_default"],
