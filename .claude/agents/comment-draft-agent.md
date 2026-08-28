@@ -130,8 +130,8 @@ Rank results by authenticity -- sources where you get Peterson's actual words ar
 | 2 | `youtube_entries` + `raw_content` | Videos where Peterson/Cade explained this topic on camera | Teaching voice, already public, most polished |
 | 3 | `loom_entries` + `raw_content` | Walkthroughs where Peterson explained something to team or client | Practitioner voice, specific and tactical |
 | 4 | `linkedin_post_examples` | Peterson's prior public takes on this topic | Already in his written voice, ensures consistency |
-| 5 | `gmail_summaries` | Email threads where Peterson answered a client/prospect question | Written voice, specific to real situations |
-| 6 | `clickup_chat_entries` | Project discussions with real tactical context | Casual voice, very authentic |
+| 5 | `gmail_threads` | Email threads where Peterson answered a client/prospect question (full content in main row, no `get_full_content()` needed) | Written voice, specific to real situations |
+| 6 | `clickup_chat_messages` | Individual project discussion messages with real tactical context | Casual voice, very authentic |
 | 7 | `agent_knowledge` | Documented patterns, SOPs, corrected facts, industry data | Verified data points, less voice |
 
 ### 3c: Pull the full transcript (mandatory for top 1-2 matches)
