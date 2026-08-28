@@ -347,7 +347,7 @@ INSERT INTO agent_knowledge (type, title, content, tags, source_context, confide
 VALUES (
   'configuration',
   'SDR Feedback Miner -- Watermark',
-  '{"last_reviewed_through": "[latest chunk date_range_end found]", "last_run": "[today]"}',
+  '{"last_reviewed_through": "[GREATEST of: latest chunk date_range_end found, latest Pass B hit date]", "last_run": "[today]"}',
   ARRAY['sdr-feedback-miner-agent', 'watermark'],
   'Created by sdr-feedback-miner-agent',
   'verified'
