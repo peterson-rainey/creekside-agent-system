@@ -77,6 +77,7 @@ If any BLOCK issue is found, rewrite the response to fix it before presenting.
 Whitelisted links (may always appear in a response):
 - The active profile's booking calendar URL (from loaded profile doc)
 - The active partner's booking calendar URL (from loaded partner doc)
+- Cade's booking calendar URL (samuel profile only, Cade-led calls -- see profile doc)
 - Creekside case study URLs: creeksidemarketingpros.com/case-study-digital-marketing/...
 - Sample report URLs: creekside-dashboard.up.railway.app/report/...
 
