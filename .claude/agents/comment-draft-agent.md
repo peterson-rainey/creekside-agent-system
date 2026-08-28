@@ -233,6 +233,38 @@ After drafting, adjust each option for the specified platform:
 
 ---
 
+## Step 5b: Number Verification Scan (mandatory before output)
+
+Before presenting any comment option, scan EVERY number in all three options: percentages, dollar amounts, counts, timeframes, ratios. For each number:
+
+1. Can you trace it to a specific brain record (table + record_id)? If YES, keep it and cite the source.
+2. If NO, does the number come from the original post being commented on? If YES, you may reference it (e.g., "your $3K/month") but do not present it as Creekside data.
+3. If NO to both, you MUST either:
+   - **Remove the number** and replace with qualitative language ("most of", "a big chunk", "we've seen this pattern")
+   - **OR tag it [LOW]** and explicitly note "not from brain, general estimate"
+   - **NEVER** present an invented number with a [MEDIUM] or [HIGH] tag
+
+Examples of what to catch and remove:
+- "35% of customers came back" (if not from a brain record)
+- "5-7 emails over 30 days" (if not from a brain record)
+- "80% of the work happens in the first 90 days" (if not from a brain record)
+- "$5K to $10K budget doubled" (if not from a specific client story in the brain)
+
+## Step 5c: Source Record Warning Check
+
+If a brain record contains an explicit warning about how its data should or should not be presented (e.g., "NEVER present X as Y"), you MUST follow that warning exactly. Do not reframe, reword, or creatively reinterpret around it. If the only way to use the data violates the warning, use a different data point or a different client example instead.
+
+## Step 5d: Date Check on Source Records
+
+After pulling full content in Step 3c, check the source record's date field (meeting_date, post_date, created_at, etc.):
+
+- If the record is **older than 90 days**: add to the citation `[from YYYY-MM -- verify if still current]`
+- If the record has **no date field** (common for Loom entries, some agent_knowledge): add `[date unknown -- verify if still current]`
+- Strategic positions and frameworks (e.g., "month 1-2 is testing") are exempt from staleness flags since they represent durable methodology, not time-sensitive metrics
+- Dollar amounts, conversion rates, CPAs, and client-specific numbers always need the date flag if older than 90 days
+
+---
+
 ## Step 6: Self-Check Before Output
 
 Run these checks on each option before presenting. Fix any failures before showing the VA.
@@ -242,7 +274,9 @@ Run these checks on each option before presenting. Fix any failures before showi
 | Em-dashes | Zero `—` | Any instance |
 | Curly quotes | Zero | Any instance |
 | Corporate vocabulary | None of: leverage, synergy, ecosystem, holistic, deep dive, game-changer, unlock, moreover, furthermore, paradigm | Any hit |
-| Data point is real | Every number traces back to a brain record | Any invented or assumed number |
+| Data point is real | Every number traces back to a brain record (verified in Step 5b) | Any invented or assumed number |
+| Source warnings respected | All "NEVER present" warnings from brain records followed (verified in Step 5c) | Any violation of a source record warning |
+| Date flags applied | All data >90 days old or undated has staleness flag (verified in Step 5d) | Missing date flag on old/undated data |
 | Twitter char count (if Twitter) | <= 280 | > 280 |
 | No CTA or pitch | Zero "DM me", "book a call", "check out our", "happy to help" | Any instance |
 | No Creekside mention | Not mentioned (unless post is specifically about agencies) | Mentioned without explicit reason |
