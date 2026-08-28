@@ -394,6 +394,22 @@ AI_SLOP_WARN = [
     (r"\bI\s+hope\s+this\s+(?:message\s+)?finds\s+you\s+well\b",
      "ai_slop_warn -- 'I hope this [message] finds you well' is a banned opener; "
      "rephrase to open with substance"),
+    # Aug 17-24 new patterns (Peterson feedback digest):
+    # Meta-commentary telling people how to answer a question
+    (r"\bboth\s+are\s+real\s+answers\b",
+     "ai_slop_warn -- 'both are real answers' is meta-commentary coaching the lead on how to answer; "
+     "remove it; you can explain WHY you're asking but never coach them on how to answer"),
+    (r"\bthere'?s\s+no\s+wrong\s+answer\b",
+     "ai_slop_warn -- 'there's no wrong answer' is meta-commentary; remove it"),
+    (r"\beither\s+(?:answer|option)\s+is\s+fine\b",
+     "ai_slop_warn -- 'either answer/option is fine' is meta-commentary; remove it"),
+    # Filler observation: "Easy one to get wrong"
+    (r"\beasy\s+(?:one\s+)?to\s+get\s+wrong\b",
+     "ai_slop_warn -- 'easy one to get wrong' is an AI filler observation; "
+     "cut it and get to the point"),
+    # Filler observation: "worth pinning down" / "worth noting"
+    (r"\bworth\s+pinning\s+down\b",
+     "ai_slop_warn -- 'worth pinning down' is AI filler framing; cut it"),
 ]
 
 BANNED_PHRASES = [

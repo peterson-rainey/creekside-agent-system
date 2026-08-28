@@ -281,6 +281,7 @@ This spec mirrors the deterministic checks in `validate_response.py` in a human-
 | W1 | No fluff opener ("Good questions,", "Thanks for the detail", etc.) | `fluff_opener` | Yes |
 | W2 | No setup sentence ("I'll be honest", "Fair question", "you asked for honest so here it is") | `setup_sentence` | Yes |
 | W3 | No seal clapping ("Smart thinking", "can tell the difference between X and Y", "that one thing changes everything") | `seal_clapping` | Yes |
+| W3b | No AI-slop meta-commentary ("both are real answers", "there's no wrong answer", "either option is fine", "easy one to get wrong", "worth pinning down") | `ai_slop_warn` | No |
 | W4 | No em-dash (— or " -- ") | `em_dash` | Yes |
 | W5 | No formal transitions ("Furthermore", "Moreover", "Additionally", "In conclusion") | `formal_transition` | Yes |
 | W6 | No banned phrases ("I'd be happy to", "I'd love to", "Feel free to", etc.) | `banned_phrase` | Yes |
