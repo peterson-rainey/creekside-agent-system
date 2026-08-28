@@ -178,6 +178,16 @@ _CALENDAR_URL_RE = re.compile(
 # BLOCK patterns -- any match = response must be rewritten by the agent
 # ---------------------------------------------------------------------------
 BLOCK_PATTERNS = [
+    # Known-wrong Samuel calendar URL (must be replaced with iwVAR8raqiD9a7dx6).
+    # This URL appeared in a live response on 2026-08-18 despite the correct URL
+    # being established. Explicitly BLOCK it so it can never appear in a draft.
+    (
+        r'calendar\.app\.google/4ierPN3nNxLMMTAz7',
+        "non_whitelisted_calendar_url -- WRONG calendar URL (4ierPN3nNxLMMTAz7) detected; "
+        "replace it with the correct Samuel sales calendar: "
+        "https://calendar.app.google/iwVAR8raqiD9a7dx6",
+    ),
+
     # Hourly rates: any $/hr figure
     (r'\$\d[\d,]*\s*/\s*h(?:ou)?r', "hourly_rate"),
     (r'\$\d[\d,]*\s*hourly', "hourly_rate"),

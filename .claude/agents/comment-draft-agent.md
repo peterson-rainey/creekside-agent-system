@@ -90,44 +90,60 @@ If the VA specified a comment type (agree, disagree/nuance, add-data, question),
 
 ---
 
-## Step 3: Search the Brain
+## Step 3: Search the Brain (Find Peterson's Actual Words)
 
-Run BOTH search methods in parallel. Never rely on just one.
+The goal is NOT to generate a comment "about" the topic. The goal is to find a moment where Peterson (or Cade) already answered this exact question -- on a sales call, in a YouTube video, in a message, in an email -- and adapt THAT real answer into a comment. The brain has 1,250+ call transcripts, 196+ YouTube videos, 13K+ emails, 1,100+ Loom walkthroughs, and 1,600+ knowledge entries. The answer almost certainly already exists in Peterson's own words.
 
-**Keyword search** (finds exact terms, client names, specific metrics):
+### 3a: Dual search (always run both)
+
+**Semantic search** (finds conceptual matches):
+```sql
+SELECT source_table, record_id, title, snippet, relevance
+FROM search_all('[TOPIC QUESTION FROM STEP 2 -- phrase it as the question a prospect would ask]', 10);
+```
+
+**Keyword search** (finds exact terms, specific metrics):
 ```sql
 SELECT source_table, record_id, title, snippet, relevance
 FROM keyword_search_all('[KEY TERM FROM STEP 2]', 10);
 ```
 
-**Semantic search** (finds conceptual matches -- use `search_all` via the logged version):
-```sql
-SELECT source_table, record_id, title, snippet, relevance
-FROM logged_keyword_search('[SECOND KEY TERM]', 10, NULL, NULL, 'comment-draft-agent');
-```
+### 3b: Prioritize sources where Peterson spoke or wrote directly
 
-Run a second keyword search for the secondary term if the first doesn't surface useful results:
-```sql
-SELECT source_table, record_id, title, snippet, relevance
-FROM keyword_search_all('[BACKUP TERM]', 8);
-```
+Rank results by authenticity -- sources where you get Peterson's actual words are worth more than summaries or documentation:
 
-**Priority sources to look for:**
-- `fathom_entries` -- call transcripts with real client outcomes and specific numbers
-- `linkedin_post_examples` -- Peterson's prior takes on similar topics (gives you authentic angles)
-- `youtube_entries` -- video transcripts with Peterson's explanations and examples
-- `agent_knowledge` -- industry patterns, documented insights, corrected facts
-- `gdrive_marketing` or `gdrive_operations` -- case study docs, strategy docs
+| Priority | Source | Why | What you get |
+|----------|--------|-----|-------------|
+| 1 | `fathom_entries` + `raw_content` | Sales calls where prospects asked this exact question and Peterson answered it live | Real Q&A in Peterson's natural speaking voice |
+| 2 | `youtube_entries` + `raw_content` | Videos where Peterson/Cade explained this topic on camera | Teaching voice, already public, most polished |
+| 3 | `loom_entries` + `raw_content` | Walkthroughs where Peterson explained something to team or client | Practitioner voice, specific and tactical |
+| 4 | `linkedin_post_examples` | Peterson's prior public takes on this topic | Already in his written voice, ensures consistency |
+| 5 | `gmail_summaries` | Email threads where Peterson answered a client/prospect question | Written voice, specific to real situations |
+| 6 | `clickup_chat_entries` | Project discussions with real tactical context | Casual voice, very authentic |
+| 7 | `agent_knowledge` | Documented patterns, SOPs, corrected facts, industry data | Verified data points, less voice |
 
-**Pull raw content on the best 1-2 matches.** Do not write the comment from summaries alone.
+### 3c: Pull the full transcript (mandatory for top 1-2 matches)
+
+Never write the comment from summaries. Always pull raw content to find Peterson's actual phrasing.
 
 ```sql
-SELECT * FROM get_full_content('[TABLE_NAME]', '[RECORD_ID]');
+SELECT full_text FROM get_full_content('[TABLE_NAME]', '[RECORD_ID]');
 ```
 
-Use this for any fathom_entries, loom_entries, or gdrive records -- summaries miss the specific numbers.
+For fathom_entries and loom_entries, the full transcript is in `raw_content` (not on the main table). For youtube_entries, same pattern. For linkedin_post_examples, the full text is in the `text` column on the main row.
 
-**Also check LinkedIn post history for prior takes on this topic:**
+### 3d: Extract the quote
+
+Once you have the full transcript or text, find the specific passage where Peterson addresses this topic. Look for:
+- Direct answers to questions ("The way I think about it is...")
+- Specific numbers or outcomes ("We saw CPL drop from $45 to $28...")
+- Opinions or takes ("Honestly, I think most agencies get this wrong because...")
+- Frameworks or rules of thumb ("My rule is if your CAC is under 20% of LTV...")
+
+Copy the relevant 1-3 sentences verbatim. This is your raw material for the comment. The comment should be an adaptation of these real words, not a generation from scratch.
+
+### 3e: Check LinkedIn post history for consistency
+
 ```sql
 SELECT id, text, post_date
 FROM linkedin_post_examples
@@ -137,7 +153,7 @@ ORDER BY post_date DESC
 LIMIT 5;
 ```
 
-This prevents the agent from generating a comment that contradicts something Peterson has already said publicly.
+This prevents the agent from generating a comment that contradicts something Peterson has already said publicly. If a prior post exists on this topic, the comment should align with or extend that take, not conflict with it.
 
 ---
 
