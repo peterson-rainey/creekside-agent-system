@@ -44,6 +44,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
+| comment-draft-agent | VA has a social media post (LinkedIn, Reddit, YouTube, Twitter/X, Quora) they want to comment on in Peterson's voice -- generates 2-3 brain-grounded draft options with citations and platform formatting |
 | communication-style-agent | Rewriting messages in Peterson's voice (Gmail, GChat, ClickUp, LinkedIn) |
 | newsletter-compiler-agent | Compile weekly newsletter from pasted contributor submissions (team + external partners). Returns Markdown draft + 3 subject line options for Peterson to edit. Hand off to newsletter-send-agent to deliver. |
 | content-freshness-agent | Weekly pass: identifies blog posts with stale numeric data, updates CPCs/CPAs/ROI figures from RAG database, sets lastModified frontmatter for Google AI freshness signals. Runs Monday 6 AM CT. Admin-only. |
