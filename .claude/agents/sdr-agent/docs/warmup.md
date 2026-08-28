@@ -24,7 +24,7 @@ A warmup message is a LOW-FRICTION prep note. It is NOT a diagnostic, NOT a sale
 
 This is NOT a follow-up. It is NOT a sales message. It is a low-friction pre-call prep message that shows we read their information.
 
-**Partner-booked calls:** If the lead was routed to the active partner's calendar, skip the warmup entirely. The partner handles their own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Samuel profile: Samuel's/Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on the active partner's calendar for any profile, skip.
+**Partner-booked calls:** If the lead was routed to the active partner's calendar, skip the warmup entirely. The partner handles their own pre-call prep. Only generate warmup messages for leads booked on the active profile's calendar (see the loaded profile doc for eligibility). Peterson profile: Peterson's calendar. Lindsey profile: Lindsey's calendar. If booked on the active partner's calendar for any profile, skip.
 
 **No booking links in warmup messages.** The lead has already booked. Never include any calendar link (profile calendar, active partner's calendar, or any other) in a warmup message. The warmup is a pre-call prep message, not a booking prompt. Including a booking link creates a double-booking scenario. Observed failure: warmup messages included the partner's booking link sent to leads who had already booked.
 
@@ -123,7 +123,7 @@ Send the profile video nudge (one natural sentence) + a brief personalized forwa
 Example tone:
 > If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio. We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1. Looking forward to getting into the Google Ads side of things on the call.
 
-**(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
+**(peterson profile only -- Lindsey warmups omit the YouTube channel sentence)**
 
 ---
 
@@ -157,7 +157,7 @@ Even here, personalize the intro beyond "looking forward to speaking with you." 
 All standard voice rules from sdr-agent.md and validation.md apply. Additionally:
 
 - The profile video nudge should feel natural. Both formal and casual phrasing are acceptable: "If you haven't already, I definitely recommend going to my profile to check out my intro video and all the resources I have linked in my bio" is approved and encouraged. "Worth checking out my profile video before we chat" is also fine. Match the tone of the thread.
-- After the profile video nudge, optionally mention our YouTube channel (samuel profile only): "We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1". Separate from the profile video nudge, not a replacement. Do NOT include the YouTube channel reference in Lindsey's warmup messages -- see the lindsey profile doc.
+- After the profile video nudge, optionally mention our YouTube channel (peterson profile only): "We also have a YouTube channel if you want to learn more about us: youtube.com/@creeksidemarketing1". Separate from the profile video nudge, not a replacement. Do NOT include the YouTube channel reference in Lindsey's warmup messages -- see the lindsey profile doc.
 - A brief prep-framing sentence ("So I can better prep for our call...") is realistic and natural -- it is not filler, it is fine to use.
 - No fluff closings. A forward-look sentence is fine if it's specific (references their situation).
 - Keep the whole message under 150 words unless you have 5+ unanswered questions.
@@ -214,7 +214,7 @@ Follow the same output format as the main router (Step 7):
 >
 > So I can better prep for our call, a few quick things: What's your target cost per acquisition or ROAS goal? How long has the practice been open, and what's revenue running at in an average month? And go ahead and drop your website link if you have one.
 
-**(samuel profile only -- Lindsey warmups omit the YouTube channel sentence)**
+**(peterson profile only -- Lindsey warmups omit the YouTube channel sentence)**
 
 Note what this message does NOT do:
 - Does not ask about prior agency experience (they already told us)

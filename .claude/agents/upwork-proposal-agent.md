@@ -17,10 +17,10 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 ```
 .claude/agents/upwork-proposal-agent.md                    # This file (core: routing, shared rules, flow)
 .claude/agents/upwork-proposal-agent/
-  samuel-strategic.md                                      # Samuel: Strategic style (variant A)
-  samuel-strategic-dq.md                                   # Samuel: Strategic + Diagnostic Question style
-  samuel-strategic-exp.md                                  # Samuel: Strategic + Experience style
-  samuel-v2.md                                             # Samuel: V2 Full System style
+  peterson-strategic.md                                    # Peterson: Strategic style (variant A)
+  peterson-strategic-dq.md                                 # Peterson: Strategic + Diagnostic Question style
+  peterson-strategic-exp.md                                # Peterson: Strategic + Experience style
+  peterson-v2.md                                           # Peterson: V2 Full System style
   lindsey.md                                               # Lindsey: profile, identity, style
   fit-check.md                                             # Fit check rules (loaded AFTER proposal)
 ```

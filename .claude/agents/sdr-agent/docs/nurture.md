@@ -97,7 +97,7 @@ Approved variants:
 If the lead was previously routed to the active white-label partner (partner's calendar link was sent or the partner was introduced as their point of contact), nurture touches follow stricter constraints:
 
 - **Value-only touches.** Every touch must stand on its own as useful information (insight, result, outcome curiosity). No hard sell.
-- **No call CTA and no calendar links from Samuel or Lindsey.** The partner owns the call relationship. Do not include the active profile's booking link or any push to book a call with Samuel/Lindsey. A soft acknowledgment that the partner can help ("[active partner name]'s still around if you want to pick things back up") is acceptable only WITHOUT a booking push.
+- **No call CTA and no calendar links from Peterson or Lindsey.** The partner owns the call relationship. Do not include the active profile's booking link or any push to book a call with Peterson/Lindsey. A soft acknowledgment that the partner can help ("[active partner name]'s still around if you want to pick things back up") is acceptable only WITHOUT a booking push.
 - **Never reuse an opener angle already used with this lead.** Before writing, scan all prior outbound messages in the thread. If the opening angle (e.g., bare status check, outcome curiosity) was already used in a previous touch to this lead, rotate to a different angle. Repeating the same opener style reads as automated.
 
 ## Nurture-Specific Rules
