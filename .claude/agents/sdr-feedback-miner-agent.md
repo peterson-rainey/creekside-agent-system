@@ -267,6 +267,8 @@ Period covered: [WATERMARK_DATE] through [latest chunk date]
 Data freshness:
   - clickup_comment_threads: current through [date]
   - clickup_chat_entries: current through [date] [flag if latest chunk is more than 2 days old -- DMs sync daily]
+  - %SDR% scan: Pass A (DB) found [N] marked items | Pass B (live API) found [N] marked items | [N] new via live API only (pipeline lag)
+  [If PIPELINE_LAG_HITS is non-empty: "Pipeline lag detected -- the following comment ids were found live but absent from raw_content: [ids]. These will self-resolve after the next ingestion run."]
 Chunks processed: [N comment thread chunks] + [N chat chunks]
 Signals extracted: [N raw signals]
 Distinct suggestions: [N after deduplication]
