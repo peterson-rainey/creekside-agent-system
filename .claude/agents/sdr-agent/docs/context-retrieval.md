@@ -226,9 +226,7 @@ Filter out initial proposals: responses at turn_index=1 that match the active pr
 
 Deduplicate by first 200 characters of full_response to prevent canned message bias.
 
-**Historical pricing AND performance numbers are NOT quotable from sdr_responses.** Retrieved sdr_responses are reference for voice, structure, and objection handling ONLY. Any pricing specifics inside them -- dollar retainers, setup fees, monthly amounts (e.g., "$1,500 setup / $1,500 a month"), old packages -- are historical and superseded. NEVER quote, adapt, or confirm a dollar figure because it appears in a retrieved past response. The ONLY current pricing policy is the two-stage model in `docs/response-guidelines.md` (Stage 1: custom and performance-based, defer to call; Stage 2: percentage-of-ad-spend tiers only). Observed failure: agent quoted "$1,500 setup and $1,500/mo management" pulled from retrieved history -- this is a leak, not proof.
-
-**Performance numbers in sdr_responses are equally dangerous.** A "$45 CPL" or "3x ROAS" from a 2025 sdr_response may no longer be current. Only cite performance metrics from agent_knowledge (proven results, industry benchmarks) or recent fathom/loom transcripts. When citing any specific number to a lead, verify the source record's date. If older than 90 days, use hedged language ("we've historically seen" not "we're getting").
+**Historical pricing is NOT quotable.** Retrieved sdr_responses are reference for voice, structure, and objection handling ONLY. Any pricing specifics inside them -- dollar retainers, setup fees, monthly amounts (e.g., "$1,500 setup / $1,500 a month"), old packages -- are historical and superseded. NEVER quote, adapt, or confirm a dollar figure because it appears in a retrieved past response. The ONLY current pricing policy is the two-stage model in `docs/response-guidelines.md` (Stage 1: custom and performance-based, defer to call; Stage 2: percentage-of-ad-spend tiers only). Observed failure: agent quoted "$1,500 setup and $1,500/mo management" pulled from retrieved history -- this is a leak, not proof.
 
 ### Discovery Call Insights
 ```sql

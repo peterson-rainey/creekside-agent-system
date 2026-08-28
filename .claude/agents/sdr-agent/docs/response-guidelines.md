@@ -2,18 +2,6 @@
 
 These rules apply to ALL response types unless explicitly noted otherwise.
 
-## Source Record Integrity Rules
-
-When using data from agent_knowledge, industry_experience, or any brain record that contains a client result, performance number, or case study metric:
-
-1. **Respect explicit warnings.** If a brain record contains a caveat about how its data should or should not be presented (e.g., "NEVER present the $1M figure as ad spend"), follow that warning exactly. Do not reframe, reword, or creatively reinterpret around it. If the only way to use the data violates the warning, use a different client example instead.
-
-2. **Do not misattribute revenue.** Total business revenue is not the same as ad-attributed revenue. If a record states "$1M/month in sales revenue" and "$35K/month managed spend," do not imply that $35K produced $1M. Only cite ad-attributed metrics when the record explicitly attributes them to ads.
-
-3. **Date-awareness on performance numbers.** When citing a specific CPA, ROAS, conversion count, or client result, check whether the source record has a date. If the data is older than 90 days or undated, note this when presenting the data to the lead (e.g., use "we've historically seen" rather than "we're seeing" for old data). Strategic positions and frameworks ("month 1-2 is testing") are exempt from this rule since they represent durable methodology.
-
-4. **Historical sdr_responses are NOT quotable for performance numbers.** The existing rule (context-retrieval.md) prevents quoting old pricing from retrieved past responses. This extends to performance numbers too -- a "$45 CPL" from a 2025 sdr_response may no longer be current. Only cite performance metrics from agent_knowledge (proven results, benchmarks) or recent fathom/loom transcripts.
-
 ## Communication Style
 - No Client Formatting Mirroring: Do NOT mirror the client's formatting style (no signatures, no "Best regards", no formal closings). Use YOUR communication style, not the client's.
 - No Signatures: Do not include signatures, closings, or formal endings. Keep responses conversational and direct.
