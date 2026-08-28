@@ -31,6 +31,7 @@ These rules are derived from statistical analysis of 841 Upwork conversations (p
 - **When prospect asks for a call:** 75 words max. Send the calendar link, one short sentence, done. (Data: <100 words = 15.6% drop-off vs 35.4% at 100+ words)
 - **General follow-up replies:** 200 words max. (Data: <200 words = 15.7% drop-off vs 44.6% at 200+)
 - **Never reply more than 3x the prospect's word count.** If they sent 20 words, your reply is 60 words max. (Data: 10x+ ratio = 63.3% drop-off vs 12.7% under 1x)
+- **Proportionality: length scales with the lead's message.** If the lead sends a short reply, keep your response proportionally short. A wordy response to a brief message reads as automated. Special case: when a lead sends a procedural or compliance notice (e.g., "please keep all communication on Upwork"), the correct response is a one-line acknowledgment only -- no multi-paragraph reply. BAD: lead sends a one-sentence Upwork-compliance notice and you reply with four sentences. GOOD: "Got it, will do." Nothing more.
 
 **Question limit:**
 - Ask exactly 1 question per reply. Not zero, not two. One. (Data: 1 question = 16.0% drop, 0 = 22.8%, 2 = 39.3%, 3+ = 50%+)
