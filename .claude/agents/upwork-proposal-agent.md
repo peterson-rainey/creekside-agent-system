@@ -246,7 +246,7 @@ Copy the proposal text to the clipboard using pbcopy.
 
 ## Screening Question Rules
 
-These rules apply to BOTH profiles (Samuel and Lindsey) whenever the job or user provides screening questions or additional questions to answer (separate Q&A fields attached to the job posting).
+These rules apply to BOTH profiles (Peterson and Lindsey) whenever the job or user provides screening questions or additional questions to answer (separate Q&A fields attached to the job posting).
 
 DIRECT-NUMBER RULE (mandatory -- applies to proposals AND screening answers):
 When a job description or screening question asks for a specific figure (peak monthly spend managed, annual spend managed, typical ROAS, number of accounts, years of experience, etc.), give ONE concrete number first, then context. Never answer with a range only. Never deflect with vague language ("it varies," "typically quite substantial," "I won't quote a single hero number"). If you have a truthful, verifiable figure from the case study or context data available to you, lead with it. If no truthful specific figure exists, state that plainly rather than substituting a range or a dodge ("I don't have a single-account figure to cite, but our largest client ran $X/month"). Fabricating a number is never an option.
