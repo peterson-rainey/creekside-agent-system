@@ -66,7 +66,7 @@ Before generating any touch, compute the cadence position from thread timestamps
 **NEVER use:** "just checking in", "any updates?", "don't want to bother you", "hope I'm not being annoying"
 
 When including a call CTA, always include the appropriate calendar link. Never say "happy to hop on a call" without the link.
-- Default path (Creekside-qualified per the revenue-tier table in Partner Redirect Mode, response-guidelines.md): use the profile's booking calendar (from the loaded profile doc -- samuel: Peterson's link; lindsey: Lindsey's Calendly)
+- Default path (Creekside-qualified per the revenue-tier table in Partner Redirect Mode, response-guidelines.md): use the profile's booking calendar (from the loaded profile doc -- peterson: Peterson's link; lindsey: Lindsey's Calendly)
 - Active partner (fails the revenue-tier table): use the calendar_url from the loaded partner doc
 
 Before suggesting a resource, scan conversation for resources already shared. Never re-send the same resource.
@@ -80,7 +80,7 @@ Before suggesting a resource, scan conversation for resources already shared. Ne
 **EXCEPTION -- call 6+ months ago:** When the call is 6 months or older, the onboarding context is stale. Goal switches to re-engagement: book a fresh discovery call. The response MUST include a call CTA with the profile's booking calendar link -- this is mandatory, not optional. Do not replace it with a soft "I'm around" or "just say the word" close; those are nurture CTAs, not re-engagement CTAs.
 
 **Calendar links by profile (mandatory on the 6-month-old-call path):**
-- Samuel profile: https://calendar.app.google/iwVAR8raqiD9a7dx6
+- Peterson profile: https://calendar.app.google/iwVAR8raqiD9a7dx6
 - Lindsey profile: https://calendar.app.google/KwQP8WXiFsQgNSdZA
 
 Reference the old call only as past context, never as current facts. Observed failure (H21ar2): post-call followup on a 7-month-old call omitted the calendar link entirely, settling for a soft "Curious how things have gone since." Documented fail pattern on the lindsey profile (Q23): "I'm around" style close with no calendar link. Both are nurture CTAs masquerading as re-engagement CTAs. The 6-month-old-call path always ends with the profile's booking calendar link, regardless of profile.
