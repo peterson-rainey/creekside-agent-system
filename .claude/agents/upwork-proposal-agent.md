@@ -48,11 +48,11 @@ If the user does not specify a profile, default to `peterson`. If the user does 
 
 All paths are: `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/`
 
-### Step 0: Variant Assignment (Samuel A/B test)
+### Step 0: Variant Assignment (Peterson A/B test)
 
-**Applies only when:** profile = `samuel` AND the user did NOT explicitly specify a style. Skip this step entirely if profile is `lindsey` or if the user named a style.
+**Applies only when:** profile = `peterson` AND the user did NOT explicitly specify a style. Skip this step entirely if profile is `lindsey` or if the user named a style.
 
-Query the most recent Samuel A/B log entry to determine which variant to use next:
+Query the most recent Peterson A/B log entry to determine which variant to use next:
 
 ```sql
 SELECT mode FROM upwork_proposal_logs

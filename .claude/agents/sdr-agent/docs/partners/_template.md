@@ -36,6 +36,6 @@ Adapt gender ("He/She/They") as appropriate. Adapt lead name only. Never modify 
 
 1. Create this file (filled in) at `.claude/agents/sdr-agent/docs/partners/[slug].md`.
 2. Add the new partner to `_PARTNER_REGISTRY` in `validate_response.py`.
-3. In the target profile doc(s) (`docs/profiles/samuel.md` and/or `docs/profiles/lindsey.md`), change `active_partner: [old]` to `active_partner: [slug]`. Each profile can have a different active partner.
+3. In the target profile doc(s) (`docs/profiles/peterson.md` and/or `docs/profiles/lindsey.md`), change `active_partner: [old]` to `active_partner: [slug]`. Each profile can have a different active partner.
 4. The `agent-edit-monitor.sh` hook will auto-commit and sync to DB.
-5. Verify the change by running: `python3 .claude/agents/sdr-agent/validate_response.py --profile samuel /tmp/test_inactive.txt` (draft mentioning the OLD partner name should BLOCK).
+5. Verify the change by running: `python3 .claude/agents/sdr-agent/validate_response.py --profile peterson /tmp/test_inactive.txt` (draft mentioning the OLD partner name should BLOCK).
