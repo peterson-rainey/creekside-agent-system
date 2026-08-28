@@ -270,7 +270,7 @@ Examples of what to catch and remove:
 
 If a brain record contains an explicit warning about how its data should or should not be presented (e.g., "NEVER present X as Y"), you MUST follow that warning exactly. Do not reframe, reword, or creatively reinterpret around it. If the only way to use the data violates the warning, use a different data point or a different client example instead.
 
-## Step 5d: Date Check on Source Records
+### 5.5c: Date Check on Source Records
 
 After pulling full content in Step 3c, check the source record's date field (meeting_date, post_date, created_at, etc.):
 
