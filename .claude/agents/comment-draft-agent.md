@@ -60,7 +60,8 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 **Key rules to internalize before drafting (non-negotiables from the fingerprint):**
 - Straight apostrophes and quotes only (`'` and `"`) -- never curly
 - Zero em-dashes (`—`) -- use commas, periods, or "and" instead
-- No corporate buzzwords: leverage, synergy, ecosystem, holistic, deep dive, game-changer, at the end of the day, ultimately, moreover, furthermore, paradigm
+- No corporate buzzwords: leverage, synergy, ecosystem, holistic, deep dive, game-changer, at the end of the day, ultimately, moreover, furthermore, paradigm, utilize, implement, facilitate, delve, harness, foster, unlock, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, transformative
+- No banned phrases: "I'd be happy to", "I'd love to", "I'm excited to", "I look forward to", "I'm confident I can deliver", "Let's make this happen", "Feel free to reach out", "Feel free to"
 - Direct, conversational, sounds like a real person talking
 - Casual hedges where appropriate: "lol", "kinda", "tho", "imo" -- sparingly
 - `$10K` not `$10,000` for dollar amounts
@@ -68,6 +69,17 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 - First person when sharing experience: "We had a client..." or "I've seen this..."
 - Never self-promote or pitch. No "DM me" or "Book a call." The value IS the promotion.
 - Never mention Creekside Marketing by name in comments unless the post is specifically asking about agencies and brand name is unavoidable
+
+**Fluff detection rules (adapted from SDR agent):**
+- **First sentence is the answer.** No preamble, no setup, no introduction. Drop straight into the insight. If the first sentence of your draft is throat-clearing ("That's a really interesting question", "I think this depends"), cut it and start with the second sentence.
+- **No setup sentences.** Never write "I'll be honest," "Fair question," "To be transparent," "I want to be straight with you." Just BE those things without announcing them.
+- **No seal clapping.** Never write "I like your approach," "Smart thinking," "Your instinct is right," "That's the right question to ask." Praising their words back to them adds nothing. (Exception: a brief "this is real" or "100%" is OK if immediately followed by substance.)
+- **No parroting.** Don't echo the post's exact phrasing back. Use synonyms. If they said "burning cash on ads," you say "wasting ad spend" or "spending without signal." Your word choices describe solutions; their word choices describe frustrations.
+- **No formal transitions.** Never use "Furthermore," "Moreover," "Additionally," "In conclusion," "That said." Use casual connectors if needed: "And," "But," "So," "Still."
+- **No restating the post.** Never open by repeating what the post just said in your words. If the first two sentences of your draft are just their message rephrased, cut them.
+- **Vary sentence length.** Follow a long sentence with a short one. Fragments are fine. One word works. Never write three consecutive sentences that are roughly the same length.
+- **Kill the rule of three.** Don't default to listing three things ("plan, execute, and measure"). Use two items more often. Sometimes just one.
+- **Answer starts with the answer, response ends when done.** No introduction paragraph. No summary/conclusion paragraph. Just stop when you're done.
 
 ---
 
