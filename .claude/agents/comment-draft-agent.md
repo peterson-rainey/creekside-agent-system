@@ -110,7 +110,7 @@ The goal is NOT to generate a comment "about" the topic. The goal is to find a m
 
 **Semantic search** (finds conceptual matches):
 ```sql
-SELECT source_table, record_id, title, snippet, relevance
+SELECT source_table, record_id, title, snippet, score
 FROM search_all('[TOPIC QUESTION FROM STEP 2 -- phrase it as the question a prospect would ask]', 10);
 ```
 
