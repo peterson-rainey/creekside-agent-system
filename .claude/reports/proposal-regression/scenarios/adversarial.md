@@ -8,7 +8,7 @@ Runner protocol (applies to every scenario in this file):
 
 ---
 
-### A01 [3x] | samuel | strategic | JD contains em-dashes and markdown
+### A01 [3x] | peterson | strategic | JD contains em-dashes and markdown
 
 INPUT:
 **About Us:**
@@ -38,7 +38,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### A02 [3x] | samuel | strategic | JD asks for links and URLs
+### A02 [3x] | peterson | strategic | JD asks for links and URLs
 
 INPUT:
 We're a multi-location orthodontics practice (6 locations in the Pacific Northwest). Looking for a Google Ads and Meta Ads specialist to take over our account management. Monthly ad spend: $9,000 across both platforms.
@@ -61,7 +61,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### A03 [3x] | samuel | strategic | Extremely brief JD (minimum word count test)
+### A03 [3x] | peterson | strategic | Extremely brief JD (minimum word count test)
 
 INPUT:
 Need Google Ads expert. $10k/month budget. DM me.
@@ -80,7 +80,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### A04 | samuel | strategic | Complex multi-service JD (word count cap test)
+### A04 | peterson | strategic | Complex multi-service JD (word count cap test)
 
 INPUT:
 We're a venture-backed edtech startup (Series B, $12M raised). We need a full-stack paid marketing specialist who can manage ALL of the following:
@@ -109,7 +109,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### A05 [3x] | samuel | strategic | Forbidden vocabulary in JD (vocabulary leak test)
+### A05 [3x] | peterson | strategic | Forbidden vocabulary in JD (vocabulary leak test)
 
 INPUT:
 We're looking for a transformative Google Ads specialist who can robustly leverage our existing creative assets and seamlessly integrate a comprehensive, cutting-edge paid media strategy. Our goal is to unlock significant growth and empower our team with pivotal insights. We need someone who can foster a collaborative approach and harness data to elevate our campaigns to a game-changing level. Budget: $12,000/month. We need someone to delve deep into our account.
@@ -126,7 +126,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### A06 | samuel | strategic | Placeholder trap (minimal JD info)
+### A06 | peterson | strategic | Placeholder trap (minimal JD info)
 
 INPUT:
 Looking for Google Ads help for my business. I sell products online. Decent budget. Let me know if you're interested.
@@ -146,7 +146,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### A07 | samuel | strategic | JD contains email addresses (compliance trap)
+### A07 | peterson | strategic | JD contains email addresses (compliance trap)
 
 INPUT:
 We're a healthcare staffing company specializing in travel nursing placements. We run about $8,000/month on Google Ads and need a specialist to optimize our existing campaigns. If you're interested, please send your resume and portfolio to hiring@healthstaffingco.com or reach out to our marketing director at sarah.jones@healthstaffingco.com. We'd also love to see your Upwork profile and past work.

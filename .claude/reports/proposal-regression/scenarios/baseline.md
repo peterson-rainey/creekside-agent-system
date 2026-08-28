@@ -8,7 +8,7 @@ Runner protocol (applies to every scenario in this file):
 
 ---
 
-### B01 [3x] | samuel | strategic | Standard Google Ads job
+### B01 [3x] | peterson | strategic | Standard Google Ads job
 
 INPUT:
 We're a mid-sized e-commerce brand selling premium outdoor gear (tents, sleeping bags, backpacks). We've been running Google Ads on our own for about 18 months but our ROAS has been stuck around 2x for the past 6 months. Looking for an experienced Google Ads specialist to take over account management. We spend about $18,000/month on ads. Must be familiar with Shopping campaigns and Performance Max. We need ongoing campaign management, creative testing, and weekly reporting.
@@ -20,7 +20,7 @@ EXPECTED MUST contain:
 - No bold markdown
 - No hourly rate in any form
 - Word count 250-350 (strategic style)
-- Sign-off: two blank lines then "Samuel" with no prefix
+- Sign-off: two blank lines then "Peterson" with no prefix
 - Validation checklist present (all lines PASS)
 - Fit Check output present (no flags expected for this job)
 
@@ -34,7 +34,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### B02 | samuel | strategic_dq | Standard Google Ads job (strategic_dq style)
+### B02 | peterson | strategic_dq | Standard Google Ads job (strategic_dq style)
 
 INPUT:
 Regional dental practice (3 locations in the greater Chicago area) looking for a Google Ads expert. We've been running ads for about a year with a local agency but results have been inconsistent. We need someone to take over full management including new patient acquisition campaigns, call tracking, and local service ad optimization. Budget is $6,000/month total across the 3 locations.
@@ -43,7 +43,7 @@ EXPECTED MUST contain:
 - Diagnostic question within the first 200 characters (must contain "?")
 - Strategic insight about dental Google Ads or local service ads
 - Word count 250-350
-- Sign-off: two blank lines then "Samuel"
+- Sign-off: two blank lines then "Peterson"
 - Fit Check output with YELLOW flag (budget $6k/3 locations = $2k per location, per-platform totals are ambiguous -- agent should use judgment on whether to flag)
 - Validation checklist present
 
@@ -55,7 +55,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### B03 | samuel | strategic_exp | Standard Google Ads + Meta job
+### B03 | peterson | strategic_exp | Standard Google Ads + Meta job
 
 INPUT:
 We run a SaaS product for small law firms. Monthly recurring revenue around $180k, growing fast. We've done a lot of SEO and content and it's worked well but we want to start paid ads for the first time. Looking for someone who can build and manage both Google Ads (search and display) and Facebook/Instagram ads. Budget TBD but we're serious about scaling. Strong preference for someone with B2B SaaS experience.
@@ -65,7 +65,7 @@ EXPECTED MUST contain:
 - Experience credential woven naturally (strategic_exp style mandates experience anchor -- check that it appears)
 - No em-dashes
 - Word count 250-400 (multi-service, experience style)
-- Sign-off: two blank lines then "Samuel"
+- Sign-off: two blank lines then "Peterson"
 - Fit Check: no flags expected (dual platform, clear scope, no budget stated)
 
 EXPECTED MUST NOT contain:
@@ -75,16 +75,16 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### B04 | samuel | v2 | Standard Google Ads job (v2 style)
+### B04 | peterson | v2 | Standard Google Ads job (v2 style)
 
 INPUT:
 Home services company (HVAC + plumbing, serving metro Atlanta). We do about $2.5M in annual revenue and want to accelerate with paid ads. Currently spending $5,000/month on Google Ads with a national agency but they don't feel like they understand local home services. Looking for a Google Ads specialist with local service ad experience. We're open to adding Meta if you think it makes sense.
 
 EXPECTED MUST contain:
-- V2 style structure (whatever the v2 file specifies -- agent reads samuel-v2.md and follows it)
+- V2 style structure (whatever the v2 file specifies -- agent reads peterson-v2.md and follows it)
 - Local home services insight in the opening
 - Word count within v2 style's defined range
-- Sign-off: two blank lines then "Samuel"
+- Sign-off: two blank lines then "Peterson"
 - Fit Check: no red flags expected; $5k/month is above minimum so no budget flag
 
 EXPECTED MUST NOT contain:
@@ -111,12 +111,12 @@ EXPECTED MUST contain:
 EXPECTED MUST NOT contain:
 - "Creekside" anywhere in the proposal text
 - "our team" or "my team"
-- "Samuel" in the proposal text
+- "Peterson" in the proposal text
 - Any sign-off closing phrase ("Best,", "Thanks,", "Regards,") or name
 
 ---
 
-### B06 [3x] | samuel | strategic | Job with screening questions
+### B06 [3x] | peterson | strategic | Job with screening questions
 
 INPUT:
 We're a regional law firm (personal injury, 4 offices in the Southeast US). Currently spending $12,000/month on Google Ads with mediocre results -- too many unqualified leads. Looking for an experienced Google Ads manager to take over. We're specifically looking for someone with legal/law firm experience.
@@ -132,7 +132,7 @@ EXPECTED MUST contain:
 - Answer to Q2 that gives ONE concrete number first (direct-number rule -- no range-only answers)
 - Answer to Q3 that is honest about legal experience (no fabrication; pivot to closest real niche if no direct legal experience)
 - No em-dashes
-- Sign-off: two blank lines then "Samuel"
+- Sign-off: two blank lines then "Peterson"
 - Word count 250-400 (multi-question)
 
 EXPECTED MUST NOT contain:
@@ -142,7 +142,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### B07 | samuel | strategic | High-relevance case study match
+### B07 | peterson | strategic | High-relevance case study match
 
 INPUT:
 We're a local med spa in Dallas offering laser treatments, Botox, fillers, and skin rejuvenation services. We've never run paid ads before and need someone to build out a Google Ads + Instagram strategy from scratch. Looking for someone who has worked with aesthetics or med spa businesses specifically. Budget around $5,000/month.
@@ -161,7 +161,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### B08 | samuel | strategic | No case study match
+### B08 | peterson | strategic | No case study match
 
 INPUT:
 We manufacture industrial-grade fire suppression systems for large commercial facilities, data centers, and manufacturing plants. We've never done paid ads and need someone to build out Google Ads from scratch to generate B2B leads. Decision makers are facility managers and building owners. Budget is flexible, around $4,000/month to start.

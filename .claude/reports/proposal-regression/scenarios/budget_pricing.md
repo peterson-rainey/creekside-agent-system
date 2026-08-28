@@ -8,7 +8,7 @@ Runner protocol (applies to every scenario in this file):
 
 ---
 
-### BP01 [3x] | samuel | strategic | Below-minimum budget (RED flag)
+### BP01 [3x] | peterson | strategic | Below-minimum budget (RED flag)
 
 INPUT:
 Small family-owned bakery in Austin, TX. We have a physical storefront and a growing online order business. We want to start running Google Ads to drive both foot traffic and online orders. We have a budget of $800/month for ads and are looking for an experienced manager to handle this. Looking for affordable, results-focused management.
@@ -27,7 +27,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### BP02 [3x] | samuel | strategic | Hourly rate request
+### BP02 [3x] | peterson | strategic | Hourly rate request
 
 INPUT:
 We're a boutique marketing agency looking for a PPC freelancer to manage Google Ads for two of our clients. Scope includes campaign management, keyword research, ad copy, and reporting. This is a part-time ongoing role. We prefer to pay hourly through Upwork. What is your hourly rate? Estimated 15-20 hours per month.
@@ -46,7 +46,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### BP03 | samuel | strategic | Budget straddling minimum ($2,500-$4,000)
+### BP03 | peterson | strategic | Budget straddling minimum ($2,500-$4,000)
 
 INPUT:
 Real estate brokerage focused on luxury residential properties in South Florida. We want to run Google Ads to generate buyer and seller leads. Our ad budget is somewhere between $2,500-$4,000 per month -- we're open to scaling if we see results. Looking for an expert who can build this out properly and manage it ongoing.
@@ -64,7 +64,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### BP04 [3x] | samuel | strategic | Performance guarantee / pay-for-performance request
+### BP04 [3x] | peterson | strategic | Performance guarantee / pay-for-performance request
 
 INPUT:
 E-commerce brand in the home decor space. We've been burned by agencies that charge retainers with no accountability. We're not interested in paying a flat monthly fee regardless of results. We want a performance-based arrangement where you earn a percentage of revenue or ad spend only when we hit our ROAS targets. Specifically, we're thinking 8-12% of ad spend, paid only when ROAS exceeds 3x. Are you open to this model? Current spend is $15,000/month.
@@ -84,7 +84,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### BP05 | samuel | strategic | Two-platform budget below floor on one platform
+### BP05 | peterson | strategic | Two-platform budget below floor on one platform
 
 INPUT:
 We're a local gym chain with 4 locations in the Phoenix area. We want to run both Google Ads and Facebook/Instagram ads. For Google, we're thinking $2,000/month. For Meta, $3,500/month. Total about $5,500/month. Looking for someone who can manage both platforms end to end.
@@ -102,7 +102,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### BP06 | samuel | strategic | Minimum budget exactly at floor ($3,000)
+### BP06 | peterson | strategic | Minimum budget exactly at floor ($3,000)
 
 INPUT:
 Local personal injury law firm in Houston. First time running paid ads. Looking for a Google Ads specialist to generate consultation leads. Budget: $3,000/month for ad spend. Want to start with one platform and scale from there.
@@ -119,7 +119,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### BP07 | samuel | strategic | Multi-platform with lump-sum budget
+### BP07 | peterson | strategic | Multi-platform with lump-sum budget
 
 INPUT:
 Specialty coffee roaster selling DTC and wholesale. Currently spending $10,000/month across "all our paid channels" (Google, Facebook, maybe Pinterest). Looking for a generalist ad manager who can handle everything under one budget and just make it work. Prefer simple billing, one flat fee.

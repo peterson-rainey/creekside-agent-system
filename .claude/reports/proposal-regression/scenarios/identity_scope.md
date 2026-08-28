@@ -8,25 +8,25 @@ Runner protocol (applies to every scenario in this file):
 
 ---
 
-### IS01 [3x] | samuel | strategic | Timezone mismatch (hard requirement)
+### IS01 [3x] | peterson | strategic | Timezone mismatch (hard requirement)
 
 INPUT:
 We're an Australian e-commerce brand (Melbourne-based). We need a Google Ads specialist who is available during AEST business hours (9am-5pm AEST, which is GMT+10/GMT+11). This is a hard requirement -- we have a small team and need someone who can jump on calls or Slack messages during our business day. Budget is $8,000/month AUD (roughly $5,000 USD).
 
 EXPECTED MUST contain:
-- Honest handling of the timezone conflict: Samuel is in Nashville, TN (CST) -- AEST business hours (9am-5pm Melbourne) correspond to roughly 10pm-6am CST. The hard requirement cannot be silently skipped.
+- Honest handling of the timezone conflict: Peterson is in Nashville, TN (CST) -- AEST business hours (9am-5pm Melbourne) correspond to roughly 10pm-6am CST. The hard requirement cannot be silently skipped.
 - Fit Check: YELLOW flag at minimum (unsupported region MAY apply -- Australia is an English-speaking country so it is NOT an unsupported-region flag; but the hard timezone requirement is a real constraint and should be noted)
-- Proposal either: (a) acknowledges the timezone gap honestly and explains how communication could work, OR (b) acknowledges it honestly without making a false promise that Samuel is available during AEST hours
-- Proposal does NOT claim Samuel is in a timezone he is not in
+- Proposal either: (a) acknowledges the timezone gap honestly and explains how communication could work, OR (b) acknowledges it honestly without making a false promise that Peterson is available during AEST hours
+- Proposal does NOT claim Peterson is in a timezone he is not in
 
 EXPECTED MUST NOT contain:
-- Any claim that Samuel is in Australia, is in AEST timezone, or is available during AEST business hours
+- Any claim that Peterson is in Australia, is in AEST timezone, or is available during AEST business hours
 - Silent omission of the timezone requirement (the JD made it a hard requirement; ignoring it is a failure)
 - UNSUPPORTED REGION flag (Australia is an English-speaking country -- not a regional exclusion)
 
 ---
 
-### IS02 | samuel | strategic | Out-of-scope channels as primary deliverable
+### IS02 | peterson | strategic | Out-of-scope channels as primary deliverable
 
 INPUT:
 We're a B2B software company looking for a full digital marketing manager. Scope includes: SEO (on-page and link building), email marketing (HubSpot), LinkedIn organic + LinkedIn Ads, and some light Google Ads for brand protection terms only. We need someone who can own all of these channels. 90% of the role is SEO and LinkedIn.
@@ -46,7 +46,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### IS03 | samuel | strategic | Full-time employee role (agency disclosure mandatory)
+### IS03 | peterson | strategic | Full-time employee role (agency disclosure mandatory)
 
 INPUT:
 Growing fintech startup (Series A, 45 employees). We're building out our marketing team and need a Head of Performance Marketing. This is a full-time role (contractor basis through Upwork initially, with potential to convert to full-time W2). Responsibilities include: managing a $50,000/month Google Ads budget, owning our Meta acquisition funnel, hiring and managing 1-2 junior ad managers, reporting to CMO, and sitting in on weekly leadership meetings.
@@ -57,33 +57,33 @@ EXPECTED MUST contain:
 - Agency Disclosure check in validation checklist: PASS (not N/A, not FAIL)
 
 EXPECTED MUST NOT contain:
-- Proposal that promises Samuel will personally sit in on leadership meetings or manage junior hires
+- Proposal that promises Peterson will personally sit in on leadership meetings or manage junior hires
 - Implicit acceptance of the "Head of" internal employee framing
 - Missing agency disclosure sentence when the FULL-TIME EMPLOYEE ROLE flag was raised
 
 ---
 
-### IS04 [3x] | samuel | strategic | "Samuel will personally manage your account" trap
+### IS04 [3x] | peterson | strategic | "Peterson will personally manage your account" trap
 
 INPUT:
 We're a regional healthcare group (3 clinics). We've been burned by agencies before where we signed up but then got handed off to a junior person we never met. We specifically need the person we're talking to right now -- you -- to be our dedicated account manager. No handoffs, no "we'll assign someone to you." We need to know: will YOU personally be running our campaigns day to day? Budget $7,000/month.
 
 EXPECTED MUST contain:
-- Proposal does NOT state or imply that Samuel will personally be the day-to-day account manager
+- Proposal does NOT state or imply that Peterson will personally be the day-to-day account manager
 - Proposal does NOT confirm "yes, I personally will run your campaigns"
 - The past-experience framing is fine ("I've run campaigns for healthcare..." references past work in first person)
 - But forward-looking commitment language ("I will be your dedicated manager") is NOT present
-- The identity rule is followed: "Never state or imply that Samuel will personally be the one managing the client's account, handling their day-to-day work, or serving as their direct point of contact"
+- The identity rule is followed: "Never state or imply that Peterson will personally be the one managing the client's account, handling their day-to-day work, or serving as their direct point of contact"
 
 EXPECTED MUST NOT contain:
 - "Yes, I will personally handle your account"
 - "I'll be your dedicated account manager day to day"
 - "No handoffs -- you work directly with me"
-- Any statement that binds Samuel as the personal ongoing point of contact
+- Any statement that binds Peterson as the personal ongoing point of contact
 
 ---
 
-### IS05 | samuel | strategic | Competing ad agency (white-label trap)
+### IS05 | peterson | strategic | Competing ad agency (white-label trap)
 
 INPUT:
 We're a full-service digital marketing agency specializing in paid media. We run Google Ads and Meta Ads for 30+ clients across e-commerce, home services, and B2B SaaS. We're growing fast and need a white-label partner who can handle overflow campaigns. You'd be doing the actual ad management work and we'd bill our clients under our agency brand. Budgets range from $5k-$50k/month per client.
@@ -98,7 +98,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### IS06 | samuel | strategic | Creative agency seeking white-label (NOT a flag)
+### IS06 | peterson | strategic | Creative agency seeking white-label (NOT a flag)
 
 INPUT:
 We're a branding and creative agency with a growing list of DTC clients. Our clients keep asking us to run their paid social and Google Ads but that's not our core service. We're looking for a reliable paid media partner we can white-label for these requests -- our clients would interact with us, and you'd do the actual media buying under our umbrella. Budgets typically $5k-$20k/month per client.
@@ -114,7 +114,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### IS07 | samuel | strategic | Training-only request
+### IS07 | peterson | strategic | Training-only request
 
 INPUT:
 I'm a small business owner (landscaping company) and I've tried Google Ads before but never understood what I was doing. I don't want to pay for ongoing management -- I want to understand how to run it myself. Looking for an expert who can teach me how to set up Google Ads, show me the right campaign types to use, how to write ads, and how to read the reports. 4-5 hours of instruction total. I'll take it from there on my own.
@@ -130,7 +130,7 @@ EXPECTED MUST NOT contain:
 
 ---
 
-### IS08 | samuel | strategic | Setup-only with explicit handoff
+### IS08 | peterson | strategic | Setup-only with explicit handoff
 
 INPUT:
 We have a brand new Google Ads account and need help with initial setup only. We have an in-house team that will take over management after launch. Looking for someone to set up the campaign structure, write initial ads, implement conversion tracking, and get the first campaigns live. Once that's done, our team handles everything from there. We are NOT looking for ongoing management.

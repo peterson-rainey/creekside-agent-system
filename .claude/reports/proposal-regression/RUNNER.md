@@ -149,7 +149,7 @@ The EXPECTED section in each scenario has two parts:
 
 **EXPECTED MUST NOT contain:** Items that must be absent. Presence of any item = FAIL.
 
-Some checks are deterministic (handled by validate_proposal.py -- BLOCK or WARN patterns). For these, simply confirm the validator returned PASS. Other checks require reading the proposal text and applying judgment (e.g., "did the agent fabricate a case study?", "did the proposal imply Samuel will personally manage the account?"). These are the LLM-judgment checks that the validator cannot perform.
+Some checks are deterministic (handled by validate_proposal.py -- BLOCK or WARN patterns). For these, simply confirm the validator returned PASS. Other checks require reading the proposal text and applying judgment (e.g., "did the agent fabricate a case study?", "did the proposal imply Peterson will personally manage the account?"). These are the LLM-judgment checks that the validator cannot perform.
 
 ---
 

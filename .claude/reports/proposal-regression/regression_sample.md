@@ -23,7 +23,7 @@ Each scenario in this sample covers a distinct critical rule cluster. Together t
 | BP02 | Hourly rate prohibition | Confirms no hourly rate leaks through (BLOCK-level validator check) |
 | BP04 | Performance guarantee prohibition | Confirms pay-for-performance rejection |
 | IS03 | Agency disclosure on full-time role flag | Confirms the disclosure sentence appears when the flag fires |
-| IS04 | Samuel personal-management trap | Confirms the "Samuel will personally manage" identity rule |
+| IS04 | Peterson personal-management trap | Confirms the "Peterson will personally manage" identity rule |
 | A01 | JD formatting leak (em-dash, bold, markdown) | Confirms JD formatting does not contaminate the proposal |
 
 ---
@@ -34,7 +34,7 @@ For each scenario below: copy the INPUT from the source file listed, add the SMO
 
 ---
 
-### RS01 -- from B01 | samuel | strategic [3x]
+### RS01 -- from B01 | peterson | strategic [3x]
 
 Source: `scenarios/baseline.md`, scenario B01.
 
@@ -44,13 +44,13 @@ Key checks:
 - Strategic opening mirrors client language (outdoor gear, ROAS plateau, Shopping/PMax)
 - No em-dashes, no bold, no links, no hourly rate
 - Word count 250-350
-- Sign-off: two blank lines + "Samuel"
+- Sign-off: two blank lines + "Peterson"
 - Validator returns PASS
 - Fit Check: no flags
 
 ---
 
-### RS02 -- from B02 | samuel | strategic_dq
+### RS02 -- from B02 | peterson | strategic_dq
 
 Source: `scenarios/baseline.md`, scenario B02.
 
@@ -74,7 +74,7 @@ Key checks:
 
 ---
 
-### RS04 -- from B06 | samuel | strategic [3x]
+### RS04 -- from B06 | peterson | strategic [3x]
 
 Source: `scenarios/baseline.md`, scenario B06.
 
@@ -88,7 +88,7 @@ Key checks:
 
 ---
 
-### RS05 -- from BP01 | samuel | strategic [3x]
+### RS05 -- from BP01 | peterson | strategic [3x]
 
 Source: `scenarios/budget_pricing.md`, scenario BP01.
 
@@ -102,7 +102,7 @@ Key checks:
 
 ---
 
-### RS06 -- from BP02 | samuel | strategic [3x]
+### RS06 -- from BP02 | peterson | strategic [3x]
 
 Source: `scenarios/budget_pricing.md`, scenario BP02.
 
@@ -115,7 +115,7 @@ Key checks:
 
 ---
 
-### RS07 -- from BP04 | samuel | strategic [3x]
+### RS07 -- from BP04 | peterson | strategic [3x]
 
 Source: `scenarios/budget_pricing.md`, scenario BP04.
 
@@ -130,7 +130,7 @@ Key checks:
 
 ---
 
-### RS08 -- from IS03 | samuel | strategic
+### RS08 -- from IS03 | peterson | strategic
 
 Source: `scenarios/identity_scope.md`, scenario IS03.
 
@@ -138,25 +138,25 @@ Key checks:
 - RED flag: FULL-TIME EMPLOYEE ROLE
 - Agency disclosure sentence present in proposal (mandatory when this flag fires)
 - Validation checklist shows Agency Disclosure: PASS (not N/A)
-- No claim that Samuel will personally manage the team or sit in leadership meetings
+- No claim that Peterson will personally manage the team or sit in leadership meetings
 
 ---
 
-### RS09 -- from IS04 | samuel | strategic [3x]
+### RS09 -- from IS04 | peterson | strategic [3x]
 
 Source: `scenarios/identity_scope.md`, scenario IS04.
 
 Run three times (RS09_a, RS09_b, RS09_c).
 
 Key checks:
-- No statement that Samuel will personally be the day-to-day account manager
+- No statement that Peterson will personally be the day-to-day account manager
 - No "I will be your dedicated manager" or equivalent forward commitment
 - Past experience in first person is fine; forward commitment is the issue
 - Stochastic failure mode: some runs may slip and add a personal commitment -- [3x] catches this
 
 ---
 
-### RS10 -- from A01 | samuel | strategic [3x]
+### RS10 -- from A01 | peterson | strategic [3x]
 
 Source: `scenarios/adversarial.md`, scenario A01.
 
