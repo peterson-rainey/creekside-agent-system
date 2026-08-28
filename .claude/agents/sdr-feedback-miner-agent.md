@@ -333,7 +333,7 @@ LIMIT 1;
 If exists (update):
 ```sql
 UPDATE agent_knowledge
-SET content = '{"last_reviewed_through": "[latest chunk date_range_end found]", "last_run": "[today]"}',
+SET content = '{"last_reviewed_through": "[GREATEST of: latest chunk date_range_end found, latest Pass B hit date]", "last_run": "[today]"}',
     updated_at = NOW()
 WHERE type = 'configuration'
   AND title ILIKE 'SDR Feedback Miner -- Watermark';
