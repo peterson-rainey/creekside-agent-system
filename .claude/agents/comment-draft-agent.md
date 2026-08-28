@@ -266,7 +266,7 @@ Examples of what to catch and remove:
 - "80% of the work happens in the first 90 days" (if not from a brain record)
 - "$5K to $10K budget doubled" (if not from a specific client story in the brain)
 
-## Step 5c: Source Record Warning Check
+### 5.5b: Source Record Warning Check
 
 If a brain record contains an explicit warning about how its data should or should not be presented (e.g., "NEVER present X as Y"), you MUST follow that warning exactly. Do not reframe, reword, or creatively reinterpret around it. If the only way to use the data violates the warning, use a different data point or a different client example instead.
 
