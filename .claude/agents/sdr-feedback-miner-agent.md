@@ -358,7 +358,7 @@ VALUES (
 
 ## Failure Modes
 
-**No chunks found in window:** Report "No new Queenie-involved chunks since [WATERMARK_DATE]. Data is current -- nothing new to mine." Do not error. Do not advance the watermark if nothing was processed.
+**No chunks found in window:** Applies ONLY when Step 2 returns zero chunks AND Pass B returns zero %SDR% hits. Report "No new Queenie-involved chunks since [WATERMARK_DATE]. Data is current -- nothing new to mine." Do not error. Do not advance the watermark if nothing was processed. If Pass B found %SDR% hits, this failure mode does NOT apply -- process the Pass B hits and produce a digest even with zero DB chunks.
 
 **Full content batch too large:** Save to a temp file at `~/Desktop/sdr-feedback-raw-[timestamp].txt`, extract relevant comment blocks with Python regex, then delete the temp file after extraction.
 
