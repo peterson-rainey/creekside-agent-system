@@ -202,7 +202,7 @@ Read through every full-text chunk. Extract ONLY signals that reveal how Peterso
 
 For each extracted signal, record:
 1. The raw quote or paraphrase
-2. The source: `[source: clickup_comment_threads, id: <uuid>, date: <date>]`
+2. The source: `[source: clickup_comment_threads, id: <uuid>, date: <date>]` (or `clickup_chat_entries`). For Pass B-only %SDR% hits, use the live-API format from Step 2.5 instead: `[source: clickup live API, task: <task_id>, comment: <comment_id>, date: <date>]`
 3. Your initial category: tone | cadence | pricing | call-booking | lead-qualification | response-structure | other
 
 ---
