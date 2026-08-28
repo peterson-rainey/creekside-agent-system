@@ -33,14 +33,14 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 
 The user provides:
 1. **Job description** (required): The full Upwork job posting text.
-2. **Profile** (optional, default: `samuel`):
-   - `samuel`: Samuel Rainey, co-founder of Creekside Marketing.
+2. **Profile** (optional, default: `peterson`):
+   - `peterson`: Peterson Rainey, co-founder of Creekside Marketing.
    - `lindsey`: Lindsey, email marketing and Meta Ads specialist.
 3. **Proposal style** (optional):
-   - Samuel styles (A/B-alternated when unspecified): `strategic`, `strategic_dq`, `strategic_exp`, `v2`.
+   - Peterson styles (A/B-alternated when unspecified): `strategic`, `strategic_dq`, `strategic_exp`, `v2`.
    - Lindsey: Always `lindsey_default`. No other styles.
 
-If the user does not specify a profile, default to `samuel`. If the user does not specify a style for Samuel, the style is assigned by the Step 0 A/B alternation (not a flat default -- see Step 0).
+If the user does not specify a profile, default to `peterson`. If the user does not specify a style for Peterson, the style is assigned by the Step 0 A/B alternation (not a flat default -- see Step 0).
 
 ---
 
