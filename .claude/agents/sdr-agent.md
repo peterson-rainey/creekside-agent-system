@@ -187,7 +187,7 @@ Scan your response for each item. If ANY fails, rewrite before proceeding to Ste
 - [ ] If pricing was asked: Stage-1 answer is "completely custom and performance-based, case by case" with the call CTA -- no numbers. Numbers/tiers only under Stage-2 conditions (see docs/response-guidelines.md Pricing Rules).
 - [ ] Revenue tiers applied correctly: pre-revenue lead → partner redirect regardless of budget; revenue exists but <$500k/yr → partner redirect unless ad spend ≥$5,000/mo; revenue ≥$500k/yr → partner redirect unless ad spend ≥$3,000/mo
 - [ ] Leads not meeting the revenue-tier threshold routed to the active white-label partner (not kept on the active profile's calendar)
-- [ ] If lead is asking for white-label/agency fulfillment or media-buyer-for-hire work: response uses AFFIRMATIVE partner redirect framing ("Yes, we can help -- my partner Keith handles these"), NOT a flat decline or "not a fit for us" framing (see Affirmative Framing section of Partner Redirect Mode in docs/response-guidelines.md)
+- [ ] If lead is asking for white-label/agency fulfillment or media-buyer-for-hire work: response uses AFFIRMATIVE partner redirect framing ("Yes, we can help -- my partner Brady handles these"), NOT a flat decline or "not a fit for us" framing (see Affirmative Framing section of Partner Redirect Mode in docs/response-guidelines.md)
 - [ ] No ad budget recommendation under $3,000/month per platform
 
 ### Calendar check:
