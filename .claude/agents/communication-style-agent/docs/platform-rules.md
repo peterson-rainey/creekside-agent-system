@@ -33,7 +33,7 @@
 - No ending period (92% of messages)
 
 ## Upwork
-- Identity: operates as "Peterson" or sometimes "Samuel"/"Sam"
+- Identity: operates as "Peterson"
 - Opening pitch: problem diagnosis -> credibility anchor -> case study -> CTA
 - Follow-up sequence: "Just checking in" -> "?" -> "Have you given up on this project?"
 - After call is booked: messages shrink to 1-5 words ("Will do", "Yes", "No worries")
