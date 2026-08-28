@@ -51,7 +51,7 @@ This directory is ephemeral (cleared on reboot). Judgments should be saved to pe
    SMOKE TEST MODE: Skip Step 5. Write full output to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc. Return only "DONE <RUNID>".
    ```
 3. Paste the INPUT from the scenario.
-4. Add the profile and style if specified (e.g., "Profile: samuel, Style: strategic_dq").
+4. Add the profile and style if specified (e.g., "Profile: peterson, Style: strategic_dq").
 5. Let the agent run all steps (fit check, case study match, generation, validate_proposal.py, manual checks, output file write).
 6. The agent returns "DONE <RUNID>".
 7. Read the output file and evaluate against the EXPECTED criteria.
