@@ -1,4 +1,4 @@
-# Samuel: Strategic + Experience Style
+# Peterson: Strategic + Experience Style
 
 OBJECTIVE: Proposals blend strategic depth with subtle credibility. Friendly, confident, human. Not AI-generated fluff.
 
