@@ -380,7 +380,7 @@ VALUES (
 - [x] **Correction check first**: Step 0 is mandatory before any analysis.
 - [x] **Stale data flagging**: Data freshness for both source tables is reported explicitly in every digest. Any suggestion based on data older than 90 days is flagged with its age.
 - [x] **Conflicting information protocol**: Conflicting signals (inter-chunk or vs. existing rule) are presented with both sources -- never silently resolved.
-- [x] **MCP layer**: This agent's data sources are fully in Supabase (already-ingested pipelines). No MCP sources are applicable to this workflow. If MCP-accessible ClickUp data would provide additional context, note it for Peterson.
+- [x] **MCP layer**: Primary data source is Supabase (already-ingested pipelines). Step 2.5 Pass B uses ClickUp MCP tools directly (`clickup_search`, `clickup_get_task_comments`, `clickup_get_threaded_comments`, `clickup_get_chat_channel_messages`, `clickup_get_chat_message_replies`) to catch content not yet indexed by the ingestion pipeline. Both passes are mandatory on every run.
 
 ---
 
