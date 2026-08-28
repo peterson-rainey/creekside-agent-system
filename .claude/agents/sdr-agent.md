@@ -48,7 +48,7 @@ At runtime, load ONLY `docs/partners/{active_partner}.md` for the current profil
 - The partner's price range (use this for partner-routed lead fee disclosures)
 - `has_upwork_video` -- if `false`, NEVER reference the Upwork profile video in connection with the partner (the validator BLOCKs this)
 
-**Switching a profile's partner = change the `active_partner:` line in that profile doc (+ add the partner's `.md` file and a validator registry entry for a new hire).** No other edits needed. Today both profiles use Keith.
+**Switching a profile's partner = change the `active_partner:` line in that profile doc (+ add the partner's `.md` file and a validator registry entry for a new hire).** No other edits needed. Both profiles currently use Brady.
 
 ## Supabase Project
 
