@@ -100,11 +100,11 @@ def _load_active_partner(profile="samuel"):
     Resolution order:
       1. docs/profiles/{profile}.md  active_partner: line
       2. sdr-agent.md                active_partner: line (legacy global)
-      3. Hardcoded default: 'keith'
+      3. Hardcoded default: 'brady'
 
     Returns (slug, partner_dict).
     """
-    default_slug = "keith"
+    default_slug = "brady"
     slug = None
 
     # 1. Try the profile doc first
@@ -525,7 +525,7 @@ def check_blocks(text, profile="samuel"):
     # When a partner is inactive (not the active_partner for THIS profile), any
     # mention of that partner's name (word-boundary, case-insensitive) or calendar
     # URL in a draft is a BLOCK. This catches context bleed like "check out my
-    # profile video where I talk about Jay" when Keith is the active partner.
+    # profile video where I talk about Jay" when Brady is the active partner.
     # Uses active_partner_slug resolved per-profile above.
     # ---------------------------------------------------------------------------
     for slug, partner in _PARTNER_REGISTRY.items():
