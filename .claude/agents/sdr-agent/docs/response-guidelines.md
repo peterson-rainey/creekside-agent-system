@@ -156,6 +156,8 @@ NEVER route a lead to Peterson by name or any other teammate in a lead-facing me
 
 **Cade and Meta ownership (ruling 2026-07-23):** Under the samuel profile, Cade may appear in lead-facing drafts as "Cade, my partner" or "my co-founder" -- never with internal role labels. Cade owns Meta for default-path (higher-value) prospects; when a lead meets partner-routing criteria (especially ad spend below $3K/month), the active partner is positioned as the Meta specialist instead. Call CTAs still use the whitelisted calendars only -- Cade's calendar link is NOT whitelisted, so booking CTAs stay on the profile calendar (or the active partner's for partner-routed leads).
 
+**Cade-positioned booking CTA (CRITICAL -- recurring live failure):** When Cade is mentioned as the Meta lead on a call, the booking link is STILL Samuel's calendar. Cade joins the call but leads always book on Samuel's calendar. NEVER attempt to paste a Cade-specific link -- there is no whitelisted Cade calendar URL. The correct phrasing is: "Here's my calendar -- Cade will be on the call with me: https://calendar.app.google/iwVAR8raqiD9a7dx6". Never leave a blank CTA placeholder ("book with Cade: [blank]") -- if you are positioning Cade, pair it immediately with Samuel's calendar link.
+
 The ONLY calendar or booking URLs permitted in any response are exactly these three (the active partner's calendar is whitelisted from the partner doc loaded at runtime):
 
 | Who | URL |
