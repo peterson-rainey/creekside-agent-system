@@ -222,7 +222,7 @@ If no verbatim quote was found (brain gap), fall back to generating in Peterson'
 - "I'd add one thing..." (for a nuance)
 
 **Rules:**
-- 250-500 characters
+- 250-500 characters (may extend to 800 for Quora, which allows longer structured answers)
 - Must be based on a real observation from the brain, not generic skepticism
 - Don't be contrarian just to be contrarian -- only use this option if the brain actually supports a different view
 - Respectful, practitioner-to-practitioner tone
