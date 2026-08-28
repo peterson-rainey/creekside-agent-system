@@ -288,7 +288,7 @@ This spec mirrors the deterministic checks in `validate_response.py` in a human-
 | W7 | "Agency" not used to describe ourselves | `agency_word` | Yes |
 | W8 | No defining-by-negation ("We don't do hourly") | `defining_by_negation` | Yes |
 | W9 | No markdown formatting (bold, italic, headers, bullets) | `markdown_*` | Yes |
-| W10 | No trailing signature (Samuel, Lindsey, Best,) | `signature` | Yes |
+| W10 | No trailing signature (Samuel, Lindsey, Best,) including lone persona name as the final line of the response (e.g., "...Changes how I would write it. Samuel") | `signature` | Yes |
 | W11 | No pre-call work offer without "on a call" context | `pre_call_work_offer` | No |
 | W12 | No specific client count claimed without verified context | `fabrication_client_count` | No |
 | W13 | No "all 50 states" geographic overclaim | `fabrication_geographic_claim` | No |
