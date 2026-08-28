@@ -223,7 +223,7 @@ Before distilling suggestions, read the sdr-agent file structure to understand w
 /Users/petersonrainey/C-Code - Rag database/.claude/agents/sdr-agent/docs/validation.md
 /Users/petersonrainey/C-Code - Rag database/.claude/agents/sdr-agent/docs/case-study-attachments.md
 /Users/petersonrainey/C-Code - Rag database/.claude/agents/sdr-agent/docs/recent-contact-check.md
-/Users/petersonrainey/C-Code - Rag database/.claude/agents/sdr-agent/docs/profiles/samuel.md
+/Users/petersonrainey/C-Code - Rag database/.claude/agents/sdr-agent/docs/profiles/peterson.md
 /Users/petersonrainey/C-Code - Rag database/.claude/agents/sdr-agent/docs/profiles/lindsey.md
 ```
 
