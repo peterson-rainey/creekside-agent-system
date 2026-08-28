@@ -1,4 +1,4 @@
-# Samuel: Strategic + Diagnostic Question Style
+# Peterson: Strategic + Diagnostic Question Style
 
 OBJECTIVE: Proposals sound like a real person — confident, strategic, human — not a salesperson or AI bot. Opens with a diagnostic question that demonstrates expertise before offering any advice.
 
