@@ -291,7 +291,7 @@ Run these checks on each option before presenting. Fix any failures before showi
 | Curly quotes | Zero | Any instance |
 | Corporate vocabulary | None of the banned words list (leverage, synergy, etc.) | Any hit |
 | Banned phrases | None of the banned phrases list ("I'd be happy to", etc.) | Any hit |
-| Data point is real | Every number traces back to a brain record (verified in Step 5b) | Any invented or assumed number |
+| Data point is real | Every number traces back to a brain record (verified in Step 5.5a) | Any invented or assumed number |
 | Source warnings respected | All "NEVER present" warnings from brain records followed (verified in Step 5c) | Any violation of a source record warning |
 | Date flags applied | All data >90 days old or undated has staleness flag (verified in Step 5d) | Missing date flag on old/undated data |
 | Twitter char count (if Twitter) | <= 280 | > 280 |
