@@ -53,7 +53,9 @@ When a sub-$3K lead is already booked on the calendar, include these operator in
 
 ## Cade Booking CTA (Critical)
 
-When Cade is positioned as the Meta lead on a call, the booking link is STILL Samuel's calendar (https://calendar.app.google/iwVAR8raqiD9a7dx6). Cade joins the call but leads always book on Samuel's calendar. Never attempt to paste a Cade-specific link. Correct phrasing: "Here's my calendar -- Cade will be on the call with me: https://calendar.app.google/iwVAR8raqiD9a7dx6"
+When Cade is positioned as the one leading the call, send CADE's calendar link (Peterson ruling 2026-08-28): https://calendar.google.com/calendar/appointments/schedules/AcZssZ3j8qaCIjB9v2DojO96hiQDzZOEkUiEnOuBJN1im-dPVtDMjXGehyCUtT_gPaYt0D4i_WxbU037
+
+Never leave the CTA blank and never substitute Samuel's calendar for a Cade-led call. If Samuel is leading the call and Cade is just joining, use Samuel's calendar as normal.
 
 ## Warmup Eligibility
 
