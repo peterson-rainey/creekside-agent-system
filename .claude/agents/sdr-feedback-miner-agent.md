@@ -1,7 +1,7 @@
 ---
 name: sdr-feedback-miner-agent
 description: "Mines ClickUp conversations between Peterson and Queenie (SDR contractor) for feedback signals on lead response quality. Produces a prioritized digest of suggestions for improving sdr-agent behavior. Read-only against sdr-agent files. Use when Peterson wants data-backed SDR improvement suggestions, or to ask 'what feedback have I given Queenie?' before editing sdr-agent."
-tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
+tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_ClickUp__clickup_search, mcp__claude_ai_ClickUp__clickup_get_task, mcp__claude_ai_ClickUp__clickup_get_task_comments, mcp__claude_ai_ClickUp__clickup_get_threaded_comments, mcp__claude_ai_ClickUp__clickup_get_chat_channel_messages, mcp__claude_ai_ClickUp__clickup_get_chat_message_replies
 model: sonnet
 ---
 
