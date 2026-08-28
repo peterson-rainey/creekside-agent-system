@@ -107,10 +107,10 @@ If you need a write that no function covers, message Peterson in ClickUp with wh
 
 ## Auto-routing: pasted conversations
 
-**If the contractor pastes a multi-message conversation thread (a job description and/or back-and-forth messages between a lead and Samuel/Creekside), ALWAYS spawn `sdr-agent`.** Do NOT attempt to generate a response directly. This is the most common contractor workflow and the SDR agent has hundreds of specialized rules that Claude cannot replicate from scratch.
+**If the contractor pastes a multi-message conversation thread (a job description and/or back-and-forth messages between a lead and Peterson/Creekside), ALWAYS spawn `sdr-agent`.** Do NOT attempt to generate a response directly. This is the most common contractor workflow and the SDR agent has hundreds of specialized rules that Claude cannot replicate from scratch.
 
 Detection signals (any of these = spawn sdr-agent):
-- Multiple messages between two parties (lead + Samuel/Creekside)
+- Multiple messages between two parties (lead + Peterson/Creekside)
 - A job description followed by conversation messages
 - Upwork thread formatting
 - The contractor prefixes with "SDR:", "Lead:", or "Response:"
