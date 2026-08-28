@@ -1,4 +1,4 @@
-# Samuel: Strategic Style
+# Peterson: Strategic Style
 
 OBJECTIVE: Proposals sound like a real person — confident, strategic, human — not a salesperson or AI bot.
 
