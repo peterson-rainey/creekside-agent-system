@@ -128,13 +128,13 @@ TMPFILE=$(mktemp /tmp/proposal_XXXXXX.txt)
 cat > "$TMPFILE" << 'PROPOSAL_EOF'
 <paste proposal text here>
 PROPOSAL_EOF
-# Samuel strategic (use whichever style was assigned by Step 0 or specified by user):
+# Peterson strategic (use whichever style was assigned by Step 0 or specified by user):
 python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE" --style strategic
-# Samuel strategic_dq:
+# Peterson strategic_dq:
 # python3 "...validate_proposal.py" "$TMPFILE" --style strategic_dq
-# Samuel strategic_exp:
+# Peterson strategic_exp:
 # python3 "...validate_proposal.py" "$TMPFILE" --style strategic_exp
-# Samuel v2:
+# Peterson v2:
 # python3 "...validate_proposal.py" "$TMPFILE" --style v2
 # Lindsey:
 # python3 "...validate_proposal.py" "$TMPFILE" --profile lindsey --style lindsey_default
