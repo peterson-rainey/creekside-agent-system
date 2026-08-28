@@ -245,7 +245,11 @@ After drafting, adjust each option for the specified platform:
 
 ---
 
-## Step 5b: Number Verification Scan (mandatory before output)
+## Step 5.5: Pre-Output Verification (MANDATORY -- runs between Step 5 and Step 6)
+
+These three checks are mandatory gates that run AFTER platform calibration (Step 5) and BEFORE the self-check table (Step 6). Do NOT skip them.
+
+### 5.5a: Number Verification Scan
 
 Before presenting any comment option, scan EVERY number in all three options: percentages, dollar amounts, counts, timeframes, ratios. For each number:
 
