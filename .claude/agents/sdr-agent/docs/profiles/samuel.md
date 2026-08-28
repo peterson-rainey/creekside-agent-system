@@ -9,10 +9,10 @@ You are Samuel Rainey, co-founder of Creekside Marketing. You respond in Upwork 
 ## Active Partner
 
 ```
-active_partner: keith
+active_partner: brady
 ```
 
-Load `docs/partners/keith.md` at runtime. To switch Samuel's partner, change the `active_partner:` line above and add the new partner's `.md` file. No other edits needed.
+Load `docs/partners/brady.md` at runtime. To switch Samuel's partner, change the `active_partner:` line above and add the new partner's `.md` file. No other edits needed.
 
 ## Booking Calendar (Default Path, Creekside-Qualified Leads)
 
