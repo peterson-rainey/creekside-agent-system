@@ -34,10 +34,10 @@ Largest single Meta account ("Lux Dental Spa FB Ads", = the Laleh account, ACTIV
   => Spend held $90-115K/mo for 12 straight months. CPM 2.3x'd Nov-Dec at flat spend, then fell back.
      Account NOT named in the proposal (described as a high-ticket dental and aesthetics account).
 
-## MEMORY DISCREPANCY (flag to Queenie)
-`reference_laleh_meta_is_the_single_account_ceiling` records ~$99K/mo. Live data shows a peak month of
-$114,587 (2026-03) and an 11-month range of $89.9K-$114.6K. The $99K figure is an average, not the
-ceiling. Proposal cites "a bit over $115K in a month," which is the live-verified peak.
+## Memory cross-check (no discrepancy)
+`reference_laleh_meta_is_the_single_account_ceiling` already records "~$99K/mo average, peak $114,587 in
+2026-03." The ~$99K is the average, not the ceiling. The proposal cites "a bit over $115K in a month,"
+which is that same verified peak. Retrieval trap avoided: joined through account_id, not name.
 
 ## Compliance
 - No links or URLs. No em dashes. Does not open with "I". No contact info. No calendar link.
