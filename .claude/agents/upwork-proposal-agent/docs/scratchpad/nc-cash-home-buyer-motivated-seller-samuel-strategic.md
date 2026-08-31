@@ -57,3 +57,29 @@ Samuel
 - South River CPL and the $80K figure both omitted. Meta-only spend band cited instead, which survives a screen-share.
 - Victory Land Sales omitted (their post excludes buy-side, and it was not Samuel's account).
 - No certifications, no links, no calendar push, no CPL promise, no NC market claim.
+
+---
+
+## Attachment ruling (2026-09-01): ATTACH NOTHING from case_studies
+
+Swept all 28 rows. No real estate, no motivated seller, no Housing SAC row exists. Candidates and why each fails:
+
+- **South River Mortgage** (`15jPcipTl4yI-r1Xou-OTx1c7P0nrr8kx`) — resolves and is Samuel-bylined, but per
+  reference_case_study_pdf_attachability (8/28 finance re-read) the document is a **Google Ads** case study
+  (PMax/Search/Demand Gen, Apr-Aug 2025, before the Meta account existed; Meta appears once as "heavy
+  retargeting"). It also says $10K -> $50K+ and >5x ROAS while canon says $80K and $81 CPL, and live data
+  says neither. Attaching it to a Meta-only post that explicitly wants a specialist is a net negative.
+- **Fusion Dental** — the actual structural analog, and there is **no case study PDF for it**. Not in case_studies.
+- **Central Florida Awnings** — only Meta lead-gen home-services artifact; no result numbers in the row, and
+  the post excludes solar/roofing by name. Weak, and invites the wrong comparison.
+- Everything else is Google-only, ecom, or a different vertical.
+
+**The one artifact worth building:** `Reverse Mortgage Ad Compliance Audit.pdf` (`1XVsR6n90gic6rM_tMQAcNg62Am1mK4EJ`,
+SRM client folder, not in case_studies). A public Meta Ad Library compliance teardown of four named lenders,
+scored on disclosure and age-messaging, with the canonical SAC thesis (product qualifier in copy, never a
+call-out). Zero client performance data. DO NOT ATTACH AS-IS: client header/footer on all 6 pages, bylined
+Peterson Rainey (persona leak), and recs 5-6 expose client-internal weakness. Sanitized and re-run against
+THIS prospect's NC competitors, it is the only thing we could put in front of them that speaks to the exact
+requirement we cannot meet with history. That is a build decision, not a send decision.
+
+Note: they asked for a **screen-share of Ads Manager**, not PDFs. Sending no attachment is not a gap here.
