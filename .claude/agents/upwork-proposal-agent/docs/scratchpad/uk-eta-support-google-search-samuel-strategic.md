@@ -17,17 +17,15 @@ NOT USED: Join Piper compliance negatives (client-supplied, per correction recor
 
 Google treats third-party help with government documents as a restricted category, and that one fact explains most underperforming ETA accounts. Until the advertiser is certified and the page carries an unmistakable "we are not affiliated with the UK government, you can apply direct" disclosure, the highest-intent terms get disapproved or quietly limited. The account then reads like a bidding problem when it is a policy problem, and a restructure on top of that just reorganises the throttle.
 
-Worth naming early: appeals are the slow lever here. Disapprovals in this category almost always trace to the destination rather than the ad text, so fixing the page and clearing certification resolves them faster than arguing the decision does.
-
-The other quiet leak is who you are bidding against on the obvious terms. GOV.UK ranks on them, so a lot of the money goes to searchers hunting the official free route. Negatives around "official", "gov uk", "free" and "check status" tend to matter more than keyword expansion in month one.
+Worth naming early: appeals are the slow lever. Disapprovals here almost always trace to the destination rather than the ad text, so fixing the page and clearing certification resolves them faster than arguing the decision. The related leak is who you are bidding against on the obvious terms, since GOV.UK ranks on them and much of the money goes to searchers hunting the official free route. Negatives around "official", "gov uk", "free" and "check status" tend to matter more than keyword expansion in month one.
 
 One account, since you asked. A paving and lot-striping contractor came to us running a single catch-all Search campaign: about $2,500 in its last month for four conversions. We paused it and rebuilt around service line and geography instead of one bucket. The replacement has run since November on $38,471 and 198 leads, roughly $194 each against about $615 on the campaign it replaced. Low volume throughout, which is the part relevant to you.
 
-That is also my honest answer on bidding at low volume. Under roughly 15-30 conversions a month, tCPA spends its first two months learning noise. Tight exact and phrase match with manual control, then a switch once the data supports it, gets to the same place cheaper.
+That is also my answer on bidding at low volume. Under roughly 15-30 conversions a month, tCPA spends its first two months learning noise. Tight exact and phrase match under manual control, switching once the data supports it, reaches the same place cheaper.
 
 First two weeks I diagnose and change nothing structural. Tracking gets verified end to end before I trust a single number, since a restructure built on a miscounted conversion is worse than leaving it alone. Then search terms, policy status per ad and keyword, structure and match types, written up in priority order with the reasoning attached.
 
-Regulated work: we ran reverse mortgage and HECM Search for a US lender, about $131,000 and 1,358 leads over twelve months at roughly $97 each, in a category Google restricts and verifies. Dental and naturopathic accounts alongside it, both with claim restrictions on copy.
+Regulated work: we ran reverse mortgage and HECM Search for a US lender, about $131,000 and 1,358 leads over twelve months at roughly $97 each, in a category Google restricts and verifies. Dental and naturopathic accounts alongside it, both with copy claim restrictions.
 
 Two gaps, plainly. No visa, ETA or immigration account in the book, so I cannot show you results in your exact vertical. And multi-language is a real miss: everything we run is English, and I would want a native writer per market rather than translated copy, which I would rather cost in honestly than pretend around.
 
