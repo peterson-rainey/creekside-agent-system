@@ -66,9 +66,36 @@ they must not go to two prospects on two different bases. Pick one before either
   corrupt, Tiami Sleep (16 conv on $47.8K), Aura Displays (Google-only, branded artifact).
 - No conversion-rate before/after anywhere in the book. 8th consecutive scan. Conceded explicitly in the draft.
 
-## ATTACHMENTS: NONE
-Neither cited account has a `case_studies` row or a verified PDF. Every fashion-adjacent asset fails
-verification or is the wrong platform.
+## ATTACHMENTS: NONE — re-verified 2026-09-01 against Drive, not just against case_studies
+
+Drive title search for any fashion / apparel / ecommerce / Shopify case-study PDF returned **empty**. No
+fashion artifact exists to attach. Candidate-by-candidate:
+
+- **`fitness_superstore.pdf` (`1xF6mHAgni4KWAfklREG6eZH1pQAZ0S7p`) — RESOLVES, DO NOT ATTACH.** Content read
+  today. Headlines "40x+ PEAK ROAS / 7x BASELINE / $8,000 monthly budget" — the exact numbers that fail live
+  verification (zero insights rows, budget conflict $3,000 vs $8K). Attaching it under a proposal that concedes
+  we have no publishable fashion results hands the prospect a contradiction. Separately, the
+  `http://localhost:4321/` dev footer is **still the last line as of today's read**, 2026-07-08 modified_time
+  notwithstanding. Two independent blockers.
+- **`aura_displays.pdf` — wrong platform.** Google-only on a Meta audit job. Also the 8-10x non-branded
+  headline has decayed to ~4.3x live, and it carries the same localhost footer.
+- **`ci_lifestyle_meals.pdf` / food batch — wrong vertical and file still UNVERIFIED** (underscore twin not
+  resolved). Not worth resolving for this post.
+- **The two accounts the proposal actually cites (Master Spa Parts, Neue Maison) have no `case_studies` row
+  and no PDF at all.** That is the real reason the attachment slot is empty, and no substitution fixes it.
+
+**NEW FIND, and the reason this is worth revisiting.** Drive holds Creekside-branded artifacts in exactly the
+shape this buyer is purchasing — audit plus prioritized 90-day plan:
+- `Fusion-Dental-Meta-Audit-Plan-V2 (1).pdf` (`1nlKH-ApkGi_zKrnSGHeeQVm5VZ2b-6Yc`) — "META ADS ACCOUNT AUDIT &
+  PLAN OF ACTION," 6 findings (tracking, structure, targeting, budget, creative dilution, lead quality) plus
+  M1/M2/M3 plan. Structurally a bullseye for this post's 10 scope areas and its 30-90 day ask.
+- `Fusion Dental Audit & Plan Of Action (2).pdf` (`1_c-o4KCEQMZ6d8hWgP50qMMDXOsCgUuz`) — Google twin, 12 findings.
+- `B2B Rocket - Audit90 Day Plan (1).pdf` (`1zPZs7uyfsh07ViUTr4qx9G0hix8pQzc3`) — Meta audit + 3-phase plan.
+
+**All three are CONFIDENTIAL client deliverables** — named client, named doctor, client spend ($30,000/mo),
+tracking gaps, Salesforce access notes. Same do-not-substitute rule as the Laleh/Polaris monthly reports and
+the `B2B_Rocket_Report` files. **Do not attach as-is.** A sanitized sample version is the recommendation, see
+handoff note.
 
 ## PROPOSAL
 
