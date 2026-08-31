@@ -20,7 +20,7 @@ POLICY MATERIAL from memory reference_healthcare_policy_appeal_proof:
   GM Therapy: ads naming diagnostic categories did not run, ads opening with a phone number did, account took a
   "limited" warning that kept serving. Policy experience ONLY, never a results story.
 GAPS HELD: zero visa/ETA/immigration proof, multi-language is an absolute zero, zero certifications held.
-Q5 AVAILABILITY IS A PLACEHOLDER -- Queenie confirms hours before sending. Timezone US Central is stated as fact. -->
+Q5 availability CONFIRMED by Queenie 2026-08-31: 35 hours/week. Timezone US Central stated as fact. -->
 
 ## 1. First two weeks on an underperforming Search account
 
@@ -102,6 +102,6 @@ The honest boundary: I have not run a visa, ETA or immigration account, and we h
 
 ## 5. Availability and timezone
 
-[PLACEHOLDER — Queenie to confirm hours per week and earliest start date before this is sent.]
+35 hours a week.
 
 Timezone is US Central. The UK runs six hours ahead of me, so your afternoon is my morning and there is a solid overlap window every working day for calls or anything that needs a live conversation. Weekly reporting would land at a fixed day and time you pick, and I am reachable same-day on Upwork messages during UK working hours.
