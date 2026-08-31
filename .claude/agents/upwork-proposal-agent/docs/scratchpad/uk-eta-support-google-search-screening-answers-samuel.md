@@ -20,7 +20,9 @@ POLICY MATERIAL from memory reference_healthcare_policy_appeal_proof:
   GM Therapy: ads naming diagnostic categories did not run, ads opening with a phone number did, account took a
   "limited" warning that kept serving. Policy experience ONLY, never a results story.
 GAPS HELD: zero visa/ETA/immigration proof, multi-language is an absolute zero, zero certifications held.
-Q5 availability CONFIRMED by Queenie 2026-08-31: 35 hours/week. Timezone US Central stated as fact. -->
+Q5 availability CONFIRMED by Queenie 2026-08-31: 35 hours/week, office hours 8am-5pm US Central.
+  UK is 6h ahead year-round (CDT/BST and CST/GMT both = 6h), so 8-5 Central = 2pm-11pm UK. Overlap with a UK
+  working day is their early afternoon to end of day, ~3.5h. Stated honestly, not oversold as full coverage. -->
 
 ## 1. First two weeks on an underperforming Search account
 
@@ -102,6 +104,6 @@ The honest boundary: I have not run a visa, ETA or immigration account, and we h
 
 ## 5. Availability and timezone
 
-35 hours a week.
+35 hours a week. Office hours are 8am to 5pm US Central.
 
-Timezone is US Central. The UK runs six hours ahead of me, so your afternoon is my morning and there is a solid overlap window every working day for calls or anything that needs a live conversation. Weekly reporting would land at a fixed day and time you pick, and I am reachable same-day on Upwork messages during UK working hours.
+The UK runs six hours ahead of me, so that window is 2pm to 11pm your time. The practical overlap is your early afternoon to the end of your working day, which is enough for a standing weekly call and for anything that needs a live conversation. Weekly reporting would land at a fixed day and time you pick, and anything raised outside the overlap gets picked up first thing in my morning.
