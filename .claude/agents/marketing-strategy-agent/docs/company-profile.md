@@ -4,7 +4,7 @@
 - Creekside Marketing LLC, Nashville TN, founded 2021
 - Platform specialists: Google Ads and Meta Ads at the core; also delivers Bing Ads, TikTok Ads, programmatic, and ChatGPT Ads when client need warrants (confirmed 2026-05-15). Upwork positioning stays "Google Ads + Meta Ads specialist."
 - Team: Boutique (2-10). Peterson Rainey (CEO) + Cade (COO, 20% equity), contractor-based delivery
-- Website: creeksidemarketingpros.com | YouTube: @CreeksideMarketing1
+- Website: creeksidemarketingpros.com | YouTube: @CreeksideMarketingPros
 - Name on Upwork: "Peterson Rainey"
 - Also used: "Ad Spend Proof" (white-label identity in some case studies)
 - AI agent services: separate venture with Tobi Aderounmu — do NOT mix with Creekside data
