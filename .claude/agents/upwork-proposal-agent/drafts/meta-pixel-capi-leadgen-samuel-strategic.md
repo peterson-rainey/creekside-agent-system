@@ -28,3 +28,23 @@ Samuel
 ## Disclosed gaps (NOT in proposal)
 - No operator-owned CAPI/server-side BUILD proof. Fusion event-layer resolution came via Jordan (Growth Channel), external.
 - No durable turnaround arc. South River Mar $296.68 -> May $59.33 at flat spend reversed to $846.63 in June, churned 8/11. Not citable.
+
+## Attachment decision (verified 2026-09-02 by curl)
+ATTACH: Dr. Laleh, underscore twin file_id 1puRdRRI80FMcw7dRUQvLjHbR3hYqYjSu
+  ("Dr._Laleh_Elective_Health_Care_Case_Study.pdf") -> 200 application/octet-stream, real file.
+SECONDARY (only if prospect turns out to be B2B): ReferPro underscore twin 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso -> 200 octet-stream.
+
+DO NOT ATTACH:
+- Advanced Med Spa (1FvkUORPMVb3dnFH_nvyFkZ36AcsZvqQx): ai_summary names PETERSON = persona leak on a Samuel
+  proposal. Also link returns text/html, not a file. Double disqualifier.
+- Birthday Club App (1NOKmt8X-jCC8wFYtpDLYE_zRfa1_v9Ag): 404. File is gone from Drive.
+- South River Mortgage: $81 CPL fails live verification, churned 8/11.
+- case_studies.download_url for Dr. Laleh (1sRKepK03dL8...) returns text/html. Stale, as the standing rule says.
+  Confirms the "underscore twin is live" rule again (now 6/6).
+
+RISK: the Laleh PDF claims CPA $48.79 -> $9.58. Live Laleh META data is $306-$2,439 per conversion (May-Aug 2026).
+The PDF is Google-led historical, but the numbers do not reconcile with the Meta account. Do not volunteer Laleh
+Meta specifics on a call.
+
+GAP: zero pixel/CAPI/tracking case studies exist anywhere in the library. The job's headline deliverable has no
+attachable proof.
