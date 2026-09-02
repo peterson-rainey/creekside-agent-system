@@ -190,7 +190,7 @@ All substance MUST come from the source material. Campaign data from the RAG bra
 - Do NOT write content that could appear on a generic marketing blog
 - Prioritize depth over coverage
 
-**SVG infographic rules (in-body charts -- separate from the frontmatter hero card above):**
+**SVG infographic rules (in-body charts only -- the frontmatter `image:` hero card is separate, see Main image selection below):**
 - Generate 2 SVG infographics per post and save them alongside the blog post
 - Place SVG files in `public/article-images/` in the website repo (Glob: `**/public/article-images/` to find path)
 - Naming convention: `{post-slug}-{chart-type}.svg`
