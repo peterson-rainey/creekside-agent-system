@@ -21,17 +21,23 @@ Attached a few relevant results below. There is also a short video on my profile
 ## FLAGS - READ BEFORE SENDING
 
 ### 1. TWO PROFILES NOW HOLD A DRAFT ON THIS ONE JOB
-`.claude/drafts/2026-09-02_geld-wealth-india-meta-webinar-leadgen_samuel_strategic-diagnostic_UNSENT.md`
-exists for this exact job. That is the 8/27 tell that a prospect can notice. **Only one can ever send.**
+The live Samuel contender is **`.claude/drafts/2026-09-02_geld-wealth-india-meta-webinar-leadgen_samuel_default_UNSENT.md`**
+(style `strategic`, Samuel's documented default, signed "Peterson"). It SUPERSEDED an earlier
+`_samuel_strategic-diagnostic_` draft of the same job, which is now marked superseded and is not a contender.
 
-The Samuel draft's own resolution note nominates *itself* as the keeper, reasoning that "strategic" is a
-Samuel-only style so the strategic+diagnostic ask must have meant Samuel. **Queenie's request this session
-explicitly names `lindsey_default`, which is newer and supersedes that reasoning.** On the plain reading
-this Lindsey draft is the keeper and the Samuel draft is the shelving candidate. Ruling is still hers.
+That is the 8/27 tell a prospect can notice. **Only one can ever send.**
 
-The two openings deliberately diverge and do not overlap much:
-- **Lindsey (this one):** does the registration event reach Meta at all
-- **Samuel:** two offers sharing one campaign, then weekly dated campaigns restarting learning every 7 days
+The superseded Samuel draft nominated *itself* as keeper, reasoning that "strategic" is a Samuel-only style
+so the strategic+diagnostic ask must have meant Samuel. **Queenie's request this session explicitly names
+`lindsey_default`, which is newer and supersedes that reasoning.** On the plain reading this Lindsey draft is
+the keeper. Ruling is still hers.
+
+**Openings diverge, middles now overlap.** Worth knowing before choosing:
+- **Lindsey (this one):** opens on whether the registration event reaches Meta at all
+- **Samuel default:** opens on two offers sharing one campaign, then weekly dated campaigns restarting
+  learning every 7 days
+- **Overlap:** both land on registration / attendance / booked meeting as three separate events, optimizing
+  on the last. Same argument, different route in. Not a problem if only one sends, which is the rule anyway.
 
 ### 2. GEO - ALREADY RULED, NOT REOPENED
 The geo screen fired and **Queenie overrode it on 2026-09-02** (third override of this screen, first on a
@@ -40,16 +46,16 @@ are SEBI-only instruments; "private meetings in our office" pins the audience to
 live this session for an NRI or overseas angle and there is **none**. Recording the basis, not re-litigating
 the decision. Screen default unchanged for future jobs.
 
-Note one divergence: the Samuel draft asks in-body whether any spend targets NRI audiences abroad, per the
+Note one divergence: the Samuel default draft asks in-body whether any spend targets NRI audiences abroad, per the
 override rule that the client's own answer should resolve geo. **This Lindsey draft does not ask that**, and
 if Queenie keeps the Lindsey version the NRI question should move to the reply.
 
-### 3. PROOF - AND WHERE I DIVERGE FROM THE SAMUEL DRAFT (needs a ruling)
+### 3. PROOF - AND WHERE I DIVERGE FROM THE SAMUEL DEFAULT DRAFT (needs a ruling)
 All figures recomputed live 2026-09-03 via `contractor_query`.
 
-| Asset | Samuel draft | This draft |
+| Asset | Samuel default draft | This draft |
 |---|---|---|
-| **South River Mortgage** `act_1358674881898209` | **Excluded entirely**, "not even in past tense" | **Used**, past tense, spend + missing-measurement only |
+| **South River Mortgage** `act_1358674881898209` | **Excluded entirely** (both Samuel drafts) | **Used**, past tense, spend + missing-measurement only |
 | **Retirement Income Solutions** `act_1423698879754960` | Used for shape, **no number** | Used **with click and conversion counts** |
 | `act_663740117605644` ($206K / 925 conv) | Withheld | Withheld, same reasons, honored |
 
@@ -86,7 +92,7 @@ to $162.06 Jul 2026, conversions 905 to 31.
 - **SEBI + Meta financial-services rules.** Body flags advertiser verification and disclosure generically
   rather than asserting a specific India policy, which was **not verifiable this session**. Do not let this
   harden into a claim.
-- The Samuel draft additionally warns that the site's **34.88% 3-year CAGR** headline will likely fail ad
+- The Samuel default draft additionally warns that the site's **34.88% 3-year CAGR** headline will likely fail ad
   review as a performance claim. That is a good catch and **this draft does not carry it**. Worth porting in
   if the Lindsey version is the keeper.
 
