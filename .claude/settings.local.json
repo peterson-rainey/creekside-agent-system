@@ -402,7 +402,8 @@
       "mcp__ede18d50-b5a3-4303-a965-5ed7d5f0f8f1__clickup_get_workspace_hierarchy",
       "mcp__ede18d50-b5a3-4303-a965-5ed7d5f0f8f1__clickup_search",
       "mcp__ede18d50-b5a3-4303-a965-5ed7d5f0f8f1__clickup_filter_tasks",
-      "Bash(curl -sIL \"https://calendar.app.google/85PWYBwxqYNq18qe9\" -o /dev/null -w 'status=%{http_code}\\\\n')"
+      "Bash(curl -sIL \"https://calendar.app.google/85PWYBwxqYNq18qe9\" -o /dev/null -w 'status=%{http_code}\\\\n')",
+      "WebFetch(domain:doc-14-0c-docstext.googleusercontent.com)"
     ]
   }
 }
