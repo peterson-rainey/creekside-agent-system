@@ -4,7 +4,7 @@ STATUS: UNSENT. **HARD GEO DQ FLAGGED - Queenie to rule before this goes anywher
 
 ---
 
-## THE DRAFT (289 words)
+## THE DRAFT (301 words)
 
 When someone registers for your weekly webinar, does that registration get back into Meta as a conversion event, or does it sit inside your registration tool and your CRM? The answer decides most of what follows, because Meta will only go and find more of the people it can actually see, and webinar-to-appointment funnels are where that link breaks most often.
 
@@ -59,4 +59,4 @@ This is not the ambiguous "global markets" variant that the rule leaves open. Ad
 "Strategic + diagnostic" was asked for. **Strategic is a Samuel-only style**, Lindsey has exactly one, `lindsey_default`, and it is already diagnostic by construction (mandatory diagnostic-question opening). Written as `lindsey_default` straight, no blending.
 
 ### 6. Compliance check
-Diagnostic-question opener (L3/L4 hybrid), no "I" opener, 289 words (inside 200-350), no links or URLs, no contact info, no pricing, no sign-off name, no certifications claimed, no Google/Bing/TikTok/programmatic, no em dashes, results-attached line present, profile-video line present, no earnings or return claims of any kind, Peterson/Samuel/Lindsey never named as the worker.
+Diagnostic-question opener (L3/L4 hybrid), no "I" opener, 301 words (inside 200-350), no links or URLs, no contact info, no pricing, no sign-off name, no certifications claimed, no Google/Bing/TikTok/programmatic, no em dashes, results-attached line present, profile-video line present, no earnings or return claims of any kind, Peterson/Samuel/Lindsey never named as the worker.
