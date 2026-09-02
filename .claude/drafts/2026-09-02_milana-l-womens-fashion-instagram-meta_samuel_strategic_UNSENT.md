@@ -59,7 +59,7 @@ Zero `agent_knowledge` rows on organic/Instagram either. The organic half of her
 Reconciles memory's 5.53x. The 6.59x figure is spend-weighted over only the 85% of spend with non-null roas.
 **Cited as "about 5.5x", the conservative total-spend read.**
 
-**Neue Maison** (act_782415276397596, CHURNED **2026-08-04**, reason "taking in-house"):
+**Neue Maison** (act_782415276397596, CHURNED **2026-08-11**, reason "Taking in-house"):
 2025-09-02 to 2026-08-10, $216,499.26 spend, $536,364.69 revenue, **2.48x blended over total spend**,
 959 conversions, $225.76 CPA.
 Campaign level, which is the proposal's whole argument:
@@ -69,10 +69,16 @@ Campaign level, which is the proposal's whole argument:
 Confirms the standing rule exactly: the 4.17x is promo, not cold. Cold prospecting ran under 1x.
 
 **INDEX CORRECTIONS MADE THIS SESSION:**
-1. Neue Maison churn date is **2026-08-04**, not 8/11/26.
+1. **Neue Maison churn date is 2026-08-11.** Mid-session I briefly recorded 2026-08-04 off free text in
+   `clients.notes`; that was wrong. The authoritative structured field `reporting_clients.churned_date`
+   says **2026-08-11**, which matches the standing index. Noted as a data-quality conflict: `clients.notes`
+   says 8/04, `reporting_clients` says 8/11, and real spend actually stopped after **2026-08-08**
+   ($251.40 on 8/08, then $0 on 8/09 and 8/10). **Prefer the structured field over notes free text.**
 2. Neue Maison is **luxury furniture**, NOT fashion or fashion-adjacent. Must never be sold as apparel proof.
 3. The 7.36x spend-weighted Neue Maison ROAS is a **trap**: it covers only $72,871 of $216,499 (34%).
    True blended is 2.48x.
+4. Blended ROAS IS recomputable on `meta_insights_daily` as `SUM(spend*roas)/SUM(spend)`, despite the
+   standing note that it cannot be (that note was reasoning from the absent `purchase_value` column).
 
 ## DELIBERATELY OUT
 
