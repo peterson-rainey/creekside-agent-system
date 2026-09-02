@@ -159,7 +159,7 @@ All substance MUST come from the source material. Campaign data from the RAG bra
 - Word count: 1,500-2,500 words
 - All factual claims must be traceable to the source transcript or post
 - MUST include the author bio block (author: Peterson Rainey -- mandatory, no exceptions per original SOP)
-- MUST include a CTA linking to /10k-profit-audit/
+- MUST include a CTA linking to /newsletter/ (NOT /10k-profit-audit/ -- retired as blog CTA 2026-09-02). Standard CTA copy (use as-is or a close variant): "If you want more breakdowns like this, I write a weekly newsletter about what's actually working inside the ad accounts we manage. Real wins, real losses, no fluff. [Subscribe to the Creekside newsletter](/newsletter/)."
 - MUST include >= 2 internal links to existing site pages
 - For YouTube-sourced posts: include a link/reference to the source video
 - NEVER use em dashes -- use commas, periods, or parentheses instead
