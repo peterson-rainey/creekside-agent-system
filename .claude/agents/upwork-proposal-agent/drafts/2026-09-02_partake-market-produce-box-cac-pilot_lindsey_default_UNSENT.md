@@ -165,8 +165,8 @@ that walks through how I run tests like this.
 - No sign-off name: YES
 - Google / Bing / TikTok never named as a service: YES
 - Meta and creative only: YES
-- Word count 341 (limit 350 for multi-question posts): YES
-- Under 5000 chars: YES (~2,000 chars)
+- Word count 350 (limit 350 for multi-question posts): YES, at ceiling
+- Under 5000 chars: YES (~2,050 chars)
 - Budget rule followed: acknowledges their cap, recommends $3,000/mo Meta rather than
   lowering to match: YES
 - Every number traced to live data or arithmetic on their own stated figures: YES
