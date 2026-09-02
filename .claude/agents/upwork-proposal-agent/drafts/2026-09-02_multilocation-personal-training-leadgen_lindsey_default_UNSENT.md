@@ -20,12 +20,14 @@
 - NOT used: Laleh CPA (banned, 99% NULL conversions), Advanced Med Spa key_result (zero live rows, uncorroborated), Big Chad Law $1,500/case (fails live verification).
 
 ## PROPOSAL (paste-ready, ~320 words, ~1,850 chars)
+## PROPOSAL (paste-ready, ~295 words, ~1,700 chars)
+**Rev 2 (post-QC):** opener no longer restates their KPI list (no-parroting rule); trimmed under the 300-word ceiling.
 
-Do you know your show rate between a booked consult and a consult that actually happens? You listed cost per lead, cost per booked consultation, and cost per client, and the number sitting between the last two is usually the one explaining the gap.
+Do you know your show rate between a booked consult and a consult that actually happens? It is usually the number that explains why cost per booked consult looks fine and cost per client does not.
 
-The reason I ask is that I ran Meta for a multi-location practice feeding a central intake team, and what fixed the economics was making the lead form harder to fill out, not easier. We put qualifying questions in front of the form. Cost per lead went up, cost per booked appointment went down. Over about three months that account produced 2,558 leads at $25.31 each, and we deliberately held spend to what the intake team could dial the same day. Capacity was the ceiling, not budget. With coaches running their own consult calendars, you will hit that constraint before you hit a budget one.
+The reason I ask is that I ran Meta for a multi-location practice feeding a central intake team, and what fixed the economics was making the lead form harder to fill out, not easier. We put qualifying questions in front of the form. Cost per lead went up, cost per booked appointment went down. Over about three months that account produced 2,558 leads at $25.31 each, and we deliberately held spend to what the intake team could dial the same day. Capacity was the ceiling, not budget. With coaches running their own consult calendars, you will hit that constraint before a budget one.
 
-The other thing multi-location businesses get wrong is reading blended numbers. On that account, in a single month, the same offer ran at $19.08 per lead at one location and $23.50 at the other, with a Spanish-language segment inside one of them at $13.35. Blend those three and you would scale the wrong one. Each location needs enough conversion volume on its own to leave the learning phase, which is also why a 30-day read on a fresh pixel across several locations mostly measures the learning phase rather than your intro offer. I would want a full quarter before either of us treats the numbers as real, and I would rather say that now than at the end of a 60-day test.
+The other thing multi-location businesses get wrong is reading blended numbers. On that account, in a single month, the same offer ran at $19.08 per lead at one location and $23.50 at the other, with a Spanish-language segment inside one of them at $13.35. Blend those three and you would scale the wrong one. Each location needs enough conversion volume on its own to leave the learning phase, which is also why a 30-day read on a fresh pixel mostly measures the learning phase, not the offer. I would want a full quarter before either of us treats the numbers as real, and I would rather say that now than after a 60-day test.
 
 Google Search and Local sits with our team, so both channels get read against one funnel instead of two dashboards.
 
