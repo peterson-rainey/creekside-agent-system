@@ -124,18 +124,18 @@ that is about 57 subscribers across the whole pilot, and split three ways in mon
 it lands near six or seven per channel per month.
 
 The reason I ask is that in ten plus years of running Meta accounts, the tests that
-failed were almost never the ones with a bad offer. They were the ones that never fed
-the pixel enough conversions to stabilize. Meta wants close to 50 per ad set per week.
+failed were rarely the ones with a bad offer. They were the ones that never fed the
+pixel enough conversions to stabilize. Meta wants close to 50 per ad set per week.
 At six, delivery stays in learning and the CAC you read in month two will not survive
-contact with scale. Your stop rules are the sharpest part of this brief, and they are
-also where this bites, because cutting a channel on six conversions is a coin flip.
+contact with scale. Your stop rules are the sharpest part of this brief, and also where
+this bites, because cutting a channel on six conversions is a coin flip.
 
-We run meal prep and local food delivery accounts, and one of them is the closest thing
-to your test I can point at. Across the stretch where its conversion tracking was clean,
-late October into early February, it put about $7,100 into 827 tracked orders, roughly
-$8.61 each, with the core market near $6.58. It got there on volume, which is the part
-your budget does not buy yet. Its newest suburb, opened that January, showed about $19.31
-on eleven orders, and eleven is not a number I would let anyone cut a channel on.
+We run meal prep and local food delivery accounts, and one is the closest thing to your
+test I can point at. Across the stretch where its tracking was clean, late October into
+early February, it put about $7,100 into 827 tracked orders, roughly $8.61 each, core
+market near $6.58. It got there on volume, which is the part your budget does not buy
+yet. Its newest suburb showed about $19.31 on eleven orders, and eleven is not a number
+I would let anyone cut a channel on.
 
 I built and sold my own e-commerce brand, so proving one market before spending
 anywhere else is an instinct I trust. I would put the whole $2,000 into one

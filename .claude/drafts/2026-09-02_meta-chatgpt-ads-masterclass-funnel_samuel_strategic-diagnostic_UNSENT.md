@@ -1,6 +1,6 @@
 # Upwork Proposal - Meta Ads + ChatGPT Ads for an online masterclass / VSL funnel, 30-day fixed price
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-02 (Postgres now(), US Central)
-Length: 856 words / 4,860 chars. Under the 5,000 char hard limit. OVER the 400-word style ceiling, deliberately (see COMPLIANCE).
+Length: 862 words / 4,897 chars. Under the 5,000 char hard limit. OVER the 400-word style ceiling, deliberately (see COMPLIANCE).
 
 ## RESOLUTION
 
@@ -114,9 +114,9 @@ Both of the angles you named are the two most likely to get rejected, and it has
 
 What I would change is separating the testing surface from the scaling surface. New creatives enter a test campaign with its own budget, where they cannot cannibalize spend that is already working. Winners graduate into a consolidated scaling campaign that stays running and never gets reset, so new creatives always get a real shot and proven ones never get starved to fund an experiment.
 
-Judge the pack before the creative. With one core idea per pack the pack is the experiment, and a weak creative inside a winning angle is a production problem, not an angle problem. How many packs run at once is set by budget rather than ideas, since each ad set needs enough weekly conversions to stay out of learning. That falls out of your registration cost, and it is the first thing I would size.
+Judge the pack before the creative. With one core idea per pack the pack is the experiment, and a weak creative inside a winning angle is a production problem, not an angle problem. How many packs run at once is capped by budget, not ideas, since each ad set needs enough weekly conversions to stay out of learning. That falls out of your registration cost, which is the first thing I would size.
 
-2. Pixel and CAPI setup and troubleshooting, yes. The break I find most often is both feeds firing the same event without a shared event ID, so nothing deduplicates. Meta counts roughly double, cost per registration looks excellent, and the account spends the next month learning from an audience that did not exist. On live accounts we keep pixel verification as a standing weekly item, because tracking breaks surface there about a week before they surface in cost per lead.
+2. Pixel and CAPI setup and troubleshooting, yes. The break I find most often is both feeds firing the same event without a shared event ID, so nothing deduplicates. Meta counts roughly double, cost per registration looks excellent, and the account spends a month learning from an audience that did not exist. On live accounts we keep pixel verification as a standing weekly item, because breaks surface there about a week before they surface in cost per lead.
 
 For your funnel the event that matters is not the registration. Meta optimizes toward whatever you send back, and if that is the signup it will get very good at finding people who register and never attend. Sending attendance back, then purchase, is what moves cost per customer. Straight with you on one thing: on deep server side builds we have worked alongside a specialist rather than owning that stack end to end.
 
@@ -124,7 +124,7 @@ ChatGPT Ads, yes, since June 7 across three accounts. Small money, and here is t
 
 3. Largest monthly Meta budget on our book is one account running just under $100,000 a month for the last twelve months, peak month $114,586. Elective healthcare, KPI is cost per booked consult.
 
-The one that answers your question better is a dental implant group we ran on Meta from April to July. Started near $1,000 a day, pushed to about $1,206, and blended cost per lead went from $18.74 to $29.85. The pullback after that was not a cost decision, it was a capacity one. Leads fed a call center that could not work them fast enough, so we cut to roughly $590 a day and then $484, and cost per lead came back to $25.48 and then $20.06. Four months, $64,747 spent, 2,558 leads, $25.31 blended. The forms also carried qualifying questions on purpose, which raised cost per lead and was worth it.
+The one that answers your question better is a dental implant group we ran on Meta from April to July. Started near $1,000 a day, pushed to about $1,206, and blended cost per lead went from $18.74 to $29.85. The pullback after that was a capacity decision, not a cost one. Leads fed a call center that could not work them fast enough, so we cut to roughly $590 a day and then $484, and cost per lead came back to $25.48 and then $20.06. The forms also carried qualifying questions on purpose, which raised cost per lead and was worth it. Four months, $64,747 spent, 2,558 leads, $25.31 blended.
 
 How those calls get made: trailing seven days against the prior seven, never day over day, and only acting when the change is larger than that account's own weekly noise. Increases in 20 to 30% steps so learning does not reset. Two cut triggers, and most people only watch the first. One is marginal cost per lead on the added spend rather than blended, because blended hides a bad increment for weeks. The other is whether whatever sits downstream can absorb the volume, which on your funnel is the masterclass and whatever converts attendees after it.
 
