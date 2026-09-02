@@ -217,12 +217,14 @@ The 5 templates in `.claude/agents/seo-content-templates/` may be referenced for
 title: "Post Title Here"
 description: "Meta description under 160 characters."
 date: "YYYY-MM-DD"
-image: "article-images/slug-name.avif"
+image: "article-images/blog-card-{name}.svg"
 category: "Google Ads" or "Facebook Ads"
 tags: ["Tag1", "Tag2", "Tag3"]
 ---
 ```
 Do NOT add fields not listed above for new posts. The schema accepts optional `lastModified: "YYYY-MM-DD"` only when updating an existing post.
+
+**Main image selection:** Pick ONE card from the branded pool in `public/article-images/` in the website repo: `blog-card-bars.svg`, `blog-card-trend.svg`, `blog-card-target.svg`, `blog-card-dots.svg`, `blog-card-funnel.svg`, `blog-card-waves.svg`, `blog-card-donut.svg`, `blog-card-arrow.svg`, `blog-card-scatter.svg`, `blog-card-panels.svg`. Check the `image:` field of the 5 most recent posts in `/src/content/blog/` and choose a card none of them used, so adjacent posts on the blog index never show the same card. If a genuinely post-specific thumbnail exists (rare), use it instead; the old default avif is a last-resort fallback only.
 
 Category must be "Google Ads" or "Facebook Ads" per the original SOP.
 
