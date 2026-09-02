@@ -2,8 +2,16 @@
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-02 (Postgres now())
 
 RESOLUTION
-- Step 0 (already-drafted check): NO prior `upwork_leads` row for Geld Wealth, Aastha, or geldwealth.com.
-  First submission, no duplicate-profile bid risk.
+- Step 0 (already-drafted check) FIRED, CAUGHT LATE: `.claude/agents/upwork-proposal-agent/drafts/
+  2026-09-03_geld-wealth-india-webinar-meta_lindsey_default_UNSENT.md` exists for this exact job.
+  My first Step 0 pass queried `upwork_leads` only (no row there) and missed the drafts folder.
+  TWO PROFILES NOW HOLD A DRAFT ON ONE JOB. Queenie must pick one before anything sends.
+- Queenie's ask named the STYLE ("strategic + diagnostic") and no profile. Strategic is Samuel-only,
+  which the Lindsey draft itself concedes in its style note, so this Samuel artifact is the requested
+  one and the Lindsey draft is the shelving candidate. Ruling is still hers.
+- Angle deliberately DIVERGES from the Lindsey draft. Lindsey opens on whether the registration event
+  reaches Meta at all. This opens one level earlier, on two offers sharing one campaign, then the
+  weekly-relaunch structure. The show-rate point overlaps and is framed differently in each.
 - GEO SCREEN FIRED AND WAS OVERRIDDEN by Queenie 2026-09-02. This is the THIRD override of the geo screen,
   and the FIRST on a first submission rather than a next-day re-request. The two prior overrides
   (AU/UAE, MySportsNotes) both came from re-requests. Screen default is unchanged for future jobs.
