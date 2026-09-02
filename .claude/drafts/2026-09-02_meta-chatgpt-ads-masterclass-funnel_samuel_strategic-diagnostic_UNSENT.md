@@ -1,6 +1,6 @@
 # Upwork Proposal - Meta Ads + ChatGPT Ads for an online masterclass / VSL funnel, 30-day fixed price
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-02 (Postgres now(), US Central)
-Length: 862 words / 4,897 chars. Under the 5,000 char hard limit. OVER the 400-word style ceiling, deliberately (see COMPLIANCE).
+Length: 867 words / 4,918 chars. Under the 5,000 char hard limit. OVER the 400-word style ceiling, deliberately (see COMPLIANCE).
 
 ## RESOLUTION
 
@@ -135,6 +135,30 @@ principal as the delivery worker and require "our team" framing. The body answer
 honest but is a visible mismatch with the word they used. A sharp prospect may push on it. No rule permits
 answering it any other way, so it stands, but Queenie should know the seam is there before this sends.
 
+## QC LOG (qc-reviewer-agent, run 2026-09-02 after the roster refreshed)
+
+**Verdict FAIL, 1 blocking. Fixed.**
+
+1. **BLOCKING, my error, applied.** Body said "Across 102 days" one clause after "since June 7." 102 is the ROW
+   COUNT across three accounts, not elapsed time. June 7 to September 2 is 87 days. The proposal handed the
+   prospect the start date and then contradicted it with arithmetic they could do in their head, inside the one
+   paragraph where our numbers are the whole point. Now reads "Close to three months in and $1,626 spent."
+   The draft's own verification block had it right ("87-day span, 102 daily rows"); the body did not.
+2. **Applied.** "KPI is cost per booked consult" on the $100K/mo account was invented. Checked live:
+   `clients.conversion_events` is empty, `target_cpl` NULL, `reporting_clients.goal_type` and `goal_target`
+   both NULL for act_868498138612020. No KPI is recorded anywhere. Clause struck. The KPI answer now sits on
+   the Fusion paragraph instead, where it IS documented, and is stated explicitly as blended cost per lead
+   into a call center.
+3. **Applied.** "Four months" for Apr 21 to Jul 15 is 86 days. Now "Twelve weeks."
+4. **Applied.** "we have not built conversion tracking there" was an inference from conversions = 0. Softened
+   to "we have not gotten conversion data flowing back there," which is exactly what the data proves.
+5. **Rejected, QC lacked the roster.** "on dental and one experience brand" is accurate: the three ChatGPT Ads
+   accounts are The Tooth Co., Alex Antipov Dental Corp. and Chattanooga Skydiving Company. Two dental, one
+   experience. No change.
+6. **Open, out of QC scope.** The Meta personal-attributes policy claim in the opening paragraph is domain
+   expertise, not a DB fact. `expert-review-agent` spawned separately to check it, since it is the hook.
+7. **Applied.** Recounted after edits: 867 words / 4,918 chars.
+
 ## COMPLIANCE
 
 No links or URLs. No contact info. No calendar link (first touch). No pricing in body. No em dashes (verified 0).
@@ -147,8 +171,8 @@ own words (job security, second paycheck, Ad Pack). Portfolio numbers land last.
 2. **798 words against a 400-word ceiling.** Q3 alone demands five separate data points. Cutting to 400 means
    dropping required answers. Char limit (5,000) is respected at 4,543.
 
-**QC NOT RUN.** `qc-reviewer-agent` and `expert-review-agent` are not available in this session's agent roster,
-so the mandated QC pass could not be executed. Self-review only. Every number above was recomputed live.
+**QC RUN 2026-09-02** once the agent roster refreshed. See QC LOG above. `expert-review-agent` pending on the
+opening policy claim. Every number above was recomputed live.
 
 ---
 
@@ -156,19 +180,19 @@ Both of the angles you named are the two most likely to get rejected, and it has
 
 1. The Ad Pack is the right unit for the idea, but one ad set holding six creatives will not test six creatives fairly. Delivery concentrates on whichever one wins the first few hundred impressions and the rest never accumulate enough data to judge. A fair test is not equal spend, it is enough conversions to separate a creative from noise.
 
-What I would change is separating the testing surface from the scaling surface. New creatives enter a test campaign with its own budget, where they cannot cannibalize spend that is already working. Winners graduate into a consolidated scaling campaign that stays running and never gets reset, so new creatives always get a real shot and proven ones never get starved to fund an experiment.
+What I would change is separating the testing surface from the scaling surface. New creatives enter a test campaign with its own budget, where they cannot cannibalize spend that is already working. Winners graduate into a consolidated scaling campaign that stays running and never gets reset, so new creatives always get a real shot and proven ones never get starved.
 
-Judge the pack before the creative. With one core idea per pack the pack is the experiment, and a weak creative inside a winning angle is a production problem, not an angle problem. How many packs run at once is capped by budget, not ideas, since each ad set needs enough weekly conversions to stay out of learning. That falls out of your registration cost, which is the first thing I would size.
+Judge the pack before the creative. With one core idea per pack the pack is the experiment, and a weak creative inside a winning angle is a production problem, not an angle problem. How many packs run at once is capped by budget, not ideas, since each ad set needs enough weekly conversions to stay out of learning. That falls out of your registration cost, the first thing I would size.
 
 2. Pixel and CAPI setup and troubleshooting, yes. The break I find most often is both feeds firing the same event without a shared event ID, so nothing deduplicates. Meta counts roughly double, cost per registration looks excellent, and the account spends a month learning from an audience that did not exist. On live accounts we keep pixel verification as a standing weekly item, because breaks surface there about a week before they surface in cost per lead.
 
 For your funnel the event that matters is not the registration. Meta optimizes toward whatever you send back, and if that is the signup it will get very good at finding people who register and never attend. Sending attendance back, then purchase, is what moves cost per customer. Straight with you on one thing: on deep server side builds we have worked alongside a specialist rather than owning that stack end to end.
 
-ChatGPT Ads, yes, since June 7 across three accounts. Small money, and here is the honest part. Across 102 days and $1,626 in spend the platform has reported zero conversions back to us and every campaign has run on click bidding. So no, we have not built conversion tracking there, and I would not judge it against Meta on CAC yet. It gets read through UTMs and downstream revenue, as a fixed carve rather than a co-equal channel. Our numbers so far are a $52.39 CPM, $3.69 CPC and 1.42% CTR, on dental and one experience brand, so order of magnitude only.
+ChatGPT Ads, yes, since June 7 across three accounts. Small money, and here is the honest part of it. Close to three months in and $1,626 spent, the platform has reported zero conversions back to us and every campaign has run on click bidding. So no, we have not gotten conversion data flowing back there, and I would not judge it against Meta on CAC yet. It gets read through UTMs and downstream revenue, as a fixed carve rather than a co-equal channel. Our numbers so far are a $52.39 CPM, $3.69 CPC and 1.42% CTR, on dental and one experience brand, so order of magnitude only.
 
-3. Largest monthly Meta budget on our book is one account running just under $100,000 a month for the last twelve months, peak month $114,586. Elective healthcare, KPI is cost per booked consult.
+3. Largest monthly Meta budget on our book is one account running just under $100,000 a month for the last twelve months, peak month $114,586. Elective healthcare.
 
-The one that answers your question better is a dental implant group we ran on Meta from April to July. Started near $1,000 a day, pushed to about $1,206, and blended cost per lead went from $18.74 to $29.85. The pullback after that was a capacity decision, not a cost one. Leads fed a call center that could not work them fast enough, so we cut to roughly $590 a day and then $484, and cost per lead came back to $25.48 and then $20.06. The forms also carried qualifying questions on purpose, which raised cost per lead and was worth it. Four months, $64,747 spent, 2,558 leads, $25.31 blended.
+The one that answers your question better is a dental implant group we ran on Meta from April to July, where the KPI was blended cost per lead into a call center. Started near $1,000 a day, pushed to about $1,206, and blended cost per lead went from $18.74 to $29.85. The pullback after that was a capacity decision, not a cost one. Leads fed a call center that could not work them fast enough, so we cut to roughly $590 a day and then $484, and cost per lead came back to $25.48 and then $20.06. The forms also carried qualifying questions on purpose, which raised cost per lead and was worth it. Twelve weeks, $64,747 spent, 2,558 leads, $25.31 blended.
 
 How those calls get made: trailing seven days against the prior seven, never day over day, and only acting when the change is larger than that account's own weekly noise. Increases in 20 to 30% steps so learning does not reset. Two cut triggers, and most people only watch the first. One is marginal cost per lead on the added spend rather than blended, because blended hides a bad increment for weeks. The other is whether whatever sits downstream can absorb the volume, which on your funnel is the masterclass and whatever converts attendees after it.
 
