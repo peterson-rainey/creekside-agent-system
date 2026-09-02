@@ -84,6 +84,50 @@ $48.79 to $9.58 does not reconcile with the Meta account. Standing rule held.
   until 2026-09-14. Excluded, same as on Geld Wealth.
 - No CAPI/pixel case study exists anywhere in the library. Nothing attachable. **Attach NOTHING.**
 
+## ATTACHMENT DECISION (verified 2026-09-02 by curl + gdrive_marketing)
+
+**RECOMMENDATION: ATTACH NOTHING.** All 28 `case_studies` rows screened.
+
+- **ZERO tracking/pixel/CAPI case studies exist.** The job's most emphasized requirement ("This is extremely
+  important to us") has no attachable proof of any kind. Confirms the 2026-09-02 CAPI-draft finding.
+- **ZERO webinar, masterclass or VSL-funnel case studies.** Nothing on registration-to-purchase funnels.
+
+**The one real candidate, and why it is still a no.** `Adventures in Wisdom` is the ONLY Education row and the
+only enrollment/application funnel we own on Meta. Its case_studies `download_url` (file_id 1sRK... pattern,
+`1qoW2YJOCD_AwOnvAEdGjsh-adzQ_drD0`) returns **text/html**, stale as always. The **underscore twin IS LIVE**:
+`Adventures_in_Wisdom_(AIW)_Case_Study_Creekside_Marketing_Pros.pdf`, file_id `1Q4IAix0Gc81lnfeWvRlMJYHwTijeIw-h`,
+HTTP 200, application/octet-stream, correct content-disposition, **809,926 bytes**. Real file. Twin rule now 7/7.
+
+Content per `gdrive_marketing.ai_summary`: Meta only, Mar-Oct 2025, ends at **90 applications / $11,069 spend /
+$123 CPA in Oct 2025**, down from $256 CPA in Jan 2025. Method content is an unusually good match for this post
+(systematic testing, budget reallocation, a "Retirement" segment emerging as the winner, and a May improvement
+with NO new creative, which is exactly their "understand why it is working" ask).
+
+**Reconciliation check: the spend matches EXACTLY and the conversion count does not.** Live
+`meta_insights_daily` for Oct 2025 on act_1553150081825 = **$11,069.43**, against the PDF's $11,069. But live
+conversions = **573 at $19.32**, against the PDF's 90 at $123. That is NOT a contradiction, it is the Master Spa
+Parts shallow-event ladder: the PDF counts applications, the insights table counts a shallower standard event.
+Defensible if asked.
+
+**Three reasons it still does not go:**
+1. Standing rule on AiW is presence-only, cite NO number, because the account **collapsed after the PDF's
+   window**: $11.31 CPL Nov 2025 to $162.06 Jul 2026 and $145.92 Aug 2026, at flat ~$5K/mo. A "how is that
+   account doing now" question has a bad honest answer.
+2. The proposal body does not mention AiW anywhere. Attaching a case study the body never references is
+   incoherent and invites the exact question in #1.
+3. Same family as the 2026-09-03 Aura ruling: do not attach a PDF whose headline the current data undercuts.
+   Aura's was contradicted outright; AiW's is superseded by later decline. Softer, same direction.
+
+**If Queenie overrides and wants an attachment, AiW's underscore twin is the only defensible file**, and the
+body must be amended to reference it and to scope it to Mar-Oct 2025 explicitly.
+
+**Screened and rejected:** Birthday Club App (creative-testing method match, but file_id
+`1NOKmt8X-jCC8wFYtpDLYE_zRfa1_v9Ag` returns **HTTP 404** and NO underscore twin exists in `gdrive_marketing`.
+Memory rule confirmed, cite but never promise). Fitness Superstore 40x (unbacked, churned). Aura Displays
+(Google Shopping ecom, wrong funnel, headline contradicted by live ex-brand data). South River Mortgage
+($81 CPL fails live verification, churned). ReferPro, Join Piper, Integrity, Polaris, Dr. Laleh (wrong vertical
+or wrong funnel shape for a masterclass).
+
 ## KNOWN TENSION - FLAGGING, NOT RESOLVING
 
 Q3 asks what "you personally" scaled and "you have personally managed", twice. Standing rules forbid naming a
