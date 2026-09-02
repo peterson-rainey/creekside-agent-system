@@ -130,20 +130,21 @@ At six, delivery stays in learning and the CAC you read in month two will not su
 contact with scale. Your stop rules are the sharpest part of this brief, and they are
 also where this bites, because cutting a channel on six conversions is a coin flip.
 
-We run meal prep and local food delivery accounts, and the spread inside one of them is
-the whole story. Cost per conversion sat near $26 on its best campaign and $41 in the
-main market, then hit $662 in a suburb that got opened too fast, alongside two more new
-markets that spent real money and never recorded a conversion. Same product, same
-playbook. Geography and conversion density decided all of it.
+We run meal prep and local food delivery accounts, and one of them is the closest thing
+to your test I can point at. Across the stretch where its conversion tracking was clean,
+late October into early February, it put about $7,100 into 827 tracked orders, roughly
+$8.61 each, with the core market near $6.58. It got there on volume, which is the part
+your budget does not buy yet. Its newest suburb, opened that January, showed about $19.31
+on eleven orders, and eleven is not a number I would let anyone cut a channel on.
 
-I built and sold my own e-commerce brand before this, so proving one market before
-spending anywhere else is an instinct I trust. I would put the whole $2,000 into one
+I built and sold my own e-commerce brand, so proving one market before spending
+anywhere else is an instinct I trust. I would put the whole $2,000 into one
 channel and one tight geo rather than split it, and let the stop rules govern creative
 inside that channel instead of which channel survives. $3,000 a month on Meta is where
 I have seen local subscription tests start producing numbers you can stand behind.
 
-Tracking already being verified changes the first week, so I would spend it on offer and
-creative angles against your weekly cutoff instead of on plumbing.
+Tracking already being verified changes week one, so I would spend it on offer and
+creative angles against your weekly cutoff instead of plumbing.
 
 I have attached a few relevant results below. There is also a short video on my profile
 that walks through how I run tests like this.
