@@ -3,7 +3,8 @@
 **Profile:** Samuel Rainey (Google-inclusive post → Lindsey out on platform test)
 **Style:** Samuel `strategic` (the "strategic + diagnostic" ask; Lindsey has no strategic style)
 **Date drafted:** 2026-09-03
-**Status:** UNSENT — needs Queenie approval
+**Status:** UNSENT — approved as the profile that goes out
+**Ruling 2026-09-03 (Queenie):** Samuel only. The competing `lindsey_default` draft for this same post is SHELVED (Google is outside Lindsey's permitted scope; post is Google Search + Local AND Meta). Spend + geo asks stay in-body.
 **Length:** 396 words / 2,332 chars (limit 5,000; strategic ceiling 400 for multi-question posts)
 
 ---

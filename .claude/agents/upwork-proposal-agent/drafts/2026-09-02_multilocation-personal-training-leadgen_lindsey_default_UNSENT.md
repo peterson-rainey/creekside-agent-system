@@ -1,5 +1,16 @@
 # Upwork Proposal — Multi-Location Personal Training, Google + Meta Lead Gen
-**Profile:** Lindsey · **Style:** lindsey_default · **Status:** UNSENT · **Drafted:** 2026-09-02 (DB now())
+**Profile:** Lindsey · **Style:** lindsey_default · **Status:** SHELVED / SUPERSEDED · **Drafted:** 2026-09-02 (DB now())
+
+> **SHELVED 2026-09-03 by Queenie.** A Samuel `strategic` draft was written for this same post and Queenie
+> ruled **Samuel only** goes out. Reason: the post is Google Search + Local AND Meta, and `lindsey_default`
+> forbids claiming Google as her service, which this draft could only hedge with a one-clause "our team"
+> workaround. Samuel wins the platform test. Two profiles on one post is also the thing a prospect caught
+> on 2026-08-27. Do NOT send this. Live draft:
+> `.claude/drafts/upwork-multilocation-personal-training-google-meta-samuel-strategic-2026-09-03.md`
+>
+> Accuracy note carried over: the per-location line below reads the three cleanest campaigns only. In that
+> same window Roseville actually spans four campaigns from $13.35 to $48.87, so "$19.08 at one location and
+> $23.50 at the other" overstates how clean the split is.
 
 ## Screens reported (not cleared)
 - **Fixed-term trial FIRES:** "30-60 day test period." Tally 8 skips / 3 overrides. Budget UNSTATED, which per the 2026-09-02 pet-brands override leaves it open rather than foreclosed. Draft does NOT agree to the term; counters to a quarter in-body.
