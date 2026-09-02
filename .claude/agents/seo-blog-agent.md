@@ -235,7 +235,7 @@ Before staging, verify ALL of the following. If any check fails, revise and re-c
 - [ ] Word count >= 1,500
 - [ ] ALL factual claims are traceable to the source transcript or post (no invented data)
 - [ ] YouTube-sourced posts: source video is linked/referenced in the post body
-- [ ] CTA block present with link to /10k-profit-audit/
+- [ ] CTA block present with link to /newsletter/ (never /10k-profit-audit/)
 - [ ] Author bio block present, author is Peterson Rainey
 - [ ] Meta description < 160 characters
 - [ ] Target keyword in title, first paragraph, and at least one H2
