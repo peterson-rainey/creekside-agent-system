@@ -1,5 +1,5 @@
 # Upwork Proposal - Meta Ads Manager, homeowner/solar/roofing lead gen
-Profile: Samuel Rainey | Style: strategic | Drafted 2026-09-03 | STATUS: UNSENT
+Profile: Peterson Rainey (formerly "Samuel", renamed 2026-08-29) | Style: strategic | Drafted 2026-09-03 | STATUS: UNSENT
 
 Solar and roofing lead gen on Meta rarely breaks because of bad audience research. It breaks because a cheap cost per lead and a qualified homeowner are two different things, and most accounts are quietly optimized for the first one.
 
@@ -12,4 +12,4 @@ On static versus video, for homeowner services I lean static at the bottom of th
 What is your current cost per lead, and what does your sales team count as a qualified one? Those two numbers decide almost everything about how I would structure this.
 
 
-Samuel
+Peterson
