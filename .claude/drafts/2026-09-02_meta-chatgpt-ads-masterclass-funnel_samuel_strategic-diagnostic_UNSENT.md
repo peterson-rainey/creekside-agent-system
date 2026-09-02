@@ -1,6 +1,6 @@
 # Upwork Proposal - Meta Ads + ChatGPT Ads for an online masterclass / VSL funnel, 30-day fixed price
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-02 (Postgres now(), US Central)
-Length: 867 words / 4,918 chars. Under the 5,000 char hard limit. OVER the 400-word style ceiling, deliberately (see COMPLIANCE).
+Length: 858 words / 4,900 chars. Under the 5,000 char hard limit. OVER the 400-word style ceiling, deliberately (see COMPLIANCE).
 
 ## RESOLUTION
 
@@ -159,6 +159,38 @@ answering it any other way, so it stands, but Queenie should know the seam is th
    expertise, not a DB fact. `expert-review-agent` spawned separately to check it, since it is the hook.
 7. **Applied.** Recounted after edits: 867 words / 4,918 chars.
 
+## EXPERT REVIEW LOG (expert-review-agent, 2026-09-02)
+
+**Verdict: Needs Work. Opening rewritten. 6 of 7 applied.**
+
+1. **HIGH, applied, the important one.** v2 opened "Both of the angles you named are the two most likely to
+   get rejected." The client gave two-word ANGLE DESCRIPTIONS, not ad copy. Predicting a rejection outcome for
+   copy we have never seen is presumptuous, unfalsifiable, and it was the Upwork PREVIEW text in front of a
+   prospect who said they value reasoning. Opener rebuilt as a mechanism explanation rather than a prediction.
+2. **HIGH, applied, real gap.** The opener led with personal attributes and MISSED the likelier vector.
+   Income-opportunity offers are among Meta's most enforced categories under unrealistic outcomes and
+   misleading claims, and "a second paycheck without working a second job" is an implied-earnings promise that
+   flags in second person or third. Grammar does not save it. That is now the FIRST thing in the proposal and
+   personal attributes is second.
+3. **MEDIUM, applied.** Financial status is the enumerated personal attribute; employment status is derivative,
+   not a standalone codified category. v2 implied both were enumerated. Reworded to route job-security copy
+   through the financial-situation read, which is the accurate path.
+4. **MEDIUM, applied.** v2's binary ("gets pulled" / "clears") asserted deterministic enforcement. Meta's
+   classifiers are topic and sentiment driven, not a grammar test. Now "lowers the odds without guaranteeing
+   anything." The concrete before/after rewrite example was CUT with it, which costs some punch. Flagging that
+   as a real loss, not a free win.
+5. **LOW, applied.** "never gets reset" on the scaling campaign contradicted the client's own stated concern
+   about creative fatigue. Now "not reset without cause, fatigue being the cause that counts."
+6. **MEDIUM, applied.** The attendance-then-purchase advice had no volume caveat and no attribution-lag caveat.
+   Both added, and the weekly-conversion point was moved out of answer 1 into answer 2 rather than duplicated.
+7. **LOW, NOT applied.** Recommended naming Meta's native A/B test tool. Rejected: it does not solve the actual
+   problem (spend concentration inside one ad set across six creatives), and it costs characters the SAC risk
+   needed more.
+
+**Also carried in, hedged as the reviewer asked:** the Special Ad Category question. A teaching product usually
+stays out of Employment or Financial Products SAC, but classifier drift can force the toggle and that strips
+targeting. Named as a risk, not asserted. One clause only, because it is the least settled item in the opener.
+
 ## COMPLIANCE
 
 No links or URLs. No contact info. No calendar link (first touch). No pricing in body. No em dashes (verified 0).
@@ -176,26 +208,26 @@ opening policy claim. Every number above was recomputed live.
 
 ---
 
-Both of the angles you named are the two most likely to get rejected, and it has nothing to do with the offer. Job security and a second paycheck are statements about the reader's employment and finances, and Meta's personal attributes policy reads second person copy as a claim that you know something about the person seeing it. "Worried about losing your job?" gets pulled. "Most people are one reorg away from finding out how replaceable they are" says the same thing and clears. Same angle, different grammar, and cheaper to fix in the copy than in appeals afterward.
+Two things decide whether these angles ever run, and neither is the offer. Start with the income claim. A second paycheck without working a second job reads as an easy-money promise, and income-opportunity offers are among the most heavily enforced categories on Meta. Implied earnings outcomes draw flags in second person or third, so grammar will not save that one. Job security is the subtler one. Addressed to the reader it can read as a claim about their financial situation, which is a protected personal attribute, and moving it off the reader lowers the odds without guaranteeing anything. Both usually get solved the same way, by promising what the class teaches rather than what the viewer will earn. There is also a chance of landing in a restricted category, which costs you targeting. Cheaper to settle before launch than in appeals.
 
-1. The Ad Pack is the right unit for the idea, but one ad set holding six creatives will not test six creatives fairly. Delivery concentrates on whichever one wins the first few hundred impressions and the rest never accumulate enough data to judge. A fair test is not equal spend, it is enough conversions to separate a creative from noise.
+1. The Ad Pack is the right unit for the idea, but one ad set holding six creatives will not test six creatives fairly. Delivery concentrates on whichever wins the first few hundred impressions and the rest never accumulate enough data to judge. A fair test is not equal spend, it is enough conversions to separate a creative from noise.
 
-What I would change is separating the testing surface from the scaling surface. New creatives enter a test campaign with its own budget, where they cannot cannibalize spend that is already working. Winners graduate into a consolidated scaling campaign that stays running and never gets reset, so new creatives always get a real shot and proven ones never get starved.
+What I would change is separating the testing surface from the scaling one. New creatives enter a test campaign with its own budget, where they cannot cannibalize spend that is already working. Winners graduate into a consolidated scaling campaign that keeps running and is not reset without cause, fatigue being the cause that counts.
 
-Judge the pack before the creative. With one core idea per pack the pack is the experiment, and a weak creative inside a winning angle is a production problem, not an angle problem. How many packs run at once is capped by budget, not ideas, since each ad set needs enough weekly conversions to stay out of learning. That falls out of your registration cost, the first thing I would size.
+Judge the pack before the creative, since with one idea per pack the pack is the experiment and a weak creative inside a winning angle is a production problem, not an angle problem.
 
 2. Pixel and CAPI setup and troubleshooting, yes. The break I find most often is both feeds firing the same event without a shared event ID, so nothing deduplicates. Meta counts roughly double, cost per registration looks excellent, and the account spends a month learning from an audience that did not exist. On live accounts we keep pixel verification as a standing weekly item, because breaks surface there about a week before they surface in cost per lead.
 
-For your funnel the event that matters is not the registration. Meta optimizes toward whatever you send back, and if that is the signup it will get very good at finding people who register and never attend. Sending attendance back, then purchase, is what moves cost per customer. Straight with you on one thing: on deep server side builds we have worked alongside a specialist rather than owning that stack end to end.
+For your funnel the event that matters is not the registration. Meta optimizes toward whatever you send back, and if that is the signup it will get very good at finding people who register and never attend. Sending attendance back, then purchase, is what moves cost per customer. Two conditions. The deeper event has to fire often enough weekly to keep ad sets out of learning, so it gets staged, not switched on in week one, and the click to purchase lag has to sit inside your attribution window or the credit never lands. One thing straight: on deep server side builds we have worked alongside a specialist rather than owning that stack end to end.
 
-ChatGPT Ads, yes, since June 7 across three accounts. Small money, and here is the honest part of it. Close to three months in and $1,626 spent, the platform has reported zero conversions back to us and every campaign has run on click bidding. So no, we have not gotten conversion data flowing back there, and I would not judge it against Meta on CAC yet. It gets read through UTMs and downstream revenue, as a fixed carve rather than a co-equal channel. Our numbers so far are a $52.39 CPM, $3.69 CPC and 1.42% CTR, on dental and one experience brand, so order of magnitude only.
+ChatGPT Ads, yes, since June 7 across three accounts. Small money. Close to three months in and $1,626 spent, the platform has reported zero conversions back to us and every campaign has run on click bidding. So no, we have not gotten conversion data flowing back there, and I would not judge it against Meta on CAC yet. It gets read through UTMs and downstream revenue, as a fixed carve. Our numbers so far are a $52.39 CPM, $3.69 CPC and 1.42% CTR, on dental and one experience brand, so order of magnitude only.
 
 3. Largest monthly Meta budget on our book is one account running just under $100,000 a month for the last twelve months, peak month $114,586. Elective healthcare.
 
-The one that answers your question better is a dental implant group we ran on Meta from April to July, where the KPI was blended cost per lead into a call center. Started near $1,000 a day, pushed to about $1,206, and blended cost per lead went from $18.74 to $29.85. The pullback after that was a capacity decision, not a cost one. Leads fed a call center that could not work them fast enough, so we cut to roughly $590 a day and then $484, and cost per lead came back to $25.48 and then $20.06. The forms also carried qualifying questions on purpose, which raised cost per lead and was worth it. Twelve weeks, $64,747 spent, 2,558 leads, $25.31 blended.
+The one that answers your question better is a dental implant group we ran on Meta from April to July, where the KPI was blended cost per lead into a call center. Started near $1,000 a day, pushed to about $1,206, and cost per lead went from $18.74 to $29.85. The pullback after that was a capacity decision, not a cost one. Leads fed a call center that could not work them fast enough, so we cut to roughly $590 a day and then $484, and cost per lead came back to $25.48 and then $20.06. Twelve weeks, $64,747 spent, 2,558 leads, $25.31 blended.
 
-How those calls get made: trailing seven days against the prior seven, never day over day, and only acting when the change is larger than that account's own weekly noise. Increases in 20 to 30% steps so learning does not reset. Two cut triggers, and most people only watch the first. One is marginal cost per lead on the added spend rather than blended, because blended hides a bad increment for weeks. The other is whether whatever sits downstream can absorb the volume, which on your funnel is the masterclass and whatever converts attendees after it.
+How those calls get made: trailing seven days against the prior seven, never day over day, and only acting when the change beats that account's own weekly noise. Increases in 20 to 30% steps so learning does not reset. Two cut triggers. One is marginal cost per lead on the added spend rather than blended, because blended hides a bad increment for weeks. The other is whether what sits downstream can absorb the volume, which on your funnel is the masterclass itself.
 
-One flag on the 30 days. It is enough to prove tracking and find the angle that works, but not enough to read CAC, since week four registrations have not finished buying yet. Better to treat the month as tracking plus angle discovery and let the revenue read land after it.
+One flag on the 30 days. It is enough to prove tracking and find the angle that works, but not enough to read CAC, since week four registrations have not finished buying. Better to treat it as tracking plus angle discovery and let the revenue read land after.
 
-Two things before I could size this properly. Where are the ads running, and what monthly range are you considering for spend?
+Two things before I could size this. Where are the ads running, and what monthly range are you considering for spend?
