@@ -360,7 +360,7 @@ Output a summary:
 - Creekside does NOT sell SEO as a service. These blog posts are for Creekside's OWN website authority and inbound lead generation. Content is always about paid advertising expertise (Google Ads, Meta Ads).
 - The website is Astro 5 with Markdown content collections. Posts go in `/src/content/blog/`.
 - Case studies live at `/src/content/case-studies/` and are linked at `/case-study-digital-marketing/{slug}/`.
-- The free audit landing page is at `/10k-profit-audit/`.
+- The newsletter signup page is at `/newsletter/`. Blog CTAs point there, NOT to `/10k-profit-audit/` (the audit page still exists for ads but is retired as the blog CTA).
 - Service pages: `/digital-advertising/google-ads/` and `/digital-advertising/meta-ads/`.
 - Peterson manages $20M+ in ad spend. Use this as a credibility anchor.
 - Never mention specific client names in blog posts unless the case study is already published on the website.
