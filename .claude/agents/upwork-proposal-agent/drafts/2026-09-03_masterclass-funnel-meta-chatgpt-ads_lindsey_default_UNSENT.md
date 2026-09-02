@@ -3,20 +3,20 @@
 - **Profile:** Lindsey | **Style:** `lindsey_default`
 - **Drafted:** 2026-09-03 (Postgres `now()` UTC read 2026-09-02; harness + today's other drafts say 09-03, kept consistent)
 - **Status:** UNSENT — draft only
-- **Counts:** 337 words / 1,974 chars (limits 200-350 words, 5,000 chars) · 0 em dashes · 0 URLs · no pricing · no sign-off
+- **Counts:** 348 words / 1,941 chars (limits 200-350 words, 5,000 chars) · 0 em dashes · 0 URLs · no pricing · no sign-off
 - **Requested style:** "Lindsey's strategic version." **There is no Lindsey strategic style.** `samuel-strategic` is Samuel-only; Lindsey has exactly one, `lindsey_default`, which is diagnostic by construction. Written as `lindsey_default` straight, per the user's own "write it in lindsey_default."
 
 ---
 
 ## THE PROPOSAL (paste-ready)
 
-Has this ad account been pulled into Meta's Employment special ad category yet, or has it only ever run unrestricted? I ask because of the two angles you named. Job security and building a second paycheck sit close enough to employment and income claims that review sometimes drags the whole account into that category, and once it lands there detailed targeting, age and radius come off the table. The part that catches people out is that it is a rebuild, not a settings reset. Campaigns do not carry over cleanly, so a flag landing partway through a 30 day test costs you the learning you paid for. If it does happen, your instinct that creative carries the targeting is correct, and it stops being a philosophy and becomes the only lever left.
+Has this ad account been pulled into Meta's Employment special ad category yet, or has it only ever run unrestricted? I ask because of the two angles you named. Job security and building a second paycheck sit close enough to employment and income claims that review sometimes drags the whole account into that category, and once it lands there detailed targeting, age and radius come off the table. The part that catches people out is that it is a rebuild, not a reset. Campaigns do not carry over cleanly, so a flag landing partway through a 30 day test costs you the learning you paid for. If it does happen, your instinct that creative carries the targeting is correct, and it stops being a philosophy and becomes the only lever left.
 
-On scaling, the account I would point to is a direct to consumer brand I ran from roughly $5,400 a month up to just over $40,000 a month across nine months. Since you asked to understand why things work rather than just what won, the honest tradeoff is that cost per purchase went from about $107 to about $313 across that ramp. That was deliberate. Every increase got measured against blended return across the business, not the number in Ads Manager, and at that order value the volume was worth the efficiency. Reacting to daily swings would have ended it early. The largest single month I have personally managed in one Meta account is about $114,000, and that account is still running.
+On scaling, the account I would point to is a direct to consumer brand I ran from roughly $5,400 a month up to just over $40,000 a month across nine months. Since you asked to understand why rather than just what won, the honest tradeoff is that cost per purchase went from about $107 to about $313 across that ramp. That was deliberate. Every increase got measured against blended return across the business, not the number in Ads Manager, and at that order value the volume was worth it. Reacting to daily swings would have ended it early. The largest single month I have personally managed in one Meta account is about $114,000, and that account is still running.
 
-On ChatGPT Ads, our team has had three accounts on the platform since early June, one of them still delivering this week, so the placement is not new to us. What I would flag honestly is that everything run there so far has been click bid. Conversion tracking on that side is the piece nobody has solved cleanly yet, ours included, which is exactly why your instinct to prove tracking before meaningful spend is the right one.
+On ChatGPT Ads, our team has had three accounts on the platform since early June, one of them still delivering this week, so the placement is not new to us. What I would flag is that everything run there so far has been click bid. Conversion tracking on that side is the piece nobody has solved cleanly yet, ours included, which is exactly why proving tracking before meaningful spend is the right call.
 
-I have attached a few relevant results below. There is also a short video on my profile covering how I work through accounts like this one.
+I have attached a few relevant results below. There is also a short video on my profile covering how I work through accounts like this.
 
 ---
 
@@ -114,4 +114,4 @@ Your funnel is Ad, Registration, Masterclass, Customer, Revenue. I would want th
 
 ## COMPLIANCE CHECK
 
-Diagnostic-question opener (L3/L2 hybrid) · no "I" opener · 337 words, inside 200-350 · no links or URLs · no contact info · no pricing · no sign-off name · no certifications claimed · no Google/Bing/TikTok/programmatic · no em dashes · results-attached line present · profile-video line present · no earnings or income claims made on the client's behalf · Peterson/Samuel/Lindsey never named as the worker · no client names disclosed.
+Diagnostic-question opener (L3/L2 hybrid) · no "I" opener · 348 words, inside 200-350 · no links or URLs · no contact info · no pricing · no sign-off name · no certifications claimed · no Google/Bing/TikTok/programmatic · no em dashes · results-attached line present · profile-video line present · no earnings or income claims made on the client's behalf · Peterson/Samuel/Lindsey never named as the worker · no client names disclosed.
