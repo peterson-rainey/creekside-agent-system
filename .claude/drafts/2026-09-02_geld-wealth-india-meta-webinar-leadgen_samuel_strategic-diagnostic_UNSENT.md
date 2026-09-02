@@ -1,5 +1,5 @@
 # Upwork Proposal - Geld Wealth (Mumbai), Meta ads to weekly investment webinar + private meetings
-Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-02 (Postgres now())
+Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: SUPERSEDED by _samuel_default_ (rewritten 2026-09-02) | Drafted 2026-09-02 (Postgres now())
 
 RESOLUTION
 - Step 0 (already-drafted check) FIRED, CAUGHT LATE: `.claude/agents/upwork-proposal-agent/drafts/
