@@ -1,5 +1,5 @@
 # Multi-brand furniture/home goods ecom — read-only Google Ads + GMC audit
-# Profile: Samuel (strategic) | Status: UNSENT DRAFT | Drafted 2026-09-02
+# Profile: peterson (strategic) | Status: UNSENT DRAFT | Drafted 2026-09-02 | Sign-off: Peterson (Queenie ruling)
 
 A third of orders closing by phone does not spread evenly across your campaigns, and that is the part that usually gets missed. People who call already know who you are. So the untracked revenue lands disproportionately on brand terms, which are already the cheapest thing in the account. Brand looks better than it is, non-brand looks worse than it is, budget drifts toward brand, and platform ROAS climbs while blended MER falls. Same accounts, same spend, worse business.
 
@@ -18,4 +18,4 @@ Structure. Fixed fee, not hourly, because you should not be paying me to be thor
 One question before anything else. What does your cost file look like today, and does anything already join supplier cost to item ID?
 
 
-Samuel
+Peterson
