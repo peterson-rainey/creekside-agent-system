@@ -121,27 +121,26 @@ It also happens to resolve the Google-scope conflict without deception.
 
 Have you worked out how many conversions $2,000 actually buys you? At your $35 target
 that is about 57 subscribers across the whole pilot, and split three ways in month one
-it lands near six or seven per channel per month. I ask because that number decides
-whether this pilot can answer its own question.
+it lands near six or seven per channel per month.
 
-Meta needs close to 50 conversions per ad set per week before delivery stabilizes. At
-this volume nothing you run will exit the learning phase, so the CAC you read in month
-two is not the CAC you would get at scale. Your stop rules are the sharpest part of this
-brief and also where this bites. Cutting a channel for sustaining CAC above the line is
-a coin flip at six conversions.
-
-That is fixable, though not by splitting the budget. I would concentrate the whole
-$2,000 into one channel and one tight geo so the pixel gets a dense signal, then let the
-stop rules govern creative and audience inside that channel rather than which channel
-survives. I would rather say this now than in month three: $3,000 a month on Meta is
-where I have seen local subscription tests start producing numbers you can stand behind.
+The reason I ask is that in ten plus years of running Meta accounts, the tests that
+failed were almost never the ones with a bad offer. They were the ones that never fed
+the pixel enough conversions to stabilize. Meta wants close to 50 per ad set per week.
+At six, delivery stays in learning and the CAC you read in month two will not survive
+contact with scale. Your stop rules are the sharpest part of this brief, and they are
+also where this bites, because cutting a channel on six conversions is a coin flip.
 
 We run meal prep and local food delivery accounts, and the spread inside one of them is
 the whole story. Cost per conversion sat near $26 on its best campaign and $41 in the
 main market, then hit $662 in a suburb that got opened too fast, alongside two more new
 markets that spent real money and never recorded a conversion. Same product, same
-playbook. Geography and conversion density decided all of it. Your instinct to prove
-Long Beach before anything else is the correct one, and it is the step most people skip.
+playbook. Geography and conversion density decided all of it.
+
+I built and sold my own e-commerce brand before this, so proving one market before
+spending anywhere else is an instinct I trust. I would put the whole $2,000 into one
+channel and one tight geo rather than split it, and let the stop rules govern creative
+inside that channel instead of which channel survives. $3,000 a month on Meta is where
+I have seen local subscription tests start producing numbers you can stand behind.
 
 Tracking already being verified changes the first week, so I would spend it on offer and
 creative angles against your weekly cutoff instead of on plumbing.
@@ -165,7 +164,7 @@ that walks through how I run tests like this.
 - No sign-off name: YES
 - Google / Bing / TikTok never named as a service: YES
 - Meta and creative only: YES
-- Word count 350 (limit 350 for multi-question posts): YES, at ceiling
+- Word count 339 (limit 350 for multi-question posts): YES
 - Under 5000 chars: YES (~2,050 chars)
 - Budget rule followed: acknowledges their cap, recommends $3,000/mo Meta rather than
   lowering to match: YES
@@ -174,3 +173,22 @@ that walks through how I run tests like this.
 - Client name withheld on unflattering data: YES
 - No booking CTA (post did not offer a call): YES
 - No fee or hourly rate stated (pending Queenie's ruling): YES
+- Experience-heavy body (spec: roughly half): YES, ~60% after 9/2 QC rewrite
+- Required anchors "built and sold my own e-commerce brand" + "ten plus years": YES
+- Diagnostic question answered with "The reason I ask is..." experience framing: YES
+
+## QC PASS 1 (qc-reviewer-agent, 2026-09-02)
+
+Three structural defects found and FIXED:
+1. Body was only ~31% experience content vs the spec's "roughly half"; three of six
+   paragraphs sat in Samuel's prescriptive "what I'd do" register.
+2. Both required Lindsey anchors were absent entirely.
+3. The opening question was answered with impersonal platform mechanics rather than
+   the spec's "The reason I ask is because most accounts I've worked on..." pattern.
+
+One finding REJECTED: QC flagged "We run meal prep and local food delivery accounts"
+as a voice break and wanted first-person singular. Rejected because Punch Drunk Chef,
+Duck A Diet and Unrefined are NOT Lindsey's personal accounts. First person there
+would attribute another operator's account to her and would break the rule to pool the
+book rather than the person. First person is used only where it is genuinely hers:
+her own e-commerce brand and her tenure.
