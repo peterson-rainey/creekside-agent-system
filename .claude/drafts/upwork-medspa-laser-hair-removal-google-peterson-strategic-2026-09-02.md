@@ -46,10 +46,32 @@ Profile: Peterson (formerly Samuel) | Style: strategic | Status: UNSENT | Drafte
   cost-per-anything. Account 1095690703 has ZERO rows in `google_insights_daily`, so nothing is recomputable.
 - Any claim of certification. Zero exist system-wide. No Google Partner, no Meta Blueprint.
 - Polaris Dentistry (churned) and the dental framing generally. She is a med spa, not a dental practice.
-- Attachments. BOTH Advanced Med Spa case study PDFs and the Dr. Laleh PDF are bylined "Samuel Rainey," which
-  now INVERTS the persona against the 2026-08-29 rename to Peterson. Do not attach any of them.
+- Advanced Med Spa PDF. DOWNLOADED AND READ 2026-09-02. Byline reads "By: Samuel Rainey" while the Google
+  chart legend on page 2 reads "Peterson Creekside." BOTH names in one document, so it does not just invert
+  the persona against the 2026-08-29 rename, it contradicts itself in front of the prospect. Also written in
+  first person ("I used my campaign optimization techniques", "I got them 2x"), which fights the "our team"
+  framing in the body. Its charts have unlabeled axes and no dollar values. DO NOT ATTACH.
+- Dr. Laleh PDF (1puRdRRI80FMcw7dRUQvLjHbR3hYqYjSu, live). "By: Samuel Rainey", same inverted byline, plus
+  "$100k in ad spend -> $2 Million+ in revenue" off a stated $20k average client value. DO NOT ATTACH.
 - No links, no URLs, no calendar link, no contact info. She already offered to talk, so no booking push.
 - No em dashes.
+
+## ATTACHMENT (Drive-verified 2026-09-02, downloaded and read, not just HTTP-checked)
+- ATTACH `integrity_naturopathic.pdf` (1x5jAh7fB8S_kcPSdmeLsdiCj8rNV8iwX). ONLY attachable candidate.
+  3 pages, real PDF, no personal byline anywhere, footer is "CREEKSIDE MARKETING". Zero persona leak.
+  Fits her stated screen ("understands how people search for and choose providers") better than the vertical
+  match does: page 3 is a keyword table showing service-intent terms beating broad wellness terms.
+  "naturopathic doctor near me" 30.5 conv @ $13.49 / 12.64% CTR, "naturopathic doctor sacramento" 21 @ $13.39,
+  "medical wellness" 45 @ $35.79. That is the laser-hair-removal-near-me vs med-spa argument in her words.
+  Survives live verification: PDF claims "$14-$40 CPA" and "150+ conversions", live blended is $39.17 over
+  584 conversions. Nothing in it is contradicted by `google_insights_daily`.
+  TWO CAVEATS: (1) it carries the known Apr-2026 batch defect, a dead `http://localhost:4321/` link annotation
+  on the last page, same defect as green_shield and urcovered. (2) The "$14" headline anchors low against the
+  $39.17 blended figure quoted in the proposal body. Expect her to ask. The band in the PDF covers it.
+- Liveness sweep: `case_studies.download_url` returns HTTP 200 for all six healthcare rows but the BYTES are
+  an HTML sign-in page for Advanced Med Spa and Dr. Laleh. Only the underscore twins are real PDFs. Integrity
+  is the exception where the db-row ID and the marketing-drive ID are the same live file. Status codes alone
+  do not prove attachability. Download and `file` it.
 
 ## OPEN BEFORE SEND
 1. Ad spend range still unknown. The close asks for it.
