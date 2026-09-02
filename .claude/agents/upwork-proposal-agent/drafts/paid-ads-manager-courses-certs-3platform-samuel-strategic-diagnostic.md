@@ -154,3 +154,34 @@ On LinkedIn, two things and I would rather be direct about both. We have not run
 What I would deprioritize at this level. Display and YouTube, which will both absorb spend here without returning readable signal. Broad prospecting on Meta, in favour of consolidating into as few ad sets as possible so conversions concentrate rather than scatter. And audience segmentation generally, which is a luxury of much larger budgets.
 
 One question back. Is the $5,000 covering both funnels, and is the 4x meant to hold from month one or after a ramp?
+
+---
+
+# ATTACHMENT SWEEP - all 28 case studies, 2026-09-03. FINAL: ATTACH NOTHING.
+
+Re-asked, so the check was widened from 4 spot-checks to the full table plus live corroboration of every shortlisted number.
+
+## The shortlist and why each one fails
+
+| Candidate | Fit | File resolves | Live verification | Verdict |
+|---|---|---|---|---|
+| **Aura Displays** | Strong, it is the account cited in the answers | YES, octet-stream 813KB | **CONTRADICTED.** PDF says "8-10x on non-branded cold traffic," live unbranded is **5.27x** | **NO.** Contradicts our own answers on the exact metric |
+| **CI Lifestyle Meals** | Best conceptual fit. "4.52x ROAS on pure new-customer campaigns excluding all previous purchasers" is exactly the cold-traffic framing Q1 uses | YES, octet-stream 1.24MB | **IMPOSSIBLE.** Live rows exist (Chris Ideson Meal Prep, ACTIVE, Lindsey's, $9,604.57 / 142 days) but `blended_roas` returns **55,732.2**, corrupted. The 4.52x cannot be corroborated | **NO** |
+| **Duck A Diet** | Good. "4-6x ROAS on 100% new customer acquisition" | YES, octet-stream 1.37MB | **NONE.** Zero rows in `meta_insights_daily`. Also not Lindsey's book | **NO** |
+| **BDC App** | Shape fit is exact, "B2B/B2C application," Google + Meta | YES, octet-stream 2.06MB | N/A, the row states **no numbers at all** | **Only defensible option if an attachment is mandatory.** See below |
+| **ReferPro** | B2B SaaS, dual-platform | **NO.** 200 but `text/html` 908KB, the Drive interstitial. Underscore already in the ID, so no twin to try | N/A | **NO, unattachable** |
+| Fitness Superstore | "40x+ peak ROAS" | not tested | Standing rule: 40x is unbacked | **NO** |
+| Punch Drunk Chef | "20x peak ROAS" | not tested | Standing rule: live is **1.76x**, not 20x | **NO** |
+| Adventures in Wisdom | Education, the only row | twin resolves | Account collapsed, no number citable | **NO** |
+
+## The decision
+
+**Attach nothing.** Three reasons, in order of weight:
+
+1. **The answers are already stronger than any PDF.** Q1 carries live-verified figures with a window and a monthly floor: 12.6x blended, 28.7x branded, 5.27x cold, ten consecutive months, $6,100 to $11,900/mo. Nothing in the folder beats that, and nothing in the folder can corroborate it.
+2. **Every numeric candidate is contradicted or uncorroborated.** That is now **seven** case-study figures that fail live verification (Perfect Parking, Big Chad Law, Fitness Superstore, Punch Drunk Chef, Aura non-branded, CI Lifestyle, Duck A Diet). Treat the collateral folder as unverified by default.
+3. **The proposal body makes no "results attached" promise**, so nothing is owed. This is a Samuel strategic body, not a Lindsey body, and only the Lindsey format requires an attachment reference.
+
+**If an attachment is non-negotiable**, BDC App is the only defensible pick, and only because it is the exact B2B/B2C dual-audience shape, the file resolves, and it makes **no numeric claim that can be contradicted**. That is also its weakness. It adds shape, not proof, and invites "so what were the results?" Recommend against, but it is the one that cannot blow up.
+
+**Flag for admin:** the Aura row's "8-10x non-branded" and the CI Lifestyle `blended_roas` corruption both need correcting. Contractor mode cannot write.
