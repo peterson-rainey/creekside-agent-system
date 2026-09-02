@@ -3,9 +3,10 @@
 - **Profile:** Lindsey
 - **Style:** lindsey_default
 - **Date:** 2026-09-02
-- **Status:** UNSENT
-- **Screen:** SKIP recommended — see `pet-brands-ai-media-buyer-SCREEN.md`. Drafted on request.
-- **Before sending:** fill `[FILL: hours/week]`. Nothing can be attached (see screen file).
+- **Status:** APPROVED TO SEND by Queenie 2026-09-02. Not yet sent.
+- **Screen:** SKIP was recommended (see `pet-brands-ai-media-buyer-SCREEN.md`); **Queenie overrode it.** Third override on the trial screen, against 8 skips.
+- **BLOCKER before sending:** `[FILL: hours/week]` is the only unresolved field. Queenie is supplying it. Do not invent it.
+- **Do not attach anything.** No Birthday Club PDF exists any more (see screen file).
 
 ---
 
