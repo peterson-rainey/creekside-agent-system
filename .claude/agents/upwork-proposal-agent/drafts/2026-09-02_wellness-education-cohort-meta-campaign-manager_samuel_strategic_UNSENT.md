@@ -1,11 +1,11 @@
 # Upwork Proposal -- Wellness & education, cohort-based courses/retreats/teacher trainings, Meta campaign build + management
 
 Profile: Samuel | Style: strategic | Status: UNSENT | Drafted 2026-09-02 (Postgres `now()` Central; local clock read 09-03 and is ahead)
-Proposal length: 374 words / ~2,180 chars (limits: 250-350 words, 400 for multi-question posts, 5,000 chars)
+Proposal length: 397 words / 2,356 chars (limits: 250-350 words, 400 for multi-question posts, 5,000 chars)
 
 ---
 
-## RECOMMENDATION: SKIP. Draft supplied because it was requested outright.
+## RECOMMENDATION WAS SKIP. **OVERRIDDEN by Queenie 2026-09-02 ("go for it").** Screens below stand as the record.
 
 One hard screen fires, and the economics fail independently of it. This is a closer call than the
 2026-09-03 courses/certifications ruling, because the required-items screen **passes cleanly here** and the
@@ -35,7 +35,9 @@ Retreat" post, General profile, viewed and never messaged. Different job.
 
 **Current live book, `meta_insights_daily` joined to `meta_campaigns` and `meta_ad_accounts`, 2026-08-01 to 2026-09-01:**
 21 accounts carry rows; **13 have meaningful spend and are still delivering through 2026-09-01.**
-Total across the window: **$191,467.28.** Top of book: Lux Dental Spa $99,998.58, Retirement Income Solutions
+Total across the window: **$191,467.28 across all 21 accounts**, of which the 13 still delivering on
+2026-09-01 account for **$168,463.77**. **Do not attribute the $191K to the 13**, that was a defect caught
+in the first pass of this draft and corrected. Top of book: Lux Dental Spa $99,998.58, Retirement Income Solutions
 $11,632.27 + $10,533.37 across two accounts, Night Lark US $8,580.66, Superflow $6,798.89, Tiami Sleep
 $5,873.34, Adventures in Wisdom $5,449.40, PDC Lets Go $4,550.05, Vida Dentistry $4,141.50, Tooth Co Veneers
 $3,801.05, Quivr CRM $3,266.64, MLS Signs $2,129.10, CI Lifestyle Meals $1,708.92.
@@ -80,17 +82,49 @@ and is STALE against the 2026-08-29 rename to Peterson. Flagging rather than pic
 
 ---
 
+## REVIEW LOG
+
+**Self-caught defect before review, corrected.** v1 answered Q1 with "thirteen accounts ... roughly $191,000
+across them." The $191,467.28 is the whole book of 21 accounts; the 13 still delivering on 2026-09-01 total
+**$168,463.77**. v1 over-attributed about $23,000 to the live accounts. Q1 now states both figures separately.
+
+**expert-review-agent: 4 findings, all 4 applied.** Reviewed as a senior Meta buyer reading it as the prospect.
+It rated the fbc/fbp and per-event EMQ material in Q3 the most credible line in the draft and it was kept intact.
+
+1. **MEDIUM, applied. Learning phase stated as a hard gate.** "Meta wants roughly fifty per ad set per week" is
+   the single most recycled line in paid social and a prospect who has run her own ads for years has heard it
+   from every agency. Exit is confidence-based, not a strict count. Now framed as guidance and names the actual
+   Ads Manager status label, **Learning Limited**, which is what demonstrates currency rather than the number.
+2. **MEDIUM-HIGH, applied. Cold-start conflation, the clearest technical overreach.** v1 implied a new launch
+   "opens against a warm pool." False at the ad set level: a new launch campaign earns its own learning
+   regardless of what else runs. The defensible half is account-level signal freshness. Body now concedes the
+   ad set point explicitly and claims only the signal. Also dropped "audiences decay," which is 2018-era
+   interest-targeting language against today's broad delivery.
+3. **MEDIUM-HIGH, applied. Upstream-event fix had no tradeoff and no value-based bidding.** Optimizing to
+   registration finds people who register and never attend, and a technically literate prospect asks exactly
+   that. Body now states the quality-for-volume tradeoff plainly and routes to **value-based bidding** off the
+   enrollment value returned through CAPI, which is the current answer rather than a textbook funnel proxy.
+4. **MEDIUM, applied. Invented statistical law.** "Angle differences show up at a fraction of the sample size
+   creative differences need" asserts a sample-size rule; required sample is a function of effect size, not
+   category. Now hedged as a heuristic and explicitly labelled "not a statistical rule."
+
+Trimmed back to 397 words afterward by cutting a five-variations sentence duplicated between paragraphs 1 and 4.
+
+**qc-reviewer-agent:** first run stopped without reporting. Rerun against the final text; result appended below.
+
+---
+
 ## PROPOSAL (paste-ready)
 
-Cohort based offers break Meta's optimization in a way evergreen offers do not, and the 25 percent figure is where it shows up. If ads only need to cover a quarter of each cohort, a campaign optimizing on enrollment might produce ten or fifteen events across an entire launch window. Meta wants roughly fifty per ad set per week before delivery stabilizes, so an enrollment optimized ad set sits in learning for the whole launch, and then the launch is over. Add five creative variations splitting that same volume and nothing separates.
+Cohort based offers break Meta's optimization in a way evergreen offers do not, and the 25 percent figure is where it shows up. If ads only need to cover a quarter of each cohort, a campaign optimizing on enrollment might produce ten or fifteen events across a whole launch window. Meta's guidance is around fifty optimization events per ad set per week, but on cohort volume ad sets sit in Learning Limited well before that, and the launch ends before delivery ever settles.
 
-The fix is to optimize on the densest reliable event upstream, usually registration or application, and let enrollment flow through the Conversions API as the measurement and value signal rather than the optimization target. Since the CAPI is already built, that is a structural change and not a rebuild.
+The usual fix is to optimize on the densest reliable event upstream, registration or application. That trades quality for volume, worth saying plainly, because optimizing to registration finds people who register and never turn up. Which is why enrollment value flowing back through the Conversions API matters as more than reporting. Once enough accumulates the campaign can move onto value based bidding and chase who actually enrolls rather than who is cheap to register. Yours being built already makes that a structural change, not a rebuild.
 
-The second one argues against how the workload is described, so worth flagging now. Each cohort launch cold starts if nothing has been running between launches. Audiences decay, recent signal thins, and the first week of every launch pays for it. Keeping one low budget prospecting campaign warm through the quiet months costs very little and means each launch opens against a warm pool instead of from scratch. Maintenance months carry more weight than they look like they do.
+The second point argues against how the workload is described. If nothing runs between launches the account goes quiet and the models lose the recent signal they score against. A new launch campaign still has to earn its own learning either way, but it does that against a stale account instead of a live one. One small always on prospecting campaign through the quiet months keeps that signal fresh. Maintenance months carry more weight than they appear to.
 
-On testing, at that volume five variations running against each other in parallel will not separate cleanly. Better to test at the angle level, one distinct promise per ad set, and rotate creative inside whichever angle holds. Angle differences show up at a fraction of the sample size creative differences need.
+On testing, five variations against each other at that volume will not separate cleanly. Better to test at the angle level, one distinct promise per ad set, then rotate creative inside whichever angle holds. Not a statistical rule, just that angle changes tend to move response harder than creative tweaks, so they are the better place to spend limited sample.
 
-Straight with you on the setup. This is a small team rather than a single freelancer, and the day to day would sit with one media buyer rather than getting passed around. Our team currently runs Meta for a children's life coaching certification, a cohort program sold off a recurring weekly webinar, where campaign activation and deactivation are scheduled around each webinar date. That is the closest structure to yours that we run.
+Straight with you on the setup. This is a small team rather than a single freelancer, and the day to day would sit with one media buyer rather than getting passed around. Our team currently runs Meta for a children's life coaching certification, a cohort program sold off a recurring weekly webinar, with activation and deactivation scheduled around each webinar date. Closest structure to yours that we run.
 
 What does a typical cohort look like in seats and price, and how many launches are you running in a year?
 
@@ -100,7 +134,7 @@ What does a typical cohort look like in seats and price, and how many launches a
 
 **Q1. Current workload, active Meta accounts, 1-2 current examples.**
 
-Thirteen Meta ad accounts are delivering right now, roughly $191,000 in Meta spend across them over the last month.
+Thirteen Meta ad accounts are delivering right now, roughly $168,000 in spend across those over the last month, and about $191,000 across the whole book including a few that wrapped mid month.
 
 Two that are live today. First, a children's life coaching certification. Cohort based, sold off a free recurring weekly webinar into an email follow up sequence. Prospecting runs as separate campaigns split by narrative angle, with a dedicated webinar registration campaign running continuously underneath, and activation and deactivation scheduled around each webinar date so budget is not spending into a dead registration window.
 
