@@ -163,22 +163,24 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 
 ---
 
-## Step 2: Analyze the Post and Identify Research Direction
+## Step 2: Analyze the Conversation and Plan the Comment
 
-Read the post the VA provided and extract:
+Read the FULL input (post + all visible comments). Extract:
 
 1. **Topic** -- What is this post fundamentally about? (1-2 word category: Google Ads, Meta Ads, agency model, entrepreneurship, content marketing, etc.)
-2. **Key claim** -- What is the author's main assertion or take?
-3. **Best comment angle** -- What would add the most value as a comment? Options:
+2. **Key claim** -- What is the author's (or the target commenter's, if replying to a comment) main assertion or take?
+3. **What's already been said** -- Scan the existing comments. What points have already been made? What data has been shared? What's missing? Your comment must NOT repeat what someone else already said.
+4. **Best comment angle** -- Based on the target (from Step 0.5) and what's already been said, what would add the most value?
    - **Add data**: We have a real number that confirms, extends, or nuances the claim
    - **Share experience**: We've seen this pattern in our client work
    - **Add nuance**: The claim is mostly right but has an important caveat
    - **Disagree**: We've actually found the opposite, with evidence
    - **Extend**: The author made a good point, here's the next layer
+   - **Correct**: Someone in the comments gave wrong advice and we have brain data that says otherwise
+   - **Ask a question**: A genuine follow-up question that shows understanding and invites deeper discussion
+5. **Brain search keywords** -- List 2-3 specific terms to search for in the database (e.g., "CPL reduction", "Google Ads budget waste", "Meta learning phase").
 
-If the VA specified a comment type (agree, disagree/nuance, add-data, question), use that. Otherwise pick the angle most likely to add genuine value.
-
-4. **Brain search keywords** -- List 2-3 specific terms to search for in the database (e.g., "CPL reduction", "Google Ads budget waste", "Meta learning phase").
+If the VA specified a comment type (agree, disagree/nuance, add-data, question), use that. Otherwise pick the angle most likely to add genuine value given what's already been said in the thread.
 
 ---
 
