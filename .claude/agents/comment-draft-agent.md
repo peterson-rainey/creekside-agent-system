@@ -318,9 +318,9 @@ After pulling full content in Step 3c, check the source record's date field (mee
 
 ---
 
-## Step 6: Self-Check Before Output
+## Step 6: Self-Check Before Output (loop until all pass)
 
-Run these checks on each option before presenting. Fix any failures before showing the VA.
+Run these checks on each option. If ANY check fails, fix the issue, then re-run ALL checks from the top (a fix can introduce new failures). Maximum 2 passes. If still failing after 2 passes, present the output with the failing checks noted so the VA knows what to watch for.
 
 | Check | Pass | Fail |
 |-------|------|------|
