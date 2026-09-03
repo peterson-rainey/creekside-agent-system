@@ -38,6 +38,36 @@
 `match_proposal_context()` returned only two candidates, Big Chad Law and BDC App, both at `relevance_score: 1`
 against a threshold of 3. Per the agent spec, no case study is forced and none is referenced or attached.
 
+**Attachment decision, after a byte-level sweep of all 8 dual-platform rows (2026-09-03): attach nothing on this
+first touch.**
+
+The matcher ranks on industry keywords and this post names no industry, so there is nothing to match on. Ranking
+instead on the one thing the post does specify, Google + Meta management, and then testing whether each file is
+actually attachable:
+
+| Case study | Downloads as | Verdict |
+|---|---|---|
+| Dr. Laleh | HTML sign-in page | Unattachable. Would have been the best proof, a real CAC reduction on both platforms |
+| ReferPro | HTML sign-in page | Unattachable. Best thematic match, "Meta for awareness, Google for demand capture" |
+| Adventures in Wisdom | HTML sign-in page | Unattachable |
+| LawnValue | HTML sign-in page | Unattachable |
+| Advanced Med Spa | HTML sign-in page | Unattachable |
+| Big Chad Law | HTML sign-in page | Unattachable, and its $20K/mo figure is unsupported anyway |
+| South River Mortgage | REAL PDF | **Do not send.** Churned 8/11/26; the PDF's numbers contradict canonical `case_studies`, and the canonical $81 CPL itself fails live verification |
+| BDC App | REAL PDF | Real file, but its only documented result is "Digital marketing campaign for a B2B/B2C application". No outcome, adds nothing |
+| Central Florida Awnings | REAL PDF, verified by rendering it | The only defensible option. See below |
+
+Drive answers these with HTTP 200 and ~908KB of sign-in HTML, so a naive download "succeeds" and writes an HTML
+page named `.pdf`. Attachability was confirmed on the `%PDF-` magic bytes, not the status code.
+
+**Central Florida Awnings is the one to hold, not the one to send yet.** Rendered and read: a genuine
+Creekside-branded study, "How Florida Awnings Ran Google + Meta Ads Across 3 Florida Service Areas", 3 entities,
+$7.2K+ combined monthly budget, 85 audit criteria. It is the best-shaped proof we own for this exact job, because
+allocating budget across Google and Meta over three territories is what it documents, and that is the proposal's
+hook. The problem is the anchor: $7.2K across three entities is about $2.4K each, below our own $5K/mo screen. On a
+post with no stated budget, sending it pre-commits us to the low end before they answer the range question the
+proposal asks. Hold it, get the range, then send it only if the range is in that neighborhood.
+
 ## Verified facts used in the draft
 
 - **Eight active clients run Google and Meta concurrently** (live `reporting_clients` query, 2026-09-03):
