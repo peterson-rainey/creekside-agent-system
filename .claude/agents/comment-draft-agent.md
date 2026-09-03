@@ -486,7 +486,7 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 - Weight appropriate: [PASS -- Lightweight/Standard/Substantial matches post complexity and platform]
 - Options count correct: [PASS -- Lightweight=1, Standard=2, Substantial=1]
 - Not repeating existing comments: [PASS / FAIL -- does not duplicate points already made in the thread]
-- Self-check passes: [X/25 on pass 1 -- final pass Y/25]
+- Self-check passes: [X/24 on pass 1 -- final pass Y/24]
 
 All lines must read PASS before the VA should post. If any line reads FAIL, the VA knows to flag that specific issue.
 
