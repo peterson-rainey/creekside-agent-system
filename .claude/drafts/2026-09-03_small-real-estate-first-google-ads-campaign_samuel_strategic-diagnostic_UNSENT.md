@@ -82,6 +82,49 @@ $2,401.58 / 1,314 impr / 46 clicks / **$52.21 CPC** / 0 conversions.
 **The rebuild** (`Search - Seller - 27 Aug`, id 24185790848, ENABLED): $42.10 / 127 impr / **11 clicks /
 $3.83 CPC / 0 conversions**, live 7 days as of today. Also `Pmax - Seller - 2 Sep` at $0, zero impressions.
 
+**REBUILD STRUCTURE - THIS CORRECTED MY OWN DRAFT.** Pulled the rebuild's keyword list to check whether my
+recommendation matched our actual practice. It did not. The rebuild runs **27 keywords, ALL PHRASE match,
+ZERO exact match**, split across two intent-separated ad groups: **"Seller"** (14 terms: "we buy houses for
+cash", "sell house as is for cash", "companies that buy houses for cash", "cash home buyers near me") and
+**"Investor"** (13 terms, all off-market: "off market listings", "off market real estate deals",
+"offmarket land for sale"). The old paused campaign had ONE ad group, `SellHomeKeywords`, holding shorter
+head terms.
+
+My v1 body recommended "an exact match core." **That contradicted the account I was citing.** Had the
+prospect hired us and asked what we did in Nashville, the honest answer would have been phrase match, not
+exact. It is also weaker advice on the merits: exact match on a brand-new account starves it of the very
+search term data needed to build the negative list. Body now reads "long specific phrases rather than short
+head terms, different intents split into separate ad groups," which is what we actually do.
+
+Same-keyword comparison worth noting internally but NOT citable: "sell my house for cash" cost **$53.74** in
+the paused campaign and **$9.89** in the rebuild. One click each side. Directionally striking, statistically
+nothing. Stays out of the body.
+
+## KEYWORD PLANNER MARKET DATA (GenerateKeywordIdeas, US, English, pulled 2026-09-03)
+
+Pulled to stress-test the opening claim. It does more than back it: it produced the proposal's lead insight.
+**Top of page bid ranges, Google's own estimates, US:**
+
+| Keyword | Avg monthly searches | Top of page bid range |
+|---|---|---|
+| sell my house | 6,600 | **$50.52 - $142.77** |
+| we buy houses for cash | 2,900 | $34.35 - $118.78 |
+| we buy houses | 9,900 | $25.61 - $100.96 |
+| sell my house fast | 9,900 | $18.23 - $115.09 |
+| cash home buyers | 6,600 | $17.89 - $96.70 |
+| real estate agent near me | 49,500 | $5.24 - $26.40 |
+| **homes for sale** | 368,000 | **$0.08 - $2.43** |
+| houses for sale near me | 550,000 | $0.06 - $1.35 |
+| real estate | 368,000 | $0.07 - $2.55 |
+
+**Seller intent runs roughly 50x buyer intent at the top of the range** ($142.77 vs $2.43). That split is the
+new opening insight and it also quantifies the buyer-side fork that was previously an unsupported aside.
+
+**Precision guard:** these are top-of-page BID estimates, not realised CPCs. The body attributes them to
+Google explicitly ("Google's own top of page range") and never presents them as what we paid. Our realised
+CPCs are cited separately and only from our own account.
+
+
 ## THE CAUSATION TRAP I DELIBERATELY DID NOT WALK INTO
 
 $52.21 to $3.83 is a 13.6x CPC drop in the same account, same vertical, before and after a restructure.
@@ -95,9 +138,19 @@ converted yet, so I would not sell you on it"). Refusing to oversell here is wha
 
 ## DELIBERATELY OUT
 
-- **ZERO real estate case studies exist.** All 28 `case_studies` rows screened; the only keyword hit was
-  South River Mortgage (Finance), which is CHURNED 2026-08-11 and whose $81 CPL already fails live
-  verification. Excluded.
+- **ZERO real estate case studies exist.** Confirmed by FULL ENUMERATION of all 28 `case_studies` rows, not
+  by keyword search alone (the PMax precedent says an empty search is not a data absence). The complete
+  industry_label set is: Apps, Auto Repair, E-Commerce, Education, Finance, Food, Healthcare, Home Services,
+  Legal, Professional Services, SaaS, Travel. **No Real Estate row exists.** The only keyword hit was
+  South River Mortgage (Finance), CHURNED 2026-08-11, whose $81 CPL already fails live verification. Excluded.
+- **UrCovered Construction screened and REJECTED** (Home Services, Google Ads, "custom homes and
+  barndominiums in Tennessee", 15 to 60 leads, CPL $454 to $239). It is the nearest adjacent row and the only
+  residential-property lead-gen study we own. Rejected on three counts: a custom home BUILDER is a different
+  business model from a brokerage or a cash homebuyer, so the keyword economics do not transfer; the standing
+  "include all closely-matching case studies" rule reads it as adjacent, not closely-matching; and its
+  headline is a before/after CPL arc, the exact shape flagged as unbacked in
+  `reference_no_small_budget_turnaround_proof`. Citing it would also dilute the honest positioning that the
+  live diagnostic earns.
 - **Canvas Homes as a success story.** Zero conversions account-wide on $2,541. Cited ONLY as a live
   diagnostic and explicitly as a campaign we paused. Never framed as a win.
 - **Victory Land Sales** (the other real estate-adjacent row): CHURNED, industry NULL, vacant land not
@@ -130,15 +183,15 @@ rebuild. **Unsigned.**
 
 ---
 
-Real estate seller keywords are some of the most expensive inventory Google sells, and a first campaign usually loses most of its budget before anyone sees a lead. Worth knowing what a click actually costs before the account gets built.
+Real estate keywords sit in two very different price tiers, and which side you advertise on decides more than the keyword list does. Google's own top of page range for sell my house runs past $140. Homes for sale sits under $3.
 
-A live example from a Nashville seller campaign we launched about six weeks ago. Twenty four search terms, roughly $1,100 spent, twenty two clicks. Most of those clicks ran $45 to $58. Zero converted.
+Seller intent is the expensive end, and a first campaign there usually loses most of its budget before anyone sees a lead. A live example from a Nashville seller campaign we launched about six weeks ago. Twenty four search terms, roughly $1,100 spent, twenty two clicks. Most ran $45 to $58. Zero converted.
 
 Where the money went is the useful part. Eighteen of the twenty five matches were close variants rather than the keywords themselves. About $160 went to people typing competitor company names, another $105 to people researching how iBuyers work, and $56 to a search for a city three hours outside the target area. None of those is a seller ready to talk. Roughly a quarter of the budget on searches that were never going to convert, and that is with someone watching the account.
 
-That is the part worth planning around before anything gets built. At $50 a click, a small monthly budget buys twenty or thirty clicks, which is not enough volume to tell a good keyword from a bad one. So the first decision is not keyword research. It is whether the budget clears the cost of a click in your market, and if it does not, whether the buyer side or a tighter geography gets you there instead.
+That is worth planning around before anything gets built. At $50 a click, a small monthly budget buys twenty or thirty clicks, which is not enough volume to tell a good keyword from a bad one. So the first question is not which keywords. It is whether the budget clears the cost of a click on the side you want, and if it does not, whether a tighter geography or the buyer side gets you there instead.
 
-Practically, tracking goes in before spend does. Calls and form fills as separate conversion actions, an exact match core with a negative list built on day one rather than after the first invoice, and a weekly search term review while close variants are still cheap to catch.
+Practically, tracking goes in before spend does. Calls and form fills as separate conversion actions, long specific phrases rather than short head terms, different intents split into separate ad groups so one cannot quietly eat the other's budget, a negative list built on day one rather than after the first invoice, and a weekly search term review while close variants are still cheap to catch.
 
 We paused that Nashville structure and rebuilt it. Clicks are running a lot lower now, though it is a week old and nothing has converted yet, so I would not sell you on it.
 
