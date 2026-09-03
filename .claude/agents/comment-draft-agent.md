@@ -106,7 +106,7 @@ Based on the post, the existing comments, and the platform, decide the comment w
 |--------|---------------|--------|
 | **Lightweight** | The post just needs a quick validation, a one-liner zinger, or a short agreement + one data point. Use this MORE OFTEN than you think. Most real human comments are short. | 5-50 words (1-2 sentences max) |
 | **Standard** | You have a specific data point or short experience to share that adds clear value. The typical case. | 50-150 words (2-4 sentences) |
-| **Substantial** | The post asks a complex question, or someone gave bad advice that needs a detailed correction with evidence. Only for Reddit/Quora/LinkedIn where longer comments perform well. | 120-300 words (Reddit/LinkedIn) or 300-500 words (Quora only) |
+| **Substantial** | The post asks a complex question, or someone gave bad advice that needs a detailed correction with evidence. Only for Reddit/Quora/LinkedIn where longer comments perform well. | 150-300 words (Reddit/LinkedIn) or 300-500 words (Quora only) |
 
 **Weight selection rules:**
 - On **YouTube**: almost always Lightweight. YouTube comments are casual reactions, not essays.
