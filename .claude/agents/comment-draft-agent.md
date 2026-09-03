@@ -347,7 +347,7 @@ These three checks are mandatory gates that run AFTER platform calibration (Step
 
 ### 5.5a: Number Verification Scan
 
-Before presenting any comment option, scan EVERY number in all three options: percentages, dollar amounts, counts, timeframes, ratios. For each number:
+Before presenting any comment option, scan EVERY number in all comment options: percentages, dollar amounts, counts, timeframes, ratios. For each number:
 
 1. Can you trace it to a specific brain record (table + record_id)? If YES, keep it and cite the source.
 2. If NO, does the number come from the original post being commented on? If YES, you may reference it (e.g., "your $3K/month") but do not present it as Creekside data.
