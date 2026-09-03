@@ -48,11 +48,13 @@ Apply any corrections before proceeding.
 
 ---
 
-## Step 0.5: Engage or Skip (MANDATORY -- runs before any drafting)
+## Step 0.5: Strategic Assessment (MANDATORY -- runs before any drafting)
 
-Before searching the brain or generating anything, evaluate the post and tell the VA whether it's worth engaging with. This saves time on posts that won't benefit from a comment.
+The VA will paste the post AND any visible comments. Before searching the brain or generating anything, analyze the full conversation (post + comments) and make three decisions:
 
-**ENGAGE (proceed to Step 1) if the post is:**
+### Decision 1: Engage or Skip?
+
+**ENGAGE if the post is:**
 - A question about Google Ads, Meta Ads, PPC, ad budgets, ROAS, conversion tracking, bidding strategies, or campaign structure
 - A frustration post about agencies, ad performance, or lead quality
 - A budget/ROI question from a business owner
@@ -63,28 +65,64 @@ Before searching the brain or generating anything, evaluate the post and tell th
 - Anything related to reverse mortgage marketing, mortgage lead gen, or loan officer marketing
 - A post from someone with a meaningful following (Tier 2-3 creators) where a good comment gets visibility
 
-**SKIP (tell the VA and stop) if the post is:**
-- A "what tool should I use?" product recommendation thread (no authority-building value)
+**SKIP if the post is:**
+- A "what tool should I use?" product recommendation thread
 - A rant with no question (commenting looks like you're chasing)
-- From someone with no budget (mentions under $1K/month or "just starting out with $200") -- below your ICP, positions you at the wrong price tier
-- A highly technical dev question about GTM/GA4 implementation edge cases you're not sure about (wrong answers hurt credibility)
-- Someone trashing a specific competitor by name (don't pile on)
+- From someone with no budget (under $1K/month or "just starting out with $200")
+- A highly technical dev question you're not sure about
+- Someone trashing a specific competitor by name
 - Anything political, controversial, or unrelated to marketing
 - An obvious spam or self-promotion post
 - A Quora question that already has 50+ answers (you'll be buried)
-- A Reddit thread that's more than 30 days old with no recent activity (nobody will see your comment)
+- A Reddit thread more than 30 days old with no recent activity
 - A post about SEO, social media management, email marketing, web design, or other services Creekside doesn't offer
+- The best possible comment has already been made by someone in the existing comments and you'd just be repeating it
 
 **When both ENGAGE and SKIP criteria apply:**
-- If the post directly mentions paid ads, Google Ads, Meta Ads, dental marketing, or reverse mortgage marketing: **ENGAGE wins** (topic match overrides saturation/format concerns)
-- If the post is about a service Creekside doesn't offer (SEO, web design, email marketing) even from a high-profile creator: **SKIP wins**
-- "Frustration post about agencies" (ENGAGE) vs "rant with no question" (SKIP): if the post contains an identifiable pain point or implicit question about ad performance, ENGAGE. If it's pure venting with no hook for a helpful response, SKIP.
+- If the post directly mentions paid ads, Google Ads, Meta Ads, dental marketing, or reverse mortgage marketing: **ENGAGE wins**
+- If the post is about a service Creekside doesn't offer even from a high-profile creator: **SKIP wins**
+- "Frustration post" (ENGAGE) vs "rant with no question" (SKIP): if the post contains an identifiable pain point or implicit question, ENGAGE. If it's pure venting with no hook, SKIP.
 
-**Output format for SKIP:**
-> **SKIP.** [One-sentence reason]. Not worth engaging.
+If SKIP, output `**SKIP.** [One-sentence reason]. Not worth engaging.` and stop.
 
-**Output format for ENGAGE:**
-> **ENGAGE.** [One-sentence reason why this is a good post to comment on]. Proceeding to draft.
+### Decision 2: What's the target? (only if ENGAGE)
+
+Read the existing comments. Decide where Peterson's comment would have the most impact:
+
+| Target | When to choose it |
+|--------|------------------|
+| **Reply to the post directly** | No existing comment covers the point you'd make. Or the post is new with few/no comments. This is the default. |
+| **Reply to a specific comment** | Someone said something wrong, incomplete, or gave bad advice. Or someone made a good point you can build on. Threading creates deeper engagement and algorithms reward it. Name the commenter you're replying to. |
+| **Reply to the post author's reply** | The author responded to someone in the comments and said something you can extend or correct. Gets the author's attention directly. |
+| **Just upvote/like, no comment** | The top comment already says exactly what you'd say. No value in repeating it. Output: `**ENGAGE but NO COMMENT NEEDED.** [Top comment by X already covers this]. Upvote/like that comment instead.` |
+
+If replying to a specific comment, quote the relevant part of that comment in your output so the VA knows exactly which one to reply to.
+
+### Decision 3: What weight? (only if commenting)
+
+Based on the post, the existing comments, and the platform, decide the comment weight:
+
+| Weight | When to use it | Length |
+|--------|---------------|--------|
+| **Lightweight** | The post just needs a quick validation, a one-liner zinger, or a short agreement + one data point. Use this MORE OFTEN than you think. Most real human comments are short. | 5-50 words (1-2 sentences max) |
+| **Standard** | You have a specific data point or short experience to share that adds clear value. The typical case. | 50-120 words (2-4 sentences) |
+| **Substantial** | The post asks a complex question, or someone gave bad advice that needs a detailed correction with evidence. Only for Reddit/Quora/LinkedIn where longer comments perform well. | 120-300 words (Reddit/LinkedIn) or 300-500 words (Quora only) |
+
+**Weight selection rules:**
+- On **YouTube**: almost always Lightweight. YouTube comments are casual reactions, not essays.
+- On **X/Twitter**: Lightweight or Standard. Never Substantial (280 char limit enforces this anyway).
+- On **Reddit**: Mix all three. Reddit rewards both one-line zingers and detailed helpful answers. Match the weight to the question's complexity.
+- On **LinkedIn**: Standard is the default. Lightweight for quick engagement on a friend/peer's post. Substantial only for industry debates with room to add real data.
+- On **Quora**: Standard or Substantial. Quora rewards longer, structured answers. Lightweight answers on Quora get buried.
+- **Vary across a day's comments.** If the last 3 comments were Standard, the next one should be Lightweight. Never generate 5 Standard-weight comments in a row. The VA's daily mix should look like: 2-3 Lightweight, 3-4 Standard, 1-2 Substantial.
+
+**Output format for the strategic assessment:**
+
+```
+**ENGAGE.** [Reason]
+**Target:** [Reply to post / Reply to @[commenter name]: "[quoted excerpt]" / Reply to post author's reply / No comment, upvote only]
+**Weight:** [Lightweight / Standard / Substantial] -- [reason for this weight]
+```
 
 Then continue to Step 1.
 
