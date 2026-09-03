@@ -1,0 +1,39 @@
+Three things decide whether a paid program books qualified retreat and sales-meeting calls, and all three get set before a single ad runs.
+
+1. The counted event is almost never the money event.
+
+A corporate retreat or a national sales meeting is a committee purchase with a months-long sourcing window. When the conversion action is a contact form or a capabilities-deck download, both platforms optimize toward whoever fills forms most cheaply, and in this category that is solo founders pricing a six-person offsite, students, and vendors selling into you. The account reports a falling cost per lead while the calendar stays empty. The fix is to define the counted event as a qualified call, one that clears headcount, date window and budget authority, and push that stage back into Google and Meta as the optimization target. That is platform-side and CRM-agnostic. It costs volume in week one and it is the only thing that makes the cost figure mean anything afterward.
+
+2. Rapid iteration is the instinct that breaks low-volume B2B accounts.
+
+Across our own Meta book from June through August, 866 campaign-weeks with spend behind them, the median campaign produced 9 conversions in a week and under 3 percent cleared 50. On Google over the same window, 576 campaign-weeks, the median was 2. Those are campaign-level numbers, so the ad set and ad group picture underneath is thinner still. An account selling six-figure programs to a small committee sits below all of that. Split a budget across many offers, audiences and ad sets to test fast and you get noise you cannot read, and every split pulls its own group further from exiting learning. The testing that works at this volume is sequential, and it is aimed at the offer, which moves the number more than any creative variant will.
+
+3. Demand here is calendar-shaped, not steady.
+
+Retreats and national sales meetings get budgeted and sourced in windows, so search volume on the real buying terms is thin and spiky, and paid social carries no intent signal at all. The durable asset out of the first month is not the click, it is the captured audience: the email list, the site and video retargeting pools, and clean tracking underneath both. Email capture and retargeting are already in your brief. I would argue they are the point of the first spend rather than a supporting layer behind it.
+
+First 30 days.
+
+Week 1: tracking and definitions. Audit whatever is live, define the qualified-call stage with you, wire conversion tracking to it on both platforms, and set exclusions so prospecting is not bidding against people already in your pipeline.
+Week 2: one consolidated search structure on the terms buyers actually use, plus a single Meta prospecting angle. Deliberately narrow, so the signal is readable.
+Weeks 3 and 4: run the first offer test against the qualified-call definition, build the retargeting pools, and report on qualified calls and cost per qualified call rather than clicks or form fills.
+
+Where we stand on proof, said plainly.
+
+We have no corporate events, experiential, or hospitality case study. That is a real gap and you should hear it from me rather than find it later. What we do have that is structurally the same problem: a B2B software company where we ran Meta for demand generation and Google for capture and argued that split with data, a legal client where the counted event was a qualified case rather than a lead, and a financial advisory account currently running event-registration funnels on Meta. I am not attaching a number to that last one, because the figure available is not clean enough to stand behind.
+
+For scale, across the group we manage roughly 185,000 to 266,000 dollars a month on Meta across 21 to 28 accounts, and 90,000 to 140,000 a month on Google. Six years running these accounts. No certifications claimed, because we hold none.
+
+Pricing.
+
+Monthly management is a percentage of managed spend, so I cannot quote a rate until I know the spend. There is one one-time fee, 1,500 dollars per platform, which covers onboarding and the audit. We do not bill hourly.
+
+On landing pages: we handle ad-to-page intent alignment as part of the media work. We are not a page build shop, and if a full CRO engagement is what you need there, hire that separately and I will tell you what the pages have to do.
+
+Three things I need to answer this properly:
+
+1. What monthly media budget are you working toward, and what can you pay for a qualified call before the program stops making sense?
+2. Where does the sale actually close, and what is the earliest stage in your process you would be willing to count as qualified?
+3. Which markets are you selling into, and is there an existing Google or Meta account with history, or is this greenfield?
+
+Delivery would sit with a dedicated B2B buyer on our side, not a rotating pool.
