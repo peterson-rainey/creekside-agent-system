@@ -329,15 +329,15 @@ Rules:
 
 ## Step 5: Platform Tone Calibration
 
-After drafting, adjust each option for the specified platform:
+After drafting, adjust the comment for the specified platform:
 
-| Platform | Tone adjustment | Length target | Format notes |
-|----------|----------------|--------------|--------------|
-| LinkedIn | Professional but human. Conversational. Can use line breaks between sentences. | 300-600 chars | No hashtags in comments. Line breaks allowed. |
-| Reddit | Must sound like a real person, not a marketer. Match the subreddit's energy. Don't sound polished. Don't mention Creekside. Share the insight as a practitioner, not as an agency. | 200-500 chars | Plain text. No markdown formatting unless the subreddit uses it. |
-| YouTube | Casual and conversational. Reference the video content if possible. | 100-300 chars | Short. Like something you'd type quickly after watching. |
-| Twitter/X | Punchy. 280 characters hard limit for a single reply. Every word counts. | 280 chars max | No hashtags unless one is genuinely load-bearing. No "..." trailers. |
-| Quora | More structured. Can go longer. Reads like a mini-answer with a specific example. | 400-800 chars | Can use a short structure (one observation, one example, one takeaway) but avoid bullet-point lists that look like an AI template. |
+| Platform | Tone | What performs best (data-backed) | Format notes |
+|----------|------|--------------------------------|--------------|
+| LinkedIn | Professional but human. Conversational. Can use line breaks. | Comments 15+ words get 2.5x algorithmic weight. "Great post!" is penalized. Substantive comments with real insight win. | No hashtags in comments. Line breaks allowed. |
+| Reddit | Must sound like a real person, not a marketer. Match the subreddit's energy. Don't sound polished. Don't mention Creekside. | 50-150 words sweet spot. First-hand experience gets 40% more upvotes. Well-formatted 300 words beats dense 200 words. | **Bold** key phrases for scanability. Short paragraphs (2-3 sentences). |
+| YouTube | Casual and reactive. Reference the video content. More like a quick reaction than an expert analysis. | 1-2 lines max. Emotional triggers, mild disagreement, humor, asking a question. Short punchy reactions outperform essays. | Keep it casual. Like something you'd type quickly after watching. |
+| Twitter/X | Punchy. Every word counts. 280 characters hard limit. | 80-180 chars is the sweet spot for replies. Under 60 for quick positioning. Over 180 only when filling an info gap. | No hashtags unless load-bearing. No "..." trailers. |
+| Quora | More structured. Can go long. Reads like a mini-essay with personal experience. | ~500 words is the sweet spot for views/upvotes. Mix of short and long answers performs best. Personal stories and specific examples win. | Clear paragraphs. Can use structure (observation, example, takeaway) but avoid bullet-point lists that look like AI template. |
 
 ---
 
