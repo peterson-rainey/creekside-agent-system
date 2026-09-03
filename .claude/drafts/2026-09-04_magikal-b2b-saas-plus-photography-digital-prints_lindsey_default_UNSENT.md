@@ -13,11 +13,11 @@ On operating inside your tool. Our team runs paid acquisition for our own AI pro
 
 WORK I HAVE OWNED
 
-Email from scratch, DTC. Our team built the Klaviyo flow set for a DTC ecommerce brand end to end: a four email welcome triggered on new subscribers with purchase exclusion filters from email two onward, a three email abandoned checkout at one hour, twenty three hours and twenty four hours with dynamic line item blocks and a Placed Order equals zero filter, and a three email abandoned cart. The same build is underway on a bedding brand. That is the welcome, cart and checkout stack your store is asking for, already built once.
+Email from scratch, DTC. I built the Klaviyo flow set for a DTC ecommerce brand end to end: a four email welcome with purchase exclusion filters from email two onward, a three email abandoned checkout at one hour, twenty three hours and twenty four hours with dynamic line item blocks and a Placed Order equals zero filter, and a three email abandoned cart. The catch that mattered most was not a flow. Onsite tracking was returning zero Added to Cart events, so the cart flow would have fired on nobody. Same build underway on a bedding brand.
 
 Paid social, DTC purchase funnel. A replacement parts store I ran on Meta for nine months: $128,518 spend, 4,440 purchases at $28.95 each, roughly 5.5x blended. Prospecting, retargeting and catalog ran as separate layers with purchasers excluded throughout. That engagement has ended.
 
-B2B SaaS. Here I will be straight with you, because you would find it on a call anyway. Our book holds one seed stage B2B SaaS, where Meta carried awareness and Google carried capture as a full funnel, and that client has since ended. I do not have a documented demo booking or converted signup number I would put in front of you. Our deepest evidenced results sit in lead generation and ecommerce. If another proposal shows you a clean SaaS demo gen case study, ask what the show rate was and what happened at month two.
+B2B SaaS. Here I will be straight with you, because you would find it on a call anyway. Our book holds one seed stage B2B SaaS where Meta carried awareness and Google carried capture as a full funnel. I do not have a documented demo booking or converted signup number I would put in front of you. Our deepest evidenced results sit in lead generation and ecommerce. If another proposal shows you a clean SaaS demo gen case study, ask what the show rate was and what happened at month two.
 
 WHAT I DO NOT HAVE
 
@@ -67,4 +67,10 @@ Your combined monthly ad budget across both brands and roughly how it splits, an
 
 **Deliberate omissions:** no URLs, no calendar link (first touch on a job post). No sign-off name. No em dashes. No certification claims. No hourly rate offered; percentage of spend only.
 
-**Length:** 4,904 characters, inside the 5,000 limit.
+**Two late corrections applied after QC, from standing canon the reviewers could not see:**
+1. **ReferPro tense removed.** `clients.status` says active while BOTH `reporting_clients` rows say churned 2026-04-06. The standing rule for this conflict is to describe the WORK and omit the relationship tense entirely, so "and that client has since ended" was cut. Do not reinstate it in either direction without resolving the conflict with Peterson.
+2. **Klaviyo build moved to first person and strengthened.** Nightlark is one of Lindsey's OWN email accounts, so "I built" is accurate and directly answers the post's "work you have OWNED" framing. Added the onsite-tracking catch (Klaviyo was returning zero Added to Cart events, so the cart flow would have fired on nobody), which is the most citable detail in the email record and lands harder than the flow spec alone.
+
+**Attachment: none, deliberately.** `ReferPro B2B SaaS Case Study.pdf` exists and is attachable, but it is **authored by Samuel Rainey** and this is a Lindsey proposal, so attaching it would leak a byline mismatch. No attachment is promised anywhere in the draft.
+
+**Length:** 4,881 characters, inside the 5,000 limit.
