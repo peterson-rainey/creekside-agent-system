@@ -53,3 +53,22 @@ I have attached a few relevant results below. There is also a short video on my 
 Audit of the Meta and Instagram ad account, then build and run prospecting and retargeting campaigns into Shopify, with pixel and server side event checks, email capture, and weekly reporting.
 
 192 characters. Scoped to the paid, tracking, email capture and reporting half only. No content calendars, no footage editing, no community management, no creator outreach, no TikTok, since none of those are in the service line. No price attached: spend is unstated, and lindsey_default carries no fee table first touch.
+
+---
+
+## Screening answer: "one brand you personally helped grow" + the Reel with views but no sales
+
+The closest match I own personally is a consumer camera brand selling to a young, very online audience. I ran their Meta account for four and a half months on roughly $58,000 in spend. The campaigns actually optimized to purchase did $50,907 for 607 sales, about $84 each. A separate set optimizing to add to cart and checkout spent $4,972 for 16, about $311 each, which is the more useful number to know about, because on a blended report those two get averaged into one figure that flatters the account.
+
+The same account answers your Reel question better than anything I could say in the abstract. Engagement campaigns in it bought 656,072 impressions for $2,314, about $3.53 per thousand, and recorded zero sales. The purchase campaigns paid $24.34 per thousand, nearly seven times more for the same eyeballs, and produced all 623 recorded conversions. Views were never the scarce thing. Meta will happily find people who watch and never buy, because that is what a views objective asks it to do.
+
+So a Reel with thousands of views and almost no followers or sales is usually working exactly as designed. What I would want to know about that specific Reel is what share of viewers tapped through to the profile, what share held past the first three seconds, and whether there was anything in it to act on. Then I would put it behind a purchase objective against a cold audience, which is the only honest way to learn whether the creative sells or just entertains.
+
+### Notes on this answer (internal)
+
+- Verified live 2026-09-04, same account as the proposal (`act_2050081878799128`, Blush Camera, Lindsey B. operator, churned 6/16/26, cited unnamed and in past tense).
+- Objective split: OUTCOME_SALES $55,879.28 / 2,295,810 impr / 623 conv; OUTCOME_ENGAGEMENT $2,313.71 / 656,072 impr / **0** conv; OUTCOME_AWARENESS $67.57 / 30,154 / 0; OUTCOME_TRAFFIC $37.53 / 6,050 / 0. CPMs recomputed: engagement $3.53, sales $24.34, ratio 6.9x, written as "nearly seven times."
+- **Shallow-event ladder, deliberate.** Campaigns named ATC or IC spent $4,971.99 for 16 conversions ($310.75); purchase-named campaigns spent $50,907.29 for 607 ($83.87). The answer quotes $84, NOT the $93.58 blended figure, because the blend mixes optimization targets. This is the Master Spa Parts lesson applied to our own citation.
+- The question names skincare, beauty, wellness OR e-commerce. E-commerce is satisfied outright, so no proof gap forecloses the answer. Laleh was NOT used: her Meta account is the single-account spend ceiling but its CPA is not citable, and spend alone is not a "measurable result."
+- No causation implied. The lane and objective splits are presented as what the account showed, not as a before/after Lindsey produced.
+- No brand name, no URLs, no sign-off, no em dashes. 271 words.
