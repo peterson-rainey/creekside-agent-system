@@ -38,7 +38,7 @@ CPA $86 -> $50.29. Big Chad Law NOT cited (its $20K/mo figure fails verification
 DISCLOSED ZEROS: no CLE/accredited-education client; all legal proof sells TO consumers
 FOR attorneys, never TO attorneys; no Meta attorney-audience proof; no CAPI proof.
 
-## PROPOSAL (297 words)
+## PROPOSAL (334 words, 1,937 chars — 34 over the lindsey_default 300 ceiling; the four required concessions are what push it)
 
 When a competitor outranks you on your own name, do you know what your branded conversion
 rate looks like with them there versus without? Most CLE providers cannot answer that, and
