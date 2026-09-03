@@ -33,12 +33,32 @@
 | **Engagement duration** | **UNVERIFIED.** "Part-time" is stated, duration is not. "Long-term collaboration" is potential, not committed. A sub-90-day engagement does not fit the retainer model even when the rate clears. |
 | **Payment method verified** | **UNCHECKED.** Cannot be read off a pasted description. Unverified payment is an AUTO-DQ, so confirm on the job page (use public "total spent" as the proxy if logged out) before submitting. |
 
-## Attachment decision: ATTACH NOTHING
+## Attachment decision: ATTACH NOTHING (re-verified 2026-09-03, byte-level + live-data)
 
-Consistent with the standing ruling on generic posts. The post names no industry, so nothing can be matched on
-vertical. Ranking instead on the one thing it does specify, Meta only, the best proof we own is Dr. Laleh, and that
-file downloads as an HTML sign-in page rather than a PDF, so it is unattachable. The one healthcare PDF that is
-genuinely attachable (Integrity) is the wrong vertical for a post with no vertical. Nothing goes with this.
+Re-run from scratch because this post is **Meta only**, so the dual-platform sweep done for the generic
+Google+Meta job does not apply. Every `case_studies` row was downloaded and checked on magic bytes, not HTTP status,
+then every surviving PDF was read and its headline numbers re-checked against `meta_insights_daily`.
+
+**Correction to the earlier assumption:** five Meta-only case study PDFs ARE real files. Being a real file is not
+the same as being sendable. All five fail on content.
+
+| Candidate | File check | Live check | Verdict |
+|---|---|---|---|
+| Birthday Club App | **404, 1.6KB of HTML** | n/a | Dead link. Confirms the standing note. |
+| CI Lifestyle Meals | REAL PDF, 1.24MB, 5pp, branded | Client ACTIVE. Live CPA **$8.28** vs the PDF's headline **$25**. `roas` column is corrupt on this account (avg 62,790x, max 1,984,801x), so 14x is unverifiable | **OUT.** Best-looking file in the set, headline number does not reconcile |
+| Punch Drunk Chef | REAL PDF, 1.59MB | Live CPA **$55.09** vs the PDF's **$10** new-customer CPA | **OUT.** Fatal mismatch, independently of the older 20x-vs-1.76x dispute |
+| Fitness Superstore | REAL PDF, 650KB | CHURNED 2026-02-15, **no ad_account_id, zero live rows**. The PDF claims peaks of **40-60x** | **OUT.** Biggest claim in the book with the least backing |
+| Duck A Diet | REAL PDF, 1.37MB | CHURNED 2026-02-01, **no ad_account_id, zero live rows** | **OUT.** No corroboration of any kind |
+| Unrefined Meal Prep | REAL PDF, 1.33MB | CHURNED 2026-04-29. Live CPA $11.25 vs PDF's $8-$10 cost per purchase and $20 new-customer CPA. Live avg ROAS 12.97 vs PDF's 4x, so the PDF **underclaims** | **OUT on weakness, not dishonesty.** Only $3,508 lifetime spend, churned, operator was Trent |
+
+Dual-platform rows carrying Meta were re-checked too. Dr. Laleh, ReferPro, LawnValue, Advanced Med Spa and
+Adventures in Wisdom all return ~908KB of **HTML sign-in page** under an HTTP 200, so they are unattachable.
+South River Mortgage and BDC App are real PDFs but were already ruled out, South River as churned with a CPL that
+fails live verification, BDC App for documenting no outcome. Central Florida Awnings is a real PDF but is
+Google+Meta home services anchored at roughly $2.4K per entity, below our own $5K screen.
+
+**Net: nothing goes with this proposal.** Every Meta-only file either 404s, overstates its headline against live
+data, or has no live data at all. The proposal was written to stand without an attachment and does.
 
 ## Verified facts used in the draft
 
