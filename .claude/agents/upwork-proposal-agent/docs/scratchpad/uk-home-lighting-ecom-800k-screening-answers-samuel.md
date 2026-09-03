@@ -41,3 +41,31 @@ The inverse trap matters just as much. Another ecommerce account in our book rep
 The part people underrate is that on a Smart Bidding account metrics are not only reporting, they are an input. Target ROAS bids against whatever conversion value you send Google. If that value is wrong the algorithm does not merely misreport it, it compounds it daily by spending toward the products it believes are converting. A wrong number in a dashboard is a bad report. A wrong number inside a bidding signal is a bad account. That is why the first metric question on your account is not what the ROAS is, it is what the conversion value represents, revenue or margin, and whether returns are ever netted off.
 
 The tradeoff you should hear: every segment you add for cleaner reading splits the conversion data further, and Smart Bidding on a thin campaign performs worse than a blended target on a fat one. Three margin tiers is usually the ceiling. If your bands are narrow the honest answer is two tiers plus exclusions.
+
+Q4. How do you decide what tone of voice to write in?
+
+On Google, intent decides it before brand does. That is the part most brand voice documents get wrong.
+
+Someone searching a chrome bathroom ceiling light at IP44 is confirming a specification and wants the spec back, plainly, with the rating and the size in the headline. Someone searching a statement pendant for a living room is still deciding and will read something closer to the brand. Same catalogue, same account, two different registers, and if you run one house voice across both you lose the first group entirely. On a lighting range that split is unusually wide, because the catalogue runs from commodity fittings to considered design purchases.
+
+So the input is your own data rather than my instinct. The top converting non branded search terms tell me which register each ad group is actually being asked for, and your highest AOV product pages tell me how the brand already talks when it is selling the considered end. I would rather match what is already converting than introduce a voice.
+
+On Shopping and Performance Max most of the tone is in the feed, not the ad. Product title structure is a tone decision wearing technical clothes. Attribute, type, finish, size, in the order your buyers actually search, beats a title that reads like your website navigation.
+
+The constraint worth naming: with responsive search ads you do not really pick a tone, you supply a spread and let asset performance report back. But that only works if the registers inside one ad group are compatible, because the system assembles those headlines interchangeably. Mixing a spec led headline with a lifestyle headline in the same ad group produces combinations that read like two different companies. So the discipline is one register per ad group, tested across ad groups, not a mixed bag in each.
+
+Client facing writing is simpler. Plain, and pitched at whatever level you want it. No performing expertise at someone who owns the business.
+
+Q5. How do you approach difficult conversations with customers?
+
+Early, and with the number attached. Most difficult conversations are only difficult because they arrived late.
+
+If spend is up and revenue is not, you hear it in the week it happens, along with what I think caused it, what I am changing, and what would make me reverse the call. A bad month that shows up as a surprise in a monthly report is a second problem stacked on the first one, because now the judgement is also in question.
+
+The most common hard conversation in paid ads is attribution. Your backend says one number, the platform claims another, and both parties end up arguing about whose data is real while the actual decision waits. The fix is procedural and it happens before the disagreement exists. Agree at the start that your sales data is the arbiter and platform reported conversions are a bidding signal, not a scoreboard. That one agreement removes most of the friction later, because there is nothing left to negotiate when the numbers diverge.
+
+Second category is when you want something I think is wrong. Say it once, plainly, with the cost attached, then do it and instrument it so we can both read the result. It is your money and your business, and I would rather be proven wrong on a measured test than be right in an argument.
+
+An example that cost us. A dental client had lead volume running well ahead of what their call centre could actually work, so the recommendation was to cut spend and add qualifying questions to the forms, knowing the qualifying step would raise cost per lead. Less spend on a percentage of spend fee means a smaller fee, so that advice was against our own invoice. It was still the right call, because leads nobody rings are not leads. Any funnel with a human step downstream has that ceiling, and pretending otherwise just moves the failure somewhere less visible.
+
+The other half is not defending a losing account. If something is not working and I cannot fix it, you will hear that from me rather than a reframed version of it. You have already seen the honest version of this in how I answered the question about our scale relative to yours.
