@@ -286,7 +286,7 @@ Rules:
 - For Twitter/X: must be 280 characters or under
 - For YouTube: must be 300 characters or under
 
-**Standard (50-120 words, 2-4 sentences)**
+**Standard (50-150 words, 2-4 sentences)**
 
 Generate TWO options -- different angles, different brain sources.
 
