@@ -54,7 +54,7 @@ Open Enrollment for 2027 starts November 1, about eight weeks out, and the bigge
 
 3. That implant account ran on a $20,000 per month Meta budget.
 
-4. $25.31 blended, English $26.38 and Spanish $17.93. On the bankruptcy account, cost per lead fell from $86 to $50.29 while volume went from 117 to 229.
+4. $25.31 blended, English $26.38 and Spanish $17.93. On the attached bankruptcy account, $50.29 per lead, down from $86.09.
 
 5. No. We hold verified cost per lead, not cost per appointment or enrolled member: in each account the downstream outcome lived in the client CRM and never came back to the platforms. Your assistant is what makes that fixable.
 
@@ -70,7 +70,7 @@ Open Enrollment for 2027 starts November 1, about eight weeks out, and the bigge
 
 11. Specifically the three above: the category classification, the licensing verification that gates launch, and qualification moving into creative and the optimization event. I hold no CMS marketing certification, no ACA credential and no platform certifications at all. I am an operator who knows the ad platform rules, not a compliance advisor on the plan side.
 
-12. Yes. Closest healthcare one is a Google account filling a patient calendar at $14 to $40 per conversion, 150 plus conversions on about $2,500 a month, with a written case document I can send.
+12. Attached. A bankruptcy firm in Orange County, restructured into four campaign segments: conversions went 117 to 229 while cost per conversion fell $86.09 to $50.29, on $11.5K spend, only $1.44K more than the prior period.
 
 13. Onboarding is $1,500 per platform, $3,000 for both, covering the tracking build and account structure. Management is a percentage of ad spend: 20 percent up to $30,000 a month, 15 percent on the next $30,000, 10 percent above, with a $1,500 per platform minimum. At $7,500 on each platform that is $3,000 a month.
 
