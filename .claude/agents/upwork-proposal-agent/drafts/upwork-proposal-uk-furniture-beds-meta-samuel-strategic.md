@@ -53,6 +53,3 @@ Two things before committing to any of this. What is Meta spending now, and roug
 One note: we work on a percentage of ad spend rather than hourly, which tends to suit a scaling brief better than a fixed hours arrangement.
 
 Worth a short call to look at the account as it stands.
-
-
-Samuel
