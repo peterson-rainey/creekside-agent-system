@@ -190,18 +190,10 @@ All substance MUST come from the source material. Campaign data from the RAG bra
 - Do NOT write content that could appear on a generic marketing blog
 - Prioritize depth over coverage
 
-**SVG infographic rules (in-body charts only -- the frontmatter `image:` hero card is separate, see Main image selection below):**
-- Generate 2 SVG infographics per post and save them alongside the blog post
-- Place SVG files in `public/article-images/` in the website repo (Glob: `**/public/article-images/` to find path)
-- Naming convention: `{post-slug}-{chart-type}.svg`
-- Insert into markdown with: `![descriptive alt text](/article-images/{filename}.svg)`
-- Infographic 1: Data visualization relevant to the primary data in the post. Place after first major data section.
-- Infographic 2: ROI or results visualization. Place in or after the ROI/results section.
-- Design: dark background (#0f172a to #1e293b gradient), blues/purples/ambers/greens for data, slate for text
-- Viewbox: 800x400 to 800x500 (landscape, blog-width)
-- Include `creeksidemarketingpros.com` in bottom-right corner
-- Use system fonts: `font-family="system-ui, -apple-system, sans-serif"`
-- Each SVG must contain real data from the source -- not placeholder values
+**In-body images (CRITICAL -- do NOT reference images you cannot create):**
+- Do NOT insert any `![...](/article-images/...)` references into the post body. You run remotely and cannot write files to the website repo, so any image file you reference will 404 on the live site and render as a broken/blank block. (The publisher also strips references to missing files as a safety net.)
+- Use markdown tables for data visualization instead -- they render well in the blog template.
+- The ONLY image in a post is the frontmatter `image:` hero card (see Main image selection below), which already exists in the repo.
 
 **Template structure (for formatting inspiration only):**
 The 5 templates in `.claude/agents/seo-content-templates/` may be referenced for STRUCTURE and formatting patterns only. They are not content sources. The post's substance must come entirely from the source transcript or LinkedIn post.

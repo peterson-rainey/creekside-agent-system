@@ -160,10 +160,47 @@ def find_svg_references(content: str, slug: str) -> list[str]:
     return re.findall(pattern, content)
 
 
+POOL_CARDS = ['bars', 'trend', 'target', 'dots', 'funnel',
+              'waves', 'donut', 'arrow', 'scatter', 'panels']
+
+
+def strip_missing_images(content: str, slug: str) -> str:
+    """Remove references to images that don't exist in the website repo.
+
+    The remote generator cannot create image files, so any reference it
+    invents would 404 on the live site. In-body refs to missing files are
+    stripped; a missing frontmatter hero image is replaced with a branded
+    pool card (picked deterministically from the slug).
+    """
+    import re
+    img_dir = os.path.join(WEBSITE_REPO, 'public', 'article-images')
+
+    # Frontmatter hero image
+    m = re.search(r'^image:\s*"/?article-images/([^"]+)"', content, re.M)
+    if m and not os.path.exists(os.path.join(img_dir, m.group(1))):
+        card = POOL_CARDS[sum(ord(c) for c in slug) % len(POOL_CARDS)]
+        content = re.sub(r'^image:\s*"[^"]*"',
+                         f'image: "article-images/blog-card-{card}.svg"',
+                         content, count=1, flags=re.M)
+        log(f'Replaced missing hero image {m.group(1)} with blog-card-{card}.svg')
+
+    # In-body image references (any extension)
+    def repl(mo):
+        fname = mo.group(1)
+        if not os.path.exists(os.path.join(img_dir, fname)):
+            log(f'Stripped missing in-body image reference: {fname}')
+            return ''
+        return mo.group(0)
+
+    content = re.sub(r'^!\[[^\]]*\]\(/article-images/([^)]+)\)[ \t]*$',
+                     repl, content, flags=re.M)
+    return re.sub(r'\n{3,}', '\n\n', content)
+
+
 def publish_draft(draft: dict) -> bool:
     """Write draft to website repo, commit, push, verify."""
     slug = draft['slug']
-    content = draft['draft_content']
+    content = strip_missing_images(draft['draft_content'], slug)
     title = extract_title(content)
     blog_path = os.path.join(WEBSITE_REPO, 'src', 'content', 'blog', f'{slug}.md')
 
