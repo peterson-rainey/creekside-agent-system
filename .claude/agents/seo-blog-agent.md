@@ -235,6 +235,7 @@ Before staging, verify ALL of the following. If any check fails, revise and re-c
 - [ ] Author bio block present, author is Peterson Rainey
 - [ ] Meta description < 160 characters
 - [ ] Target keyword in title, first paragraph, and at least one H2
+- [ ] Target keyword is phrased as a real search query someone would type into Google, not a topic label
 - [ ] No em dashes anywhere in the post
 - [ ] All internal links reference pages that actually exist on the site
 - [ ] All internal blog-post links use the `/blog/<slug>/` prefix (bare `/<slug>/` links 404)
