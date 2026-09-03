@@ -1,5 +1,5 @@
 # Flow Forward Media -- Meta Ads Specialist, Multi-Industry Paid Social
-**Profile:** Lindsey | **Style:** lindsey_default | **Status:** UNSENT | **Rev 2 (QC + expert applied)**
+**Profile:** Lindsey | **Style:** lindsey_default | **Status:** SKIPPED, never sent | **Rev 2 (QC + expert applied)**
 **Screened 2026-09-03.** White-label auto-DQ fired (agency, "portfolio of client accounts",
 front-facing variant). Reported to Queenie; she chose "Draft it anyway -- lindsey_default".
 Third recorded override on a white-label DQ.
@@ -30,3 +30,6 @@ Neither one is a marina or a roofing account. What carries over is the diagnosis
 Pixel and Conversions API coverage also matters more across four industries than it does inside one, because server side event matching is what holds the quality signal steady when the offer and the landing page change from account to account.
 
 There is a short video on my profile that covers how I handle accounts day to day.
+
+---
+**DISPOSITION 2026-09-03: SKIPPED by Queenie.** White-label auto-DQ was reported, overridden ("Draft it anyway"), drafted, then skipped anyway after the work was complete. Not sent. Do not reuse as a live application.
