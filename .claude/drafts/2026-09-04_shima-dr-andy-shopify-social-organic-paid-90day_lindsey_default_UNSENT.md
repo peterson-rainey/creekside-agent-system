@@ -72,3 +72,26 @@ So a Reel with thousands of views and almost no followers or sales is usually wo
 - The question names skincare, beauty, wellness OR e-commerce. E-commerce is satisfied outright, so no proof gap forecloses the answer. Laleh was NOT used: her Meta account is the single-account spend ceiling but its CPA is not citable, and spend alone is not a "measurable result."
 - No causation implied. The lane and objective splits are presented as what the account showed, not as a before/after Lindsey produced.
 - No brand name, no URLs, no sign-off, no em dashes. 256 words.
+
+---
+
+## Screening answer: five key strategies in the first 30 days
+
+These are the paid, tracking and email pieces, which is the half I would own. Content calendars, editing, community management and creator outreach sit with whoever owns content.
+
+1. Fix what the account is optimizing for before any budget moves. Purchase as the event, with server side events behind it, and a check that the pixel actually fires add to cart and checkout. On a store I worked on, onsite tracking was returning zero add to cart events, which would have had the entire cart email flow firing on nobody. In my own camera account, campaigns optimizing to add to cart and checkout ran $311 per conversion against $84 on the ones optimizing to purchase, so this is the difference between a report that flatters you and one you can spend against.
+
+2. Split the account into prospecting and retargeting and size each honestly. Retargeting almost always looks cheaper, and it usually cannot absorb more budget. In that same account it was $70.73 against $92.85, but the warm pool was too small to scale into. So the first month is about growing that pool, not mining it.
+
+3. Put the Shima and Dr Andy footage that already exists behind paid, against a purchase objective, on a cold audience. No new production needed to start. That is the fastest read available on whether the creative sells or only entertains, and it settles the question your Reel raised with money rather than opinion.
+
+4. Build the capture and the flows underneath it. Capture on the site, then welcome, abandoned checkout and abandoned cart, built in house. Small things decide whether these work. If a cart flow does not mirror the exclusions on the checkout flow, the same person gets both, which reads as spam to the customer and as engagement to the dashboard.
+
+5. Rebuild the weekly report around cost per first order, repeat purchase rate and revenue per subscriber, with a baseline set in week one so day thirty has something to be measured against. Views, reach and follower growth stay in the report as inputs, not as the score.
+
+### Notes on this answer (internal)
+
+- Every number is from the same live recompute as the proposal (`act_2050081878799128`, Blush Camera, Lindsey B. operator, churned 6/16/26, unnamed and past tense): ATC/IC $4,971.99 / 16 conv / $310.75 against purchase-named $50,907.29 / 607 / $83.87; retargeting $6,295.41 / 89 / $70.73 against prospecting $49,583.87 / 534 / $92.85.
+- Point 1's tracking catch is the Nightlark onsite-tracking finding (zero Added to Cart events) and point 4's exclusion guard is the Tiami double-send finding, both from the Klaviyo record. Cited as craft, with no performance number attached, since the email book still carries zero results and those flows were drafts pending cutover.
+- Scope boundary restated in one line at the top so the five points cannot be read as a commitment to content calendars, editing, community management, creator outreach or TikTok.
+- No free work promised, no pricing, no timeline commitment beyond the 30 days they asked about. No URLs, no sign-off, no em dashes. 361 words including the boundary line.
