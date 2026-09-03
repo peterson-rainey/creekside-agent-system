@@ -1,5 +1,5 @@
 # Screening answers — Generic Meta Ads Specialist (Facebook + Instagram, part-time)
-Profile: Lindsey | Style: lindsey_default voice | Date: 2026-09-03 | Status: UNSENT
+Profile: Lindsey | Style: lindsey_default voice | Date: 2026-09-03 | Status: UNSENT (rev 2, post-QC)
 Companion to: 2026-09-03_generic-meta-ads-specialist-fb-ig-parttime_lindsey_default_UNSENT.md
 All blockers on the parent proposal (spend, geo, listed rate, payment verification) still apply.
 
@@ -20,16 +20,16 @@ months. That engagement has since ended, so I am describing what it did rather t
 
 Creative strategy is where most of my time goes outside the account itself. I write the brief rather than hand a
 designer a vague ask: headline, supporting text, visual direction, both placements at 1080x1080 and 1080x1920,
-and a line stating what the ad is meant to do in the funnel. Angle matrices for talking-head scripts sit
-alongside that, and creative fatigue gets tracked as a standing weekly item rather than something noticed after
-performance already slid.
+and a line stating what the ad is meant to do in the funnel. Same for talking-head scripts, written as a set of
+angles to test against each other rather than one-offs. Creative fatigue gets tracked as a standing item on the
+dashboard rather than something noticed after performance already slid.
 
-Design I direct rather than execute. Static and carousel concepts, yes. Motion graphics and edited video are not
-mine, and you would be better served by someone else there.
+Design I direct rather than execute. Static and carousel concepts, yes, and the script. The edit itself is not
+mine, so motion graphics and video production would be better handled by someone else.
 
 Conversion tracking I treat as a diagnosis rather than a service I sell you. Most of what breaks sits upstream of
-the pixel. On an e-commerce account I run, the store's onsite tracking was returning zero Added to Cart events,
-which would have had an entire cart flow firing on nobody.
+the ad account. On an e-commerce account I run, the store's onsite tracking was returning zero Added to Cart
+events, which would have had an entire cart flow firing on nobody.
 
 Outside the ad account: Klaviyo email and flows for e-commerce, and Shopify.
 
@@ -68,3 +68,34 @@ Outside the ad account: Klaviyo email and flows for e-commerce, and Shopify.
   or attribution figure is claimed — none exists.**
 - No Google, Bing, TikTok or programmatic mentioned anywhere, per Lindsey's scope ban.
 - No links, no contact info, no pricing, no sign-off name.
+
+---
+
+## QC round (rev 1 -> rev 2)
+
+`qc-reviewer-agent`: **WARN, three findings. Two accepted, one rejected on verified evidence.**
+
+Accepted:
+1. *"standing weekly item" was an invented cadence.* The Fusion creative-fatigue series is six rows across a
+   roughly thirteen-week engagement, which is nowhere near weekly. Changed to "a standing item on the dashboard",
+   which is what the record actually supports.
+2. *"upstream of the pixel" overreached past the one verified example.* The Nightlark catch is Klaviyo onsite
+   tracking, not the Meta Pixel, so pixel-diagnostic framing dressed a Klaviyo-side find as broader Pixel/CAPI
+   range — exactly the claim the standing zero forbids. Changed to "upstream of the ad account".
+
+Rejected, with evidence:
+3. *"Angle matrices for talking-head scripts has no verified basis."* It does. The facts block handed to QC was
+   incomplete, which is what produced this finding. Verified live this session: `15-Second Talking Head Scripts --
+   Dental Campaign` (7,135 chars), `Dental Video Scripts 30-45sec -- Pain Point Talking Head Ads` (3,475 chars),
+   and `Jybr Talking Head Ad Scripts -- Final 9 (3 verticals x 3 angles)` (1,652 chars), the last being a literal
+   angle matrix. The substance stays.
+
+   QC's **second** reason for that finding was independent of verification and was good: scripts sitting two
+   sentences above "motion graphics and edited video are not mine" reads as a soft contradiction. Resolved by
+   splitting the two explicitly rather than by deleting the claim — the answer now says the script is hers and the
+   edit is not. The "angle matrices" jargon was dropped in the same pass.
+
+Everything else cleared: both Q1 numbers match the verified figures, tense is correct on the active and the
+churned account, no Pixel/CAPI/GTM implementation claim, no email performance figure, no banned service, no
+certification, no implied-causation juxtaposition, no links, no contact info, no pricing, no sign-off, no em
+dashes. The $20,000 / $100,000 line was cleared as a pattern observation attributed to no account.
