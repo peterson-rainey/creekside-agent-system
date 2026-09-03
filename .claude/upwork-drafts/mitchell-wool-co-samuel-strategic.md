@@ -6,7 +6,7 @@ Dataset quality. Whether a Purchase event fires at all, whether browser and serv
 
 Second, exclusions and overlap. Whether past purchasers and recent site visitors sit inside the prospecting ad sets. Most self-built funnels look like they converted because warm traffic was buried in cold campaigns.
 
-Third, where the money went. Spend split by objective across the account's history, and the landing destination on every ad. Engagement and traffic spend pointed at a homepage is the usual autopsy result, and it explains "did not reliably convert" without needing a deeper theory.
+Third, where the money went. Spend split by objective across the account's history, and the landing destination on every ad. Engagement and traffic spend pointed at a homepage is the usual autopsy result, and it explains "did not reliably convert" without a deeper theory.
 
 2. PIXEL VS CAPI FOR iOS
 
@@ -18,7 +18,7 @@ Proof is a Test Events recording showing both sources arrive and deduplicate, pl
 
 Purchase. ThruPlay and landing page views optimize for the cheapest available human, and Meta is good at finding people who will watch a beautiful farm film and buy nothing. Your own funnel already showed traffic is not the constraint.
 
-The real risk with Purchase is volume, not correctness. An ad set needs roughly 50 conversions a week to exit learning, and a $30 skein will not hand that to five separate ad sets. The fix is consolidation, not a softer event: one broad prospecting ad set carrying the budget so signal pools, retargeting and catalog underneath. If counts are still thin after two weeks we raise average order value with kits and bundles rather than dropping to a shallower event. Bundles also keep us off discounting, which is what protects your shops.
+The real risk with Purchase is volume, not correctness. An ad set needs roughly 50 conversions a week to exit learning, and a $30 skein will not hand that to five separate ad sets. The fix is consolidation, not a softer event: one broad prospecting ad set carrying the budget so signal pools, retargeting and catalog underneath. If counts are still thin after two weeks we raise average order value with kits and bundles rather than dropping to a shallower event. Bundles also keep us off discounting, which protects your shops.
 
 4. FARM FOOTAGE INTO ADS THAT SELL
 
@@ -36,17 +36,15 @@ That is our onboarding fee of $1,500 per platform, Meta and Google, split across
 
 M3 is management, a percentage of ad spend with a monthly minimum per platform. Never hourly. Exact figure once you name the media budget. If that budget turns out small enough that a fee eats it, we would rather say so at M1 than sell you M3.
 
-6. ATTACHED
+6. THE REPORT SAMPLE
 
-A redacted weekly scorecard from a live ecommerce account: spend, purchases, revenue, ROAS, MER, new customer share, and that week's kill and keep list. Names removed.
+Not attached, and we would rather say so than send a mock-up. Our weekly reporting is a live dashboard per client rather than a PDF, so a real redacted one gets exported on request. Ask and we will send it before you decide. One page: spend, purchases, revenue, ROAS, MER, new customers, and that week's kill and keep list.
 
 TWO STORE CASE STUDIES
 
 Replacement parts store, Meta, ten months: $131K spend, 4,500 purchases, 5.5x blended. The shape matters more than the headline. December ran 3.22x at $44.93 per purchase. April ran 8.07x at $19.89 on lower spend, from consolidating fourteen campaigns to seven and killing hooks instead of adding budget. Prospecting, retargeting and catalog ran as separate layers, purchasers excluded. That engagement ended.
 
 Shopify home goods brand, Google, running now: Shopping at 5.73x on $22,947, Performance Max at 5.29x, feed and Merchant Center ours. That is the Shopping and PMax half of your M2 on a live account.
-
-Third: luxury DTC furniture, Meta Sales and catalog, same premium-without-discounting problem. Over four months, $105,010 spend and 343 purchases at $306.
 
 WHAT WE DO NOT HAVE
 
