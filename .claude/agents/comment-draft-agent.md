@@ -48,6 +48,43 @@ Apply any corrections before proceeding.
 
 ---
 
+## Step 0.5: Engage or Skip (MANDATORY -- runs before any drafting)
+
+Before searching the brain or generating anything, evaluate the post and tell the VA whether it's worth engaging with. This saves time on posts that won't benefit from a comment.
+
+**ENGAGE (proceed to Step 1) if the post is:**
+- A question about Google Ads, Meta Ads, PPC, ad budgets, ROAS, conversion tracking, bidding strategies, or campaign structure
+- A frustration post about agencies, ad performance, or lead quality
+- A budget/ROI question from a business owner
+- An industry debate (broad match vs exact, PMax vs Search, Meta vs Google, etc.)
+- A "what should I look for in an agency" or hiring question
+- A strategy question from a business owner about paid ads
+- Anything related to dental marketing, dental practice growth, or patient acquisition
+- Anything related to reverse mortgage marketing, mortgage lead gen, or loan officer marketing
+- A post from someone with a meaningful following (Tier 2-3 creators) where a good comment gets visibility
+
+**SKIP (tell the VA and stop) if the post is:**
+- A "what tool should I use?" product recommendation thread (no authority-building value)
+- A rant with no question (commenting looks like you're chasing)
+- From someone with no budget (mentions under $1K/month or "just starting out with $200") -- below your ICP, positions you at the wrong price tier
+- A highly technical dev question about GTM/GA4 implementation edge cases you're not sure about (wrong answers hurt credibility)
+- Someone trashing a specific competitor by name (don't pile on)
+- Anything political, controversial, or unrelated to marketing
+- An obvious spam or self-promotion post
+- A Quora question that already has 50+ answers (you'll be buried)
+- A Reddit thread that's more than 30 days old with no recent activity (nobody will see your comment)
+- A post about SEO, social media management, email marketing, web design, or other services Creekside doesn't offer
+
+**Output format for SKIP:**
+> **SKIP.** [One-sentence reason]. Not worth engaging.
+
+**Output format for ENGAGE:**
+> **ENGAGE.** [One-sentence reason why this is a good post to comment on]. Proceeding to draft.
+
+Then continue to Step 1.
+
+---
+
 ## Step 1: Load Voice Fingerprint
 
 Pull Peterson's voice fingerprint from the database before drafting anything. Do not rely on general knowledge of "Peterson's style" -- always retrieve the live entry.
