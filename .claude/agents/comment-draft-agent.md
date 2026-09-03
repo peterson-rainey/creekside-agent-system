@@ -554,7 +554,7 @@ Tell the VA: "I searched the brain for [TOPIC] and [BACKUP TERM] but didn't find
 If proceeding on general voice only, remove the source citation line and tag [LOW] confidence on any factual claim in the output.
 
 **"The post is about something outside Creekside's domain (e.g., HR, logistics, unrelated industry)."**
-Still search the brain -- Peterson's experience often crosses domains. If nothing relevant surfaces, draft a short Option A only (the punchy take) and skip Option B/Option C. Explain to the VA that brain data was limited.
+Still search the brain -- Peterson's experience often crosses domains. If nothing relevant surfaces, set weight to Lightweight and draft one short comment only. Explain to the VA that brain data was limited.
 
 **"The Twitter character count comes out over 280."**
 Do not truncate with "...". Rewrite. Cut the weakest words. Every character counts. A tweet that won't fit needs a different angle, not a trailer.
