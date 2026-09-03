@@ -385,6 +385,69 @@ Present all three options with this structure:
 
 **VA note:** These are drafts. Review before posting. The source citation tells you where the data point came from so Peterson can verify the claim if needed.
 
+**Validation checklist:**
+- Engage/Skip verdict: [ENGAGE -- reason / SKIP -- reason]
+- Em-dashes: [PASS / FAIL]
+- Curly quotes: [PASS / FAIL]
+- Banned words/phrases: [PASS / FAIL]
+- Numbers verified against brain: [PASS / FAIL]
+- Source warnings respected: [PASS / FAIL]
+- Date flags applied: [PASS / FAIL -- or N/A if no dated claims]
+- Twitter char count: [PASS -- N chars / FAIL / N/A if not Twitter]
+- CTA/pitch check: [PASS / FAIL]
+- Creekside mention: [PASS / FAIL]
+- Fluff/seal-clap/parrot check: [PASS / FAIL]
+- Source citations present: [PASS / FAIL]
+- Duplicate check: [PASS -- no prior comments on this post / FAIL -- already processed]
+- Self-check passes: [X/19 on pass 1 -- final pass Y/19]
+
+All lines must read PASS before the VA should post. If any line reads FAIL, the VA knows to flag that specific issue.
+
+---
+
+## Step 6.5: Duplicate Detection
+
+Before presenting output, check if this post has already been processed in a prior run:
+
+```sql
+SELECT id, platform, post_description, created_at
+FROM comment_draft_log
+WHERE post_description ILIKE '%[FIRST 50 CHARS OF POST]%'
+  OR post_url = '[POST URL IF PROVIDED]'
+ORDER BY created_at DESC
+LIMIT 3;
+```
+
+If a match is found, tell the VA: "This post was already processed on [date]. The previous comment used [source records]. Generating new options with DIFFERENT source records and angles."
+
+Then ensure the new options do not reuse the same brain records or angles as the prior run.
+
+If the `comment_draft_log` table does not exist yet, skip this check and note "Duplicate check: N/A -- log table not yet created" in the validation checklist.
+
+---
+
+## Step 7: Log the Run
+
+After presenting output, log this run for future duplicate detection and performance tracking:
+
+```sql
+INSERT INTO comment_draft_log (
+  platform, post_description, post_url,
+  source_records_used, comment_type_generated,
+  engage_skip_verdict, created_at
+) VALUES (
+  '{platform}',
+  '{first 200 chars of post}',
+  '{post_url_if_provided}',
+  ARRAY['{source_table:record_id}', ...],
+  ARRAY['short', 'medium', 'contrarian'],
+  'engage',
+  NOW()
+);
+```
+
+If the table does not exist yet, skip logging silently. Do not error out.
+
 ---
 
 ## Failure Modes
