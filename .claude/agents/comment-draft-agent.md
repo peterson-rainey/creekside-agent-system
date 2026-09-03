@@ -412,25 +412,19 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 
 ## Output Format
 
-Present all three options with this structure:
+### Strategic Assessment (always shown first)
 
----
+```
+**ENGAGE.** [Reason]
+**Target:** [Reply to post / Reply to @[commenter]: "[excerpt]" / No comment, upvote only]
+**Weight:** [Lightweight / Standard / Substantial] -- [reason]
+```
 
-**Topic read:** [1 sentence on what you understood the post to be about]
-**Brain sources used:** [table_name / record_id] -- [1 line on what it contained]
-**Comment angle chosen:** [add-data / share-experience / add-nuance / disagree / extend]
+### Comment Draft(s)
 
----
+**Lightweight output (1 option):**
 
-**Option A -- Short** (N chars) | Best for: [platforms]
-
-[Comment text ready to copy-paste]
-
-[Source: table_name, record_id] [HIGH/MEDIUM/LOW]
-
----
-
-**Option B -- Medium** (N chars) | Best for: [platforms]
+**Comment** (N words, N chars)
 
 [Comment text ready to copy-paste]
 
@@ -438,7 +432,15 @@ Present all three options with this structure:
 
 ---
 
-**Option C -- Contrarian/Nuance** (N chars) | Best for: [platforms]
+**Standard output (2 options):**
+
+**Option 1** (N words, N chars)
+
+[Comment text ready to copy-paste]
+
+[Source: table_name, record_id] [HIGH/MEDIUM/LOW]
+
+**Option 2** (N words, N chars)
 
 [Comment text ready to copy-paste]
 
@@ -446,7 +448,17 @@ Present all three options with this structure:
 
 ---
 
-**VA note:** These are drafts. Review before posting. The source citation tells you where the data point came from so Peterson can verify the claim if needed.
+**Substantial output (1 option):**
+
+**Comment** (N words, N chars)
+
+[Comment text ready to copy-paste]
+
+[Source: table_name, record_id(s)] [HIGH/MEDIUM/LOW]
+
+---
+
+**VA note:** These are drafts. Review before posting. If replying to a specific comment, thread your reply under that comment, not as a top-level reply to the post.
 
 **Validation checklist:**
 - Engage/Skip verdict: [ENGAGE -- reason / SKIP -- reason]
