@@ -41,7 +41,7 @@
 
 What's your biggest accomplishment with Meta Ads?
 
-A dental implant account running lead gen under a restricted category. Because it was health related, custom conversion events were off the table, so everything had to optimize against a standard lead event and you lose most of the signal you would normally lean on. Over about three months it produced 2,558 leads on roughly $64,700 in spend, a little over $25 a lead, in a market where implant consults are not cheap to buy.
+A dental implant account that ran lead gen under a restricted category. Because it was health related, custom conversion events were off the table, so everything had to optimize against a standard lead event and you lose most of the signal you would normally lean on. Over about three months it produced 2,558 leads on roughly $64,700 in spend, a little over $25 a lead, in a market where implant consults are not cheap to buy.
 
 The result I am actually prouder of is smaller. An app account where cost per install came down 47 percent, from $7.36 to $3.90, across 2,662 installs. No clever targeting trick, just tearing the structure apart and testing creative in a disciplined order. That is usually where the gains are, which is less exciting than it sounds.
 
@@ -53,10 +53,21 @@ Conversion tracking first, because that is where most accounts are quietly broke
 
 Creative strategy, yes. Briefs, angle and offer testing, and watching frequency so you catch fatigue before cost per lead moves rather than after it.
 
-Design, no, not personally. There is a creative director on our side who handles production. I write the brief and decide what gets tested, and I would rather say that than pretend otherwise.
+Design, no, not personally. There is a creative director on our side who handles production. I write the brief and decide what gets tested.
 
 Beyond that, account structure and audience architecture, Advantage+ versus manual and when each is the right call, catalog and feed setup, and reporting that separates what the auction did from what the account did.
 
 ## QC
 
-Pending.
+`qc-reviewer-agent`, 2026-09-03: **PASS, no blocking issues.** Every number traced to verified ground truth. The
+health-category event restriction and Special Ad Category were confirmed to be kept as separate mechanisms rather
+than conflated. No banned names, links, pricing, certification claims or promised attachments. The design gap is
+disclosed honestly and not quietly walked back. Dr. Laleh's unverifiable CPA figure correctly absent.
+
+Two non-blocking notes raised, both **fixed after review**:
+
+1. **Tense ambiguity on a churned account.** The opener read "A dental implant account running lead gen", and the
+   present participle could be skimmed as a live client. Fusion churned 2026-07-22. Changed to "that ran".
+2. **Self-congratulatory filler.** "and I would rather say that than pretend otherwise" was honesty-signalling
+   rather than substance, the same shape as the standing ban on answer-validating filler. Clause cut. The
+   disclosure lands harder without it.
