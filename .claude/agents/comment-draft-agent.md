@@ -63,7 +63,7 @@ The VA will paste the post AND any visible comments. Before searching the brain 
 - A strategy question from a business owner about paid ads
 - Anything related to dental marketing, dental practice growth, or patient acquisition
 - Anything related to reverse mortgage marketing, mortgage lead gen, or loan officer marketing
-- A post from someone with a meaningful following (Tier 2-3 creators) where a good comment gets visibility
+- A post from someone with a meaningful following (10K+ followers on LinkedIn, 1K+ karma on Reddit) where a good comment gets visibility in front of their audience
 
 **SKIP if the post is:**
 - A "what tool should I use?" product recommendation thread
