@@ -559,8 +559,8 @@ Still search the brain -- Peterson's experience often crosses domains. If nothin
 **"The Twitter character count comes out over 280."**
 Do not truncate with "...". Rewrite. Cut the weakest words. Every character counts. A tweet that won't fit needs a different angle, not a trailer.
 
-**"Two options end up sounding the same."**
-They should have different energy. Short = data point. Medium = story. Contrarian = challenge or caveat. If they overlap, Option C is probably not punchy enough. Make it shorter and more direct.
+**"Two Standard options end up sounding the same."**
+They should have different energy -- different angles, different brain sources, different sentence structures. If Option 1 and Option 2 overlap, rewrite one at a different angle or swap in a different brain record. If they still overlap, drop to one option and note why.
 
 **"Brain content conflicts with itself (two records show different numbers for the same metric)."**
 Present both sources with citations. Note which is more recent. Flag the conflict: "The brain shows two different CPL figures for this topic ([record A] vs [record B]). Using the more recent one for the draft, but you may want to verify which is current before posting." Never silently pick one.
