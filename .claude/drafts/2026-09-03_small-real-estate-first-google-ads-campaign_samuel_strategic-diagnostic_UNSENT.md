@@ -162,10 +162,33 @@ converted yet, so I would not sell you on it"). Refusing to oversell here is wha
 - **Book-level scale numbers omitted entirely.** Style forbids opening on stats, and omitting them sidesteps
   the pooling rule cleanly rather than half-satisfying it.
 
-## ATTACHMENT DECISION
+## ATTACHMENT DECISION (curl-verified 2026-09-03, revisited on Queenie's direct question)
 
-**ATTACH NOTHING.** Zero real estate case studies exist in the library. There is no PDF to verify, so the
-usual underscore-twin check does not engage. Nothing referenced in the body needs an attachment.
+**ATTACH NOTHING.** Zero real estate case studies exist (full enumeration of all 28 rows). The three nearest
+candidates were curl-verified as live files anyway, so an override is not blocked by a dead link:
+
+| Candidate | file_id | curl result | Verdict |
+|---|---|---|---|
+| UrCovered Construction | `1onNdpUyrXBZaKw3soT2yOuD4Ah3SSiNU` | 200, application/octet-stream, **746,801 bytes** | REAL. Closest match. Still no. |
+| South River Mortgage (underscore twin) | `15jPcipTl4yI-r1Xou-OTx1c7P0nrr8kx` | 200, octet-stream, 295,303 bytes | REAL file, unusable content. |
+| Landmark Lawn (underscore twin) | `1RfCUEFzjuF1bUSZjBVQrPJCpjZzgYVQ-` | 200, octet-stream, 242,673 bytes | REAL. Wrong vertical. |
+| Landmark Lawn (spaced filename) | `1b4T_0CxXvPFd6DWzXSgC_1b3im2eD-dl` | 200 but **text/html, 0 bytes** | DEAD. Twin rule now **8/8**. |
+
+**The decisive reason is structural, not evidentiary: the body references no case study.** It cites only our
+own unnamed Nashville account and Google Keyword Planner. Attaching a study the body never mentions invites
+"what did you get for a real estate client," whose honest answer is zero conversions.
+
+Per-candidate rejection:
+- **UrCovered** is the only defensible override. Residential property, Tennessee, Google Ads. But a custom home
+  BUILDER sells construction contracts, not real estate transactions, so the keyword economics do not transfer,
+  and its headline is a $454 to $239 CPL arc, the unbacked before/after shape.
+- **South River Mortgage** is the trap: the Drive filename literally reads "FinanceReal Estate Study." It is
+  reverse mortgage lending, CHURNED 2026-08-11, and its $81 CPL fails live verification (blended $390, 7 of 13
+  months with no conversion data).
+- **Landmark Lawn** rhymes geographically (Nashville, Google Ads) and is lawn care.
+
+**If overridden to UrCovered:** the body must gain a line referencing it, scoped explicitly to custom home
+building in Tennessee, citing lead volume rather than the CPL arc.
 
 ## KNOWN AMBIGUITY - FLAGGING, NOT RESOLVING
 
