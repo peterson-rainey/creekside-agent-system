@@ -35,7 +35,7 @@ no number cited.
 DISCLOSED ZEROS: no CLE/accredited-education client; all legal proof sells TO consumers
 FOR attorneys, never TO attorneys; no Meta attorney-audience proof.
 
-## PROPOSAL (3,391 chars)
+## PROPOSAL (3,631 chars)
 
 Your brand-defense problem has two levers and most people only run one.
 
