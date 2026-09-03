@@ -66,21 +66,52 @@ genuinely attachable (Integrity) is the wrong vertical for a post with no vertic
 
 ## PROPOSAL (paste-ready)
 
-Performance monitoring on Meta gets misleading between now and January, and it usually catches the people who are watching the right numbers. On the accounts I see, CPM sat around $22.65 last September and around $33.78 by November. Spend across that stretch went up about 15 percent and impressions still fell about 23 percent.
+CPM on the Meta accounts I work across went from $22.65 last September to $33.78 by November. Spend over that stretch was up about 15 percent and impressions still fell about 23 percent. Nothing in those accounts had degraded. The auction just got more crowded.
 
-Nothing had degraded. The auction just got more crowded. So when reporting shows cost per result climbing through Q4, the honest read is usually that it climbed for everybody, and the recommendation that follows should be about pacing and creative volume rather than about cutting a budget that is still working. Reading it the other way around is how good accounts get trimmed in December.
+That is what makes performance monitoring misleading between now and January. When reporting shows cost per result climbing through Q4, the honest read is usually that it climbed for everyone, and the recommendation should be about pacing and creative volume rather than cutting a budget that is still working. How hard it hits you depends on your category. Retail feels it worst, local and B2B far less, but the direction is the same.
 
-One tradeoff worth naming early, since the role is built around ongoing optimization. On Meta most of the adjustments that feel productive are the ones that cost you. Material edits to budget, audience or creative push an ad set back into learning, and an account that gets touched a few times a week never really leaves it. The honest version of this job is fewer and larger changes on a fixed cadence, with testing running in its own structure where it is allowed to be noisy. That is slower than it sounds like it should be, and it is easier to agree on now than in month two.
+One tradeoff worth naming early, since the role is built around ongoing optimization. On manually structured campaigns, most of the adjustments that feel productive are the ones that cost you, because material edits to budget, audience or creative drop an ad set back into learning. Advantage+ absorbs that a lot better, so which structure you are on changes the answer. Either way the version of this that works is fewer and larger changes on a fixed cadence, with the hours going into creative volume and a separate testing structure rather than into leaving the account alone.
 
-Three things would change how I would set this up. What you sell and what a customer is worth to you, which countries you run in, and roughly what monthly range you are working with. On that last one, a number quoted without knowing the range is useless to both of us, so the range comes first.
+Four things would change how I set this up. What you sell and what a customer is worth to you, whether this is a live account with the Conversions API already working or a build from scratch, which countries you run in, and roughly what monthly range you are working with. On that last one, a number quoted without knowing the range is useless to both of us, so the range comes first.
 
 For context, the book I work across has north of twenty Meta accounts live right now, spanning ecommerce, dental, aesthetics, financial services and food. Six years doing this.
 
-Happy to jump on a quick call and look at the account if that would help.
+Worth a quick call to go through what your last ninety days actually look like. That usually sorts the auction from the account fast enough.
 
 
 Samuel
 
 ## QC
 
-Pending.
+`qc-reviewer-agent`, 2026-09-03: **PASS** on the pre-edit draft. Zero hard-rule violations across all twelve checks:
+no em-dashes, no bold, no bullets, no links or contact info, does not open with "I", correct two-line-break "Samuel"
+sign-off, in the 250-350 word band, no forbidden names, no pricing, no certification claims, no job-post
+restatement, no implied-causation juxtaposition, every number traced to ground truth, book pooled rather than
+first-person attributed. Its one non-blocking craft note was that the closing line was the flattest sentence in the
+piece. That line has been replaced.
+
+`expert-review-agent`, 2026-09-03: **SEND WITH EDITS.** Five findings, four accepted in full and one accepted in
+part. All are now applied:
+
+1. **The proof arrived one sentence too late.** The whole bet is that concrete Q4 data beats generic "I'm a Meta
+   expert" copy, but the original first sentence carried no number and its "catches the people who are watching the
+   right numbers" clause read like a typo for "wrong". Upwork shows only the first sentence or two in preview.
+   Fixed: the $22.65 to $33.78 figure is now sentence one, and "performance monitoring" moved to the second
+   paragraph so the client's own noun still lands.
+2. **The learning-phase claim was stated as absolute and is dated.** True for manual ABO structures, but Advantage+
+   is the default for most ecommerce accounts by 2026 and absorbs budget and audience shifts without the same
+   binary reset. A buyer on Advantage+ would have read the original and concluded the writer does not know how
+   their account works. Fixed with an explicit qualifier both ways.
+3. **The vertical generalization was unhedged.** The book blends ecommerce, dental, aesthetics, financial and food,
+   and Q4 auction inflation is far steeper in retail than in local or B2B. The draft was rigorous about causation
+   and silent about generalization, which is inconsistent. Fixed with the category-dependence clause.
+4. **"Fewer and larger changes" softened the workload without saying what replaces it.** On a part-time role, that
+   invites the obvious question of what the paid hours buy. Fixed: the hours are now explicitly attributed to
+   creative volume and a separate testing structure.
+5. **Swap the geo question for tracking status. Accepted in part.** Tracking and Conversions API status is the
+   highest-value Meta question and is now added, since unreliable conversion data makes the entire "read the right
+   numbers" thesis untrustworthy. Geo was NOT dropped: it is our own US/CA/UK/AU screen and this post names no
+   region, so the question has to stay. Four questions rather than three.
+
+Post-edit revalidation: 332 words, 1,988 characters, zero em-dashes, zero bold, zero bullets, zero URLs, opens on
+"CPM", signs off "Samuel".
