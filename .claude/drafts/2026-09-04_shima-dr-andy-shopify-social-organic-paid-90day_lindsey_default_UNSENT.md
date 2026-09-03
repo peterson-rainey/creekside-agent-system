@@ -71,4 +71,4 @@ So a Reel with thousands of views and almost no followers or sales is usually wo
 - **Shallow-event ladder, deliberate.** Campaigns named ATC or IC spent $4,971.99 for 16 conversions ($310.75); purchase-named campaigns spent $50,907.29 for 607 ($83.87). The answer quotes $84, NOT the $93.58 blended figure, because the blend mixes optimization targets. This is the Master Spa Parts lesson applied to our own citation.
 - The question names skincare, beauty, wellness OR e-commerce. E-commerce is satisfied outright, so no proof gap forecloses the answer. Laleh was NOT used: her Meta account is the single-account spend ceiling but its CPA is not citable, and spend alone is not a "measurable result."
 - No causation implied. The lane and objective splits are presented as what the account showed, not as a before/after Lindsey produced.
-- No brand name, no URLs, no sign-off, no em dashes. 271 words.
+- No brand name, no URLs, no sign-off, no em dashes. 256 words.
