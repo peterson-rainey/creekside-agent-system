@@ -236,6 +236,7 @@ Before staging, verify ALL of the following. If any check fails, revise and re-c
 - [ ] Target keyword in title, first paragraph, and at least one H2
 - [ ] No em dashes anywhere in the post
 - [ ] All internal links reference pages that actually exist on the site
+- [ ] All internal blog-post links use the `/blog/<slug>/` prefix (bare `/<slug>/` links 404)
 - [ ] Frontmatter matches Astro schema exactly (title, description, date, image, category, tags)
 - [ ] Post does NOT duplicate an existing published post (check seo_published and blog files)
 - [ ] TL;DR block present immediately after frontmatter (40-60 words with specific numbers)
