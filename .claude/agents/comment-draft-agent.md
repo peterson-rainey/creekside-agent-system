@@ -429,13 +429,22 @@ All lines must read PASS before the VA should post. If any line reads FAIL, the 
 Before presenting output, check if this post has already been processed in a prior run:
 
 ```sql
+-- Always include the description match. Only include the URL match if a URL was provided.
 SELECT id, platform, post_description, created_at
 FROM comment_draft_log
 WHERE post_description ILIKE '%[FIRST 50 CHARS OF POST]%'
-  OR post_url = '[POST URL IF PROVIDED]'
 ORDER BY created_at DESC
 LIMIT 3;
+
+-- If a post URL was provided, also check:
+-- SELECT id, platform, post_description, created_at
+-- FROM comment_draft_log
+-- WHERE post_url = '[POST URL]'
+-- ORDER BY created_at DESC
+-- LIMIT 3;
 ```
+
+Do NOT include a `post_url = ''` clause when no URL was provided -- it will false-match every row with an empty URL.
 
 If a match is found, tell the VA: "This post was already processed on [date]. The previous comment used [source records]. Generating new options with DIFFERENT source records and angles."
 
