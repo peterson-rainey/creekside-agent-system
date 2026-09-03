@@ -251,66 +251,79 @@ This prevents the agent from generating a comment that contradicts something Pet
 
 ---
 
-## Step 4: Generate Three Comment Options
+## Step 4: Generate Comment Based on Weight
 
-Produce three distinct drafts. Each must be **adapted from Peterson's actual words** found in Step 3 -- not generated from scratch. The comment should read like something Peterson already said, because it essentially IS something he already said, just reformatted for the platform.
+Generate the comment at the weight decided in Step 0.5. Adapt from **Peterson's actual words** found in Step 3 -- not generated from scratch.
 
 **Adaptation process:**
 1. Start with the verbatim quote or passage from Step 3d
-2. Trim it to the right length for the platform
+2. Trim it to the right length for the weight and platform
 3. Remove client names or identifying details (anonymize to "a client" or "a [industry] business")
 4. Adjust formality for the platform (Reddit = more casual, LinkedIn = slightly more structured)
 5. Keep Peterson's specific phrasing, numbers, and sentence patterns as close to the original as possible
 
 If no verbatim quote was found (brain gap), fall back to generating in Peterson's voice using the fingerprint from Step 1, but tag the output [LOW] confidence.
 
-### Option A -- Short (1-3 sentences)
+**If replying to a specific comment** (not the post itself), frame the response as a reply to that person's point, not the original post. The VA will thread it under that comment.
 
-**Goal:** One punchy insight or data point. Works as a standalone thought.
+### Generate by weight:
 
-**Rules:**
-- 150-300 characters ideal, 500 max
-- Drop straight into the insight -- no setup or preamble
-- Must contain at least one specific (number, outcome, platform name, client vertical)
-- No hashtags
-- No em-dashes
-- For Twitter/X: must be 280 characters or under (hard limit)
+**Lightweight (5-50 words, 1-2 sentences max)**
+
+Generate ONE comment only. No multiple options. Short and punchy.
+
+Examples of Lightweight comments in Peterson's voice:
+- "This is exactly why we stopped trusting ad strength scores entirely."
+- "Broad match with bad data is just expensive broad match."
+- "The 90-day timeline is real. Month 1 is tuition, not performance."
+- "We saw the same thing. CPA doubled the day they turned on PMax without brand exclusions."
+- "What was your conversion volume before you switched? That changes the answer completely."
+
+Rules:
+- No setup, no preamble. Drop the line and stop.
+- Can be a statement, a question, or a short agreement + one data point
+- Does NOT need a specific number (unlike Standard/Substantial). A sharp opinion is fine.
+- For Twitter/X: must be 280 characters or under
 - For YouTube: must be 300 characters or under
 
-**Best platforms:** Twitter/X, YouTube, quick LinkedIn engagement
+**Standard (50-120 words, 2-4 sentences)**
 
-### Option B -- Medium (3-6 sentences)
+Generate TWO options -- different angles, different brain sources.
 
-**Goal:** Share a real example or experience. Includes a specific number or outcome. Reads like something Peterson would say mid-conversation.
-
-**Rules:**
-- 300-600 characters
-- Lead with the real experience, not a setup ("We had a client..." not "Great point about...")
-- Include at least one specific number pulled from the brain
+Rules:
+- Lead with the insight or experience, not a setup
+- Include at least one specific number or outcome from the brain
 - Conversational, not lecture-y
 - Can use casual hedges: "kinda", "tho", "I'd say"
-- No em-dashes, no corporate vocabulary
-- No hashtags
+- No em-dashes, no corporate vocabulary, no hashtags
+- For Twitter/X: must be 280 characters or under (which constrains to the shorter end)
+- **Reddit**: can use **bold** on key phrases for scanability
 
-**Best platforms:** LinkedIn, Quora
+**Substantial (120-300 words for Reddit/LinkedIn, 300-500 words for Quora)**
 
-### Option C -- Contrarian/Nuance (3-5 sentences)
+Generate ONE comment only. This is the deep answer.
 
-**Goal:** Respectfully add a caveat, reframe, or counter. Not combative -- adds a "yes, and" or "this works, but only when..." layer.
+Rules:
+- Structure matters. Short paragraphs (2-3 sentences each). Bold key phrases on Reddit.
+- Must include at least two specific numbers or outcomes from the brain
+- Lead with the answer or the strongest data point, not context-setting
+- On **Quora**: aim for ~500 words. Use clear structure (observation, example, takeaway). Can reference the industry broadly.
+- On **Reddit**: use short paragraphs, bold key phrases, and keep the tone practitioner-casual. No agency language.
+- On **LinkedIn**: conversational but structured. Can use line breaks between points.
+- No em-dashes, no corporate vocabulary, no hashtags
+- Contrarian/nuance opening patterns still apply when the angle calls for it:
+  - "We actually found the opposite..."
+  - "This works, but only if..."
+  - "The part nobody talks about is..."
+  - "I'd add one thing..."
 
-**Opening patterns that work for Peterson's voice:**
-- "We actually found the opposite..." (for a genuine counter)
-- "This works, but only if..." (for a caveat)
-- "The part nobody talks about is..." (for an extension)
-- "I'd add one thing..." (for a nuance)
+### How many options to generate by weight:
 
-**Rules:**
-- 250-500 characters (may extend to 800 for Quora, which allows longer structured answers)
-- Must be based on a real observation from the brain, not generic skepticism
-- Don't be contrarian just to be contrarian -- only use this option if the brain actually supports a different view
-- Respectful, practitioner-to-practitioner tone
-
-**Best platforms:** Reddit, LinkedIn, Quora
+| Weight | Options | Why |
+|--------|---------|-----|
+| Lightweight | 1 | One line doesn't need alternatives. Get it right or skip. |
+| Standard | 2 | Two different angles, VA picks the better one. |
+| Substantial | 1 | One well-researched deep answer. Don't dilute with alternatives. |
 
 ---
 
