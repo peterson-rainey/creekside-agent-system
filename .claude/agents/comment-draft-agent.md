@@ -342,6 +342,10 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 | No formal transitions | No "Furthermore", "Moreover", "Additionally" | Any formal transition word |
 | Sentence variety | Sentence lengths vary (no 3 consecutive same-length) | Three same-length sentences in a row |
 | No conclusion paragraph | Comment ends when done (no "In summary", "Overall", "Bottom line" wrap-up) | Any summary/conclusion closer |
+| Dollar format | Uses `$10K` not `$10,000` | Spelled-out or comma-separated dollar amounts |
+| No rule-of-three | Does not list three things in a row ("plan, execute, and measure") | Three-item parallel list as default structure |
+| No restating the post | First 1-2 sentences are not a rephrasing of the post | Summarizing the post's message back |
+| Authenticity markers | At least one casual hedge or human marker in Options B/C ("tho", "kinda", "imo", "lol", intentional typo) | Reads suspiciously polished with zero casual markers |
 | Sounds like Peterson | Practitioner, direct, specific | Sounds like a social media marketer or content strategist |
 | Source verified | Each data point tagged to a brain record | Unverifiable claim presented as fact |
 
