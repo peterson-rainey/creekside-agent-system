@@ -3,47 +3,47 @@ Profile: Lindsey | Style: lindsey_default | Status: UNSENT | Drafted 2026-09-04
 
 ---
 
-The number that decides most of this: what is your average order value now, and what share of orders contain a kit rather than one skein? A $30 skein sits near the floor at which Purchase optimization stops working, and that shapes M2 more than the tracking does.
+The number that decides most of this: what is your average order value now, and what share of orders contain a kit rather than one skein? A $30 skein sits near the floor at which Purchase optimization stops working, which shapes M2 more than tracking does.
 
 1. FIRST THREE THINGS I INSPECT
 
-Dataset quality. Whether Purchase fires, whether browser and server events share an event_id so Meta deduplicates instead of double counting, and what Event Match Quality reads. Then I reconcile Ads Manager purchases to Shopify over the same window before trusting any number.
+Dataset quality. Whether Purchase fires, whether browser and server events share an event_id so Meta deduplicates rather than double counts, and what Event Match Quality reads. Then I reconcile Ads Manager purchases to Shopify over the same window before trusting any number.
 
-Exclusions and overlap. Whether past purchasers and recent visitors sit inside prospecting. Self-built funnels often look like they converted because warm traffic was buried in cold campaigns.
+Exclusions and overlap. Whether past purchasers and recent visitors sit inside prospecting. Self-built funnels often look converted because warm traffic sat in cold campaigns.
 
-Where the money went. Spend by objective across the account's history, and the landing page on every ad. Traffic spend pointed at a homepage explains "did not reliably convert" alone.
+Where the money went. Spend by objective across the account's history, and the landing page on every ad. Traffic spend pointed at a homepage explains "did not reliably convert" by itself.
 
 2. PIXEL VS CAPI FOR iOS
 
-Both, deduplicated, server side primary. Shopify's native Meta channel or a server-side GTM container sends Purchase, InitiateCheckout, AddToCart and ViewContent from your server with hashed email, phone and external_id. The browser pixel fires on the same event_id, so Meta merges the pair rather than counting it twice. Domain verified, Purchase ranked first in the Aggregated Event Measurement slots. Proof is a Test Events recording showing both sources arrive and deduplicate, plus a match quality reading. I will not call M2 live without it.
+Both, deduplicated, server side primary. Shopify's native Meta channel or a server-side GTM container sends Purchase, InitiateCheckout, AddToCart and ViewContent from your server with hashed email, phone and external_id. The browser pixel fires on the same event_id, so Meta merges the pair rather than double counting. Domain verified, Purchase first in the Aggregated Event Measurement slots. Proof is a Test Events recording showing both sources arrive and deduplicate, plus a match quality reading. I will not call M2 live without it.
 
 3. MONTH ONE OPTIMIZATION EVENT
 
-Purchase. ThruPlay and landing page views buy the cheapest available human, and Meta is very good at finding people who will watch a beautiful farm film and buy nothing. Your own funnel already showed traffic was not the constraint.
+Purchase. ThruPlay and landing page views buy the cheapest available human, and Meta is very good at finding people who will watch a beautiful farm film and buy nothing. Your funnel already showed traffic was not the constraint.
 
-The risk with Purchase is volume, not correctness. An ad set needs roughly 50 conversions a week to leave learning, and a $30 skein will not hand that to five ad sets. The fix is consolidation, not a softer event: one broad prospecting ad set carrying the budget so signal pools, retargeting and catalog underneath. If counts stay thin after two weeks I would raise order value with kits and bundles rather than drop to a shallower event. Bundles also keep us off discounting, which protects your shops.
+The risk with Purchase is volume, not correctness. An ad set needs roughly 50 conversions a week to leave learning, and a $30 skein will not hand that to five ad sets. The fix is consolidation, not a softer event: one broad prospecting ad set carrying the budget so signal pools, retargeting and catalog underneath. If counts stay thin after two weeks I would raise order value with kits and bundles rather than drop to a shallower event, which also keeps us off discounting.
 
 4. FARM FOOTAGE THAT SELLS A $30 SKEIN
 
-"Slow down. Touch something real." is a brand film, raw material rather than a direct response ad, and asking it to be one is part of why the funnel stalled. Someone choosing $30 US wool over $8 acrylic is buying provenance and hand. The ad has to show what justifies the price inside three seconds: the flock, the dye pot, fiber moving through hands, the finished stitch. A claim, not a mood. From there, a matrix of at least five concepts: origin, maker, product in hand, honest comparison against commodity yarn, and kit or bundle. Each cut as film and as raw vertical, because raw usually wins cold.
+"Slow down. Touch something real." is a brand film, raw material rather than a direct response ad, and asking it to be one is part of why the funnel stalled. Someone choosing $30 US wool over $8 acrylic is buying provenance and hand. The ad has to show what justifies the price inside three seconds: the flock, the dye pot, fiber in hands, the finished stitch. A claim, not a mood. From there, a matrix of five concepts minimum: origin, maker, product in hand, honest comparison against commodity yarn, kit or bundle. Each cut as film and raw vertical, because raw usually wins cold.
 
 No countdown timers, no urgency theatre, no discount codes. Gimmicks make an earnest brand read like every dropshipper in the feed, and discounting is what your shops feel first.
 
 5. M1 AND M2 FEES
 
-M1 $1,500. M2 $1,500. Three thousand USD one time, media separate. That is our standard onboarding of $1,500 per platform, Meta and Google, mapped across your two milestones. The audit sits inside it rather than billed on top, with no separate tracking or build charge.
+M1 $1,500. M2 $1,500. Three thousand USD one time, media separate. That is our standard onboarding of $1,500 per platform, Meta and Google, mapped across your milestones. The audit sits inside it rather than billed on top, with no separate tracking or build charge.
 
-M3 is management, a percentage of ad spend with a monthly minimum per platform, never hourly. Exact figure in writing once you name a monthly media range. If that range is small enough that a management fee would eat it, I would rather say so at M1 than sell you M3.
+M3 is management, a percentage of spend with a monthly minimum per platform, never hourly. Exact figure in writing once you name a monthly media range. If that range is small enough that a management fee eats it, I would rather say so at M1 than sell you M3.
 
 6. REPORT SAMPLE
 
-Attached is a redacted weekly scorecard from a live e-commerce account: spend, purchases, revenue, ROAS, MER, new customer share, and that week's kill and keep list. Client and product names removed. The M3 format.
+Attached is a redacted weekly scorecard from a live store: spend, purchases, revenue, ROAS, cost per purchase, order value, and that week's kill and keep list. Two rows, MER and new customer share, sit empty. That account has no store revenue feed connected. I would rather send a real report with two honest gaps than a filled-in demo. Yours carries both from the first full week after M2.
 
 TWO STORES, PHYSICAL GOODS
 
-A replacement parts store I ran on Meta for nine months: $128,518 spend, 4,440 purchases, $28.95 per purchase, roughly 5.5x blended. The shape matters more than the headline: December ran $44.93 per purchase and April $19.89, and the change came from consolidating campaigns and killing hooks rather than adding budget. Prospecting, retargeting and catalog ran as separate layers, purchasers excluded throughout. That engagement has ended.
+A replacement parts store I ran on Meta for nine months: $128,518 spend, 4,440 purchases, $28.95 per purchase, roughly 5.5x blended. Shape matters more than the headline: December ran $44.93 per purchase and April $19.89, from consolidating campaigns and killing hooks rather than adding budget. Prospecting, retargeting and catalog ran as separate layers, purchasers excluded throughout. That engagement has ended.
 
-A Shopify DTC brand our team runs on Google now: Shopping at 5.73x on $22,947 and Performance Max at 5.29x, feed and Merchant Center managed by us. That is the Shopping and PMax half of your M2, live.
+A Shopify DTC brand our team runs on Google now: Shopping 5.73x on $22,947, Performance Max 5.29x, feed and Merchant Center managed by us. The Shopping and PMax half of your M2, live.
 
 WHAT I DO NOT HAVE
 
@@ -51,7 +51,7 @@ No yarn, fiber, or farm brand in the book. Not one. Nearest neighbours are premi
 
 WHAT I NEED
 
-Your target monthly media range, and read access to Shopify, GA4 and both ad accounts. M1 moves faster if access lands before day one.
+Your target monthly media range, and read access to Shopify, GA4 and both ad accounts before day one.
 
 ---
 
@@ -84,3 +84,44 @@ Your target monthly media range, and read access to Shopify, GA4 and both ad acc
 **Deliberate omissions:** no URLs and no calendar link (first touch on a job post). No sign-off name. No em dashes. No guaranteed ROAS, matching their out-of-scope list. The profile-video line was cut purely for length; re-add it if the attachment lets characters free up.
 
 **Length:** 4,996 characters, inside the 5,000 Upwork limit as written.
+
+---
+
+## Attachment (built 2026-09-04)
+
+`.claude/attachments/weekly-scorecard-sample-redacted.pdf` (1 page, Letter). Source HTML and the
+generator script sit alongside it; every figure is computed in the script from the pulled rows, none
+typed by hand.
+
+**Source account: Myriad Traders** (`practicalsurvivalgear.com`, DTC outdoor gear, Shopify, multi-SKU
+catalog). **ACTIVE**, so "a live store" is accurate. Google Ads only. Week of **Mon 2026-08-24 to Sun
+2026-08-30**, compared against **2026-08-17 to 08-23**. Both are complete weeks; the 08-31 week is
+partial (data ends 09-02) and was deliberately not used.
+
+Verified totals, current week: **$2,602.84 spend, 96.5 purchases, $8,433.99 revenue, 3.24x ROAS,
+$26.97 cost per purchase, $87.40 AOV**. Prior week: $1,134.43 / 33.99 / $2,375.11 / 2.09x / $33.38 /
+$69.88. Campaign split and the kill/keep list are real: Search Branded genuinely spent $52.69 for zero
+purchases on 73 impressions that week.
+
+**Why this account and not the two in the proposal.** The scorecard needed a *live* store. Master Spa
+Parts churned 5/28/26. Aura is live but sits at a $452 AOV, nothing like a $30 skein. Myriad's $87 AOV
+and $26.97 cost per purchase are the closest economic shape to a yarn brand selling skeins and kits.
+The proposal never claims the scorecard comes from either named case study, so there is no conflict.
+
+**Why it is Google and not Meta.** Checked every Meta account with spend in that week: **all of them
+return NULL conversions and NULL roas**, including the live e-commerce ones. There is no live Meta
+account capable of producing a credible weekly purchase scorecard right now. This is worth knowing
+beyond this proposal.
+
+**MER and new customer share are shown empty, on purpose.** Neither is sourceable: `reporting_clients.
+monthly_revenue` is *our fee*, not store revenue, and no Shopify or customer table exists in the DB.
+Fabricating them was the only alternative, so the report shows the rows blank with a footnote, and
+**the proposal's answer 6 was rewritten to match** rather than left claiming both were populated.
+
+**Redaction applied:** client name, website, product names, account identifiers, and campaign launch
+dates all removed ("Shop - All Products - 24 Jun" became "Shopping — All Products"). Category is
+described only as "DTC outdoor gear retailer". No URLs anywhere in the file.
+
+**Deliberately unbranded.** No Creekside logo or agency name, because I could not confirm how
+Lindsey's Upwork profile presents agency affiliation and a mismatch is worse than a plain header. Add
+branding before sending if her profile carries it.
