@@ -3,19 +3,19 @@ Profile: Lindsey | Style: lindsey_default | Status: UNSENT | Drafted 2026-09-04
 
 ---
 
-The number that decides most of this: what is your average order value right now, and what share of orders contain a kit rather than one skein? A $30 skein sits close to the floor at which Purchase optimization stops working, and that shapes M2 more than the tracking does.
+The number that decides most of this: what is your average order value right now, and what share of orders contain a kit rather than one skein? A $30 skein sits near the floor at which Purchase optimization stops working, and that shapes M2 more than the tracking does.
 
 1. FIRST THREE THINGS I INSPECT
 
-Dataset quality. Whether Purchase fires at all, whether browser and server events share an event_id so Meta deduplicates instead of double counting, and what Event Match Quality reads. Then I reconcile Ads Manager purchases to Shopify over the same window before trusting any performance number.
+Dataset quality. Whether Purchase fires at all, whether browser and server events share an event_id so Meta deduplicates instead of double counting, and what Event Match Quality reads. Then I reconcile Ads Manager purchases to Shopify over the same window before trusting any number.
 
 Exclusions and overlap. Whether past purchasers and recent visitors sit inside prospecting. Self-built funnels often look like they converted because warm traffic was buried in cold campaigns.
 
-Where the money went. Spend by objective across the account's history, and the landing destination on every ad. Traffic spend pointed at a homepage explains "did not reliably convert" by itself.
+Where the money went. Spend by objective across the account's history, and the landing page on every ad. Traffic spend pointed at a homepage explains "did not reliably convert" by itself.
 
 2. PIXEL VS CAPI FOR iOS
 
-Both, deduplicated, server side primary. Shopify's native Meta channel or a server-side GTM container sends Purchase, InitiateCheckout, AddToCart and ViewContent from your server with hashed email, phone and external_id values. The browser pixel keeps firing on the same event_id, so Meta merges the pair rather than counting it twice. Domain verified, Purchase ranked first in the Aggregated Event Measurement slots. Proof is a Test Events recording showing both sources arrive and deduplicate, plus a match quality reading. I will not call M2 live without it.
+Both, deduplicated, server side primary. Shopify's native Meta channel or a server-side GTM container sends Purchase, InitiateCheckout, AddToCart and ViewContent from your server with hashed email, phone and external_id. The browser pixel keeps firing on the same event_id, so Meta merges the pair rather than counting it twice. Domain verified, Purchase ranked first in the Aggregated Event Measurement slots. Proof is a Test Events recording showing both sources arrive and deduplicate, plus a match quality reading. I will not call M2 live without it.
 
 3. MONTH ONE OPTIMIZATION EVENT
 
@@ -39,11 +39,11 @@ M3 is management, charged as a percentage of ad spend with a monthly minimum per
 
 Attached is a redacted weekly scorecard from a live e-commerce account: spend, purchases, revenue, ROAS, MER, new customer share, and that week's kill and keep list. Client and product names removed. Same format you get in M3.
 
-TWO STORES, BOTH PHYSICAL GOODS
+TWO STORES, PHYSICAL GOODS
 
 A replacement parts store I ran on Meta for nine months: $128,518 spend, 4,440 purchases, $28.95 average cost per purchase, roughly 5.5x blended. Shape matters more than the headline. December ran $44.93 per purchase and April $19.89, and the change came from consolidating campaigns and killing hooks rather than adding budget. Prospecting, retargeting and catalog ran as separate layers, purchasers excluded throughout. That engagement has ended.
 
-A Shopify DTC brand our team runs on Google now: Shopping at 5.73x on $22,947 and Performance Max at 5.29x, feed and Merchant Center managed by us. That is the Shopping and PMax half of your M2 on a live account.
+A Shopify DTC brand our team runs on Google now: Shopping at 5.73x on $22,947 and Performance Max at 5.29x, feed and Merchant Center managed by us. That is the Shopping and PMax half of your M2, live.
 
 WHAT I DO NOT HAVE
 
@@ -51,4 +51,4 @@ No yarn, fiber, or farm brand in the book. Not one. Nearest neighbours are premi
 
 WHAT I NEED
 
-Your target monthly media range, and read access to Shopify, GA4 and both ad accounts. M1 moves faster if access lands before day one. There is a short video on my profile covering how I run e-commerce accounts.
+Your target monthly media range, and read access to Shopify, GA4 and both ad accounts. M1 moves faster if access lands before day one.
