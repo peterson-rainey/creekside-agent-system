@@ -31,7 +31,7 @@ No countdown timers, no urgency theatre, no discount codes. Gimmicks make an ear
 
 5. M1 AND M2 FEES
 
-M1 $1,500. M2 $1,500. Three thousand USD one time, media separate. That is our standard onboarding of $1,500 per platform, Meta and Google, mapped across your milestones. The audit sits inside it rather than billed on top, with no separate tracking or build charge.
+M1 $1,500. M2 $1,500. $3,000 USD one time, media separate. That is our standard onboarding of $1,500 per platform, Meta and Google, mapped across your milestones. The audit sits inside it rather than billed on top, with no separate tracking or build charge.
 
 M3 is management, a percentage of spend with a monthly minimum per platform, never hourly. Exact figure in writing once you name a monthly media range. If that range is small enough that a management fee eats it, I would rather say so at M1 than sell you M3.
 
