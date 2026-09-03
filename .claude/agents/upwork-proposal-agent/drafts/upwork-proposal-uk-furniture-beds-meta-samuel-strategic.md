@@ -42,7 +42,7 @@ Kill an ad once it has spent roughly three times your target cost per order with
 
 **Where our results actually are**
 
-Our team ran Meta for a luxury furniture DTC brand for twelve months: roughly $216K in spend, 957 purchases, about $226 per purchase, scaled from around $12.8K a month to $40.4K. The more useful number: CPM went from about $15 at $5K a month to about $79 at $40K a month. Scaling a considered-purchase furniture brand on Meta is a fight against your own rising CPM, and a plan that does not account for that is not a plan.
+Our team ran Meta for a luxury furniture DTC brand: about $105K in spend, 343 purchases, roughly $306 per purchase, scaling from around $25K a month to $40K. The more useful number: CPM went from about $42 at $25K a month to about $79 at $40K. Scaling a considered-purchase furniture brand on Meta is a fight against your own rising CPM, and a plan that does not account for that is not a plan.
 
 We also currently run Meta for a premium mattress brand, so the bed decision cycle is familiar.
 
