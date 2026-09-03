@@ -174,6 +174,7 @@ All substance MUST come from the source material. Campaign data from the RAG bra
 
 **SEO rules:**
 - Target keyword derived from the source content's core topic (not imposed from outside)
+- **Search-phrase framing (CRITICAL)**: phrase the target keyword as a query real people actually type into Google, not a topic label. Use natural query patterns: "how to [X]", "[X] vs [Y]", "best [X] for [niche]", "why is my [X] not [Y]", "[X] for [dentists/med spas/service businesses]". Example: a video about bid strategy progression targets "google ads bidding strategies" (real query), NOT "bid strategy progression" (topic label nobody searches). Before committing to a keyword, sanity-check: would a business owner or marketer literally type this phrase into a search bar? If not, reframe it until they would.
 - Target keyword in: title, first paragraph, at least one H2, meta description
 - Meta description under 160 characters
 - URL slug: concise, keyword-rich, lowercase with hyphens
