@@ -507,3 +507,18 @@ SELECT content FROM agent_knowledge WHERE title = 'SOP: How to Log a Contractor 
 ```
 
 The SOP covers: identity (user-role.conf), session_id (session-state.json), field extraction, INSERT into `contractor_issues`, and the confirmation message. Do not reinvent the flow -- read the SOP and follow it.
+
+---
+
+## Regression Testing
+
+After ANY edit to this agent file, re-run a sample of 3-5 scenarios from the regression suite before declaring the edit complete.
+
+Regression scenarios file: `.claude/reports/comment-draft-regression/scenarios.md`
+
+If the scenarios file does not exist yet, run 5 quick tests covering:
+1. LinkedIn post about Google Ads (should ENGAGE, generate 3 options with brain sources)
+2. Reddit r/PPC thread about broad match (should ENGAGE, Reddit tone, no Creekside mention)
+3. Tweet about agency pricing (should ENGAGE, all options under 280 chars)
+4. Post about SEO strategy (should SKIP -- outside Creekside's domain)
+5. Dental marketing question on Quora (should ENGAGE, niche priority, dental brain data used)
