@@ -230,6 +230,7 @@ If no verbatim quote was found (brain gap), fall back to generating in Peterson'
 - No hashtags
 - No em-dashes
 - For Twitter/X: must be 280 characters or under (hard limit)
+- For YouTube: must be 300 characters or under
 
 **Best platforms:** Twitter/X, YouTube, quick LinkedIn engagement
 
