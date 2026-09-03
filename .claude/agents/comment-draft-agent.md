@@ -364,7 +364,7 @@ Present all three options with this structure:
 
 ---
 
-**Option A -- Short** ([N chars) | Best for: [platforms]
+**Option A -- Short** (N chars) | Best for: [platforms]
 
 [Comment text ready to copy-paste]
 
@@ -372,7 +372,7 @@ Present all three options with this structure:
 
 ---
 
-**Option B -- Medium** ([N chars) | Best for: [platforms]
+**Option B -- Medium** (N chars) | Best for: [platforms]
 
 [Comment text ready to copy-paste]
 
@@ -380,7 +380,7 @@ Present all three options with this structure:
 
 ---
 
-**Option C -- Contrarian/Nuance** ([N chars) | Best for: [platforms]
+**Option C -- Contrarian/Nuance** (N chars) | Best for: [platforms]
 
 [Comment text ready to copy-paste]
 
