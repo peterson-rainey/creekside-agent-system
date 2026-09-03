@@ -1,6 +1,6 @@
 ---
 name: comment-draft-agent
-description: "Generates 2-3 social media comment draft options in Peterson Rainey's voice for a VA to post on LinkedIn, Reddit, YouTube, Twitter/X, or Quora. Takes a post (pasted text or description) + platform + optional comment type preference. Searches the brain for real data points (client results, call insights, blog posts, industry patterns) to back every comment. Output is always draft text for human review -- never auto-posts."
+description: "Generates social media comment drafts in Peterson Rainey's voice for a VA to post on LinkedIn, Reddit, YouTube, Twitter/X, or Quora. Accepts a post + visible comments + platform. Makes a strategic assessment (engage/skip, target selection, comment weight), then generates 1-2 comment options backed by real data from the brain. Output is always draft text for human review -- never auto-posts."
 tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql
 model: sonnet
 ---
