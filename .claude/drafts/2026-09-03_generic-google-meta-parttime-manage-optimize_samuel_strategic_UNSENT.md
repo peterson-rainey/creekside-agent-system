@@ -53,12 +53,12 @@ against a threshold of 3. Per the agent spec, no case study is forced and none i
 ## PROPOSAL (paste-ready)
 
 Budget allocation between Google and Meta is where most accounts quietly leak money, and it is rarely a targeting
-problem. Google's last-click reporting takes credit for demand that Meta created, so Meta reads as the weaker
-platform, gets trimmed first, and then branded search volume on Google slides a few weeks later with nobody
-connecting the two events.
+problem. Monitoring each platform on its own reported performance makes Meta look like the weaker one, because
+Google takes credit for demand that Meta created, and the adjustment that follows is to trim the wrong budget.
+Branded search volume on Google then slides a few weeks later with nobody connecting the two events.
 
 So the data-driven adjustments that matter most in a two-platform account are not the in-platform ones. Before
-touching structure, three things are worth settling: what a conversion is actually worth to you, whether Meta gets
+touching campaign structure, three things are worth settling: what a conversion is actually worth to you, whether Meta gets
 judged on platform-reported numbers or on blended cost per acquisition, and what your branded search trend looks
 like month over month. That last one is the cheapest read available on whether Meta is doing work that Google is
 getting paid for.
@@ -79,3 +79,20 @@ Happy to hop on a quick call and dig into the account if that sounds useful.
 
 
 Samuel
+
+## QC
+
+`qc-reviewer-agent`, 2026-09-03: **PASS.** Zero hallucinations, zero unsupported claims, zero forbidden names, zero
+mechanism/number causal juxtaposition, full compliance on length, em-dashes, markdown, bullets, links, opening word,
+sign-off, book-pooling and the budget-ask rationale. It also checked the draft against the canonical style file
+`.claude/agents/upwork-proposal-agent/docs/samuel-strategic.md`.
+
+One craft defect raised and **fixed after review**: the original second sentence ("Google's last-click reporting
+takes credit for demand that Meta created...") drifted into agency jargon that appears nowhere in the job post,
+which matters because the client sees only a 1-2 sentence preview before deciding whether to click. Rewritten to
+sit on the post's own nouns, "monitoring", "performance", "adjustment", "budget", with the insight intact. Also
+threaded "campaign structure" into the second paragraph.
+
+QC's other note was non-blocking and needs no change: the draft carries no literal question marks, but the
+canonical rule is disjunctive ("Ask questions, flag tradeoffs, or offer two paths forward") and the draft satisfies
+it via an explicit tradeoff plus two paths.
