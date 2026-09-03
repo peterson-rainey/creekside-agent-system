@@ -57,6 +57,36 @@ Filename follows the Postgres-confirmed date per reference_local_clock_unreliabl
 2. If they want setup-only with no management behind it, the fee is onboarding $1,500 for Google.
    Confirm that is the intended instrument before quoting anything further.
 
+## ATTACHMENT DECISION (resolved 2026-09-03)
+RECOMMEND: Axle_Solutions_Auto_Repair_Case_Study.pdf, Drive file id 1vIvJ6QQzV16kBItpD9dODDt9sWIT4HhZ.
+DO NOT use the case_studies.download_url id 1YnM0jqMHFzVh0jGSTusO8YtoRs6O7E0- . It returns a ~908KB
+Google Drive HTML interstitial, not a PDF, at HTTP 200. Landmark and ReferPro fail the same way.
+The underscore twin in Drive/Case Studies is the live file. Verified by magic bytes this session.
+
+Why Axle: only artifact in the book that is B2B, niche, Google-only and built from referrals. Its own
+headline is "Niche Market Dominated By National Chains, Local Repair Shop Becomes Market Leader" and its
+challenge paragraph reads "holding on by their bootstraps with referrals", which corroborates the body
+claim word for word. Bylined "By: Samuel Rainey", which is consistent on Samuel's own profile.
+
+Four hazards, all disclosed to Queenie:
+1. Zero numbers in the document. No spend, CPL, CPA or conversion count.
+2. Results window May 2023 to April 2024. PDF says impression share "(and still is) #1" in present tense.
+   Client cancelled Dec 2024 and account access ended Sept 2025, so that is stale. The body deliberately
+   does not restate it.
+3. About half the document is GMB and local SEO, not Google Ads. Invites an ask we cannot service.
+4. Strictly local, Illinois and a 3-state radius. Does not transfer to a national B2B niche.
+
+OPTIONAL SECOND: nyc_notary.pdf, id 17ltXGV_GTMHFyMg0OE8bNL9pygghyG3l. Verified real PDF, Google Ads only,
+440 conversions at $27.92 CPA, $16.04 CPA reduction, 3.85K clicks, mobile notary and apostille. Carries the
+numbers Axle lacks. Not B2B, so it is a shape match on "narrow service business" only.
+
+REJECTED: ReferPro (twin 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso is real, but thesis credits Meta, Google half is
+mostly PMax, and page 1 states "target market: Home service contractors"). Winterbotham and Green Shield and
+UrCovered are all real PDFs but consumer-facing and are optimization stories, not greenfield builds.
+
+NOTE: none of these four has a reporting_clients row, so their numbers cannot be cross-checked against live
+insights. PDF-only claims. The proposal body cites no number from any of them, so there is no contradiction.
+
 ## WORD COUNT: 320 (strategic target 250-350)
 
 ---
