@@ -68,6 +68,14 @@ $2,401.58 / 1,314 impr / 46 clicks / **$52.21 CPC** / 0 conversions.
   sellers" $53.62. Plus "what is opendoor" at $0.
 - **Combined $262.60 of $1,106.80 = 23.7%.** Stated in-body as "about a quarter."
 - **Geo leak: "we buy houses knoxville" $56.39** on a Nashville-targeted campaign. Knoxville is ~180 miles.
+  **MECHANISM CORRECTED, verified 2026-09-03.** I hypothesised a location-targeting fault ("presence or
+  interest" instead of "presence") and it is WRONG. `get_google_ads_geo_performance` ALL_TIME on that campaign
+  returns exactly ONE location row: `LOCATION_OF_PRESENCE`, country 2840 (US), carrying all 1,314 impressions
+  and the full $2,401.58. There is NO area-of-interest row, so targeting did not leak. The user was physically
+  inside the target area and typed a query naming another city; the KEYWORD matched it, not the geo setting.
+  The body line therefore describes the SEARCH ("a search for a city three hours outside the target area") and
+  sits in the close-variant paragraph, which is its correct home. **Do not "improve" this by adding a
+  presence/interest claim to the body. The data does not support one.**
 - Paid-click CPC band: 9 of 10 paying clicks fell **$45.13 to $57.79**; one outlier at $23.57.
   Stated in-body as "most ran $45 to $58," which is the accurate read.
 

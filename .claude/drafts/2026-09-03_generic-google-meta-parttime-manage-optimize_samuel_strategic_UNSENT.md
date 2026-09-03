@@ -30,6 +30,8 @@
 | **Geo (US/CA/UK/AU)** | **OPEN. No region stated.** Ambiguous, not a DQ. Asked in the body. |
 | **Listed hourly rate vs $40/hr floor** | **UNVERIFIED.** The pasted post carries no rate or budget field. Screen the bottom of the range on Upwork before submitting. |
 | Vertical | **NOT STATED.** No industry named, so no vertical proof can be selected. Proof is platform-breadth only. |
+| **Engagement duration** | **UNVERIFIED.** "Part-time" is stated, duration is not. A sub-1-month engagement does not fit the % of spend retainer model even when the rate clears. Check the job detail page. |
+| **Payment method verified** | **UNCHECKED.** Cannot be read off a pasted description. Unverified payment is an AUTO-DQ, so confirm on the job page (use public "total spent" as the proxy if logged out) before submitting. |
 
 ## Case study matching
 
