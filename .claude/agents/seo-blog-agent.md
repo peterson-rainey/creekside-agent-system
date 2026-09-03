@@ -245,10 +245,8 @@ Before staging, verify ALL of the following. If any check fails, revise and re-c
 - [ ] At-risk client rule: Dr. Laleh / Lux Dental Spa not named
 - [ ] NON-COMMODITY CHECK: >= 2 instances of unique first-hand insight from the source material that could NOT appear on a generic marketing blog
 - [ ] Newsletter-sourced posts: Buttondown template syntax stripped (no `{{ }}` tokens remain), newsletter footer removed, no attribution link to the newsletter
-- [ ] 2 SVG infographics generated and saved to public/article-images/
-- [ ] SVG filenames follow convention: {post-slug}-{chart-type}.svg
-- [ ] Both SVGs contain real data from the source (not placeholders)
-- [ ] Both SVGs are referenced in the markdown with descriptive alt text
+- [ ] NO in-body image references (`![...](...)`) anywhere in the post -- the frontmatter hero card is the only image
+- [ ] Data presented in markdown tables where visualization is needed
 
 ---
 
