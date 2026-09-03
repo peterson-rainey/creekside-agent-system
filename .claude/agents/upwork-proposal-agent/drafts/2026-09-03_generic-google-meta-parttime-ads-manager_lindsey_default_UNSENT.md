@@ -30,8 +30,8 @@ Straight with you on scope: Meta and paid social is mine. Our team runs Google a
 financial services and B2B software, so each platform gets someone in it daily rather than one person splitting
 a part-time week. If you need one freelancer touching both, better you know now than in week three.
 
-Attached a couple of recent results below. Worth settling first: roughly what monthly range are you spending
-across the two, and which countries are you selling into?
+Worth settling before anyone hands you a plan: roughly what monthly range are you spending across the two,
+and which countries are you selling into?
 
 There is a short video on my profile covering how I work an account like this.
 
@@ -69,14 +69,22 @@ an explicit tradeoff in the draft rather than left as a silent omission.
 - Per the no-implied-causation rule, the Fusion CPL and the spend range sit in separate sentences with a
   reframing sentence between them, so no number reads as caused by the preceding mechanism.
 
-**Attachments (curl-verified this session, magic bytes checked, not just HTTP status):**
-- Punch Drunk Chef `1n3bCsJSnZWonv9YRQm1Tvkdg9_Ve1p_M` -> real PDF (`%PDF`). ATTACHABLE.
-- Dr. Laleh `1puRdRRI80FMcw7dRUQvLjHbR3hYqYjSu` -> real PDF (`%PDF`). ATTACHABLE.
-- Dr. Laleh `1sRKepK03dL8gYVbGRvzX9-myZqOarIfF` -> **HTTP 200 but `text/html`. DEAD. Do not attach.**
-  This is the sign-in-page trap; the two conflicting Laleh IDs in canon now resolve in favour of `1puR...`.
-- Both attachable PDFs are Lindsey's own operator accounts. Referenced with **no numbers attached to them** in
-  prose (Punch Drunk 20x uncorroborated; Laleh CPL not citable). Prose numbers come only from Fusion Dental and
-  the verified spend range.
+**Attachments: ATTACH NOTHING.** Curl-verified the file bytes this session (magic bytes, not just HTTP status):
+- Punch Drunk Chef `1n3bCsJSnZWonv9YRQm1Tvkdg9_Ve1p_M` -> real PDF (`%PDF`), and Dr. Laleh
+  `1puRdRRI80FMcw7dRUQvLjHbR3hYqYjSu` -> real PDF (`%PDF`). Both open.
+- Dr. Laleh `1sRKepK03dL8gYVbGRvzX9-myZqOarIfF` -> **HTTP 200 but `text/html`. DEAD sign-in page.** Independently
+  reproduces the documented trap; the two conflicting Laleh IDs in canon resolve in favour of `1puR...`.
+- **But opening is not the same as being honest, and both fail the content check.** Punch Drunk is an explicit
+  DO NOT ATTACH: its "20x PEAK ROAS / sustained 13.45x" headline is contradicted by Lindsey's own tracking sheet
+  ($30 cost per result, ~6 ROAS, "the new area is really struggling", $3,000/mo), and the account has zero rows
+  in `meta_insights_daily`. Dr. Laleh's headline claims **$9.58** against live Meta of **$1,241.65** over 12
+  months, inflated roughly 130x. Both are also Samuel-bylined and first person, which inverts the persona.
+- This matches the standing ruling that **Lindsey's entire book currently has no clean attachment** (CI Lifestyle,
+  Punch Drunk, South River, Dr. Laleh, ReferPro, Master Spa Parts, Neue Maison all fail for distinct reasons).
+- **Consequence for the draft:** the style doc's golden rule "always reference attached results" is OVERRIDDEN
+  by the no-false-attachment rule, so the results-reference line was REMOVED. Same disposition, same reasoning,
+  as the other generic Meta+Google draft written today. The verified numbers live in the prose instead, which is
+  the honest answer to "show me results". If an attachment is wanted, one must be built or re-exported first.
 
 **Screens still OPEN (not cleared in either direction):**
 - Ad spend vs the $5K/mo company floor and Lindsey's $3K/mo Meta floor. Unstated in the post, so not an auto-DQ.
@@ -94,7 +102,7 @@ case" per precedent, so the 200-300 band applies rather than the 350 multi-quest
 **Deliberate omissions:** no pricing (not asked, and lindsey_default carries no fee table first-touch); no
 calendar link (first touch on a job post, and they offered no call); no URLs; no sign-off name.
 
-**Length:** 299 words / 1,723 characters. Inside the 200-300 band and far under Upwork's 5,000-char limit.
+**Length:** 297 words / ~1,700 characters. Inside the 200-300 band and far under Upwork's 5,000-char limit.
 
 **DB log step NOT performed:** `upwork_proposal_logs` INSERT is impossible from contractor mode
 (`contractor_query` is SELECT-only, writes raise 42601). Flagged rather than bypassed.
