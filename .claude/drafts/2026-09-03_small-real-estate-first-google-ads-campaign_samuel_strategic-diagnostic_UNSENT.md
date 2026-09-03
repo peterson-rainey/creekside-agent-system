@@ -1,6 +1,8 @@
 # Upwork Proposal - Small real estate company, first Google Ads campaign (setup + keyword research + monitoring)
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-03 (Postgres now(), US Central)
-Length: 337 words / 1,932 chars. Well under the 5,000 char hard limit and inside the 250-350 word style range.
+Length: 375 words / 2,106 chars. Well under the 5,000 char hard limit. 25 words OVER the 350 style ceiling,
+under the 400 hard ceiling. Deliberate: the keyword-planner price-tier finding arrived after v1 and earned
+its place as the opening insight. Flagged rather than hidden.
 
 ## RESOLUTION
 
@@ -176,8 +178,9 @@ questions invite the correction. If Queenie knows which side they are on, the op
 
 No links or URLs. No contact info. No calendar link (first touch). No pricing in body. **No em dashes
 (verified 0).** No certifications claimed. No years-of-experience claim. No client names. No lists, all prose.
-Does not open with "I". Opens on their own nouns (real estate, keywords, first campaign) carrying a claim they
-do not already have, so it does not parrot the post back. Portfolio material is the diagnostic itself and lands
+Does not open with "I". Opens on their own nouns (real estate, keywords) carrying a claim they
+do not already have, so it does not parrot the post back. Keyword-planner figures are attributed to Google
+in-body and never presented as our realised CPCs. Portfolio material is the diagnostic itself and lands
 in the middle, not up front. Closes on the two open screens. Past tense on the paused campaign, present on the
 rebuild. **Unsigned.**
 
