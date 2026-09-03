@@ -6,7 +6,7 @@ A corporate retreat or a national sales meeting is a committee purchase with a m
 
 2. Rapid iteration is the instinct that breaks low-volume B2B accounts.
 
-Across our own Meta book from June through August, 866 campaign-weeks with spend behind them, the median campaign produced 9 conversions in a week and under 3 percent cleared 50. On Google over the same window, 576 campaign-weeks, the median was 2. Those are campaign-level numbers, so the ad set and ad group picture underneath is thinner still. An account selling six-figure programs to a small committee sits below all of that. Split a budget across many offers, audiences and ad sets to test fast and you get noise you cannot read, and every split pulls its own group further from exiting learning. The testing that works at this volume is sequential, and it is aimed at the offer, which moves the number more than any creative variant will.
+Across our own Meta book from June through August, 866 campaign-weeks with spend behind them, the median campaign produced 9 conversions in a week and under 3 percent cleared 50. On Google over the same window, 576 campaign-weeks, the median was 2. Those are campaign-level numbers, so the ad set and ad group picture underneath is thinner still. An account selling six-figure programs to a small committee sits below all of that. Split a budget across many offers, audiences and ad sets to test fast and you get noise you cannot read, and every split pulls its own group further from exiting learning. Segmenting an account into focused campaigns is right once volume supports it, and I have done exactly that where it did. Below that threshold it is what stalls you. The testing that works at this volume is sequential, and it is aimed at the offer, which moves the number more than any creative variant will.
 
 3. Demand here is calendar-shaped, not steady.
 
@@ -22,7 +22,7 @@ Where we stand on proof, said plainly.
 
 We have no corporate events, experiential, or hospitality case study. That is a real gap and you should hear it from me rather than find it later. What we do have that is structurally the same problem: a B2B software company where we ran Meta for demand generation and Google for capture and argued that split with data, a legal client where the counted event was a qualified case rather than a lead, and a financial advisory account currently running event-registration funnels on Meta. I am not attaching a number to that last one, because the figure available is not clean enough to stand behind.
 
-For scale, across the group we manage roughly 185,000 to 266,000 dollars a month on Meta across 21 to 28 accounts, and 90,000 to 140,000 a month on Google. Six years running these accounts. No certifications claimed, because we hold none.
+Across the group we manage roughly 185,000 to 266,000 dollars a month on Meta across 21 to 28 accounts, and 90,000 to 140,000 a month on Google. Six years running these accounts. No certifications claimed, because we hold none.
 
 Pricing.
 
