@@ -45,3 +45,11 @@ I have attached a few relevant results below. There is also a short video on my 
 **Deliberate omissions:** no pricing (lindsey_default carries no fee table first touch, and with spend unstated there is nothing for a percentage to attach to). No calendar link and no URLs, first touch on a job post. Shima and Dr Andy named once each to show the post was read, no scope parroting. Principals not named as the worker. No sign-off name. No em dashes.
 
 **Length:** 345 words, 1,905 characters. Within the 350 multi-question ceiling and well under the 5,000 character Upwork limit.
+
+---
+
+## Milestone description (single milestone)
+
+Audit of the Meta and Instagram ad account, then build and run prospecting and retargeting campaigns into Shopify, with pixel and server side event checks, email capture, and weekly reporting.
+
+192 characters. Scoped to the paid, tracking, email capture and reporting half only. No content calendars, no footage editing, no community management, no creator outreach, no TikTok, since none of those are in the service line. No price attached: spend is unstated, and lindsey_default carries no fee table first touch.
