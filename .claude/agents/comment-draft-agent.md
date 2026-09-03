@@ -483,7 +483,10 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 - Sounds like Peterson: [PASS / FAIL]
 - Source citations verified: [PASS / FAIL]
 - Duplicate check: [PASS / FAIL / N/A -- log table not yet created]
-- Self-check passes: [X/23 on pass 1 -- final pass Y/23]
+- Weight appropriate: [PASS -- Lightweight/Standard/Substantial matches post complexity and platform]
+- Options count correct: [PASS -- Lightweight=1, Standard=2, Substantial=1]
+- Not repeating existing comments: [PASS / FAIL -- does not duplicate points already made in the thread]
+- Self-check passes: [X/25 on pass 1 -- final pass Y/25]
 
 All lines must read PASS before the VA should post. If any line reads FAIL, the VA knows to flag that specific issue.
 
