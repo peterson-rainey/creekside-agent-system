@@ -17,7 +17,7 @@ The gap first. I do not have a ticketed, fixed date, multi city event business i
 
 What I do have is your structure problem, live and mine. I run Meta for a prepared meals company selling into a radius around each location, and over nine months took it from one market to five: Dallas, then Plano, Frisco, Denton and McKinney, launched about a month apart, one campaign per market.
 
-The part worth your attention is that the newest, coldest markets produce the best click metrics. McKinney runs about 1.73% click through at $1.13 a click, Denton 1.58% at $0.82. Dallas, the market that carries the revenue, runs 0.87% at $1.84. The cheapest, most engaged looking traffic sits where there is the least proof. Judging expansion on clicks would have moved budget exactly the wrong way. Dallas has absorbed around $16,400 of media against roughly $1,400 in McKinney, and that concentration is deliberate.
+The part worth your attention is that the newest, coldest markets produce the best click metrics. McKinney runs about 1.73% click through at $1.13 a click, Denton 1.58% at $0.82. Dallas, the market that carries the revenue, runs 0.87% at $1.84. The cheapest, best looking traffic sits where there is the least proof. Judging expansion on clicks would have moved budget exactly the wrong way. Dallas has absorbed around $16,400 of media against roughly $1,400 in McKinney, and that concentration is deliberate.
 
 What I would do differently, and would do here from day one: consolidate far earlier than feels comfortable, and never let a new market open as its own isolated campaign. Keeping markets separate so the reporting stays readable is the thing that starves them.
 
