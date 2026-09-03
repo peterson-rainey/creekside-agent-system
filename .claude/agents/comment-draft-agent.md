@@ -528,7 +528,7 @@ The SOP covers: identity (user-role.conf), session_id (session-state.json), fiel
 
 After ANY edit to this agent file, re-run a sample of 3-5 scenarios from the regression suite before declaring the edit complete.
 
-Regression scenarios file: `.claude/reports/comment-draft-regression/scenarios.md`
+Regression scenarios file: `/Users/petersonrainey/C-Code - Rag database/.claude/reports/comment-draft-regression/scenarios.md`
 
 If the scenarios file does not exist yet, run 5 quick tests covering:
 1. LinkedIn post about Google Ads (should ENGAGE, generate 3 options with brain sources)
