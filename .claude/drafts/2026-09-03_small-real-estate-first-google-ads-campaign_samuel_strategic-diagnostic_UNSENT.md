@@ -1,8 +1,8 @@
 # Upwork Proposal - Small real estate company, first Google Ads campaign (setup + keyword research + monitoring)
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-03 (Postgres now(), US Central)
-Length: 375 words / 2,106 chars. Well under the 5,000 char hard limit. 25 words OVER the 350 style ceiling,
-under the 400 hard ceiling. Deliberate: the keyword-planner price-tier finding arrived after v1 and earned
-its place as the opening insight. Flagged rather than hidden.
+Length: 391 words / 2216 chars. Well under the 5,000 char hard limit. OVER the 350 style ceiling, under the 400
+hard ceiling. Deliberate: the keyword-planner price tier, the disclosed spend base and the missing call
+action all earned their place. Flagged rather than hidden. Rev 3, post QC + expert review.
 
 ## RESOLUTION
 
@@ -197,6 +197,81 @@ cash homebuyer chasing sellers. Our live diagnostic is seller-side, which may or
 Handled in-body by naming the buyer-side fork as an alternative rather than assuming, and the closing
 questions invite the correction. If Queenie knows which side they are on, the opener can be sharpened.
 
+## CONVERSION TRACKING VERIFIED (GAQL, 2026-09-04) - ANSWERS THE EXPERT'S BIGGEST RISK
+
+expert-review-agent raised (MEDIUM confidence, inference) that "zero converted" might mean "zero tracked."
+Checked `conversion_action` on 8835651880. **Tracking WAS live.** Six actions:
+
+| Action | Type | Status | Primary |
+|---|---|---|---|
+| Submit contact us form (canvas.homes/formsubmitted) | WEBPAGE_CODELESS / SUBMIT_LEAD_FORM | **ENABLED** | **true** |
+| Instant Quote - Form Submit (GTM) | WEBPAGE / SUBMIT_LEAD_FORM | **ENABLED** | **true** |
+| close_convert_lead / qualify_lead / purchase / contact_us | GA4 imports | HIDDEN | false |
+
+**Two enabled primary form-submit actions, so the zero is a REAL zero on form fills, not a tracking gap.**
+
+**But the expert's instinct paid off sideways, and this is the strongest find of the review round: there is NO
+call conversion action of ANY type on the account.** No CALL_FROM_ADS, no phone-call action, no import. On a
+"sell my house fast" campaign, where distressed sellers phone rather than fill in forms, that is a real hole.
+Body now says the exact, defensible thing: the account "counted form submissions and had no call conversion
+set up, so if the phone rang nobody would know." That converts a credibility risk into the concrete lesson
+behind the recommendation, and it preempts the question a sharp real estate prospect would ask.
+Body claim downgraded from "converted nobody" to "produced no form fills at all."
+
+## QC LOG (qc-reviewer-agent, 2026-09-04) - reviewed the v1 body; all live findings applied
+
+1. **HIGH, CONFIRMED BY MY OWN RECOMPUTE, applied. The base swap.** v1 said "roughly $1,100 spent" then
+   "a quarter of the budget." $1,106.80 is the SEARCH TERMS REPORT total, not campaign spend. The campaign
+   spent **$2,401.58 over 46 clicks**; the report itemises only **46.1% of spend and 47.8% of clicks**.
+   $262.60/$1,106.80 = 23.7%, but $262.60/$2,401.58 = **10.9%**. Undisclosed base swap inflating the headline
+   claim roughly 2.2x. Body now states the true campaign total FIRST, then discloses that Google itemises less
+   than half, then scopes the quarter explicitly to "the itemised spend."
+2. **MEDIUM-HIGH, applied.** "Clicks are running a lot lower" names the wrong metric; click VOLUME is roughly
+   flat, COST per click fell. Reads as the opposite of the point. Now "what each click costs is running a lot
+   lower," with the hedge moved AHEAD of the claim to defuse the mechanism-then-number ordering.
+3. **MEDIUM, applied.** The 24-vs-25 seam. Now "about three in four" (18/25 = 72%), one precise anchor only.
+4. **LOW-MEDIUM, applied.** "About six weeks ago" was wrong on both readings (account 7/29 is ~5 weeks; the
+   campaign itself ran 8.11-8.23). Now "we ran in August," which is unambiguous and suits the paused past tense.
+5. **LOW, applied.** "Three hours outside the target area" was a drive-time estimate never pulled from any
+   source. Now "a city outside the target metro."
+6. **Moot.** The unbacked "most expensive inventory Google sells" line was the v1 opener and was already
+   replaced by the keyword-planner price-tier finding, which IS sourced.
+7. **Noted, internal only.** My notes omitted "clever offers reviews" from the $0 competitor list. No body
+   claim depends on it.
+
+## EXPERT REVIEW LOG (expert-review-agent, 2026-09-04) - 6 applied, 1 REJECTED on data
+
+1. **[FACTUALLY WRONG AS WRITTEN] applied, and it independently corroborates QC #1 from a second angle.**
+   $158.95 + $103.65 + $56.39 = $318.99 = 28.8%, so a reader adding the three numbers given lands on "a third,"
+   not "a quarter." The quarter only holds when Knoxville is excluded, which nothing signalled. Body now sums
+   only the two waste categories into the quarter and states the $56 as a separate sentence.
+2. **REJECTED. The presence-vs-interest claim is contradicted by live data I pulled BEFORE the review ran.**
+   The reviewer web-searched the "Presence or interest" default and applied it to this account without access
+   to it. `get_google_ads_geo_performance` ALL_TIME on campaign 24127091936 returns **exactly one row,
+   `LOCATION_OF_PRESENCE`, country 2840**, carrying all 1,314 impressions and the full $2,401.58. **There is no
+   area-of-interest row, so targeting did not leak.** The searcher was physically in-area and typed a query
+   naming another city; the KEYWORD matched it. The general article is right about Google's default and wrong
+   about this account. Recommendation not adopted; the standing "do not add a presence/interest claim" warning
+   in this file stands.
+3. **[OPEN RISK] investigated and resolved.** See CONVERSION TRACKING VERIFIED above. Tracking was live, so the
+   zero holds, but the reviewer's instinct surfaced the missing CALL action, which is now in the body.
+4. **[DEFENSIBLE, applied] the volume tension.** v1 used 22 clicks for a confident diagnosis, then argued
+   20-30 clicks is too little volume. The reconciliation is real and was undrawn. Body now separates the two
+   questions: relevance needs little volume, conversion-rate comparison needs a lot.
+5. **Moot, and it reinforces the correction already made.** The reviewer defended "exact match core" while
+   noting exact match has included close variants since ~2017-18. That line was already replaced with "long
+   specific phrases" after I found our own rebuild runs 27 keywords, ALL phrase match.
+6. **[DEFENSIBLE, IMPRECISE] applied, good catch, two parts.** (a) Narrowing a radius does not mechanically
+   lower CPC, since CPC is auction-driven; the lever is a lower-competition MARKET. Reworded. (b) "Buyer side"
+   is incoherent for a cash buyer or wholesaler, who IS the buyer. Since the opener now turns on which side you
+   buy, closing without asking was a real gap. Buyer-vs-seller promoted from a buried mid-body hedge to the
+   closing question. **Deliberate precedent deviation: three closing questions rather than the usual two.**
+7. **Applied**, same as QC #2.
+8. **Applied**, same as QC #4.
+9. **[MINOR] applied.** Weekly search-term review is too loose during ramp at ~$50/click. Now daily for the
+   first few weeks.
+
+
 ## COMPLIANCE
 
 No links or URLs. No contact info. No calendar link (first touch). No pricing in body. **No em dashes
@@ -211,14 +286,14 @@ rebuild. **Unsigned.**
 
 Real estate keywords sit in two very different price tiers, and which side you advertise on decides more than the keyword list does. Google's own top of page range for sell my house runs past $140. Homes for sale sits under $3.
 
-Seller intent is the expensive end, and a first campaign there usually loses most of its budget before anyone sees a lead. A live example from a Nashville seller campaign we launched about six weeks ago. Twenty four search terms, roughly $1,100 spent, twenty two clicks. Most ran $45 to $58. Zero converted.
+Seller intent is the expensive end, and a first campaign there usually loses most of its budget before anyone sees a lead. A Nashville seller campaign we ran in August spent $2,401 across forty six clicks and produced no form fills at all.
 
-Where the money went is the useful part. Eighteen of the twenty five matches were close variants rather than the keywords themselves. About $160 went to people typing competitor company names, another $105 to people researching how iBuyers work, and $56 to a search for a city three hours outside the target area. None of those is a seller ready to talk. Roughly a quarter of the budget on searches that were never going to convert, and that is with someone watching the account.
+Where it went is the useful part, and less than half of it is even itemised. Google breaks out $1,107 across twenty two clicks and keeps the rest as queries it will not show you. Inside that part, about three in four searches were close variants rather than the keywords themselves. Roughly $160 went to competitor company names and another $105 to people researching how iBuyers work, about a quarter of the itemised spend on clicks that were never going to convert. A separate $56 bought a search naming a city outside the target metro.
 
-That is worth planning around before anything gets built. At $50 a click, a small monthly budget buys twenty or thirty clicks, which is not enough volume to tell a good keyword from a bad one. So the first question is not which keywords. It is whether the budget clears the cost of a click on the side you want, and if it does not, whether a tighter geography or the buyer side gets you there instead.
+That is worth planning around before anything gets built. At $50 a click, a small monthly budget buys twenty or thirty clicks, enough to see whether the traffic is relevant but nowhere near enough to tell which keyword converts best. Only one of those questions needs scale. So the first decision is whether the budget clears the cost of a click on the side you want, and if not, whether a lower competition market gets you there.
 
-Practically, tracking goes in before spend does. Calls and form fills as separate conversion actions, long specific phrases rather than short head terms, different intents split into separate ad groups so one cannot quietly eat the other's budget, a negative list built on day one rather than after the first invoice, and a weekly search term review while close variants are still cheap to catch.
+Practically, tracking goes in before spend does. That account counted form submissions and had no call conversion set up, so if the phone rang nobody would know. Calls and form fills as separate actions, long specific phrases rather than short head terms, intents split into separate ad groups, negatives built on day one rather than after the first invoice, and search terms reviewed daily for the first few weeks while a single click costs this much.
 
-We paused that Nashville structure and rebuilt it. Clicks are running a lot lower now, though it is a week old and nothing has converted yet, so I would not sell you on it.
+We paused that structure and rebuilt it a week ago. Too early to credit it with anything and nothing has converted yet, but what each click costs is running a lot lower.
 
-Two things before I could size this. Where do you operate, and what monthly range are you considering for spend?
+Three things before I could size this. Where do you operate, are you chasing sellers or buyers, and what monthly range are you considering for spend?
