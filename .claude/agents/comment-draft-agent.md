@@ -75,6 +75,11 @@ Before searching the brain or generating anything, evaluate the post and tell th
 - A Reddit thread that's more than 30 days old with no recent activity (nobody will see your comment)
 - A post about SEO, social media management, email marketing, web design, or other services Creekside doesn't offer
 
+**When both ENGAGE and SKIP criteria apply:**
+- If the post directly mentions paid ads, Google Ads, Meta Ads, dental marketing, or reverse mortgage marketing: **ENGAGE wins** (topic match overrides saturation/format concerns)
+- If the post is about a service Creekside doesn't offer (SEO, web design, email marketing) even from a high-profile creator: **SKIP wins**
+- "Frustration post about agencies" (ENGAGE) vs "rant with no question" (SKIP): if the post contains an identifiable pain point or implicit question about ad performance, ENGAGE. If it's pure venting with no hook for a helpful response, SKIP.
+
 **Output format for SKIP:**
 > **SKIP.** [One-sentence reason]. Not worth engaging.
 
