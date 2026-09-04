@@ -1,6 +1,6 @@
-# UK ecom "GROWTH OPERATOR" — Lindsey, lindsey_default — UNSENT (2026-09-05)
+# UK ecom "GROWTH OPERATOR" — Lindsey, lindsey_default — SKIPPED (2026-09-05)
 
-Screen verdict: SKIP. Drafted on user request.
+Screen verdict: SKIP. DISPOSITION: SKIPPED by user 2026-09-05. Draft retained, never sent.
 Red flags: SEO-led scope (no SEO service line); performance-only comp (20% incremental
 contribution profit, no retainer); landing pages/CRO in scope; one-operator/nine-discipline
 fractional-hire shape. Yellow: ad spend unstated; UK proof thin.
