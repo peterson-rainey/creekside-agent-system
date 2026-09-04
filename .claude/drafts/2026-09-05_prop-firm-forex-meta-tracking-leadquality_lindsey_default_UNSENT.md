@@ -48,3 +48,17 @@ There is a short video on my profile covering how I work an account like this on
 **Duplicate check.** Before sending, confirm the Samuel profile is not bidding this same posting.
 
 **Length:** 337 words. Well under the 5,000-character Upwork ceiling.
+
+---
+
+## Milestone (single)
+
+Full Meta account and tracking audit: event ladder, pixel and CAPI match quality, identifier flow from ad click through to challenge purchase, plus a prioritized fix list and restructure plan.
+
+**192 characters.** Under the 200-char milestone ceiling.
+
+**Amount:** $1,500. This is the audit-that-gates-management instrument, not a true standalone audit, so it prices at the onboarding rate for one platform (Meta) with the audit included. Management is deliberately NOT priced here: spend is unstated, and percentage-of-spend cannot be quoted until they answer the monthly Meta spend question in the proposal body.
+
+**Not hourly.** The job says "part-time project," which invites an hourly frame. Do not take it. This is a fixed-price milestone and the management engagement behind it is percentage of spend.
+
+**Scope discipline.** The description commits to review, diagnosis and a plan only. It does NOT commit to implementing the tracking fix, which matters because we have never completed an S2S or offline conversion send-back. Implementation is a separate milestone scoped after the audit reveals what the third-party checkout actually returns.
