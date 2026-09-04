@@ -1,6 +1,6 @@
 # Upwork Proposal (UNSENT) - DTC fitness/health, senior Meta buyer, $75k/mo
 Profile: Samuel Rainey | Style: strategic-diagnostic | Date: 2026-09-05
-Status: DRAFTED ON OVERRIDE. Skip was recommended (unanswerable $10k/day proof floor + explicit agency exclusion). Peterson/Queenie overrode.
+Status: DRAFTED ON OVERRIDE. Skip was recommended (unanswerable $10k/day proof floor + explicit agency exclusion). Peterson/Queenie overrode. Agency-disclosure paragraph cut on request 9/5; scale disclosure retained.
 Fee: $12,000/mo (20/15/10 marginal on $75k) + $1,500 onboarding. Cap $15k.
 Verified: largest single Meta acct max day $5,236.40, avg $3,253.47 (act_868498138612020, live 2026-09-03).
 
@@ -28,9 +28,7 @@ Week 1 audit, in order:
 
 You get findings with dollar figures attached, not a slide deck.
 
-Two things you should know now, because you will find them anyway.
-
-We are an agency, not a solo operator. You said you do not want an account manager proxying work to a junior. Fair. What we do is assign one buyer who owns the account and is in Ads Manager daily, and you talk to that person, not to a layer above them. If a dedicated individual under your own roof is genuinely what you want, we are the wrong shape and I would rather say so than waste your time.
+One thing you should know now, because you will find it anyway.
 
 On scale: our largest single Meta account runs around $3,300 a day sustained, with peak days above $5,200. That is under your $10k per day floor. Across the book we manage into the mid six figures monthly, and the structural work above is budget agnostic, but I am not going to claim daily volume we have not personally run.
 
