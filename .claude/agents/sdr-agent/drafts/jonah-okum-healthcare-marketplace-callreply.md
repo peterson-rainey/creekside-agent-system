@@ -1,14 +1,15 @@
 # Jonah Okum / healthcare marketplace, two US metros
 Profile: Samuel Rainey (displays as Peterson Rainey)
-Type: SDR call-ask reply, ROUTED HANDOFF TO CADE
+Type: SDR call-ask reply, SPECIFIC TIME OFFERED (Peterson takes the call)
 Status: UNSENT
 Date: 2026-09-04
-Supersedes: self-booked version (commit 7953d6a), Queenie directed routing to Cade
+Supersedes: self-booked v1 (7953d6a) and Cade handoff v2 (6a28079)
+Open question for Queenie: v2 routed to Cade, this offers Peterson's window. Confirm routing.
 
 ---
 
-Yes to a call.
+Yes, let's talk.
 
-Cade, my partner, is who I'd have you book with. He'll have the full thread before you talk, so you won't be re-explaining any of it. My profile video's worth a watch if you haven't. https://calendar.app.google/85PWYBwxqYNq18qe9
+I have a window today from 4:45 to 5:45 PM Central. Say the word and I'll hold it for you.
 
-One thing worth having ready: what the site asks a user to do on a first visit.
+If today doesn't work, you can grab another time here: https://calendar.app.google/iwVAR8raqiD9a7dx6
