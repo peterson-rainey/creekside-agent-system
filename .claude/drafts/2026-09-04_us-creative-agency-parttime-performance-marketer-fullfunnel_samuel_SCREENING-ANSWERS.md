@@ -24,11 +24,10 @@ NO usable video exists. Four independent reasons, any one of which is disqualify
    name breaks the persona and fails the "personally managed" test in the same stroke.
    Same class of leak as the "Call w/ Peterson" calendar link (project_samuel_is_peterson).
 
-=> Q1 IS UNANSWERABLE AS WRITTEN. The only honest path is Peterson recording a NEW 2-3 minute walkthrough
-   against a redacted account. The answer below is written for that world and still has no link in it.
-   NO LINK IS FABRICATED AND NO PLACEHOLDER TOKEN IS USED (placeholders are a logged hard violation).
-   The post says applications without the video will not be considered, so until that recording exists
-   this application is dead on arrival regardless of how good Q2 and Q3 are.
+=> Q1 IS UNANSWERABLE AS WRITTEN. No link fabricated, no placeholder token used.
+   QUEENIE RULING 2026-09-04: do not record one, offer a LIVE screen share instead. Answer 1 rewritten.
+   Tradeoff accepted knowingly: the post states applications without the video will not be considered, so
+   substituting live is deliberate non-compliance with a stated gate. Her call, logged here, not re-argued.
 
 ## Q2 METRIC-AXIS GAP (disclosed in the answer, not hidden)
 Post demands before/after on "qualified leads, bookings, or customers, not only CPL." Our book records
@@ -49,20 +48,22 @@ result and it is a capacity story, not a booking count.
 
 ---
 
-## ANSWER 1 (paste-ready, LINK MUST BE PREPENDED BY PETERSON AFTER RECORDING)
+## ANSWER 1 (paste-ready) - REVISED 2026-09-04 per Queenie: offer live instead of a recording
 
-Recording a fresh one for you rather than sending something from the archive, and the reason is worth stating.
-Our existing screen recordings are live client communications, addressed to named clients, with account data
-on screen. Sending one of those to a third party would expose a client's confidential performance, which is
-exactly what your instruction says not to do. So the walkthrough is being recorded against a redacted account.
+Offering a live screen share instead of a recording, and I think you get more out of it.
 
-It covers a bankruptcy firm we ran on Google Search in Orange County. The starting problem was one account
-structure spread across several distinct local markets, so budget flowed to whichever market was cheapest
-rather than whichever was producing cases. The change was splitting it into four market specific campaign
-segments with separate budgets and negatives. Conversions went from 117 to 229 and cost per conversion fell
-from $86.09 to $50.29, on $11.5K of spend, only $1.44K more than the prior period.
+Our existing recordings are client communications with account data on screen, so sending one would expose a
+client's confidential performance, which is what your instruction says not to do. A live walkthrough solves
+that cleanly. You get a redacted account, and you can stop me and ask why I made a call instead of watching
+me narrate the version that makes me look good.
 
-If you would rather see a live screen share of the same account instead of a recording, that also works.
+What I would walk you through is a bankruptcy firm we ran on Google Search in Orange County. One campaign was
+covering several distinct local markets, so budget kept flowing to the cheapest market rather than the one
+producing cases. We split it into four market specific segments with separate budgets and negatives.
+Conversions went from 117 to 229 while cost per conversion fell from $86.09 to $50.29, on $11.5K of spend,
+only $1.44K more than the prior period.
+
+Fifteen minutes and I can screen share whenever suits you.
 
 ## ANSWER 2 (paste-ready)
 
