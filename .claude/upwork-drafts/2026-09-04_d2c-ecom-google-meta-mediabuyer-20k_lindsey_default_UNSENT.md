@@ -68,3 +68,36 @@ Straight with you on scope, since you asked for both platforms. Meta and email a
 What is the current split between the two platforms, and is the account already at $20K or is that where you are trying to get it?
 
 There is a short video on my profile that covers how I work an account.
+
+---
+
+## Milestone (single)
+
+Meta account and tracking review plus launch plan: purchase event ladder, pixel and CAPI match quality, audience and campaign structure, creative test plan, and a prioritized 90 day scale roadmap.
+
+**196 characters.** Under the 200-char milestone ceiling.
+
+**Amount: $1,500.** Audit-that-gates-management instrument, not a true standalone audit, so it
+prices at the onboarding rate for ONE platform with the audit included. Not the $1,000-$1,500
+standalone-audit band.
+
+**Meta only, Google deliberately carved out.** The post wants both platforms, but the proposal
+discloses that our ecom Google spend runs ~$8K/mo against their $20K bar and asks whether Google
+at that level is the core of the role. Scoping and charging a second $1,500 platform before they
+answer that would be presumptuous. If they confirm Google is in scope, this becomes $3,000 across
+two platforms.
+
+**Management deliberately NOT priced.** "Help launch campaigns" reads pre-launch, and the $20K
+figure is stated as an experience bar, not confirmed current spend. Percentage of spend cannot be
+quoted until they answer the spend question in the proposal body. No price on a zero-spend
+milestone.
+
+**Not hourly.** "Part-time role" invites an hourly frame. Do not take it. Fixed price here,
+percentage of spend for management behind it.
+
+**Scope discipline — CAPI.** Description commits to REVIEWING pixel and CAPI match quality and
+producing a plan. It does NOT commit to implementing a CAPI or server-side build. Tracking-build
+proof is a system-wide zero. Implementation is a separate milestone scoped after the review.
+
+**Wording covers both cases.** "Review plus launch plan" works whether they are handing over an
+existing account or starting greenfield, which is unresolved until they answer the spend question.
