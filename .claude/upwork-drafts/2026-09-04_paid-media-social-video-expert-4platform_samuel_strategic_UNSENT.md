@@ -23,13 +23,17 @@ DATE NOTE: local shell clock says 2026-09-05, Postgres now() says 2026-09-04 19:
 ## VERIFIED LIVE THIS SESSION (contractor_query)
 - **Meta book: 1,814 campaigns / 35 accounts, 53 with a VIDEO objective = 2.9%.** This is the opener's
   backbone and it is exactly the post's own "not vanity metrics" position, stated as a fact about our book.
-- **DEMAND_GEN (Shorts / Discover / YouTube feeds): $44,835.99 across 8 accounts / 15 campaigns,
-  454.3 conversions = $98.69 CPA**, 2025-09-04 through 2026-09-03. Quoted as "about $45K", "roughly 454",
-  "near $99".
-  - Two of the eight spent real money for ZERO conversions ($2,981.05 Retirement Income Solutions,
-    $1,324.72 acct 1537044023). Disclosed in the body as the tradeoff. Do not hide this.
-  - Largest DG account is South River Mortgage ($25,384.65 / 217.5 / $116.73) but it CHURNED 8/11/26
-    and its case-study CPL fails live verification, so it is NOT named. The pooled book figure is used.
+- **DEMAND_GEN book: $44,835.99 across 8 accounts / 15 campaigns, 454.3 conv = $98.69 CPA**,
+  2025-09-04 through 2026-09-03. **THE AGGREGATE IS DELIBERATELY NOT IN THE BODY.** First pass quoted it
+  as "about $45K / 454 conv / near $99" framed as YouTube-adjacent proof, which is exactly the move
+  [[reference_demand_gen_youtube_proof]] forbids: the converting share is Discover, Gmail and remarketing
+  placements, NOT YouTube, so the aggregate reads as implied-causation YouTube proof. Paragraph 3 was
+  rewritten to the sanctioned concession line instead.
+  - Per-account, live: South River Mortgage $25,384.65 / 217.5 / $116.73 (CHURNED 8/11/26, CPL fails live
+    verification, NOT named). Doctor Laleh $12,216.45 / 59.9 / **$204.08, last spend 2026-08-20 = paused**
+    (this is the "$204 and now paused" in the body). Retirement Income Solutions $2,981.05 / ZERO conv.
+    Acct 1537044023 $1,324.72 / ZERO conv. Acct 3331327796 $1,514.01 / 1 conv. Victory Land $1,209.29 /
+    176 / $6.87 but that campaign is `Feb10_Remarketing_VictoryLand`, i.e. REMARKETING, not YouTube.
 - **Dedicated Google VIDEO channel = effectively zero: $139.00 total, 2 campaigns, 1 account,
   ZERO conversions, 2025-09-04 to 2025-09-08 (four days, a year ago).** Disclosed as thin.
   CORRECTION to the memory index, which carries "$495" for this. Live figure is $139.
@@ -77,7 +81,7 @@ Turning existing footage into paid creative usually breaks at the opening, and n
 
 The second thing worth flagging early is the optimization event. Video creative quietly pulls campaigns toward ThruPlay and video view objectives because those numbers look excellent, and that is exactly where qualified lead generation dies. Across the Meta accounts our team runs, only about 3% of campaigns use a video objective, even though most of the creative is video. Everything else optimizes to a conversion. That one setting decides whether your cost per lead means anything at all.
 
-On the four platforms you listed, worth being straight about where the evidence actually sits. Google and Meta are the deep end for us, including Demand Gen, which serves Shorts, Discover and YouTube feeds and has run about $45K to roughly 454 conversions over the past year, near $99 each. Two of those eight accounts spent real money and returned nothing, so it is a lever worth pulling, not a guarantee. Dedicated YouTube video campaigns and TikTok are thin on our side. There is no TikTok account we can point at with results behind it, and pretending otherwise would just cost you the first month.
+On the four platforms you listed, worth being straight about where the evidence actually sits. Google and Meta are the deep end for us, and that is search and feed lead generation rather than video. YouTube is thinner than this post probably wants. View-objective video campaigns have produced zero conversions on our side. The YouTube-inventory Demand Gen work converted on one account at around $204 a lead and that campaign is now paused, while the rest of that inventory returned little. TikTok is thinner still. There is no TikTok account we can point at with a result behind it, and pretending otherwise would just cost you the first month.
 
 Lead generation itself is the strong suit, mostly on search rather than video: dental at under $4 per conversion, pest control at $92.60 a lead, a Tennessee builder cut from $454 to $239 while tripling volume.
 
