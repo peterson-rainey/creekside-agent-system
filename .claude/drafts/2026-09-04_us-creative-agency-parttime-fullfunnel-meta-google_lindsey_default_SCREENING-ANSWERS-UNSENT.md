@@ -3,10 +3,15 @@ Profile: Lindsey | Style: lindsey_default | Status: UNSENT, 2 items BLOCKED on L
 
 ---
 
-## Q1. Loom walkthrough link
+## Q1. Loom walkthrough link (paste-ready)
 
-**CANNOT BE ANSWERED BY ME. No such recording exists and I will not invent a URL.**
-This is Lindsey's to record. Spec below. Their rule is absolute: no video, no consideration.
+Rather than a recording, I would show you one live.
+
+The account I would want to open belongs to a practice that is still running, and a shared link is the wrong place for that. On a screen share I can open the real thing and you can steer it, which is worth more than the three minutes I would have picked for you.
+
+Same structure you asked for: where it started, what I changed, what moved, with the client details covered.
+
+**DECISION, Queenie 2026-09-04: answer live rather than record.** Noting the risk once and proceeding: their rule is stated absolutely ("Applications without the requested video walkthrough will not be considered"), so this knowingly does not comply and may be filtered before a human reads it. No link is included, per the no-URL rule on first touch.
 
 ## Q2. Strongest US service-business lead-gen result (paste-ready)
 
@@ -28,16 +33,18 @@ Start date and weekly availability. **[BLOCKED - LINDSEY TO CONFIRM]**
 
 ---
 
-## Loom recording spec (for Lindsey)
+## Live walkthrough prep (for Lindsey, if they take the call)
 
-**Length:** 2 to 3 minutes. Screen recording. Client name, account ID and any patient data hidden or blurred.
+**Format:** live screen share, roughly 15 minutes. Client name, account ID and any patient data covered on screen.
 
 **Structure they explicitly asked for:**
 1. **Starting problem.** Leads outrunning the practice's call-center intake capacity. Volume was fine, follow-through was not.
 2. **What you changed.** Qualifying questions added to the lead forms, landing page tests behind them, deliberate ~25% spend reduction to match intake, plus English/Spanish segmentation.
 3. **Measurable result.** $64,747 / 2,558 leads / $25.31 lifetime; the CPL $29.18 to $32.85 move shown as an intentional trade, not a regression.
 
-**ACCESS RISK, resolve before planning to record this account.** Fusion churned 2026-07-22 and went internal. Our Meta access may already be gone (precedent: Ella Skincare access lost while the row still read active). If so, the fallback accounts Lindsey still operates live are Doctor Laleh, The Tooth Co, and Vida Dentistry, all active Meta. Those are current clients, so the confidentiality masking matters more.
+**Live changes the access question.** A recording could have been made once while access lasted. A live walkthrough needs access to still be there on the day, so confirm Fusion before offering it, and default to Doctor Laleh, The Tooth Co or Vida Dentistry if it is gone.
+
+**ACCESS RISK, resolve before offering to open this account.** Fusion churned 2026-07-22 and went internal. Our Meta access may already be gone (precedent: Ella Skincare access lost while the row still read active). If so, the fallback accounts Lindsey still operates live are Doctor Laleh, The Tooth Co, and Vida Dentistry, all active Meta. Those are current clients, so the confidentiality masking matters more.
 
 ---
 
