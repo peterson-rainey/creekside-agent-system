@@ -46,9 +46,32 @@ Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Draf
 - No links, no calendar link, no contact info. No em dashes. Unsigned per the 2026-09-04 ruling.
 - Recurring delivery work attributed to the team, not first-person, per the principals rule.
 
-## OPEN FOR QUEENIE
-- `green_shield_pest.pdf` is a verified-real file but its CONTENT has never been read. Numbers match
-  canonical from two independent internal sources, so risk is low, but it is attached unread.
+## ATTACHMENTS (both PDFs READ IN FULL 2026-09-05, open item now closed)
+- **`green_shield_pest.pdf`** `1QGvLfXcC9VWAJwgdlKbo-N5y1ISD6c4U` — content matches canonical EXACTLY
+  (79 conv, $92.60, -$21.53 = 19%, +34% volume). Adds detail canonical omits: 465 clicks, 10.4K impressions,
+  2-3 phrase-match keywords per ad group, **10-mile radius**, **80/20 general-vs-specialty budget split**,
+  and a stated customer value of **$500-600 year one, $3,000+ over five years**.
+- **`urcovered_construction.pdf`** `1onNdpUyrXBZaKw3soT2yOuD4Ah3SSiNU` — Google-only, 60 leads, $239 CPL
+  down $215 from $454, +300% volume. Its documented mechanism is a **dedicated service-line campaign with
+  separate budgets and bidding, plus a precision negative list**, which is exactly this post's structure and
+  negative-keyword bullets. Body edited to name it so the attachment is not unexplained.
+- **`localhost:4321` dev artifact is present in BOTH.** Extends the known April-2026 batch defect to these
+  two rows. Cosmetic but visible on a client-facing page; strip before send if quick.
+
+## NOT ATTACHED, AND WHY
+- `perfect_parking.pdf` — headlines the do-not-quote $127 CPL, contradicts the $196.03 in the body.
+- Landmark — documents **month-to-month with services paused for winter shutdown**. Actively wrong for a
+  seasonal Alberta market where winter is peak rodent season, and it anchors month-to-month against our
+  90-day minimum. Also Google+Meta, dilutes a Google-only post.
+- LawnValue — Google + Meta + LSA + GBP. Dilutes a Google-Ads-only pitch.
+- `florida_awnings.pdf` — zero quantified results, and it discloses $3,000/$4,200 monthly client budgets
+  that sit BELOW the CAD $5-7K recommended in Q4. Anchors low against our own recommendation.
+
+## NOTE ON THE 80/20
+The pest PDF allocated 80% to general pest control and 20% to specialty, which reads as the opposite of the
+body's split-by-pest insight. It is NOT a contradiction: that account ran ~465 clicks total, and the Q4
+answer already states that below roughly $4,000/mo there is not enough budget to split per pest. The PDF
+corroborates the budget reasoning rather than undercutting the structural one. Be ready for the question.
 
 ---
 
@@ -56,7 +79,7 @@ Pest control looks like one market and prices like four. Bed bugs and cockroache
 
 That is usually the first thing worth changing, and it is why splitting by pest is the right instinct.
 
-1. Yes. Ran Google Ads for a pest control company and produced 79 leads at $92.60 each, cost per lead down 19% and volume up 34% after a restructure. That case study is attached. A mosquito control company in Nashville has also come through our book.
+1. Yes. Ran Google Ads for a pest control company and produced 79 leads at $92.60 each, cost per lead down 19% and volume up 34% after a restructure. That case study is attached, along with a Tennessee builder where splitting one campaign into separate service lines took cost per lead from $454 to $239 and tripled lead volume. A mosquito control company in Nashville has also come through our book.
 
 2. Closest example carrying the full picture is a paving and lot striping contractor on Google Search: about $3,870 a month, 199 leads over ten months, $196 per lead, and an 8.86% conversion rate from click to lead. The tighter geographic campaign in that same account ran $131 per lead at 11.07%.
 
