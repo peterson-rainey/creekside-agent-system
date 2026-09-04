@@ -38,10 +38,26 @@ lists the 15-mile/no-lookalike set for FINANCIAL SAC, not social issues.
 - Won Google health-policy appeal: gTech 6-9600000038737, "Health In Personalized Advertising". Team work.
 - Samuel = 6 years experience.
 
-## Attachment note
-Attach NOTHING. The only on-shape artifact is the Dr. Laleh elective-health PDF: weak topical match
-(elective aesthetics vs public health policy) and its published CPA fails live verification.
-Draft quotes no CPA, so attaching is not unsafe, but it overstates relevance the body does not claim.
+## Attachment note -- ATTACH NOTHING (verified live 2026-09-05)
+Supersedes the earlier note naming the Dr. Laleh PDF. That file does NOT resolve.
+Curl-verified every plausible candidate:
+- Integrity Naturopathic (1x5jAh...) -> REAL PDF, 755KB, %PDF-. The ONLY attachable healthcare artifact.
+- Dr. Laleh (1sRKep...)        -> text/html sign-in page. NOT attachable.
+- Advanced Med Spa (1TRlcV...) -> text/html sign-in page. NOT attachable.
+- ReferPro (1hTfvn...)         -> text/html sign-in page. NOT attachable.
+
+Integrity is attachable but STRATEGICALLY WRONG here: $2,350/mo Sacramento naturopathic
+practice, Google Search lead-gen, headline "$14-$40 CPA". The proposal's positioning line is
+that $38.82 CPM is "competitive delivery rather than cheap reach". A cheap-CPA-on-a-small-budget
+sheet contradicts that in the reader's hand and signals small on a multi-metro pilot.
+
+Root Hair is disqualified separately: its PDF claims YouTube + Search, and the proposal
+deliberately avoids claiming YouTube video buying (Google VIDEO channel = $139 / 0 conv).
+Attaching it would contradict the body.
+
+Structural: all 28 case studies are lead-gen CPA/ROAS stories. Zero awareness, zero video,
+zero policy/advocacy. ReferPro is the only summary that even says "awareness" and its file is dead.
+No artifact in the book matches the shape of this job. Send with no attachment.
 
 ## PROPOSAL (paste-ready) -- 2,795 chars
 
