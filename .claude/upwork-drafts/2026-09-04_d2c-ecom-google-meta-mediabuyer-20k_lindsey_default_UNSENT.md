@@ -23,7 +23,7 @@ Other screens:
 | Same account CPM $35.00 → $84.75; CPA $246.50 → $313.09 | same | YES |
 | Spa parts retailer 4,426 purchases @ $28.93 | New Master Spa Parts, 9 mo | YES |
 | Consumer camera brand 623 purchases @ $93.58 | Blush Camera, 5 mo | YES |
-| Retarget beat prospect by ~$20/purchase | $70.73 vs $92.85 (memory, prior verification) | YES |
+| Retarget $70.73/purchase vs prospecting $102.14 | Blush Camera campaign level, re-verified 09-04 | YES |
 | Ecom Google spend ~$8K/mo | Aura Displays $82,928 / 10 mo = $8,293 | YES |
 
 **Neue Maison window rule honored:** only the Apr–Jul 2026 tenure window is cited. The 12-month
@@ -61,7 +61,7 @@ Have you looked at what happened to CPM in that account the last time monthly sp
 
 I ask because I ran a luxury furniture DTC brand on Meta straight through that stretch. Spend went from about $17K a month to just over $40K at peak. Purchase volume held, but CPM climbed from the mid thirties to the mid eighties across four months and cost per purchase drifted from roughly $246 to $313. Nothing was broken. The audience was exhausting faster than creative could refresh it, and there was no prospecting pool wide enough to absorb the budget. If your client's account is near that inflection, the fix is creative volume and audience architecture, not bid tuning, and those two get confused constantly.
 
-Ten plus years on paid social, most of it e-commerce, which is where I learned to distrust front-end ROAS. On a spa parts retailer we drove 4,426 purchases at $28.93 each, high repeat and low consideration. On a consumer camera brand it was 623 purchases at $93.58, where retargeting beat prospecting by about twenty dollars a purchase and the trap was over-funding retargeting until it started eating itself.
+Ten plus years on paid social, most of it e-commerce, which is where I learned to distrust front-end ROAS. On a spa parts retailer we drove 4,426 purchases at $28.93 each, high repeat and low consideration. On a consumer camera brand it was 623 purchases at $93.58, where retargeting ran about $71 a purchase against roughly $102 on cold prospecting, and the trap was over-funding retargeting until it started eating itself.
 
 Straight with you on scope, since you asked for both platforms. Meta and email are the lanes I personally run. Google sits with our team beside me, and our e-commerce Google spend runs closer to $8K a month than $20K. Above that number our Google proof is outside e-commerce. If Google at that level is the core of this role rather than the second half of it, you should know that before you shortlist.
 
