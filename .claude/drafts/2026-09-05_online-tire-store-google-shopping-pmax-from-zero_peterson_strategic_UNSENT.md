@@ -137,31 +137,67 @@ with its limitation stated. It is local service lead gen, not ecommerce.
   $1,569 at 0.12x. A recent from-scratch feed build that is not working. Deliberately excluded.
 - **Tiami Sleep**: Shopping $1,460, zero conversions. Excluded.
 
-## ATTACHMENT DECISION (curl-verified 2026-09-05)
+## ATTACHMENT DECISION - REVERSED 2026-09-05 AFTER READING THE PDF. ATTACH NOTHING.
 
-| Candidate | file_id | curl result | Verdict |
-|---|---|---|---|
-| **Aura Displays** | `1xKnrCCnakTPNnj8HaDiyEjp1z_ygloFN` | **200, application/octet-stream, 813,371 bytes** | **REAL. ATTACH.** |
-| Axle Solutions (Auto Repair) | `1YnM0jqMHFzVh0jGSTusO8YtoRs6O7E0-` | 200 but **text/html, 0 bytes** | **DEAD. DO NOT ATTACH.** |
-| Fitness Superstore | `1xF6mHAgni4KWAfklREG6eZH1pQAZ0S7p` | not pulled | Meta-only, numbers fail live verification. OUT. |
+**Earlier in this same session I recommended attaching the Aura PDF. That was wrong, and it was
+wrong because I had verified the file was LIVE without verifying what was INSIDE it.** curl gave
+200 / octet-stream / 813,371 bytes, and the 5,000-SKU precedent had attached it, so I carried the
+decision forward. Then I downloaded and read all three pages. **Liveness is not attachability.**
 
-**ATTACH AURA.** It is the only ecom + Google + Shopping + PMax + Merchant Center study in the
-book, the post explicitly asks for one real store, and the standing rule is to include every
-closely-matching real study. Same call as the 5,000-SKU lead, the closest prior analog.
+**Full enumeration of all 28 `case_studies` rows** (not a keyword search) confirms the candidate
+set. Industry labels present: Apps, Auto Repair, E-Commerce, Education, Finance, Food, Healthcare,
+Home Services, Legal, Professional Services, SaaS, Travel. **Only two E-Commerce rows exist**
+(Aura, Google; Fitness Superstore, Meta) and **one Auto Repair row** (Axle Solutions). No tire,
+no auto parts, no large-catalog retail study exists anywhere in the book.
 
-**Axle Solutions is the trap worth recording.** It is the one Auto Repair case study and it looks
-perfect for a tire post. The `case_studies.download_url` ID returns **HTTP 200 with a 0-byte
-text/html body**, the exact "200 is not liveness" failure. The alternate ID recorded in
-`reference_b2b_proof_has_no_attachable_artifact` (`1vIvJ6QQzV16kBItpD9dODDt9sWIT4HhZ`) is live but
-has an **empty Results block** and sells GMB optimization and "proprietary local SEO processes",
-which collides with `reference_no_seo_service_line`. Fatal against a post demanding real numbers.
+### Why the Aura PDF is now a NO, on four counts
 
-**Residual risk on the Aura PDF, flagged not hidden:** its headline says "8-10x ROAS on
-non-branded" and "scaled across 49 countries." The first was true for the period it documents and
-is now ~4.2x, which is why the body states the decay first. The second describes an attempt, not a
-result: `CM - Shop - All Products - UNBRANDED (49 Locs, No USA)` ran one week in May 2026 at
-**0.65x** and was paused. If Queenie would rather not carry that line, attach nothing. The body
-stands alone and cites no study by name.
+Read via pypdf, 2026-09-05. It is a real, well-made, Creekside-branded document with **no Samuel
+byline**, so the post-rename check passes. It is also cleaner than its DB row, correctly stating
+the $1M+/month is **organic Shopify revenue**. None of that saves it here.
+
+1. **Its headline contradicts our own body on the exact same metric.** The PDF says
+   **"8-10x NON-BRANDED ROAS"** and repeats it four times including the title. The proposal body
+   says non-brand Shopping ran **5.47x** and settled near 4.2x. Same account, same metric, roughly
+   double. The body's decay curve (11.5x down to 4.2x) technically contains 8-10x as an early
+   window, but the PDF states it as the standing result with no window given. **Against a post that
+   ends with "don't apply if you guarantee results before seeing our data," handing over a document
+   whose headline is twice what the body claims is the worst possible artifact for this reader.**
+2. **"Scaled Across 49 Countries" is in the title and is not a result.** Live: `CM - Shop - All
+   Products - UNBRANDED (49 Locs, No USA)` ran **one week in May 2026 at 0.65x** and was paused;
+   `Pmax - All Products (EU Countries)` 1.27x; `Shopping - All Products (UK)` $146 / **0 conv**.
+   The international programme failed. The PDF sells it as headline scale, four separate times.
+3. **Page 1 carries a live clickable link to `http://localhost:4321/`.** Verified in the PDF's
+   link annotations, and it is the only URL in the file. A dead local dev server on page one of a
+   case study, sent to a prospect who built their own site, is its own credibility problem.
+4. **It actively widens the one gap we are weakest on.** The PDF describes the catalog as
+   "portable triple-screen laptop monitors and accessories," and the campaign names confirm a very
+   narrow range (Triple Screen, Double Screen, Best Seller). The body already concedes "hundreds,
+   not thousands." The PDF shows the real range is narrower still. **On a thousands-of-SKU post,
+   the attachment demonstrates the deficiency the body is trying to get past.**
+
+### The decisive structural reason
+
+**The attachment adds no number the body lacks.** The body already answers "one real store" with
+figures that are more specific, more current and independently verifiable: $18,048 / 186
+conversions / $98,731 / 5.47x, plus the 8.30x carve-out and the honest decay curve. The PDF
+replaces those with rounder, older, larger numbers plus a failed scale claim. An attachment exists
+to corroborate the body. This one undercuts it.
+
+### Axle Solutions - the trap on any automotive post, recorded so it is not re-walked
+
+It is the only Auto Repair study and it looks perfect for a tire job. Its
+`case_studies.download_url` id `1YnM0jqMHFzVh0jGSTusO8YtoRs6O7E0-` returns **HTTP 200 with a
+0-byte text/html body** - dead, and another instance of "200 is not liveness." The live alternate
+id recorded in `reference_b2b_proof_has_no_attachable_artifact`
+(`1vIvJ6QQzV16kBItpD9dODDt9sWIT4HhZ`) has an **empty Results block** and sells GMB and
+"proprietary local SEO processes", colliding with `reference_no_seo_service_line`. **Never attach
+Axle.** Fitness Superstore is Meta-only, churned, and its 40x/7x figures return no live rows.
+
+**If Queenie overrides and attaches Aura anyway,** the body needs one added line scoping the PDF
+explicitly: that it documents the account's first months, that non-brand has since settled around
+4.2x at roughly four times the cold spend, and that the international expansion was tested and
+shut off. Without that line the 8-10x and the 49 countries are both discoverable contradictions.
 
 ## PRICING - NOT IN BODY, QUEENIE DECIDES THE BID
 
