@@ -88,3 +88,7 @@ Which countries is the client selling into, and is there an existing pixel with 
 One structural note. We work on a percentage of ad spend rather than an hourly rate, because hourly pays us to spend time and a percentage pays us to spend well. If this role is scoped strictly hourly, worth surfacing before either of us puts more time in.
 
 Happy to walk through the account structure behind either of those numbers.
+
+## MILESTONE (single, 185 chars)
+
+Launch build across Google and Meta: conversion tracking verified, branded split from unbranded, prospecting split from retargeting, and reporting that shows cold traffic on its own line.
