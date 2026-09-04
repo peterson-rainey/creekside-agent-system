@@ -59,11 +59,46 @@ client footage is NOT a proven service line with an artifact behind it. The body
 system and the buying, does not claim an editing bench, and does not name Sophie. If they push on
 weekly edit volume, that gets sized on a call rather than promised here.
 
+## ATTACHMENT DECISION (2026-09-04)
+**ATTACH: `green_shield_pest.pdf` (`1QGvLfXcC9VWAJwgdlKbo-N5y1ISD6c4U`) ONLY. Strip the
+`http://localhost:4321/` footer first (April-2026 templated batch).**
+Drive metadata re-verified live this session: real PDF, 764,434 bytes, modified 2026-07-08. Content was
+read in full on 2026-08-29 and matches canonical exactly (79 conv, $92.60, -$21.53 = 19%, +34% volume,
+465 clicks, 10.4K impressions). Cited in the body, so it is not an unexplained attachment. Discloses NO
+monthly budget, so it trips no below-floor anchor screen. Its $500-$600 first-year / $3,000+ five-year
+customer value is the right economic shape for a service business.
+
+**REJECTED, each for a specific reason:**
+- `urcovered_construction.pdf` — SAFE and cited in the body, but discloses **$500K-$1M+ job values**.
+  This post's vertical is unstated and its "plus" list includes consumer brands, so that economic shape
+  argues a different business. Adds no metric Green Shield lacks (both CPL-only). Redundant weight.
+- `integrity_naturopathic.pdf` — closest healthcare match and content-safe, but headlines
+  **"$2,350 MONTHLY BUDGET"**. The body asks them to name a range against $5K-$25K, so this anchors
+  sub-floor at the exact moment of the ask. Standing below-floor-anchor screen rejects it.
+- `perfect_parking.pdf` — headlines $127 CPL, dead on live verification ($196.03). Volume claim fails too.
+- Polaris / Dr. Laleh / Advanced Med Spa — file IDs **404**, no branded PDF exists. Polaris also leaks persona.
+- Landmark — **bylined "By: Samuel Rainey"**, header is Google + Meta, and it actively *sells*
+  month-to-month pausing, which collides with the 90-day minimum.
+- `ci_lifestyle_meals.pdf` and `duck_a_diet.pdf` **both resolve live** (1.24MB / 1.37MB, verified this
+  session) and are the only platform-matched candidates (Meta + consumer brand). **Content still UNREAD**,
+  so not attachable yet. They are also ROAS/purchase stories, not the lead-gen shape this post measures.
+
+**Standing tension to respect:** the default rule is attach nothing and let live-verified body numbers
+carry it, and **every attachable artifact in the book is Google Search lead gen — there is no video, Meta
+creative, YouTube or TikTok artifact at all.** One Google-only PDF is defensible here only because the body
+already concedes "mostly on search rather than video" in prose. Two would make search the headline of a
+video pitch.
+
 ## DELIBERATELY OUT
 - No pricing. None was asked for and strategic style does not sell.
 - South River Mortgage not named (churned, CPL fails live verification).
 - Dr. Laleh Meta CPA not cited (not citable per standing ruling). Laleh's DG at $204.08 CPA also omitted.
 - Fitness Superstore 40x and Punch Drunk Chef 20x omitted, both unbacked.
+- **Polaris "sub-$4 CPA" CAUGHT AND REMOVED before send.** It shipped into the first draft from
+  `case_studies`. It is **dead in every window tested** (live $48.10 at 90d, $26.38 at 12mo). Replaced with
+  the volume-only claim the ruling permits: 215 enquiries in twelve months. The ~$470/mo spend figure was
+  ALSO dropped, because the below-floor anchor screen applies to body copy, not just to PDFs.
+- Polaris is **churned** per `reporting_clients`, so past tense. (A memory note calling it active is wrong.)
 - No certifications, no Google Partner, no Meta Blueprint. None exist.
 - No links, no calendar link, no contact info, no attachments, no em dashes.
 - UNSIGNED per the 2026-09-04 no-name-signoff ruling, which supersedes the style doc's "Samuel".
@@ -83,6 +118,6 @@ The second thing worth flagging early is the optimization event. Video creative 
 
 On the four platforms you listed, worth being straight about where the evidence actually sits. Google and Meta are the deep end for us, and that is search and feed lead generation rather than video. YouTube is thinner than this post probably wants. View-objective video campaigns have produced zero conversions on our side. The YouTube-inventory Demand Gen work converted on one account at around $204 a lead and that campaign is now paused, while the rest of that inventory returned little. TikTok is thinner still. There is no TikTok account we can point at with a result behind it, and pretending otherwise would just cost you the first month.
 
-Lead generation itself is the strong suit, mostly on search rather than video: dental at under $4 per conversion, pest control at $92.60 a lead, a Tennessee builder cut from $454 to $239 while tripling volume.
+Lead generation itself is the strong suit, mostly on search rather than video: a dental practice that ran 215 enquiries in twelve months, pest control at $92.60 a lead, a Tennessee builder cut from $454 to $239 while tripling volume.
 
 Most of the lead gen accounts our team runs sit somewhere between $5K and $25K a month. Where does yours land against that, and is the video library already shot or still in production?
