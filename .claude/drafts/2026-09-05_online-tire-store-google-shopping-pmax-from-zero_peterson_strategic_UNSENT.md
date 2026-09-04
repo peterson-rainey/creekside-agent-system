@@ -1,7 +1,16 @@
 # Upwork Proposal - Online tire store, Google Ads from zero (Shopping / PMax / Merchant Center)
 Profile: Peterson (formerly "Samuel") | Style: strategic | Status: UNSENT | Drafted 2026-09-05
-Body: 372 words / 2,178 chars. Under the 400 hard ceiling and far under the 5,000 char limit.
-Plus 4 screening answers (the post says "To apply, answer these questions").
+**REV 2 (Queenie, 2026-09-05): body shortened and MERGED with the four screening answers into a
+single submission.** Rev 1 was a 383-word body plus 1,232 words of separate answers. Rev 2 is one
+piece, 634 words / 3,759 chars, comfortably inside the 5,000 char proposal limit.
+
+The four questions are kept as short bold labels rather than dissolved into prose. Deliberate
+deviation from the style's no-lists rule: the post says "To apply, answer these questions," so the
+answers have to be findable at a glance or the reader cannot confirm all four were answered.
+What was cut, in order of reluctance: the branded-search disclaimer in Q4, the Fitness Superstore
+churn anecdote behind the Q1 boundary line, the PMax-optimizes-blind sequencing paragraph, and the
+per-question reasoning on AOV and margin in Q3. The 8.30x carve-out, the decay curve and the
+catalog-size admission all survived, since those are the three things carrying the credibility.
 
 ## SIGN-OFF
 
@@ -193,75 +202,19 @@ traced to a live query this session. Signed "Peterson".
 
 ---
 
-## PROPOSAL BODY
+## COMBINED SUBMISSION (body + answers, one piece)
 
-Thousands of tire SKUs and a lowest price position is a combination Google will reward, but only where the feed is built so the price advantage is visible. Merchant Center benchmarks every product against what other sellers charge for the same tire. Most stores never split on it. Run one all products campaign and the SKUs where you genuinely undercut the market get averaged in with the ones where you sit mid pack, so budget lands wherever Google finds volume first rather than where you actually win.
+Thousands of tire SKUs and a lowest price position is a combination Google rewards, but only where the feed makes the price advantage visible. Merchant Center benchmarks every product against what other sellers charge for the same tire, and most stores never split on it. Run one all products campaign and the SKUs where you genuinely undercut get averaged in with the ones where you sit mid pack, so budget lands wherever Google finds volume rather than where you actually win.
 
-That is also the honest answer to competitors at six figures. You do not outbid them. Their scale buys coverage, not efficiency, and at that budget their campaigns are optimizing across an enormous average. The room is in the size and fitment queries underneath the head terms, where the buyer already knows what they need and price is the last decision. Tire demand is unusually literal that way. People search a size or a vehicle, so whether size, load index and fitment are clean in the feed decides whether you appear at all, well before bidding is the question.
+**Merchant Center feed from scratch, large catalog.** From scratch yes, at your scale no. We took a Shopify store from no account, no Merchant Center and no tracking to Search, Shopping and PMax running off one feed last November, and three more feed builds since. Those catalogs ran to the hundreds. Thousands is bigger than anything we have done. What carries over is the part that decides performance, which is not the upload. Store titles bury size, load index and speed rating behind brand and model, the opposite of how people search, and rewriting them in a supplemental feed is usually the largest single lift available. Then custom labels for margin, ninety day sell through and price competitiveness rather than your category tree, so budget concentrates where you are both profitable and genuinely cheaper. Worth agreeing in week one that feed strategy and structure is ours while bulk catalog data entry stays with whoever owns your product data.
 
-For an account starting at zero, sequence matters more than structure. PMax before any conversion history means Google optimizes blind, and on a new account it tends to find your own brand terms and report them back as a win. Merchant Center and tracking first, then non brand Shopping across a deliberately narrow slice of the catalog to buy product level and search term data, then segmentation on margin, velocity and price competitiveness. PMax after there is a real value signal and a brand exclusion list.
+**Competing against six figures a month.** You do not outbid them. That spend buys coverage, not efficiency, and their campaigns are optimizing across an enormous average, winning head terms while carrying product level waste nobody is looking at. What it leaves you is the long tail of size and fitment queries, where the buyer already knows exactly what they need and price is the last decision. It also leaves price competitiveness as a filter rather than a marketing claim, concentrating spend on the products where Merchant Center says you actually win. And it means staying out of generic tire auctions in month one. This does not beat them on volume and should not be sold to you that way.
 
-The closest thing we can show you is a Shopify store we built from zero last November. Non brand Shopping ran 5.47x on just over $18,000 across ten months, and one product line carved out of that same pool ran 8.30x. We tested PMax against it three times and switched the last one off in July when it came in under the Shopping campaigns it was competing with.
+**Month one spend.** Eight to ten thousand, concentrated rather than spread. Month one buys information, and the test is whether any product group ends it with enough conversions to decide something. Spread that evenly across thousands of SKUs and every group finishes with two or three, which tells you nothing. Put it behind your best selling and most price competitive lines and several finish with enough to act on. Below about five thousand you can still run, but you are choosing to learn slowly. It is also not the month to judge this on, since a new Merchant Center account usually spends its first couple of weeks in review and disapprovals rather than delivery.
 
-Worth saying outright though, that catalog ran to the hundreds, not thousands. Yours is bigger than anything we have built a feed for.
+**One real store.** A Shopify store selling monitor and display hardware, built from zero last November. Non branded Shopping spent $18,048 and returned 186 conversions on $98,731 in tracked revenue, so 5.47x, running November through August. Carving the best selling line out of that same pool into its own campaign returned 8.30x on $3,889. Same feed, same account, same period, and roughly 50% better purely from letting one line compete on its own budget instead of averaging inside the pool. PMax we tested three times, landing between 4.27x and 8.58x, and switched the last one off in July when it came in under the Shopping campaigns it was competing with. The honest shape of scaling it: non branded started near 11.5x at under two thousand in spend and settled around 4.2x by August as we scaled cold traffic roughly four times over.
 
 What does the AOV spread look like across the range, and do you have margin at the SKU level?
 
 
 Peterson
-
----
-
-## SCREENING ANSWERS (the post says "To apply, answer these questions")
-
-### Q1. Have you built a Merchant Center feed from scratch for a large catalog? Tell us about it.
-
-From scratch yes, at your scale no, and it is worth being straight about that up front. The build we would point to is a Shopify store we took from no ad account, no Merchant Center and no tracking to Search, Shopping and PMax all running off one feed, starting last November. Three more feed builds since, two of them launched this summer. Those catalogs ran to the hundreds of products. Thousands is a bigger job than anything we have done.
-
-What does carry over is the part that actually decides performance on a big catalog, which is not the initial upload. It is the supplemental feed and the labels. Product titles that come out of a store database are written for humans browsing a category page, and for tires they usually bury the size, load index and speed rating behind a brand and model name, which is the opposite of how people search. Rewriting titles to lead with the attributes buyers type is normally the single biggest lift available, and it is done in a supplemental feed so nobody has to touch the store data.
-
-Then custom labels, which is where a catalog this size gets controlled. Not the store's own category tree, which is built for navigation. Labels for margin tier, ninety day sell through, stock depth and price competitiveness against the Merchant Center benchmark. Those become the campaign and listing group structure, so budget can be pushed at the SKUs that are both profitable and genuinely cheaper than the market, and held back from the ones that are neither.
-
-One boundary worth agreeing before anyone starts, because it has bitten us. Feed strategy, structure, labels, title rules and diagnostics are ours. Bulk catalog data entry across thousands of rows is not, and it should sit with whoever owns your product data. We have had a client relationship end over that exact ambiguity and the results were fine, the scope was not. Better settled in week one.
-
-### Q2. Our competitors spend six figures a month. How do we compete against them with less?
-
-By not competing where the money decides it.
-
-Six figures a month buys coverage, not efficiency. At that spend the campaigns are almost certainly optimizing across an enormous average, which means they are winning the head terms and simultaneously carrying a lot of product level waste they cannot see, because nobody looks at SKU level performance across a catalog that size when the blended number looks acceptable.
-
-Three places that leaves room.
-
-First, the long tail of size and fitment queries. Someone searching a specific size in a specific brand has already decided what they need and is choosing on price and availability. That is your best traffic and it is the traffic large accounts serve worst, because it is fragmented and it does not show up as a priority in an aggregate report.
-
-Second, price competitiveness as a targeting input rather than a marketing claim. If the lowest pricing position is real, Merchant Center will show it per product against the benchmark. That is a filter. Concentrate spend on the products where the data says you actually win, and stay out of the auctions where you do not. Most stores never do this, which is why a smaller budget can beat a larger one on those specific products.
-
-Third, patience on the head terms. Bidding on a generic tire query against someone spending a hundred thousand a month is a losing trade for a new account and we would not recommend it in month one, or possibly at all.
-
-What this does not do is beat them on total volume. It should not be sold that way. It wins specific auctions profitably and compounds from there.
-
-### Q3. What would you spend in month one, and why?
-
-Eight to ten thousand, and deliberately concentrated rather than spread.
-
-The reasoning is about data, not reach. Month one on an account with no history is a purchase of information, and the thing that makes it useful or useless is whether any single product group accumulates enough conversions to support a decision at the end of it. Spread eight thousand evenly across thousands of SKUs and every group ends the month with two or three conversions, which tells you nothing and leaves you guessing in month two. Put the same eight thousand behind a narrow slice, your best selling and most price competitive lines, and several groups finish with enough volume to act on. Then the catalog opens up from a position of knowing something.
-
-Below about five thousand the arithmetic stops working on a catalog this size. You can still run, but you are choosing to learn slowly, and month one becomes month three. If that is the constraint, the honest structure is narrower still, a few product lines only, and a longer runway before anyone judges it.
-
-Two things would move that number. A high AOV spread across the range argues for more, because a wider price band needs more data to separate. Thin margins on the lowest priced tires argue for less, because those SKUs may not be worth buying traffic for at all regardless of ROAS.
-
-Also worth setting expectations, month one is not the month to judge this on. Shopping needs conversion history before the bidding gets good, and a new Merchant Center account usually spends its first week or two in review and disapprovals rather than delivery.
-
-### Q4. Share one real store you've run ads for, with actual results.
-
-A Shopify store selling monitor and display hardware. Built from zero last November, no prior account.
-
-Non branded Shopping, the all products campaign: $18,048 spent, 186 conversions, $98,731 in tracked revenue. **5.47x.** That ran from November through the end of August.
-
-The more useful number is what happened when we carved the best selling product line out of that same pool into its own campaign. **8.30x** on $3,889. Same feed, same account, same period, roughly 50% better return purely from letting one line compete on its own budget instead of averaging inside the pool. That is the segmentation argument for a big catalog, measured rather than asserted.
-
-PMax we tested three times against it, landing between 4.27x and 8.58x. We turned the last one off in July when it came in below the Shopping campaigns it was competing against. Worth mentioning because it cuts against how PMax is usually sold. It is not automatically the answer, and on a feed account it needs to earn its budget against a Shopping campaign you can actually see into.
-
-The honest shape of scaling it, since you asked for real numbers. Non branded return started near 11.5x in the first month at under two thousand in spend, and settled around 4.2x by August as we scaled cold traffic spend roughly four times over. That decay is normal and it was still worth doing at that store's order value, but anyone showing you a first month number and implying it holds while you scale is not showing you the whole line.
-
-Branded search in that account runs far higher and we are deliberately not quoting it, because a blended figure carried by people already searching the brand name is not evidence of anything you would be buying.
