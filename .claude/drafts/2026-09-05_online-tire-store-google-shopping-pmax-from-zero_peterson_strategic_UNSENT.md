@@ -254,3 +254,34 @@ What does the AOV spread look like across the range, and do you have margin at t
 
 
 Peterson
+
+---
+
+## SINGLE MILESTONE (added 2026-09-05, 190 chars)
+
+Build from zero: Merchant Center feed live and validated, conversion tracking verified end to end, campaign structure built, and non-brand Shopping running on an agreed slice of the catalog.
+
+**Amount: $1,500.** This is the canonical onboarding fee, one platform, audit included
+(`pricing-reference.md`, current as of 2026-05-25). Not invented to fit the post. Management prices
+itself separately once spend is running: 20% to $30K with a $1,500/mo per-platform minimum, so at
+the $8-10K month one the proposal recommends, the percentage takes over from the minimum.
+
+**The zero-spend milestone blocker does NOT fire here, and it is worth saying why.** The standing
+screen in `reference_no_pricing_instrument_for_zero_spend_milestones` kills fixed-price milestones
+that run before any spend exists. This post is titled "Build **& Run** Ads" and Q3 asks what we
+would spend in month one, so media is running and an ongoing engagement is the buyer's own premise.
+There is no build-and-handoff language and no anti-retainer statement. The build maps cleanly onto
+the onboarding instrument and management attaches to spend behind it. No placeholder needed.
+
+**Two scope choices inside the wording, both deliberate.**
+- **"an agreed slice of the catalog"** is the scope fence. It commits to launching Shopping without
+  committing to the whole SKU range in milestone one, which matches the proposal's own argument that
+  month one should be concentrated rather than spread. It also stops this milestone from silently
+  becoming a thousands-of-SKU obligation.
+- **"validated" and "verified end to end"** rather than "set up." Feed validation and tracking
+  verification are the two places a from-zero build actually fails, and they are checkable, so the
+  milestone has a real completion test rather than an assertion.
+
+**Deliberately NOT in the description:** any bulk catalog data entry across thousands of rows. That
+boundary is stated in the proposal body and must survive into the contract. See the Fitness
+Superstore churn reason in SCOPE RISK above.
