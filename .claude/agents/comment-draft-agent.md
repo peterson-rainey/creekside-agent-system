@@ -548,19 +548,25 @@ After presenting output, log this run for future duplicate detection and perform
 INSERT INTO comment_draft_log (
   platform, post_description, post_url,
   source_records_used, comment_type_generated,
-  engage_skip_verdict, created_at
+  engage_skip_verdict, name_drop, comment_text,
+  thread_title, created_at
 ) VALUES (
   '{platform}',
   '{first 200 chars of post}',
   '{post_url_if_provided}',
   ARRAY['{source_table:record_id}', ...],
-  ARRAY['short', 'medium', 'contrarian'],
+  ARRAY['lightweight', 'standard', 'substantial'],
   'engage',
+  {true/false -- whether Creekside was mentioned in any option},
+  '{the generated comment text, all options concatenated with --- separator}',
+  '{thread title if available, else NULL}',
   NOW()
 );
 ```
 
-If the table does not exist yet, skip logging silently. Do not error out.
+The `posted_at`, `posted_by`, `option_chosen`, and `subreddit` columns stay NULL at draft time. They are updated in Step 7.5 when the VA confirms posting.
+
+If the table does not exist, skip logging silently. Do not error out.
 
 ---
 
