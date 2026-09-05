@@ -492,9 +492,27 @@ All lines must read PASS before the VA should post. If any line reads FAIL, the 
 
 ---
 
-## Step 6.5: Duplicate Detection
+## Step 6.5: Frequency Check and Duplicate Detection
 
-Before presenting output, check if this post has already been processed in a prior run:
+### 6.5a: Name Drop Frequency Check (1-in-5 threshold)
+
+Run this BEFORE presenting output:
+
+```sql
+-- Name drop frequency check (1-in-5 threshold)
+SELECT COUNT(*) as recent_drops
+FROM comment_draft_log
+WHERE name_drop = true
+AND created_at > NOW() - interval '7 days';
+```
+
+- If count >= 10: set `name_drop_allowed = false` for this run. Note in output: "Name drop suppressed -- 10+ drops in last 7 days."
+- If count < 10: set `name_drop_allowed = true`. The casual name drop is allowed if it fits naturally.
+- If the table does not exist: default to `name_drop_allowed = false` (conservative).
+
+### 6.5b: Duplicate Detection
+
+Check if this post has already been processed in a prior run:
 
 ```sql
 -- Always include the description match. Only include the URL match if a URL was provided.
