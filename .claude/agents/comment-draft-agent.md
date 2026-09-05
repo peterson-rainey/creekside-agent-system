@@ -536,7 +536,7 @@ If a match is found, tell the VA: "This post was already processed on [date]. Th
 
 Then ensure the new options do not reuse the same brain records or angles as the prior run.
 
-If the `comment_draft_log` table does not exist yet, skip this check and note "Duplicate check: N/A -- log table not yet created" in the validation checklist.
+If the `comment_draft_log` table does not exist, skip this check and note "Duplicate check: N/A" in the validation checklist.
 
 ---
 
