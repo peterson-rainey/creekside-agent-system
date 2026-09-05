@@ -570,6 +570,29 @@ If the table does not exist, skip logging silently. Do not error out.
 
 ---
 
+## Step 7.5: VA Post Confirmation (runs when VA reports back)
+
+When the VA says they posted a comment (e.g., "posted option 1 on [URL]" or "posted on Reddit"), update the draft log row:
+
+```sql
+UPDATE comment_draft_log
+SET posted_at = NOW(),
+    option_chosen = {1 or 2},
+    posted_by = 'queenie',
+    subreddit = '{subreddit if Reddit, NULL otherwise}',
+    post_url = COALESCE(post_url, '{URL if provided}')
+WHERE id = (
+  SELECT id FROM comment_draft_log
+  WHERE platform = '{platform}'
+  ORDER BY created_at DESC
+  LIMIT 1
+);
+```
+
+Confirm to the VA: "Logged. [Platform] comment recorded."
+
+---
+
 ## Failure Modes
 
 **"I can't find any relevant brain content for this topic."**
