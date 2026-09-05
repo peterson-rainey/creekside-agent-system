@@ -58,6 +58,6 @@ There is a short video on my profile covering how I work an account like this on
 
 **Deliberate omissions:** no URLs, no calendar link (first touch on a job post), no attachment sent, no sign-off name, no em dashes, no certification claims. "QUALIFIED LEADS" is the first line as instructed.
 
-**Length:** 4,214 characters. Under the 5,000-character Upwork ceiling.
+**Length:** 4,205 characters. Under the 5,000-character Upwork ceiling.
 
 **Duplicate check.** Before sending, confirm the Samuel profile is not bidding this same posting.
