@@ -10,10 +10,10 @@ Status: UNSENT | Drafted 2026-09-06 | Companion to innscope-modular-gaming-stati
 - No guarantees anywhere (their explicit instruction).
 
 ## Verified figures used
-- Master Spa Parts (Meta, churned): 9/5/25-5/26/26, $127,571.54 spend, 4,413 purchases, $28.91 CPA,
-  1.89% click-to-purchase, ~$708,108 revenue, ~5.5x blended ROAS. CPM $8.70.
+- Master Spa Parts (Meta, churned): 9/5/25-5/26/26, $127,571.54 spend, 4,410 conversions, $28.93 CPA,
+  1.89% click-to-conversion, ~$708,108 revenue, ~5.5x blended ROAS. CPM $8.70.
   NOTE: 6.56x is the roas-covered-rows artifact and is NOT citable. Blended over total spend = 5.55x.
-- Blush Camera (Meta, churned): 2/2/26-6/15/26, $58,298.09, 623 purchases, $93.58 CPA, CPM $19.51, CTR 2.12%.
+- Blush Camera (Meta, churned): 2/2/26-6/15/26, $58,298.09, 623 conversions, $93.58 CPA, CPM $19.51, CTR 2.12%.
   Retarget ~$71 vs cold ~$93. ROAS coverage only 250/658 rows -> ROAS NOT citable.
 - Neue Maison (Meta, churned): tenure window 4/10/26-8/10/26 ONLY, $105,010.24, 343 conv, $306.15 CPA, CPM $51.33.
 - Verified consumer-product Meta CPM band: $8.70 (Master Spa) to $51.33 (Neue Maison); Blush $19.51, Myriad $34.97.
@@ -24,23 +24,23 @@ Status: UNSENT | Drafted 2026-09-06 | Companion to innscope-modular-gaming-stati
 
 Straight on role first, because the question asks for it. These are Creekside accounts, not solo freelance work. My seat is strategy, account structure, offer and measurement design, and I set the testing plan and read the results. Lindsey B. is the platform operator doing the day to day buying, Cade runs account management. Six years in paid acquisition. If this became a management engagement, that is the same shape you would get, and Lindsey would be the person in your account daily.
 
-Spa and hot tub replacement parts, Meta, nine months. Ecommerce, mid-AOV, roughly $160 average order. Took it from a shallow-event setup into a purchase-optimized structure with catalog and retargeting layers underneath prospecting. $127,571 spent, 4,413 purchases, $28.91 per purchase, about 5.5x blended return.
+A US replacement parts ecommerce brand, Meta, nine months of data. Mid-basket, roughly $161 of revenue per conversion. Moved it off a fragmented shallow-event setup into a purchase-optimized structure with catalog and retargeting layers sitting underneath prospecting. About $128,000 spent, roughly 4,400 conversions at about $29 each, and about 5.5x blended return.
 
-Consumer camera hardware, Meta, February to June this year. This is the closest thing in our book to your category. Physical consumer electronics, social-native buyer, real purchase tracking rather than proxy events. $58,298 spent, 623 purchases at $93.58. Retargeting landed near $71 against roughly $93 on cold traffic, which is the number that mattered for planning because it told us how much of the result was demand we had created versus demand we were recapturing.
+Consumer camera hardware, Meta, February to June this year. This is the closest thing in our book to your category. Physical consumer electronics, social-native buyer, real purchase tracking rather than proxy events. $58,298 spent, 623 conversions at $93.58. Retargeting landed near $71 against roughly $93 on cold traffic, which is the number that mattered for planning because it told us how much of the result was demand we had created versus demand we were recapturing.
 
-Luxury furniture DTC, Meta. Relevant to you because it is a considered purchase with a real price tag, not an impulse buy. Over our tenure window, $105,010 spent, 343 purchases at $306 each, with CPM climbing from the low forties into the high seventies over four months, which is the cost-inflation pattern you should expect to plan around rather than be surprised by.
+Luxury furniture DTC, Meta. Relevant to you because it is a considered purchase with a real price tag, not an impulse buy. Over our tenure window, $105,010 spent, 343 conversions at $306 each, with CPM climbing from the low forties into the high seventies over four months, which is the cost-inflation pattern you should expect to plan around rather than be surprised by.
 
 What I do not have: gaming hardware, handheld, or a crowdfunding launch. No modular consumer electronics. Our consumer electronics ecommerce account runs on Google, not Meta. Saying that plainly now rather than after you have paid for a plan.
 
 ## 2. Full metric set for one campaign
 
-Spa and hot tub replacement parts account, Meta, the numbers above broken out.
+The replacement parts account, Meta, broken out.
 
-Ad spend: $127,571.54. Campaign length: 9 September 2025 to 26 May 2026, about nine months, 256 active spend days. Conversions: 4,413 purchases. There is no separate lead or CPL figure because this was a direct purchase funnel with no lead step, so CPL and CAC collapse into one number. Cost per purchase: $28.91. Conversion rate: 1.89% click to purchase across 233,859 clicks. Revenue: roughly $708,000. Blended return on ad spend: about 5.5x measured against total account spend. Average order value: roughly $160. CPM: $8.70, which is low and specific to that category, not a number I would promise you.
+Ad spend: $127,571. Campaign length: 5 September 2025 to 26 May 2026, nine months of data across 256 active spend days. Conversions: 4,410. There is no separate lead or CPL figure, because this was a direct purchase funnel with no lead step, so CPL and CAC collapse into the same number here. Cost per conversion: $28.93. Conversion rate: 1.89% click to conversion across 233,859 clicks. Revenue: roughly $708,000. Blended return on ad spend: about 5.5x, measured against total account spend. Revenue per conversion: about $161. CPM: $8.70, which is low and specific to that category, and not a number I would promise you.
 
-One honest caveat on that 5.5x. If you only average the days where the platform reported revenue, the same account reads 6.56x. That version quietly excludes about $19,600 of spend while keeping essentially every conversion, so it flatters the ratio. 5.5x is revenue divided by every dollar the account spent. Expect me to give you numbers the second way.
+One honest caveat on that 5.5x. If you weight only the days where the platform reported revenue, the same account reads about 6.6x. That version quietly drops roughly $20,000 of spend while keeping essentially every conversion, so it flatters the ratio by close to a fifth. The 5.5x is revenue divided by every dollar the account spent. Expect me to hand you numbers the second way, including when the second way looks worse.
 
-My role on it: structure, the event ladder decision that moved it off shallow optimization, testing cadence, and reporting. Lindsey B. executed in-platform.
+My role on it: structure, the event ladder decision that moved it off shallow optimization, testing cadence, and reporting. Lindsey B. executed in platform.
 
 ## 3. Max allowable CPL and CAC at a $249 to $299 price, and the scaling gates
 
