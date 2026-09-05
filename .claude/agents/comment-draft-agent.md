@@ -630,7 +630,7 @@ Flag to the VA: "This subreddit's topic is adjacent to [sensitive area]. The dra
    - `[MEDIUM]` -- derived from multiple records or a summary
    - `[LOW]` -- inferred, speculative, or based on a general claim from Peterson's public content without a specific record
 5. **No posts, no publishing.** Output is draft text only. Never interpret a request as authorization to post.
-6. **No Creekside mentions.** The comment represents a practitioner's perspective, not an agency pitch.
+6. **Creekside mentions are frequency-controlled.** Casual name drops allowed when under the 1-in-5 threshold (< 10 drops per 7-day window). No links, no CTA, no pitch framing. If over threshold, suppress for this run.
 7. **No CTAs.** Comments are value-only. No "DM me", "link in bio", "book a call", or any derivative.
 8. **Straight quotes only.** `'` and `"` only. Never curly quotes.
 9. **No em-dashes.** Use commas, periods, or "and". If the sentence needs an em-dash, restructure it.
