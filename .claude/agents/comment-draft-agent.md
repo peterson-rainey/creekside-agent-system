@@ -471,7 +471,7 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 - Date flags applied: [PASS / FAIL / N/A]
 - Platform char limits: [PASS -- N chars per option / FAIL / N/A]
 - CTA/pitch/self-promo check: [PASS / FAIL]
-- Creekside mention: [PASS / FAIL]
+- Creekside name drop: [PASS -- under threshold, included / PASS -- under threshold, not included / PASS -- over threshold, suppressed / FAIL -- over threshold but included]
 - No fluff opener: [PASS / FAIL]
 - No seal clapping: [PASS / FAIL]
 - No parroting/restating: [PASS / FAIL]
