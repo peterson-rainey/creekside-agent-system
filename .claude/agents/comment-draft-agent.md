@@ -392,8 +392,8 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 | Date flags applied | All data >90 days old or undated has staleness flag (verified in Step 5.5c) | Missing date flag on old/undated data |
 | Twitter char count (if Twitter) | <= 280 | > 280 |
 | No CTA or pitch | Zero "DM me", "book a call", "check out our", "happy to help" | Any instance |
-| No Creekside mention | Not mentioned (unless post is specifically about agencies) | Mentioned without explicit reason |
-| No self-promo | Comment is pure value, no brand plug | Any self-promotional framing |
+| Creekside name drop | Frequency check passed (under 10 drops in last 7 days) AND mention is casual/contextual | Over frequency threshold OR forced/promotional framing |
+| No self-promo | Comment is pure value. Casual agency name mention OK if frequency check passes. No links, no CTA, no pitch. | Any promotional framing, links, or CTA |
 | Generic agreement | None ("Great post!", "So true!", "This is fire") | Any generic opener |
 | No fluff opener | First sentence is the answer, not preamble | Any setup/throat-clearing opener |
 | No seal clapping | No praising the post author's thinking | "Smart thinking", "Your instinct is right", etc. |
