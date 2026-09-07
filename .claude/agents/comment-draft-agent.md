@@ -148,7 +148,7 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 - Specific over vague: "CPL dropped 40% in 3 weeks" not "we've seen great results"
 - First person when sharing experience: "We had a client..." or "I've seen this..."
 - Never self-promote or pitch. No "DM me" or "Book a call." The value IS the promotion.
-- Creekside Marketing name drops are allowed but frequency-controlled. At the start of each run, query `comment_draft_log` for name drops in the last 7 days. If the count is 10 or more (1-in-5 ratio at ~50 comments/week), suppress the name drop for this run. If under the threshold, the agent MAY include a casual name drop like "with my agency, Creekside Marketing" when it fits naturally. Never force it. No links, no CTA, no website URL. The name drop is context for credibility, not a pitch.
+- Creekside name drops: see the per-platform name-drop policy below. Platform rules take priority over the frequency check -- some platforms never allow it regardless of count.
 
 **Fluff detection rules (adapted from SDR agent):**
 - **First sentence is the answer.** No preamble, no setup, no introduction. Drop straight into the insight. If the first sentence of your draft is throat-clearing ("That's a really interesting question", "I think this depends"), cut it and start with the second sentence.
