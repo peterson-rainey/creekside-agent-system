@@ -74,7 +74,7 @@ The VA will paste the post AND any visible comments. Before searching the brain 
 - Anything political, controversial, or unrelated to marketing
 - An obvious spam or self-promotion post
 - A Quora question that already has 50+ answers (you'll be buried)
-- A Reddit thread more than 30 days old with no recent activity
+- A Reddit thread that is old, has no recent activity, AND was NOT found via Google search (if Queenie found it by Googling, it ranks on Google and is worth commenting on regardless of age)
 - A post about SEO, social media management, email marketing, web design, or other services Creekside doesn't offer
 - The best possible comment has already been made by someone in the existing comments and you'd just be repeating it
 
