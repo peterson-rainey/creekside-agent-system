@@ -401,7 +401,7 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 
 | Check | Pass | Fail |
 |-------|------|------|
-| Em-dashes | Zero `—` | Any instance |
+| Em-dashes / double hyphens | Zero `—` (em-dash) AND zero `--` (double hyphen) in comment text | Any instance of either in generated comment text |
 | Curly quotes | Zero | Any instance |
 | Corporate vocabulary | None of the banned words list (leverage, synergy, etc.) | Any hit |
 | Banned phrases | None of the banned phrases list ("I'd be happy to", etc.) | Any hit |
