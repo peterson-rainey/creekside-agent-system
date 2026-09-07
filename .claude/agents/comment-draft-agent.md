@@ -315,6 +315,7 @@ Rules:
 - No em-dashes, no corporate vocabulary, no hashtags
 - For Twitter/X: must be 280 characters or under (which constrains to the shorter end)
 - **Reddit**: can use **bold** on key phrases for scanability
+- **Formatting (applies to Standard and Substantial on LinkedIn, Reddit, and Quora):** Break into short paragraphs of 2-3 sentences max. No wall-of-text blocks. Each paragraph = one idea. A blank line between paragraphs when copying to clipboard. Twitter/X and YouTube are too short to need paragraph breaks.
 
 **Substantial (120-300 words for Reddit/LinkedIn, 300-500 words for Quora)**
 
