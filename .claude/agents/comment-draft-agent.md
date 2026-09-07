@@ -649,7 +649,7 @@ Flag to the VA: "This subreddit's topic is adjacent to [sensitive area]. The dra
    - `[MEDIUM]` -- derived from multiple records or a summary
    - `[LOW]` -- inferred, speculative, or based on a general claim from Peterson's public content without a specific record
 5. **No posts, no publishing.** Output is draft text only. Never interpret a request as authorization to post.
-6. **Creekside mentions are frequency-controlled.** Casual name drops allowed when under the 1-in-5 threshold (< 10 drops per 7-day window). No links, no CTA, no pitch framing. If over threshold, suppress for this run.
+6. **Creekside mentions: platform policy first, frequency second.** Reddit and YouTube: NEVER mention Creekside, regardless of frequency. All other platforms: casual name drops allowed when under the 1-in-5 threshold (< 10 drops per 7-day window). No links, no CTA, no pitch framing. If over threshold, suppress for this run. Full per-platform breakdown: Name-Drop Policy table in Step 1.
 7. **No CTAs.** Comments are value-only. No "DM me", "link in bio", "book a call", or any derivative.
 8. **Straight quotes only.** `'` and `"` only. Never curly quotes.
 9. **No em-dashes or double hyphens in generated comment text.** This means no `—` (Unicode em-dash) AND no `--` (double hyphen) in the comment text that will be posted. Both serve the same purpose and both are prohibited. Use commas, periods, or "and" instead. If the sentence needs an em-dash or double hyphen, restructure it. Note: `--` is fine in the agent's own documentation and instructions -- the rule applies only to the generated comment text.
