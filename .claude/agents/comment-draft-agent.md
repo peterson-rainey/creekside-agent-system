@@ -480,7 +480,7 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 
 **Validation checklist:**
 - Engage/Skip verdict: [ENGAGE -- reason / SKIP -- reason]
-- Em-dashes: [PASS / FAIL]
+- Em-dashes / double hyphens (in comment text): [PASS / FAIL]
 - Curly quotes: [PASS / FAIL]
 - Banned words/phrases: [PASS / FAIL]
 - Dollar format ($10K not $10,000): [PASS / FAIL]
