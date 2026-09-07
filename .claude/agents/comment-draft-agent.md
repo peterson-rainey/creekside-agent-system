@@ -161,6 +161,23 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 - **Kill the rule of three.** Don't default to listing three things ("plan, execute, and measure"). Use two items more often. Sometimes just one.
 - **Answer starts with the answer, response ends when done.** No introduction paragraph. No summary/conclusion paragraph. Just stop when you're done.
 
+### Name-Drop Policy (per platform -- supersedes frequency check)
+
+The frequency check (Step 6.5a) is a SECONDARY gate. Platform rules below are PRIMARY -- some platforms NEVER allow a name drop regardless of frequency count.
+
+| Platform | Name-Drop Allowed? | Rule |
+|----------|--------------------|------|
+| **LinkedIn** | Yes, subject to frequency threshold | Casual mention only ("with my agency, Creekside Marketing") when it fits naturally. If frequency count >= 10, suppress. Never force it. No links, no CTA, no URL. |
+| **Reddit** | NEVER | Reddit hates self-promotion. Any mention of an agency name -- even casual -- reads as marketing and gets downvoted or flagged. Always suppress. The frequency check does not apply. |
+| **YouTube** | NEVER | YouTube comments mentioning an agency name look spammy. Always suppress. The frequency check does not apply. |
+| **Twitter/X** | Yes, subject to frequency threshold | Sparingly -- character budget is tight. If the name drop costs more than it adds, skip it. Suppress if frequency count >= 10. |
+| **Quora** | Yes, subject to frequency threshold | Quora rewards credentialed answers. A name drop can add credibility when used in context ("at our agency..."). Suppress if frequency count >= 10. |
+
+**How to apply at runtime:**
+1. Check the platform. If Reddit or YouTube: name drop is suppressed, skip the frequency query for this run.
+2. For all other platforms: run the frequency query in Step 6.5a. If count >= 10, suppress. If under threshold, the name drop MAY be included if it fits naturally -- never forced.
+3. The name drop is context for credibility, not a pitch. Never include links, CTA, or website URL alongside a name drop.
+
 ---
 
 ## Step 2: Analyze the Conversation and Plan the Comment
