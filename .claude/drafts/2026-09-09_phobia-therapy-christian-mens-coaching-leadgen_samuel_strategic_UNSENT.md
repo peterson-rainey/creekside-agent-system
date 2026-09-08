@@ -18,12 +18,9 @@ So the lever is not targeting. It is creative that lets the right person self id
 
 First thing I would build is separate structures per niche with separate conversion actions, so the reporting can answer which niche is carrying the account. Run both through one funnel against one blended cost per lead and that answer stays hidden exactly when you need it.
 
-On proof, straight: we have no therapy or counseling client and no faith based client, so I am not going to claim niche experience we do not have. Our team does run Meta for a coaching certification company on a recurring weekly webinar funnel, which is the same shape as a men's cohort program. The closest appointment based analog is a health practice we run Google for, at $39.28 per conversion across 569 conversions over the last twelve months on under $2,000 a month.
+On proof, straight: we have no therapy or counseling client and no faith based client, so I am not going to claim niche experience we do not have. Our team does run Meta for a coaching certification company on a recurring weekly webinar funnel, which is the same shape as a men's cohort program. The closest appointment based analog is a health practice we run Google for, and I have attached it. It leads with the best keyword CPA, the way case studies do. The number I would hold myself to is the blended one, $39.28 per conversion across 569 conversions over the last twelve months.
 
 Two things before this could be sized properly. Roughly what range is current monthly ad spend across the two niches, and which countries are you advertising in?
-
-
-Samuel
 
 ---
 
@@ -45,6 +42,32 @@ Samuel
 - **Integrity's case-study figures** ("$14-$40 CPA", "150+ conversions on $2,350/month"). Live recompute gives $39.28 blended on ~$1,863/mo. Used the live number.
 - **Dr. Laleh, Polaris, Join Piper, Root Hair, Advanced Med Spa.** Healthcare but not appointment-practice analogs at this budget, and each carries its own flagged caveats.
 - **Any calendar link.** First-touch proposal, URL ban applies.
+- **The Adventures in Wisdom case study PDF.** See attachment ruling below.
+- **A name sign-off.** Draft ends on the closing question, per the 2026-09-04 ruling reaffirmed 2026-09-09.
+
+## ATTACHMENT RULING (PDFs opened and read 2026-09-09)
+
+**ATTACH: Integrity Naturopathic.** File id `1x5jAh7fB8S_kcPSdmeLsdiCj8rNV8iwX`. Curl returns a real
+755KB PDF (%PDF magic bytes), 3 pages, rendered and read. Creekside Marketing branded footer, **no Samuel
+byline**, so it clears the byline screen. Contents: "$14-$40 CPA" headline, $14 best CPA, 150+ total
+conversions, 18.6% top keyword CTR, $2,350 monthly budget, Sacramento CA, Dr. Jamie Brinkley. Page 3
+keyword table: holistic doctor near me $15.99, women's hormone doctors $17.61, medical wellness $35.79.
+
+**It conflicts with the draft's number, and the draft was rewritten to absorb that.** The PDF leads with
+a $14 best-case CPA; live blended is $39.28. Earlier wording also said "under $2,000 a month" against the
+PDF's "$2,350 MONTHLY BUDGET" (spend vs budget, but it reads as a contradiction). The monthly figure is
+now cut, and the body names the gap outright: the study leads with the best keyword CPA, the number held
+to is the blended one. That turns the discrepancy into the proposal's own thesis about blended metrics.
+
+**DO NOT ATTACH: Adventures in Wisdom.** Two independent reasons.
+1. Its canonical `case_studies.download_url` (`1qoW2YJOCD...`) is **not a PDF** — curl returns 907KB of
+   `text/html`, a Drive sign-in wall. Only the duplicate `1Q4IAix0Gc81lnfeWvRlMJYHwTijeIw-h` is a real PDF.
+2. The real PDF is stamped "LAST REVIEWED ON 1/6/2025" and is built entirely on the CPA-improvement story
+   (starting point Jan 2025 $10,503 / 41 apps / **$256 CPA**). The account today blends $110-$162. Attaching
+   it would smuggle in exactly the numbers the standing rule withholds, and it would not survive follow-up.
+
+*Corroboration for a known data defect:* the AIW PDF states scope as **"Meta-Only"**, confirming the
+`case_studies` row's `platforms: ["Google Ads","Meta Ads"]` is wrong. Still needs an admin fix.
 
 ## SCREENS RUN
 
@@ -60,4 +83,4 @@ Samuel
 | **Payment verification** | **NOT CHECKED.** No job URL supplied |
 | Landing page / CRO | **FLAG, not a DQ.** "Setting up funnels" is named first and "improving conversion rates" is in required experience, but no landing page *build* is named and the post carries zero screening questions, so the two-CRO-gated-questions line cannot fire. Draft handles it as campaign-funnel structure and claims no conversion-rate-lift results |
 
-**Length:** 373 words / 2,203 characters (Upwork limit 5,000; strategic ceiling 400)
+**Length:** 394 words / 2,304 characters (Upwork limit 5,000; strategic ceiling 400)
