@@ -21,13 +21,13 @@ Email, I built a DTC flow set from scratch: four email welcome with purchase exc
 
 WHAT I DO NOT HAVE
 
-No artist, gallery, print or collectibles client anywhere in our book, and no case study in the category. My nearest neighbours are visually driven consumer brands.
+No artist, gallery, print or collectibles client in our book, and no case study in the category. My nearest neighbours are visually driven consumer brands.
 
 No campaign built around a drop or limited release. I have the launch mechanics from my own business and from email, not from a paid release calendar I can point you to.
 
 No Squarespace experience, mine or the team's. Worth knowing beyond the learning curve: Squarespace Email Campaigns does not do the purchase exclusion, segmentation or flow branching the rest of this depends on. It is fine for a welcome sequence and drop announcements. Real collector and post purchase segmentation is a Klaviyo conversation, and the migration is not free.
 
-I also have email performance numbers for nobody. Six live email clients, flows built and shipped, no attributable revenue figure I would defend.
+I have email performance numbers for nobody. Six live email clients, flows built and shipped, no attributable revenue figure I would defend.
 
 FIRST 30 TO 60 DAYS
 
@@ -45,7 +45,7 @@ We bill a percentage of ad spend rather than an hourly rate, so I cannot answer 
 
 That makes your ad budget the deciding number. Under roughly $5,000 a month a percentage will not clear a workable fee for either of us. So, what can you put behind ads monthly, and where do your buyers actually sit geographically?
 
-I attached a few relevant results below, and there is a short video on my profile covering how I work an account like this.
+Those are the relevant numbers I have rather than a deck, and there is a short video on my profile covering how I work an account like this.
 
 ---
 
@@ -82,6 +82,8 @@ I attached a few relevant results below, and there is a short video on my profil
 
 **Scope fit is roughly half.** Paid social is proven ground. Email is a real service line with a real build and no numbers. Squarespace, drops, and Google-as-Lindsey are zeros or belong to someone else.
 
-**Deliberate omissions:** no URLs, no calendar link (first touch on a job post), no contact info, no attachment promised (no art-vertical PDF exists and Samuel-bylined PDFs would leak a byline mismatch on a Lindsey bid), no sign-off name, no em dashes, no hourly rate.
+**Attachment: NONE, and the promise was removed.** The style template's default closing ("I attached a few relevant results below") was cut, because no attachable artifact exists for this bid and promising one we cannot send is worse than sending none. Checked every candidate: neither account cited in the body has a usable PDF (Neue Maison has no `case_studies` row at all; `Blush_Camera.pdf` exists in Drive but is already ruled DO-NOT-ATTACH on four verified defects, including a revenue headline that falls below 1.0x against real account spend and manus.im print-to-PDF artifacts). Of the remaining e-commerce PDFs, `aura_displays.pdf` is Google-only against a Meta and email pitch, and `fitness_superstore.pdf` carries an unbacked 40x claim with zero data rows. The food PDFs are off-vertical. Closing now points at the numbers already stated in the body and keeps the required profile-video reference.
+
+**Deliberate omissions:** no URLs, no calendar link (first touch on a job post), no contact info, no sign-off name, no em dashes, no hourly rate.
 
 **Length:** 4,990 characters, inside the 5,000 limit.
