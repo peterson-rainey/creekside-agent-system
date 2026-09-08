@@ -67,7 +67,7 @@ A Loom script is included below so recording is a read-aloud, not a design task.
    on this job (third-ever middle-band override). Confirming the override still stands.
 
 ---
-## PROPOSAL (4,412 characters)
+## PROPOSAL (4,221 characters, under the 5,000 limit)
 
 The gate you set is the part worth looking at first. Scaling past $5,000 once a funnel proves repeatable is the
 right instinct, and $1,500 a month is about $50 a day, which is where that plan meets Meta's math. A remodeling
