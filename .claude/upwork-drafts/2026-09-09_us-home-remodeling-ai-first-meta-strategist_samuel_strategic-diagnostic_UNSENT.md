@@ -148,3 +148,29 @@ only the fetching, the checking and the flagging. Overclaiming here is easy and 
 
 **Do NOT say on camera:** any Google Partner or certification claim, any Meta remodeling result, the gutter
 account's cost per lead, or a fee figure.
+
+---
+## ATTACHMENTS (verified by magic bytes 2026-09-09, not by HTTP status)
+
+**RECOMMENDED: UrCovered Construction only.** `1onNdpUyrXBZaKw3soT2yOuD4Ah3SSiNU`, real PDF, 746,801 bytes.
+Custom homes and barndominiums, TN. 15 to 60 leads/mo, CPL $454 to $239. Closest match on the axis that
+matters: high-ticket residential construction sold to homeowners, with a real before/after arc. The proposal
+body ALREADY cites $454 to $239 and ALREADY says the result is Google side, so the attachment corroborates a
+claim already made and disclosed. **Do not attach it if that disclosure sentence is ever cut** or it reads as
+Meta proof on a Meta-only post.
+
+**Available but NOT recommended:**
+- Perfect Parking Asphalt (real PDF, 786,739 b) - its headline $127 CPL fails live verification, and commercial
+  asphalt is the wrong buyer. Attaching a PDF whose number we cannot stand behind is a liability.
+- Central Florida Awnings (real PDF, 615,693 b) - the only Google+Meta home-services row, but it carries NO
+  outcome metric. An attachment with no result invites "so what happened".
+- Green Shield Pest (real PDF, 764,434 b) - Google only, recurring low-ticket service, wrong shape for
+  high-ticket remodeling. White-label origin bars it only back to Track Digital, so it is fine here on that
+  count alone.
+
+**CANNOT ATTACH, newly confirmed broken:**
+- Landmark Lawn & Landscaping and LawnValue both return HTTP 200 and ~900KB, and both are Google Drive
+  **HTML sign-in pages**, not PDFs. Numbers stay quotable in body copy; there is no artifact behind them.
+
+**No PDF exists for TX Gutter Expert or Fusion Dental.** Both are live/churned accounts, not `case_studies`
+rows, so they are body-copy citations only. There is no Meta remodeling artifact of any kind.
