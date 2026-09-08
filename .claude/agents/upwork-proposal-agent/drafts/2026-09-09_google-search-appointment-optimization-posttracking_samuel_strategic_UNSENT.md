@@ -71,6 +71,19 @@ What monthly spend range are you working with right now, under $5K, $5K to $10K,
 2. **Geo is unstated.** The US/CA/UK/AU screen is unresolved. Wix + GA4/GTM gives no geo signal.
 3. **Vertical is unstated.** Deliberately not guessed. Dropped the second question to keep the close to one ask, so this stays open until they reply.
 
+## MILESTONE (single)
+
+Google Search optimization: search term and negative keyword cleanup, match type and bid restructure, qualified-booking feedback loop so bidding targets kept appointments, ad and landing page tests.
+
+**198 characters.** Under the 200-char ceiling.
+
+Scope notes: no fee, percentage or hourly figure in the milestone, per the never-bill-hourly rule
+and the first-touch no-pricing rule. Management pricing stays a percentage of ad spend and is not
+quotable until they answer the spend question. Covers their own six scope bullets and carries the
+proposal's differentiator (the qualified-booking feedback loop) rather than restating their list.
+Landing page work is scoped as TESTING only, consistent with the draft body and with the standing
+zero-CRO-case-study position.
+
 ## ATTACHMENT DECISION (2026-09-09, both PDFs read in full via Drive metadata)
 
 **ATTACH: `winterbotham_parham_teeple.pdf`** (`18tz_I0lKY_ULzLG8NlspLfSg1H3bqFtv`, 794KB, resolves).
