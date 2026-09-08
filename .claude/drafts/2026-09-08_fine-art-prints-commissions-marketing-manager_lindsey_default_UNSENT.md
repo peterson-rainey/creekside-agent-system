@@ -3,49 +3,31 @@ Profile: Lindsey | Style: lindsey_default | Status: UNSENT | Drafted 2026-09-08
 
 ---
 
-What share of your revenue comes from prints versus originals and commissions? That split decides most of how the paid side gets built. A $60 print and a $4,000 commission are not one funnel with two price points. Meta's purchase optimization learns from volume, so with both in one campaign the algorithm chases the cheapest transaction it can find and stops showing your work to the people who buy the expensive things. Value based bidding with a minimum ROAS floor pushes back on that and I would test it, but at commission volumes the collector side usually runs as lead capture, closed by email or by you.
+What share of your revenue comes from prints versus originals and commissions? That split decides most of how the paid side gets built. A $60 print and a $4,000 commission are not one funnel with two price points. Meta's purchase optimization learns from volume, so with both in one campaign the algorithm chases the cheapest transaction it can find and stops showing your work to the people who buy the expensive things. The collector side usually has to run as lead capture, closed by email or by you.
 
-I ask because a large following is not one audience. A 75 percent video viewer is nothing like someone who once liked a post, and the warm pool that looks free is finite.
-
-On drops, the ad does not sell a limited edition. The list does. Pre release runs as two stages: cold video views to build a viewing audience, then a lead objective pulling those viewers onto the waitlist. Sales objectives on release day mostly pay to reach people who were already buying, and edition size caps revenue regardless. The step most people skip is the sellout segment. Everyone who missed the last edition is the warmest audience you will ever have for the next one, and that list gets built the day a release ends.
-
-One more thing early, how provenance shows up on the page. Edition numbering, certificate of authenticity, signature, run remaining. On limited and original work those are conversion levers, not admin, and they move the collector funnel more than audience changes do.
+On drops, the ad does not sell a limited edition. The list does. Pre release should buy video views and waitlist signups as two separate stages rather than sales, because edition size caps revenue on release day regardless. The step most people skip is the sellout segment. Everyone who missed the last edition is the warmest audience you will ever have for the next one. I would also look at how provenance shows up on the page, edition numbering, certificate of authenticity, run remaining. On original work those are conversion levers, not admin.
 
 WHAT I HAVE RUN
 
 Meta and email are my platforms. I built and sold my own e-commerce business, and have run paid social and email for others for over ten years.
 
-Closest in shape to yours, a social native camera brand with a young, heavily online audience. Four and a half months on Meta: $58,298, 623 purchases, $93.58 blended. In the final three weeks warm retargeting bought at $87.61 against $102.14 cold. Real, but not the ten to one gap people expect. That engagement has ended.
+A social native camera brand with a young, heavily online audience, four and a half months on Meta: $58,298, 623 purchases, $93.58 blended. In the final three weeks warm retargeting bought at $87.61 against $102.14 cold. Real, but not the ten to one gap people expect. Closer to your originals on price, a premium furniture brand held cost per purchase at $334 then $313 while CPM went from $34.94 to $78.88. Both of those engagements have ended.
 
-Closer to your originals on price, a premium furniture brand I ran until August: $105,010 over four months, 343 purchases at $306. Cost per purchase sat at $334 in month one and $313 in month four while CPM went from $34.94 to $78.88. That is the job at your price point, holding cost per sale steady while the auction gets more expensive.
-
-Email, I built a DTC flow set from scratch, welcome plus abandoned checkout and cart, purchase exclusion throughout. The detail that mattered most was not a flow. Onsite tracking was returning zero Added to Cart events, so the cart sequence would have fired on nobody.
+I built a DTC email flow set from scratch, where the detail that mattered most was not a flow. Onsite tracking was returning zero Added to Cart events, so the cart sequence would have fired on nobody.
 
 WHAT I DO NOT HAVE
 
-No artist, gallery, print or collectibles client in our book, and no case study in the category. My nearest neighbours are visually driven consumer brands.
-
-No campaign built around a drop or limited release. Those mechanics come from my own business and from email, not a paid release calendar I can point to.
-
-No Squarespace experience, mine or the team's. So a question rather than a claim: does your setup do purchase exclusion and branching flows? A welcome sequence and drop announcements sit inside Email Campaigns comfortably. If collector and post purchase segmentation will not, this becomes a Klaviyo conversation worth pricing before you commit.
-
-Six live email clients, no attributable revenue figure I would defend.
+No artist, gallery, print or collectibles client, and no case study in the category. No campaign built around a drop or limited release. No Squarespace experience, mine or the team's, so a question rather than a claim: does your setup do purchase exclusion and branching flows? If not, this becomes a Klaviyo conversation worth pricing before you commit.
 
 FIRST 30 TO 60 DAYS
 
-Week one, measurement. Pixel and CAPI with deduplication, GA4, and a purchase event carrying real order value so a print and an original are not the same sale. Then audit what the organic audience actually contains.
+Measurement first. Pixel and CAPI with deduplication, GA4, and a purchase event carrying real order value so a print and an original are not the same sale. Then email, because your list is the cheapest revenue available and already earned, with a waitlist mechanic you reuse every release. Paid follows against the print funnel, where volume teaches the algorithm, and Google enters on branded and intent terms run by my colleague. The collector path launches as lead capture, never a sales campaign.
 
-Weeks two and three, email, because your list is the cheapest revenue available and already earned. Capture on site and in social, welcome sequence, and a waitlist mechanic you reuse every release. A small warm retargeting stream runs alongside.
+We bill a percentage of ad spend rather than an hourly rate, so I cannot answer that in the format you asked. The scope as written fits five to seven hours a week, more around a release. I would be your Meta and email person, with a colleague on Google.
 
-Weeks four to eight, paid against the print funnel, where volume teaches the algorithm. Organic posts that already earned their audience adapted into paid, then cold prospecting once cost per purchase is stable. Google enters here on branded and intent terms, run by my colleague. The collector path launches as lead capture, never a sales campaign.
+That makes your budget the deciding number. Under roughly $5,000 a month a percentage will not clear a workable fee for either of us. So what can you put behind ads monthly, and where do your buyers sit?
 
-THE PART THAT DECIDES THIS
-
-We bill a percentage of ad spend rather than an hourly rate, so I cannot answer that question in the format you asked. On availability, the scope as written fits five to seven hours a week, more around a release. And I would be your Meta and email person, with a colleague on Google. If you want one person holding every channel, I am half of that.
-
-That makes your ad budget the deciding number. Under roughly $5,000 a month a percentage will not clear a workable fee for either of us. So, what can you put behind ads monthly, and where do your buyers actually sit?
-
-Those are the numbers I have rather than a deck, and there is a short video on my profile covering how I work an account like this.
+There is a short video on my profile covering how I work an account like this.
 
 ---
 
@@ -110,3 +92,17 @@ Not taken: SMS (real lever, but we have no SMS service line and it would widen a
 **Reviewer conflict, resolved not deferred.** Expert review flagged the Blush figures as contradicting memory's $70.73 vs $92.85. That agent was reading the stale index line. The lane-aggregate and time-matched cuts are both real and measure different things; the time-matched pair is the defensible one and memory has been corrected.
 
 **Length after all edits: 4,994 characters.**
+
+### Shortened on request, 2026-09-08
+
+Cut from 4,994 characters / 864 words to **3,305 / 580**, a 34% reduction. The prior length had drifted well past `lindsey-default.md`'s own stated ceiling (200-350 words), so this moves back toward spec while still answering the post's direct 30-60 day question, which a strict 350-word body cannot do.
+
+**Kept, because removing any of these breaks the draft:** the print-versus-commission diagnostic opener; the two-stage pre-release structure and the sellout segment; provenance as a conversion lever; both verified ad accounts with their numbers and past-tense closure; the Klaviyo flow build with the zero Added-to-Cart catch; all three hard-zero disclosures (art vertical, drop campaigns, Squarespace); the 30-60 day sequence including Google; percentage-of-spend, the five to seven hour availability answer, and the $5,000 spend gate; the profile-video close and no sign-off.
+
+**Dropped as the cost of the cut:**
+- The "a large following is not one audience" paragraph (75 percent video viewer versus a one-time liker, warm pool is finite). Good material, but the drops section and the Blush warm-versus-cold figures already carry the same argument.
+- Value based bidding with a minimum ROAS floor. This was the tooling-fluency signal expert review asked for. It is the one review-driven addition that did not survive shortening, worth reinstating if the client engages and length stops mattering.
+- Neue Maison's $105,010 / 343 / $306 totals. The CPA-flat-while-CPM-doubled point is the load-bearing part and it survives; the volume figures did not.
+- "Six live email clients, no attributable revenue figure I would defend." Safe to drop only because the shortened draft makes no email performance claim at all, so there is nothing left to disclaim. **If any email result is ever added back, this disclosure has to come with it.**
+
+No numbers changed. Every surviving figure is the same verified value.
