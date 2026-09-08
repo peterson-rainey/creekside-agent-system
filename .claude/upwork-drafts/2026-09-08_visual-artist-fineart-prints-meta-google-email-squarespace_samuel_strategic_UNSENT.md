@@ -109,6 +109,46 @@ Typical budgets managed: Around $250,000 a month in Meta spend across 24 active 
 
 Squarespace: No experience. Every ecommerce account currently in the book runs on a different platform.
 
+## COMBINED SINGLE-FIELD VERSION (2026-09-08, requested)
+
+Proposal and screening answers merged into ONE paste block for a single Upwork cover-letter field.
+Straight concatenation would have been 5,189 chars and BROKEN the 5,000 cap. Deduplicated instead: the hourly
+decline, the $70.73/$75.32 retargeting pair, and all three concessions each appeared in both blocks. Result is
+4388 chars, 741 words.
+
+**Flagged style deviation:** samuel-strategic says the closing carries no lists. The post explicitly demands an
+itemized response ("Please send:"), so the labeled tail stays and the prose closing sits above it. Precedent is
+the existing SCREENING-ANSWERS drafts.
+
+```
+Large organic reach ahead of a print drop usually means the first paid dollars go to retargeting people who already follow the account and bidding on branded search. Both mostly buy back collectors who were going to purchase anyway, which flatters early ROAS without adding much revenue. What surprises most people moving from organic into paid is that warm retargeting is not the cheap lever it gets sold as. On a Meta account we ran for a consumer brand that grew on social the way yours did, retargeting came in at $70.73 per purchase against $75.32 for cold prospecting, about six and a half percent apart rather than the three or four times people expect. The real question is never what it costs to convert someone who already follows you. It is what it costs to find the next one.
+
+On your 30 to 60 day question, tracking first. None of the retargeting or budget calls after it mean anything without Pixel and CAPI both firing, GA4 mapped to real purchases and commission inquiries, and Google Ads conversion tracking pointed at revenue instead of clicks. In parallel, fill the audience layers well ahead of the next drop, site visitors, video viewers, social engagers, subscribers and past customers, because those lists are useless until they have volume. On email, a welcome sequence, a nurture flow and an early access or waitlist mechanism before the next release, so the list behaves like a channel instead of a signup box. Then one genuine paid test against a real drop, prospecting built from organic pieces that already earned attention, retargeting layered on as support rather than the main event. What you should have at day sixty is an honest cost per new collector. On timing, blended CPM across our Meta accounts ran about forty percent higher last Q4 at flat spend, so a November release starts from a worse auction than a September one.
+
+Worth saying plainly. There is no fine art, artist or collectibles account in our book, none across our case studies or our current clients. The closest thing we have run is an ecommerce brand doing most of its volume through organic whose team doubted paid could add anything incremental, where the whole job was proving new customers were actually new. That shape is the analog, not the subject matter. No Squarespace experience either. Every ecommerce account we run sits on another platform, and that is a real gap if the Squarespace build is a hard requirement. Email is an active service line with six clients on it, but we have no published email numbers to hand you the way we do for paid. And we are a small agency rather than one freelancer, which matters given what you wrote.
+
+On rate, we do not bill hourly. Flat onboarding per platform for the tracking build and account structure, then a percentage of managed spend monthly. If hourly is a hard requirement this is not a fit, and I would rather say that now than three emails in.
+
+Roughly what monthly range are you picturing once you are past the first test, a few thousand or closer to five figures around a drop. That decides how much room there is to go find new collectors instead of circling the audience you already have.
+
+The specifics you asked for.
+
+Campaigns we have run, with numbers. An active Google account for a consumer electronics brand, November 2025 to August 2026, branded search at $16.90 per conversion against $104.25 on its main unbranded campaign, same account, same period. The Meta account mentioned above, February to June 2026, $58,298 in spend, 623 purchases, $93.58 blended cost per purchase. That one has since ended.
+
+Ecommerce and launches. Consumer electronics on Google, a luxury furniture brand on Meta, a luxury mattress brand, a spa parts ecommerce account and several meal prep brands.
+
+Retargeting. Standard across 24 active Meta accounts, built from site visitors, video viewers, social engagement, email subscribers and past customers. The measured example is the one above.
+
+Budgets. Around $250,000 a month in Meta spend across those 24 accounts, plus 16 active Google accounts. Individual accounts run from small test budgets up to roughly a hundred thousand a month.
+
+Email campaigns, Squarespace and rate are all covered above, and the short version on Squarespace is no experience.
+
+Availability. Lighter between drops, heavier around a release, which fits the five hours a week you described to start.
+
+
+Samuel
+```
+
 ## ATTACHMENT DECISION (2026-09-08): ATTACH NOTHING
 
 Every case study in the book was byte-tested this session (`%PDF-` magic bytes, not HTTP status) and the
