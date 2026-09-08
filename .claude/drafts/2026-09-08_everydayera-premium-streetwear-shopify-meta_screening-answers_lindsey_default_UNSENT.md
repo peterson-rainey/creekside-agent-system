@@ -14,7 +14,7 @@
 
 ## 1. Two to three clothing/fashion brands you have worked with
 
-Straight answer before anything else: I cannot hand you three clothing labels. Apparel is the one category where I would be stretching, and you would find that out in week two anyway.
+Straight answer before anything else: I cannot hand you three clothing labels. Ten plus years of this, nearly all of it ecommerce and DTC, including a brand I built and sold myself, and apparel is still the one category where I would be stretching. You would find that out in week two anyway.
 
 What I do have is the audience and the motion, which on Meta is what actually transfers. Blush Camera was a DTC brand I launched cold and ran into the Instagram fashion and lifestyle audience, the same pool streetwear sells into. Neue Maison was design-led premium DTC at a high average order value, where the buyer is choosing on taste rather than need. Tiami is a luxury mattress brand on Shopify Plus that I run now, considered purchase, premium positioning.
 
