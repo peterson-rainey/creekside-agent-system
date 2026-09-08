@@ -109,6 +109,34 @@ Concession leads with numbers rather than hedging. 396 words, 2330 characters (l
 
 ---
 
+## ATTACHMENT RULING 2026-09-08: ATTACH NOTHING
+
+Swept all 28 rows of `case_studies` live. **Root Hair is the ONLY row mentioning YouTube anywhere**, and
+zero rows mention video, channel growth, or awareness. No vertical is named in the post, so vertical
+matching is impossible; on the lever axis the whole book is conversion/lead-gen/CPA documents.
+
+**Root Hair (`1VDSUo_e37Hv_kL-iDS9ZsWwVAfCsM3Zt`) is the trap. DO NOT ATTACH.** Two independent blockers:
+1. The PDF is titled "How Root Hair Generated 690 Conversions with YouTube + Search Ads" and prints
+   "Campaign Types: YouTube Shorts, Long-Form, Search." The YouTube attribution is NOT citable —
+   `case_studies` says "YouTube + Search", the sanctioned SDR SOP says plain "Google Ads", and Root Hair is
+   a Track Digital white-label account with ZERO `google_campaigns` rows to break the tie. Attaching it
+   asserts the forbidden credential on letterhead.
+2. **It contradicts this draft's own concession paragraph**, which states we have not grown a client's
+   YouTube channel. This is the "attachment that argues against the proposal" hazard class at its sharpest:
+   it would destroy the credibility of the paragraph carrying all the trust in this draft.
+
+**Everything else fails the question axis.** Perfect Parking, UrCovered, Integrity Naturopathic, LawnValue,
+Green Shield and NYC Notary are attachable and clean, but every one answers "cheaper leads," not channel
+growth. The "lead with metrics not vertical" framing note does NOT rescue them here — that applies when the
+same *question* is answered in a different industry, and none of these answer this question.
+
+**No screenshot library exists** (chased to ground 2026-08-27; the one Drive folder that looks like one is
+Nicholas Bandy's inbox and is NOT OURS).
+
+Send clean. The concession is stronger unaccompanied.
+
+---
+
 PROPOSAL (paste into the proposal box):
 
 Paid views and channel growth pull against each other more often than people expect, and that gap decides whether this works. Watch time bought through Google Ads does not count toward the 4,000 public watch hours YouTube requires for monetization. More important, ad-driven viewers arrive interrupted rather than searching, so more of them leave in the first few seconds, pulling down the average view duration the browse and suggested surfaces read when deciding how hard to push a video. So the campaign posts a rising view count and a falling cost per view while making the channel's own engine slower.
