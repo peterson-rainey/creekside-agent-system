@@ -124,13 +124,14 @@ qualified opportunity, in their words rather than the CRM's?
 ## LOOM SCRIPT (target 3 to 4 minutes, three questions in their order)
 
 **Q1. Competitor research and creative strategy.**
-Ad Library first, and structurally rather than for inspiration. Filter to remodelers running the longest, since
-duration is the only public proxy for what is working. Read for three things: the offer, the proof format, and
-the first three seconds. Most remodeling ads open on finished kitchens, which is the contractor's pride and the
-homeowner's least useful frame. What converts is the homeowner's problem, so damage, the in-home consult, the
-moment somebody explains what a quote actually covers. On our side that research runs on a schedule against the
-Ad Library rather than as an afternoon someone loses, so angles accumulate in a queue. The brief that comes out
-is angle, hook, script, the shot list your crew captures on a job site, and what the editor cuts, in that order.
+Keep this one short and hand it to a call. Say that the useful version of this answer depends on which
+remodelers are actually bidding against you in your market, so it is worth doing live rather than in a
+recording. Then: "Cade, my partner, is who I'd have you book with. His calendar is in the description below.
+My profile video's worth a watch if you haven't." Do not explain why they should watch it, and do not claim
+Cade appears in it.
+
+**Loom description text (this is where the link goes, not spoken aloud):**
+> Book a call with Cade here: https://calendar.app.google/85PWYBwxqYNq18qe9
 
 **Q2. Finding a winning funnel for a high-ticket local business.**
 Walk the five rung ladder on screen: hook rate, hold rate, click through, form completion, lead to appointment.
