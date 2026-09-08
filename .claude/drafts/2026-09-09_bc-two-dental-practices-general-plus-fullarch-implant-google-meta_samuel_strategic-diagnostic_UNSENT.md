@@ -1,13 +1,12 @@
 # Upwork Proposal — BC Canada, two dental practices (one general phone-close, one full-arch implant $49K/case), shared Google + Meta accounts, "own the number" solo operator
 Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-09
 
-## FORMAT NOTE (critical)
-This post explicitly says: "No deck, no case-study PDF, no cover letter. Two things: 1) a 3-min unedited
-screen recording, 2) one line on pay + why." And: "Applications without [a video] are not read."
-So the submitted message is DELIBERATELY short — the two required items + a compact "why" (they invited it).
-A full-length strategic+diagnostic essay would violate the brief and signal we did not read a post whose
-entire structure is a reading-comprehension filter. The strategic+diagnostic voice lives in the pay
-rationale and the one operator line, not in length. A longer version can be produced if Queenie wants it.
+## FORMAT NOTE
+Post says "no cover letter." Queenie OVERRODE 2026-09-09: draft a full cover letter. Per override protocol
+the concession is noted, not hidden. Application structure per Queenie: full cover letter + Q1 (paste the
+video link) + pay line. "We'll show him live" = the team handles the video / live account walkthrough, so Q1
+just carries the link (placeholder here). First-person singular throughout (solo-owner brief); NO "our team."
+Cover letter kept under 5000 chars (Upwork limit). Short "two items only" version is in git history (prior commit).
 
 ## HARD BLOCKER — the video (I cannot produce it)
 The application is NOT read without a 3-minute unedited screen recording inside a real Google Ads or Meta
@@ -64,14 +63,26 @@ the client-required video (placeholder). Subagent QC skipped: qc-reviewer/expert
 message carries no external-data numeric claims to verify (proof is the video).
 
 ---
-MESSAGE TO SUBMIT (paste into Upwork; replace [unlisted link] with the recorded video link):
+COVER LETTER (paste into the proposal box):
 
-Two things, as asked. No deck, no cover letter.
+The number you want owned has a trap in it on the implant side, worth naming first. Net new patients this month, counted in the PMS, is the right target for the general practice, where the click and the booked hygiene visit land the same week. A $49,000 full-arch case closes after months, so this month's implant bookings are last quarter's spend. Scoring that campaign on this month's cost per booked case pushes you to cut budget just as the pipeline matures, or to scale into a number that has not resolved. The two practices cannot run on one clock.
 
-1. Screen recording: [unlisted link]. One account I ran, client name hidden, showing the monthly spend and the conversion column, the search terms report, and one change I made with the reason, talked through on screen.
+So I would run them as two economies from the start. The general practice on a tight monthly loop, cost per booked and attended patient, the phone call as the conversion, impression share defended on the terms that actually book rather than the ones that merely spend. The implant brand on a leading-indicator ladder, consult requested to consult attended to case presented to case accepted, with spend read in cohorts, because the honest cost per case only resolves 60 to 120 days out and anything quicker is a guess dressed as a number.
 
-2. Pay: 20% of ad spend, with a $1,500 per platform monthly minimum. Across two platforms that minimum puts you at about $3,000 to $4,000 a month on your current $10,000 to $20,000, and the rate steps down to 15% past $30,000 and 10% past $60,000, so it falls per dollar as you scale. No onboarding or build fee, since the instrumentation you already have is what most accounts pay me to build first.
+The part you called most of the job, someone looking every day and acting, is the part I actually do. A campaign starved at 10 percent impression share lost to budget is a same-day reallocation. Impression share lost to rank is a different problem with a different fix, Quality Score, bid, or the landing page, never just more money, and knowing which one you are looking at changes the next move. A competitor's name eating 30 dollars a click gets a decision that morning, defend or cede. A landing page with no pixel is a stop-spend until it is fixed, not a line in Friday's note.
 
-Why spend-based and not flat: your two practices are two economies, and I want my pay moving with the dollars I deploy against each, not a clock. It keeps me adding budget only where cost per booked and attended patient earns it, per practice. That is the number I would own.
+On fit, plainly. I run phone-close local service accounts, dental and med spa, not e-commerce, and the recording is one of them. I have also run dental implant and oral-surgery lead generation where the close happened in a call center weeks later, the same shape as your second practice, and what moved the economics there was qualification and follow-up, tighter form questions accepted at a higher cost per lead for better leads and spend throttled to what the phone room could work, not cheaper clicks. I keep measurement honest end to end, call tracking with dynamic numbers per source, offline conversion import so only consulted and attended patients feed back into Google and Meta and the platforms optimize toward booked cases instead of form fills, and the CRM as the one source of truth, GoHighLevel included. The day a number cannot be trusted you hear it that day.
 
-On the implant side the lever is not cheaper clicks. It is importing only consulted and attended patients back as offline conversions, so the platforms optimize to booked cases instead of form fills, and disqualifying hard in the follow-up. High-ticket dental and oral-surgery leads that close by phone weeks later are a funnel I have run. I will pull the three numbers you name the day you grant trial access.
+I write the way you want to be written to, three lines at end of day on what changed and what is blocking, a real summary on Friday, without being chased.
+
+One thing I would settle on day one of the paid trial: in each account today, what event is counted as the conversion, the form fill, the booking, or the attended visit. That single choice decides whether the platforms have been optimizing toward money or toward noise, and it is usually the first thing worth changing.
+
+---
+Q1 (field: "Paste the link to your 3-minute unedited screen recording inside a real ad account you ran... Applications without one are not read."):
+
+Unedited, ~3 min: [paste unlisted Loom / Drive / YouTube link]
+
+---
+Q2 / pay line (post item 2 — "one line: what you need to be paid and why"):
+
+20 percent of ad spend, with a $1,500 per platform monthly minimum, which on your current $10,000 to $20,000 across Google and Meta works out near $3,000 to $4,000 a month and steps to 15 percent past $30,000 and 10 percent past $60,000, so the rate falls as you scale. Priced on spend, not hours, because what I am accountable for is booked patients per dollar deployed, so the fee should move with the dollars and the result, not a clock. No separate build fee, the instrumentation you already have is what that usually pays for.
