@@ -109,6 +109,44 @@ Typical budgets managed: Around $250,000 a month in Meta spend across 24 active 
 
 Squarespace: No experience. Every ecommerce account currently in the book runs on a different platform.
 
+## ATTACHMENT DECISION (2026-09-08): ATTACH NOTHING
+
+Every case study in the book was byte-tested this session (`%PDF-` magic bytes, not HTTP status) and the
+plausible ones were opened and read. Result: 8 of 10 are real PDFs, but every one of them fails at least one gate
+for THIS job.
+
+| Case study | Real PDF | Live verification | Verdict |
+|---|---|---|---|
+| Aura Displays | YES, 813KB, 3pp, clean Creekside branding, no byline/URL | Blended $34.56 CPA **CHECKS OUT** (live ~$36 across search+shopping). **Headline "8-10x non-branded ROAS" FAILS.** Live non-branded is $104.25 (search) and $96.96 (shopping); at the PDF's own stated ~$300 AOV that is roughly 3x, not 8-10x | **DO NOT ATTACH** |
+| CI Lifestyle Meals | YES, 1.24MB, 5pp | = Chris Ideson Meal Prep, act_312458589232737, ACTIVE. Live blended $8.40 CPA. The PDF's $25 new-customer CPA is not directly verifiable (no campaign-level split run) and the `roas` column returns garbage (62790.45 avg) | Unverified headline |
+| Duck A Diet | YES, 1.37MB | **ZERO live rows.** Not in `reporting_clients` at all | Unverifiable |
+| Unrefined Meal Prep | YES, 1.33MB | CHURNED 2026-04-29. Live blended $11.25 CPA vs PDF's $20 core-market claim, not directly verifiable | Unverified + churned |
+| Fitness Superstore | YES, 650KB | **ZERO live rows.** 40x already flagged unbacked | DO NOT ATTACH |
+| Punch Drunk Chef | YES, 1.59MB | 20x contradicted, actual 1.76x | DO NOT ATTACH |
+| Luggage Drop | YES, 774KB | Travel, Google-only, white-label | Wrong vertical |
+| BDC App | YES, 2.06MB | No documented outcome at all | Adds nothing |
+| ReferPro | **NO** - 907KB HTML sign-in page | n/a | Cannot attach |
+| Birthday Club | **NO** - HTTP 404, 1.6KB | n/a | Cannot attach |
+
+**Three independent reasons to send text only:**
+1. Every candidate's marquee number either fails live verification or has no live data behind it.
+2. The post says "Please do not send a generic agency proposal." A meal-prep or laptop-monitor PDF stapled to a
+   fine-art bid is the most generic-agency move available, and it would land directly under the paragraph where we
+   concede we have no art clients. It undercuts the one thing this draft does well, which is candor.
+3. Self-contradiction risk. The screening block states $104.25 per conversion on Aura's unbranded campaign. The
+   Aura PDF headlines 8-10x non-branded ROAS on that same account. Putting both in front of the same reader
+   invites a question whose honest answer damages us.
+
+The screening-answers block already delivers exactly what they asked for ("examples ... including measurable
+results") in text, using live-verified numbers we can defend. That is stronger than a PDF we cannot stand behind.
+
+**What the Aura study IS good for: the story, not the file.** Its stated challenge is almost verbatim this
+prospect's situation. A brand doing most of its volume through organic, whose team was skeptical paid could add
+anything beyond what organic was already capturing, where the job was proving incrementality rather than
+generating sales. That is a STRUCTURAL match (what we did and why) rather than a performance claim, so it is safe
+to tell without the file and without the unverifiable $1M/month and 8-10x figures. Optional body edit is offered
+in chat.
+
 ## QC
 
 `qc-reviewer-agent`, 2026-09-08: **PASS WITH FIXES.** Zero fabricated numbers, no Aura/Meta conflation, no hourly
