@@ -15,7 +15,7 @@ The reason I ask is that Meta wants roughly 50 purchases a week per ad set to le
 
 I watched that play out on Blush Camera, a DTC brand selling into the same Instagram fashion and lifestyle audience streetwear lives in. We launched it cold in February. Month one, cost per purchase ran about $120. Month two, $68, once the account had signal and enough creative in rotation to hold frequency down. Then we pushed spend up 67 percent and cost per purchase went back to $116. That was not targeting. The account outran its creative supply and CPMs climbed from $14 to $34.
 
-Reels and Stories burn creative faster than Feed, so on a young brand creative volume is the ceiling on scale, not audience research. On an ecommerce account I ran for nine months, holding that cadence took cost per purchase from $44.93 to $19.89 and purchases from 349 to 665 over four months, on slightly less spend.
+Reels and Stories burn creative faster than Feed, so on a young brand creative volume is the ceiling on scale, not audience research. On an ecommerce account I ran for nine months, cost per purchase went from $44.93 to $19.89 and purchases from 349 to 665 over four months, on slightly less spend and flat frequency.
 
 Straight answer on your first ask: no clothing label with a trophy ROAS to hand you. Better you hear that from me now.
 
@@ -61,4 +61,4 @@ All ten answers are below. There is a short video on my profile that shows how a
 - **Neue Maison omitted entirely.** Its ROAS coverage is 34% of spend and its in-tenure CPA arc rose ($246 to $313), so it argues against us on a "profitable growth" post. The pre-tenure-contaminated "$13K to $40K over a year" framing used in the Milana draft is NOT reused.
 - **The declining arc is kept in.** Blush month-three regression is stated rather than trimmed to the flattering $120-to-$68 half. It is the setup for the creative-volume point, which is the real answer to a launch brand asking for profitable growth.
 - No em dashes, no bold, no bullets, no links, no contact info, no calendar link (first touch on a job post), no sign-off name. Principals not named as the worker.
-- 337 words / 1,957 chars. Inside the 5,000-char Upwork cap, at the top of the 200-350 band, which the ten-part ask justifies.
+- 330 words / 1,809 chars. Inside the 5,000-char Upwork cap, at the top of the 200-350 band, which the ten-part ask justifies.
