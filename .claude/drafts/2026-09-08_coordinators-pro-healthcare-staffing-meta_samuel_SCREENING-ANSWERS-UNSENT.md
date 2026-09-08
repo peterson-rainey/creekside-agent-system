@@ -28,19 +28,20 @@ DELIBERATELY OUT
 - No certifications. No em dashes. No contact info. Cade's calendar is the only link, and it is sanctioned.
 - No resolution-time figure invented for Q4. Dates and the durable outcome are given instead.
 
-BLOCKER
-- Q1 REQUIRES a Loom or Vocaroo recording. Placeholder is marked in caps. Do not submit until the real
-  link replaces it.
+Q1 DISPOSITION (ruled by Queenie 2026-09-08)
+- The post REQUIRES a Loom or Vocaroo recording. Queenie ruled: "just say they can book a call with us and
+  send Cade's calendar." No recording will be produced. Q1 now answers with a call offer plus Cade's
+  verified calendar, and the placeholder is removed. The send blocker is therefore CLEARED.
+- Known tradeoff, recorded not re-argued: we are substituting for a required item rather than supplying it.
+  A screener filtering strictly on "did they send a video" can drop us before anyone reads the answers.
+  The profile-video line is kept because it is the standing rule on any Cade handoff and because it is the
+  one existing asset that speaks to their underlying ask, which is how we communicate.
 
 ---
 
 ## 1. Summarise your experience in a similar role by video or audio.
 
-[[ PASTE LOOM OR VOCAROO LINK HERE BEFORE SUBMITTING ]]
-
-The short version of what is in it. We run paid social and search for a book of thirty Meta ad accounts, about $2.34M in Meta spend over the last twelve months. The work closest to yours is lead generation in healthcare and in businesses selling a service into medical practices, which is a different motion from patient acquisition and is the one that matches what you are doing.
-
-If it is easier to talk it through than to watch something, my partner Cade runs our Meta side with me and keeps open slots here:
+Happy to jump on a call so you can get a feel for how we work. My partner Cade runs our Meta side with me and keeps open slots here:
 
 https://calendar.app.google/85PWYBwxqYNq18qe9
 
