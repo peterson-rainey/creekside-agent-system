@@ -87,9 +87,11 @@ account as broken.
 - MI Tax CPA named as tax experience. It never ran.
 - Any DACH, LinkedIn, recruiting or tax RESULT. All four are zeros and all four are disclosed.
 - Any certification or Google Partner claim (reference_no_certifications_exist).
-- Any attachment. reference_case_study_pdf_attachability: the ReferPro PDF exists and is
-  technically attachable, but it is Samuel-bylined and this draft's whole move is leading with the
-  disqualifications. Offer the call instead.
+- Any attachment. **ATTACH NOTHING, and the reason recorded in the first version of this file was
+  wrong.** I had written that the ReferPro PDF was disqualified for being Samuel-bylined. A Samuel
+  byline is fine on a Samuel bid. The real disqualifier is that its **Results block is empty**
+  (verified 2026-09-04 by full text read: `Results:` -> `Summary` -> the date window, then it stops,
+  zero numbers). See the ATTACHMENT RULING section at the foot of this file.
 - No em dashes, no links, no contact info, no sign-off name.
 - Did not parrot their Mission/Responsibilities/KPI framing back at them.
 
@@ -144,3 +146,42 @@ Four defects raised. Three adopted, one rejected, and one adopted with a differe
 Passed clean: no em dashes, no links or contact info, no sign-off name, no principal named, no
 certifications, no pricing instrument, budget asked as a range plus a ceiling question, RIS figures
 correct and correctly anonymized.
+
+---
+## ATTACHMENT RULING: SEND CLEAN (2026-09-08)
+Checked against the live `gdrive_marketing` case-study inventory, not from memory. Twelve distinct
+case studies exist (several duplicated as space/underscore twins). **None is tax, accounting,
+recruiting, German, or LinkedIn.** Two carry a B2B audience and both fail:
+
+- **ReferPro** (`ReferPro_B2B_SaaS_Case_Study.pdf`) is the one artifact whose narrative matches this
+  draft's argument exactly, Meta awareness into Google capture, and it is live with a clean Samuel
+  byline. **Its Results block is blank.** Per [[reference_b2b_proof_has_no_attachable_artifact]] a
+  blank Results block is worse than sending nothing, because the reader opens it looking for the
+  number. **Sharper problem specific to this draft:** the body says the case study on file credits
+  that structure with doubled inbound leads and doubled ARR. Those figures live in the
+  `case_studies.key_result` field, NOT in the PDF. A prospect who opens the attachment finds no
+  numbers at all and the body copy reads as invented.
+- **Axle Solutions** has the same empty Results block plus two collisions: it sells GMB optimization
+  and "proprietary local SEO processes" against our zero SEO service line, and claims lead-funnel
+  conversion-rate work against our zero CRO proof.
+
+**Winterbotham, the standing diagnostic fallback, is ruled OUT here and it is close enough to be
+worth writing down.** The standing rule is that Winterbotham answers any audit or diagnostic post.
+The 2026-09-05 ruling narrowed it: *"on any draft whose argument rests on learning-phase volume
+thresholds, it is a contradiction, not a fallback."* This draft's entire second beat is that
+argument, ten under-fed campaigns stuck in learning. Winterbotham's headline thesis is
+**decomposition**, one campaign split into four segments. Attaching it would argue against the
+proposal it is stapled to.
+
+**Structural reason, which is the strongest one.** This draft's main asset is disclosed honesty:
+three conceded gaps in a single paragraph. Per the 2026-09-05 reasoning, when a proposal's main
+asset is candour, a mismatched attachment is the single move that converts it into a dodge. The post
+also attaches no screening questions and demands no artifact, so nothing forces the issue.
+
+## OPEN ITEM CREATED BY THIS RULING
+The body sentence pointing at "the case study on file" invites a request we cannot satisfy, because
+the artifact behind it is blank. Recommended one-line change, NOT yet applied, awaiting Queenie:
+  from: The case study on file credits that structure with doubled inbound leads and doubled ARR over six months.
+  to:   Their own recorded outcome over the six months that followed was doubled inbound leads and doubled ARR.
+This keeps the attribution that stops the number reading as caused by the mechanism, while removing
+the pointer to a document that would undercut it.
