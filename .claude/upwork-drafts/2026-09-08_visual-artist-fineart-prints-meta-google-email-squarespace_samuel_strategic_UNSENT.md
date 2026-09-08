@@ -149,6 +149,35 @@ Availability. Lighter between drops, heavier around a release, which fits the fi
 Samuel
 ```
 
+## SHORTENED COMBINED VERSION (2026-09-08, requested) -- USE THIS ONE
+
+3606 chars, 622 words. Down from 4,388/741, a 16 percent cut.
+Every mandatory element retained and re-verified programmatically: all three concessions, agency disclosure,
+hourly decline, relative-range budget ask, the 30-60 day answer, both verified number pairs, and the Q4 CPM
+claim still scoped to the single verified Q4.
+
+What was cut: the audience-layer enumeration in the 30-60 day paragraph (it survives once in the tail rather than
+twice), the duplicate nurture-flow mention, the "three emails in" tag on the rate decline, and the tail's pointer
+line back to email/Squarespace/rate, which are already stated plainly above. No verified figure was dropped or
+rounded.
+
+```
+Large organic reach ahead of a print drop usually means the first paid dollars go to retargeting people who already follow you and bidding on branded search. Both mostly buy back collectors who were going to purchase anyway, which flatters early ROAS without adding much revenue. The surprise is that warm retargeting is not the cheap lever it gets sold as. On a Meta account we ran for a consumer brand that grew on social the way yours did, retargeting came in at $70.73 per purchase against $75.32 for cold prospecting, about six and a half percent apart rather than the three or four times people expect. The real question is not what it costs to convert someone who already follows you. It is what it costs to find the next one.
+
+On your 30 to 60 day question, tracking first. None of the budget calls after it mean anything without Pixel and CAPI both firing, GA4 mapped to real purchases and commission inquiries, and Google Ads conversion tracking pointed at revenue instead of clicks. In parallel, fill the audience layers well ahead of the next drop, because those lists are useless until they have volume, and get a welcome sequence and an early access or waitlist mechanism live before the next release so the list behaves like a channel instead of a signup box. Then one genuine paid test against a real drop, prospecting built from organic pieces that already earned attention, retargeting layered on as support. At day sixty you should have an honest cost per new collector. On timing, our blended Meta CPM ran about forty percent higher last Q4 at flat spend, so a November drop starts from a worse auction than a September one.
+
+Worth saying plainly. There is no fine art, artist or collectibles account in our book, none across our case studies or our current clients. The closest we have run is an ecommerce brand doing most of its volume through organic whose team doubted paid could add anything incremental, where the job was proving new customers were actually new. That shape is the analog, not the subject matter. No Squarespace experience either, and that is a real gap if the build is a hard requirement. Email is an active service line with six clients on it, but we have no published email numbers to hand you the way we do for paid. And we are a small agency rather than one freelancer, which matters given what you wrote.
+
+On rate, we do not bill hourly. Flat onboarding per platform for the tracking build and account structure, then a percentage of managed spend monthly. If hourly is a hard requirement this is not a fit, and I would rather say so now.
+
+Roughly what monthly range are you picturing once you are past the first test, a few thousand or closer to five figures around a drop. That decides how much room there is to find new collectors instead of circling the audience you already have.
+
+The specifics you asked for. On Google, a live consumer electronics account running branded search at $16.90 per conversion against $104.25 on its main unbranded campaign, same account and period, November 2025 to August 2026. The Meta account above ran $58,298 to 623 purchases at $93.58 blended, February to June 2026. Other ecommerce and launch work, luxury furniture, a luxury mattress brand, spa parts and several meal prep brands. Retargeting is standard across our 24 active Meta accounts, built from site visitors, video viewers, social engagement, subscribers and past customers. Budgets, roughly $250,000 a month in Meta plus 16 active Google accounts. Availability lighter between drops, heavier around a release, which fits five hours a week to start.
+
+
+Samuel
+```
+
 ## ATTACHMENT DECISION (2026-09-08): ATTACH NOTHING
 
 Every case study in the book was byte-tested this session (`%PDF-` magic bytes, not HTTP status) and the
