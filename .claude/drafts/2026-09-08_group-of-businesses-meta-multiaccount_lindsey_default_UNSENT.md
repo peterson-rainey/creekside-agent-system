@@ -25,7 +25,7 @@ learning phase glossed in plain English.
 
 How many of the accounts in your group are clearing Meta's learning phase right now? It is worth checking before anyone touches targeting. An ad set needs roughly 50 optimization events a week before Meta stops guessing and starts optimizing, and accounts that never reach that can sit there permanently, which is the usual failure mode when several businesses draw on one budget.
 
-The reason I ask is that I run nine Meta accounts at once, across dental, DTC, meal prep and SaaS. The largest is at about $94,000 a month right now. Several of the others run under $5,000. That spread is the whole job: at a $30 target cost per acquisition, an ad set needs roughly $1,500 a week to clear 50 events, so the small accounts have to consolidate to reach it and the large one has to segment without falling back under it.
+The reason I ask is that I run nine Meta accounts at once, across dental, DTC ecommerce and meal prep. The largest is at about $94,000 a month right now. Several of the others run under $5,000. That spread is the whole job: at a $30 target cost per acquisition, an ad set needs roughly $1,500 a week to clear 50 events, so the small accounts have to consolidate to reach it and the large one has to segment without falling back under it.
 
 A replacement parts brand I ran is the clearest example. It had 14 campaigns live in February at a $31.75 cost per conversion. I consolidated to 7, which put the same spend into fewer places for Meta to learn from, and by April cost per conversion was $19.89. CPM rose about 11% across that window, so it was not cheap media doing the work. It settled near $23 in May, still well below where it started.
 
