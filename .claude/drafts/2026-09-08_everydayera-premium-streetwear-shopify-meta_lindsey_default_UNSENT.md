@@ -61,4 +61,4 @@ All ten answers are below. There is a short video on my profile that shows how a
 - **Neue Maison omitted entirely.** Its ROAS coverage is 34% of spend and its in-tenure CPA arc rose ($246 to $313), so it argues against us on a "profitable growth" post. The pre-tenure-contaminated "$13K to $40K over a year" framing used in the Milana draft is NOT reused.
 - **The declining arc is kept in.** Blush month-three regression is stated rather than trimmed to the flattering $120-to-$68 half. It is the setup for the creative-volume point, which is the real answer to a launch brand asking for profitable growth.
 - No em dashes, no bold, no bullets, no links, no contact info, no calendar link (first touch on a job post), no sign-off name. Principals not named as the worker.
-- 330 words / 1,809 chars. Inside the 5,000-char Upwork cap, at the top of the 200-350 band, which the ten-part ask justifies.
+- 328 words / 1,792 chars. Inside the 5,000-char Upwork cap, at the top of the 200-350 band, which the ten-part ask justifies.
