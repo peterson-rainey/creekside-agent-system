@@ -77,17 +77,42 @@ Substitute is the live walkthrough offer. Deliberately avoids the phrase "closed
 - Any rate, fee or hours figure.
 - Quivr as B2B SaaS proof: real CRM SaaS and Lindsey's, but 3 conversions on ~$17.9K makes it uncitable.
 
-## PROPOSAL (paste-ready)
+## PROPOSAL (paste-ready) — v2, post-QC
 
-**Counts:** 346 words / 1,934 chars (limits: 200-350 words, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name
+**Counts:** 326 words / 1,808 chars (limits: 200-350, and 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name · 1 Google mention, team-attributed only
 
-Do you know what share of the current LinkedIn budget is sitting in the campaigns that report your best numbers? I ask because that split usually decides most of the keep, change and rebuild calls before anyone opens the creative. On the last account I rebuilt, one campaign was taking about half the budget at a return under 5x, while the two highest returning campaigns in the account, both near or above 10x, held about five percent of the spend between them. Nothing was broken the way anyone assumed. The flattering numbers were sitting where the money was not.
+Do you know what share of the current LinkedIn budget is sitting in the campaigns that report your best numbers? Before that question earns any weight, I have never run LinkedIn Ads and neither has our team. It still holds, because on the last Meta account I rebuilt, one campaign was taking about half the budget at a return under 5x, while the two highest returning campaigns, both near or above 10x, held about five percent of the spend between them. The flattering numbers were sitting where the money was not.
 
-Straight answer on scope, because it changes whether I am worth the hour. I do not run LinkedIn Ads, and it is not a channel our team runs either. My lane is Meta and email. Named account work is a different animal there too. Meta has no employer or job title input at all, so a target account list becomes list building and exclusions rather than native targeting.
+On scope more broadly, my lane is Meta and email. Google runs through our team rather than through me, so it is covered if scope moves that way. I have no ABM or named account work to point to either. On Meta the reason is structural, since there is no employer or job title input at all, so a target account list becomes list building and exclusions rather than native targeting.
 
-What does transfer is the audit itself. That same account had fragmented to fourteen campaigns, several of them optimizing toward shallow events. I consolidated to seven and moved the budget behind the real conversion. Return went from 4.87x to 8.07x over the next two months while CPM rose about eleven percent and frequency fell, so cheaper media was not doing the work. That account ran around $14,000 a month across nine months, past tense since it has churned. The Meta accounts I run now come to about $125,000 a month, the largest of them near $90,000.
+What does transfer is the audit itself. That same account had fragmented to fourteen campaigns, several of them optimizing toward shallow events. I consolidated to seven and moved the budget behind the real conversion. Return went from 4.87x to 8.07x over the next two months while CPM rose about eleven percent and frequency fell, so cheaper media was not doing the work. That was around $14,000 a month, past tense since the account has churned. The Meta accounts I run now come to about $125,000 a month across nine, one of which is roughly $90,000 of that.
 
-The paid hour I would take as it stands. Ongoing management runs on a percentage of ad spend rather than hourly. If owning LinkedIn is the non negotiable part, better you hear that from me now than an hour in.
+The paid hour I would take as it stands, and I am open on timing. Ongoing management runs on a percentage of ad spend rather than hourly.
 
-Rather than attach PDFs, I would walk you through that rebuild account live. It has finished, so I can speak freely about what did not work. There is a short video on my profile covering how I work through an account like this.
+Rather than attach PDFs, I would walk you through that account live. It has finished, so I can speak freely about what did not work. There is a short video on my profile covering how I work through an account.
 
+## QC LOG
+
+**qc-reviewer-agent — WARN, 1 BLOCKING, applied.**
+- **BLOCKING: Google left unaddressed.** The post names "Meta and Google experience" as one of ten required apply items. v1 covered LinkedIn (zero) and Meta (her lane) and never mentioned Google at all, which on a ten-item checklist reads as an unread post. **Fixed:** added "Google runs through our team rather than through me, so it is covered if scope moves that way." Team attribution only, which is exactly what `lindsey-default.md` permits.
+- Applied: "non negotiable" hyphenation issue mooted by cutting that clause; "the last **Meta** account I rebuilt" inserted to kill the momentary LinkedIn misread; word count trimmed toward the 300 tier.
+- Confirmed clean: no implied causation (the CPM/frequency controls are named rather than juxtaposed), correct past tense on the churned account, no Google or LinkedIn claimed as hers, no persona leak, no sign-off, attachment handling correct, pricing carve-out correctly applied with no rate quoted.
+
+**QC finding NOT accepted — and this one matters.**
+QC *cleared* v1's "the four best performing campaigns were the four smallest" as verifiable, reasoning that the worst campaign is definitionally both largest-spend and lowest-return. That reasoning only works on the 5-campaign subset recorded in the memory file. **The live 12-campaign pull breaks it:** DPA v3 ($13,285, 6.99x) is the account's 2nd-largest campaign AND its 4th-best return, so the four best are not the four smallest. The claim was already corrected before QC returned. Logged because it is a clean example of a subagent with no DB access clearing a false claim from a partial table — do not take that clearance at face value.
+
+**expert-review-agent — Do Not Send. 4 findings, 3 applied, 1 escalated.**
+1. *Sequencing (applied).* v1 opened on a LinkedIn-framed diagnostic and only conceded the LinkedIn zero in paragraph 2, so the first few seconds read as borrowed credibility. **Fixed:** concession moved to sentence two of paragraph one, while keeping the mandatory question opener and avoiding an "I" opener.
+2. *ABM conceded only by implication (applied).* v1's "different animal" was accurate but never said plainly that this is unproven. **Fixed:** "I have no ABM or named account work to point to either."
+3. *Spend concentration reads as padding (applied).* $90K of $125K is 72% in one account, and paragraph 1 has just trained the reader to do exactly that arithmetic. **Fixed:** account count and the concentration now sit in the same sentence.
+4. *Hourly rate (ESCALATED, not applied).* Expert wanted the actual percentage stated rather than the model described. **Not applied, and this is a decision for Queenie, not a drafting call.** Our tiers are marginal, so the percentage is a function of their monthly spend, and their spend is never stated anywhere in the post. There is no single honest number to write. The draft names the model and quotes no figure.
+
+**Both reviewers independently reached the same verdict as the screens: do not send.** Expert rated it Do Not Send on fit, explicitly not on craft.
+
+## OPEN ITEMS FOR QUEENIE
+
+1. **Two auto-DQs stand.** White-label/subcontractor, plus a required-items foreclosure on three of ten apply items. Neither is cured by the draft.
+2. **Hourly rate is still formally unanswered.** They require a number; our model cannot produce one without their spend. Fourth required item not answered as asked, after LinkedIn, LinkedIn-from-scratch and ABM. A buyer running a structured paid-screen weighs that.
+3. **Do not send both profiles.** A Samuel draft for this identical post already exists. Pick one or neither.
+4. **Spend and geo remain unscreened** — the $5K/mo floor and the US/CA/UK/AU screen are both untestable from the post.
+5. **If it goes out anyway,** the honest read is that we are bidding the least relevant third of the scope and conceding the other two thirds in writing.
