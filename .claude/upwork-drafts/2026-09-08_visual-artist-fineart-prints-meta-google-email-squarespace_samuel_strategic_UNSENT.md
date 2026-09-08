@@ -76,13 +76,13 @@ papered over.
 
 ---
 
-## PROPOSAL (paste-ready, 532 words)
+## PROPOSAL (paste-ready, 552 words)
 
 Large organic reach ahead of a print drop usually means the first paid dollars go to retargeting people who already follow the account and bidding on branded search. Both mostly buy back collectors who were going to purchase anyway, which flatters early ROAS without adding much revenue. What surprises most people moving from organic into paid is that warm retargeting is not the cheap lever it gets sold as. On a Meta account we ran for a consumer brand that grew on social the way yours did, retargeting came in at $70.73 per purchase against $75.32 for cold prospecting, about six and a half percent apart rather than the three or four times people expect. The real question is never what it costs to convert someone who already follows you. It is what it costs to find the next one.
 
 On your 30 to 60 day question, tracking first. None of the retargeting or budget calls after it mean anything without Pixel and CAPI both firing, GA4 mapped to real purchases and commission inquiries, and Google Ads conversion tracking pointed at revenue instead of clicks. In parallel, fill the audience layers well ahead of the next drop, site visitors, video viewers, social engagers, subscribers and past customers, because those lists are useless until they have volume. On email, a welcome sequence, a nurture flow and an early access or waitlist mechanism before the next release, so the list behaves like a channel instead of a signup box. Then one genuine paid test against a real drop, prospecting built from organic pieces that already earned attention, retargeting layered on as support rather than the main event. What you should have at day sixty is an honest cost per new collector. On timing, blended CPM across our Meta accounts ran about forty percent higher last Q4 at flat spend, so a November release starts from a worse auction than a September one.
 
-Worth saying plainly. There is no fine art, artist or collectibles account in our book, none across our case studies or our current clients, so the honest analog is high value considered purchase ecommerce, the furniture, mattress and electronics side of what we run rather than anything gallery adjacent. No Squarespace experience either. Every ecommerce account we run sits on another platform, and that is a real gap if the Squarespace build is a hard requirement. Email is an active service line with six clients on it, but we have no published email numbers to hand you the way we do for paid. And we are a small agency rather than one freelancer, which matters given what you wrote.
+Worth saying plainly. There is no fine art, artist or collectibles account in our book, none across our case studies or our current clients. The closest thing we have run is an ecommerce brand doing most of its volume through organic whose team doubted paid could add anything incremental, where the whole job was proving new customers were actually new. That shape is the analog, not the subject matter. No Squarespace experience either. Every ecommerce account we run sits on another platform, and that is a real gap if the Squarespace build is a hard requirement. Email is an active service line with six clients on it, but we have no published email numbers to hand you the way we do for paid. And we are a small agency rather than one freelancer, which matters given what you wrote.
 
 On rate, we do not bill hourly. Flat onboarding per platform for the tracking build and account structure, then a percentage of managed spend monthly. If hourly is a hard requirement this is not a fit, and I would rather say that now than three emails in.
 
@@ -154,7 +154,7 @@ dollar figure, Blush Camera never named, all three concessions plus agency discl
 ask correctly a relative range, sign-off correct, no links, no em dashes, no bullets.
 
 Six defects raised. **Four accepted and fixed, one rejected, one folded in:**
-1. ACCEPTED - Length. Trimmed from ~650 to 532 words. See the flagged deviation below.
+1. ACCEPTED - Length. Trimmed from ~650 to 532 words, then 552 after the 2026-09-08 Aura-analog edit. See the flagged deviation below.
 2. ACCEPTED - Portfolio stats were led with. The Aura $16.90 / $104.25 pair is now REMOVED from the body entirely
    and appears only in the screening block. The body keeps a single number, the retarget-vs-prospect gap, because
    that figure IS the insight rather than a credibility stat and cannot be separated from it.
@@ -170,8 +170,19 @@ Six defects raised. **Four accepted and fixed, one rejected, one folded in:**
    "the furniture, mattress and electronics side of what we run", which now names the account actually cited.
 
 **Known deviation, flagged rather than hidden: length.** samuel-strategic caps at 250-350 words, up to 400 for
-multi-question posts. This body is 532. The post carries EIGHT itemized required items plus a graded essay
+multi-question posts. This body is 552. The post carries EIGHT itemized required items plus a graded essay
 question. The eight items were moved into a separate screening block to protect the body, and the body still has to
 carry the essay answer, three mandatory concessions and the hourly decline. Precedent for running long on a stacked
 post is the 2026-09-04 creative-agency draft at roughly 600 words. Cutting to 400 means gutting the 30 to 60 day
 answer, which is the one item they said they will judge on. Trim further only if you want the essay shortened.
+
+## EDIT LOG
+
+**2026-09-08, Aura-analog swap (requested).** The concessions paragraph previously named "the furniture, mattress
+and electronics side of what we run" as the analog. Replaced with the STRUCTURAL match drawn from our own Aura
+Displays case study: an ecommerce brand doing most of its volume through organic, a team that doubted paid could
+add anything incremental, and a job that was really about proving new customers were actually new. All three
+clauses trace to our own client documentation and carry NO unverifiable number. The PDF's $1M/month and 8-10x
+non-branded ROAS figures are deliberately excluded, the latter because it fails live verification (live
+non-branded is $96-104 CPA, roughly 3x at the PDF's own stated ~$300 AOV). Attachment decision is unchanged:
+attach nothing. Net length +20 words.
