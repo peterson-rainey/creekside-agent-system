@@ -5,7 +5,7 @@
 **Style:** lindsey_default (requested explicitly by Queenie in the same message, so no mismatch surfaced -- 6th hit)
 **Status:** UNSENT
 **Attachments:** NONE (see attachability ruling below)
-**Length:** 343 words / ~1,900 chars (over the 300 base ceiling, inside the 350 multi-question ceiling)
+**Length:** v2 = 340 words / ~1,880 chars (over the 300 base ceiling, inside the 350 hard ceiling)
 
 ---
 
@@ -82,7 +82,51 @@ disclosed outright.
 
 ---
 
-## DRAFT (paste-ready, no attachments)
+## DRAFT v2 (paste-ready, no attachments) -- POST-QC
+
+Are you planning to optimize for a completed enrollment, or for a form fill your team calls back? That one setting usually decides whether a launch this tight works. Meta wants somewhere near 50 conversions per ad set per week before delivery settles, and a paid enrollment on a tutoring offer rarely hits that inside two weeks, so the account sits in learning and the cost per result stays where it started.
+
+I ask because I ran that structure on a dental implant practice. Live from a standing start on April 21, the first fourteen days produced 533 form fills at $20.45 each on $10,898 in spend, all worked by a phone team. The full run came to $64,747 and 2,558 leads at $25.31. Budget eventually came down, and it was not cost, it was that the callers could not keep up.
+
+Two things carry over. Each location ran as its own campaign instead of one campaign with a wide radius. That is a reporting decision more than a performance one, and it is the only reason I could see $24.49 in one and $22.75 in the other rather than a single blended figure. The Spanish version of the same offer read separately at $16.89, under both English campaigns.
+
+I also took a Dallas meal prep brand into three new metros where it had no recognition, each with its own campaign, budget and creative. Ten-plus years of this, plus building and selling my own e-commerce brand, and cold starts still come down to structure more than clever creative.
+
+Straight answer on your vertical. Tutoring is not in my own accounts. Our book runs Meta for a children's education and life coaching company, so the cohort and registration mechanics are familiar ground. I would rather say that than stretch a dental number into a claim about students. I also do not keep a public file of past client ads, since that creative lives inside client accounts.
+
+There is a short video on my profile covering how I run accounts like this.
+
+---
+
+## QC PASS (qc-reviewer-agent, 2026-09-08) -- WARN, three fixes applied
+
+No fabricated figures, no misattributed first-person work, no pricing/link/em-dash violations. AiW
+pooling framing and the tutoring disclosure both cleared. Fixes applied to produce v2:
+
+1. **"front desk calling every one" -> "all worked by a phone team."** v1 contradicted the verified
+   fact (Fusion Dental is Meta forms into a CALL CENTER, not in-office reception) and contradicted
+   itself two sentences later. This was the only line that actively conflicted with ground truth.
+2. **Implied causation on the per-campaign CPLs.** v1's "which is what let me read them apart:
+   $24.49 in one, $22.75 in the other" could read as the split-campaign structure having CAUSED the
+   cheaper cost. v2 names it outright as a reporting decision, not a performance one.
+3. **"Ten years of this" -> "Ten-plus years"** to match the verified 10+ identity fact, and
+   "the cost per result never comes down" -> "stays where it started" to drop the absolute.
+
+**Not changed, with reasons:**
+- **"50 conversions per ad set per week"** flagged as unsourced. It is Meta's documented learning-phase
+  exit threshold (platform mechanics, not a client stat), and the sentence already hedges with
+  "somewhere near." Left standing.
+- **Word count.** v2 is 340 words, still over the 300 base ceiling and close to the 350 hard ceiling. QC correctly notes the draft
+  carries one literal question mark, so leaning on the "up to 350 for multi-question" allowance is
+  arguable. Held at 327 rather than cutting, because the only cuts available are the Spanish-campaign
+  split or the tutoring disclosure, and both carry real weight. Flagged for Queenie's call.
+- **"Always reference attached results" golden rule.** Deviation stands, disclosed above. Nothing is
+  attachable.
+
+---
+
+## DRAFT v1 (superseded, kept for diff)
+
 
 Are you planning to optimize for a completed enrollment, or for a form fill your team calls back? That one setting usually decides whether a launch this tight works. Meta wants somewhere near 50 conversions per ad set per week before delivery settles, and a paid enrollment on a tutoring offer rarely hits that inside two weeks, so the account sits in learning and the cost per result never comes down.
 
