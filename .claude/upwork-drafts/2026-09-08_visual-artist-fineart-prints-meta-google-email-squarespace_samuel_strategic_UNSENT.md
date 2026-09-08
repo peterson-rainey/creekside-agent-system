@@ -76,19 +76,17 @@ papered over.
 
 ---
 
-## PROPOSAL (paste-ready, 512 words)
+## PROPOSAL (paste-ready, 532 words)
 
-Large organic reach ahead of a print drop usually means the first paid dollars go toward retargeting people who already follow the account and bidding on branded search, both of which mostly capture collectors who were already going to buy. That inflates early ROAS without adding much incremental revenue. The part that tends to surprise people moving from organic into paid is that warm social retargeting is not actually cheap. On one Google account we manage, branded search converts at $16.90 per conversion against $104.25 for the account's main unbranded campaign, roughly a sixth of the cost, because it captures demand that already exists. On a Meta account we ran for a consumer brand that grew the same way yours did, on social, retargeting cost $70.73 per purchase against $75.32 for cold prospecting, a gap of about six percent, nowhere near the three or four times cheaper retargeting usually gets credit for. The real test is not converting people who already follow the account. It is what it costs to find a new one.
+Large organic reach ahead of a print drop usually means the first paid dollars go to retargeting people who already follow the account and bidding on branded search. Both mostly buy back collectors who were going to purchase anyway, which flatters early ROAS without adding much revenue. What surprises most people moving from organic into paid is that warm retargeting is not the cheap lever it gets sold as. On a Meta account we ran for a consumer brand that grew on social the way yours did, retargeting came in at $70.73 per purchase against $75.32 for cold prospecting, about six and a half percent apart rather than the three or four times people expect. The real question is never what it costs to convert someone who already follows you. It is what it costs to find the next one.
 
-Timing matters too. Across our Meta accounts, blended CPM rose about forty percent going into last Q4 while our monthly spend stayed flat, so a release planned for November costs more per impression than the same release in September.
+On your 30 to 60 day question, tracking first. None of the retargeting or budget calls after it mean anything without Pixel and CAPI both firing, GA4 mapped to real purchases and commission inquiries, and Google Ads conversion tracking pointed at revenue instead of clicks. In parallel, fill the audience layers well ahead of the next drop, site visitors, video viewers, social engagers, subscribers and past customers, because those lists are useless until they have volume. On email, a welcome sequence, a nurture flow and an early access or waitlist mechanism before the next release, so the list behaves like a channel instead of a signup box. Then one genuine paid test against a real drop, prospecting built from organic pieces that already earned attention, retargeting layered on as support rather than the main event. What you should have at day sixty is an honest cost per new collector. On timing, blended CPM across our Meta accounts ran about forty percent higher last Q4 at flat spend, so a November release starts from a worse auction than a September one.
 
-On the 30 to 60 day question, tracking comes first. None of the retargeting or budget decisions that follow mean much without Meta Pixel and CAPI both firing, GA4 mapped to actual purchases and commission inquiries, and Google Ads conversion tracking pointed at revenue rather than clicks. In parallel we would start building the audience layers, site visitors, video viewers, social engagers, email subscribers and past customers, ahead of the next drop, since those lists need volume before they are worth anything. On email, a welcome sequence, a nurture flow and an early access or waitlist mechanism would go up before the next release so the list becomes a channel rather than a signup box. Then the first real paid test would run against an actual drop, prospecting built from organic pieces that already performed, retargeting layered on as a smaller supporting piece rather than the main lever. What you should get out of the first sixty days is an honest cost per new collector, not a good looking ROAS screenshot.
+Worth saying plainly. There is no fine art, artist or collectibles account in our book, none across our case studies or our current clients, so the honest analog is high value considered purchase ecommerce, the furniture, mattress and electronics side of what we run rather than anything gallery adjacent. No Squarespace experience either. Every ecommerce account we run sits on another platform, and that is a real gap if the Squarespace build is a hard requirement. Email is an active service line with six clients on it, but we have no published email numbers to hand you the way we do for paid. And we are a small agency rather than one freelancer, which matters given what you wrote.
 
-Worth saying plainly. There is no fine art, artist or collectibles account in our book, zero across our case studies and our current clients, so the honest comparison is high value considered purchase ecommerce, closer to the furniture and mattress brands we run than anything gallery adjacent. There is also no Squarespace experience here. Every ecommerce account we run sits on a different platform, and that is a real gap if Squarespace build work is a hard requirement. Email is an active service line, six clients on it right now, but we do not have published email performance numbers to hand you the way we do for paid. And we are a small agency rather than a single freelancer, which is worth knowing upfront given what you wrote.
+On rate, we do not bill hourly. Flat onboarding per platform for the tracking build and account structure, then a percentage of managed spend monthly. If hourly is a hard requirement this is not a fit, and I would rather say that now than three emails in.
 
-On rate, we do not bill hourly. We price a flat onboarding per platform covering the tracking build and account structure, then a percentage of managed spend monthly. If hourly is a hard requirement on your side, this is not a fit and I would rather say so now.
-
-One thing that would change the approach. Roughly what monthly range are you picturing for paid once you are past the first test, a few thousand or closer to five figures around a drop. That decides how much room there is to go find new collectors versus staying tight around the audience you already have.
+Roughly what monthly range are you picturing once you are past the first test, a few thousand or closer to five figures around a drop. That decides how much room there is to go find new collectors instead of circling the audience you already have.
 
 
 Samuel
@@ -99,7 +97,7 @@ Samuel
 
 Rate and availability: We do not bill hourly. We price a flat onboarding per platform covering the tracking build and account structure, then a percentage of managed spend monthly. The work sits around campaign cadence rather than a fixed hour count, lighter between drops and heavier around a release, which fits the roughly five hours a week you described to start.
 
-Meta and Google campaigns with measurable results: An active Google account for a consumer electronics brand, November 2025 to August 2026, branded search at $16.90 per conversion against $104.25 for its main unbranded campaign in the same period. A Meta account for a consumer ecommerce brand that grew on social, February to June 2026, $58,298 in spend, 623 purchases, $93.58 blended cost per purchase. That account has since ended.
+Meta and Google campaigns with measurable results: An active Google account for a consumer electronics brand, November 2025 to August 2026, branded search at $16.90 per conversion against $104.25 on its main unbranded campaign over the same period, same account. A Meta account for a consumer ecommerce brand that grew on social, February to June 2026, $58,298 in spend, 623 purchases, $93.58 blended cost per purchase. That account has since ended.
 
 Email campaigns created: Email is an active service line with six clients on it currently. We do not have published performance numbers for those campaigns the way we do for paid, so we are not going to present any.
 
@@ -110,3 +108,32 @@ Retargeting experience: Standard across the current Meta book of 24 active accou
 Typical budgets managed: Around $250,000 a month in Meta spend across 24 active accounts, plus 16 active Google accounts. Individual accounts range from small test budgets up to roughly a hundred thousand a month on the largest.
 
 Squarespace: No experience. Every ecommerce account currently in the book runs on a different platform.
+
+## QC
+
+`qc-reviewer-agent`, 2026-09-08: **PASS WITH FIXES.** Zero fabricated numbers, no Aura/Meta conflation, no hourly
+dollar figure, Blush Camera never named, all three concessions plus agency disclosure present and unburied, budget
+ask correctly a relative range, sign-off correct, no links, no em dashes, no bullets.
+
+Six defects raised. **Four accepted and fixed, one rejected, one folded in:**
+1. ACCEPTED - Length. Trimmed from ~650 to 532 words. See the flagged deviation below.
+2. ACCEPTED - Portfolio stats were led with. The Aura $16.90 / $104.25 pair is now REMOVED from the body entirely
+   and appears only in the screening block. The body keeps a single number, the retarget-vs-prospect gap, because
+   that figure IS the insight rather than a credibility stat and cannot be separated from it.
+3. ACCEPTED - Q4 CPM overclaim. "costs more per impression" stated a one-year observation as a standing
+   prediction. Rewritten to "ran about forty percent higher last Q4 at flat spend, so a November release starts
+   from a worse auction than a September one." Now scoped to the single Q4 that is actually in the verified series.
+4. ACCEPTED - Precision. "about six percent" became "about six and a half percent". Actual gap is 6.49 percent.
+5. **REJECTED - "several meal prep brands".** QC called this unsupported, but it was reasoning from the fact list
+   handed to it, which omitted the meal-prep rows. Live `case_studies` carries FOUR meal prep clients (CI Lifestyle
+   Meals, Duck A Diet Power Bowls, Punch Drunk Chef, Unrefined Meal Prep) and the active Meta book carries two more
+   (Chris Ideson Meal Prep, Punch Drunk Chef). "Several" is accurate and stays.
+6. ACCEPTED - The furniture/mattress analog risked implying the cited numbers came from those accounts. Reworded to
+   "the furniture, mattress and electronics side of what we run", which now names the account actually cited.
+
+**Known deviation, flagged rather than hidden: length.** samuel-strategic caps at 250-350 words, up to 400 for
+multi-question posts. This body is 532. The post carries EIGHT itemized required items plus a graded essay
+question. The eight items were moved into a separate screening block to protect the body, and the body still has to
+carry the essay answer, three mandatory concessions and the hourly decline. Precedent for running long on a stacked
+post is the 2026-09-04 creative-agency draft at roughly 600 words. Cutting to 400 means gutting the 30 to 60 day
+answer, which is the one item they said they will judge on. Trim further only if you want the essay shortened.
