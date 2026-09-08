@@ -61,3 +61,25 @@ All three ecom Meta accounts below are operated by **Lindsey B.** (`reporting_cl
 - **Payment-method verification** unchecked.
 - **Screening questions** not provided. Paste them and they can be answered in a separate file.
 - **Send ONE profile only.** No Lindsey companion draft was written for this posting; if one is added later, do not submit both (two Creekside profiles on one job was flagged by a prospect on 2026-08-27).
+
+### ATTACHMENT RULING (2026-09-08): send clean, attach nothing
+
+Swept `case_studies`. **`Fitness Superstore` is the only row that is both `platforms = [Meta Ads]` and
+`industry_label = E-Commerce`.** Aura Displays is E-Commerce but Google-only; Luggage Drop is Travel +
+Google; every other Meta row is Food, Apps, Healthcare, Home Services, SaaS or Finance. So there is
+exactly one candidate, and it fails on four independent grounds:
+
+1. **Headline unverifiable.** `key_result` claims "40x+ peak ROAS (7x baseline)". There are **zero rows
+   in `meta_insights_daily`** for it and **no matching account among all 98 in `meta_ad_accounts`**.
+   `ad_account_name` and `platform_operator` are both NULL, so there is no link to chase.
+2. **Budget contradiction.** `reporting_clients.monthly_budget` = $3,000; the PDF headlines "$8K/month".
+3. **`localhost:4321` dev footer** in the Apr-2026 ecom batch, not fixed by the 2026-07-08 re-modify.
+4. **Thesis collision.** This draft's whole argument is *distrust the headline number, decompose it*.
+   A peak-ROAS document argues against the proposal that carries it.
+
+Also note the two accounts the draft actually cites (Master Spa Parts, Blush Camera) have **no
+case-study PDF at all**, so attaching Fitness Superstore would introduce an unrelated third account
+whose number clashes with the two decomposed ones in the body.
+
+Nothing in the post demands a proof artifact, so there is no exclusion clause forcing the issue.
+**Send clean.** The body's verified numbers are the proof.
