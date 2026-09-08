@@ -157,15 +157,44 @@ correct · personal-attributes description correct · Fusion Dental first-person
 dashes · 0 URLs · no contact info · no sign-off · no Google/TikTok/Bing/programmatic service claim · no
 certification claim · no pricing.
 
-## PROPOSAL (paste-ready, post-QC v2)
+## v3 CORRECTION — the v1/v2 diagnostic premise was WRONG about its own source account
 
-**Counts:** 348 words / 1,924 chars (limits: 200-350 words for a multi-question post, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name · nothing attached
+v2's spine was "CPL rose while CPM fell and CTR held, so whatever broke sat after the click." Re-verified
+per campaign, that is **false for this account**. Nothing broke after the click. Corroborates the standing
+memory correction (`reference_educator_coaching_proof`): the AiW decline is a **budget-mix artifact**, not
+efficiency decay.
+
+**Verified live, `act_1553150081825`, spend-bearing campaigns since 2026-06-01:**
+
+| Campaign | Spend | Conv | NULL-conv days / days |
+|---|---|---|---|
+| `C \| Webi \| BeLC4K` (registration engine) | $4,093.71 | **80** | 2 / 23 |
+| `C \| Stry \| Help Kids Believe + Proof` | $3,860.31 | **0** | 76 / 76 |
+| `C \| Stry \| WCC - Free Stry - Educator` | $2,581.32 | **0** | 89 / 89 |
+| `C \| Stry \| How to Start Biz w Purpose` | $1,998.27 | **0** | 41 / 41 |
+| `C \| Stry \| Strytm-in-OC-Blue \| 2 Weeks` | $1,389.25 | **0** | 54 / 54 |
+| `C \| Stry \| BeLC4K-BizOp` | $902.84 | **0** | 29 / 29 |
+
+The registration campaign runs ~$51 CPL and works. **~$10,750 across five top-funnel campaigns recorded zero
+conversions**, every day NULL. That, not decay, is what drags the blend to $145+.
+
+**Why this matters beyond accuracy:** the corrected story is the better pitch. This prospect asked for
+"data-driven improvements" and "lead volume and quality", and the first real risk in their account is that a
+blended number hides which campaign actually produces bookings. It also earns the two-funnels point in
+paragraph 3 (separate conversion actions per niche) instead of asserting it.
+
+**Numbers still withheld.** Per the standing rule, AiW is vertical presence only with no figure attached in
+outbound. The body sells the mechanism and quotes nothing. Citing $51 would only invite "and the blend?"
+
+## PROPOSAL (paste-ready, v3 — post-QC and post-correction)
+
+**Counts:** 349 words / 1,967 chars (limits: 200-350 words for a multi-question post, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name · nothing attached
 
 Quick question before anything else: is the shortage in lead volume, or in how many of those leads turn into someone who shows up? Those point to opposite fixes, and they almost never break in the same place.
 
-The reason I ask is a life coaching franchise our team runs Meta lead campaigns for. It shows the shape of a decline. Cost per lead climbed for months while CPM actually fell and click-through held steady. The ads were still being clicked and media was getting cheaper, so whatever broke sat after the click. That is where I would look first here too: the offer, the form, and what the campaign counts as a lead. Read only the ad metrics and you would rewrite creative against a problem that was never there.
+The reason I ask is a life coaching franchise our team runs Meta lead campaigns for. Its blended cost per lead looks alarming and is close to meaningless. One registration campaign produces nearly all the bookings at a steady cost, while most of the budget sits in top-of-funnel campaigns that record no conversions at all. Average those and you get a number that describes neither. That is the first thing I would split out here, because improving conversion rate is usually a measurement problem before it is a creative one.
 
-Two things specific to your niches change the build. Meta does not allow copy that implies you know something personal about the reader, so a line like "struggling with your fear of flying" is the most common rejection in this vertical, while the same promise written about the work instead of the person runs clean. And religious affiliation stopped being a targeting option in 2022, so Christian men cannot be reached directly. They have to self select from the creative. Phobia therapy and men's coaching are different audiences with different funnels, and I would not run them off one set of campaigns.
+Two things specific to your niches change the build. Meta does not allow copy that implies you know something personal about the reader, so a line like "struggling with your fear of flying" is the most common rejection in this vertical, while the same promise written about the work instead of the person runs clean. And religious affiliation stopped being a targeting option in 2022, so Christian men cannot be reached directly. They have to self select from the creative. Phobia therapy and men's coaching are different audiences with different funnels, and I would not run them off one set of campaigns or one conversion action.
 
 Straight on the gap: I run Meta and email, not Google, and I have no therapy case study for you. What I have is healthcare lead generation. A dental group I ran took 2,558 lead form submissions at about $25 each, and when we pulled spend back the cost per lead was still improving, so cost was not what stopped it. Worth asking on your side: how many new clients a week can you take on before the constraint stops being leads?
 
