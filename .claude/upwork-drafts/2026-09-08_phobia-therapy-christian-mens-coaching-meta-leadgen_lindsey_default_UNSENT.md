@@ -93,10 +93,20 @@ employment, housing, financial products and social issues/elections. The 2026-07
 
 ## ATTACH NOTHING — every candidate fails an exclusion (all file IDs checked live against Drive)
 
-- **Adventures in Wisdom** `1qoW2YJOCD_AwOnvAEdGjsh-adzQ_drD0`: **404s, "Requested entity was not found."** No
-  underscore twin exists (Drive search returns only a tracking spreadsheet, an Agreement folder and an unrelated
-  video). Its `case_studies` summary carries no numbers at all. Even if it resolved, it is Scott's account and
-  children's coaching, not adult men's coaching.
+- **Adventures in Wisdom.** The `case_studies` file ID `1qoW2YJOCD_AwOnvAEdGjsh-adzQ_drD0` 404s, but a real
+  branded twin DOES exist and resolves: **`Adventures_in_Wisdom_(AIW)_Case_Study_Creekside_Marketing_Pros.pdf`**,
+  `1Q4IAix0Gc81lnfeWvRlMJYHwTijeIw-h` (810KB, application/pdf). Verified live. Three things about it:
+  - **Byline is "Creekside Marketing", NOT Samuel.** No persona leak, so the ReferPro exclusion does not apply.
+  - **The PDF states "Client Snapshot (Meta-Only)" and "no Google Ads, no CRM, no organic."** This CORRECTS the
+    `case_studies` row, which lists `platforms: ["Google Ads","Meta Ads"]`. Known defect, corroborated again.
+  - **Its data window is Jan-Oct 2025** ($256 CPA / 41 apps to a $123 CPA / 90 apps October peak).
+  **Excluded anyway, on two grounds that survive the file existing:** (1) the standing rule is that AiW is
+  vertical presence only with NO performance number attached in either direction, and this PDF is nothing but
+  performance numbers from a window that ended, against an account now blending $145+; (2) it is **Scott C.'s
+  account**, and `lindsey_default` is first-person "what I have seen and done", so attaching it to her bid
+  implies her work. Same attribution logic that excluded ReferPro on the 2026-09-08 PrecisionPoint Lindsey draft.
+  **On a SAMUEL coaching bid this PDF is a live candidate** (company work, attribution fine) provided the
+  Jan-Oct 2025 window is stated.
 - **Dr. Laleh** `1sRKepK03dL8gYVbGRvzX9-myZqOarIfF`: **also 404s.** Its headline "$48.79 to $9.58 CPA" is also
   not defensible against live data ($1,197 per recorded conversion).
 - **Punch Drunk Chef** `1n3bCsJSnZWonv9YRQm1Tvkdg9_Ve1p_M`: real PDF, resolves (1.59MB). Excluded anyway. Meal
@@ -186,9 +196,22 @@ paragraph 3 (separate conversion actions per niche) instead of asserting it.
 **Numbers still withheld.** Per the standing rule, AiW is vertical presence only with no figure attached in
 outbound. The body sells the mechanism and quotes nothing. Citing $51 would only invite "and the blend?"
 
-## PROPOSAL (paste-ready, v3 — post-QC and post-correction)
+## v4 — Fusion Dental capacity framing RESTORED
 
-**Counts:** 349 words / 1,967 chars (limits: 200-350 words for a multi-question post, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name · nothing attached
+QC finding #1 said "ran out of calendar" was an inference dressed as fact. QC had no DB or memory access. It is
+in fact **documented**: `agent_knowledge` weekly reports record spend was "intentionally reduced to accommodate
+the call center", and the standing memory rule is explicit that the pullback must NOT be attributed to CPL
+economics and that the capacity framing is the preferred answer because it generalises to any funnel with a
+human or scheduled step downstream. v3 over-corrected and lost a true, house-preferred fact.
+
+v4 states the documented reason and keeps the prospect-facing question, which is the stronger combination:
+`we pulled spend back to match what the call center could actually handle, not because cost rose.`
+
+QC findings #2 (AiW three-part diagnosis) and #3 (n=1 therapy extrapolation) remain accepted and stay fixed.
+
+## PROPOSAL (paste-ready, v4 — FINAL)
+
+**Counts:** 347 words / 1,966 chars (limits: 200-350 words for a multi-question post, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name · nothing attached
 
 Quick question before anything else: is the shortage in lead volume, or in how many of those leads turn into someone who shows up? Those point to opposite fixes, and they almost never break in the same place.
 
@@ -196,7 +219,7 @@ The reason I ask is a life coaching franchise our team runs Meta lead campaigns 
 
 Two things specific to your niches change the build. Meta does not allow copy that implies you know something personal about the reader, so a line like "struggling with your fear of flying" is the most common rejection in this vertical, while the same promise written about the work instead of the person runs clean. And religious affiliation stopped being a targeting option in 2022, so Christian men cannot be reached directly. They have to self select from the creative. Phobia therapy and men's coaching are different audiences with different funnels, and I would not run them off one set of campaigns or one conversion action.
 
-Straight on the gap: I run Meta and email, not Google, and I have no therapy case study for you. What I have is healthcare lead generation. A dental group I ran took 2,558 lead form submissions at about $25 each, and when we pulled spend back the cost per lead was still improving, so cost was not what stopped it. Worth asking on your side: how many new clients a week can you take on before the constraint stops being leads?
+Straight on the gap: I run Meta and email, not Google, and I have no therapy case study for you. What I have is healthcare lead generation. A dental group I ran took 2,558 lead form submissions at about $25 each, and we pulled spend back to match what the call center could actually handle, not because cost rose. Worth asking on your side: how many new clients a week can you take on before the constraint stops being leads?
 
 Are you closer to a few thousand a month in ad spend, or well past that?
 
