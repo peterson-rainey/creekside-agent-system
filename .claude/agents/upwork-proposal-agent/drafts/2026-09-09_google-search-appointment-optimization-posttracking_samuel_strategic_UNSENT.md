@@ -10,7 +10,7 @@
 
 ## PROPOSAL TEXT (paste-ready)
 
-A freshly restructured account with newly fixed conversion tracking only has a few weeks of real data behind it, so Smart Bidding is still learning off a thin sample. The bigger issue is what that data can actually see. GA4 and GTM can confirm a booking was submitted, not whether it turned into a qualified appointment. So the account is optimizing toward form fills right now, and the more you scale volume, the further those two things drift apart.
+You have the tracking and the structure in place, so the next constraint is not setup, it is what the data can actually see. GA4 and GTM can confirm a booking was submitted, not whether it turned into a qualified appointment. So the account is optimizing toward form fills right now, and the more you scale volume, the further those two things drift apart.
 
 We ran into that same setup with Winterbotham Parham Teeple, a bankruptcy firm in Orange County. It was an existing lead generation account that needed improvement rather than a rebuild, which is close to where you are now. Our team took it from 117 conversions to 229 while cost per conversion dropped from $86.09 to $50.29 on about $11.5K in spend, mostly from rebuilding campaigns around the actual local search market. On the appointment side, Integrity Naturopathic is an active practice in our book running 574 conversions over the last twelve months at $39.62 blended.
 
@@ -18,7 +18,7 @@ The first lever I would pull here is closing the qualification loop, feeding whi
 
 What monthly spend range are you working with right now, under $5K, $5K to $10K, or higher? That changes how aggressively I would move on bidding.
 
-**Character count: ~1,770** (well under the 5,000 cap). Word count: 298. Verified with `wc`: 0 em dashes, 0 links, 1 question mark.
+**Character count: ~1,700** (well under the 5,000 cap). Word count: 288. Verified with `wc`: 0 em dashes, 0 links, 1 question mark.
 
 ---
 
@@ -70,6 +70,36 @@ What monthly spend range are you working with right now, under $5K, $5K to $10K,
 1. **Monthly ad spend is unstated.** Sub-$5K/month is an auto-DQ. The closing bracket ask is built to surface this on the first reply.
 2. **Geo is unstated.** The US/CA/UK/AU screen is unresolved. Wix + GA4/GTM gives no geo signal.
 3. **Vertical is unstated.** Deliberately not guessed. Dropped the second question to keep the close to one ask, so this stays open until they reply.
+
+## ATTACHMENT DECISION (2026-09-09, both PDFs read in full via Drive metadata)
+
+**ATTACH: `winterbotham_parham_teeple.pdf`** (`18tz_I0lKY_ULzLG8NlspLfSg1H3bqFtv`, 794KB, resolves).
+Titled "How Winterbotham Parham Teeple Doubled Conversions and Cut CPA 42% with Google Ads."
+KPI tiles read 229 conversions / $50.29 / 42% CPA reduction / 2x conversion growth, and every one
+matches the draft body exactly. It is the only artifact in the book that documents the
+before/after arc the post actually asked for.
+**BLOCKER: the `<http://localhost:4321/>` dev footer is STILL the last line** (confirmed by direct
+read today, despite the 2026-07-08 modified date). Re-export before sending.
+**Known cost:** the closing CTA reads "Ready to cut your legal marketing costs while growing your
+caseload," so legal is visible on the last line and this post's vertical is unstated.
+
+**DO NOT ATTACH: `integrity_naturopathic.pdf`.** Two reasons, the first fatal:
+1. Its KPI tile headlines **"150+ TOTAL CONVERSIONS"** and **"$2,350 MONTHLY BUDGET"**. The draft
+   body says 574 conversions and the live run rate is ~$1,895/mo. The attachment would contradict
+   the proposal on sight. Classic "attachment that argues against the proposal."
+2. It has no baseline, so it does not evidence an account "successfully improved" at all. It is a
+   current-state snapshot. Fine as a prose cite, useless as proof of an improvement arc.
+
+**DO NOT ATTACH: `Polaris_Dentistry_...pdf`.** Contains "below $4 per conversion" (banned live) and
+mixes both identities: bylined "By: Samuel Rainey" with results panels reading "Before Peterson" /
+"After Peterson." Persona leak on a Samuel bid.
+
+**Opener edited as a consequence.** The original first sentence argued the account had "only a few
+weeks of real data" with "Smart Bidding still learning off a thin sample." Winterbotham's thesis is
+DECOMPOSITION (it splits into four focused segments), which fragments thin data further. Per the
+2026-09-05 narrowing, Winterbotham is a contradiction on any draft resting on learning-phase volume
+thresholds. Dropped the learning-phase claim and kept the qualified-vs-booked gap, which is the
+load-bearing insight and does not fight the attachment.
 
 ## QC RESULT
 
