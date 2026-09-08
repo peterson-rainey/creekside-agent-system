@@ -100,7 +100,7 @@ Geo remains live. If they answer that spend is DACH-primary, which is nearly cer
 tax product, the screen is unresolved and the second touch needs a decision before it is sent.
 
 ---
-## PROPOSAL (4033 characters, 713 words) — QC-corrected
+## PROPOSAL (4031 characters, 712 words) — QC-corrected
 
 Both of the domains in your posting are still dark this week, so the first useful thing to say is about sequence rather than tactics.
 
@@ -108,7 +108,7 @@ Search captures demand that already exists. It does not create it. For a tax pro
 
 That check is worth running per project before the channel mix gets locked, because the two products will almost certainly answer it differently. Tax sits in a category people already search for, so Search probably earns its place from day one. A job product may be inventing its own category, and those launch in the opposite order.
 
-Our team ran that sequence for a B2B software company after a seed round: Meta for awareness on a category their buyers did not know existed, Google to capture the search demand that awareness created. The case study on file credits that structure with doubled inbound leads and doubled ARR over six months. Being straight about it, that account was never wired deeply enough into reporting for a defensible cost per lead to be reconstructed, so take it as a sequencing precedent rather than a number to hold us to.
+Our team ran that sequence for a B2B software company after a seed round: Meta for awareness on a category their buyers did not know existed, Google to capture the search demand that awareness created. Their own recorded outcome over the six months that followed was doubled inbound leads and doubled ARR. Being straight about it, that account was never wired deeply enough into reporting for a defensible cost per lead to be reconstructed, so take it as a sequencing precedent rather than a number to hold us to.
 
 The second thing worth settling before launch is what one budget can actually support. Both Google and Meta need a minimum volume of conversions before bidding stops guessing. Two projects across Search, Display, Shopping, Meta and LinkedIn is about ten separate places for money to go, and a budget that would train one of them properly will leave all ten stuck in learning, reporting numbers that look like performance and are closer to noise. So the first decision is not the split. It is which project goes first and which channel proves the funnel, then the rest gets funded out of what that one learns.
 
@@ -180,7 +180,7 @@ also attaches no screening questions and demands no artifact, so nothing forces 
 
 ## OPEN ITEM CREATED BY THIS RULING
 The body sentence pointing at "the case study on file" invites a request we cannot satisfy, because
-the artifact behind it is blank. Recommended one-line change, NOT yet applied, awaiting Queenie:
+the artifact behind it is blank. One-line change, APPLIED 2026-09-08 on Queenie's approval:
   from: The case study on file credits that structure with doubled inbound leads and doubled ARR over six months.
   to:   Their own recorded outcome over the six months that followed was doubled inbound leads and doubled ARR.
 This keeps the attribution that stops the number reading as caused by the mechanism, while removing
