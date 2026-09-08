@@ -3,47 +3,47 @@ Profile: Lindsey | Style: lindsey_default | Status: UNSENT | Drafted 2026-09-08
 
 ---
 
-What share of your revenue comes from prints versus originals and commissions? That split decides most of how the paid side should be built, and it usually gets skipped. A $60 print and a $4,000 commission are not one funnel with two price points. Meta's purchase optimization learns from volume, so when both sit inside one sales campaign the algorithm chases the cheapest transaction it can find and quietly stops showing your work to the people who buy the expensive things. The collector side almost always has to run as a lead and nurture path instead, with the sale closed by email or by you.
+What share of your revenue comes from prints versus originals and commissions? That split decides most of how the paid side gets built, and it usually gets skipped. A $60 print and a $4,000 commission are not one funnel with two price points. Meta's purchase optimization learns from volume, so with both in one sales campaign the algorithm chases the cheapest transaction it can find and stops showing your work to the people who buy the expensive things. Value based bidding with a minimum ROAS floor pushes back on that and I would test it, but at commission volumes the collector side usually has to run as lead capture, closed by email or by you.
 
-The reason I ask is that accounts with a large organic audience in front of them break in the same two places. Follower count gets treated as one audience when it is really four, and a 75 percent video viewer behaves nothing like someone who once liked a post. Then the warm audience gets treated as free money. It is cheaper, but finite, and it exhausts faster than anyone plans for.
+I ask because a large organic following is not one audience. A 75 percent video viewer behaves nothing like someone who once liked a post, and the warm pool that looks free is finite, and exhausts faster than anyone plans for.
 
-On drops, the ad is not what sells a limited edition. The waitlist is. Spend in the two weeks before a release should buy email addresses and video views, not sales, because on release day the edition size caps your revenue no matter what you spend.
+On drops, the ad does not sell a limited edition. The list does. Pre release runs as two stages, not one: cold video views to build a viewing audience, then a lead objective pulling those viewers onto the waitlist. Sales objectives on release day mostly pay to reach people who were already buying, and edition size caps the revenue regardless. The step most people skip is the sellout segment. Everyone who wanted the last edition and missed it is the warmest audience you will ever have for the next one, and that list should be built the day a release ends.
+
+One more I would look at early, how provenance shows up on the page. Edition numbering, certificate of authenticity, signature, run remaining. On limited and original work those are conversion levers rather than admin, and they usually move the collector funnel more than any audience change.
 
 WHAT I HAVE RUN
 
-Meta and email are my platforms. I built and sold my own e-commerce business before this, which is where the launch thinking comes from, and I have run paid social and email for others for over ten years.
+Meta and email are my platforms. I built and sold my own e-commerce business, and have run paid social and email for others for over ten years.
 
-Closest in shape to yours, a social native consumer camera brand whose audience came from organic before any spend. Four and a half months on Meta: $58,298 spent, 623 purchases, $93.58 blended. In the final three week window, warm retargeting bought at $87.61 against $102.14 on cold prospecting. Real, but not the ten to one gap people expect. That engagement has ended.
+Closest in shape to yours, a social native consumer camera brand with a young, heavily online audience. Four and a half months on Meta: $58,298, 623 purchases, $93.58 blended. In the final three weeks warm retargeting bought at $87.61 against $102.14 cold. Real, but not the ten to one gap people expect. That engagement has ended.
 
-At a price point closer to your originals, a premium furniture brand: $105,010 over four months, 343 purchases at $306 each. Cost per purchase sat at $334 in month one and $313 in month four while CPM went from $34.94 to $78.88. Creative was carrying the account while the auction got more expensive around it.
+Closer to your originals on price, a premium furniture brand I ran until this August: $105,010 over four months, 343 purchases at $306. Cost per purchase sat at $334 in month one and $313 in month four while CPM went from $34.94 to $78.88. That is the job at your price point, holding cost per sale steady while the auction gets more expensive around you.
 
-Email, I built a DTC flow set from scratch: four email welcome with purchase exclusion from email two, three email abandoned checkout at one, twenty three and twenty four hours, three email abandoned cart. The thing that mattered most was not a flow. Onsite tracking was returning zero Added to Cart events, so the cart sequence would have fired on nobody.
+Email, I built a DTC flow set from scratch, welcome plus abandoned checkout and abandoned cart, purchase exclusion throughout. The detail that mattered most was not a flow. Onsite tracking was returning zero Added to Cart events, so the cart sequence would have fired on nobody.
 
 WHAT I DO NOT HAVE
 
 No artist, gallery, print or collectibles client in our book, and no case study in the category. My nearest neighbours are visually driven consumer brands.
 
-No campaign built around a drop or limited release. I have the launch mechanics from my own business and from email, not from a paid release calendar I can point you to.
+No campaign built around a drop or limited release. Those mechanics come from my own business and from email, not a paid release calendar I can point you to.
 
-No Squarespace experience, mine or the team's. Worth knowing beyond the learning curve: Squarespace Email Campaigns does not do the purchase exclusion, segmentation or flow branching the rest of this depends on. It is fine for a welcome sequence and drop announcements. Real collector and post purchase segmentation is a Klaviyo conversation, and the migration is not free.
+No Squarespace experience, mine or the team's. So a question rather than a claim: does your setup do purchase exclusion and branching flows? A welcome sequence and drop announcements sit inside Email Campaigns comfortably. If collector and post purchase segmentation will not, this becomes a Klaviyo conversation, and that migration is worth pricing before you commit.
 
-I have email performance numbers for nobody. Six live email clients, flows built and shipped, no attributable revenue figure I would defend.
+Six live email clients, and no attributable revenue figure I would defend.
 
 FIRST 30 TO 60 DAYS
 
-Nothing paid in week one. Measurement first: Pixel and CAPI with deduplication, GA4, and a purchase event carrying real order value so a print and an original are not counted as the same sale. Then audit what the organic audience actually contains, segmented by recency and depth rather than as one blob.
+Week one, measurement. Pixel and CAPI with deduplication, GA4, and a purchase event carrying real order value so a print and an original are not the same sale. Then audit what the organic audience actually contains, by recency and depth.
 
-Weeks two and three, email before spend, because your list is the cheapest revenue available and already earned. Capture on site and in social, welcome sequence, and a waitlist mechanic you reuse for every release.
+Weeks two and three, email, because your list is the cheapest revenue available and already earned. Capture on site and in social, welcome sequence, and a waitlist mechanic you reuse for every release. A small warm retargeting stream runs alongside rather than waiting.
 
-Weeks four through eight, paid against the print funnel only, where volume can teach the algorithm. Warm audiences first, organic posts that already proved themselves adapted into paid creative, then cold prospecting once cost per purchase is stable. The collector path launches as lead capture, never as a sales campaign.
+Weeks four to eight, paid against the print funnel, where volume can teach the algorithm. Organic posts that already earned their audience adapted into paid, then cold prospecting once cost per purchase is stable. Google enters here on branded and intent terms, run by my colleague. The collector path launches as lead capture, never a sales campaign.
 
 THE PART THAT DECIDES THIS
 
-Two things I would rather say now than have you find in week three.
+We bill a percentage of ad spend rather than an hourly rate, so I cannot answer the rate question in the format you asked for. On availability, the scope as written fits five to seven hours a week, with more around a release. And I would be your Meta and email person, with a colleague on Google. If you want one person holding every channel, I am half of that.
 
-We bill a percentage of ad spend rather than an hourly rate, so I cannot answer the rate question in the format you asked for. And I would be your Meta and email person. Google would be a colleague, not me. If you want one individual holding every channel personally, I am half of that.
-
-That makes your ad budget the deciding number. Under roughly $5,000 a month a percentage will not clear a workable fee for either of us. So, what can you put behind ads monthly, and where do your buyers actually sit geographically?
+That makes your ad budget the deciding number. Under roughly $5,000 a month a percentage will not clear a workable fee for either of us. So, what can you put behind ads monthly, and where do your buyers actually sit?
 
 Those are the relevant numbers I have rather than a deck, and there is a short video on my profile covering how I work an account like this.
 
