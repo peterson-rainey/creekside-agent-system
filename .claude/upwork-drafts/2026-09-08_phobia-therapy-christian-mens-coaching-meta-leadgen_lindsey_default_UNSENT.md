@@ -124,17 +124,50 @@ profile-video CTA rather than a false claim of an attachment.
   minimum and the thread should be re-routed rather than continued.
 - Geo: unstated. If ads run outside US/CA/UK/AU the geo DQ fires on reply.
 
-## PROPOSAL (paste-ready)
+## QC PASS (qc-reviewer-agent, 2026-09-08) — verdict WARN, 3 findings, ALL ACCEPTED
 
-**Counts:** 333 words / 1,843 chars (limits: 200-350 words for a multi-question post, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name
+v1 was revised. The three findings were checked against the live data rather than accepted on sight; all three hold.
 
-Quick question before anything else: is the shortage actually in lead volume, or in how many of those leads turn into someone who shows up? Those two point to opposite fixes, and in this space they almost never break in the same place.
+1. **"we pulled spend not because cost rose but because the practice ran out of calendar."** The Fusion Dental
+   data proves cost did NOT rise. It does not establish that capacity WAS the reason. No booking-rate or
+   utilisation data exists to support "calendar". The stored memory rule says capacity, but a prior ruling is
+   not evidence in hand, and there is no paper trail if the prospect probes. **Fix:** state only what the data
+   shows (spend pulled while CPL was still improving, so cost was not what stopped it) and convert capacity
+   into a question aimed at the prospect's own business.
+2. **"What broke sat after the click, in the offer and the form and who the campaign had been trained to go find."**
+   Flat CPM and held CTR DO support "the failure sat after the click". They do not identify which downstream
+   thing broke. Naming three specific causes exceeds the qualitative shape this account is authorised for, and
+   does so about an account Lindsey does not operate. **Fix:** keep the supported inference, move offer/form/
+   lead-definition into "where I would look first", which is method rather than claim.
+3. **"A therapy practice hits that same ceiling."** n=1 dental extrapolated onto a vertical this file confirms
+   is a hard zero, one sentence after disclaiming therapy proof. Also wrong for one of the two niches: cohort or
+   group-delivered coaching is not calendar-capped the way a dental chair is. **Fix:** cut the extrapolation.
 
-The reason I ask is a life coaching franchise our team runs Meta lead campaigns for. The most useful thing that account showed me was the shape of a decline. Cost per lead climbed for months while CPM actually fell and click-through held steady. The ads were not tired and the media was not getting more expensive. What broke sat after the click, in the offer and the form and who the campaign had been trained to go find. Reading only the ad metrics, you would rewrite creative for months against a problem that was never there.
+**Also applied from QC's domain notes:**
+- `I would not run them in one account` to `I would not run them off one set of campaigns`. Separate ad accounts
+  carry real overhead (domain verification, spend-limit warmup, no shared learning phase). Campaign/audience
+  separation is the defensible professional claim.
+- `gets rejected` to `is the most common rejection in this vertical`. Meta's automated personal-attributes
+  enforcement is inconsistent; the frequency claim is defensible where a certainty claim is not.
+- `that account showed me` to `It shows`. v1 established the pooled framing ("our team runs") and then dropped
+  into singular first person three words later on an account belonging to Scott C.
 
-Two things specific to your niches that change how I would build this. Meta does not allow copy that implies you know something personal about the reader, so a line like "struggling with your fear of flying" gets rejected, while the same promise written about the work instead of the person runs clean. And religious affiliation stopped being a targeting option in 2022, so Christian men cannot be reached directly. They have to self select from the creative. Phobia therapy and men's coaching are two different funnels and I would not run them in one account.
+**QC confirmed clean:** 2,558 / "about $25 each" matches the $25.31 CPL exactly · 2022 religious-targeting date
+correct · personal-attributes description correct · Fusion Dental first-person "I ran" accurate (hers) · 0 em
+dashes · 0 URLs · no contact info · no sign-off · no Google/TikTok/Bing/programmatic service claim · no
+certification claim · no pricing.
 
-Straight on the gap: I run Meta and email, not Google, and I have no therapy case study for you. What I have is healthcare lead generation. A dental group I ran took 2,558 lead form submissions at about $25 each, and we pulled spend not because cost rose but because the practice ran out of calendar. A therapy practice hits that same ceiling.
+## PROPOSAL (paste-ready, post-QC v2)
+
+**Counts:** 348 words / 1,924 chars (limits: 200-350 words for a multi-question post, 5,000 chars) · 0 em dashes · 0 URLs · no sign-off name · nothing attached
+
+Quick question before anything else: is the shortage in lead volume, or in how many of those leads turn into someone who shows up? Those point to opposite fixes, and they almost never break in the same place.
+
+The reason I ask is a life coaching franchise our team runs Meta lead campaigns for. It shows the shape of a decline. Cost per lead climbed for months while CPM actually fell and click-through held steady. The ads were still being clicked and media was getting cheaper, so whatever broke sat after the click. That is where I would look first here too: the offer, the form, and what the campaign counts as a lead. Read only the ad metrics and you would rewrite creative against a problem that was never there.
+
+Two things specific to your niches change the build. Meta does not allow copy that implies you know something personal about the reader, so a line like "struggling with your fear of flying" is the most common rejection in this vertical, while the same promise written about the work instead of the person runs clean. And religious affiliation stopped being a targeting option in 2022, so Christian men cannot be reached directly. They have to self select from the creative. Phobia therapy and men's coaching are different audiences with different funnels, and I would not run them off one set of campaigns.
+
+Straight on the gap: I run Meta and email, not Google, and I have no therapy case study for you. What I have is healthcare lead generation. A dental group I ran took 2,558 lead form submissions at about $25 each, and when we pulled spend back the cost per lead was still improving, so cost was not what stopped it. Worth asking on your side: how many new clients a week can you take on before the constraint stops being leads?
 
 Are you closer to a few thousand a month in ad spend, or well past that?
 
