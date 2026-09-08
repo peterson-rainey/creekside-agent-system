@@ -43,7 +43,7 @@ advances, the budget answer decides whether the engagement is priceable at all.
 PAUSED, ran a handful of days and dead since 2025-09-08. Retained-window spend now reads **$8.54** because
 the rolling 12-month window has rolled past the run; memory has carried $495 and $139 for the same two
 campaigns at different times. **Do not quote a dollar figure for VIDEO** — it keeps changing with the
-window. The draft says "a few days over a year ago," which is stable and true.
+window. The body says "a few days on almost no budget," which is stable and true.
 
 **Every YouTube-inventory DEMAND_GEN campaign:**
 
@@ -86,17 +86,37 @@ columns at all. There is no channel-growth data anywhere in the system.
 No em dashes. No sign-off name. No links, no calendar link, no contact info (first touch). Does not open
 with "I". Does not parrot the post's own terms back. Flags a tradeoff. Budget asked as a relative range.
 "Our team" for delivery; no principal placed in a delivery seat; no fabricated YouTube specialist named.
-Concession leads with numbers rather than hedging. 362 words, 2139 characters (limit 5,000).
+Concession leads with numbers rather than hedging. 396 words, 2330 characters (limit 5,000).
 
 ---
+
+## QC PASS (qc-reviewer-agent, 2026-09-08) — 3 findings applied
+1. **HIGH, valid.** Concession said "four campaigns across four accounts" (Demand Gen subset only), omitting
+   the 2 VIDEO campaigns. True record is **6 campaigns / 5 accounts**. Sharper point: the VIDEO campaigns were
+   the view-objective audience-vs-keywords test, i.e. the exact lever para 3 recommends. Recommending a play we
+   already ran without disclosing it is selective honesty. **Rewritten to 6/5 and the test named explicitly**,
+   framed accurately as too short and too small to learn from rather than as a failure (a view-objective
+   campaign returning zero *conversions* is not a performance signal, the objective was not conversions).
+2. **MEDIUM, valid.** "Two cent cost per view" was false precision — `google_insights_daily` has no view, CPV
+   or earned-action columns, so there is zero data behind it, and it sat adjacent to "and a worse channel."
+   **Changed to "pennies a view."**
+3. **MEDIUM, valid (notes defect).** Line 46 asserted the body said "a few days over a year ago" when it did
+   not; that phrasing was tightened out and the note never updated. **Note corrected.**
+4. LOW: "first ten seconds" softened to "first few seconds." "Month three" left as rhetorical timing, not a
+   data claim.
+5. Style: PASS (no em dashes, no URLs, no sign-off, does not open with "I", no parroting, tradeoff flagged,
+   closes on a question). Platform facts (a)-(d): all four confirmed accurate.
+
+---
+
 PROPOSAL (paste into the proposal box):
 
-Paid views and channel growth pull against each other more often than people expect, and that gap usually decides whether this kind of campaign works. Watch time bought through Google Ads does not count toward the 4,000 public watch hours YouTube requires for monetization. More important, ad-driven viewers arrive interrupted rather than searching, so more of them leave in the first ten seconds, and that pulls down the average view duration the browse and suggested surfaces read when deciding how hard to push a video. The campaign can post a rising view count and a falling cost per view while quietly making the channel's own engine slower.
+Paid views and channel growth pull against each other more often than people expect, and that gap decides whether this works. Watch time bought through Google Ads does not count toward the 4,000 public watch hours YouTube requires for monetization. More important, ad-driven viewers arrive interrupted rather than searching, so more of them leave in the first few seconds, pulling down the average view duration the browse and suggested surfaces read when deciding how hard to push a video. So the campaign posts a rising view count and a falling cost per view while making the channel's own engine slower.
 
 So the scorecard gets set before launch. Link the channel to the ads account, which turns on earned views, earned subscribers and earned likes, the only place the platform reports what happened after the ad. Then split by traffic source in YouTube Analytics and compare the paid cohort against organic on average view duration and returning viewers. If paid retention lands near organic, spending more is the right call. If it does not, the targeting is wrong and more budget makes it worse faster.
 
-On structure, the first lever I would reach for is placement and contextual targeting against adjacent channels and videos rather than broad audience reach. The cheapest retentive view comes from someone already watching that subject. Broad reach hands you a two cent cost per view and a worse channel, worth choosing on purpose rather than finding in month three.
+On structure, the first lever I would reach for is placement and contextual targeting against adjacent channels and videos, not broad audience reach. The cheapest retentive view comes from someone already watching that subject. Broad reach hands you pennies a view and a worse channel, worth choosing on purpose rather than finding in month three.
 
-Where we are thin, plainly. Our team runs Google at scale, mostly Search, Performance Max and Shopping, and we have not grown a client's YouTube channel. On YouTube inventory we have run four campaigns across four accounts. One converted and is now paused, three returned nothing. If a record of channels grown is what you are buying, that is a real gap and better weighed now than later.
+Where we are thin, plainly. Our team runs Google at scale, mostly Search, Performance Max and Shopping, and we have not grown a client's YouTube channel. On YouTube inventory we have run six campaigns across five accounts. Four were Demand Gen, one of which converted and is now paused while the other three returned nothing. The last two were a view-objective audience against keywords test, the lever I just recommended, on one account over a year ago. They ran a few days on almost no budget, which is not long enough to learn from. If a record of channels grown is what you are buying, that is a real gap, better weighed now than later.
 
-Two things would help me size this. Roughly what monthly budget are you working with, closer to a few thousand or well past that, and is the growth pointed at monetization, at an audience for something you sell, or at reach on its own?
+Two things would help me size this. Roughly what monthly budget are you working with, closer to a few thousand or well past that, and is the growth pointed at monetization, at an audience for something you sell, or at reach itself?
