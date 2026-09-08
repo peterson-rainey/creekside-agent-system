@@ -18,7 +18,7 @@ The first lever I would pull here is closing the qualification loop, feeding whi
 
 What monthly spend range are you working with right now, under $5K, $5K to $10K, or higher? That changes how aggressively I would move on bidding.
 
-**Character count: ~1,700** (well under the 5,000 cap). Word count: 288. Verified with `wc`: 0 em dashes, 0 links, 1 question mark.
+**Character count: 1,671** (well under the 5,000 cap). Word count: 283. Verified with `wc`: 0 em dashes, 0 links, 1 question mark.
 
 ---
 
