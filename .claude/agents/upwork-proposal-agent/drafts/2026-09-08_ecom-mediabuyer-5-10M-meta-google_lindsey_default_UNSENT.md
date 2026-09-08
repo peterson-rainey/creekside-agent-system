@@ -2,9 +2,15 @@
 
 **Screened 2026-09-08 (Postgres now() = 2026-09-08 10:21 CT; local shell clock unreliable).**
 
-## Screen verdict: LIKELY SKIP — drafted on user's direct request
+## Screen verdict: SKIP — full-time employment seat CONFIRMED by screening Q3
 
-Two independent concerns, either of which is normally enough to skip:
+**UPDATE 2026-09-08 (screening questions received):** Q3 = "Are you ready to commit full time and
+join a killer team?" This is the settled full-time-employment-seat auto-DQ (fires on the words
+"full time," supersedes prior overrides). Q1 also imposes a hard >$2M cumulative-spend gate.
+This upgrades the earlier "likely skip" to a firm SKIP. Screening answers below drafted on user's
+direct request; Q3 answered honestly (not full-time), so they do NOT clear the client's gate.
+
+Three independent concerns, any one of which is enough to skip:
 
 1. **Spend-scale mismatch (dominant).** Post requires a portfolio of ecom brands spending
    **$5,000,000 to $10,000,000+** on ads. Our verified ceilings this session:
@@ -86,3 +92,29 @@ First-touch, so no pricing in the body (correct). If it advances:
   included), not the $1,000-$1,500 standalone band.
 - If it's an agency white-label or an hourly employment seat, it is off-model — that is concern #2
   above, and the reason this is a likely-skip.
+
+---
+
+## Screening Answers (Q&A mode — paste-ready, UNSENT)
+
+All figures verified against Postgres this session. Q3/Q4 answered honestly, which surfaces the
+management-partner vs full-time-hire mismatch — the correct outcome for a full-time-seat DQ.
+
+1. How much ad spend have you managed in total? (>$2M gate)
+Comfortably past $2M. In the last year alone I have run roughly $1.5M in Meta spend across my accounts, and I have been doing paid social for over ten years, so the cumulative number is several million. Almost all of it is ecommerce, spread across many brands rather than concentrated in one or two large accounts.
+
+2. Preferred advertising platforms?
+Meta is where I live, Facebook and Instagram, and it is where nearly all of my ecommerce work sits. I also run email and Klaviyo on the retention side, which is usually where DTC margin actually gets protected. Google runs alongside me with my team, so your "mostly Meta and a bit of Google" split is already how I work.
+
+3. Ready to commit full time and join a killer team?
+Straight answer: I come in as a dedicated management partner, not a full-time employee. In practice I run accounts hands-on the way an in-house buyer would, but on a contract basis rather than a salaried full-time seat. If what you need is a full-time hire who sits only inside your team, I am probably not the right fit, and I would rather say that up front than waste your time.
+
+4. Compensation expectations? ($ figure required)
+Because I work as a management partner and not a salaried hire, I price as a percentage of ad spend rather than a salary. It starts at $1,500 per platform per month, the rate steps down as spend grows (20 percent, then 15, then 10), and it caps at $15K per month. For a single brand running around $30K a month on Meta, that lands near $6K a month. If you need one figure for the box, $1,500 per platform per month is the floor.
+
+5. How much ad spend are you currently managing?
+Right now about $100K a month across my active Meta accounts, and the bulk of that is one long-running account at roughly $99K a month. It is a steady year-plus book rather than a spike, which is the pacing that actually lets you optimize instead of firefight.
+
+**Verified anchors:** $1.5M trailing-12mo = Lindsey's lane (Laleh $1.19M + Neue Maison + Master Spa
++ Blush). Current ~$99K/mo largest = Laleh (act_868498138612020, $1,187,589/12mo). Pricing = canon
+(pricing-reference.md: 20/15/10 at $30K/$60K, $1,500/platform floor, $15K cap; $30K×0.20=$6K).
