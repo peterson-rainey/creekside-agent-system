@@ -88,6 +88,26 @@ PRICING DECISION (open question for Queenie, flagged not decided)
   the $1,500 onboarding, on the same undisclosed spend. The two drafts are inconsistent on this point.
   Worth settling before either goes out, since both would be visible to the same client.
 
+ATTACHMENT RULING (verified 2026-09-08): ATTACH NOTHING
+- All four Meta-inclusive candidates were curl-tested from an unauthenticated context. Every one returns
+  `<title>Google Drive: Sign-in</title>` with ServiceLogin redirects, ~886K of HTML, NOT a PDF:
+  ReferPro 1hTfvn2soZtSun8DflK0LR1Mt1gWcIS8_, Dr. Laleh 1sRKepK03dL8gYVbGRvzX9-myZqOarIfF,
+  Advanced Med Spa 1TRlcVCPZFqNlm2ch3nJuFYLOx_1Wld8b, Adventures in Wisdom 1qoW2YJOCD_AwOnvAEdGjsh-adzQ_drD0.
+  This does not prove the PDFs are missing; it proves they are auth-gated and UNVERIFIABLE from here.
+- ReferPro is the only B2B-motion match and the index records its Results block as EMPTY. A case study with
+  no results, sent to a prospect whose literal ask was "spend levels and the CPL/CPA results you've driven,"
+  is worse than sending nothing.
+- Every healthcare PDF (Laleh, Advanced Med Spa, Integrity) is PATIENT acquisition. The proposal body says
+  "reaching patients is a different motion from selling into practices and I would not stretch it."
+  Attaching one contradicts our own argument inside the same submission. Integrity is also Google-only on a
+  Meta-only post.
+- Independent evidence these PDFs carry unverifiable numbers: the South River case study's key_result reads
+  "28 prequalified leads/week at $81 CPL." That $81 figure FAILS live verification (blended $390, 7 of 13
+  months with no conversion data). The artifacts are not reliably current.
+- MedWriter, the single best-matching account, has NO case_studies row at all, so the strongest proof for
+  this prospect is text-only by necessity. Q2 carries it with live recomputed numbers.
+- Substitute already in place: Q1 offers a call on Cade's verified calendar.
+
 BLOCKER BEFORE SEND
 - The post REQUIRES a 1 to 2 minute Loom intro. That cannot be produced in text and must be recorded by
   Peterson before this goes out. The proposal is incomplete without it.
