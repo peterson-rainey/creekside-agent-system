@@ -45,3 +45,14 @@ And the honest part. We are a paid search and paid social shop. We have no SEO c
 The closest account to yours is a luxury Shopify Plus brand on a headless build, hero product between $1,995 and $3,495, CAC target in the low hundreds. It is young, and I would rather be straight: branded converts, non-brand has not cracked yet, and we paused cold keywords and Shopping rather than let them spend into nothing.
 
 What is the monthly media budget now relative to where you want it in six months, and how does the paid-to-organic split sit in your head today? Those two change the plan more than anything else here.
+
+---
+
+## Single milestone description (183 chars, limit 200)
+
+Google Ads and Merchant Center audit. Tracking verified, brand separated from non-brand so CAC is readable per campaign, feed and settings checked. Written findings and a 30-day plan.
+
+Notes: no fee stated in the description (Upwork carries the amount in its own field, and their ad spend is
+still unstated so no price is quoted anywhere in this submission). Scope matches Q4 exactly, so the milestone
+and the screening answer corroborate rather than drift. Fixed scope, gates management, consistent with the
+standing "capped paid audit that gates management" carve-out. No links, no em dashes.
