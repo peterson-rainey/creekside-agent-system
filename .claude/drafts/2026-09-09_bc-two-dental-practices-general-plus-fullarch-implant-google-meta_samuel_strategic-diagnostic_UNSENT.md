@@ -78,11 +78,23 @@ I write the way you want to be written to, three lines at end of day on what cha
 One thing I would settle on day one of the paid trial: in each account today, what event is counted as the conversion, the form fill, the booking, or the attended visit. That single choice decides whether the platforms have been optimizing toward money or toward noise, and it is usually the first thing worth changing.
 
 ---
-Q1 (field: "Paste the link to your 3-minute unedited screen recording inside a real ad account you ran... Applications without one are not read."):
+SCREENING QUESTIONS (3 fields, exact wording per Queenie 2026-09-09). Paste answers verbatim.
 
-Unedited, ~3 min: [paste unlisted Loom / Drive / YouTube link]
+Q1: "Paste the link to your 3-minute unedited screen recording inside a real ad account you ran... Applications without one are not read."
+[DIRECTED BY QUEENIE: no link, offer to show live. Risk: post says not-read without a video; her call.]
 
----
-Q2 / pay line (post item 2 — "one line: what you need to be paid and why"):
+I would rather show you live than post a clip. Screen shared inside a real account I run, unedited, and you choose what we open, the spend, the conversion column, the search terms report. You already use a live working session as your final step. I am offering to bring that forward so you see me operate before you shortlist.
 
-20 percent of ad spend, with a $1,500 per platform monthly minimum, which on your current $10,000 to $20,000 across Google and Meta works out near $3,000 to $4,000 a month and steps to 15 percent past $30,000 and 10 percent past $60,000, so the rate falls as you scale. Priced on spend, not hours, because what I am accountable for is booked patients per dollar deployed, so the fee should move with the dollars and the result, not a clock. No separate build fee, the instrumentation you already have is what that usually pays for.
+Q2: "What do you need to be paid to do this properly at 30 hours a week, and why that number?"
+[30 hrs/wk = dedicated seat, not leveraged mgmt. Priced as monthly floor + %, NOT hourly (never-bill-hourly rule).
+$6,000 floor is ~$46/hr-equiv, above our $40/hr Upwork floor, below Samuel's $73/hr; adjustable $5-7K.
+Converts to canonical 20/15/10 tiers once % > floor (i.e. spend > $30K/mo). Cap $15K.]
+
+I do not price by the hour, so here is the honest version for a 30 hour week. A flat $6,000 a month, which converts to a percentage of spend once that percentage is larger, 20 percent up to $30,000, 15 to $60,000, 10 above, capped at $15,000. The reason it is a floor and not a slice of today's budget is that 30 hours a week on two accounts is dedicated capacity, not leveraged management, and part of that time is building and owning the qualification and follow-up function for the implant brand, which is labor, not media. As spend grows the percentage takes over, so you never pay twice for the same scale.
+
+Q3: "What is the largest monthly ad spend you have personally been responsible for, on which platforms, and for what kind of business?"
+[Book pooled through profile. $100K/mo Laleh Meta = Lindsey operator / Cade AM (verified live). $20K/mo Fusion
+implant Meta = Peterson AM (verified). If a strictly-Peterson-hands-on answer is wanted, lead with the
+implant/dental book (~$50-70K combined, largest single ~$29K Fusion). Ensure whoever shows live can back $100K.]
+
+Largest single account, a med spa at about $100,000 a month on Meta. Closest to your second practice, a dental implant clinic at roughly $20,000 a month on Meta, lead forms into a call center. Across the local service and healthcare accounts I am responsible for on Google Search and Meta, dental, med spa, and cosmetic, combined monthly spend runs into the six figures. All of it phone-close, none of it e-commerce.
