@@ -3,6 +3,11 @@
 - **Companion to:** `2026-09-08_everydayera-premium-streetwear-shopify-meta_lindsey_default_UNSENT.md`
 - **Date:** 2026-09-08 (Postgres `now()`, US Central) · **Status:** UNSENT
 - **Items 1 and 2 carry the foreclosure risk.** Both answered honestly, nothing fabricated. Whether that honesty clears their stated gate is the user's call.
+- **LENGTH WARNING.** Items 1-10 total 1,591 words / 8,941 chars. That is fine if Upwork gives each
+  screening question its own field, and fine as a direct message reply. It does NOT fit if all ten must go
+  into the single 5,000-char proposal field alongside the proposal body (1,792 chars), which would total
+  ~10,700. In that case send the proposal body and trim to items 1, 2, 3, 4 and 9, which are the ones that
+  gate the decision.
 - All figures re-verified live this session from `meta_insights_daily` + `meta_campaigns` + `meta_ad_accounts`. Churned accounts stated in past tense.
 
 ---

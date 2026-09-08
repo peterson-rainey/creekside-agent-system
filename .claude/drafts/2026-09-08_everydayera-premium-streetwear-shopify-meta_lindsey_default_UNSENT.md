@@ -35,6 +35,8 @@ All ten answers are below. There is a short video on my profile that shows how a
 | Spend +67%, CPA back to ~$116 | Apr $11,944.21 → May $19,972.01 (+67.2%); May CPA | $116.12 |
 | CPM $14 → $34 | Mar avg CPM $14.38 → May $33.91 | confirmed |
 | Ecom acct, 9 months | New Master Spa Parts, 2025-09 → 2026-05, $126,003.70 | confirmed |
+| Streetwear-adjacent targeting (bonus corroboration) | `meta_campaigns`: "Conversions | Urban Outfitters | 5/15", "Conversions/Purchase| Urban Outfitters | 4/9", "Conversions | Fashion/Lifestyle Interest | 2/20" | confirmed |
+| Shallow-event ladder actually run on Blush | `meta_campaigns`: "Conversions | ATC | 2/2/26" at launch, then "Conversions | Broad Purchase | 2/16/26" | confirmed, the exact mechanism the body describes |
 | CPA $44.93 → $19.89, conv 349 → 665 | Dec 2025 vs Apr 2026 | confirmed |
 | "on slightly less spend" | Dec $15,681.83 → Apr $13,223.56 | confirmed |
 
