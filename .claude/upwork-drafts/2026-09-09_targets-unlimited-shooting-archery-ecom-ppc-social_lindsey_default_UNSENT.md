@@ -65,14 +65,14 @@ no em dashes, no bold, no bullets. 287 words.
 
 ---
 
-Before the budget question gets answered on a catalog like yours, a different one has to be settled: which of your SKUs are actually eligible to be advertised, and on which platforms. Steel gongs, paper and archery targets usually clear. Scopes, optics and anything a reviewer reads as a firearm accessory are where feeds get disapproved, and a mixed catalog tends to draw account level action rather than item level. That comes before any media planning, because it decides whether feed based selling is even available to you.
+Meta names shooting targets and clay throwers on its allowed list, so most of your catalog can run there as long as it is age gated to eighteen plus. Scopes and sights are the exception, and on both platforms. Meta treats them as weapon modification accessories, and Google lists scopes and sights outright as prohibited products in Shopping. Google enforces that at the landing page level rather than the site level, so a category page that mixes optics in with targets can pull down items that would have been fine on their own. Sorting that is the first job, because it decides how much of your catalog the feed can actually carry.
 
-Assuming most of the catalog clears, that is where the money is. The closest account I have to yours is a replacement parts brand I ran on Meta for about nine months. Same shape: hundreds of low priced SKUs across a dozen brands, no single hero product.
+Once it carries, that is where the money is. The closest account I have to yours is a replacement parts brand I ran on Meta for about nine months. Same shape: hundreds of low priced SKUs across a dozen brands, no hero product. The catalog campaign there returned 6.95x on $13,235 and 573 orders. The broad prospecting campaign beside it took roughly five times that budget and returned 5.01x. A feed leans on warmer traffic, so that is not a straight comparison, but the feed was earning more per dollar than the budget split gave it credit for.
 
-The catalog campaign there returned 6.95x on $13,235 and 573 orders. The broad prospecting campaign beside it took roughly five times that budget and returned 5.01x. Those two are not a clean like for like, since a product feed leans on warmer traffic than cold prospecting does. What it does say is that the feed was earning more per dollar than the budget split gave it credit for, and that is the pattern I keep finding in wide catalog accounts.
+Creative on a catalog this wide is mostly a sorting problem. A twelve dollar splatter pack and a three hundred dollar steel plate want different formats and different proof, so I test by price tier rather than by brand.
 
-One more from that account, because it is the mistake I see most. Two campaigns aimed at the same no interest audience returned 5.01x and 3.36x. The budgets were far apart so that gap is not a clean read either, but the two ran on different objectives and different conversion events. On a catalog this wide that is the first thing I would check, ahead of the audience and well ahead of the creative.
+Since you want the record verifiable, I am glad to screen share that account and walk the numbers live for fifteen minutes rather than ask you to take them on faith.
 
-Ecommerce is most of my ten years, including a brand I built and sold myself. I have not run shooting sports specifically, so before promising anything about scale I would want to see the account and its disapproval history.
+Ecommerce is most of my ten years, including a brand I built and sold myself. I have not run shooting sports. Has the catalog been through Merchant Center review before, and is anything sitting disapproved right now?
 
-Attached a results sample below. There is a short video on my profile covering how I approach a first audit.
+There is a short video on my profile covering how I approach a first audit, and I attached a results sample below.
