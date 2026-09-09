@@ -55,7 +55,7 @@ GMC/ecom experience, never as a currently-running account.
 
 ## Draft
 
-Misrepresentation is the one suspension that is almost never a feed problem, which is why it resists the fixes people try first. Bad product data throws item-level disapprovals. Misrepresentation is an account-level judgment about whether the business behind the storefront is verifiable, and Google makes that call by looking at the live site, not the feed.
+Misrepresentation is the one suspension that is almost never a feed problem, which is why it resists the fixes people try first. Bad product data throws item-level disapprovals. Misrepresentation is an account-level judgment about whether the business behind the storefront is verifiable, and Google makes that call from the live site, not the feed.
 
 So the failure mode is predictable. Someone assumes it is the feed, cleans up GTINs and attributes, appeals, gets denied, and appeals again.
 
@@ -64,10 +64,10 @@ The part that costs the most: each review is a fresh judgment against whatever i
 What actually triggers it, roughly in the order I would check:
 
 1. Identity consistency across four places that must match exactly. The legal entity, the business name in Merchant Center, the name in the site footer and terms, and the descriptor that appears on a customer's card statement. A mismatch in any one of them reads as an unverifiable seller.
-2. Contactability. A real address, a working phone, a monitored email, all reachable without completing a purchase. Contact-form-only is a common trigger on its own.
+2. Contactability. A real address, working phone and monitored email, all reachable without completing a purchase. Contact-form-only is a common trigger on its own.
 3. Refund, return and shipping policies that are specific and consistent with checkout. A templated policy page, or a stated return window checkout contradicts, reads as misleading rather than sloppy.
 4. Price and total cost integrity. The price in the feed, on the product page, and at final checkout including shipping and currency. Any gap there is the single most reliably fatal one.
-5. Claims on the site. Health, income, guarantee and comparative claims without substantiation, which is where this gets vertical-specific fast.
+5. Claims on the site. Health, income, guarantee and comparative claims without substantiation, which gets vertical-specific fast.
 6. Domain and trust signals. Registration age and privacy, payment methods, and whether checkout is native or hands off to something unbranded.
 
 One thing worth being direct about, because the advice going around is dangerous. If the suspension cascaded to the linked Ads account, do not open a fresh Merchant Center or Ads account under the same person, entity, domain or billing to get moving again. That is circumventing systems, it is enforced across every asset tied to that identity, and it is effectively permanent. If you have other Google accounts, that move risks all of them. Rebuilding is only safe behind a genuinely separate entity, and that is a decision to make after reinstatement is ruled out, not a workaround to try first.
