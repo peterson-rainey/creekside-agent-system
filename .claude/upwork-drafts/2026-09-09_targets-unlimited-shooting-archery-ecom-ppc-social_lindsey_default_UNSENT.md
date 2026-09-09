@@ -58,10 +58,42 @@ Tenure ~$126,000 total spend, 2025-09-09 to 2026-05-26, stated as "nine months".
   draft's thesis), punch_drunk_chef.pdf (20x claim vs 1.76x live), aura_displays.pdf
   (Google-only, barred on Lindsey proposals), the 3 unverifiable contractor PDFs.
 
+## Platform policy, verified from primary sources 2026-09-09
+Meta "Weapons, Ammunition or Explosives" ad standard EXPLICITLY names shooting targets and
+clay throwers on the ALLOWED list (equipment for hunting, self defense or competition),
+subject to 18+ targeting. Weapon modification accessories, including scopes and sights,
+are prohibited. So the core Targets Unlimited catalog is permitted on Meta; the optics
+SKUs are the prohibited slice.
+Google: scopes and sights are named outright in the prohibited weapons-products list for
+Shopping. Enforcement is at the LANDING PAGE level, not the site level.
+CORRECTION this produced: an earlier revision said a mixed catalog "tends to draw account
+level action rather than item level." That is WRONG for Google, which enforces per landing
+page. Fixed. Expert review flagged this claim as load-bearing and it was.
+
+## QC and expert review, both run
+qc-reviewer-agent, blocking hits, both fixed:
+ - "Same targeting, same products, same creative pool" asserted creative and product
+   equivalence never verified. REMOVED.
+ - Implied-causation: the objective was named as the cause of 5.01x vs 3.36x while ignoring
+   a ~10x budget confounder. Now hedged and framed as where to look first, not as cause.
+ - QC also called the attachment unverified. That was QC lacking context; it was curled
+   this session, 200 / octet-stream / 1,243,119 bytes. Kept.
+Caught by the calling session, missed by QC: comparing a catalog/DPA campaign to cold
+prospecting on ROAS is apples to oranges since a feed leans warmer. Hedge added.
+expert-review-agent, acted on:
+ - Policy imprecision, conflating Meta and Google. FIXED above, now the strongest passage.
+ - "Verifiable" demand unmet by a genericized unnamed brand. Added a bounded fifteen minute
+   screen share of the live account.
+ - "Must be a creative" unanswered. Added the price-tier creative testing paragraph.
+ - Closed on a real question instead of a passive signpost.
+ - Cut one of the two "not a clean read" hedges. One remains, on the like-for-like.
+
 ## Style compliance
 Diagnostic opener, no "I" opener, no greeting, experience-heavy body, results-attached
 line, profile-video CTA, no sign-off name, no links, no contact info, no pricing,
-no em dashes, no bold, no bullets. 287 words.
+no em dashes, no bold, no bullets. 339 words, 1,904 chars, far inside the 5,000 cap.
+Over the 200-300 house band, but the post carries four explicit demands (verifiable record,
+creative, media buying, scale) and prior lindsey_default drafts have run to 346.
 
 ---
 
