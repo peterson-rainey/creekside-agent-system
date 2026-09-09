@@ -31,8 +31,27 @@ We have NO documented win where our team lifted a GMC Misrepresentation suspensi
 - Samuel = 6 years. Combined managed spend ~$249K/mo. Zero certifications claimed.
 
 ## Attachment decision
-ATTACH NOTHING. This is a first-touch proposal (URL ban), and no ecommerce/GMC PDF survives
-verification: Aura has no case-study PDF, and the Drive ecom PDFs are unread image-only files.
+ATTACH NOTHING. Verified 2026-09-10.
+- Aura Displays (1xKnrCCnakTPNnj8HaDiyEjp1z_ygloFN) is the ONLY E-Commerce + Google Ads row.
+  PDF is mechanically sound: real PDF (magic 255044462d312e34), 3pp, 813,371 bytes,
+  title "Aura Displays Case Study | Creekside Marketing", NO /Author byline (no Samuel leak).
+- KILLED ON CONTENT: PDF headline claims "8-10x ROAS on non-branded cold traffic".
+  Live google_insights_daily, labelled UNBRANDED campaigns: $46,567 cost / $245,224 value = 5.27x.
+  The only 8x+ rows are Shop-Best Seller 8.30x ($3,889) and Pmax-All Products 8.58x ($1,718),
+  neither labelled unbranded. Claim is ~2x the real figure. Do not attach.
+- Also: same http://localhost:4321/ link annotation defect as Winterbotham (would need stripping),
+  and no poppler on this machine so the body could not be read. Never attach one unread.
+- Fitness Superstore is the only other ecom row: Meta-only, churned, 40x unbacked. Not applicable.
+
+## Aura brand-inflation finding (drove the body fix)
+Blended account = $82,928 / $1,043,575 = 12.58x, but brand carries it:
+  BRANDED   $25,496 -> $732,637 = 28.74x  (31% of spend, 70% of revenue)
+  UNBRANDED $46,567 -> $245,224 =  5.27x
+  other     $10,865 ->  $65,714 =  6.05x
+Quoting the blend alone left an unreconciled gap against the 5.52x Shopping figure cited later.
+Body now discloses the split. Aura is status=active and lists Google Merchant Center as a managed
+service, but EVERY Google campaign is PAUSED with no data after 2026-08-31, so it is cited as
+GMC/ecom experience, never as a currently-running account.
 
 ## Draft
 
@@ -55,7 +74,7 @@ One thing worth being direct about, because the advice going around is dangerous
 
 Where I will be straight with you, because it changes what you are buying. Our team runs and repairs Merchant Center as part of managing ecommerce accounts, and we have held GMC admin through a Misrepresentation review that cleared. On that account the client also had a specialist working the appeal alongside us, so I am not going to sell you a reinstatement record I cannot cleanly attribute. What was unambiguously ours there was everything after: the product configuration fix, getting review visibility and rich snippets showing in Shopping, and taking the account to a "Great" store quality rating before we scaled it. If you want a one-time reinstatement specialist and nothing else, someone who does only that is a better fit. If you want a Google Ads manager who will not break your GMC standing and can diagnose it when it slips, that is squarely what we do.
 
-On the ads themselves, six years across Google and Meta, and our team currently manages roughly $249K a month in combined spend. The closest account to this: a Shopify retailer on Search, Shopping and PMax across 49 countries, $82,928 of spend against $1,043,575 in tracked revenue over ten months.
+On the ads themselves, six years across Google and Meta, and our team currently manages roughly $249K a month in combined spend. The closest account to this: a Shopify retailer on Search, Shopping and PMax across 49 countries, $82,928 of spend against $1,043,575 in tracked revenue over ten months. Worth splitting that, because the blended figure flatters it. Branded search returned 28.74x and produced most of that revenue on under a third of the spend. The non-brand side, the part actually buying new customers, returned 5.27x. That is the number I would hold us to.
 
 One finding from that account that may save you money early. Over the full window PMax was live, time-matched against Shopping in the same account, Shopping returned 5.52x on $19,433 while PMax returned 5.29x on $6,632. Close, and PMax ran on far less spend, so I would not oversell it. But it cuts against the assumption that PMax is the upgrade and Shopping the legacy option. Standard Shopping keeps the feed segmentation and search term visibility that PMax hides, and on a suspension-sensitive account that visibility is not a nice-to-have.
 
