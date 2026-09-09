@@ -82,3 +82,36 @@ version is the more aggressive claim set, and the 45-minute live session in his 
 Variation A says "The numbers are current through yesterday." True only if recorded and sent today: Meta data
 runs through 2026-09-08 and Postgres confirms today is 2026-09-09. If the recording slips a day, change it to
 "The numbers are live in the account, not a saved screenshot" to drop the time dependency.
+
+---
+## QC VERDICT (qc-reviewer-agent, 2026-09-09): FAIL on BOTH variations
+1. **Parroting.** Both openings recite his own checklist back item by item: duration, edit status, hidden
+   client name, spend + conversion column, then the breakdown, then the change. House rule allows amending ONE
+   of a prospect's terms; confirming several in a row is never fine. Compress to one clause, open on something
+   he does not know.
+2. **Numeric conflict.** We already sent "about $100,000 a month" for this same account. Live is $91,407 and
+   $94,081. Presenting "about $90,000" cold is a silent 10% shrink to a reader who already caught one
+   contradiction. Reconcile inside the message, as precision (a two-month range), NOT as a walk-back.
+3. **Ownership.** Confirms the operator finding independently and goes further.
+
+## VARIATION B IS DEAD, not fixable by copy edit
+Verified against the profile-scope reference: Lindsey's doc explicitly bans claiming Google Ads, Bing, TikTok
+or programmatic as her services. So Tooth Co Google has NO valid sender:
+- Peterson/Samuel: account manager, not operator. "One change I made" is exactly the buyer's disqualified
+  category, "agency account management rather than owning an outcome."
+- Lindsey: barred from pitching Google Ads at all.
+B is withdrawn.
+
+## THE STRUCTURAL PROBLEM UNDER ALL OF THIS
+His bar is ONE person who has personally managed $50,000+/month across Google Search AND Meta and who acts in
+both daily. Against our actual bench:
+- Lindsey operates the $91K Meta account truthfully, but is Meta-only and barred from claiming Google. Her own
+  shelved 9/8 draft conceded it: "I run Meta, not Google Search, so the impression-share and search-terms work
+  you described isn't where my hands-on reps are."
+- Peterson authored the strategy he praised but operates no account, so he cannot truthfully narrate a change.
+- The real Google operators, Ade A. and Ahmed I., are not profiles on this thread.
+
+No single profile satisfies the bar honestly. The proposal that won his praise was a strategy document; the
+video is the first test of who is actually behind it, and the honest answer is "more than one person," which is
+his stated non-fit. This is a real risk that the lead is unwinnable as framed, and it is Queenie's call whether
+to disclose and let him decide or to stand down. It is not a wording problem and should not be solved with one.
