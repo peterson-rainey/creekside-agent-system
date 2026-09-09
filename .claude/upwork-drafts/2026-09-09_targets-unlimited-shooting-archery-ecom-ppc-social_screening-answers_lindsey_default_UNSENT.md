@@ -53,16 +53,30 @@ for this join. Still not quoted, on thin-window grounds rather than missing-data
   DPA v3 catalog     $13,234.92  6.95x  573 conv
   Broad prospecting  $64,737.53  5.01x  2,016 conv
 
+## QC round, run 2026-09-09
+qc-reviewer-agent returned one blocking item: the account-wide CPA/ROAS improvement was
+juxtaposed against the reallocation mechanism, implying cause without establishing it.
+QC could not test the claim because it had no coverage data.
+Coverage check run by the calling session, and the causation holds:
+  July  listed campaigns sum to $8,134.31 vs account total $8,134.31. 100% coverage.
+  Aug   listed campaigns sum to $8,858.65 vs account total $8,970.34. 98.8% coverage,
+        $111.69 unaccounted across sub-$200 campaigns, immaterial at 1.2%.
+So the named campaigns ARE essentially the whole account and the account-wide move is
+genuinely explained by them. Fix applied is to STATE the coverage rather than delete the
+claim, which earns the causation instead of implying it.
+All other QC checks passed: every figure matched, Sep flagged partial, attribution split
+correct, zeros conceded, no rule violations.
+
 ## Compliance
 No em dashes, no bold, no bullets, no links, no contact info, no pricing, no sign-off name,
 no certifications claimed, vertical zero conceded, principals never named as the worker.
-322 words.
+331 words.
 
 ---
 
 The closest one to yours is running right now. A survival and outdoor gear retailer, wide catalog, low to mid price points, selling through Google Shopping and Meta. I run the Meta side and our team runs Google.
 
-The useful part is what happened between July and August. In July the account was spending into two UK campaigns that took $2,513 between them and returned $1,068. We cut one to zero and pulled the other back to about $400, and that budget went into Shopping and a category segmented Search campaign instead. Both of those took more money and got better at the same time, which is usually the trade you do not get. Shopping went from 2.16x to 2.81x on $6,054, and the segmented Search campaign went from 1.46x to 2.47x. Account wide, cost per order fell from $57.85 to $33.35 and return went from 1.48x to 2.54x on slightly more spend than the month before. September is sitting at 1.95x so far, so it is not a straight line and I would rather you hear that from me.
+The useful part is what happened between July and August. In July the account was spending into two UK campaigns that took $2,513 between them and returned $1,068. We cut one to zero and pulled the other back to about $400, and that budget went into Shopping and a category segmented Search campaign instead. Both of those took more money and got better at the same time, which is usually the trade you do not get. Shopping went from 2.16x to 2.81x on $6,054, and the segmented Search campaign went from 1.46x to 2.47x. Those two and a small branded campaign were effectively the entire account, so the account wide figures moved with them: cost per order fell from $57.85 to $33.35 and return went from 1.48x to 2.54x on slightly more spend than the month before. September is sitting at 1.95x so far, so it is not a straight line and I would rather you hear that from me.
 
 Before that, a spa replacement parts brand on Meta that I ran for about nine months. Same catalog problem you have, hundreds of low priced SKUs across a dozen brands with no hero product. The catalog campaign returned 6.95x on $13,235 and 573 orders, while the broad prospecting campaign next to it took roughly five times that budget to return 5.01x. Wide catalogs tend to pay through the feed before they pay through hand built audiences.
 
