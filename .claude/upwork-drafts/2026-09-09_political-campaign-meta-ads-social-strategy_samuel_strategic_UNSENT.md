@@ -78,3 +78,33 @@ Being straight about the evidence: our team has not run a political campaign. Th
 On the organic side, the honest role for it here is supply rather than performance. Organic gives you the volume of raw footage and the surface where a proven paid angle gets repeated for free, and it earns its place in the plan on that basis rather than on follower growth.
 
 Two things would let me size this properly. Which country and which office or ballot measure, since the authorization rules and the lead time differ by country. And where does the media budget land, roughly, against a $5K to $25K a month band?
+
+---
+
+## SCREENING QUESTIONS (added 2026-09-09)
+
+RE-SCREEN: both required items are ANSWERABLE, but both answer in the negative.
+Q1 (similar experience) has a real transferable answer. Q2 (certifications) is a BARE ZERO with no
+substitute available. Re-verified live this session: `agent_knowledge` filtered on certif / blueprint /
+"google partner" returned only Dental Blueprint Engine rows, which are an internal build and NOT Meta
+Blueprint. `reporting_clients` filtered on polit / PAC / elect / vote / committee returned ZERO rows,
+corroborating the earlier `clients` and `case_studies` zeros. Standing rule holds: never claim Google
+Partner or Meta Blueprint. Answered straight.
+
+Q1 body: 1,614 chars. Q2 body: 1,188 chars.
+
+### Q1. Describe your recent experience with similar projects
+
+No political campaign, and it would be easy to imply otherwise here so it is worth saying plainly. Our team has not run ads for a candidate, a PAC, a party or a ballot measure. If that is a hard requirement, the rest of this will not change your mind.
+
+What is genuinely similar is the machine underneath a voter contact program, which is Meta lead forms feeding a human calling operation against a deadline. The closest recent build was a multi-location dental group where forms fed a central call center. Roughly $64,700 in Meta spend produced 2,558 completed forms at $25.31 each across about eleven weeks of active delivery. The work that actually mattered there was not creative. It was consolidating ad sets so budgets exited learning quickly, choosing the optimization event for volume rather than for a cleaner-looking number, and making sure form submissions landed in the callers' queue the same day rather than in a CSV nobody opened. A phone bank is the same build with different scripts.
+
+The other similar strand is restricted-category work, where the constraint is a platform policy gate rather than a bidding problem. Recent examples include a telehealth account operating under health advertising restrictions, a Google Merchant Center misrepresentation suspension, and an ongoing Google Business Profile reinstatement appeal. Political sits in that same family: the account-level clearance decides whether anything serves at all, and it has to be handled before media planning, not alongside it.
+
+### Q2. Please list any certifications related to this project
+
+None. Our team holds no Meta Blueprint certification and no Google Partner status, and I would rather you hear that here than discover it later.
+
+The reason I am not going to dress that up is that neither one is a proxy for what this project needs. Blueprint is a multiple choice exam on platform features. It does not test the thing that decides a campaign's Meta program, which is whether the disclaimer and authorization clear in time and whether your budget exits learning before early voting starts.
+
+There is one credential that genuinely matters on this project, and it is not the vendor's. Meta's advertiser authorization for ads about social issues, elections or politics has to be held by your campaign, tied to your ad account and your Page, in the name of the entity that appears in the "Paid for by" disclaimer. Nobody can carry it on your behalf, and it cannot be transferred from an agency account. Whoever you hire, ask them who is completing that verification and on which entity. If the answer is that they will handle it under their own account, that is the wrong answer.
