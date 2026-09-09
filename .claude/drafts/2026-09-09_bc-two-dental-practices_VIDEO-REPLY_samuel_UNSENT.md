@@ -138,3 +138,32 @@ So the honest answer to "one person who has personally managed $50,000+/month ac
 is that we do not have that person. Lindsey is the only one who can truthfully record the clip he asked for,
 and she cannot own the Google Search half of the job. Decide disclosure or stand-down before recording.
 (If Scott is ever considered for a handoff here, note the standing carve-out: no profile video, no video framing.)
+
+---
+# REVISED DRAFTS v2 (post-QC, sdr-agent 2026-09-09). Variations A and B above are SUPERSEDED.
+Both open on the operator's identity, which is the one thing he does not already know. Format confirmation is
+one clause. Spend is given as the exact two-month pair so it reads as precision, not as a walk-back from the
+"$100,000" already sent. Neither has Peterson claiming a change he did not make. Tooth Co is dropped entirely,
+so Lindsey's Google restriction is never touched.
+
+## OPTION 1 — Lindsey narrates and is named (RECOMMENDED)
+
+The operator is Lindsey Bouffard. She is the one on the recording because she is the one in the account. Med spa, phone-close, Meta. You will see these on screen, so here they are up front: $94,081 the prior thirty days, $91,407 the last thirty, 185 conversions in the most recent window.
+
+[VIDEO LINK]
+
+One take, nothing cut. Lindsey is who would own your monthly number, not me. I built the plan you read and I stay behind it, but she is the one making the calls in that account day to day, so the reasoning should come from her.
+
+## OPTION 2 — Straight disclosure, let him choose
+
+Before you watch it: Lindsey Bouffard recorded this and Lindsey runs the account. Med spa, phone-close, Meta, $94,081 the prior thirty days and $91,407 the last thirty, 185 conversions in the most recent window. Single take.
+
+[VIDEO LINK]
+
+So you have it straight, the strategy you read is mine and the account work is hers. I own the plan. She owns the platform, the daily decisions, and every change you will watch her point at. That is two people, not one. If your one-person requirement is literal, decide on it now rather than in month three, and I will not sell you past it.
+
+## THE QUESTION NEITHER DRAFT ANSWERS
+Lindsey is Meta only. His bar is "across Google Search and Meta." Neither draft claims Google for her, so both
+are clean, but he will probably ask who runs the Google half. Per the operator census above, the honest answer
+is a THIRD person (Ade A., Ahmed I. or Scott C.), which converts this from "two people" to "an agency," his
+stated non-fit. Decide that answer before sending, do not improvise it on his reply.
