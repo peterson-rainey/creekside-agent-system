@@ -13,19 +13,19 @@ If it ran your ads through its own Business Manager and its own dataset, three t
 
 3. On Google, if their tag was the conversion source, the account has no conversion history to bid against, which rules out tCPA and tROAS at launch. Before defaulting to manual or max clicks with a threshold, I would check whether the current platform can export historical conversion events with timestamps, because those can often be imported to seed Smart Bidding instead of waiting out a cold ramp. Porting the old bid strategy over untouched is how these rebuilds fail in week one.
 
-The same ownership question applies to Merchant Center. If they owned the feed, your Shopping and PMax inventory carries the identical problem.
+The same ownership question applies to Merchant Center. If they owned the feed, your Shopping and PMax inventory carries it too.
 
 So the first thing I would do is not build anything. It is pull the current setup and confirm which of those apply, because that changes the sequencing of everything after.
 
-Supplement specific: dietary supplements are a restricted category on Meta, 18+ gated, and review runs stricter on a fresh account with no spend history. Creative approved for a year under the third party's account can get rejected on first pass in yours, usually on implied health claims or personal attribute phrasing. I would push your top spending existing ads through review before the full build, so that surfaces on your schedule and not on launch day.
+Supplement specific: dietary supplements are a restricted category on Meta, 18+ gated, and review runs stricter on a fresh account with no spend history. Creative approved for a year under their account can get rejected on first pass in yours, usually on implied health claims or personal attribute phrasing. I would push your top spending existing ads through review before the full build, so that surfaces on your schedule and not on launch day.
 
-On the Add to Cart campaigns, worth checking whether you need them as separate campaigns at all. It is the same 50 event threshold as above. Under it, optimizing to ATC is right because the purchase signal is too thin to learn on. Above it, a separate ATC campaign competes with the purchase campaign in the same auction and buys the same user twice. We ran that comparison on a parts ecommerce account: the purchase optimized structure came in at 5.53x, and inside it the broad pair beat the interest stacked pair 4.99x to 3.37x. Worth noting separately, CPM on that account fell about 10 percent over the same period.
+On the Add to Cart campaigns, worth checking whether you need them as separate campaigns at all. It is the same 50 event threshold as above. Under it, optimizing to ATC is right because the purchase signal is too thin to learn on. Above it, a separate ATC campaign competes with the purchase campaign in the same auction and buys the same user twice. We ran that comparison on a parts ecommerce account: the purchase optimized structure came in at 5.53x, and inside it the broad pair beat the interest stacked pair 4.99x to 3.37x.
 
 Six years on Meta and Google. Our team currently manages roughly $249K a month in combined spend across the two platforms. Closest relevant work:
 
-Join Piper. We inherited a Google account with duplicate conversion tracking and brand only targeting, likely the same diagnosis waiting under a third-party platform. We fixed the tracking before touching structure, then rebuilt natively.
+Join Piper. We inherited a Google account with duplicate conversion tracking and brand only targeting, likely the same diagnosis waiting under a third-party platform. We fixed the tracking before touching structure, then rebuilt.
 
-Aura Displays. Shopify ecommerce on Google. $82,928 spend, 2,089 conversions, $1,043,575 in tracked revenue, 12.58x, over the last ten months, on non brand cold traffic.
+Aura Displays. Shopify ecommerce on Google, Search plus Shopping plus PMax across 49 countries. $82,928 spend against $1,043,575 tracked revenue over ten months. Return ran in the thirties early and settled to 7x to 9x as we pushed budget into colder non brand inventory, which is the honest shape of scaling past brand demand.
 
 We also run a supplements brand on both platforms. It signed recently, so I am not going to quote results that do not exist yet.
 
