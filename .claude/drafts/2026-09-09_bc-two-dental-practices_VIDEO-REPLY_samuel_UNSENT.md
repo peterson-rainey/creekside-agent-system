@@ -115,3 +115,26 @@ No single profile satisfies the bar honestly. The proposal that won his praise w
 video is the first test of who is actually behind it, and the honest answer is "more than one person," which is
 his stated non-fit. This is a real risk that the lead is unwinnable as framed, and it is Queenie's call whether
 to disclose and let him decide or to stand down. It is not a wording problem and should not be solved with one.
+
+## VERIFIED: NOBODY ON THE BENCH CLEARS HIS BAR AS ONE PERSON
+Queried every active platform_operator across google/meta/lsa (2026-09-09):
+
+| Operator | Platforms | Active clients | Monthly budget |
+|---|---|---|---|
+| Lindsey Bouffard | **meta only** | 4 | $105,800 |
+| Ahmed I. | **google only** | 5 | $29,450 |
+| Ade A. | google, lsa | 3 | $24,500 |
+| Lindsey B. (alias of above) | **meta only** | 9 | $23,500 |
+| **Scott C.** | **google + meta** | 7 | **$20,600** |
+| Dustin Bowser | google only | 1 | $10,000 |
+| David | meta only | 1 | $10,000 |
+
+Scott C. is the ONLY operator who runs both Google and Meta, and his combined book is $20,600/month, well under
+the $50,000+ bar. Lindsey clears the spend bar at $105,800 (about $129,300 once her duplicate alias row is
+folded in) but is Meta only. Even merging the alias rows for Ahmed and Ade changes nothing: no single operator
+is dual-platform above $50,000/month.
+
+So the honest answer to "one person who has personally managed $50,000+/month across Google Search and Meta"
+is that we do not have that person. Lindsey is the only one who can truthfully record the clip he asked for,
+and she cannot own the Google Search half of the job. Decide disclosure or stand-down before recording.
+(If Scott is ever considered for a handoff here, note the standing carve-out: no profile video, no video framing.)
