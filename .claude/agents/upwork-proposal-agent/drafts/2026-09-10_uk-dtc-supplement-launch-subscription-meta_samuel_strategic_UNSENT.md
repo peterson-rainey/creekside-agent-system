@@ -103,3 +103,35 @@ Samuel's personal work, per the pool-the-book rule.
    the Shopify theme. ACCEPTED.
 
 Neither reviewer was asked to soften the three concessions, and none of them were softened.
+
+## Attachment verification (2026-09-10)
+
+All six candidate PDFs fetched and confirmed real PDFs (magic %PDF-, 649KB to 1.6MB). No sign-in-page traps.
+Claims then recomputed against meta_insights_daily. Result: only ONE is safe to attach.
+
+| Case study | PDF headline claim | Live data | Verdict |
+|---|---|---|---|
+| Unrefined Meal Prep | 4x new-cust ROAS, $20 new-cust CPA, $8-10 cost/purchase, ~2x month-1 expansion | act_1505675083772873, Jan/Feb/Apr 2026, $3,508.55 / 312 conv / $11.25 blended CPA, weighted 9.16x | SAFE. Claims are CONSERVATIVE vs live blended. Nothing overclaimed. |
+| Punch Drunk Chef | 20x peak ROAS, 10x avg new-cust ROAS, $10 new-cust CPA | act_1248382100071649, 12mo, $45,841 / 827 conv / $55.43 CPA, weighted 1.74x | FAILS HARD. Do not attach. CPA is 5.5x the claim, weighted ROAS 1.74x not 10x. |
+| Fitness Superstore | 40x+ peak ROAS, 7x baseline | reporting_clients row has NULL ad_account_id. Nothing to verify against. | UNVERIFIABLE. Do not attach. |
+| Duck A Diet | 4-6x new-cust ROAS, $8-17 CPA | reporting_clients row has NULL ad_account_id. Nothing to verify against. | UNVERIFIABLE. Do not attach. |
+| CI Lifestyle Meals | 14x overall ROAS, 4.5x new-cust, $25 CPA | Prior verification (2026-08-30) found live CPA $5.50-$12.20 and corrupt roas rows | FAILS. Mechanic citable, numbers are not. |
+| Aura Displays | 8-10x non-branded ROAS | Google Ads, not Meta. Wrong platform for this job. | OUT on platform. |
+
+**Recommendation: attach Unrefined Meal Prep only, or attach nothing.**
+
+Why Unrefined survives: its PDF narrative is "Entering a Brand-New Market from Scratch ... zero brand
+recognition, zero customers, zero operational history." That is the closest artifact we own to the client's
+actual ask, which is a brand taken from zero acquisition data into paid. It is also the only one whose
+printed numbers sit BELOW what live data supports, so a sophisticated founder checking it cannot catch us out.
+
+Caveats to weigh before attaching:
+- It is meal prep in Ohio. Not supplements, not UK, not subscription commerce. It answers "market launch
+  from zero," not "brand launch from zero."
+- Total spend is $3,508 over three months. Small next to a funded brand planning a real launch.
+- Operator was Trent L., not Lindsey, who the proposal names as day-to-day. Pooled per the book rule, but
+  do not let it be read as Lindsey's account.
+- The proposal body currently cites Master Spa Parts, which has NO case-study PDF. So attachment and body
+  would reference different accounts. Not wrong, but worth knowing.
+- The post says "do not apply with a generic agency deck." A single named client study is not a deck, so the
+  exclusion clause does not reject this artifact the way it would a multi-client capabilities PDF.
