@@ -38,3 +38,11 @@ Our team currently runs a supplement brand's account, so the compliance side of 
 Fixed price for the full build across both platforms is $3,000, and realistically it is two to three weeks once access is granted.
 
 I've attached a few results below that are relevant to your situation. There's also a short video on my profile that explains how I work through an account better than text does.
+
+---
+
+## MILESTONE (single) — $3,000
+
+Description (199 chars, under the 200 cap):
+
+Meta and Google campaigns rebuilt natively, from-scratch keyword and negative research, creative and copy migration, purchase and Add-to-Cart tracking verified, full QA, plus a structure summary doc.
