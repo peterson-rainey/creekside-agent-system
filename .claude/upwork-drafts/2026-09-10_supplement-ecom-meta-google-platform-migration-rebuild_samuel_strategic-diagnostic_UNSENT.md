@@ -25,7 +25,7 @@ Six years on Meta and Google. Our team currently manages roughly $249K a month i
 
 Join Piper. We inherited a Google account with duplicate conversion tracking and brand only targeting, likely the same diagnosis waiting under a third-party platform. We fixed the tracking before touching structure, then rebuilt.
 
-Aura Displays. Shopify ecommerce on Google, Search plus Shopping plus PMax across 49 countries. $82,928 spend against $1,043,575 tracked revenue over ten months. Return ran in the thirties early and settled to 7x to 9x as we pushed budget into colder non brand inventory, which is the honest shape of scaling past brand demand.
+Aura Displays. Shopify ecommerce on Google, Search plus Shopping plus PMax across 49 countries. $82,928 spend against $1,043,575 tracked revenue over ten months. Return ran in the thirties early and has come down into the 7x to 9x range as we pushed budget into colder non brand inventory, which is the honest shape of scaling past brand demand.
 
 We also run a supplements brand on both platforms. It signed recently, so I am not going to quote results that do not exist yet.
 
