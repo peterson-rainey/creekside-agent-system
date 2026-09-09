@@ -23,3 +23,9 @@ Two things I would want before quoting properly.
 What monthly budget range are you weighing, and what can a booked job cost you before the math stops working?
 
 What is the service mix and how far will you travel? Maintenance contracts, one off installs and hardscape carry very different lead values, and that changes the build more than the budget does.
+
+---
+
+## Milestone description (single, 199 chars)
+
+Tracking built and tested end to end, Local Services submitted for screening, Search split by service line and drive radius, narrow exact and phrase launch, search terms read daily through month one.
