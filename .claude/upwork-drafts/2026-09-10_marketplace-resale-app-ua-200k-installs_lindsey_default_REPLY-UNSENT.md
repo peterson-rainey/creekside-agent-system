@@ -9,11 +9,12 @@ Date: 2026-09-09 (US Central; Upwork shows Sep 10 in Queenie's GMT+8 display)
 1. Availability in Central time zone if hired.
 2. A video on how we'd get the marketplace to 200k downloads in 90 days.
 
-## Open decision before sending
-Weekly hours commitment is NOT in the draft as a number. Lindsey is
-America/Los_Angeles, contractor, estimated_hours_per_month = 88.77 (~20 hrs/week).
-Do not promise a 9-to-5 Central block without checking with her first.
-Replace [HOURS] below with whatever she will actually commit to.
+## Hours commitment
+Set by Queenie 2026-09-09: 10am-6pm Central, Mon-Fri.
+On Pacific (Lindsey's tz per team_members) that is an 8am-4pm day.
+Note: team_members.estimated_hours_per_month = 88.77 (~20 hrs/week) is the
+standing contractor figure. The 10-6 commitment is a 40-hour week and
+supersedes it for this engagement per Queenie's instruction.
 
 ---
 
@@ -21,7 +22,7 @@ Replace [HOURS] below with whatever she will actually commit to.
 
 Zach,
 
-On availability: I'm on Pacific, which puts me two hours behind you. Your 9 to 5 Central is my 7 to 3, so the whole of your working day is inside mine. I can commit [HOURS] per week against this, with the daily bid and creative work happening in your morning so anything that breaks overnight is handled before you're at your desk. Weekly reporting and a standing check-in both sit comfortably in that window.
+On availability: 10 to 6 Central, Monday through Friday. I'm on Pacific, so that lands as an 8 to 4 day on my end, which means I'm at my desk for the whole of your working day and there's no stretch where you're waiting on a reply. Bid and creative checks happen first thing, so anything that moved overnight is dealt with before your morning. Weekly reporting and a standing check-in both fit inside that without crowding anything else.
 
 On the video, yes, and there's something worth putting on the table before I record it.
 
