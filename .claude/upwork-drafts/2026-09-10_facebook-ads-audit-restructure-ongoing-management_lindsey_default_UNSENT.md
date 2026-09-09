@@ -20,10 +20,10 @@
 
 Quick question before anything else: when the account got more expensive, did CPM move with it, or did CPM hold while cost per lead climbed on its own? Those are two different problems. A rising CPM is the auction, and restructuring will not touch it. A flat CPM under a rising cost per lead is the account itself.
 
-The reason I ask is that I sat on both sides of that split on a replacement-parts ecommerce account I ran. October and December spend landed within $20 of each other, so the comparison was clean. CPM went up 44.9 percent. Cost per purchase went up 63.4 percent. Roughly half the damage was Q4 auction pressure nobody could price away. The rest was the account, and that was the half worth working on.
+The reason I ask is that I sat on both sides of that split on a replacement-parts ecommerce account I ran. October and December spend landed within $20 of each other, so the comparison was clean. CPM went up 44.9 percent. Cost per purchase went up 63.4 percent. Most of that was Q4 auction pressure nobody could price away. The gap between the two percentages was the account drifting on its own, and that was the part worth working on.
 
 Messy targeting usually turns out to be fragmentation rather than bad audiences. On that same account, broad against a purchase event ran at 4.99x while a narrower interest-stacked version of the same campaign ran alongside it at 3.37x, same catalog, same weeks. Six warm campaigns came out later, not because they were losing but because one warm pool split six ways never had the volume to leave learning.
 
 Creative that works and then quietly stops has usually been read against the wrong yardstick. As a structural note rather than a result, only about 3 percent of campaigns across the accounts I work in carry a video objective, even though most of the creative is video. A video objective rewards ThruPlay and view-through, and a tired ad keeps looking healthy on both long after purchases fall off.
 
-Those numbers come from accounts I ran, not benchmarks, and I can pull the full breakdowns if useful. There is a short video on my profile covering how I work through an audit like this.
+Those numbers come from accounts I ran rather than benchmarks. There is a short video on my profile covering how I work through an audit like this.
