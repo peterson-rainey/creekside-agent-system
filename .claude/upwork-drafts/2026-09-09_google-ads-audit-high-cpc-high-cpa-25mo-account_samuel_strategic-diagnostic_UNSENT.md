@@ -9,6 +9,17 @@ Profile: Samuel | Style: samuel_strategic-diagnostic | Status: UNSENT | Drafted 
 - Standalone audit with no management stated -> $1,000-$1,500 band applies (NOT the $1,500 onboarding fold-in, unless management follows)
 - 4 required questions, all answerable. No proof-gap foreclosure.
 
+## Attachment decision
+ATTACH: winterbotham_parham_teeple_CLEAN.pdf (.claude/attachments/)
+- Source 18tz_I0lKY_ULzLG8NlspLfSg1H3bqFtv, re-fetched 2026-09-09: real PDF, 794,188 bytes, 3pp, magic bytes verified.
+- Title "Winterbotham Parham Teeple Case Study | Creekside Marketing", NO author byline -> no Samuel persona leak.
+- Numbers on the PDF match case_studies exactly: 229 conv (from 117), $50.29 (from $86.09), 42%, $11.5K spend, 21% click growth.
+- "Service: Google Ads" printed on the cover: MATCHES this Google-only post (this is what disqualified it on the 2026-09-05 Meta-only post).
+- DEFECT FIXED: the http://localhost:4321/ link annotation on page 1 was still present; stripped. Send ONLY the CLEAN copy.
+- Learning-phase caveat checked, not fatal: the 2026-09-05 narrowing bars Winterbotham where a draft rests on volume thresholds. The PDF's four-segment restructure does brush the draft's own item 3, so the prose now reconciles it explicitly (segment to learn, consolidate to bid) rather than leaving the contradiction for the prospect to find.
+- Residual risks: PDF states NO timeframe (this post does not ask for one), and it prints $11.5K spend. If they turn out to be a large spender, that becomes a scale liability and the attachment should be pulled.
+- Big Chad Law, the only other Legal row, is a confirmed 404. Winterbotham is the whole legal shelf.
+
 ## Verified facts used
 - Branded vs non-brand split, Doctor Laleh, google_insights_daily, last 90d, recomputed 2026-09-09:
   Search - Branded: $1,958.95 / 34.5 conv = $56.79 CPA
@@ -37,7 +48,7 @@ Roughly the order we would work in:
 
 The deliverable is a written findings document: what is broken in tracking, what is structural, what is market, each recommendation ranked high, medium or low with the reasoning, and a short list of what to leave alone. If it needs a rebuild rather than a tune up, it says so plainly instead of selling twelve months of optimization on a broken foundation.
 
-Closest example: our team took a bankruptcy practice in Orange County from 117 to 229 leads while cost per lead fell from $86 to $50.29, on spend that barely moved. That was restructuring around one market, not bid tinkering. Happy to send the write up.
+Closest example, attached: our team took a bankruptcy practice from 117 to 229 leads while cost per lead fell from $86.09 to $50.29, on $11.5K of spend, only $1.44K more than the period before. Worth saying how that squares with the point above, because it looks like the opposite. The account was segmented to find out which market actually converted, Orange County won, and budget was then concentrated there while the weak segments were paused. Segmenting to learn and then consolidating to bid is a different thing from splitting an account so finely that no single campaign ever gets enough data.
 
 A standalone audit runs $1,000 to $1,500 depending on account size. If management follows, it folds into onboarding rather than being charged twice.
 
