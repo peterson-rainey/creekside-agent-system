@@ -27,3 +27,8 @@ Messy targeting usually turns out to be fragmentation rather than bad audiences.
 Creative that works and then quietly stops has usually been read against the wrong yardstick. As a structural note rather than a result, only about 3 percent of campaigns across the accounts I work in carry a video objective, even though most of the creative is video. A video objective rewards ThruPlay and view-through, and a tired ad keeps looking healthy on both long after purchases fall off.
 
 Those numbers come from accounts I ran rather than benchmarks. There is a short video on my profile covering how I work through an audit like this.
+
+
+## Milestone description (single, 198/200 chars)
+
+Full audit of the live Meta account, then restructure of campaigns, audiences and placements. Changes implemented in-account, creative direction from the numbers, and a report on what moved and why.
