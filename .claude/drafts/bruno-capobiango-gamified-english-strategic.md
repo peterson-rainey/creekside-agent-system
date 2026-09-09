@@ -20,7 +20,9 @@ Profile: Samuel Rainey | Style: samuel_strategic-diagnostic | Status: UNSENT | 2
   Unbranded Shopping $11,902.51 / 94.6 conv / $125.80 CPA
   Blended all campaigns $41,721 / 752.3 conv = $55.46 CPA
 - Channel gap (Search, not app inventory) named explicitly in the body rather than hidden.
-- Calendar link: Samuel's iwVAR8raqiD9a7dx6, curl-verified 200.
+- NO calendar link sent. Held back per instruction 2026-09-10; close gates on the spend answer
+  first, which matches Peterson's own spend-first practice. Samuel's iwVAR8raqiD9a7dx6 is
+  curl-verified 200 and ready to send once he answers.
 
 ## Review
 - QC: cut the Yuri parenthetical so the message ends on the closing question; softened the
@@ -32,7 +34,7 @@ Profile: Samuel Rainey | Style: samuel_strategic-diagnostic | Status: UNSENT | 2
   sentence but conditioned it on "if the product is app-first" since he never said it is an app.
   Rejected broadening the concession into an app-acquisition claim.
 
-## Body (381 words / 2,313 chars)
+## Body (358 words / 2143 chars)
 
 Bruno,
 
@@ -48,6 +50,4 @@ So the first thing I would want to see is your event map and your paid-to-retain
 
 Straight with you on fit: we have subscription, e-commerce and lead generation work across our three operator books, but no gamified learning product. Different vertical, same growth mechanics, and better you know that now than on the call.
 
-Happy to talk, you can grab a time here: https://calendar.app.google/iwVAR8raqiD9a7dx6
-
-Geography matters too, but spend tells me more about what is already working: what range are you spending monthly today, or is this a first launch?
+Happy to talk. Before I send a time over, one thing: geography matters too, but spend tells me more about what is already working. What range are you spending monthly today, or is this a first launch?
