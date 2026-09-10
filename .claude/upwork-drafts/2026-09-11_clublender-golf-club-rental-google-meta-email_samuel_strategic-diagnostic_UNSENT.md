@@ -1,0 +1,11 @@
+Someone searching for a golf club rental already has a trip booked. They type a destination into the search, like Scottsdale or Pebble Beach or Myrtle Beach, and they need clubs by a certain date. So most of your Google budget should go to campaigns built around each destination, not one national campaign bidding on "golf club rental." Once each market has its own campaign, you can see which destinations actually turn into bookings, raise bids where they do, and schedule spend around each market's season. A national campaign mixes all of that into one average and hides the markets that work.
+
+The same idea fixes Meta. Interest targeting for "golfers who travel" pulls in a lot of people who will never rent. The better signal is your own site. Someone who picked a destination and dates and then left is the most valuable audience you have. Retargeting ads should show them that destination and the delivery option they looked at, not a general brand message.
+
+Tracking decides whether any of this works. If GA4 records a booking only as a conversion, with no rental value or destination attached, Google and Meta can't tell a weekend set from a week-long tournament order. Sending the order value and destination with each booking lets both platforms bid for your best customers. The abandoned-cart email in Klaviyo should use that same trip date, because "your clubs for March 14 aren't reserved yet" is a real reason to come back.
+
+Microsoft Ads should start as a copy of the Google Search campaigns once those are profitable. Its volume is smaller, so it works better as an add-on than as a place to test.
+
+To be straight on fit, our team runs Google Ads, Meta Ads, GA4 and GTM tracking, and Klaviyo flows in-house. SEO, blog writing and organic Instagram and Facebook posting aren't services we offer. You'd want a separate content person for those, and I'd rather tell you that now.
+
+Management is 20% of ad spend with a $1,500 monthly minimum per platform, plus a one-time $1,500 onboarding fee per platform that covers the audit, tracking setup and campaign build. What range is your monthly ad spend in right now across Google and Meta, and is that closer to where you want to stay or a starting point you plan to grow from?
