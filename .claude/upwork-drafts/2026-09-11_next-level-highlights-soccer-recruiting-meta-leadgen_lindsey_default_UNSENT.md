@@ -9,7 +9,7 @@ Screens flagged: ad spend unstated + $100-150 product price points below the $5K
 
 Do you know how many new families one happy parent or club coach sends your way? I ask because at a $100 to $150 package, finding buyers one parent at a time gets expensive on Meta quickly. A coach who sends half a roster changes the math completely, and that answer decides who the ads should talk to first.
 
-I've run Meta for dental and cosmetic practices, meal prep companies, furniture and e-commerce brands, and a mortgage lender. I also built and sold my own e-commerce business, so I judge ads by what a customer is worth, not by what the dashboard says. I haven't run ads for a sports or recruiting business, and you should know that up front.
+I've run Meta for dental and cosmetic practices, meal prep companies, furniture and e-commerce brands, and a mortgage lender. I also built and sold my own e-commerce business, so I judge ads by what a customer is worth, not by what the dashboard says. I haven't run ads for a sports or recruiting business, and you should know that.
 
 Two examples. A dental implant group sending Meta lead forms to their call team: $64,747 in spend, 2,558 leads, $25.31 per lead over about three months. Their call team handled bookings, so I don't have a clients-acquired number from it. Separately, a local meal prep company with a low price point like yours: in the last 90 days, $4,084 in spend brought 513 purchases, about $7.96 each.
 
