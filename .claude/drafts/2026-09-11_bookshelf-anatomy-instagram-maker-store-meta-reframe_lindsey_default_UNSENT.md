@@ -4,7 +4,7 @@ The other thing I learned building and selling my own e-commerce business is tha
 
 One example: a consumer camera brand selling to a young, very online audience, the most Instagram-native store I've run. I managed $58,298 in Meta spend there over about four months for 623 purchases at $93.58 each. Retargeting came in at $70.73 against $92.85 on prospecting, but the warm pool was small, so it was never the lever for scale.
 
-On cost, we don't price by phase. There's a one-time onboarding fee that covers the full review of your Instagram, site and customer journey, then a percentage of ad spend, so it only grows as your budget does.
+On cost, we don't price by phase. There's a one-time $1,500 onboarding fee that covers the full review of your Instagram, site and customer journey, then a percentage of ad spend, so it only grows as your budget does.
 
 Is putting a few thousand a month behind your best posts realistic for you, or is that well past where you'd want to be?
 
