@@ -35,3 +35,9 @@ On a spa parts retailer, I managed about $125K of Meta spend over nine months at
 On terms: our pricing is 20% of ad spend with a $1,500 USD monthly minimum, plus a one-time $1,500 onboarding fee, with a 90-day minimum. The first 30 days on new products is mostly Meta learning and the first creative round, so a day-30 verdict lands before the numbers settle. Better to say that now than at signing.
 
 There's a short video on my profile that shows how I work through an account.
+
+---
+
+## MILESTONE (single)
+
+Onboarding: Pixel and CAPI verified against Shopify orders, purchase-optimized Meta campaign built for both blends across Canada, 3 creative angles, retargeting, launch and first weekly report.
