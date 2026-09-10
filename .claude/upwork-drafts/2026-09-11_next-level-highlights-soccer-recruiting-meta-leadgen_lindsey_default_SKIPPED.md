@@ -1,7 +1,7 @@
 Job: Next Level Highlights LLC, Meta Ads specialist for lead generation (soccer highlight videos for college recruiting, packages from $100-$150)
 Profile: Lindsey
 Style: lindsey_default
-Status: UNSENT
+Status: SKIPPED (below $5K/mo ad spend minimum, ruled 2026-09-11)
 Attachment: none (no attachable PDF matches the live numbers cited)
 Screens flagged: ad spend unstated + $100-150 product price points below the $5K floor; sports/recruiting vertical is a verified zero
 
