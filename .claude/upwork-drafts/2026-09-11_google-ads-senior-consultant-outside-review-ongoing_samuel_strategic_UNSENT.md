@@ -22,3 +22,9 @@ An example of what an audit turns up: a GLP-1 telehealth company brought us a Go
 For the ongoing part, a monthly review works well next to an in-house team. A Google Ads specialist on our team goes through the account before each call, your team brings what changed, and we push back on anything that isn't earning its spend. I stay involved on strategy.
 
 Roughly where does monthly spend sit today, closer to $5,000 or $50,000? And is Google bidding toward sales, or toward leads that close later?
+
+---
+
+MILESTONE DESCRIPTION (single milestone, under 200 chars, no amount set here):
+
+Google Ads audit: conversion tracking, brand vs non-brand split, Search/PMax/remarketing overlap, bidding and budget allocation. Written findings and prioritized recommendations for your team.
