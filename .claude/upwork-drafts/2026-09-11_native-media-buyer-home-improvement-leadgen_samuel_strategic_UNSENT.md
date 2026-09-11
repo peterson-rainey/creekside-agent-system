@@ -37,7 +37,7 @@ How much ad spend have you managed on lead gen ads for these native ad platforms
 
 Zero on the five native platforms. I want to be straight about that rather than stretch adjacent work to fit.
 
-Home improvement and home services is a real part of our book. The paving and asphalt account above is ours, active, and lead gen. Over 12 months it has run $79,433 at 373.6 leads, a $212.60 blended cost per lead, with a best stretch of 35.5 leads in 12 days at $119.54 after cutting cost per lead 31% off the prior matched window. We also run lawn and landscaping, gutter, and construction trades accounts, all selling to homeowners, all measured to booked work rather than form fills.
+Home improvement and home services is a real part of our book. The paving and asphalt account above is ours, active, and lead gen. Over 12 months it has run $79,433 at 373.6 leads, a $212.60 blended cost per lead, with a best stretch of 35.5 leads in 12 days at $119.54 after cutting cost per lead 31% off the prior matched window. We have also run lawn and landscaping, gutter and construction trades accounts on the same model, all selling to homeowners. The paving account is the one still live today.
 
 All of that is Google and Meta. None of it is native.
 
