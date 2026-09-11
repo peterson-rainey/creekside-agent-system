@@ -40,3 +40,8 @@ What does AleuCo keep on a typical hair and makeup booking once the artist's cut
 - `sdr-agent` generated two variations; `qc-reviewer-agent` blocked Draft 1 for asserting "several times the margin the business actually earns" as settled fact ahead of the confirming question (Rule 11 violation) and for an unsupported magnitude claim.
 - Draft 2 recommended, softened per QC: "reads closer to the deposit than to the ticket" became "is likely a lot closer to the deposit than the ticket, and worth pinning down before any target gets set."
 - Verified clean: no em dashes, no name sign-off, no apology or delay reference, no links/contact info, no pricing, no case studies or invented numbers, no pre-signature commitments.
+
+---
+
+## SENT (confirmed from thread pasted 2026-09-11)
+Sent by Lindsey, displayed Sat Sep 05 3:44 AM on Upwork (viewer time; about Fri Sep 4 afternoon Central). Sent with one small operator edit: "Everything downstream- targets and pricing has to be built off that number rather than the ticket price." No reply as of 2026-09-11 (7 days).
