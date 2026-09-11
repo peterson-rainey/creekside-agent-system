@@ -100,3 +100,13 @@ Worth asking anyone you talk to what they check before trusting a conversion num
 On shape, the ads side is ongoing monthly work rather than a project fee.
 
 Two things would let me size this. Roughly where does monthly ad spend sit, closer to $5,000 or $25,000? And who owns the site build today, an in-house developer or nobody?
+
+---
+
+## MILESTONE DESCRIPTION (added 2026-09-11)
+
+192 characters, under the 200-char standing cap. Scoped to what we actually own: the page work is written
+as briefs for THEIR developer, never as a redesign build, so it does not contradict the concession in the
+body. No price named (spend unstated, so nothing is computable). No links, no em dashes.
+
+Meta ads audit, campaign rebuild and ongoing management, pixel and event validation, retargeting, plus a paid-traffic page review written as change briefs for your developer. Weekly reporting.
