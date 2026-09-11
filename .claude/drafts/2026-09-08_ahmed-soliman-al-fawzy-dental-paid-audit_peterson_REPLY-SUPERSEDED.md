@@ -1,3 +1,7 @@
+**Status: SUPERSEDED, NEVER SENT.** Drafted 2026-09-08 and posted to ClickUp 86e1ftjxu as "Claude's recommended response" (9/8 15:24 UTC). Peterson typed his own reply instead on 2026-09-09 16:14 UTC: "We charge $90 an hour for our audits, and they typically take around 5 hours. you would recieve a pdf outlining our findings. if this works you may send over the contract." Do not reuse the $1,000-$1,500 pricing below anywhere in this thread. Next touch: 2026-09-11_ahmed-soliman-al-fawzy-dental-paid-audit_peterson_FOLLOWUP-UNSENT.md
+
+---
+
 Read only access works. Everything an audit needs is visible at that level, so there's no reason to add a user or create overlap with your team. One practical note, a shared login usually triggers a verification code the first time it's used from a new device, so we'd just need you reachable for a minute during setup to clear it.
 
 For what you're after this is the better setup. You get an outside read from someone not angling for the seat, and the findings come in a form you can hand straight to the team already on the account. What happens after is a separate decision and doesn't need to be made now.
