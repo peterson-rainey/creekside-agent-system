@@ -67,7 +67,7 @@ Across the whole Google book only **two** accounts improved first-to-last CPA: S
 
 ## COMPLIANCE
 
-0 em dashes | 0 URLs | 0 contact info | no calendar link (first touch) | no booking CTA (none offered) | no sign-off name | no certification claim | no "10+ years" | "our team" framing, no principal named as the worker | **3,988 chars**, under the 5,000 cap
+0 em dashes | 0 URLs | 0 contact info | no calendar link (first touch) | no booking CTA (none offered) | no sign-off name | no certification claim | no "10+ years" | "our team" framing, no principal named as the worker | **4,129 chars**, under the 5,000 cap
 
 ---
 
