@@ -403,7 +403,9 @@
       "mcp__ede18d50-b5a3-4303-a965-5ed7d5f0f8f1__clickup_search",
       "mcp__ede18d50-b5a3-4303-a965-5ed7d5f0f8f1__clickup_filter_tasks",
       "Bash(curl -sIL \"https://calendar.app.google/85PWYBwxqYNq18qe9\" -o /dev/null -w 'status=%{http_code}\\\\n')",
-      "WebFetch(domain:doc-14-0c-docstext.googleusercontent.com)"
+      "WebFetch(domain:doc-14-0c-docstext.googleusercontent.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\\\\n\" -A \"Mozilla/5.0\" \"https://calendar.app.google/iwVAR8raqiD9a7dx6\")",
+      "Bash(curl -sL -o /dev/null -w \"final: %{http_code} %{url_effective}\\\\n\" -A \"Mozilla/5.0\" \"https://calendar.app.google/iwVAR8raqiD9a7dx6\")"
     ]
   }
 }
