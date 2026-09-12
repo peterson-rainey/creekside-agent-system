@@ -18,3 +18,19 @@ To be upfront, I have not managed a fine jewelry brand. What I'd bring is 10+ ye
 Happy to walk through the numbers behind those accounts. There's a quick video on my profile that explains my process better than text.
 
 What share of your yearly revenue comes in around Q4, Valentine's Day and Mother's Day?
+
+## SCREENING QUESTIONS (paste-ready)
+
+**Q1. Fine jewelry brands managed**
+
+None. I haven't managed paid media for a fine jewelry brand, and I'd rather say that plainly than stretch something to fit.
+
+The closest match is a luxury furniture DTC brand I ran on Meta. I was the hands-on operator, building campaigns, running creative tests and managing budget. Purchases were high-ticket with long consideration. Over our time on the account we spent about $105K for 343 purchases, around $306 each, peaking near $40K in a single month. I also currently run a Meta account for a high-consideration aesthetic practice spending close to $100K a month. Before agency work, I built and sold my own e-commerce business.
+
+**Q2. Meta structure, creative testing, and who does the work**
+
+I keep structure simple so budget can concentrate: one main prospecting campaign split by buyer intent (gift buyers vs. self-purchase and milestone buyers), a separate retargeting campaign sized to your real consideration window, and existing customers excluded from prospecting so new-customer cost stays honest.
+
+On creative, I test the angle before the format: education on the stone and craftsmanship, the milestone story, gifting, and trust proof like reviews, certification and returns. Each angle gets its own ad set with a few executions, and a winner has to hold on new-customer cost against Shopify, not just Ads Manager ROAS. Winners move into the scaling campaign, and I build creative around specific hero pieces, since on high-ticket products the piece usually does more work than audience targeting.
+
+Yes, I'd do the audit and the strategy call with you myself.
