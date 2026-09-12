@@ -1,5 +1,5 @@
 # Melinda Yuni / naise.ai — Peterson profile, touch 3 (FOLLOW-UP)
-**Status: UNSENT.** Drafted 2026-09-04. Upwork job "Meta and Google Ads Manager",
+**Status: SENT.** Drafted 2026-09-04; appears in Upwork as Fri Sep 04 11:43 PM (display time). The held Cade handoff below was superseded by the 9/8 link-only send. Upwork job "Meta and Google Ads Manager",
 `upwork_jobs` id `76336eda-1225-4b63-b804-4195b7a6bb92`.
 
 ## THE MESSAGE

@@ -1,5 +1,5 @@
 # Melinda Yuni / naise.ai — Peterson profile, booking-unblock follow-up
-**Status: UNSENT.** Drafted 2026-09-09. Job "Meta and Google Ads Manager",
+**Status: SENT.** Drafted 2026-09-09; appears in Upwork as Thu Sep 10 12:14 AM (display time). Job "Meta and Google Ads Manager",
 `upwork_jobs` `76336eda-1225-4b63-b804-4195b7a6bb92`.
 
 ## THE MESSAGE
