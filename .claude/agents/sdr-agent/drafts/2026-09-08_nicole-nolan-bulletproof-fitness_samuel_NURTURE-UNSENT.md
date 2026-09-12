@@ -3,7 +3,7 @@
 **Profile:** Samuel Rainey
 **Type:** nurture / near-breakup (post-decline)
 **Lead record:** upwork_leads b20fed14-249c-44aa-8ad3-6ce5be50adb6, status "follow up pre-call", salesman Peterson
-**Status:** UNSENT
+**Status:** SENT verbatim Tue 2026-09-08 9:02 AM CDT (ClickUp task 86e2pgd7k updated the same minute)
 
 ---
 
@@ -43,3 +43,14 @@ No pitch here, and nothing needed back. If things change on your end, I'm around
 - Audit disagreement not re-litigated. Competitors not mentioned.
 - No contact info, no URLs (Upwork rule).
 - Short touch per alternating-depth rule: 8/26 was the substantive one and went unanswered.
+
+---
+
+## 2026-09-12 FOLLOW-UP CHECK: HOLD, NOTHING SENT
+
+- Her last message is still the "I wish you well" close (Thu 8/20 12:39 PM CDT, shows 8/21 in Upwork). Since then: no Fathom row, no Gmail from her address after the 8/11 invite, and both calendar rows are the cancelled Wed 8/12 1:00 PM CDT slot.
+- Peterson's last word in the ClickUp thread (task 86e2pgd7k, threaded replies under comment 90170240820824), Thu 8/20 2:09 PM CDT: "don't send, I'll come back to this." Nothing after it. No go-ahead for the 8/26 or 9/08 sends is recorded there.
+- The 9/08 message closed "nothing needed back." A ping days later contradicts it.
+- SDR nurture.md puts declined leads on a 60-day cycle. Next touch not before Mon 2026-11-09 CDT (60 days lands Sat 11/07), and only with Peterson's OK.
+- Angle then: one-line outcome curiosity on how her partner search landed. No new free analysis, no pricing, no calendar link.
+- ClickUp due date still reads Sat 9/12 4:00 AM CDT (active-cadence spacing). Needs moving.
