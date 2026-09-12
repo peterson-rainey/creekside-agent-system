@@ -1,0 +1,9 @@
+Quantum Body's hardest Meta problem will probably be that the people who tap "start trial" on a gratitude and manifestation app are not always the people who pay when the trial ends. If campaigns optimize to trial signups alone, Meta will happily find the curious and the cheap, and cost per trial will look great right up until the first billing cycle.
+
+The fix is deciding early which event Meta learns from. At launch there usually isn't enough volume to optimize to trial-to-paid directly, so we'd start on trial start, pass the paid conversion back through the Conversions API the moment it fires, and move optimization down the funnel once weekly volume can support it. Cost per paying subscriber is the number we'd manage to. Cost per trial is only the early read.
+
+Creative gets tested in layers: hooks first on one format, then formats, then messaging angles. For an app like this, "daily alignment" and "intentional living" will pull a different buyer than "track your dreams and synchronicities," so angle testing matters more than polish. Winners scale in budget steps plus new ad sets that carry the winning concept into fresh audiences, rather than one big jump that resets learning. For fatigue we watch frequency alongside hook rate decay, and we want the replacement concept already in testing before the winner drops off. That's where your creative direction becomes the pipeline.
+
+For context, we run Meta for our own subscription product with a 7-day trial, so the cheap-trial-that-never-converts problem is one we deal with on our own money. Our team also worked a mobile app account from $7.36 down to $3.90 cost per install over 2,662 installs. The honest gap: we're lighter on MMP-side app attribution like AppsFlyer and SKAN than on Pixel and CAPI setups.
+
+Two questions. Does the trial start inside the app or on the web first? And is the launch budget closer to testing a few concepts a month, or already sized to scale whatever wins?
