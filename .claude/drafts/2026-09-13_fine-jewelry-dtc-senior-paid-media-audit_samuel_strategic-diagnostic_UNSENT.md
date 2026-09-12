@@ -24,3 +24,17 @@ To be straight about proof: we have not managed a fine jewelry brand, and I woul
 Our team has managed DTC paid media across Meta and Google on Shopify, and the review would be done by a senior strategist with a direct strategy call with you.
 
 Two questions. Roughly what share of revenue lands in Q4 and around Valentine's and Mother's Day? And do you have product-level margin, or only revenue, in Shopify today?
+
+## SCREENING QUESTIONS (paste-ready)
+
+**1. Which fine jewelry brands have you personally managed paid media for?**
+
+None. We have not managed paid media for a fine jewelry brand, and I would rather not stretch something else to fit the question. The closest account is a DTC luxury furniture brand on Shopify. Our team ran Meta for them, owning campaign structure, creative testing and budget decisions, at roughly $24K to $40K a month. Purchases ran roughly $500 to $1,300 each, on a long consideration cycle. That account has since moved in-house.
+
+**2. What is your current approach to Meta campaign structure and creative testing for a high-AOV jewelry brand? Will you personally conduct this audit and strategy review yourself?**
+
+Structure: a small number of campaigns, with prospecting and returning customers budgeted and judged separately, because on a high-AOV brand a blended ROAS mostly measures how warm the audience is. Prospecting is grouped by product or collection rather than by audience, since broad targeting does the audience work now and the specific piece is what finds the buyer. On the furniture account, prospecting built around one product returned 2.36x while a broad collection campaign returned 0.08x on similar spend. Gifting windows get their own budget so a Q4 spike does not reset targets for the rest of the year.
+
+Creative testing: angles before formats. Milestone, heirloom, gifting, and education on the stone or metal are different reasons to buy, and each gets tested on its own before we iterate on hooks and formats inside the winner. With purchases this infrequent, we read tests on cost per add-to-cart and checkout alongside purchases so decisions don't wait weeks for significance.
+
+On who does the work: the audit is done by a senior ecommerce strategist on our team, Lindsey, who ran the furniture account above. She would be on the strategy call with you and write the action plan. We are a small team, not a solo freelancer, and I want that clear before you choose.
