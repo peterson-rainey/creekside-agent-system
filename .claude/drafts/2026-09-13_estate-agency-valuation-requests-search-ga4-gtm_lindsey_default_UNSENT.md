@@ -15,3 +15,9 @@ Having built and sold my own business, I care more about what shows up on the ot
 I've attached a couple of results below so you can see how I approach lead quality.
 
 There's a short video on my profile that walks through how I set up tracking before any budget goes live.
+
+---
+
+## Milestone description (185 chars)
+
+Audit existing campaigns, set up GA4 and GTM tracking tying each valuation request to campaign, keyword and agent area, then deliver keyword/negative plan and cost-controlled structure.
