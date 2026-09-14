@@ -1,6 +1,6 @@
 # Melinda Yuni / naise.ai — Lindsey thread, market-sequencing follow-up
 
-Status: UNSENT, drafted 2026-09-10 (Thu 11:43 AM Central per Postgres; Singapore already Fri 09-11)
+Status: SENT 2026-09-10 ~12:49 PM Central (Upwork display Fri Sep 11 1:49 AM, viewer GMT+8). Variation B sent verbatim. (Drafted 2026-09-10.)
 Context: No reply since Lindsey's Sep 8 message. Same prospect is live on the Peterson-profile thread for the same job, where she already gave spend (9/7) and was sent Cade's calendar (9/8). Queenie asked for a follow-up without choosing a thread; drafted for Lindsey as the thread in hand.
 Touch type: new observation (budget spread vs learning volume) + one pick-one question. NO link, NO spend, NO scheduling.
 Sign-off: NONE
