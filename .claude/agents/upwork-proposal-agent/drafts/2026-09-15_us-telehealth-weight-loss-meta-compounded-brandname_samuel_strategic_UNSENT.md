@@ -14,4 +14,4 @@ How I'd run the rest:
 
 On creative, we direct it: our team writes the scripts and static briefs. None of it is in weight loss, so there is nothing on-vertical to show you.
 
-One question: does intake and checkout run on your own domain, or hand off to a telehealth platform's? That decides what the pixel can see and where the purchase signal has to come from.
+One question: does your intake and checkout flow run on your own domain, or hand off to a telehealth platform's? That decides what the pixel can see and where the purchase signal has to come from.
