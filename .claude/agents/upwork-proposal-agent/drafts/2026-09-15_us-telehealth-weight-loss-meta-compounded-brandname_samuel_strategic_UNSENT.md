@@ -1,17 +1,17 @@
 PEPTIDIC
 
-Dispensing both compounded and brand-name products puts two different claim standards inside one Meta ad account. Both practices the FDA called out in its letters to 30 telehealth companies this year sit on the compounded side: implying a compounded drug is the same as the approved product, and branding it under the telehealth company's name as if it were the compounder. That split belongs in the creative and the review checklist from day one.
+An account that has only run briefly in telehealth may not have told you much yet. Meta filters signals it reads as health data, and events from an intake flow are the likeliest to be limited, so purchase may not be usable for optimization, and a short run can read as weak demand when it was really thin signal. Before any creative call, I would check what the pixel was actually allowed to send, pick the event the rebuilt campaigns learn from, and read CAC from your telehealth backend rather than Ads Manager.
 
-Your filter first: we have not run Meta for a telehealth or prescription brand. Our one GLP-1 telehealth account was on Google, ran a few weeks, and came to us already certified. Nothing on your proof list exists for us on Meta, so by that measure we don't clear it.
+On proof, nothing you listed exists for us on Meta. We have never run Meta for a telehealth or prescription brand, and our only GLP-1 telehealth work was a few weeks on a Google account that came to us already certified. By your cutoff, that rules us out.
 
-How I'd run it anyway:
+How I'd run the rest:
 
-1. Permissions and assets before creative. LegitScript and Meta's written permission for prescription ads have to belong to your business, and neither transfers from whoever runs the ads. If a profile, Page, domain or payment method tied to the brand was ever restricted or removed, start with a review on that asset. Meta's account integrity rules treat new accounts or Pages created to get around a removal as evasion, including ones linked by common ownership.
+1. Assets before ads. If a profile, Page, domain or payment method tied to the brand was ever restricted or removed, the move is a review on that asset. Meta's account integrity rules count new accounts or Pages created to get around a removal as evasion, including ones linked by common ownership. LegitScript and Meta's written permission also have to sit with your business, since neither transfers from whoever runs the ads.
 
-2. Two creative lanes that never share an ad or a landing page. Compounded ads stand on the provider and the price, never on a brand-name drug's name or trial results. Angles I'd open with, mostly clinician talking heads and how-it-works statics: who it is and isn't for, what happens between intake and delivery, the all-in monthly cost, and support after starting. Health rejections tend to come from an outcome promise or a line about the viewer's body, so every ad is checked against its claim, image and landing page before it runs.
+2. Compounded and brand-name never share an ad or a landing page. The FDA's letters to telehealth companies this year cited sourcing: compounded drugs branded with the telehealth company's name as if it were the compounder. Compounded creative should say plainly who compounds it.
 
-3. Measurement settled before launch. Meta filters signals it reads as health data, most likely on intake pages, so purchase may not be usable for optimization. We'd choose the optimization event up front and read CAC from your telehealth backend, not Ads Manager.
+3. Hooks come from the questions people ask before starting, pulled from intake drop-offs and support tickets: the cost when insurance says no, what the first month feels like, what happens after stopping. Each becomes a short answer video and a carousel, and every ad is reviewed together with the page it points to before it runs.
 
-On creative, yes, we direct it: our team writes the scripts and the static briefs. None of it is weight loss, so there is nothing on-vertical to show you.
+On creative, we direct it: our team writes the scripts and static briefs. None of it is in weight loss, so there is nothing on-vertical to show you.
 
-One question, since it decides where we start: are LegitScript and Meta's written permission already active for the business that will own the new ad account?
+One question: does intake and checkout run on your own domain, or hand off to a telehealth platform's? That decides what the pixel can see and where the purchase signal has to come from.
