@@ -72,3 +72,24 @@ There's a short video on my profile that walks through how I run accounts like t
 - Video creative is neither offered nor ruled out. If the buyer expects video, that is a scope gap.
 - Commitments in the body: Lindsey makes the statics in Canva and writes copy; October testing window.
 - DB log to `upwork_proposal_logs` skipped (contractor_query cannot INSERT).
+
+---
+
+## SCREENING ANSWERS (paste-ready, added 2026-09-15)
+
+Same two questions logged on the 2025-08-07 Burlington ON row, whose api_proposal_id links to the London row, so both sheet rows are very likely one job.
+
+### Q1. Please attach some examples of ads you've designed.
+
+I don't have a set I can attach here, because the ads I design run under each client's brand and products, and I don't share those publicly without their permission. What I can do on a call is walk you through recent static ads I've built in Canva and what each one was testing. For a decor brand the most useful sample is a first round built on your own pieces, and I'd have that ready in the first week of working together.
+
+### Q2. How long does it take you to get campaigns up and running?
+
+About two weeks from getting access. Week one covers the account audit, a kickoff call, checking that the Pixel and Conversions API record purchases correctly against real orders, and building the first round of ads from your photos. New campaigns go live in week two. If you already have campaigns running, I leave them on during that first week instead of changing things before I've seen the data, so sales don't stall. The slower part is the read, since it usually takes two to four weeks of spend before I'd call a design the winner.
+
+### Screening-answer notes
+
+- Q1 is an UNANSWERED PROOF DEMAND (required-items screen fires). No attachable designed-ad artifact exists: `gdrive_entries` indexes folders and PDFs only, no image files. Candidate folders exist under Lindsey-operated Meta clients (Doctor Laleh `ad creatives/July 2025 Static Creative`, `August 2026 - Creatives`; Blush Camera `Ad Creatives` holds only Fonts + icons) but authorship is unrecorded (Laleh also uses Vizion for photos) and they are client-branded cosmetic dentistry, off-vertical. Tiami creative comes from the client's own creative resource (Amanda), not Lindsey. If Queenie wants to attach, Lindsey must confirm she designed the files and the client allows sharing.
+- Canva authorship: Lindsey "only uses Canva and ChatGPT herself" (gmail_summaries aa06eda9, 2026-03-17). Fathom 2026-09-08 lists her as "Creative/Facebook Specialist".
+- Q2 timeline basis: onboarding SOP requires a kickoff call before launching new ads and a pre-launch checklist; dental SOP holds campaign changes for the first 7-14 days; 9/14 Lindsey draft launched in week two. No SOP states a Meta ecom launch day count, so "about two weeks" is the house pattern, not a documented SLA.
+- Commitments added: first round of ads in week one (post-signature, not spec work), new campaigns live week two.
