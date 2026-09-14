@@ -48,11 +48,11 @@ expert-review-agent: Strong. Platform claims confirmed via WebSearch (broad/Adva
 
 ## PROPOSAL (paste-ready)
 
-Home decor on Facebook usually gets decided by one ad design choice before targeting comes into it. Styled room, or the product on its own. A room scene sells the feeling and tends to pull cold audiences in, while a clean product shot with the price works on people who already browsed and just need a reason to come back. Run one design at both groups and one of them underperforms, and it looks like an audience problem when it was the creative. On broad targeting Meta leans heavily on the ad itself to find buyers, so the design ends up doing a lot of the targeting.
+Home decor on Facebook usually gets decided by one ad design choice before targeting comes into it. Styled room, or the product on its own. A room scene sells the feeling and tends to pull cold audiences in, while a clean product shot with the price works on people who already browsed and just need a reason to come back. Run one design at both groups and one of them underperforms, and it looks like an audience problem when it was the creative. On broad targeting Meta leans on the ad itself to find buyers, so the design does much of the targeting.
 
 So I'd split the account by what each ad has to do, not by interests. One prospecting campaign on broad targeting, where room scenes and before-and-after makeovers get tested as creative, along with angles like style and gifting. Then catalog retargeting that shows people the exact pieces they viewed or added to cart. Before any of it spends, test orders get checked in Events Manager against the orders in your store, because purchase data is what the whole account learns from.
 
-Timing is worth planning around. Across the Meta accounts we manage, CPMs rose about 38% from October into November last year, and home decor gets pulled into holiday gifting. A new setup is better off doing its testing in the cheaper weeks than learning at peak prices.
+Timing is worth planning around. Across the Meta accounts we manage, CPMs rose about 38% from October into November last year, and home decor gets pulled into holiday gifting. A new setup is better off testing in the cheaper weeks than learning at peak prices.
 
 The closest work in our book is a luxury furniture brand we ran on Meta, about $105,000 in spend over four months before that engagement ended, and a luxury mattress brand on Shopify we run now on Meta and Google. Both sell bigger tickets than most decor. If most of your pieces sell under $100, the plan leans harder on order value and repeat buyers, since one sale can't carry much ad cost.
 
