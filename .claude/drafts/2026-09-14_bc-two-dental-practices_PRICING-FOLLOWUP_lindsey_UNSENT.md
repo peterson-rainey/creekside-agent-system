@@ -1,5 +1,5 @@
 # Upwork FOLLOW-UP — BC two dental practices (Michael Webster), answering the % vs flat challenge
-Profile: Lindsey Bouffard | Style: lindsey_default | Type: follow-up, active thread | Status: UNSENT
+Profile: Lindsey Bouffard | Style: lindsey_default | Type: follow-up, active thread | Status: UNSENT (v2, follow-up framing)
 Drafted 2026-09-14 (Postgres now(), US Central) | sdr-agent -> qc-reviewer-agent (WARN, fixes applied)
 
 ## SOURCE OF THE CONTENT (owner instruction, not a Queenie paraphrase)
@@ -53,9 +53,22 @@ Peterson, Samuel, Cade; "our team"; any other person, profile, colleague or agen
    screening answers went out; unverifiable (screening_questions NULL). One price per shop.
 
 ---
-## FINAL (paste-ready)
+## v2, per Queenie 2026-09-14: "make it sound like a follow-up"
+v1 opened "Yes, because a bigger budget is more work." and read as an instant reply to his 9/9 message, but the
+last message in the thread is Lindsey's Loom-only touch of Fri 9/11. sdr-agent added a bridge; QC round 2 fixed:
+- "The recording went out Friday" / "Friday's message was the recording" -> "I sent the recording Friday"
+  (active, first person; agentless wording read like a system log).
+- "Yes" referent: "On the percentage, yes," scopes the concession to the percentage rising with spend, NOT to his
+  claim that the incentives pull in opposite directions. Does not reinstate the cut parroting clause.
+- Percentage / flat-retainer sentences merged with a semicolon (Lindsey's own 9/9 proposal opens on one).
+- The bridge says only that the recording was SENT. Nothing claims it covered everything he listed (unverified).
+- "Friday" is true in his Pacific time for a send through Thu 9/17. Later than that, use "the recording".
+- followup.md's 1-3 sentence cap governs pre-call cadence pings, not a pricing answer + call ask (QC ruling).
 
-Yes, because a bigger budget is more work. On a flat retainer, the work keeps growing as you scale and the pay doesn't. I'm open to discussing one with a new-patient bonus, and the terms are worth a short call: https://calendar.app.google/p4sWgHuykdV5kYHh8
+---
+## FINAL (paste-ready), v2
+
+I sent the recording Friday, and this one's for the pricing half. On the percentage, yes, because a bigger budget is more work; on a flat retainer, the work keeps growing as you scale and the pay doesn't. I'm open to discussing one with a new-patient bonus, and the terms are worth a short call: https://calendar.app.google/p4sWgHuykdV5kYHh8
 
 What's your trailing average of net new patients per practice?
 
