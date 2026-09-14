@@ -31,7 +31,7 @@ Disposition: DRAFT ANYWAY, chosen by Queenie over a recommended SKIP. Per Queeni
 
 ## VERIFIED (contractor_query, 2026-09-14)
 
-- Neue Maison (luxury furniture DTC, Meta, act_782415276397596, operator Lindsey B., churned 2026-08-11, "Taking in-house"): tenure window 2026-04-10 to 2026-08-10 = $105,010.24 / 343 purchases / $306.15. Monthly: Apr (from 4/10) $12,373.92 / 37 / $334.43; May $24,861.44 / 85 / $292.49; Jun $23,870.58 / 78 / $306.03; Jul $40,389.21 / 129 / $313.09; Aug $3,515.09 / 14. ROAS NOT cited (July was 59% a 50%-off promo). Unnamed in body.
+- Neue Maison (luxury furniture DTC, Meta, act_782415276397596, operator Lindsey B., churned 2026-08-11, "Taking in-house"): tenure window 2026-04-10 to 2026-08-10 = $105,010.24 spend / 343 conversions, but by objective OUTCOME_SALES $91,502.92 / 334 / $273.96 (15 campaigns, about a third of conversions from promo campaigns, one 'Membership' campaign) and OUTCOME_LEADS $13,185.48 / 9 (TRADE PROGRAM $7,828.26 / 1; Calendly local $5,357.22 / 8), plus engagement $304.72 and traffic $17.12. 343 is NOT a purchase count. Body cites spend only. Monthly: Apr (from 4/10) $12,373.92 / 37 / $334.43; May $24,861.44 / 85 / $292.49; Jun $23,870.58 / 78 / $306.03; Jul $40,389.21 / 129 / $313.09; Aug $3,515.09 / 14. ROAS NOT cited (July was 59% a 50%-off promo). Unnamed in body.
 - Tiami (luxury mattress, Shopify Plus per agent_knowledge 468564b1 "Ahmed - Tiami Sleep - Google Ads & Merchant Center Full Context"): reporting_clients meta ACTIVE (Lindsey B.), google ACTIVE (Ahmed Imran), email ACTIVE. Meta last 90d ~$5,377/mo avg, 4 conversions, so results NOT cited. Unnamed in body.
 - Live Meta accounts, 90-day average monthly spend: Doctor Laleh $95,541 (active, spend only, CPA never cited); other active accounts MedWriter $7,639, RIS $7,050, Nightlark $7,017, Tiami $5,377, Vida $4,937, AIW $4,601, Punch Drunk $4,423, Quivr $2,698, MLS Signs $1,804, Myriad $1,548, Chris Ideson $1,395, Tooth Co $1,267, NutriPro $929. Supports "most spend a few thousand a month, largest close to $100,000".
 - Book-wide Meta CPM (spend / impressions x 1000): Oct 2025 $24.45 on $207,672; Nov 2025 $33.78 on $213,933; Dec 2025 $33.90 on $199,706 (+38.2% / +38.6%). CUT from the body in review, kept here for a later touch.
@@ -51,7 +51,7 @@ Disposition: DRAFT ANYWAY, chosen by Queenie over a recommended SKIP. Per Queeni
 
 ## DELIBERATELY OUT
 
-- Aura Displays (Google-only, 8-10x fails live), Fitness Superstore (no data), Punch Drunk 20x, Blush Camera numbers (not re-verified this session), Neue Maison ROAS, Tiami results, Laleh CPA, Q4 CPM timing (cut in review).
+- Aura Displays (Google-only, 8-10x fails live), Fitness Superstore (no data), Punch Drunk 20x, Blush Camera numbers (not re-verified this session), Neue Maison ROAS, Tiami results, Laleh CPA, Q4 CPM timing (cut in review), Neue Maison conversion count and cost per purchase (343 mixes 334 sales-objective and 9 lead conversions).
 - South River / RIS tracking specifics (completion unverified).
 - No certifications, no links, no calendar link, no contact info, no em dashes, no sign-off name, no hourly rate, no hours figure, no team member names.
 
@@ -70,12 +70,14 @@ expert-review-agent: Needs Work on offer shape, all platform claims confirmed.
 4. ACCEPTED: Q4 CPM timing sentence cut, the only sentence not answering a required item.
 5. REJECTED: "Matching 'disciplined,' ... not a monthly retainer." Parrots the prospect's word and misstates the structure, since management is monthly with a 90-day minimum.
 Own addition: Q4 names the dedup test (same purchase from browser and server with one event ID, Events Manager showing it counted once), method only, no past-build claim.
+POST-REVIEW CORRECTION (from the parallel Lindsey draft's notes, re-verified live 2026-09-14): "343 purchases, about $306 each" removed. It passed both reviews because the facts handed to them repeated the stale figure. Body now cites spend only.
 Offer-shape risk (fee floor + 90-day term against "not a large ongoing retainer") is policy-locked, not fixable in wording.
 
-Length: v1 837 words / 4,702 chars. v2 792 words / 4496 chars. Above the samuel-strategic 400-word multi-question guide; 8 required items, precedents LA luxury 619 words and fine art 622 words.
+Length: v1 837 words / 4,702 chars. v2 792 words / 4496 chars; v3 after the Neue Maison correction 787 words / 4464 chars. Above the samuel-strategic 400-word multi-question guide; 8 required items, precedents LA luxury 619 words and fine art 622 words.
 
 ## OPEN FOR QUEENIE BEFORE SENDING
 
+- TWIN DRAFT EXISTS, SEND ONE PROFILE ONLY. A parallel session wrote .claude/drafts/2026-09-14_another-dimension-acrylic-art-meta-shopify-launch_lindsey_default_UNSENT.md for this same job (swept into commit 53a2847 by git add -A). Same Webflow/Shopify opener and proof skeleton, opposite team claim (Lindsey: "I'd do all of it myself"; this draft: "small shop, not a solo freelancer"). No upwork_jobs or upwork_leads row on 9/14, so neither has gone out.
 - Fee paragraph states the $1,500 minimum and 90-day term against a post that says "not a large ongoing retainer". Honest, and the likeliest reason they pass.
 - Job is posted HOURLY; our structure is onboarding + % of spend, so the contract type would need changing if they move forward.
 - Commitments in the body: assets stay in their name with removable access, about two weeks of setup from full access, week-three launch, weekly Shopify-based report, one Meta specialist through handover, a post-90-day walkthrough. Confirm the team can deliver these.
@@ -90,7 +92,7 @@ Length: v1 837 words / 4,702 chars. v2 792 words / 4496 chars. Above the samuel-
 
 Another Dimension has Webflow and Shopify in the same stack, and that one detail decides how many of your sales Meta can actually see. Shopify's Meta integration can send the purchase from checkout through both the Pixel and the Conversions API, but it never reaches the Webflow pages, so a collector viewing a piece there needs its own tracking. If the two sit on different domains, GA4 also needs cross-domain measurement to count one visit instead of two, and the click ID from the ad stays behind on Webflow unless it's carried across. Meta then has to match the sale on customer details like email, and some sales your ads produced never get credited to them.
 
-On experience, there is no fine art, artist or collectibles account in our book, and I'd rather you hear that first. The closest is a luxury furniture brand we ran on Meta, which spent $105,010 over four months for 343 purchases, about $306 each, before that engagement ended. We also run Meta, Google and Klaviyo for a luxury mattress brand on Shopify Plus. Most of our live Meta accounts spend a few thousand dollars a month, and the largest runs close to $100,000.
+On experience, there is no fine art, artist or collectibles account in our book, and I'd rather you hear that first. The closest is a luxury furniture brand we ran on Meta, about $105,000 in spend over four months, before that engagement ended. We also run Meta, Google and Klaviyo for a luxury mattress brand on Shopify Plus. Most of our live Meta accounts spend a few thousand dollars a month, and the largest runs close to $100,000.
 
 Testing has its own trap. Meta wants roughly 50 purchases a week in an ad set before it stops experimenting, and a premium piece won't get near that early, so splitting artists, messaging and audiences into separate ad sets leaves all of them stuck in learning. The first build is one purchase-optimized prospecting campaign on broad targeting, with artists and pieces tested as creative inside it, plus retargeting for people who viewed work or started checkout. It will sit in learning for a while, and switching it to optimize for add to carts tends to buy browsers rather than buyers. If you have a list of collectors you've sold to, it's the most valuable data you'll have at launch. Synced from Klaviyo into Meta, it seeds lookalikes and gets excluded from prospecting, so prospecting's cost per purchase is a new-collector CAC rather than past buyers counted again.
 
