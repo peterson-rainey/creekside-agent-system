@@ -20,7 +20,7 @@ Profile: Samuel Rainey (public profile name Peterson Rainey) | Style: samuel_str
   6. What to review first: conversion definition (one number for three offices, careers form), then search terms. ANSWERED.
   7. Preparing during the redesign: redirect map, tracking spec, single application form, baseline. ANSWERED.
   8. Pricing structure: canonical percentage of spend + onboarding. ANSWERED.
-- Vertical history (context, not a screen): upwork_jobs holds ~75 therapy / psych / mental health applications since 2025-03 across both profiles, 0 won, calls on 4 (all 2025).
+- Vertical history (context, not a screen): an upwork_jobs regex on therapy / psych / mental health / behavioral health returns 73 applications since 2025-03 across both profiles. About 60 are genuinely mental health or therapy practices once physio, IV therapy, red light, assisted living, stem cell and one creative media-buyer post are dropped. 0 won; calls on 4 mental health rows, all in 2025.
 
 ## Verified live 2026-09-14 (contractor_query + public pages)
 - Opener mechanics: Google Ads Help "About account-default conversion goals": primary actions in account-default goals are used for bidding across all campaigns except those with campaign-specific goals. Phrase and broad match on "mental health counselor" can match both the client query and the job query (platform behavior).
