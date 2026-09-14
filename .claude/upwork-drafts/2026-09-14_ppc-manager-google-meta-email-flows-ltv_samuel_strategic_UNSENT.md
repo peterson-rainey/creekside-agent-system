@@ -40,3 +40,28 @@ We build Klaviyo flows in house for ecommerce clients, with no revenue figure to
 Our team runs the daily optimization and pulls the reporting, and I stay on strategy.
 
 What are you selling, and what range is spend in across Google and Meta right now? Any split I'd suggest only helps if it fits the range you're working with.
+
+## SCREENING QUESTION: "Describe your recent experience with similar projects"
+
+### Verified 2026-09-14 via contractor_query
+- reporting_clients active on email + google + meta: Tiami (d3a45c57, Shopify Plus luxury mattress) and Nightlark (9db79f64). Email retainers signed 2026-07-14, flows still early/draft. NO email, LTV or Meta conversion numbers citable for either (Tiami Meta conv NULL, Nightlark Google 0.21x): capability only.
+- Active on google + meta (with or without email): 8 clients. Active email retainers: 6 (Tiami, Nightlark, Dr. Laleh Cosmetic, Snackify, MLS Signs, Pink Moon Bay).
+- Tiami Klaviyo craft (2026-08 build record): existing Abandoned Cart excludes Checkout Started, so a new cart flow must mirror it or double-sends; GET /catalog-items/ returned empty, product blocks built from event properties.
+- Aura (Google only, Shopify, built from zero Nov 2025), 9/11 pull: non-brand Nov 25 $1,901 @ 11.56x; Mar 26 $8,813 @ 4.81x (peak spend); Aug 26 $4,735 @ 3.41x.
+- Master Spa Parts (Meta, CHURNED): best month Apr 2026 $19.89 per purchase. Q4 CPM-rise claim NOT used (retired).
+- Nightlark zero add-to-cart catch deliberately NOT repeated (already in the cover letter).
+
+### ANSWER (paste-ready)
+
+The closest match is two ecommerce stores where our team runs Google, Meta and Klaviyo together right now, one of them a Shopify Plus mattress brand. Email on both started this summer, so there's no lifetime value figure I'd put in front of you yet. What that work has surfaced so far is mostly plumbing. On the mattress brand, the existing abandoned cart flow already excluded anyone who had started checkout, so a new cart flow had to mirror those exclusions or the same shopper would get both sequences. Its Klaviyo catalog also came back empty through the API, so product blocks had to be built from the shopping events themselves.
+
+On the ad side, our team runs Google and Meta together for eight accounts today. The two with numbers worth sharing sit outside that group, one on Google only and one we no longer run.
+
+A Shopify store we built on Google from zero last November opened non-brand at about 11.6x on under $2K a month. Cold spend reached about $8.8K at its March peak at roughly 4.8x, and August ran about $4.7K at 3.4x. Branded search makes the account-level number look far better than that, so budget calls get made on the non-brand line.
+
+A replacement parts store we ran on Meta had its best month in April at about $20 per purchase, roughly a third under its account average.
+
+### QC (qc-reviewer-agent: NEEDS WORK), fixes applied
+1. BLOCKING: the two cited accounts read as part of the "eight on Google + Meta today" pool; neither is (Aura Google-only, Master Spa churned). Now stated explicitly.
+2. Restated $29 average from the cover letter cut; delta kept ($19.89 vs $28.87 = 31% under).
+3. "I mentioned" self-reference removed.
