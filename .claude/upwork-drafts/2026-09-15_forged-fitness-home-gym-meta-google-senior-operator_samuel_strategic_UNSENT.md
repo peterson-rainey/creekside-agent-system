@@ -40,3 +40,12 @@ One pushback: three concepts a week against about 20 held calls a month means mo
 Happy to start with the paid audit and Google plan, with the attribution gap as its first section.
 
 For the revenue that does have a source attached, is it mostly Meta, or is referral carrying more than anyone has credited?
+
+## SCREENING ANSWER: Describe your recent experience with similar projects (added 2026-09-15)
+Verified live 9/15: Lux Dental Spa FB Ads 6/16-9/13 $286,624.31 (~$95.5K/mo, spend only, no CPA); The Tooth Co. - Veneers Aug 2026 Leads $1,955.17/124/$15.77 vs Engagement $1,845.88/no recorded conv, Google + LSA + Meta all active in reporting_clients; Fusion Dental churned 7/22 (past tense); tracking specialist GTM rebuild = RIS. No combined Tooth Co monthly total cited (Meta spent only in Aug).
+
+Beyond the paving contractor above, the closest match is a local dental practice where we run Google Search, Local Services ads and Meta side by side. Last month its Meta account ran an engagement campaign beside a leads campaign on nearly the same budget. $1,846 recorded zero enquiries, and $1,955 brought 124 leads at $15.77.
+
+At the high-ticket end, the Meta specialist I mentioned is running the cosmetic dentistry and med spa account at around $95,000 a month right now. Earlier this year our team ran Meta for a dental implant group whose leads went straight to a call center, with qualifying questions on the forms so the call team spent its time on leads worth dialing, even at a higher cost per lead.
+
+On tracking, our conversion tracking specialist rebuilt both the browser and server-side GTM containers for a financial services client this year.

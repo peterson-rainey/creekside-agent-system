@@ -48,3 +48,11 @@ Those go first because a 30-mile radius has thin search volume, so the highest i
 On fees, we bill as a percentage of spend, not hours. Your $3,000 build matches our onboarding for two platforms, and management at today's spend runs about $4,300 a month.
 
 There's a short video on my profile that shows how I work an account like this.
+
+## NOTE 2026-09-15: Samuel twin exists and was the ruled draft
+`2026-09-15_forged-fitness-home-gym-meta-google-senior-operator_samuel_strategic_UNSENT.md`. Ruling there: stay SILENT on build month, retainer and kicker. This Lindsey draft quotes ~$4,300/mo and $3,000, which conflicts. Send ONE profile.
+
+## SCREENING ANSWER: Describe your recent experience with similar projects (added 2026-09-15)
+Verified live 9/15: Lux Dental Spa FB Ads 6/16-9/13 $286,624.31 (~$95.5K/mo, operator Lindsey, present tense, no duration, spend only). Tooth Co + Fusion numbers not repeated (already in Q1).
+
+Most of my recent work is local, appointment-driven Meta where leads go to a call team. Right now I'm running a cosmetic dentistry and med spa account at around $95,000 a month, plus the dental practice from my first answer, where our Google team runs Search and Local Services alongside my Meta. Earlier this year I ran the implant group whose leads went to a call center, and the qualifying questions on those forms kept the call team on leads worth dialing, even at a higher cost per lead. For tracking, our conversion tracking specialist rebuilt the browser and server-side GTM setup for a financial services client this year. I haven't run a home gym installer, so the closest match is high-ticket local services with a sales call in the middle.
