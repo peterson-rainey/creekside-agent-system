@@ -1,4 +1,6 @@
 # Upwork REPLY — BC two dental practices (Michael Webster), answering the flat-number challenge
+
+> SUPERSEDED 2026-09-14, NEVER SENT. The General thread was consolidated to Lindsey on 9/9 (marked lost, chat hidden), so the disclosure is moot. The Loom went out alone on 9/11. Current: 2026-09-14_bc-two-dental-practices_PRICING-FOLLOWUP_lindsey_UNSENT.md
 Profile: Lindsey Bouffard | Style: lindsey_default | Type: lead reply, 3rd touch | Status: UNSENT (v2)
 Drafted 2026-09-09 (Postgres now(), US Central) | Routed through sdr-agent per standing rule, QC'd
 
