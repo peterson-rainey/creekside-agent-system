@@ -1,5 +1,5 @@
 # Melinda Yuni / naise.ai — Peterson profile, touch 3 (FOLLOW-UP)
-**Status: UNSENT.** Drafted 2026-09-12 (Sat, Central). Intended send Mon 2026-09-14 ~8am Central (~9pm her Monday).
+**Status: SENT.** Drafted 2026-09-12; appears in Upwork as Sun Sep 13 5:39 AM (display time), i.e. sent Sat ~4:39 PM Central, not held for Monday. The "pick one thread" note below is SUPERSEDED: the dual thread was Cade-directed on 9/2 in ClickUp, and Lindsey's sequencing message had already gone out 9/10.
 Job "Meta and Google Ads Manager", `upwork_jobs` `76336eda-1225-4b63-b804-4195b7a6bb92`; CRM `upwork_leads` `2745ce33`.
 
 ## THE MESSAGE
