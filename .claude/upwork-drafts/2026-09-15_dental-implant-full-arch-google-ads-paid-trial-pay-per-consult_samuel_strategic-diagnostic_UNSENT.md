@@ -52,3 +52,10 @@ What we don't have is a documented cost per booked consult or show-up rate from 
 The one-campaign setup or audit is a one-time $1,500. For ongoing management we'd want 90 days, since a lead who books a consult two weeks out and decides on treatment after that barely registers in a single month of data.
 
 For that account, are show-ups recorded somewhere your team can export each week, or only inside the practice software?
+
+
+## MILESTONE DESCRIPTION (single, 169 chars)
+
+Google Ads audit or setup for one dental implant campaign: implant vs full-arch keyword split, landing page review, and a tracking plan for booked consults and show-ups.
+
+No price typed: standard answer is the $1,500 one-time onboarding (audit included) quoted in the proposal. Says "tracking plan", not a built show-up tracker, since show-rate tracking depends on the practice's software.
