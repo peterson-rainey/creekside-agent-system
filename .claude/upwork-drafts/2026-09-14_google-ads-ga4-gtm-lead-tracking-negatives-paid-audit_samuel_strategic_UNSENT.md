@@ -12,7 +12,7 @@ SCREEN (read before sending):
 - HOURLY: no rate or hours requested in the text. Contract type not raised.
 - PRICING (OPEN, needs Queenie): no fee named in the body, same as the 9/11 senior-consultant ruling ("No fee named"). Upwork's bid field still needs a number. Options on record: (a) management follows = one $1,500/platform onboarding fee with the audit inside it (9/2 ruling); (b) true standalone = $1,000-$1,500 band by active campaigns (Queenie 8/25); (c) Peterson's own sends = $90/hr x est. hours (8/27 Southglenn, 9/9 Al Fawzy). (b) vs (c) is UNRULED.
 - REQUIRED ITEMS: one question ("personally"). Answered.
-- ATTACHMENT: none. Zero tracking-audit case studies exist; Join Piper (the only tracking-repair row) is standing do-not-attach (reporting_clients row conflict). Integrity Naturopathic is off-thesis, and its offline import runs through FirstUp Marketing, not us.
+- ATTACHMENT: none. Zero tracking-audit case studies exist; Join Piper (the only tracking-repair row) is standing do-not-attach (reporting_clients row conflict). Integrity Naturopathic is off-thesis, and its offline import action is prefixed "FirstUp" (partner FirstUp Marketing generates the leads, the client logs bookings in the CRM), so who built it is unverified. Not cited.
 - DB LOG (upwork_proposal_logs INSERT): SKIPPED, contractor_query cannot INSERT.
 
 VERIFIED (contractor_query, 2026-09-14):
