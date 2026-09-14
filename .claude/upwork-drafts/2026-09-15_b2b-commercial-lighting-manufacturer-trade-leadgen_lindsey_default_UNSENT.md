@@ -61,3 +61,9 @@ There's a short video on my profile that walks through how I run accounts like t
 - Most of their scope (SEO, search, CRO, outreach) is openly declined, which caps win odds.
 - Spend, geo, payment verification unknown.
 - DB log to `upwork_proposal_logs` skipped (contractor_query cannot INSERT).
+
+## MILESTONE DESCRIPTION (single, 184 chars)
+
+Meta Ads setup for B2B trade leads: audiences built from your customer and contractor lists, spec sheet lead capture, and an email follow-up sequence split by architect and contractor.
+
+No price typed: pre-spend setup has no % of spend to attach to and hourly is banned. Standard answer is the $1,500 onboarding fee, confirm before quoting.
