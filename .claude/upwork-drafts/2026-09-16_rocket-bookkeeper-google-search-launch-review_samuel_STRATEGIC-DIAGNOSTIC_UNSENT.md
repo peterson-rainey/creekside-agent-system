@@ -21,7 +21,7 @@ A relevant project
 We haven't run campaigns for a bookkeeping firm, so I won't claim that. The closest match is professional-services lead gen for a law firm, Winterbotham Parham Teeple. We restructured their Google Search campaigns by market, doubled bankruptcy leads from 117 to 229, and cut cost per lead from $86 to $50.29. It was the same kind of work you're describing: clean intent-based structure, tight negatives, and tracking the leads that actually turned into consults.
 
 Quote and turnaround
-[QUEENIE: SET FIGURE. Option A: standalone audit band, $1,000-$1,500 (low end, zero live campaigns), folds into $1,500/platform onboarding if management follows. Option B: Peterson's 9/9 model, $90/hr, cap hours on the contract.]
+[QUEENIE: SET FIGURE. Option A: standalone audit band, $1,000-$1,500 (low end, zero live campaigns), folds into $1,500/platform onboarding if management follows. Option B: Peterson's 9/9 model, $90/hr, cap hours on the contract. Option C: May 2026 "Creekside Upwork catalog" framework doc (Cyndelsa, proposal not ruling) prices a closer bundle: Google audit $499 + GA4/GTM tracking setup $750 + landing page audit $349 = ~$1,600, 3-7 day delivery; its management tiers contradict canonical pricing, so treat as unratified.]
 Turnaround is about 5 business days from access: a written review with the rewritten copy and structure changes for your approval, then the changes made in the account, the final pre-launch check, a short recorded walkthrough, and a 30-day monitoring plan (what to check in search terms each week, and when bidding should change).
 
 What does a good client look like for you: is there a monthly revenue or transaction volume where an ecommerce seller becomes worth the acquisition cost?
