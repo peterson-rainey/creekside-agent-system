@@ -26,6 +26,14 @@ Do booked calls and shows make it back to Meta today, or stop in your CRM?
 
 ---
 
+## MILESTONE DESCRIPTION (single, 162 chars)
+
+Meta account audit and setup for one creator brand funnel: account structure, warm vs cold split, and a tracking plan to send booked calls and shows back to Meta.
+
+No price typed (seat post, base pay offered, spend unstated; % of spend has nothing to attach to yet). Says "tracking plan", not built CAPI/offline events, since that depends on their CRM. One brand, not all brands, so the milestone doesn't commit to the full multi-brand scope.
+
+---
+
 ## Screen notes (internal, do not send)
 
 ### Hard screens
