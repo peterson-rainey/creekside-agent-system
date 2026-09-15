@@ -13,3 +13,15 @@ Fee: $1,500 a month management plus a one-time $1,500 onboarding fee, no other e
 On budget: is GBP 2,000 to 2,500 where spend stays, or would it move up once you know your cost per onboarded practice? Split across two funnels, each side gets roughly GBP 1,100 a month, which slows how fast either one learns.
 
 I've attached a few relevant results below. There's also a short video on my profile that walks through how I run accounts like this.
+
+---
+
+## Screening answer: one campaign personally managed (UNSENT)
+
+A full-arch dental implant practice in California, Meta lead generation across two locations, English and Spanish. I was the Meta operator on the account from 21 April to 15 July 2026: campaign structure, lead form build, audiences, creative testing and daily optimisation. A separate team member handled their other channels, so the figures below are Meta only.
+
+Over those 90 days: $64,746 ad spend, 2,558 leads, $25.31 cost per lead. In the last 30 days it was $21.53 per lead, with Spanish-language campaigns at $12.99 against $22.79 for English. Results were measured on Meta's standard lead event from the instant forms, not clicks or landing page views.
+
+Two decisions shaped those numbers. We added qualifying questions to the forms, which raised cost per lead on purpose so the call centre spent less time on poor fits. We also reduced spend when the call centre couldn't keep up, because leads that sit uncalled lose value quickly. The client later moved marketing in-house and kept the strategy we built.
+
+For verification, I can share an anonymised version of the weekly performance reports from that period and walk you through them on a call. Because the client has since brought the work in-house, I'd need to ask them before offering a reference, so I'd rather not promise one I haven't confirmed.
