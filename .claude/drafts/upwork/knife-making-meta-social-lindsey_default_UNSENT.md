@@ -27,3 +27,16 @@ I work alongside a small team, including a dedicated tracking specialist for pix
 Roughly where is monthly ad spend today compared to where you want it in six months, and what share of sales comes from Meta right now?
 
 There's also a quick video on my profile that explains my process better than text.
+
+## Screening answers
+Notes: no Lindsey certifications verified anywhere this session; answer 2 claims none rather than invent. Furniture figures same as the cover letter, not re-verified live.
+
+### 1. Describe your recent experience with similar projects
+I haven't run ads for a knife maker specifically, so I won't pretend otherwise. The closest work is handmade and product-led e-commerce on Meta, plus running my own e-commerce brand, which is where I learned to build around ad review instead of fighting it.
+
+Most recently, on a furniture brand, I split prospecting by product line instead of one blended campaign. One lane ran at 2.36x, another at 1.36x, and a third sat at 0.40x and got cut after 11 days. That same approach is what I'd use here: separate the craft and brand content from the product ads, so we can see which knives and which angles actually sell.
+
+I also work with a dedicated tracking specialist on pixel and server-side setup, so reporting reflects real sales.
+
+### 2. Please list any certifications related to this project
+No formal certifications to list. What I'd point to instead is hands-on work in Meta Ads Manager across e-commerce accounts, including my own brand, and the video on my profile that walks through how I approach an account.
