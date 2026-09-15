@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-08-27. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-09-15. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
@@ -127,6 +127,8 @@ Key tables: `raw_content` (central embedding table), `search_analytics`, `ingest
 Leads, Upwork jobs and proposals, SDR generation logs and responses, tool interview data, and industry experience records. Everything related to new business.
 
 Key tables: `leads`, `upwork_jobs`, `upwork_leads`, `upwork_lead_status_history`, `upwork_proposal_logs`, `sdr_generation_log`, `upwork_outbound_messages`
+
+**Upwork OAuth token dual-write (2026-09-15):** Upwork rotates refresh tokens on every use, so two independent refreshers invalidate each other. The local `~/upwork-api/upwork_auth.py` is the SOLE refresher: on every refresh, `_write_tokens()` mirrors `access_token`/`refresh_token`/`expires_at`/`last_refreshed` into `pipeline_oauth_tokens` (provider='upwork') via best-effort PATCH. The Railway `upwork_conversations` job reads that row and never refreshes on its own.
 
 `upwork_outbound_messages` (added 2026-08-27) is the queue + audit log for API-sent Upwork messages. The Upwork API token gained messaging WRITE scope 2026-08-26 (`createRoomStoryV2`; scope change revoked the old refresh token -- re-auth SOP in agent_knowledge). Sender: `~/upwork-api/send_message.py` -- validator-gated (`.claude/agents/sdr-agent/validate_response.py` BLOCK = hard stop), reply-only (never creates rooms), default dry-run (explicit `--send` required), daily cap 25, per-room content-hash dedup, post-send delivery verification via `roomStories`. Row lifecycle: `pending -> approved -> sent` (or `rejected`/`failed`). Queue modes (`--queue`, `--send --process-approved`) support the planned approval workflow; no launchd sender is armed yet -- all sends are currently manual CLI invocations. `createJobProposal` (proposal submission) remains scope-blocked.
 
