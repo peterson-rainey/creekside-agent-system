@@ -10,7 +10,7 @@
 
 ## PROPOSAL (paste-ready)
 
-Just under $100K a month on one Meta account our team runs (medical aesthetics lead gen, about $1.19M over the last 12 months), though I can't give you a verified return figure from that one. The largest info product result I can prove: a coaching certification sold through a weekly webinar, where CPA dropped from $256 to $123 and applications went from 41 to 90 a month on 5% more spend.
+Just under $100K a month on one Meta account our team runs (medical aesthetics lead gen, about $1.19M over the last 12 months), though I can't give you a verified return from it. The largest info product result I can prove: a coaching certification sold through a weekly webinar, where CPA dropped from $256 to $123 and applications went from 41 to 90 a month on 5% more spend.
 
 On creator brands, the leak often sits between the creator's warm audience and cold traffic. Warm opt-ins book and show well, so blended cost per call looks healthy until budget pushes into cold audiences, where opt-ins stay cheap and show rate slips. Optimizing on the opt-in finds more cheap opt-ins, not always people who book. I'd split each funnel warm vs cold from click to sale and send booked calls and shows back to Meta. At low volume that's for measurement first, then optimization once there's enough of it.
 
@@ -20,9 +20,9 @@ I should be clear that I'm not a solo buyer. A dedicated Meta buyer on our team 
 
 No Loom, so here's one campaign in writing. A dental implant group ran Meta lead forms into their call center, about $64,700 over 90 days for 2,558 leads at roughly $25 each. The constraint showed up downstream: spend had to come back to what the call center could handle. The forms also carried qualifying questions, trading a higher cost per lead for better leads.
 
-The failed one was a YouTube test: two video views campaigns, audience vs keyword targeting, and no leads out of either. The YouTube spend that has turned into leads for us ran on a conversion goal, and YouTube is still the thinner half of our record.
+The failed one was a YouTube test: two video views campaigns, audience vs keyword targeting, and no leads from either. The YouTube spend that has turned into leads for us ran on a conversion goal, and YouTube is still the thinner half of our record.
 
-Do booked calls and shows make it back to Meta today, or do they stop in your CRM?
+Do booked calls and shows make it back to Meta today, or stop in your CRM?
 
 ---
 
