@@ -61,3 +61,6 @@ What happened along the way: we added qualifying questions to the lead forms, ac
 
 Evidence: an anonymised export of the account's campaign-level results, walked through on a call. A client reference would depend on the client agreeing, and since that engagement has ended we'd confirm availability before offering one. A current dental account is also available for a walkthrough if you'd prefer something live.
 <!-- ANSWER END -->
+
+## Milestone (174 chars)
+Month 1 Meta Ads: Pixel/CAPI audit, patient + practice conversion events, campaign launch, weekly creative tests and reporting on signups, practice leads and cost per result.
