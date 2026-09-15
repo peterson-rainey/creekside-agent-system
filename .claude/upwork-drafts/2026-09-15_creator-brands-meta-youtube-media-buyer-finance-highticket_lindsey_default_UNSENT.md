@@ -42,6 +42,12 @@ I'm in the US on Pacific time, so your working hours are covered. I run other Me
 
 There's a short video on my profile on how I run an account day to day.
 
+## MILESTONE DESCRIPTION (single, 194 chars, no price)
+
+Meta Ads management for your creator brands: pixel and CAPI audit, campaign build for webinar, VSL and book-a-call funnels, daily creative testing and scaling, reporting through to booked calls.
+
+Scoped to Meta only: no YouTube, no finance-specific claims, no price attached, since the $2,000 base is unresolved and no percentage-of-spend fee applies.
+
 ## REVIEW DISPOSITIONS (Rev 2, 2026-09-15)
 - QC applied: Master Spa Parts past tense in proposal line 1; "typically" softening on the office-payment line in Q1; Loom outline stats flagged/verified.
 - QC rejected: removing "10+ years" and "building and selling my own ecommerce business". Both are sanctioned identity claims in `.claude/agents/upwork-proposal-agent/docs/lindsey-default.md` (Lindsey Identity section).
