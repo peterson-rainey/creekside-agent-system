@@ -3,14 +3,14 @@
 - **Profile:** General (displays as Peterson Rainey), Samuel strategic format
 - **Style:** `strategic` with a diagnostic body (requested as "strategic + diagnostic")
 - **Date:** 2026-09-15 (Postgres `now()`)
-- **Status:** UNSENT. v2: QC (3 blocking fixed) and expert review applied, trimmed to 400 words. No second QC pass.
+- **Status:** UNSENT. v3: QC (3 blocking fixed) and expert review applied; AiW numbers removed and Master Spa Parts return swapped in (Queenie approved 9/15, not re-QC'd). Attach NOTHING. Lindsey twin exists: send ONE profile. No second QC pass.
 - **Disposition:** Screens FIRED (agency exclusion in plain text, required first line + Loom unanswerable as asked, $2,000/mo base-pay seat). Recommended skip. Queenie chose "Draft anyway, gaps disclosed" on 2026-09-15.
 
 ---
 
 ## PROPOSAL (paste-ready)
 
-Just under $100K a month on one Meta account our team runs (medical aesthetics lead gen, about $1.19M over the last 12 months), though I can't give you a verified return from it. The largest info product result I can prove: a coaching certification sold through a weekly webinar, where CPA dropped from $256 to $123 and applications went from 41 to 90 a month on 5% more spend.
+Just under $100K a month on one Meta account our team runs (medical aesthetics lead gen, about $1.19M over the last 12 months), though I can't give you a verified return from it. The cleanest return I can show is ecom, not info: a replacement parts brand that returned about 5.5x on a little over $120,000 in spend. We also run Meta for a coaching certification sold through a weekly webinar.
 
 On creator brands, the leak often sits between the creator's warm audience and cold traffic. Warm opt-ins book and show well, so blended cost per call looks healthy until budget pushes into cold audiences, where opt-ins stay cheap and show rate slips. Optimizing on the opt-in finds more cheap opt-ins, not always people who book. I'd split each funnel warm vs cold from click to sale and send booked calls and shows back to Meta. At low volume that's for measurement first, then optimization once there's enough of it.
 
@@ -30,7 +30,7 @@ Do booked calls and shows make it back to Meta today, or stop in your CRM?
 
 **1. What's the most you've spent in one month on a single ad account, and what did it return?**
 
-Just under $100K a month on a single Meta account our team runs, medical aesthetics lead gen, about $1.19M over the last 12 months. I can't give you a verified return on that account. The largest info product account I can show results on is a coaching certification webinar funnel at about $7K a month, where CPA went from $256 to $123 and applications from 41 to 90 a month on 5% more spend.
+Just under $100K a month on a single Meta account our team runs, medical aesthetics lead gen, about $1.19M over the last 12 months. I can't give you a verified return on that account. The cleanest return I can show is ecom, not info: a replacement parts brand that returned about 5.5x on a little over $120,000 in spend. We also run Meta for a coaching certification sold through a weekly webinar.
 
 **2. What's your best cost per booked call on a high-ticket offer, and on which platform?**
 
@@ -66,14 +66,15 @@ Nashville, Tennessee, Central time. I'm not a 40-hour hire. Our team works the a
 
 ### Proof used
 - **Laleh Meta** (unnamed, "medical aesthetics lead gen"): $1,187,407 trailing 12mo, live 9/15. Spend only, never CPA.
-- **Adventures in Wisdom** (unnamed, "coaching certification sold through a weekly webinar"): canonical SOP 6a414a59, CPA $256 -> $123, apps 41 -> 90 on 5% spend increase. Live 12mo $82,465 / 2,764 conv (~$6,872/mo). Operator Scott C. Never offer as reference; client ROAS complaint stays internal.
+- **Adventures in Wisdom** (unnamed, "coaching certification sold through a weekly webinar"): **vertical presence only, NO number** per reference_educator_coaching_proof (SOP 6a414a59 figures $256 -> $123 / 41 -> 90 are historical Jan-Oct 2025; v1/v2 quoted them, removed in v3 on 9/15). Live 12mo $82,465 / 2,764 conv (~$6,872/mo). Operator Scott C. Never offer as reference; client ROAS complaint stays internal.
+- **Master Spa Parts** (unnamed, "replacement parts brand", churned 5/28, past tense): 5.51x on $122,461.41, window 2025-09-15 to 2026-05-26, re-verified live 9/15 by the Lindsey-twin session; tenure join elsewhere $124,508 / 5.53x. "About 5.5x on a little over $120,000" holds on both. Separate sentence from Laleh so the return never reads as Laleh's.
 - **Fusion Dental** (unnamed, churned 7/22, past tense): 90d through 7/15 $64,746.78 / 2,558 leads / $25.31 CPL; spend reduced "to accommodate the call center"; qualifying questions accepted as CPL increase.
 - **South River VIDEO test** (unnamed, churned): $495 / 0 conv per memory (verified 8/25-8/26). **NOT re-verifiable 9/15:** both campaigns (`22850524014`, `22898456877`, account `3227317895`, PAUSED) still exist in `google_campaigns`, but `google_insights_daily` now has ZERO rows for either. Dollar figure removed from the draft; keep it out unless re-verified. Converting YouTube-inventory spend: Laleh "Deman Gen - YT Ads" $12,216 / 59.9 conv; South River DG conversion campaigns.
 - **Google health-policy appeal** (June 2025, gTech ticket 6-9600000038737, unnamed).
 - **Meta restriction wording** from reference_meta_restriction_policy_verbatim (read 9/14).
 
 ### Not used, and why
-- Master Spa Parts Q4: ecom, flat spend (not a scale story), and its Oct/Dec ROAS has two competing methods (7.69/4.30 vs 6.45/3.22).
+- Master Spa Parts Q4 series: ecom, flat spend (not a scale story), and its Oct/Dec ROAS has two competing methods (7.69/4.30 vs 6.45/3.22). The tenure blend IS used in v3 (see Proof used).
 - RIS / unattributed $206K webinar account: no citable number.
 - Any pricing number: seat post, no spend stated.
 
