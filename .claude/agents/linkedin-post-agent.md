@@ -351,6 +351,8 @@ Before presenting any post, verify:
 - [ ] Voice sounds like Peterson, not a generic marketer
 - [ ] CTA is soft or absent (not salesy)
 - [ ] Funnel stage is labeled
+- [ ] Zero AI stock vocabulary from the kill list (delve, tapestry, seamlessly, utilize, etc.)
+- [ ] Straight quotes only (no curly/smart quotes)
 
 ## What NOT To Do
 
