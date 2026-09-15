@@ -57,7 +57,7 @@ Ad spend: $64,746.
 Conversions: 2,558 leads, measured on Meta's standard lead event, with booked revenue tracked separately in the practice's Salesforce.
 Cost per result: $25.31 per lead. Spanish-language campaigns ran at $12.99 against $22.79 for English over the final 30 days.
 
-What happened along the way: we added qualifying questions to the lead forms, which raised cost per lead but cut unqualified calls, and we deliberately reduced spend mid-run because the call centre couldn't keep up with volume. That capacity problem is close to what you'll face with practice onboarding.
+What happened along the way: we added qualifying questions to the lead forms, accepting a higher cost per lead in exchange for better-screened leads, and we deliberately reduced spend mid-run because the call centre couldn't keep up with volume. That capacity problem is close to what you'll face with practice onboarding.
 
-Evidence: an anonymised export of the account's campaign-level results, and a live screen-share of the ad account on a call. A client reference would depend on the client agreeing, and since that engagement has ended we'd confirm availability before offering one. A current dental account is also available for a walkthrough if you'd prefer something live.
+Evidence: an anonymised export of the account's campaign-level results, walked through on a call. A client reference would depend on the client agreeing, and since that engagement has ended we'd confirm availability before offering one. A current dental account is also available for a walkthrough if you'd prefer something live.
 <!-- ANSWER END -->
