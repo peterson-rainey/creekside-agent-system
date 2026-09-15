@@ -69,8 +69,12 @@ MAX_RETRIES = 3
 RETRY_DELAY = 30  # seconds
 
 
-def _is_network_error(exc: Exception) -> bool:
-    """Return True if the exception is a transient network/DNS error worth retrying."""
+def _is_retriable_error(exc: Exception) -> bool:
+    """Return True if the exception is a transient error worth retrying."""
+    # HTTP 5xx errors (PostgREST/Supabase temporary failures)
+    if isinstance(exc, urllib.error.HTTPError) and exc.code >= 500:
+        return True
+    # DNS/network errors
     msg = str(exc).lower()
     return any(s in msg for s in (
         'nodename nor servname',  # DNS resolution failure
@@ -89,7 +93,7 @@ def _retry_request(make_request, description: str):
         try:
             return make_request()
         except (urllib.error.URLError, OSError) as exc:
-            if attempt < MAX_RETRIES and _is_network_error(exc):
+            if attempt < MAX_RETRIES and _is_retriable_error(exc):
                 log(f'Network error on {description} (attempt {attempt}/{MAX_RETRIES}): {exc}')
                 log(f'Retrying in {RETRY_DELAY}s...')
                 time.sleep(RETRY_DELAY)
@@ -243,6 +247,41 @@ def strip_missing_images(content: str, slug: str) -> str:
     return re.sub(r'\n{3,}', '\n\n', content)
 
 
+def _protect_before_humanize(body: str) -> tuple[str, dict]:
+    """Replace patterns the humanizer would corrupt with placeholders.
+
+    Protects:
+    - Standalone --- lines (markdown horizontal rules / section dividers)
+    - Markdown links containing -- in the URL path
+    - Fenced code blocks (``` ... ```)
+    """
+    placeholders = {}
+    counter = 0
+
+    def _placeholder(match):
+        nonlocal counter
+        key = f'\x00WMPROT{counter}\x00'
+        placeholders[key] = match.group(0)
+        counter += 1
+        return key
+
+    # Protect fenced code blocks first (greedy, multiline)
+    body = re.sub(r'```[\s\S]*?```', _placeholder, body)
+    # Protect standalone --- lines (horizontal rules)
+    body = re.sub(r'^-{3,}\s*$', _placeholder, body, flags=re.M)
+    # Protect markdown link URLs: [text](url-with--hyphens)
+    body = re.sub(r'\[[^\]]*\]\([^)]*--[^)]*\)', _placeholder, body)
+
+    return body, placeholders
+
+
+def _restore_after_humanize(body: str, placeholders: dict) -> str:
+    """Restore placeholders after humanizer pass."""
+    for key, original in placeholders.items():
+        body = body.replace(key, original)
+    return body
+
+
 def clean_watermarks(content: str) -> str:
     """Strip AI watermarks from draft content before publishing.
 
@@ -250,7 +289,8 @@ def clean_watermarks(content: str) -> str:
              format controls, variation selectors, etc.)
     Humanizer: Straighten smart quotes, replace em/en dashes with commas,
                collapse AI stock phrases (delve->explore, utilize->use, etc.)
-               Applied only to the body -- YAML frontmatter is protected.
+               Applied only to the body -- YAML frontmatter, code blocks,
+               standalone --- lines, and markdown link URLs are protected.
     """
     # Layer A: deterministic Unicode cleaning (safe for the entire file)
     cleaned, stats = strip_unicode_watermarks(content)
@@ -264,15 +304,20 @@ def clean_watermarks(content: str) -> str:
     if len(parts) >= 3 and parts[0].strip() == '':
         frontmatter = f'---{parts[1]}---'
         body = parts[2]
+        # Protect code blocks, --- rules, and URLs before humanizing
+        body, placeholders = _protect_before_humanize(body)
         before_body = body
         body = humanize_pass(body)
         if body != before_body:
             log(f'Watermark humanizer: applied phrase/dash/quote cleanup to body')
+        body = _restore_after_humanize(body, placeholders)
         cleaned = frontmatter + body
     else:
         # No frontmatter detected, apply to entire content
         before = cleaned
+        cleaned, placeholders = _protect_before_humanize(cleaned)
         cleaned = humanize_pass(cleaned)
+        cleaned = _restore_after_humanize(cleaned, placeholders)
         if cleaned != before:
             log(f'Watermark humanizer: applied phrase/dash/quote cleanup')
 
