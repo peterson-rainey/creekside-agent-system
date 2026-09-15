@@ -19,7 +19,7 @@ Q1. Please show me websites you personally redesigned and explain what you would
 
 I haven't redesigned websites. I run the paid Meta side, so there's no site I can show you as my own design work. What I can do is look at your site the way I look at any page ad traffic lands on, and here's what I'd change before spending a dollar sending people to it:
 
-1. Give the training program its own page. "Book Training" and "Purchase Product" look like buttons but aren't links, so there's currently no way to learn about or sign up for your course from the site. Course outline, price, dates, what students leave with, and a way to apply. A training ad needs somewhere to land, and right now it has nowhere.
+1. Give the training program its own page. "Book Training" and "Purchase Product" look like buttons, but they don't go anywhere when you click them, so there's currently no way to learn about or sign up for your course from the site. Course outline, price, dates, what students leave with, and a way to apply. A training ad needs somewhere to land, and right now it has nowhere.
 2. Split clients and students. Everything sits on one page, and a woman booking a fill wants something very different from someone thinking about a lash career. Separate pages let each ad send people to the one that matches.
 3. Keep what's already working and move it up. Your tiered pricing is clear, and reviews like "I've been a client for 8+ years" are exactly what a new client needs to see before booking. Right now they sit below a lot of text.
 4. Quick fixes worth making in the redesign: the browser tab reads "perfect lashes website", the "get social" section has no links to your Instagram or Facebook, and "Purcahse" and "Intermeidte" are misspelled.
