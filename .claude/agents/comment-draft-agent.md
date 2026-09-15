@@ -403,7 +403,7 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 |-------|------|------|
 | Em-dashes / double hyphens | Zero `—` (em-dash) AND zero `--` (double hyphen) in comment text | Any instance of either in generated comment text |
 | Curly quotes | Zero | Any instance |
-| Corporate vocabulary | None of the banned words list (leverage, synergy, etc.) | Any hit |
+| Corporate vocabulary + AI kill list | None of the banned words/phrases (leverage, synergy, delve, tapestry, testament, seamlessly, utilize, etc.) | Any hit |
 | Banned phrases | None of the banned phrases list ("I'd be happy to", etc.) | Any hit |
 | Data point is real | Every number traces back to a brain record (verified in Step 5.5a) | Any invented or assumed number |
 | Source warnings respected | All "NEVER present" warnings from brain records followed (verified in Step 5.5b) | Any violation of a source record warning |
