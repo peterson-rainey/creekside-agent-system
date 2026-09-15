@@ -321,6 +321,17 @@ Do NOT open with "Most people think X. They're wrong." — that's the AI default
 
 **Overall rule of thumb: if the draft reads cleaner than a text message Peterson would send his partner, it is not his voice. Rewrite.**
 
+### AI Watermark Reduction (LinkedIn Algorithm Protection)
+
+LinkedIn's algorithm deprioritizes content it detects as AI-generated. The structural anti-patterns above already target the main signals (sentence uniformity, transition overuse, rule-of-three). This section adds the vocabulary layer.
+
+**AI stock vocabulary -- kill on sight (in addition to the existing banned words list):**
+Never use: tapestry, testament, underscore (as verb), multifaceted, myriad, paradigm shift, harness the power of, plays a crucial/pivotal role, in today's fast-paced world, it is important to note, nestled, vibrant, breathtaking, unparalleled, unprecedented, world-class, state-of-the-art, revolutionary, groundbreaking, boasts, in conclusion, ultimately (as sentence opener), not only X but also Y, serves as a beacon/catalyst/cornerstone, navigating the complexities, in order to, due to the fact that, it's worth noting that, needless to say, the future looks bright. Replace with plain, specific language.
+
+**Straight quotes only.** Use `'` and `"` -- never curly/smart quotes (`'` `'` `"` `"`). Smart quotes are an AI artifact.
+
+**What NOT to do:** Do not fabricate details to raise variation. A lower AI score with an invented stat is worse than a higher score with real data.
+
 ## Output Format
 
 For each post, provide:
