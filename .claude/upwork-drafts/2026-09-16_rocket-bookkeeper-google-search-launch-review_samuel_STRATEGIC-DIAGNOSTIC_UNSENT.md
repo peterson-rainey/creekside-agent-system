@@ -21,7 +21,16 @@ A relevant project
 We haven't run campaigns for a bookkeeping firm, so I won't claim that. The closest match is professional-services lead gen for a law firm, Winterbotham Parham Teeple. We restructured their Google Search campaigns by market, doubled bankruptcy leads from 117 to 229, and cut cost per lead from $86 to $50.29. It was the same kind of work you're describing: clean intent-based structure, tight negatives, and tracking the leads that actually turned into consults.
 
 Quote and turnaround
-The fixed price for this project is $1,500. That covers the full review, the copy and structure rewrite, the tracking check, the account changes, and the launch walkthrough. If you'd like us to stay on after launch, ongoing management starts at $1,500 per month.
-Turnaround is about 5 business days from access: a written review with the rewritten copy and structure changes for your approval, then the changes made in the account, the final pre-launch check, a short recorded walkthrough, and a 30-day monitoring plan (what to check in search terms each week, and when bidding should change).
+This project is a fixed $1,500. That covers the full review, the copy and structure rewrite, the tracking check, the changes made in the account, and the launch walkthrough.
+
+Turnaround is about 5 business days from access. You get a written review with the new copy and structure for approval first, then we make the changes, run the final pre-launch check, record the walkthrough, and hand over a 30-day monitoring plan.
+
+If you want us to keep managing it after launch, here's how our pricing works:
+- 20% of monthly ad spend up to $30K, 15% on spend from $30K to $60K, 10% on anything above $60K
+- $1,500 per month minimum per platform, so the minimum applies until spend passes $7,500
+- Fee capped at $15,000 per month
+- No hourly billing, and a 90-day minimum so the campaign has time to gather real lead data
+
+If you move into management, this project counts as your onboarding, so there's no separate setup fee.
 
 What does a good client look like for you: is there a monthly revenue or transaction volume where an ecommerce seller becomes worth the acquisition cost?
