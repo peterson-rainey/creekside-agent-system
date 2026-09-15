@@ -224,6 +224,35 @@ Category must be "Google Ads" or "Facebook Ads" per the original SOP.
 
 ---
 
+### Step 3.5: Watermark Reduction (Layer B -- Rewrite Pass)
+
+Before staging, apply these rules to reduce AI detection signals in the generated post. The publisher also runs a deterministic Layer A cleanup (invisible Unicode stripping, em dash removal, stock phrase substitution), but this step addresses statistical patterns that only a rewrite can fix.
+
+**AI stock vocabulary -- kill on sight:**
+Never use these words/phrases anywhere in the post: delve, tapestry, testament, underscore (as verb), foster, seamless, multifaceted, myriad, paradigm shift, harness the power of, plays a crucial/pivotal role, in today's fast-paced world, it is important to note, nestled, vibrant, breathtaking, game-changer, unparalleled, unprecedented, world-class, state-of-the-art, cutting-edge, revolutionary, groundbreaking, leverage (as verb), utilize, boasts, furthermore, moreover, in conclusion, ultimately (as sentence opener), not only X but also Y, serves as a beacon/catalyst/cornerstone, navigating the complexities. Replace with plain, specific language.
+
+**Sentence length variation (burstiness):**
+Deliberately vary sentence lengths. After two long sentences (20+ words), insert a short one (5-10 words). AI text has unnaturally uniform sentence length (coefficient of variation below 0.35). Target a mix: some 5-word sentences, some 25-word sentences, occasional 35+ word sentences. A short punchy sentence after a complex explanation is Peterson's natural pattern.
+
+**Structure variation:**
+- Do NOT use formulaic closers ("despite X, the future looks bright")
+- Do NOT force groups of three ("X, Y, and Z" lists in every section)
+- Do NOT use "challenges and opportunities" templates
+- Vary FAQ count (3-6) and section ordering across posts
+- Break up any pattern of identical H2 -> paragraph -> bullet list -> paragraph
+
+**Voice authenticity:**
+- Keep Peterson's rough edges: sentence fragments, direct address, strong opinions
+- Use contractions naturally ("we're" not "we are", "don't" not "do not")
+- Include at least one sentence that starts with "Look," or "Here's the thing" or another conversational opener Peterson actually uses
+- Concrete details over abstract claims ("we cut CPA from $45 to $18" not "we achieved significant cost reductions")
+
+**What NOT to do:**
+- Do not add fabricated details to raise variance. A lower AI score with an invented statistic is worse than a higher score with accurate data.
+- Do not claim the text was human-written or that watermarks were removed.
+
+---
+
 ### Step 4: Quality Gate (Self-Check)
 
 Before staging, verify ALL of the following. If any check fails, revise and re-check:

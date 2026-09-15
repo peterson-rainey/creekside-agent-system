@@ -13,9 +13,16 @@ import os
 import re
 import subprocess
 import sys
+import time
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
+from pathlib import Path
+
+# Vendored watermark removal (Layer A + humanizer)
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from scripts.watermark.text_unicode import clean_text as strip_unicode_watermarks
+from scripts.watermark.humanize_pass import humanize_pass
 
 
 def load_env_from_zshrc():
@@ -58,30 +65,69 @@ def log(msg: str):
         f.write(line + '\n')
 
 
+MAX_RETRIES = 3
+RETRY_DELAY = 30  # seconds
+
+
+def _is_network_error(exc: Exception) -> bool:
+    """Return True if the exception is a transient network/DNS error worth retrying."""
+    msg = str(exc).lower()
+    return any(s in msg for s in (
+        'nodename nor servname',  # DNS resolution failure
+        'name or service not known',
+        'temporary failure in name resolution',
+        'network is unreachable',
+        'connection refused',
+        'connection reset',
+        'timed out',
+    ))
+
+
+def _retry_request(make_request, description: str):
+    """Execute an HTTP request with retry on transient network errors."""
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            return make_request()
+        except (urllib.error.URLError, OSError) as exc:
+            if attempt < MAX_RETRIES and _is_network_error(exc):
+                log(f'Network error on {description} (attempt {attempt}/{MAX_RETRIES}): {exc}')
+                log(f'Retrying in {RETRY_DELAY}s...')
+                time.sleep(RETRY_DELAY)
+            else:
+                log(f'ERROR: {description} failed after {attempt} attempt(s): {exc}')
+                raise
+
+
 def postgrest_get(table: str, params: str, select: str = '*') -> list:
     """GET from a PostgREST table endpoint."""
     url = f'{SUPABASE_URL}/rest/v1/{table}?select={select}&{params}'
-    req = urllib.request.Request(url, headers=HEADERS, method='GET')
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode())
+    def do():
+        req = urllib.request.Request(url, headers=HEADERS, method='GET')
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode())
+    return _retry_request(do, f'GET {table}')
 
 
 def postgrest_patch(table: str, params: str, body: dict) -> list:
     """PATCH a PostgREST table endpoint."""
     url = f'{SUPABASE_URL}/rest/v1/{table}?{params}'
     data = json.dumps(body).encode()
-    req = urllib.request.Request(url, data=data, headers=HEADERS, method='PATCH')
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode())
+    def do():
+        req = urllib.request.Request(url, data=data, headers=HEADERS, method='PATCH')
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode())
+    return _retry_request(do, f'PATCH {table}')
 
 
 def postgrest_post(table: str, body: dict) -> list:
     """POST to a PostgREST table endpoint."""
     url = f'{SUPABASE_URL}/rest/v1/{table}'
     data = json.dumps(body).encode()
-    req = urllib.request.Request(url, data=data, headers=HEADERS, method='POST')
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode())
+    def do():
+        req = urllib.request.Request(url, data=data, headers=HEADERS, method='POST')
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode())
+    return _retry_request(do, f'POST {table}')
 
 
 def git_run(*args, cwd=None) -> subprocess.CompletedProcess:
@@ -197,10 +243,47 @@ def strip_missing_images(content: str, slug: str) -> str:
     return re.sub(r'\n{3,}', '\n\n', content)
 
 
+def clean_watermarks(content: str) -> str:
+    """Strip AI watermarks from draft content before publishing.
+
+    Layer A: Remove invisible Unicode characters (zero-width spaces, joiners,
+             format controls, variation selectors, etc.)
+    Humanizer: Straighten smart quotes, replace em/en dashes with commas,
+               collapse AI stock phrases (delve->explore, utilize->use, etc.)
+               Applied only to the body -- YAML frontmatter is protected.
+    """
+    # Layer A: deterministic Unicode cleaning (safe for the entire file)
+    cleaned, stats = strip_unicode_watermarks(content)
+    removed = stats['removed_count']
+    replaced = stats['replaced_count']
+    if removed or replaced:
+        log(f'Watermark Layer A: removed={removed} invisible chars, replaced={replaced} homoglyphs')
+
+    # Split frontmatter from body to protect YAML --- delimiters from humanizer
+    parts = cleaned.split('---', 2)
+    if len(parts) >= 3 and parts[0].strip() == '':
+        frontmatter = f'---{parts[1]}---'
+        body = parts[2]
+        before_body = body
+        body = humanize_pass(body)
+        if body != before_body:
+            log(f'Watermark humanizer: applied phrase/dash/quote cleanup to body')
+        cleaned = frontmatter + body
+    else:
+        # No frontmatter detected, apply to entire content
+        before = cleaned
+        cleaned = humanize_pass(cleaned)
+        if cleaned != before:
+            log(f'Watermark humanizer: applied phrase/dash/quote cleanup')
+
+    return cleaned
+
+
 def publish_draft(draft: dict) -> bool:
     """Write draft to website repo, commit, push, verify."""
     slug = draft['slug']
     content = strip_missing_images(draft['draft_content'], slug)
+    content = clean_watermarks(content)
     title = extract_title(content)
     blog_path = os.path.join(WEBSITE_REPO, 'src', 'content', 'blog', f'{slug}.md')
 
@@ -340,4 +423,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as exc:
+        log(f'FATAL: Unhandled exception: {exc}')
+        sys.exit(1)
