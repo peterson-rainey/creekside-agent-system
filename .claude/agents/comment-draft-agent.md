@@ -140,7 +140,7 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 **Key rules to internalize before drafting (non-negotiables from the fingerprint):**
 - Straight apostrophes and quotes only (`'` and `"`) -- never curly
 - Zero em-dashes (`—`) -- use commas, periods, or "and" instead
-- No corporate buzzwords: leverage, synergy, ecosystem, holistic, deep dive, game-changer, at the end of the day, ultimately, moreover, furthermore, paradigm, utilize, implement, facilitate, delve, harness, foster, unlock, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, transformative
+- No corporate buzzwords or AI stock vocabulary: leverage, synergy, ecosystem, holistic, deep dive, game-changer, at the end of the day, ultimately, moreover, furthermore, paradigm, utilize, implement, facilitate, delve, harness, foster, unlock, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, transformative, tapestry, testament, underscore (as verb), multifaceted, myriad, paradigm shift, nestled, vibrant, breathtaking, unparalleled, unprecedented, world-class, state-of-the-art, revolutionary, groundbreaking, boasts, in today's fast-paced world, plays a crucial/pivotal role, it is important to note, serves as a beacon/catalyst/cornerstone, navigating the complexities, not only X but also Y, harness the power of, in conclusion, in order to
 - No banned phrases: "I'd be happy to", "I'd love to", "I'm excited to", "I look forward to", "I'm confident I can deliver", "Let's make this happen", "Feel free to reach out", "Feel free to"
 - Direct, conversational, sounds like a real person talking
 - Casual hedges where appropriate: "lol", "kinda", "tho", "imo" -- sparingly
