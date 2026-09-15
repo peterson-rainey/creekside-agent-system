@@ -44,3 +44,20 @@ Fee: $1,500/month management plus a one-time $1,500 onboarding fee, ad spend sep
 
 Is GBP 2,000-2,500 the ceiling for the first 90 days, or does it scale once practices in the first region are onboarded?
 <!-- PROPOSAL END -->
+
+## Screening answer: "Describe one campaign you personally managed..."
+Notes: principals never do delivery, so the answer separates strategy/oversight from the team member who ran the account. Fusion CHURNED (past tense, no reference offered). Reference promised only subject to client consent. Figures from memory notes verified 7/15/26 and 9/2/26, not re-pulled 9/16.
+
+<!-- ANSWER START -->
+To be straight about "personally": our team's Meta specialist ran this account day to day, and the strategy and weekly reviews ran through our team as a whole. I won't claim hands-on work someone else did.
+
+Campaign: Meta lead generation for a US full-arch dental implant practice with two locations, English and Spanish, feeding a call centre.
+Dates: 21 April to 15 July 2026 (the engagement ended in July).
+Ad spend: $64,746.
+Conversions: 2,558 leads, measured on Meta's standard lead event, with booked revenue tracked separately in the practice's Salesforce.
+Cost per result: $25.31 per lead. Spanish-language campaigns ran at $12.99 against $22.79 for English over the final 30 days.
+
+What happened along the way: we added qualifying questions to the lead forms, which raised cost per lead but cut unqualified calls, and we deliberately reduced spend mid-run because the call centre couldn't keep up with volume. That capacity problem is close to what you'll face with practice onboarding.
+
+Evidence: an anonymised export of the account's campaign-level results, and a live screen-share of the ad account on a call. A client reference would depend on the client agreeing, and since that engagement has ended we'd confirm availability before offering one. A current dental account is also available for a walkthrough if you'd prefer something live.
+<!-- ANSWER END -->
