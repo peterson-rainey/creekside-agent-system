@@ -18,7 +18,8 @@ Status: UNSENT. QC + expert review applied.
 
 ## Verification notes
 
-- Adventures in Wisdom: clients.status active, reporting_clients meta act_1553150081825, operator Scott C. (checked 2026-09-15). Canonical SOP numbers: applications 41 -> 90/mo on 5% spend increase. Adults buying a coaching certification. Never offered as a reference.
+- Adventures in Wisdom: clients.status active, reporting_clients meta act_1553150081825, operator Scott C. (checked 2026-09-15). Adults buying a coaching certification. VERTICAL PRESENCE ONLY: the 41 -> 90 / 5% spend figures were REMOVED 2026-09-15 per reference_educator_coaching_proof (no AiW number in any outbound message; SOP figures are Jan-Oct 2025 history, account blends far higher now). Never offered as a reference.
+- Attachment: AiW PDF twin NOT attached (stale Oct-2025 peak arc, twice ruled do-not-attach). See chat recommendation.
 - Advanced Med Spa: clients.status inactive, no reporting_clients row / NULL account. Past tense, "three-location" from case_studies key_result, NO numbers cited.
 - No beauty/lash/salon client exists. No Canada case study cited.
 - No fee quoted. No links. No sign-off name (9/4 ruling).
@@ -46,7 +47,7 @@ Each month we'd report cost per booked appointment, new clients, and cost per tr
 
 You should hear this upfront: our team runs paid Meta and Google. We don't build websites or manage organic posting. Once we're running, we'd flag what your service and training pages need for paid traffic.
 
-Our closest match to your training program is a company selling a coaching certification to adults on Meta. Applications there went from 41 to 90 a month on about 5% more spend. On the service side, we ran Google and Meta for a three-location med spa.
+Our closest match to your training program is a company that sells a coaching certification to adults, and our team runs their Meta today. On the service side, we ran Google and Meta for a three-location med spa.
 
 Any split we'd suggest is useless if it's outside what you're comfortable spending, so the range comes first. In Canadian dollars, is that closer to $1,500 a month, $3,000, or $5,000 plus?
 <!-- PROPOSAL END -->
