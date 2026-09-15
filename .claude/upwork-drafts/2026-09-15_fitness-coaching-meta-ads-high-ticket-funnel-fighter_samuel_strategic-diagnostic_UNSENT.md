@@ -44,3 +44,10 @@ Closest coaching example: our team currently runs Meta for a coaching certificat
 Strongest numbers come from a funnel built the same way, ad to lead to a phone conversation: our team ran Meta for a two-location full-arch dental implant practice where every lead went to a call center. $64,700 in spend brought in 2,558 leads at about $25 each over 78 active days. Two decisions there: qualifying questions went onto the forms even though they raised cost per lead, and spend was pulled back to match what the call center could actually get to.
 
 When someone books a call today, does that booking reach Meta as its own event, or does the account only ever see the opt-in?
+
+
+## MILESTONE DESCRIPTION (single, 190 chars)
+
+Meta Ads onboarding: account and funnel audit, Pixel/CAPI check on booked-call and new-client events, campaign structure by funnel stage, and a creative test plan built from existing videos.
+
+No price typed: standard answer is the $1,500 one-time onboarding (audit included). Says "check", not built tracking, since booked-call events depend on their calendar/CRM. Meta only, fits both profiles.

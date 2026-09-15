@@ -33,3 +33,10 @@ I recorded a short video on my profile that walks through how I run accounts lik
 - QC noted: "personally did" rests on platform_operator = Lindsey B. (inference, standard).
 - Expert applied: bridge from dental to fitness ("the part that carries over is the sale itself"); "I don't have booked-call or CAC figures" replaced with "not cost per booked call".
 - Expert rejected: "booking happened off-platform, not on the Pixel" (unverified); "funnel mechanics are the same: lead magnet, warm nurture" (Fusion had no lead magnet/nurture); cutting the ecommerce identity line (sanctioned in lindsey-default.md); closing "share your funnel and I'll tell you where the waste is" (pre-signature free diagnostic).
+
+
+## MILESTONE DESCRIPTION (single, 190 chars)
+
+Meta Ads onboarding: account and funnel audit, Pixel/CAPI check on booked-call and new-client events, campaign structure by funnel stage, and a creative test plan built from existing videos.
+
+No price typed: standard answer is the $1,500 one-time onboarding (audit included). Says "check", not built tracking, since booked-call events depend on their calendar/CRM. Meta only, fits both profiles.
