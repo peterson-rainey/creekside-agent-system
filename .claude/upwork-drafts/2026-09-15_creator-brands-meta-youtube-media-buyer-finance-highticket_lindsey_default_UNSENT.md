@@ -1,6 +1,9 @@
 # Upwork Proposal: Media buyer for multiple creator brands (Meta + YouTube, webinar/VSL/book-a-call funnels, finance and investing offers)
 **Profile:** Lindsey · **Style:** lindsey_default (pre-resolved by Queenie in the request) · **Status:** UNSENT · **Drafted:** 2026-09-15 · **Rev 2 (post QC + expert review)**
 
+## TWIN ALERT: Samuel draft exists for this SAME job, send ONE profile
+`.claude/agents/upwork-proposal-agent/drafts/2026-09-15_creator-brands-meta-youtube-media-buyer-high-ticket_samuel_strategic-diagnostic_UNSENT.md` (commits 58d8890, dad299b), drafted earlier today, same "draft anyway, gaps disclosed" call. That twin discloses the team, so the "individuals only" line cuts harder against it. This one never names the agency. Pick one before sending.
+
 ## Screens reported, Queenie chose "Draft anyway, gaps disclosed"
 - **Salary seat.** "Base pay: $2,000/month to start", "Long-term role, individuals only (no agencies)", 3+ years candidate block, hours + location question. No literal "full time", so the FT auto-DQ did not fire. $2,000 is below Lindsey's $3,000 floor; no % of spend instrument attaches. Draft is SILENT on pay (Forged Fitness Samuel ruling precedent). Needs a call before any reply that asks about rate.
 - **Individuals only.** Draft discloses she runs other Meta accounts (Q5). Does not name the agency. Lindsey's 12 bids on no-agency posts: 0 messaged.
