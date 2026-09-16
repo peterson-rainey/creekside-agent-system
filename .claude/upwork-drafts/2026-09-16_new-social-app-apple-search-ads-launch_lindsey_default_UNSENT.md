@@ -75,3 +75,9 @@ A social app has the same dependency, on people instead of restaurants. Search a
 Where are you launching first, and is it one market or everywhere at once?
 
 There's a short video on my profile if you want a better sense of how I work.
+
+## MILESTONE DESCRIPTION (single, 189 chars, no price)
+
+Meta Ads setup and launch for your app: install tracking checked in Meta, campaigns built around your first markets, creative tests live alongside Apple Search Ads, and a first-week report.
+
+Scoped to Meta only, matching the proposal: Apple Search Ads is named as the thing it runs alongside, never as our deliverable. Says tracking "checked", not built, since we have never set up an MMP. No price typed; the standard answer is the one-time $1,500 onboarding for one platform (pricing-reference.md).
