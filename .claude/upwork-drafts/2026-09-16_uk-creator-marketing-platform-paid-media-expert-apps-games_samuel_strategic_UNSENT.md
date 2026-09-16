@@ -67,3 +67,12 @@ We'd be a small team, not one hire: our Meta account manager with your team week
 
 Spend sets how many creator videos can be tested fairly each month, so where does a typical client account sit on Meta: under $10K a month, $10K to $50K, or above?
 <!-- PROPOSAL END -->
+
+## Screening answer (added 2026-09-17): "What experience do you have with Mobile UA / PPC? (please share details)"
+Built only from the facts verified 9/16 above (no DB access this session). Attach nothing.
+
+<!-- SCREENING START -->
+Mobile UA is the thinner side of our book, so here are the specifics. Our app work is one past Meta account, a restaurant rewards app where cost per install went from $7.36 to $3.90 across 2,662 installs. Results there were tracked to the install, not to day-7 ROAS, and we haven't run games or worked hands-on in an MMP like AppsFlyer or Adjust.
+
+The depth is on the PPC side. Our Meta book is about $1.9M in client spend so far this year, mostly lead gen and ecommerce, including Advantage+ shopping campaigns on the ecommerce accounts, and we run Google Ads alongside it. What carries over to app accounts is the testing and budget discipline: batching creative into proper tests, protecting learning when budgets or bid strategies change, and reading iOS results at campaign level instead of trusting modeled ad-level numbers.
+<!-- SCREENING END -->
