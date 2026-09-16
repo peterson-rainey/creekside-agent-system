@@ -27,13 +27,13 @@ LAST SENTENCE: "That decides how many hooks can run at once without starving eac
 
 ---
 
-Meta can't see an Amazon purchase. The pixel never fires on Amazon, and Attribution reports sales on a 14-day window after the fact, so if campaigns optimize for link clicks, Meta finds people who click, not people who buy. So the first decision is what Meta optimizes toward. Landing page views is the simple start. A short page on your site with a Buy on Amazon button adds a step but lets the pixel see a higher-intent click. Either way, each version gets judged on cost per attributed sale, not cost per click.
+Meta can't see an Amazon purchase. The pixel never fires on Amazon, and Attribution reports sales on a 14-day window after the fact, so if campaigns optimize for link clicks, Meta finds people who click, not people who buy. The first decision, then, is what Meta optimizes toward. Landing page views is the simple start. A short page on your site with a Buy on Amazon button adds a step but lets the pixel see a higher-intent click. Either way, each version gets judged on cost per attributed sale, not cost per click.
 
 A straight answer on what you asked for: our team hasn't run Meta traffic to an Amazon listing or reported through Amazon Attribution, so there's no Meta-to-Amazon result to send and no short-form edit samples to attach. If that's the bar, we don't clear it.
 
 What we'd bring is a setup that keeps the weekly report honest. One Attribution tag per ad, named to match the ad in Meta, so a hook that sells shows up as that hook and not as a campaign average. Attribution also reports new-to-brand sales, which matters because retargeting past Sabrent buyers makes cost per sale look better than it is. On a meal prep brand's Meta account, our team ran new-customer campaigns that excluded past buyers, at $25 cost per acquisition and 4.52x ROAS.
 
-If Sabrent is enrolled in Brand Referral Bonus, tagged traffic earns credits against referral fees, which Amazon says average 10% of the sales price and vary by category. The report would show cost per attributed sale before and after that credit.
+If Sabrent is enrolled in Brand Referral Bonus, tagged traffic earns credits against referral fees, which Amazon says average 10% of the sales price, and the rate varies by category. The report would show cost per attributed sale before and after that credit.
 
 On creative, the footage splits into jobs: a dusty PC, a keyboard, a camera kit, a car interior, and the canned air comparison. Each job gets its own hook in the first three seconds, and the report shows cost per attributed sale by hook.
 
