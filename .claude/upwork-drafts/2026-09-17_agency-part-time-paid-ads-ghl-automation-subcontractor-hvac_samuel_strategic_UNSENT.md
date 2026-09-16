@@ -8,7 +8,7 @@
 
 ## PROPOSAL (paste-ready)
 
-Two things in that HVAC setup break more often than the automations do. HighLevel only files a Facebook or Instagram lead as paid social when utm_source contains "fb_ad", and that match is case-sensitive, so a site tagged utm_source=facebook quietly drops Meta leads out of the paid social bucket. And plenty of HVAC leads never reach the website. A call placed straight from a Google ad can only be imported as a conversion if the call asset uses a Google forwarding number, so putting the shop's own number there drops those calls out of the reporting.
+Two things in that HVAC setup break more often than the automations do. HighLevel only files a Facebook or Instagram lead as paid social when utm_source contains "fb_ad", and that match is case-sensitive, so a site tagged utm_source=facebook quietly drops Meta leads out of the paid social bucket. And plenty of HVAC leads never reach the website. A call placed straight from a Google ad can only be imported as a conversion if the call asset uses a Google forwarding number, so putting the shop's own number there leaves those calls out of the reporting.
 
 How we'd set it up:
 
