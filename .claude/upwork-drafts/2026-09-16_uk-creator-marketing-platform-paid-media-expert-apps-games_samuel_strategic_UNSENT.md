@@ -3,7 +3,7 @@
 Profile: Samuel Rainey
 Style: strategic
 Date: 2026-09-16 (Postgres now(); the local clock reads 9/17)
-Status: UNSENT, v2. White-label DQ plus stacked screens reported first; Queenie chose "Draft anyway, gaps disclosed." QC PASS WITH FIXES (2 of 3 applied, 1 rejected on live data), expert review "Good" (all 4 fixes applied or adapted). 360 words, 2,004 characters.
+Status: UNSENT, v2. PARALLEL TWIN: a Lindsey lindsey_default draft of this same post exists (`2026-09-16_uk-creator-platform-paid-media-expert-mobile-apps-games_lindsey_default_UNSENT.md`); SEND ONE PROFILE. Three-word overlap with it reworded to zero. White-label DQ plus stacked screens reported first; Queenie chose "Draft anyway, gaps disclosed." QC PASS WITH FIXES (2 of 3 applied, 1 rejected on live data), expert review "Good" (all 4 fixes applied or adapted). 360 words, 2,014 characters.
 
 ## Screening
 First sighting: no `upwork_jobs` match on the post's distinctive phrases, and no draft in `.claude/upwork-drafts/` or `.claude/drafts/`.
@@ -57,13 +57,13 @@ First sighting: no `upwork_jobs` match on the post's distinctive phrases, and no
 <!-- PROPOSAL START -->
 Creator-heavy app and game accounts hit a testing trap on Meta. Every new video added to a live ad set is a significant edit, the kind that sends an ad set back into learning, and Meta's own fix, its creative test, only runs on Highest volume bidding. A title on a cost cap has to switch bid strategy to use it, which is also a significant edit, and on Advantage+ campaign budget that switch can put several ad sets back into learning at once.
 
-The test is good: 2 to 7 new ads inside the running campaign, each getting delivery, winners kept running with learning intact. Delivery isn't split evenly between ads otherwise, so a lone new creator video can get written off on very little spend. I'd batch videos into fewer, bigger tests rather than drip them in.
+The test is good: 2 to 7 new ads inside the running campaign, each getting delivery, winners kept running with learning intact. Delivery isn't split evenly between ads otherwise, so a single fresh creator video can get written off on very little spend. I'd batch videos into fewer, bigger tests rather than drip them in.
 
 That's also where I'd start on the platform. The Marketing API version splits the test budget evenly, so each batch of creator videos could be tested automatically. First check: Meta excludes Advantage+ shopping for now and doesn't mention Advantage+ app campaigns. Second: on iOS campaigns reporting through SKAdNetwork, results reach Meta at campaign level a day or more late, ad-level numbers may be modeled, and A/B tests only run at campaign level, so I'd score creators on Android first.
 
-Straight on fit: our Meta book is about $1.9M in client spend this year, mostly lead gen and ecommerce. Apps are one past account, a small restaurant rewards app where cost per install went from $7.36 to $3.90 over 2,662 installs. We haven't run games or worked inside an MMP, so our app numbers stop at the install. That's a real gap for this role, better said now than on a client call.
+Straight on fit: our Meta book is about $1.9M in client spend this year, mostly lead gen and ecommerce. Apps are one past account, a small restaurant rewards app where cost per install went from $7.36 to $3.90 over 2,662 installs. We haven't run games or done hands-on MMP work, so our app numbers stop at the install. That's a real gap for this role, better said now than on a client call.
 
 We'd be a small team, not one hire: our Meta account manager with your team week to week, and me on the strategy side. AI already runs our morning account checks; what to test stays a human call.
 
-Spend sets how many creator videos get a fair test each month, so where does a typical client account sit on Meta: under $10K a month, $10K to $50K, or above?
+Spend sets how many creator videos can be tested fairly each month, so where does a typical client account sit on Meta: under $10K a month, $10K to $50K, or above?
 <!-- PROPOSAL END -->
