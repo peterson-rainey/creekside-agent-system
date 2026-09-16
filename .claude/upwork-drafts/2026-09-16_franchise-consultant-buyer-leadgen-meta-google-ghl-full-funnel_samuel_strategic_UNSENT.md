@@ -1,7 +1,7 @@
 # Upwork Proposal - UNSENT
 Job (as pasted, no title supplied): independent business/franchising consulting practice wants a lead gen / paid ads specialist for "a predictable pipeline of qualified prospective franchise buyers". High-ticket B2C; executives, professionals, investors, business owners; $50K+ liquid capital. Scope may include Meta/IG/X, Google and/or LinkedIn, targeting, landing pages + CRO, lead forms + qualification funnels, retargeting, creative testing, GoHighLevel integration, tracking + attribution, ongoing optimization. Wants the full funnel measured: Ad Spend > Lead > Qualified Lead > Booked Consultation > Show > Qualified Opportunity > Client. Building GoHighLevel as the CRM now.
 Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-16 (Postgres now(), US Central)
-Attach: NOTHING (attach-nothing version requested 2026-09-16 after the "By: Samuel Rainey" byline vs Peterson profile flag). To attach `Big_Chad_Law_Legal_Case_Study_(1).pdf` instead (local `.claude/attachments/`, sha1 4d32552d...), change the case study paragraph opener back to "The attached personal injury case study is a different buyer, judged the same way:"
+Attach: `Big_Chad_Law_Legal_Case_Study_(1).pdf` (local `.claude/attachments/`, sha1 4d32552d..., 2-page PDF re-verified 2026-09-17). Switched back to the attach version 2026-09-17 at Queenie's request; the PDF carries a "By: Samuel Rainey" byline, which matches this profile. To send with nothing attached, change the case study paragraph opener to "A personal injury firm our team ran ads for was a different buyer, judged the same way:"
 
 SCREEN (read before sending):
 - REPEAT / TWO-PROFILE: no upwork_jobs row matches "franchise buyer", "liquid capital", "franchising consult", "prospective franchise", "franchise ownership" or "Qualified Opportunity". The 4 upwork_leads rows mentioning franchise are franchisees (Bethany Smilovitch, Southglenn GM, Lindsey Cotter, Shin Nagpal), not this buyer. Draft folders grepped at start and again right before saving: no twin. First sighting.
@@ -60,7 +60,7 @@ A liquid capital range and a timeline question on the form can route qualified l
 
 On creative, I'd give each reason to buy its own campaign, leaving corporate, investing, or a business alongside a career, and judge each on shows, not cost per lead.
 
-A personal injury firm our team ran ads for was a different buyer, judged the same way: 102 cases on about $97K of total ad spend, April to September 2025, while Google learned from calls over three minutes, since calls drove the most cases. That account has since ended.
+The attached personal injury case study is a different buyer, judged the same way: 102 cases on about $97K of total ad spend, April to September 2025, while Google learned from calls over three minutes, since calls drove the most cases. That account has since ended.
 
 Our conversion tracking specialist owns tracking and the HighLevel setup, platform specialists run the ads, and I stay on strategy.
 
