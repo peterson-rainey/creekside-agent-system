@@ -80,3 +80,16 @@ The clearest structure example I have is a US replacement parts store I took ove
 How many client accounts would your team be running with me drawing that line?
 
 There's a short video on my profile if you want a better sense of how I work.
+
+---
+
+## Screening answer (added 2026-09-17, UNSENT)
+Q: "What experience do you have with Mobile UA / PPC? (please share details)"
+Strict first person to match the proposal (no "our team" pooling; Birthday Club App not used, operator unconfirmed).
+Google/TikTok left out (Lindsey's doc: Meta only). All figures reuse the 9/16 verified set above; nothing new claimed.
+
+None on the UA side. I haven't run user acquisition for a game or an app, managed to install or day-7 ROAS targets, or worked with an MMP like AppsFlyer or Adjust. My paid work is Meta, for e-commerce and local service businesses.
+
+On that side, one of the accounts I run spends close to $100,000 a month. On a US replacement parts store I took over in February, I rebuilt the campaigns and creative and took it from eleven campaigns with spend down to seven. Cost per conversion was $34.72 the month before I started, $19.89 in April and $22.91 in May, with CPM near $8 throughout, though not all of that was the rebuild. I run this work with a junior ad manager and a Meta ads intern under me.
+
+The account structure, testing and budget logic would carry over. The MMP side and day-7 targets would be new to me.
