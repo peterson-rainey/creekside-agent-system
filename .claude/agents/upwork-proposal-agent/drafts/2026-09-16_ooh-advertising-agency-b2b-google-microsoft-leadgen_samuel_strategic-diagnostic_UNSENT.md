@@ -2,25 +2,27 @@
 
 - **Profile:** General (displays as Peterson Rainey), Samuel strategic format with a diagnostic body (requested as "strategic + diagnostic", no profile named)
 - **Date:** 2026-09-16 (US Central, Postgres now())
-- **Status:** UNSENT. QC + expert review applied. v3 388 words (QC FAIL, expert "Good") -> v5 380 words / 2,241 chars (QC re-check PASS). No sign-off.
+- **Status:** UNSENT. QC + expert review applied. v3 388 words (QC FAIL, expert "Good") -> v5 380 words (QC PASS) -> **v8 398 words / 2,381 chars with the attachment line (QC PASS WITH FIXES, both fixes applied)**. No sign-off. The v5 no-attachment body is kept at the end of this file.
 - **Twin:** none. No `upwork_jobs` row, no earlier draft. Lindsey cannot sell Google or Microsoft.
-- **Attach:** NONE (no OOH, Microsoft or clean B2B artifact; case-study matcher top score 2, below the 3 threshold).
+- **Attach:** `.claude/attachments/winterbotham_parham_teeple_CLEAN.pdf` (chosen 9/16 on request; first pass was attach nothing). See Attachment ruling below.
 
 ---
 
 ## PROPOSAL (paste-ready)
 
-Out-of-home search pulls in people from the other side of the deal. Property owners look up what a billboard lease pays, and a basic Google or Microsoft setup counts their form fills as leads next to a brand manager's. Those searches get blocked with negative keywords before launch, not discovered after the money is spent.
+Out-of-home search pulls in people from the other side of the deal. Property owners look up what a billboard lease pays, and a basic Google or Microsoft setup counts their form fills as leads next to a brand manager's. Those searches get blocked with negative keywords before launch, not discovered after the money's spent.
 
-The bigger call is what counts as a lead. Last month our team audited an industrial manufacturer's Google and Microsoft accounts, and the headline finding was support requests being counted as leads. For an out-of-home agency, I'd only count an inquiry once the form shows a market, a start date and a budget you'd actually take on. Fewer people finish that form, which is the point.
+The bigger call is what counts as a lead. Last month our team audited an industrial manufacturer's Google and Microsoft accounts, and the headline finding was support requests counted as leads. I'd only count an inquiry once the form shows a market, a start date and a budget you'd take on. Fewer people finish that form, which is the point.
 
-When your team marks a lead qualified or signed, that status goes back to Google and Microsoft against the click that produced it. Qualified inquiries steer bidding until signed campaigns come in often enough to learn from. A dedicated conversion tracking specialist on our team builds that.
+When your team marks a lead qualified or signed, that status goes back to Google and Microsoft against the click that produced it. Qualified inquiries steer bidding until signed campaigns come in often enough to learn from. Our dedicated conversion tracking specialist builds that.
 
-On Microsoft, that loop needs one extra piece. Its own click ID has to be saved with every form fill and still be attached when qualified leads leave your CRM. Without it, uploads have to run through an enhanced conversion goal on hashed emails and phone numbers, which only match people signed in to a Microsoft account. Microsoft can also bid higher on searchers whose LinkedIn profile shows a marketing job function or an industry you sell into, without narrowing who sees the ads.
+On Microsoft, that loop needs one extra piece. Its own click ID has to be saved with every form fill and still be attached when qualified leads leave your CRM. Without it, uploads have to run through an enhanced conversion goal on hashed emails and phone numbers, which only match people signed in to a Microsoft account. Microsoft can also bid higher on searchers whose LinkedIn profile shows a marketing job function or your target industries, without narrowing who sees the ads.
 
-Our team runs Google Ads for a paving contractor where a Search campaign and a Performance Max campaign ran over the same four months at nearly the same spend. Performance Max clicks cost $3.00 against $14.53 on Search, and its leads cost $268 against $131. Cheap clicks and cheap leads turned out to be different things, and the Google and Microsoft split gets judged on lead cost too, once each has enough leads to compare.
+For a paving contractor our team runs, a Search campaign and a Performance Max campaign ran over the same four months at nearly the same spend. Performance Max clicks cost $3.00 against $14.53 on Search, and its leads cost $268 against $131. Cheap clicks and cheap leads turned out to be different things, and the Google and Microsoft split gets judged on lead cost too, once each has enough leads to compare.
 
-Roughly where does monthly spend sit across both, closer to $3,000 or $15,000? Any split I'd suggest only helps inside your real range. City-by-city builds look very different from builds around formats like billboards, transit and airports, so do most of your clients buy in a handful of cities, or run national campaigns?
+The attached case study is a bankruptcy law firm's Google account our team restructured into service and location campaigns. Google-reported conversions went from 117 to 229, and cost per conversion from $86 to $50.
+
+Roughly where does monthly spend sit across both, closer to $3,000 or $15,000? Any split I'd suggest only helps inside your range. City-by-city builds look very different from builds around formats like billboards, transit and airports, so do most of your clients buy in a handful of cities, or run national campaigns?
 
 ---
 
@@ -62,6 +64,14 @@ v5 re-check: PASS.
 3. ACCEPTED in part: mortgage lender cut. REJECTED "the same blind spot a missing click ID creates"; support requests counted as leads is a conversion-definition problem, not a click-ID one.
 4. REJECTED: "The same pattern shows up outside OOH" implies we saw it inside OOH (zero OOH clients).
 
+## Attachment ruling (2026-09-16, on request)
+**Winterbotham Parham Teeple CLEAN PDF.** Read page by page today: bankruptcy law, Google Ads, Orange County; four segments (general bankruptcy, Chapter 7/13, Orange County-only), budget moved to winners; 229 conversions up from 117, $50.29 down from $86.09, $11.5K spend only $1.44K more than the prior period, clicks +21%. pypdf: 3 pages, 0 annotations, 0 localhost, 0 samuel/rainey/peterson, 785,596 bytes. Period comparison, not a best window. Its service + location restructure is the closest documented example of the city-by-city build the closing question asks about. Matches the canonical `case_studies` row; client is not in `clients`/`reporting_clients`, so not recomputable live. Visible defect: legal footer CTA ("cut your legal marketing costs while growing your caseload").
+- **Perfect Parking PDF rejected:** headline is its best 12-day window ($127), frames the account as residential driveway paving on a B2B post, and the body already quotes a different slice of that account.
+- **Big Chad Law (1) is the alternative** if you'd rather back the lead-quality angle: live, Samuel byline, shows cost per conversion and cost per case. Caveats: its per-case figure uses total spend across channels while the conversion figure is Google only (never put the two side by side), say "cases" never "signed", and the account came through a partner agency and has ended.
+- **ReferPro / Axle rejected:** empty Results blocks. Nothing OOH or Microsoft exists.
+
+QC on the v7 tie-in: PASS WITH FIXES. ACCEPTED: "split by service and by location" reworded to "restructured into service and location campaigns" (the paving paragraph uses "split" for the Google/Microsoft budget); ACCEPTED: "Conversions" -> "Google-reported conversions", since paragraph 2 teaches the reader to distrust raw conversion counts. Trims ("being", "actually", "real", "on our team", "an industry you sell into") confirmed meaning-neutral.
+
 ## Open before sending
 1. IVC audit reuse is unruled. If not approved, cut sentence 2 of paragraph 2 ("Last month our team audited...").
 2. Geo, payment verification, rate/contract type, and whether anything followed the "*" in the paste.
@@ -71,3 +81,17 @@ v5 re-check: PASS.
 
 - **Last question:** "City-by-city builds look very different from builds around formats like billboards, transit and airports, so do most of your clients buy in a handful of cities, or run national campaigns?"
 - **Last sentence:** same as the last question.
+
+## Send-with-nothing body (v5, 380 words, QC PASS)
+
+Out-of-home search pulls in people from the other side of the deal. Property owners look up what a billboard lease pays, and a basic Google or Microsoft setup counts their form fills as leads next to a brand manager's. Those searches get blocked with negative keywords before launch, not discovered after the money is spent.
+
+The bigger call is what counts as a lead. Last month our team audited an industrial manufacturer's Google and Microsoft accounts, and the headline finding was support requests being counted as leads. For an out-of-home agency, I'd only count an inquiry once the form shows a market, a start date and a budget you'd actually take on. Fewer people finish that form, which is the point.
+
+When your team marks a lead qualified or signed, that status goes back to Google and Microsoft against the click that produced it. Qualified inquiries steer bidding until signed campaigns come in often enough to learn from. A dedicated conversion tracking specialist on our team builds that.
+
+On Microsoft, that loop needs one extra piece. Its own click ID has to be saved with every form fill and still be attached when qualified leads leave your CRM. Without it, uploads have to run through an enhanced conversion goal on hashed emails and phone numbers, which only match people signed in to a Microsoft account. Microsoft can also bid higher on searchers whose LinkedIn profile shows a marketing job function or an industry you sell into, without narrowing who sees the ads.
+
+Our team runs Google Ads for a paving contractor where a Search campaign and a Performance Max campaign ran over the same four months at nearly the same spend. Performance Max clicks cost $3.00 against $14.53 on Search, and its leads cost $268 against $131. Cheap clicks and cheap leads turned out to be different things, and the Google and Microsoft split gets judged on lead cost too, once each has enough leads to compare.
+
+Roughly where does monthly spend sit across both, closer to $3,000 or $15,000? Any split I'd suggest only helps inside your real range. City-by-city builds look very different from builds around formats like billboards, transit and airports, so do most of your clients buy in a handful of cities, or run national campaigns?
