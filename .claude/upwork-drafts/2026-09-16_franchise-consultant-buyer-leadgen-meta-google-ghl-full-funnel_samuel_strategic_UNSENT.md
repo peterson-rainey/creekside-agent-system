@@ -1,7 +1,7 @@
 # Upwork Proposal - UNSENT
 Job (as pasted, no title supplied): independent business/franchising consulting practice wants a lead gen / paid ads specialist for "a predictable pipeline of qualified prospective franchise buyers". High-ticket B2C; executives, professionals, investors, business owners; $50K+ liquid capital. Scope may include Meta/IG/X, Google and/or LinkedIn, targeting, landing pages + CRO, lead forms + qualification funnels, retargeting, creative testing, GoHighLevel integration, tracking + attribution, ongoing optimization. Wants the full funnel measured: Ad Spend > Lead > Qualified Lead > Booked Consultation > Show > Qualified Opportunity > Client. Building GoHighLevel as the CRM now.
 Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-16 (Postgres now(), US Central)
-Attach: `Big_Chad_Law_Legal_Case_Study_(1).pdf` (local copy `.claude/attachments/Big_Chad_Law_Legal_Case_Study_(1).pdf`, byte-identical to Drive id `12s-vrheRosxUbskK0Kw6tD6BDqUDTg9c`, sha256 6aa0a98d..., both pages read 2026-09-16)
+Attach: NOTHING (attach-nothing version requested 2026-09-16 after the "By: Samuel Rainey" byline vs Peterson profile flag). To attach `Big_Chad_Law_Legal_Case_Study_(1).pdf` instead (local `.claude/attachments/`, sha1 4d32552d...), change the case study paragraph opener back to "The attached personal injury case study is a different buyer, judged the same way:"
 
 SCREEN (read before sending):
 - REPEAT / TWO-PROFILE: no upwork_jobs row matches "franchise buyer", "liquid capital", "franchising consult", "prospective franchise", "franchise ownership" or "Qualified Opportunity". The 4 upwork_leads rows mentioning franchise are franchisees (Bethany Smilovitch, Southglenn GM, Lindsey Cotter, Shin Nagpal), not this buyer. Draft folders grepped at start and again right before saving: no twin. First sighting.
@@ -44,7 +44,7 @@ REVIEW LOG:
 - Expert review (expert-review-agent): Good. Added the Google 90-day import ceiling (verified above) with the month-four consequence. "weeks" to "months". Softened the landing page claim (learning-phase volume). PI study framed as a different buyer. Trimmed 379 to 350. NOT added: the FTC Item 19 earnings-claim clause (marked optional by the reviewer, medium confidence on how it applies to a broker's own ads, not verified against 16 CFR 436).
 - Post-review edits were checked against the sources above but not re-reviewed.
 
-STYLE: no "I" opener, no em or en dashes, no bold, no bullets, no links, no sign-off name, no fee, delivery by role. 350 words / 2,037 chars.
+STYLE: no "I" opener, no em or en dashes, no bold, no bullets, no links, no sign-off name, no fee, delivery by role. 353 words / 2,041 chars.
 LAST QUESTION: "How many consultations can you take a week, and is monthly ad spend closer to $5,000 or $25,000?"
 LAST SENTENCE: "The plan has to fit both, so I'd rather start from your numbers than guess."
 
@@ -60,7 +60,7 @@ A liquid capital range and a timeline question on the form can route qualified l
 
 On creative, I'd give each reason to buy its own campaign, leaving corporate, investing, or a business alongside a career, and judge each on shows, not cost per lead.
 
-The attached personal injury case study is a different buyer, judged the same way: 102 cases on about $97K of total ad spend, April to September 2025, while Google learned from calls over three minutes, since calls drove the most cases. That account has since ended.
+A personal injury firm our team ran ads for was a different buyer, judged the same way: 102 cases on about $97K of total ad spend, April to September 2025, while Google learned from calls over three minutes, since calls drove the most cases. That account has since ended.
 
 Our conversion tracking specialist owns tracking and the HighLevel setup, platform specialists run the ads, and I stay on strategy.
 
