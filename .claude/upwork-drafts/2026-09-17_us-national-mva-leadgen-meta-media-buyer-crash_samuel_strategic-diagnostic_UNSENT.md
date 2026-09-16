@@ -73,3 +73,29 @@ One personal injury firm in Arizona (Phoenix, Mesa, Chandler, Tucson, Kingman), 
 3. Accident date. Filing deadlines differ by state and buyers set their own recency windows, so the date decides whether the lead can be sold at all, and to which buyer.
 
 Fault is close behind. Someone who caused the crash is rarely a case, but people misjudge their own fault, so I'd ask it gently rather than as a hard knockout.
+
+---
+
+## COMBINED PROPOSAL + SCREENING ANSWERS (paste-ready, requested 2026-09-17, supersedes the split version above)
+
+CRASH
+
+A quiz funnel optimized to completions teaches Meta to find people who finish quizzes, and they only partly overlap with the leads that survive buyer scrub. If the quiz lives on your site rather than in a Meta Instant Form, Meta's conversion leads goal isn't available to you, and the scrub result has to go back through the Conversions API as its own event.
+
+Our personal injury work is one Arizona firm (Phoenix, Mesa, Chandler, Tucson, Kingman), run by our team across Google Search, Local Service Ads and Meta, in English and Spanish. The gaps, stated plainly: that was one state, the firm took its own cases so we've never worked against a buyer scrub, and I don't have a Meta cost per lead from it I'd stand behind. If Meta MVA results across several states are the line, we don't clear it.
+
+The numbers are in the attached case study. From March 31 to September 8, 2025, Google Ads spent $56.6K for 619 conversions, about $91 each, and the same view shows 480 phone call leads. From April through a partial September 2025, the firm logged 102 cases against about $97K of total ad spend across channels, about $950 per case. The leads weren't sold. They went to the firm's own intake, and we judged the account on cases, which is why the call conversion was tightened to calls over three minutes. That account has since ended.
+
+Timing decides whether a scrub event can steer anything. Meta's standard attribution credits a conversion 1 or 7 days after the click, depending on the setting, so a scrub result back inside that window can shape delivery and one back in three weeks won't be credited to the ad either way. If buyers are slow, we'd send an earlier signal the moment the quiz closes, built from the answer pattern that predicts a pass.
+
+That's also why two weeks is a tight window. An ad set leaves learning after about 50 results in the week after its last significant edit, and a scrub-passed event split across states won't reach that in 14 days. We work to a 90-day minimum: the first weeks to get the event and state structure right, the rest to read cost per qualified lead by state and creative on numbers that have settled.
+
+When a funnel gets clicks but almost no completions, I check three things in order. First, whether completions are actually missing: click the ad on the placements getting traffic and confirm the page loads, then compare leads that reached your delivery system with completion events in Ads Manager for the same days. If delivery has leads Meta doesn't, it's a pixel or Conversions API firing or deduplication problem, not a funnel problem. Second, link clicks against landing page views by placement and device. A big gap means people leave before the page loads: slow mobile load, a redirect, or the page breaking inside the Facebook and Instagram in-app browser. Third, step-by-step drop-off inside the quiz. On step one, the first screen doesn't match the ad's promise. Right before the contact step, it's asking for a phone number too early or without saying why. Mid-quiz, a question reads like a knockout and people bail.
+
+Three qualifying questions I'd never remove. Whether they already have a lawyer, because a represented claimant is already another firm's case, which makes it the cheapest failure to screen out before delivery. Medical treatment, because treatment is how the injury gets documented, so it weighs heavily in how a buyer values the case, and it's worth confirming how each of your buyers treats a lead with no treatment yet. And the accident date, because filing deadlines differ by state and buyers set their own recency windows, so the date decides whether the lead can be sold at all, and to which buyer. Fault is close behind. Someone who caused the crash is rarely a case, but people misjudge their own fault, so I'd ask it gently rather than as a hard knockout.
+
+On policy, a hook like "Were you hurt in a crash?" asks about the viewer's physical health, which is the kind of language Meta's personal attributes policy bars. We'd check every hook and quiz headline against it before launch.
+
+Our Meta specialist would run Ads Manager day to day and direct your creative team on angles and test rounds, with me on strategy. We run TikTok alongside Meta on other accounts, with no MVA TikTok numbers.
+
+How long after delivery do buyers return the scrub result, and is Meta spend closer to $10,000 or $100,000 a month?
