@@ -1,5 +1,5 @@
 # Melinda Yuni / naise.ai — Peterson profile, PRICING REPLY
-**Status: UNSENT. Needs Cade's OK** (ClickUp task `86e337fjf`), together with the Lindsey-thread pricing reply.
+**Status: SENT** Mon 2026-09-14 ~10:55 AM Central (Upwork display Mon 11:55 PM, GMT+8 = her local time), per the live Upwork thread Queenie pasted 9/16. No ClickUp "sent" post was made on `86e337fjf`, which is why other sessions read its status as unknown. Sent wording differs slightly from the draft below: "Our fee would be $3,000 a month for both Meta and Google at the ad spend you mentioned, plus a one-time $3,000 onboarding fee. And no, none of the fee is tied to performance."
 Drafted 2026-09-14 (Mon ~10:45 AM Central). Job "Meta and Google Ads Manager", `upwork_jobs` `76336eda`, CRM `upwork_leads` `2745ce33`.
 
 Her message (display Mon Sep 14 9:21 AM = Sun Sep 13 ~8:21 PM Central), sent word for word to BOTH threads:
