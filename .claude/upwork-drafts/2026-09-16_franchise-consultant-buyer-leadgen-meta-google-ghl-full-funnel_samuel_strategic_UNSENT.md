@@ -65,3 +65,17 @@ The attached personal injury case study is a different buyer, judged the same wa
 Our conversion tracking specialist owns tracking and the HighLevel setup, platform specialists run the ads, and I stay on strategy.
 
 How many consultations can you take a week, and is monthly ad spend closer to $5,000 or $25,000? The plan has to fit both, so I'd rather start from your numbers than guess.
+
+
+---
+
+SCREENING Q (added 2026-09-17): "How do you use metrics to inform your strategy?"
+QC (qc-reviewer-agent, no DB access, sources inline): PASS WITH FIXES. Applied: opener no longer lists the client's own stage labels; call center line matches "reduced ad spend to accommodate the call center"; higher cost per lead tied to forms + landing page testing per the 6/2 report (reviewer's "as we prioritized" wording rejected as causal). Diagnostic paragraph is general methodology, not DB-backed. Not expert-reviewed.
+
+Every stage between spend and client gets tracked separately in GoHighLevel, by campaign. For a franchise buyer, cost per client shows up months later, too late to steer weekly decisions, so the earlier stages do that work.
+
+The stage where a campaign drops off tells us what to change. Cheap leads that never qualify point at targeting or the form. Qualified leads that don't book or show point at follow-up speed or the promise in the ad. Shows that don't become opportunities point at the message itself.
+
+That's why cost per lead alone never decides anything. For the dental implant group, our team added qualifying questions to the forms to better qualify candidates and accepted a higher cost per lead while the forms and landing page were being tested, and pulled spend back to match what the call center could handle. For the personal injury firm in the attached case study, calls turned out to drive the most cases, so tracking was narrowed to calls over three minutes and that stronger signal went back to Google Ads.
+
+Budget then moves toward whichever campaign has the lowest cost at the deepest stage with enough volume to judge.
