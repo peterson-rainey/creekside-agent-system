@@ -1,6 +1,6 @@
 # Melinda Yuni / naise.ai — Lindsey thread, PRICING REPLY
 
-Status: UNSENT. Drafted 2026-09-14 (Mon 10:15 AM Central per Postgres; Mon 11:15 PM Singapore). Routed through sdr-agent.
+Status: SENT Mon 2026-09-14 ~10:53 AM Central (Upwork display Mon Sep 14 11:53 PM at GMT+8), Variation B verbatim; Queenie's ClickUp 'sent this' post on 86e3376y2 at 2026-09-14 15:54 UTC. Drafted 2026-09-14 (Mon 10:15 AM Central per Postgres; Mon 11:15 PM Singapore). Routed through sdr-agent.
 Approval: needs Cade's OK in ClickUp (Lindsey task 86e3376y2) before sending. It declines a custom fee structure and B quotes figures.
 Job: "Meta and Google Ads Manager". Lindsey upwork_jobs 03ecf192, CRM upwork_leads 7d5c0c16.
 
