@@ -21,15 +21,15 @@ Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-17 (no DB acces
 
 DTC Apparel Scaling
 
-Google requires color, size, gender and age group on every apparel item, so most apparel feeds already have the basics. The part most of them leave empty is custom labels. If Performance Max can't tell a best-seller with a full size run from a style that's down to its last two sizes, it spends on both the same way, and inventory velocity never reaches the bidding.
+Google requires color, size, gender and age group on every apparel item, so most feeds already have the basics. The part most of them leave empty is custom labels. If Performance Max can't tell a best-seller with a full size run from a style that's down to its last two sizes, it spends on both the same way, and inventory velocity never reaches the bidding.
 
-Before the rest, you should know where we stand. We haven't run Google Ads for an apparel or fashion brand, so I can't show you results in the category. Our largest Google ecommerce account also spends under $10K a month. What we do have is ecommerce accounts on Shopping and PMax, where the feed work and the brand versus non-brand split are the same job.
+You should know where we stand. We haven't run Google Ads for an apparel or fashion brand, so I can't show you results in the category. Our largest Google ecommerce account also spends under $10K a month. What we do have is ecommerce accounts on Shopping and PMax, where the feed work and the brand versus non-brand split are the same job.
 
 Two feed strategies I'd start with.
 
 First, titles written in the order people search. For apparel that's usually brand, product type, the detail that sets it apart (fit, material, cut), then color. "Women's High-Rise Wide Leg Linen Pants, Black" matches far more searches than a collection name like "The Marlow." Shopping and PMax have no keyword list, so the title does most of that work.
 
-Second, custom labels built around how apparel actually sells: margin tier, sell-through speed, size-run depth, and season or new arrival. Since tROAS is set per campaign, those labels are what let us split tiers into their own campaigns: best-sellers on a target they can scale on, broken size runs held back, and end-of-season stock cleared without dragging down the whole account.
+Second, custom labels built around how apparel sells: margin tier, sell-through speed, size-run depth, and season or new arrival. Since tROAS is set per campaign, those labels are what let us split tiers into their own campaigns: best-sellers on a target they can scale on, broken size runs held back, and end-of-season stock cleared without dragging down the whole account.
 
 On PMax cannibalization, brand searches go in their own Search campaign, PMax gets a brand exclusion, and the PMax search terms report shows whether it's holding. Without that, PMax takes credit for sales from people who were already searching for your name.
 
