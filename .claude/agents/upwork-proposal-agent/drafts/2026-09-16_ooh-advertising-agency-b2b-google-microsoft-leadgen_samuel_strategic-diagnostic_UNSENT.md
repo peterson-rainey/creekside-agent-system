@@ -26,6 +26,25 @@ Roughly where does monthly spend sit across both, closer to $3,000 or $15,000? A
 
 ---
 
+## SCREENING ANSWER (paste-ready): "Describe your recent experience with similar projects"
+
+The closest recent match is the audit in my cover letter. Last month our team went through an industrial manufacturer's Google Ads and Microsoft Ads accounts, a B2B business where the headline finding was about what was being counted as a lead.
+
+On Microsoft specifically, our team ran it alongside Google for a mortgage lender, starting from an import of the Google campaigns and then building call and form conversion tracking on the Microsoft side.
+
+The lead quality work closest to what you're describing was for a personal injury law firm. Lead volume was fine, but fewer and fewer leads were turning into cases. Our team tracked which leads turned into cases, then narrowed call conversions to calls over three minutes, so Google Ads learned from a stronger signal than raw calls and form fills.
+
+Ongoing, our team runs Google Ads for a paving contractor at about $8,000 a month, the account behind the numbers in my cover letter. It's one of 15 Google Ads accounts our team had spending over the last 30 days.
+
+None of it has been out-of-home.
+
+Notes (internal): 181 words. QC PASS WITH FIXES, both applied ("building Microsoft's own conversion tracking" -> "building call and form conversion tracking on the Microsoft side", since the qualified-lead upload never worked; "set up tracking that showed which leads became qualified cases" -> "tracked which leads turned into cases", since no record proves a qualified-case import ran).
+- Industrial manufacturer = IVC audit, 4th reuse while the ruling is pending. Cut paragraph 1 back to "The closest recent match is the audit in my cover letter." if not approved.
+- Mortgage lender = South River Mortgage Microsoft account (Dec 2025-Feb 2026, past tense, no results or duration claimed). Both reviewers flagged it for the cover letter because it sat beside the click-ID paragraph; here it stands alone, but expect "how did it go?" on a call.
+- Law firm = Big Chad Law case study text (challenge + calls over 3 minutes), read 9/16. Came through a partner agency and has ended: never call it a direct client, never say "signed", no numbers quoted (the per-case table uses all-channel spend).
+- Paving contractor last 30 days $8,027.58 / 40 conv (8/18-9/15). 15 Google Ads accounts with spend in the last 30 days (count only; the dollar total mixes currencies).
+- Last question: none. Last sentence: "None of it has been out-of-home."
+
 ## Screen notes (internal, do not paste)
 
 | Screen | Result |
