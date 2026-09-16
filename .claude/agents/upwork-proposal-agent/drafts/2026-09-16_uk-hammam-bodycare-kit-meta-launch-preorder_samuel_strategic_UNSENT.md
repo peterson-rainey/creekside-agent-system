@@ -2,7 +2,7 @@
 
 - **Profile:** Samuel (displays as Peterson Rainey) | **Style:** `strategic` (request: "Use the strategic version", no profile named, so Samuel per the agent default) | **Date:** 2026-09-16 (Postgres now(), US Central) | **Status:** UNSENT
 - **Twin:** a Lindsey `lindsey_default` draft of this SAME job was written by a parallel session while this one was in progress: `.claude/upwork-drafts/2026-09-16_uk-hammam-bodycare-kit-meta-launch-preorder_lindsey_default_UNSENT.md`. This draft was rebuilt to diverge from it (map below). Send ONE profile, not both.
-- **Attachment:** NONE by default (see Open items for the optional Unrefined PDF).
+- **Attachment (recommended 9/16, Queenie asked):** `.claude/attachments/unrefined_meal_prep_CLEAN.pdf`, sent with the v10 body below. The v9 body directly under PROPOSAL is the send-with-nothing version.
 - **Length:** 393 words, 2,217 characters (v9). No sign-off, per the 9/4 and 9/9 rulings.
 
 ## PROPOSAL (paste-ready)
@@ -25,6 +25,26 @@ When do preorders open, and does the kit ship in time for Christmas?
 
 **Last question:** "When do preorders open, and does the kit ship in time for Christmas?"
 **Last sentence:** "When do preorders open, and does the kit ship in time for Christmas?"
+
+## PROPOSAL v10, WITH ATTACHMENT (recommended; attach `.claude/attachments/unrefined_meal_prep_CLEAN.pdf`)
+
+Only change from v9: the meal prep sentence now points at the attachment so the PDF backs a claim in the body. 397 words, 2,241 characters, zero shared 3-grams with the Lindsey twin (which attaches nothing). Alternate close for a solo send lands at 399 words.
+
+Hammam Kit preorders will make the rebuilt ad account look better than it is. With 23K following you on TikTok and 15K on Instagram, many first orders will come from people already planning to buy, so preorder ROAS is the wrong benchmark for cold traffic.
+
+Profitable also looks different for the kit than for individual products. The glove lasts, but black soap and ghassoul run out, so much of a kit buyer's value comes later, in reorders. Cold campaigns should exclude past buyers and your email list, then get judged in Shopify on what a new customer costs against that reorder value, not on first-order ROAS in Ads Manager.
+
+Across our Meta accounts last year, CPMs ran close to 40% higher in November and December than in October on similar spend, then fell back by January. If the kit is going to sell as a Christmas gift, its angles need proving in October, before that jump.
+
+On creative, the kessa glove demo is the obvious hook, and Meta's policy allows before and after for cosmetic products shown to adults. What it prohibits is copy that is negative about someone's appearance or hygiene, so captions borrowed from organic posts get checked against that first.
+
+Our book has no bodycare brand and no preorder campaign. A luxury furniture brand we ran hit about 4x in its best month, more than double the prior two months, but almost all of that month's Meta-reported revenue came from a 50% off sale and retargeting. The attached case study is the closest we've run to a launch, a meal prep brand entering a second city from zero. It reached about 2x in the first month, short of a 2.5x goal, while home-market new customer campaigns, with every past buyer excluded, held about 4x. Both accounts have since ended.
+
+Our team makes the ad creative, one Meta specialist runs the account day to day and sends the weekly numbers, and I stay on strategy. Pricing is 20% of monthly ad spend with a $1,500 monthly minimum, plus $1,500 once for onboarding, covering the audit, tracking and build, with 90 days as the minimum term, in US dollars. Work starts once the contract is signed and access is in, and setup takes about two weeks, so ads go live in week three.
+
+When do preorders open, and does the kit ship in time for Christmas?
+
+**Attachment checks (9/16):** CLEAN copy = 4-page real PDF, 1,312,592 bytes, no link annotations, no "localhost", no Samuel/Peterson, `pdftotext` output identical to Drive original `1SDEJ4wjoOW3C8Onbya7F86rPOsN3fQu-` (committed 7f36848 by the Kasumee session). Kasumee session live-verified Columbus month one at $408.83 / 7 conv / 1.78x and core Jan-Feb at 9.84x-11.84x, so the printed ~2x and ~4x sit at or below live. **Why not the others:** CI Lifestyle (headline ROAS unverifiable, corrupt `roas` rows, and a second meal prep brand that doesn't match the body), Blush_Camera.pdf (revenue headline fails the real spend, estimate inside the headline, print artifacts, and the Lindsey twin cites that brand), Fitness Superstore and Duck A Diet (no ad account on record to verify), Punch Drunk Chef (20x headline vs ~1.7x live), Aura (Google only), Birthday Club / BDC (apps, broken or print-artifact files). No PDF exists for the furniture brand or any bodycare/beauty product brand. **Caveats:** client churned 4/29 citing "Below average results" and is named in the PDF; PDF is in present tense with a meal prep closing line; month one is a 7-purchase sample.
 
 ## Screen record
 
@@ -74,6 +94,6 @@ Unavoidable shared themes: the proof-gap disclosure and the fee (same numbers on
 
 1. **Send one profile.** Lindsey twin exists for this job. Meta-only DTC posts route to Lindsey and her twin's proof is first person; this version carries the stronger strategy read. Your call.
 2. **If this one goes alone**, it has no budget question. Optional swap for the last paragraph, with "and sends the weekly numbers" and "on similar spend" cut so it lands at 395 words (script-checked on v9): "When do preorders open, does the kit ship before Christmas, and is the Meta budget closer to testing angles or pushing one hard?"
-3. **Attachment, optional:** `unrefined_meal_prep.pdf` (Drive `1SDEJ4wjoOW3C8Onbya7F86rPOsN3fQu-`) is a real PDF with conservative numbers, but the client is named in it, left citing "Below average results", and page 1 has an invisible `http://localhost:4321/` link. Default is no attachment.
+3. **Attachment:** RESOLVED 9/16 when Queenie asked what to attach: `.claude/attachments/unrefined_meal_prep_CLEAN.pdf` (localhost link already stripped) with the v10 body. Remaining caveat: the client is named in it and left citing "Below average results".
 4. Payment verification, rate range, job type and client spend history were not in the paste.
 5. DB log to `upwork_proposal_logs` skipped (contractor_query cannot INSERT).
