@@ -89,3 +89,9 @@ Every candidate checked against the post's exclusion ("not retail or residential
 
 - **Last question:** "All of this depends on someone marking the real projects, so the first thing I'd want to know: when an inquiry comes in today, does it stay with your own sales team or go out to a rep or distributor?"
 - **Last sentence:** same as the last question.
+
+## MILESTONE DESCRIPTION (single, 199 chars)
+
+Google Search on commercial lighting terms with residential and retail blocked, Meta ads showing commercial installs, a trade-qualifying form, and real-project conversion tracking, tested end to end.
+
+No amount typed. As written it covers a Google AND a Meta build, which lines up with $3,000 under the $1,500-per-platform onboarding fee; $1,500 would match Lindsey's bid on this post (her milestone is Meta-only). Queenie's call. Zero shared 3-word phrases with Lindsey's milestone, and it avoids her "X setup for Y leads:" opening.
