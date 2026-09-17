@@ -1,6 +1,6 @@
 Stale campaigns are the easy part. The harder problem is that your pixel was trained on single skein buyers, so nearly every Purchase in it is worth about what a skein costs. Point a kit at ten or twenty times that price at the same dataset and Meta keeps finding the people who bought the cheap thing. A neglected account is not a neutral start for a new offer, it is a biased one, and Phase 1 has to say whether that dataset is worth keeping.
 
-Your media cap decides the rest. At kit prices a small cap buys few purchases a week, against the roughly fifty a week per ad set Meta wants to leave learning. One boutique I ran at fifty dollars a day had to come off purchase optimization onto add to cart to leave learning. A higher volume account stayed on purchase. The cap picks the build.
+Your media cap decides the rest. At kit prices a small cap buys few purchases a week, against the roughly fifty a week per ad set Meta wants to leave learning. One boutique I ran at fifty a day had to come off purchase optimization onto add to cart to leave learning. A higher volume one stayed on purchase. The cap picks the build.
 
 1. First three things I inspect
 
@@ -12,7 +12,7 @@ Destinations and the feed. Every live ad's final URL resolved rather than read o
 
 2. Making a kit Purchase report the full kit total
 
-Two usual causes. Either Purchase fires per line item so each skein reports its own price, or value reads from a product price field instead of the order total.
+Two usual causes. Either Purchase fires per line item so each skein reports its own price, or value reads from a product price field, not the order total.
 
 The fix is to stop relying on the Shopify Meta app's defaults. Purchase fires once per order from a custom pixel on checkout completed: value from the checkout total, currency explicit, content_ids set to the kit SKU rather than the component skeins, content_type product, num_items in. The same event goes server side through Conversions API on order creation with an identical event_id so the two deduplicate instead of double counting. GA4 gets the same value and item detail. Then verified, not assumed: Test Events for payload shape, the deduplication column once traffic exists, and one real Shopify order reconciled against Ads Manager to the dollar.
 
