@@ -58,7 +58,7 @@ her Meta minimum; if the seat is Google-primary, re-route to Samuel.
 
 ## PROPOSAL (paste-ready, FINAL)
 
-**Counts:** 297 words / 1,743 chars (Upwork cap 5,000) · 0 em dashes · 0 URLs · no contact info · no sign-off · nothing attached
+**Counts:** 295 words / 1,731 chars (Upwork cap 5,000) · 0 em dashes · 0 URLs · no contact info · no sign-off · nothing attached
 
 Has Meta classified your pixel as health and wellness yet, and if it has, do you know which conversion events you lost when it did? Telemedicine platforms are one of the examples Meta names for that category, the classification cannot be edited from your side, only sent back for review, and the first symptom is usually a campaign quietly optimizing toward something shallower than the event you actually care about.
 
