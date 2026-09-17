@@ -157,7 +157,7 @@ WHERE title = 'Peterson LinkedIn Voice Fingerprint';
 - **No parroting.** Don't echo the post's exact phrasing back. Use synonyms. If they said "burning cash on ads," you say "wasting ad spend" or "spending without signal." Your word choices describe solutions; their word choices describe frustrations.
 - **No formal transitions.** Never use "Furthermore," "Moreover," "Additionally," "In conclusion," "That said." Use casual connectors if needed: "And," "But," "So," "Still."
 - **No restating the post.** Never open by repeating what the post just said in your words. If the first two sentences of your draft are just their message rephrased, cut them.
-- **Vary sentence length.** Follow a long sentence with a short one. Fragments are fine. One word works. Never write three consecutive sentences that are roughly the same length.
+- **Vary sentence length.** Follow a long sentence with a short one. Fragments are fine. One word works. Never write three consecutive sentences that are roughly the same length (Step 5.25 defines the measurable threshold: within 5 words of each other).
 - **Kill the rule of three.** Don't default to listing three things ("plan, execute, and measure"). Use two items more often. Sometimes just one.
 - **Answer starts with the answer, response ends when done.** No introduction paragraph. No summary/conclusion paragraph. Just stop when you're done.
 
