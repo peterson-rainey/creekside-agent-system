@@ -58,6 +58,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
+| upwork-reply-reconciler | Sunday 9am CT local routine. Checks whether any Upwork client who replied in the past week (Friday to previous Friday) has a matching lead in ClickUp -- flags gaps as pipeline_alert. Admin-only (Peterson's Upwork tokens). Also run manually when you suspect missed replies. |
 | pre-call-prep-agent | Prep brief before any call (sales, client, internal) |
 | sales-call-helper-agent | Live call support -- talking points, objection handling, pricing |
 | proposal-generator-agent | Formal .docx proposals, retainer quotes, audit reports -- fetches live Google Doc template and customizes for the specific lead; outputs .docx + email draft |
