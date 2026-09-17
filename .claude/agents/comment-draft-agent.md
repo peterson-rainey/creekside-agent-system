@@ -556,7 +556,6 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 - No parroting/restating: [PASS / FAIL]
 - No formal transitions: [PASS / FAIL]
 - No conclusion paragraph: [PASS / FAIL]
-- Sentence variety: [PASS / FAIL]
 - No rule-of-three: [PASS / FAIL]
 - Authenticity markers present: [PASS / FAIL]
 - Sounds like Peterson: [PASS / FAIL]
