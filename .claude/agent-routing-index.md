@@ -58,6 +58,7 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 
 | Agent | Use when... |
 |-------|-------------|
+| upwork-ooo-responder | LOCAL launchd routine (every 30 min). Auto-sends OOO reply on Peterson's Upwork when client messages go unanswered outside business hours (Mon-Fri 8am-6pm CT, Sat 8am-12pm CT). 3-hour outside-BH timer, 48-hour cooldown per room. Status=draft -- Peterson activates manually. Admin-only. |
 | upwork-reply-reconciler | Sunday 9am CT local routine. Checks whether any Upwork client who replied in the past week (Friday to previous Friday) has a matching lead in ClickUp -- flags gaps as pipeline_alert. Admin-only (Peterson's Upwork tokens). Also run manually when you suspect missed replies. |
 | pre-call-prep-agent | Prep brief before any call (sales, client, internal) |
 | sales-call-helper-agent | Live call support -- talking points, objection handling, pricing |
