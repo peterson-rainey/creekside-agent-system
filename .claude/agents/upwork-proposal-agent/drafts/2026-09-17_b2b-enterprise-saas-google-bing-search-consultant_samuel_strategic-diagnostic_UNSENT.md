@@ -2,7 +2,7 @@
 
 - Profile: Samuel (General), strategic + diagnostic. Status: UNSENT. QC/expert review NOT run (subagents lack DB access).
 - Screens: required items include certifications (ZERO exist) and a portfolio (ReferPro PDF only; seed-stage, ~$2K/platform, not enterprise). "Join our team" is a soft seat tell, no full-time words. Spend unstated. Geo US/CA pass. Payment/rate unscreened. upwork_jobs dupe check not run.
-- Attach: ReferPro_B2B_SaaS_Case_Study.pdf (Results block is EMPTY; body is the narrative only) or nothing.
+- Attach: .claude/attachments/winterbotham_parham_teeple_CLEAN.pdf (chosen 9/17). ReferPro rejected: empty Results block vs a 'measurable results' portfolio requirement. Known defect: consumer-legal closing CTA.
 
 ## PROPOSAL
 
@@ -13,6 +13,8 @@ So the first question I'd ask is which stage of your pipeline happens reliably i
 Microsoft is worth more on enterprise B2B than its share of search suggests. It can raise bids on searchers whose LinkedIn profile matches your target company size, industry or job function, without narrowing who sees the ads. Canada also needs a decision up front: whether Quebec gets French campaigns or English-only targeting that quietly misses part of the market.
 
 For a B2B SaaS company selling referral software to service businesses, our team ran Meta to create awareness for a category buyers didn't know existed, and Google to capture the search demand that followed. At month three spend doubled and Performance Max was added. Inbound leads and ARR both doubled over that stretch.
+
+The attached case study is a bankruptcy law firm's Google account our team restructured into service and location campaigns. Google-reported conversions went from 117 to 229, and cost per conversion from $86 to $50.
 
 Nothing formal to list on certifications. What I can show is how an account is built, which matters more on a sales cycle this long.
 
