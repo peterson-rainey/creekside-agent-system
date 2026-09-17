@@ -41,3 +41,10 @@ A live example from August. One of my practices ran two campaigns side by side, 
 So the first thing I check is whether a metric is measuring anything. In health accounts that matters more than usual, because Meta can restrict what a pixel in that category is allowed to report, and an account can look like it is underperforming when it is really just under-reporting.
 
 After that it is simple. I want the cost of the step that actually becomes revenue, split far enough down that an average cannot hide inside it.
+
+## MILESTONE DESCRIPTION (single, 176 / 200 chars)
+
+First month of Meta management: account and pixel audit, campaign build or restructure, weekly optimization, and reporting on cost per booked consult rather than cost per lead.
+
+No fee, no hours and no spend figure stated (spend is unknown; per-platform pricing is a % of spend, never hourly).
+No em dashes. First person scope only, nothing routed to anyone else.
