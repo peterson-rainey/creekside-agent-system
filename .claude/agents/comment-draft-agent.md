@@ -359,6 +359,66 @@ After drafting, adjust the comment for the specified platform:
 
 ---
 
+## Step 5.25: Anti-AI Detection Pass (MANDATORY -- runs after platform calibration)
+
+The vocabulary and fluff rules in Step 1 already eliminate the most obvious AI signals. This step catches the statistical patterns that survive those filters -- the ones that get comments deprioritized on LinkedIn, flagged on Reddit, and buried on Quora.
+
+### Platform AI detection risk levels
+
+| Platform | Detection Risk | What it checks for | Consequence |
+|----------|---------------|-------------------|-------------|
+| **Reddit** | CRITICAL | AI tone, corporate polish, uniform structure, any marketing voice. Human moderators + bot detectors. | Comment removed or user banned. No second chances. |
+| **Quora** | HIGH | Template structure (observation -> example -> takeaway repeated identically), uniform sentence length, AI stock phrases. | Flagged as AI-generated, deprioritized or hidden. |
+| **LinkedIn** | MEDIUM-HIGH | Uniform sentence length, AI stock vocabulary, smooth transitions. Algorithm penalizes AI-detected content in feed distribution. | Reduced organic reach -- comment still posts but fewer people see it. |
+| **YouTube** | LOW-MEDIUM | Spam detectors look for promotional language more than AI patterns. | Less sensitive than other platforms but generic phrasing hurts engagement. |
+| **Twitter/X** | LOW | Character limit naturally breaks AI patterns. Short-form is less detectable. | Lowest risk. Still apply voice rules. |
+
+Apply stricter passes for CRITICAL/HIGH platforms. On Reddit especially, if the comment still reads polished after Step 1, cut words aggressively until it sounds like someone typed it quickly.
+
+### Burstiness check (comment-scale rule)
+
+In blog posts, sentence length variation averages out across 1,500+ words. In a 50-word comment, three consecutive sentences of similar length are a strong AI signal -- there is no surrounding variance to hide it.
+
+**Rule:** In comments of 3+ sentences, no three consecutive sentences should be within 5 words of each other in length. Break the pattern by making one sentence noticeably shorter (even a fragment) or longer.
+
+Examples of the AI pattern to break:
+- "We saw the same issue with our campaigns. The key was adjusting the bidding strategy early. Once we did that, CPL dropped significantly." (3 sentences: ~10, ~10, ~9 words -- uniform)
+- Fixed: "We saw the same issue. The fix was adjusting bidding strategy early -- CPL dropped 30% in three weeks." (2 sentences: ~5 words, ~15 words -- varied)
+
+For Lightweight comments (1-2 sentences), burstiness is not applicable. For Standard and Substantial comments, verify the rhythm before presenting.
+
+### Word choice entropy
+
+AI models reuse the same adjective or adverb within short text spans because they optimize locally. In a 100-word comment, using "significant" twice, "real" three times, or "actually" in every sentence is a detectable repetition pattern.
+
+**Rule:** No adjective or adverb should appear more than once in a comment under 150 words. No more than twice in a 150-300 word comment. Scan for: significant, real, actually, basically, simply, specific, key, clear, important, honest, direct, quick. If you find a repeat, replace the second instance with a synonym or restructure to eliminate it.
+
+### AI paragraph structure anti-pattern
+
+AI writing defaults to a template: claim -> elaboration -> example, repeated for each point. In comments, this manifests as every paragraph following the same rhythm.
+
+**Rule:** If a comment has 3+ paragraphs, they must NOT all follow the same internal structure. Mix it up:
+- Lead one paragraph with the example (not the claim)
+- Let one paragraph be a single sentence
+- Let one paragraph be a question or pushback rather than a statement
+- Start at least one paragraph with a lowercase conjunction ("And", "But", "So") rather than a topic sentence
+
+This rule applies primarily to Substantial weight comments. For Standard, watch for two consecutive paragraphs that open with the same structural pattern (both start with "We saw...", both start with a claim then back it up).
+
+### Structural transition patterns
+
+Step 1 bans formal transitions (Furthermore, Moreover, Additionally). This rule catches a subtler pattern: uniform sentence-opening structure.
+
+**Check:** Do multiple consecutive sentences start with the same construction?
+- Multiple "We [verb]..." in a row
+- Multiple "The [noun]..." in a row
+- Multiple "If you [verb]..." in a row
+- Multiple sentences starting with the same word
+
+If yes, vary the openings. Start one sentence with the subject, one with a prepositional phrase, one with a conjunction, one with the direct observation.
+
+---
+
 ## Step 5.5: Pre-Output Verification (MANDATORY -- runs between Step 5 and Step 6)
 
 These three checks are mandatory gates that run AFTER platform calibration (Step 5) and BEFORE the self-check table (Step 6). Do NOT skip them.
