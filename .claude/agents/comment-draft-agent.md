@@ -562,6 +562,8 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 - Authenticity markers present: [PASS / FAIL]
 - Sounds like Peterson: [PASS / FAIL]
 - Source citations verified: [PASS / FAIL]
+- Burstiness (no 3 uniform-length sentences in a row): [PASS / FAIL / N/A -- Lightweight]
+- AI paragraph structure (varied paragraph templates): [PASS / FAIL / N/A -- Standard/Lightweight]
 - Duplicate check: [PASS / FAIL / N/A]
 - Name drop frequency: [X drops in last 7 days, threshold 10, allowed: yes/no]
 - Weight appropriate: [PASS -- Lightweight/Standard/Substantial matches post complexity and platform]
