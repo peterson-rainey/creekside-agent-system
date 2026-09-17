@@ -383,7 +383,7 @@ In blog posts, sentence length variation averages out across 1,500+ words. In a 
 
 Examples of the AI pattern to break:
 - "We saw the same issue with our campaigns. The key was adjusting the bidding strategy early. Once we did that, CPL dropped significantly." (3 sentences: ~10, ~10, ~9 words -- uniform)
-- Fixed: "We saw the same issue. The fix was adjusting bidding strategy early -- CPL dropped 30% in three weeks." (2 sentences: ~5 words, ~15 words -- varied)
+- Fixed: "We saw the same issue. The fix was adjusting bidding strategy early, and CPL dropped 30% in three weeks." (2 sentences: ~5 words, ~15 words -- varied)
 
 For Lightweight comments (1-2 sentences), burstiness is not applicable. For Standard and Substantial comments, verify the rhythm before presenting.
 
