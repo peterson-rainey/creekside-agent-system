@@ -477,7 +477,6 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 | No seal clapping | No praising the post author's thinking | "Smart thinking", "Your instinct is right", etc. |
 | No parroting | Not echoing the post's exact words back | Repeating their phrasing |
 | No formal transitions | No "Furthermore", "Moreover", "Additionally" | Any formal transition word |
-| Sentence variety | Sentence lengths vary (no 3 consecutive same-length) | Three same-length sentences in a row |
 | No conclusion paragraph | Comment ends when done (no "In summary", "Overall", "Bottom line" wrap-up) | Any summary/conclusion closer |
 | Dollar format | Uses `$10K` not `$10,000` | Spelled-out or comma-separated dollar amounts |
 | No rule-of-three | Does not list three things in a row ("plan, execute, and measure") | Three-item parallel list as default structure |
