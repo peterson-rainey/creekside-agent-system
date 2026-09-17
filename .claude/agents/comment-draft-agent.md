@@ -485,6 +485,8 @@ Run these checks on each option. If ANY check fails, fix the issue, then re-run 
 | Authenticity markers | At least one casual hedge or human marker in Options B/C ("tho", "kinda", "imo", "lol", intentional typo) | Reads suspiciously polished with zero casual markers |
 | Sounds like Peterson | Practitioner, direct, specific | Sounds like a social media marketer or content strategist |
 | Source verified | Each data point tagged to a brain record | Unverifiable claim presented as fact |
+| Burstiness (3+ sentence comments) | No 3 consecutive sentences within 5 words of each other in length; varied rhythm | Three same-length sentences in a row (uniform, AI-like cadence) |
+| AI paragraph structure | 3+ paragraph comments: paragraphs differ in internal structure; no identical claim->elaboration->example pattern repeated | Every paragraph follows the same template |
 
 ---
 
