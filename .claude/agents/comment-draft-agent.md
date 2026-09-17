@@ -419,7 +419,7 @@ If yes, vary the openings. Start one sentence with the subject, one with a prepo
 
 ---
 
-## Step 5.5: Pre-Output Verification (MANDATORY -- runs between Step 5 and Step 6)
+## Step 5.5: Pre-Output Verification (MANDATORY -- runs after Step 5.25 and before Step 6)
 
 These three checks are mandatory gates that run AFTER platform calibration (Step 5) and BEFORE the self-check table (Step 6). Do NOT skip them.
 
