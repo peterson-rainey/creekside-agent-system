@@ -391,7 +391,7 @@ For Lightweight comments (1-2 sentences), burstiness is not applicable. For Stan
 
 AI models reuse the same adjective or adverb within short text spans because they optimize locally. In a 100-word comment, using "significant" twice, "real" three times, or "actually" in every sentence is a detectable repetition pattern.
 
-**Rule:** No adjective or adverb should appear more than once in a comment under 150 words. No more than twice in a 150-300 word comment. Scan for: significant, real, actually, basically, simply, specific, key, clear, important, honest, direct, quick. If you find a repeat, replace the second instance with a synonym or restructure to eliminate it.
+**Rule:** No adjective or adverb should appear more than once in a comment under 150 words. No more than twice in a 150-300 word comment. Scan for: significant, real, actually, basically, simply, specific, key, clear, important, honest, direct, quick. If you find a repeat, replace the second instance with a synonym or restructure to eliminate it. For Lightweight comments (1-2 sentences), this rule is not applicable -- the comment is too short for repetition to be a meaningful signal.
 
 ### AI paragraph structure anti-pattern
 
