@@ -13,7 +13,7 @@ SCREEN:
 PROOF: South River Mortgage Google $563,541 over 334 days (~$50K/mo), churned 8/11, past tense, no CPL quoted (fails verification). Big Chad Law PDF `Big_Chad_Law_Legal_Case_Study_(1).pdf`: 619 conv / $56.6K, ~$950/case on total spend; churned; "cases" never "signed".
 Mechanics (memory, verified 9/16): Google click-date reporting; 90-day import (EC for leads 63); Meta conversion leads = Instant Forms only, ~200 leads/mo, stage within 28 days.
 ATTACHMENT: Big_Chad_Law_Legal_Case_Study_(1).pdf
-QC: not run. DB LOG: skipped, contractor_query cannot INSERT.
+QC (qc-reviewer-agent, no DB, ground truth inlined): PASS, 0 blocking. Optional: soften "At your spend that's reachable" (no verified CPL behind it); soften "A trip can easily book later" (no travel data). Not applied yet. DB LOG: skipped, contractor_query cannot INSERT.
 
 ---
 
