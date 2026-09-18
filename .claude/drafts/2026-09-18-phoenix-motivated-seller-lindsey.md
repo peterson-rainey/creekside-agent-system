@@ -6,8 +6,6 @@ The closest work I've done is Meta lead gen for a reverse mortgage lender, aimed
 
 I haven't run a wholesaler or flip account myself, so I won't hand you a seller CPL or contract rate borrowed from another vertical. I'd set those targets off your deal margin and lead-to-contract rate once the first few weeks of data come in.
 
-[CAPI LINE, CONFIRM WITH LINDSEY: "On Conversions API, I set it up myself, including mapping CRM stages back to Meta."]
-
 Weekly check-ins during US business hours work for me, [DAYS/TIMES, Arizona time].
 
-I've attached a few results below so you can see how I work. There's also a quick video on my profile that walks through my process.
+There's a quick video on my profile that walks through how I work.
