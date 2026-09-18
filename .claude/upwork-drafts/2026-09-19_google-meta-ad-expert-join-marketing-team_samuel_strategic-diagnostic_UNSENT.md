@@ -24,4 +24,4 @@ Creative: we write copy and build briefs for your creative team, sized to each p
 
 On setup: this would be managed by a dedicated team on our side rather than one person joining your team, which means you're not dependent on one person's availability or holidays. We bill as a percentage of ad spend rather than hourly.
 
-Roughly what's going through Google and Meta combined each month right now, closer to $5K or $50K? And is this for your own business, or for clients you manage?
+Roughly what's going through Google and Meta combined each month right now, closer to $5K or $50K?
