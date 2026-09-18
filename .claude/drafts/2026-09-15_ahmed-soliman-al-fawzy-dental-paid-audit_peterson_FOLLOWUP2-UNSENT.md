@@ -1,4 +1,4 @@
-**Status: UNSENT.** Drafted 2026-09-15 (Postgres now(): Tue 13:45 UTC). Upwork thread "Ahmed Soliman, Ahmed S" on the Peterson Rainey account. ClickUp 86e1ftjxu ("follow up pre-call", due 9/15). No Peterson hold in any threaded reply (read live 9/15).
+**Status: SENT 2026-09-15 14:28 UTC, RESPONSE 2 (QC-edited) with one added word: "I confirmed that read-only access is all we need..."** (Upwork display Tue 9/15 10:28 PM Manila). Ahmed replied 9/16 14:52 UTC with a fee question; see the 2026-09-16 file. Drafted 2026-09-15 (Postgres now(): Tue 13:45 UTC). Upwork thread "Ahmed Soliman, Ahmed S" on the Peterson Rainey account. ClickUp 86e1ftjxu ("follow up pre-call", due 9/15). No Peterson hold in any threaded reply (read live 9/15).
 
 Mode: post-call follow-up, touch 2. Unanswered: Peterson's 9/9 16:14 UTC quote and touch 1 (SENT 9/11 21:10 UTC, file 2026-09-11_..._FOLLOWUP-UNSENT.md, status line updated). Ahmed silent since 9/8 14:54 UTC.
 Routed: sdr-agent, then qc-reviewer-agent. QC: both SEND WITH EDITS (applied), no blocking issues. QC recommends RESPONSE 2.
