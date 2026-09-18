@@ -25,3 +25,15 @@ Creative: we write copy and build briefs for your creative team, sized to each p
 On setup: this would be managed by a dedicated team on our side rather than one person joining your team, which means you're not dependent on one person's availability or holidays. We bill as a percentage of ad spend rather than hourly.
 
 Roughly what's going through Google and Meta combined each month right now, closer to $5K or $50K?
+
+---
+
+SCREENING Q: Describe your recent experience with similar projects
+
+Most of our recent work is exactly this setup: one business running Google and Meta side by side, with our team managing both and deciding how budget splits between them.
+
+Two recent examples. For a paving contractor we run Search and Performance Max together. Performance Max bought clicks at $3.00 against $14.53 on Search at near-identical spend, but Search produced leads at $131 versus $268. We moved budget on lead cost and ignored the cheap clicks.
+
+For a dental group we ran Meta lead forms feeding their call centre: 2,558 leads at $25.31 each over 90 days. A big part of that work was the handoff, making sure leads reached a person fast enough to be worth what they cost.
+
+Across the team that's $20M+ in managed spend and 200+ account audits, with conversion tracking, GA4 and GTM handled by a dedicated tracking specialist. Happy to walk you through live accounts on a call rather than send screenshots.
