@@ -1,5 +1,7 @@
 # Upwork FOLLOW-UP — BC two dental practices (Michael Webster), answering the % vs flat challenge
-Profile: Lindsey Bouffard | Style: lindsey_default | Type: follow-up, active thread | Status: UNSENT (v2, follow-up framing)
+
+> SENT 2026-09-14 about 2:55 PM Central (Upwork shows Tue 9/15 3:55 AM Manila), with two small edits by the sender: "I sent the recording on Friday" and a comma in "as you scale, and the pay doesn't". No reply as of 2026-09-18. NOTE: this message carried an external calendar link; Upwork Help (verified 9/16) calls pre-contract meeting links circumvention, so later touches on this thread carry no link.
+Profile: Lindsey Bouffard | Style: lindsey_default | Type: follow-up, active thread | Status: SENT 2026-09-14 (v2)
 Drafted 2026-09-14 (Postgres now(), US Central) | sdr-agent -> qc-reviewer-agent (WARN, fixes applied)
 
 ## SOURCE OF THE CONTENT (owner instruction, not a Queenie paraphrase)
