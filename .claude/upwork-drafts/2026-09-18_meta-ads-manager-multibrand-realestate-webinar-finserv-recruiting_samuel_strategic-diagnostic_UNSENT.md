@@ -1,6 +1,6 @@
 # Meta Ads Manager, multi-brand (real estate, webinars, courses, financial services, recruiting) — Samuel, strategic + diagnostic — UNSENT
 
-Drafted 2026-09-18 (Postgres now()). Not sent. Attach nothing.
+Drafted 2026-09-18 (Postgres now()). Not sent. Attach: .claude/attachments/Big_Chad_Law_Legal_Case_Study_(1).pdf (sha1 4d32552d..., picked 9/18 on Queenie's ask; byline 'By: Samuel Rainey' soft spot; Meta ran as awareness there).
 
 ## Screens
 - Already bid: NO (upwork_jobs on distinctive phrases + job_name; drafts folders grepped).
@@ -47,5 +47,7 @@ Your questions:
 13. An ad set needs about 50 results in a week to exit learning, so on a $150 appointment you can't wait for appointments to decide. I judge early on the deepest stage with enough volume, confirm on appointments and revenue, and cut what still costs too much at the qualified stage after fair spend.
 14. By what they did and how recently. Video viewers get testimonials and case studies, registrants who didn't show get the replay and a deadline, leads with no appointment get FAQs and a consult offer. I watch frequency so warm audiences don't burn out.
 15. The two above, plus one structural number: only about 3% of the campaigns across our Meta book use a video objective, even though most of the creative is video. View-optimized campaigns look great in reports and rarely produce leads.
+
+The attached case study is a law firm our team ran on Google and Meta, tracked past the lead down to cost per case.
 
 How many brands would be live at once, and roughly what does the whole portfolio spend on Meta a month, closer to $10,000 or $100,000?
