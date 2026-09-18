@@ -30,9 +30,9 @@ Roughly what's going through Google and Meta combined each month right now, clos
 
 SCREENING Q: Describe your recent experience with similar projects
 
-Most of our recent work is exactly this setup: one business running Google and Meta side by side, with our team managing both and deciding how budget splits between them.
+A lot of our work looks like this: one business running Google and Meta side by side, with our team managing both and deciding how budget splits between them.
 
-Two recent examples. For a paving contractor we run Search and Performance Max together. Performance Max bought clicks at $3.00 against $14.53 on Search at near-identical spend, but Search produced leads at $131 versus $268. We moved budget on lead cost and ignored the cheap clicks.
+Two recent examples. For a paving contractor we run Search and Performance Max together. Performance Max bought clicks at $3.00 against $14.53 on Search at near-identical spend, but Search produced leads at $131 versus $268. That's why we judge budget on lead cost, not click cost.
 
 For a dental group we ran Meta lead forms feeding their call centre: 2,558 leads at $25.31 each over 90 days. A big part of that work was the handoff, making sure leads reached a person fast enough to be worth what they cost.
 
