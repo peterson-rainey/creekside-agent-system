@@ -33,3 +33,24 @@ To be upfront: I run Meta, not Google Ads, so the Google half of this role would
 What does an advisor count as a qualified inquiry today: travel dates and a budget, or just a destination?
 
 There's a short video on my profile that shows how I run accounts week to week.
+
+---
+
+## SCREENING ANSWERS (drafted 2026-09-19, UNSENT)
+
+Facts verified live 2026-09-19 (reporting_clients.platform_operator = Lindsey for all three; meta_insights_daily by month; clients rows):
+- Dr. Laleh, Irvine CA, act_868498138612020: Sep 2025 (from 9/18) $40,864; Oct 2025-Aug 2026 every month $89,945-$114,587; last 12 mo ~$1.19M. Platform conversion counts are thin (25-61/mo, jumps to 324 in Jul) so NO result quoted. CONFLICT: clients.notes still says "$50/day Meta" (stale).
+- Fusion Dental, Roseville + El Dorado Hills CA, act_938570599860690: 2026-04-21 to 07-15, $64,746.78, 2,558 conv = $25.31. Notes: Spanish campaigns in Roseville budget; churned 7/22 "Went internal, kept the strategy".
+- South River Mortgage (reverse mortgage), act_1358674881898209: 2025-09-18 to 2026-08-09, $7,919-$21,986/mo, ~$141.5K total. Conversions only recorded Feb-Jun 2026, so no CPL quoted. Churned 8/4, taken in-house. Operator tenure start not checked.
+
+1. Please share a brief introduction outlining your relevant paid media experience.
+
+I've been running paid media for over 10 years, and before that I built and sold my own e-commerce business, which taught me to judge ads by what they bring in, not by what the platform reports. My work is Meta and email. I currently run more than ten live Meta accounts for US businesses, and most of them are lead generation where a person has to follow up: dental and cosmetic practices, plus meal prep and skincare brands. Before that I ran a reverse mortgage lender whose leads went to loan officers. My largest account runs about $100,000 a month. I don't run Google Ads, so I'd cover the Meta side of this role.
+
+2. Please provide 2-3 examples of relevant US paid media campaigns you have personally managed, including channels, approximate budget size and measurable results where possible.
+
+Cosmetic dental practice, Irvine, CA. Meta, active. Spend has held between about $90,000 and $115,000 every month since October 2025, roughly $1.19M over the last twelve months. Leads go to the practice's team to book consultations, so the work is keeping volume at a level they can actually book at that spend.
+
+Dental implant practice, two Sacramento-area locations. Meta, April to July 2026, including Spanish-language campaigns. 2,558 leads at $25.31 each on $64,746.78 of spend. I cut daily spend by more than half partway through because the call center couldn't keep up, not because the ads stopped working. The practice later took marketing in-house and kept the strategy.
+
+Reverse mortgage lender, US. Meta, September 2025 to August 2026, $8,000 to $22,000 a month, about $141,000 in total, with leads going to loan officers to close. Meta's financial services rules block age, gender and ZIP targeting, so on an audience that has to be 62 and older, the creative had to do the qualifying. Conversion tracking only covered part of that period, so I don't have a clean cost per lead to share.
