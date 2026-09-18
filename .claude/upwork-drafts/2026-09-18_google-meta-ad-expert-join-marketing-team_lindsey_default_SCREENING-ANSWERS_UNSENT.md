@@ -15,4 +15,4 @@ A dental practice last month: 124 leads at $15.77 each from the leads campaign, 
 
 A US replacement parts store I took over in February: cost per purchase went from $34.72 in the month I inherited to $19.89 by April, and $22.91 in May, with CPM flat throughout.
 
-On all three I worked with a tracking specialist on GA4, GTM and conversion setup. My work is on the Meta side; I don't run Google Ads.
+I work with a tracking specialist on GA4, GTM and conversion setup. My work is on the Meta side; I don't run Google Ads.
