@@ -38,6 +38,6 @@ In fairness to that account, its best month was driven by a 50%-off sitewide sal
 
 Before any money goes in, our dedicated conversion tracking specialist sets up purchase tracking on Shopify with order values passed through and confirms it's recording. On the Google Shopping side, one thing to check early: Shopify's automatic discounts don't reach Google as a sale price, so Shopping ads can show a higher price than your site does.
 
-Lindsey on our team runs our DTC ecommerce accounts on Meta, including that furniture brand, so your account would be hers, with me on strategy. Weekly reports would cover what moved, what we think caused it, and what we're changing.
+Lindsey on our team runs our DTC ecommerce accounts on Meta and ran that furniture brand, so your account would be hers, with me on strategy. Weekly reports would cover what moved, what we think caused it, and what we're changing.
 
 What were you planning to spend a month on Meta to start, relative to $5,000?
