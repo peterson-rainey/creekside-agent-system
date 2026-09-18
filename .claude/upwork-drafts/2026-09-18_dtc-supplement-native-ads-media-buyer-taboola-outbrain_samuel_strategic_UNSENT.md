@@ -2,7 +2,7 @@ Supplement native usually breaks in one of two places, and neither one is the ad
 
 Before anything else, a straight answer to your first ask: our team has not scaled on Taboola or Outbrain, and we don't run a supplement account. Our book is Meta and Google, across ecom and lead gen. So I don't have native case studies to send, and I won't present a Meta account as one. Better you hear that now than on a call.
 
-What does carry over is the part that decides whether native makes money: cold traffic, a page that has to do the selling, and a CPA judged against margin rather than the dashboard. One example from an ecom parts store our team took over: the month we inherited it, cost per purchase was $34.72 at an $8.10 CPM. By April it was $19.89 at an $8.18 CPM, and May came in at $22.91. The price of the media barely moved over that stretch.
+What follows is Meta, not native. The part that carries over is what decides whether native makes money: cold traffic, a page that has to do the selling, and a CPA judged against margin rather than the dashboard. One example from an ecom parts store our team took over: in the month before we started, cost per purchase was $34.72 at an $8.10 CPM. In April it was $19.89 at an $8.18 CPM, and in May $22.91 at a $7.75 CPM.
 
 How the first 30 days would run:
 
@@ -12,7 +12,7 @@ Week 2, compliance and pages. Supplement advertorials get rejected on disease an
 
 Weeks 3 and 4, launch on one platform first with enough budget per angle to get a real read. Start with broad publisher coverage, then block or bid down publishers on cost per purchase, not CTR. You get a written brief each week: what won, what's next, and why.
 
-On how we'd work: a dedicated operator on our team runs the campaigns day to day, and I stay on the strategy and the economics with you.
+On how we'd work: a dedicated operator on our team runs the campaigns day to day, and I stay on the strategy and the economics with you. We can start within [X] of signing.
 
 Fee is a percentage of spend, never hourly: 20% on the first $30k per platform per month, 15% from $30k to $60k, 10% above that, with a $1,500 monthly minimum per platform and a $15,000 total cap. One-time onboarding is $1,500 per platform.
 
