@@ -19,10 +19,10 @@ Aura Displays, acct 7860902494, clients + reporting_clients both say active, 202
 - Aura was BUILT by us, not inherited, so "from launch" is accurate.
 - Mechanics (click-date reporting, learning restarts on new ad / bid strategy change) verified 9/16 per memory.
 
-## ATTACHMENT
+## REVIEW
 - QC (qc-reviewer-agent): PASS, no blocking. Applied the one minor fix (dropped the post's own "budget planning" phrase).
 
-## ATTACHMENT (cont.)
+## ATTACHMENT
 - None. The Aura PDF headlines "8-10x on non-branded cold traffic"; live non-brand is 5.3x-5.5x, and the account is dark since 8/31.
 
 ---
@@ -33,7 +33,7 @@ The reason is brand search. As people hear about you, they start searching your 
 
 Worth saying first: we do not have a supplement or women's wellness brand to show you. The closest is a Shopify brand our team built on Google from launch. From November through August, branded search returned 28.7x at a $0.35 click. Non-brand search returned 5.3x and Shopping 5.5x, both at roughly $100 per conversion. Same account, same products, and a fivefold gap between the lanes.
 
-That non-brand number is the real test for you. Can Google find new customers at a cost your margin supports? Right now the real decision is what to prove first, and that question gets answered before any new channel.
+That non-brand number is the real test for you. Can Google find new customers at a cost your margin supports? At this stage the first decision is what to prove, and that question gets answered before any new channel.
 
 Tracking comes before spend. Our team has a dedicated conversion tracking specialist who sets up purchase tracking with order values passed through and confirms it is recording before budget goes in. Two things to know going in: Google reports a conversion on the date of the click rather than the sale, so a slow week can read worse than it was, and adding an ad or changing the bid strategy restarts learning, so tests run on a schedule instead of daily.
 
