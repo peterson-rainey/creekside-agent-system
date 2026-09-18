@@ -13,11 +13,11 @@ On a supplement offer those can point opposite ways. A curiosity angle can post 
 
 On your first requirement: I haven't bought native traffic. No Taboola or Outbrain spend, and no supplement brand. If that rules me out, I understand.
 
-What I have run is cold traffic to DTC offers on Meta, where the same gap between platform ROAS and real profit shows up:
+What I have run is cold DTC traffic on Meta, where platform ROAS and real profit drift apart the same way:
 - A luxury furniture DTC brand, April to August 2026: $105,010 spend at 2.79x Meta-reported. July read 4.17x, but most of that came from a 50%-off promotion and retargeting, so I didn't treat it as a scaling signal. The brand has since taken ads in-house.
 - A replacement-parts brand selling across the lower 48: cost per purchase went from $31.75 in February to $19.89 in April and $22.91 in May after I cut 14 campaigns to 7 and folded thin retargeting into one purchase campaign. CPM also ran about 10% lower, so not all of it was the restructure.
 
-The one advertorial presell I've built sat in front of a Meta campaign for a mortgage lender, so presell logic isn't new to me, but it isn't native scale.
+The one advertorial presell I've built sat in front of a Meta campaign for a mortgage lender, but that isn't native scale.
 
 First 30 days: set an allowable CPA from your AOV and margin, pass click IDs through advertorial and checkout so every sale ties to a publisher, test a few angles on one platform, block weak publishers daily, and scale only what holds up in your backend.
 
