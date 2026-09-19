@@ -20,7 +20,7 @@
 
 ## PROPOSAL
 
-Sending Qualified and Closed back through Conversions API is the right call, but Meta can't optimize toward a stage it rarely sees. Its conversion leads goal only runs on instant forms and needs at least 200 leads a month, with the optimized stage converting between 1% and 40% within 28 days. So month one optimizes to the lead while your qualifying questions screen, then switches to Qualified once volume clears that bar.
+Sending Qualified and Closed back through Conversions API is the right call, but Meta can't optimize toward a stage it rarely sees. Its conversion leads goal only runs on instant forms and needs at least 200 leads a month, with the optimized stage converting between 1% and 40% within 28 days. So month one optimizes to the lead while your qualifying questions screen, then switches to Qualified once volume clears it.
 
 On the Special Ad Category, Meta's own examples for financial products and services are insurance, bank accounts, investment services and payment services. CPA tax strategy isn't on that list, so it likely doesn't apply, as long as the copy sells the tax outcome rather than the rental as an investment.
 
@@ -30,7 +30,7 @@ All four hooks launch together, since adding an ad is the kind of edit that send
 
 Our closest work was a dental implant group with cases in the upper $30Ks, Meta forms feeding a call center: 2,558 leads at $25.31 each over 90 days. Our team added qualifying questions, accepted a higher cost per lead, and cut spend when the call center needed room.
 
-Launch is about two weeks, gated on a clean test lead into GHL. A dedicated Meta specialist runs it day to day, our tracking specialist handles CAPI with your contractor, and I stay on strategy and creative. We don't bill hourly. After month one, it's changes a few times a week plus a weekly note on cost per qualified booking. Weekly calls the first month, biweekly after.
+Launch is about two weeks, gated on a clean test lead into GHL. A dedicated Meta specialist runs it day to day, our tracking specialist handles CAPI with your contractor, and I stay on strategy and creative. We don't bill hourly. After month one, it's changes a few times a week plus a weekly note on cost per qualified booking. Weekly calls month one, biweekly after.
 
 Pricing is 20% of spend up to $30K a month, lower above that, with a $1,500 monthly minimum plus a one-time $1,500 onboarding fee. At a starting spend around $7,500 a month, month one is $3,000, then $1,500 until spend passes $7,500.
 
