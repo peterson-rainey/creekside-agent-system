@@ -49,3 +49,19 @@ On Google specifically, the largest single account we've run passed $60K in one 
 5. If that appeal fails or only partly clears, escalate on the support thread to Google's specialist team instead of burning the other appeals. Google allows three appeals per ad. We've won a Health in Personalized Advertising appeal this way.
 6. Pull anything that genuinely can't run out of the feed or ad group so it stops creating repeat flags. Since August, Google weighs an account's policy history when it decides whether to limit impressions, so a clean record protects reach on every format.
 7. Log every flag with its policy, what fixed it and how long it took, and report it in the weekly update. Over time that log becomes your approved-claims list for new creative.
+
+---
+
+## COMBINED PROPOSAL (single text, screening topics folded in; SEND THIS ONE)
+
+Most supplement disapprovals on Google aren't really about the ad. Merchant Center flags health products at the category level, so rewriting a Shopping title rarely clears anything, and Search disapprovals usually trace back to the landing page: an ingredient page or a weight-loss claim a click away from the product. Editing the copy and hitting appeal feels fast, but Google allows three appeals per ad, and since August it also factors an account's policy compliance history into whether it limits impressions across Search, YouTube and Discover. A messy disapproval history can cost reach, not just time.
+
+So our disapproval process is diagnose first, appeal second. We read the exact policy Google names, because a healthcare flag, an unreliable-claims flag and a destination flag each need a different fix. Then we check the landing page and the feed before touching the ad, since any edit restarts review anyway. Claims get fixed at the source: results testimonials need a visible "results can vary" disclaimer, and any guarantee needs an easy-to-find refund policy. If the flag is wrong, it goes through one self-service appeal, which usually comes back within a day or two. If that fails or only partly clears, we escalate on the support thread to Google's specialist team instead of burning the other appeals. We've won a Health in Personalized Advertising appeal exactly that way. Anything that genuinely can't run comes out of the feed, and every flag gets logged with what fixed it and reported weekly, so over time you end up with an approved-claims list for new creative.
+
+On formats, Search and Shopping are the strictest surfaces for health products. YouTube and vertical video sometimes have more room, which makes them a useful place to test claim-safe angles before they go into Search copy.
+
+To be straight with you about supplement experience, I don't have finished supplement results to put in front of you. We signed a supplement brand on Google last month where Search was held up by weight-loss and ingredient content on the site, not the ads, and nothing is serving yet. We've also diagnosed Google eligibility for a research-peptide brand whose Search and Shopping were both blocked even after a healthcare attorney had reviewed the site. The closest results proof is a naturopathic clinic on Google: about $22,700 over the last 12 months for 565 conversions, roughly $40 each.
+
+On budgets, the largest single Google account we've run passed $60K in one month. That was a mortgage lender, since ended. Among current accounts, a dental practice's Google spend hit about $18K in its biggest month this summer. Anything well above $60K a month would be new ground, and I'd rather say that now than in month two. We're also a small team, so a dedicated Google specialist runs the account day to day and I stay on strategy and the testing plan.
+
+Roughly where does monthly Google spend sit today: under $30K, $30K to $100K, or above $100K? That tells me whether the first month goes into cleaning up the feed or straight into YouTube testing.
