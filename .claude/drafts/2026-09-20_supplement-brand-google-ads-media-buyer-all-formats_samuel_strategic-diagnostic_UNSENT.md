@@ -38,7 +38,7 @@ Straight answer: I don't have finished supplement results to show you. We signed
 
 **2. Budgets managed**
 
-On Google specifically, the largest single account we've run passed $60K in one month. That was a mortgage lender, and that engagement has since ended. Among current accounts, a multi-location dental group runs Google, Local Services and Meta together, and its Google spend hit about $18K in its biggest month this summer. So a budget above $60K a month on one account would be new ground for us. I'd rather tell you that now than have you find out in month two.
+On Google specifically, the largest single account we've run passed $60K in one month. That was a mortgage lender, and that engagement has since ended. Among current accounts, a dental practice runs Google, Local Services and Meta together, and its Google spend hit about $18K in its biggest month this summer. So a budget above $60K a month on one account would be new ground for us. I'd rather tell you that now than have you find out in month two.
 
 **3. Disapproval-resolution process**
 
