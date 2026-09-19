@@ -68,7 +68,7 @@ Roughly where does monthly Google spend sit today: under $30K, $30K to $100K, or
 
 ---
 
-## COMBINED PROPOSAL v2, trimmed under 400 words (SEND THIS ONE)
+## COMBINED PROPOSAL v2 (SUPERSEDED by v3 below)
 
 Most supplement disapprovals on Google aren't really about the ad. Merchant Center flags health products at the category level, so rewriting a Shopping title rarely clears anything, and Search disapprovals usually trace back to the landing page: an ingredient page or a weight-loss claim a click away from the product. Google also allows only three appeals per ad, and since August it factors an account's policy history into whether it limits impressions across Search and YouTube. A messy disapproval history can cost reach, not just time.
 
@@ -79,3 +79,23 @@ To be straight with you, I don't have finished supplement results to show you. W
 On budgets, the largest single Google account we've run passed $60K in a month, a mortgage lender since ended. Anything well above that would be new ground, and I'd rather say so now than in month two. We're a small team, so a dedicated Google specialist runs the account day to day and I stay on strategy and testing.
 
 Roughly where does monthly Google spend sit today: under $30K, $30K to $100K, or above $100K? That tells me whether the first month goes into cleaning up the feed or straight into YouTube testing.
+
+---
+
+## COMBINED PROPOSAL v3, QC fixes applied (SEND THIS ONE)
+
+QC (qc-reviewer-agent 9/20): PASS WITH FIXES. Applied: Display added (retargeting only, QC's unverified 'category scrutiny' claim NOT used), weekly report now names creative tests. Attachment: NONE (Queenie 9/20).
+
+Most supplement disapprovals on Google aren't really about the ad. Merchant Center flags health products at the category level, so rewriting a Shopping title rarely clears anything, and Search disapprovals usually trace back to the landing page: an ingredient page or a weight-loss claim a click away from the product. Google also allows only three appeals per ad, and since August it factors an account's policy history into whether it limits impressions across Search and YouTube. A messy history can cost reach, not just time.
+
+So our process is diagnose first, appeal second. We read the exact policy named, then check the landing page and feed before touching the ad, since any edit restarts review. Claims get fixed at the source, like adding a "results can vary" disclaimer to testimonials. If the flag is wrong, it gets one self-service appeal, usually answered within a day or two. If that fails, we escalate on the support thread to Google's specialist team instead of burning the other appeals. We've won a Health in Personalized Advertising appeal that way. Every flag and every creative test goes into a weekly report, so you build an approved-claims list for new creative. YouTube and vertical video sometimes have more room than Search, so they're a good place to test claim-safe angles first, and Display earns its budget as retargeting once Search and Shopping are clean.
+
+To be straight with you, I don't have finished supplement results to show you. We signed a supplement brand on Google last month where Search was held up by site content, not the ads, and nothing is serving yet. We've also diagnosed a research-peptide brand whose Search and Shopping were blocked despite an attorney's site review. The closest results proof is a naturopathic clinic on Google: about $22,700 over the last 12 months for 565 conversions.
+
+On budgets, the largest single Google account we've run passed $60K in a month, a mortgage lender since ended. Anything well above that would be new ground, and I'd rather say so now than in month two. We're a small team, so a dedicated Google specialist runs the account day to day and I stay on strategy and testing.
+
+Roughly where does monthly Google spend sit today: under $30K, $30K to $100K, or above $100K? That tells me whether the first month goes into cleaning up the feed or straight into YouTube testing.
+
+## MILESTONE (<=200 chars)
+
+Google Ads onboarding: account, feed and policy audit, conversion tracking check, disapproval log setup, and a first test plan across Search, Shopping, Display and YouTube.
