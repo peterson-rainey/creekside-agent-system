@@ -1,7 +1,7 @@
 # Upwork Proposal: Scaling supplement brand, Google Ads media buyer (Search, Shopping, Display, YouTube + Shorts)
 
 - **Profile:** Samuel | **Style:** strategic + diagnostic | **Date:** 2026-09-20
-- **Status:** UNSENT. No `upwork_jobs` row for this post (checked 9/20; closest are other supplement posts on Lindsey/General).
+- **Status:** UNSENT (proposal + screening answers combined). Exact screening-question wording NOT pasted; answers written to the 3 topics named in the post. No `upwork_jobs` row for this post (checked 9/20; closest are other supplement posts on Lindsey/General).
 - **Attachment:** NONE. Zero supplement results; Outback Peptides signed 8/20 but not serving.
 
 ## Proof cited
@@ -27,3 +27,25 @@ On formats, Search and Shopping are the strictest surfaces for health products. 
 To be straight with you, I don't have supplement results to put in front of you. We're mid-build on a supplement account right now where Search was held up by weight-loss and ingredient content on the site, not the ads, and nothing is serving yet. The closest health proof is a naturopathic clinic on Google: about $22,700 over the last 12 months for 565 conversions, roughly $40 each. That's far smaller than your budget, though we have run a single Google account past $60K in a month. We're also a small team, so a dedicated Google specialist runs the account day to day and I stay on strategy and the testing plan.
 
 Roughly where does monthly Google spend sit today: under $30K, $30K to $100K, or above $100K? That tells me whether the first month goes into cleaning up the feed or straight into YouTube testing.
+
+---
+
+## SCREENING ANSWERS
+
+**1. Past supplement-brand experience**
+
+Straight answer: I don't have finished supplement results to show you. We signed a supplement brand on Google last month and it's still in build. Search was held up by weight-loss and ingredient content on their site rather than by the ads, so the work so far has been getting the site and the account cleared before anything serves. We've also diagnosed Google eligibility for a research-peptide brand whose Search and Shopping were both blocked even though a healthcare attorney had already reviewed the site. That's diagnostic work, not a managed account, and I'd rather say so than dress it up. On results, the closest proof is health and wellness. A naturopathic clinic we've run on Google for over a year has spent about $22,700 over the last 12 months for 565 conversions.
+
+**2. Budgets managed**
+
+On Google specifically, the largest single account we've run passed $60K in one month. That was a mortgage lender, and that engagement has since ended. Among current accounts, a multi-location dental group runs Google, Local Services and Meta together, and its Google spend hit about $18K in its biggest month this summer. So a budget above $60K a month on one account would be new ground for us. I'd rather tell you that now than have you find out in month two.
+
+**3. Disapproval-resolution process**
+
+1. Read the exact policy Google names before touching anything. A healthcare or unapproved-substance flag, an unreliable-claims flag and a destination flag each need a different fix.
+2. Check the landing page and the feed first. Most supplement flags start there, and Merchant Center disapproves health products by category, so rewording a title rarely helps.
+3. Fix claims at the source. Google wants results testimonials to carry a visible "results can vary, no guarantee" disclaimer, and any guarantee needs a refund policy people can easily find. Adding both up front heads off a lot of flags.
+4. If the flag is wrong, appeal once through Policy Manager with "Dispute decision". If we made changes, use "Made changes to comply with policy" instead. Either way it usually comes back within a day or two.
+5. If that appeal fails or only partly clears, escalate on the support thread to Google's specialist team instead of burning the other appeals. Google allows three appeals per ad. We've won a Health in Personalized Advertising appeal this way.
+6. Pull anything that genuinely can't run out of the feed or ad group so it stops creating repeat flags. Since August, Google weighs an account's policy history when it decides whether to limit impressions, so a clean record protects reach on every format.
+7. Log every flag with its policy, what fixed it and how long it took, and report it in the weekly update. Over time that log becomes your approved-claims list for new creative.
