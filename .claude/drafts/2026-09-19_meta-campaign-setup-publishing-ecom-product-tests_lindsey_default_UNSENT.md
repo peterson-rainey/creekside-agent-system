@@ -19,7 +19,7 @@ Nothing attached. QC + expert review run 9/19 (see v3 note).
 
 v3 (QC FAIL + expert REVISE, 9/19): Loom line rewritten as ONE instance (QC: 'usually' overstated a single brief); Master Spa rewritten to 'by March down to seven, held through May' (QC/expert: 11->14->7 spike, 'it' ambiguous; QC's 'stayed since' rejected, account churned 5/28); opener no longer implies their checklist covers only names/previews (expert #1); ad placement follows the brief, flag only when unclear (expert #2). Turnaround question NOT added (one-question rule). Neither reviewer had DB access.
 
-v4 (9/19): [X] -> 45 minutes = ESTIMATE, no record exists (clickup_entries has no time tracking; ClickUp time-entries API returned 'no access' on 86dzkumb3, 86e17pzwc, 86e185gwy). [RATE] -> $60/test = 45 min at Lindsey's standard $75/hr Upwork bid (367 of her bids in last 60 days, upwork_jobs), rounded; hourly figure never typed. Per-test pricing still UNRULED vs % of spend policy. Lindsey must confirm both.
+v5 (9/19): Queenie set rate to $75 per product test (overrides the $60 derivation below). v4: [X] -> 45 minutes = ESTIMATE, no record exists (clickup_entries has no time tracking; ClickUp time-entries API returned 'no access' on 86dzkumb3, 86e17pzwc, 86e185gwy). [RATE] -> $60/test = 45 min at Lindsey's standard $75/hr Upwork bid (367 of her bids in last 60 days, upwork_jobs), rounded; hourly figure never typed. Per-test pricing still UNRULED vs % of spend policy. Lindsey must confirm both.
 
 ---
 
@@ -34,7 +34,7 @@ On one ecommerce takeover I inherited 232 active ads across eleven campaigns wit
 To your questions:
 - 10+ years running Meta ads, building new campaigns and adding to existing ones. I also built and sold my own ecommerce business.
 - I'm on US Pacific time. [LINDSEY TO CONFIRM: daily working window and room for this volume]
-- One product test with 8 supplied ads: about 45 minutes once the process is set, $60 per product test.
+- One product test with 8 supplied ads: about 45 minutes once the process is set, $75 per product test.
 - Yes, happy to follow a Loom and send back a short screen recording of each finished setup.
 
 Roughly what daily budget does a typical product test launch at?
