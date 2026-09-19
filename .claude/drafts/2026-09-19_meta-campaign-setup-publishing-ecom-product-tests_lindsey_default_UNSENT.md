@@ -26,7 +26,7 @@ v6 (9/19): Queenie changed time to "about an hour" (was 45 min estimate). v5: Qu
 
 When a test goes live with the right creative but the wrong optimization event, or a destination link missing its tracking parameters, does your current check catch it before publishing, or does it show up in Ads Manager a few days later? Those are the errors that make a bad setup look like a bad product.
 
-On a recent launch I was the second pair of eyes on campaigns someone else had built, working from a short Loom. That meant confirming the objective and UTMs, matching each ad set's budget to the brief, making sure anything meant to stay off was off, checking that captions applied in advanced preview, confirming which conversion event was really being used, and clicking through every URL, including filling out the form myself.
+On a recent launch I was the second pair of eyes on campaigns someone else had built, working from a short Loom. That meant confirming the objective and UTMs, matching ad set budgets to the brief, making sure anything meant to stay off was off, checking that captions applied in advanced preview, confirming which conversion event was being used, and clicking through every URL, including filling out the form myself.
 
 Over the past year I've set up campaigns for more than a dozen accounts that had to sit ready, not running, until launch was approved. When adding ads to existing campaigns, I put them exactly where your instructions say. Meta treats a new ad in a live ad set as a significant edit and restarts learning, so if the target ad set isn't clear from the brief, I flag that one ad and keep building the rest.
 
