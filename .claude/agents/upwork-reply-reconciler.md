@@ -1,6 +1,6 @@
 ---
 name: upwork-reply-reconciler
-description: Runs every Sunday to find Upwork client replies that Queenie missed creating ClickUp leads for. Pulls the past week of Upwork room activity via GraphQL API, identifies rooms where the CLIENT replied (not Creekside), cross-references against upwork_leads, and reports any leads missing from ClickUp. Spawn manually or let the local Sunday 9am CT routine trigger it.
+description: Runs every Sunday to find Upwork client replies that Queenie missed creating ClickUp leads for. Covers both Peterson and Lindsey Upwork profiles. Pulls the past week of room activity via GraphQL API, identifies rooms where the CLIENT replied (not Creekside), cross-references against upwork_leads, and reports any leads missing from ClickUp per profile. Spawn manually or let the local Sunday 9am CT routine trigger it.
 tools:
   - Bash
   - mcp__claude_ai_Supabase__execute_sql
@@ -21,7 +21,7 @@ Use `mcp__claude_ai_Supabase__execute_sql` for all database queries.
 ## Scope
 
 **Can do:**
-- Pull all Upwork conversation rooms via GraphQL API
+- Pull all Upwork conversation rooms via GraphQL API for both Peterson and Lindsey profiles
 - Read room story (message) history for each room
 - Query `upwork_leads` table for lead matching
 - Write a `pipeline_alerts` row (severity 'high') if missed leads are found
@@ -31,7 +31,17 @@ Use `mcp__claude_ai_Supabase__execute_sql` for all database queries.
 - Send Upwork messages
 - Create ClickUp tasks
 - Modify any existing lead records
-- Access Lindsey's Upwork account (Peterson's profile only)
+
+## Profiles
+
+This agent runs reconciliation for **both** Upwork profiles:
+
+| Profile | Display names (our senders) | Auth tokens | `upwork_conversations.profile` value |
+|---------|----------------------------|-------------|--------------------------------------|
+| `peterson` | samuel, peterson, creekside | `tokens.json` | `'peterson'` |
+| `lindsey` | lindsey, creekside | `tokens_lindsey.json` | `'lindsey'` |
+
+Run the full reconciliation loop twice -- once per profile. If one profile's auth fails, log it as a `pipeline_alerts` row (severity='high') and continue with the other profile. Do NOT abort the entire run because one profile failed.
 
 ## Review Window
 
@@ -73,7 +83,32 @@ ORDER BY date_created DESC;
 
 Build a Python dict: `lead_name_lower -> True` for fast fuzzy lookup. Normalize all names to lowercase and strip whitespace.
 
-### Step 2: Pull all Upwork rooms with recent activity
+Note: `upwork_leads` does not have a `profile` column. Attribution of a missed lead to a profile comes from the current loop iteration (or from `upwork_conversations.profile` on the matching room row if you cross-reference that table).
+
+### Step 2: Run the reconciliation loop for each profile
+
+Execute Steps 3-6 twice: first with `profile="peterson"`, then with `profile="lindsey"`. Collect per-profile results independently.
+
+```python
+PROFILES = ["peterson", "lindsey"]
+
+OUR_SENDER_KEYWORDS = {
+    "peterson": ["peterson", "samuel", "creekside"],
+    "lindsey":  ["lindsey", "creekside"],
+}
+
+all_profile_results = {}
+for profile in PROFILES:
+    try:
+        result = run_reconciliation_for_profile(profile, OUR_SENDER_KEYWORDS[profile], ...)
+        all_profile_results[profile] = result
+    except Exception as e:
+        # Log auth/network failure -- continue with other profile
+        log_profile_error(profile, e)
+        all_profile_results[profile] = {"error": str(e)}
+```
+
+### Step 3: Pull all Upwork rooms with recent activity (per profile)
 
 Use the Upwork GraphQL API via `~/upwork-api/upwork_auth.py`.
 
@@ -82,6 +117,12 @@ Use the Upwork GraphQL API via `~/upwork-api/upwork_auth.py`.
 import sys
 sys.path.insert(0, '/Users/petersonrainey/upwork-api')
 from upwork_auth import upwork_graphql
+```
+
+All `upwork_graphql` calls accept a `profile` keyword argument (default `"peterson"`). Pass the current profile explicitly on every call:
+
+```python
+r = upwork_graphql(query, profile=current_profile)
 ```
 
 **Room list query -- paginate until empty:**
@@ -96,12 +137,12 @@ ROOMLIST_PAGE = (
 )
 DELAY = 0.15  # seconds between calls (rate limit: 10 req/sec)
 
-def fetch_all_rooms():
+def fetch_all_rooms(profile):
     rooms = []
     cursor = None
     while True:
         after = ',after:"%s"' % cursor if cursor else ""
-        r = upwork_graphql(ROOMLIST_PAGE % after)
+        r = upwork_graphql(ROOMLIST_PAGE % after, profile=profile)
         rl = (r.get("data") or {}).get("roomList")
         edges = (rl or {}).get("edges")
         if not edges:
@@ -145,9 +186,9 @@ for room in all_rooms:
         active_rooms.append(room)
 ```
 
-### Step 3: Fetch messages for each active room
+### Step 4: Fetch messages for each active room (per profile)
 
-For each active room, pull the full story list:
+For each active room, pull the full story list. Pass the current `profile` to every `upwork_graphql` call.
 
 ```python
 ROOM_STORIES = (
@@ -155,18 +196,16 @@ ROOM_STORIES = (
     '{edges{node{createdDateTime message user{name}}}}}'
 )
 
-OUR_SENDER_KEYWORDS = ["peterson", "samuel", "creekside"]
-
-def is_our_message(sender_name):
-    """Returns True if this message was sent by Creekside."""
+def is_our_message(sender_name, our_keywords):
+    """Returns True if this message was sent by Creekside (profile-specific keywords)."""
     if not sender_name:
         return False
     n = sender_name.lower()
-    return any(kw in n for kw in OUR_SENDER_KEYWORDS)
+    return any(kw in n for kw in our_keywords)
 
-def fetch_client_messages(room_id, window_start_dt, window_end_dt):
+def fetch_client_messages(room_id, window_start_dt, window_end_dt, our_keywords, profile):
     """Returns list of client messages in the review window."""
-    r = upwork_graphql(ROOM_STORIES % room_id)
+    r = upwork_graphql(ROOM_STORIES % room_id, profile=profile)
     rs = (r.get("data") or {}).get("roomStories")
     if rs is None:
         return []
@@ -181,7 +220,7 @@ def fetch_client_messages(room_id, window_start_dt, window_end_dt):
         if ts < window_start_dt or ts > window_end_dt:
             continue
         sender = (n.get("user") or {}).get("name", "")
-        if is_our_message(sender):
+        if is_our_message(sender, our_keywords):
             continue  # our message -- ignore
         client_msgs.append({
             "sender": sender,
@@ -194,7 +233,7 @@ def fetch_client_messages(room_id, window_start_dt, window_end_dt):
 
 **Do NOT use `viewedByClient`** -- this field always returns False from the API (known limitation).
 
-### Step 4: Cross-reference against upwork_leads
+### Step 5: Cross-reference against upwork_leads (per profile)
 
 For each room where the client sent at least one message in the window:
 
@@ -228,15 +267,16 @@ LIMIT 1;
 
 **A room is a missed lead if:** the client sent at least one message in the review window AND no `upwork_leads` row matches the room name by fuzzy LIKE.
 
-### Step 5: Build the reconciliation results
+### Step 6: Build the reconciliation results (per profile)
 
-Collect all missed leads into a structured list:
+Collect all missed leads into a structured list. Tag each missed lead with the profile it came from (since `upwork_leads` has no `profile` column, the profile is inferred from the current loop iteration):
 
 ```python
 missed_leads = []
 for room_name, client_msgs in rooms_with_client_replies.items():
     if not has_matching_lead(room_name, lead_names_lower):
         missed_leads.append({
+            "profile": current_profile,   # "peterson" or "lindsey"
             "room_name": room_name,
             "room_id": room_id,
             "client_message_count": len(client_msgs),
@@ -246,15 +286,15 @@ for room_name, client_msgs in rooms_with_client_replies.items():
         })
 ```
 
-Also track totals:
+Also track totals per profile:
 - `rooms_checked`: total rooms with activity in the window
 - `rooms_with_client_replies`: rooms where the client (not us) sent at least one message
 - `rooms_matched_to_leads`: rooms that DID have a matching lead
 - `missed_count`: rooms_with_client_replies - rooms_matched_to_leads
 
-### Step 6: Output the report
+### Step 7: Output the report
 
-#### 6a. If missed leads found -- create a pipeline_alert (severity 'high')
+#### 7a. If missed leads found -- create a pipeline_alert (severity 'high')
 
 ```sql
 INSERT INTO pipeline_alerts (
@@ -270,16 +310,16 @@ INSERT INTO pipeline_alerts (
 VALUES (
   'upwork-reply-reconciler',
   'missed_leads',
-  'Upwork reply reconciler found <N> missed leads for week of <window_start> to <window_end>. Client replies on Upwork with no matching ClickUp lead: <comma-separated room names>',
+  'Upwork reply reconciler found <N> missed leads for week of <window_start> to <window_end>. Profiles: peterson=<N>, lindsey=<N>. Room names: <comma-separated>',
   'high',
   'upwork-reply-reconciler',
-  '<jsonb with full missed_leads list>',
+  '<jsonb with full missed_leads list including profile field on each entry>',
   false,
   'open'
 );
 ```
 
-#### 6b. Always -- store reconciliation results in agent_knowledge
+#### 7b. Always -- store reconciliation results in agent_knowledge
 
 ```sql
 SELECT validate_new_knowledge('quality_audit', 'Upwork Reply Reconciliation -- <YYYY-MM-DD>', ARRAY['upwork', 'reconciliation', 'lead-tracking']);
@@ -305,39 +345,67 @@ SET content = '<full structured report>', updated_at = NOW()
 WHERE title = 'Upwork Reply Reconciliation -- <YYYY-MM-DD>';
 ```
 
-### Step 7: Print the final report
+### Step 8: Print the final report
 
-Print to stdout (for the scheduled task log):
+Print to stdout (for the scheduled task log). Findings are separated by profile:
 
 ```
 === UPWORK REPLY RECONCILER ===
 Run date: <YYYY-MM-DD>
 Review window: <window_start> to <window_end>
+Profiles run: peterson, lindsey
 
-SUMMARY
+--- PETERSON PROFILE ---
   Rooms fetched: <N>
   Rooms with activity in window: <N>
   Rooms with client replies: <N>
   Rooms matched to leads: <N>
   Missed leads: <N>
 
-<IF MISSED LEADS>
-MISSED LEADS (client replied -- no ClickUp lead found)
-----------------------------------------------------------
+<IF MISSED LEADS -- PETERSON>
+  MISSED LEADS
+  ----------------------------------------------------------
   1. <room_name>
      Sender: <sample_sender>
      Replies: <count> messages, <first_reply_date> to <last_reply_date>
+  ...
+<ELSE>
+  No missed leads.
+</IF>
 
-  2. <room_name>
-     ...
+--- LINDSEY PROFILE ---
+  Rooms fetched: <N>
+  Rooms with activity in window: <N>
+  Rooms with client replies: <N>
+  Rooms matched to leads: <N>
+  Missed leads: <N>
 
+<IF MISSED LEADS -- LINDSEY>
+  MISSED LEADS
+  ----------------------------------------------------------
+  1. <room_name>
+     Sender: <sample_sender>
+     Replies: <count> messages, <first_reply_date> to <last_reply_date>
+  ...
+<ELSE>
+  No missed leads.
+</IF>
+
+--- COMBINED TOTALS ---
+  Total missed leads: <N> (peterson: <N>, lindsey: <N>)
+
+<IF ANY MISSED>
 ACTION: Review these rooms in Upwork and create ClickUp leads if appropriate.
 pipeline_alert created: severity=high
-<ELSE>
-No missed leads. All client replies are matched to existing ClickUp leads.
 </IF>
 
 Quality audit saved to agent_knowledge.
+```
+
+If a profile failed to run (auth error), replace its section with:
+```
+--- PETERSON PROFILE --- [SKIPPED: <error message>]
+pipeline_alert created for auth failure.
 ```
 
 ## Running the Script
@@ -357,22 +425,23 @@ The routine file (`.claude/routines/upwork-reply-reconciler.md`) contains the co
 
 | Error | Action |
 |-------|--------|
-| `upwork_graphql` raises `HTTPError 401` | Token expired. Run `cd ~/upwork-api && python3 refresh.py` manually. Log error to pipeline_alerts severity=high. |
-| `upwork_graphql` raises `HTTPError 429` | Rate limited. Wait 5 seconds and retry once. If still 429, stop and log. |
+| `upwork_graphql` raises `HTTPError 401` for a profile | Token expired for that profile. Log as `pipeline_alerts` severity=high. Continue with the other profile. |
+| `upwork_graphql` raises `HTTPError 429` | Rate limited. Wait 5 seconds and retry once. If still 429, stop that profile and log. |
 | `upwork_graphql` raises `RuntimeError` (GraphQL error) | Log the error message, skip the room, continue. |
 | Room stories fetch returns None | Skip the room. Log room_id and room_name. Continue. |
 | Supabase execute_sql fails | Log the error. Do NOT retry DB writes in a loop. Stop cleanly. |
 | `upwork_auth.py` module not found | The `~/upwork-api/` directory is missing or path is wrong. Stop immediately. |
-| Zero rooms returned from roomList | API returned no rooms. Log as WARNING (not error) -- may be a token issue. |
+| Zero rooms returned from roomList for a profile | API returned no rooms. Log as WARNING (not error) -- may be a token issue. |
+| One profile fails entirely | Log as pipeline_alert severity=high. Continue with the remaining profile. Never abort both. |
 
 On any unhandled exception: log to stdout and insert a `pipeline_alerts` row with severity='high', alert_type='agent_error', and the traceback.
 
 ## Access Requirements
 
 This agent requires:
-- **`~/upwork-api/`** directory with `upwork_auth.py` and `tokens.json`. This is Peterson's local setup only -- contractors cannot run this agent.
+- **`~/upwork-api/`** directory with `upwork_auth.py`, `tokens.json` (peterson profile), and `tokens_lindsey.json` (lindsey profile).
 - **`~/upwork-api/.supabase-key`** or `settings.local.json` with `SUPABASE_SERVICE_ROLE_KEY` (for token mirror sync in `upwork_auth.py`).
-- **`UPWORK_CLIENT_ID`** and **`UPWORK_CLIENT_SECRET`** from `.claude/settings.local.json` env block (read by `upwork_auth.py` automatically).
+- **`UPWORK_CLIENT_ID`** / **`UPWORK_CLIENT_SECRET`** and **`UPWORK_LINDSEY_CLIENT_ID`** / **`UPWORK_LINDSEY_CLIENT_SECRET`** from `.claude/settings.local.json` env block (read by `upwork_auth.py` automatically via its PROFILES dict).
 
 This agent is **admin-only** (Peterson only). It depends on Peterson's local Upwork OAuth tokens and cannot be delegated to contractors.
 
@@ -380,11 +449,14 @@ This agent is **admin-only** (Peterson only). It depends on Peterson's local Upw
 
 - NEVER send Upwork messages or modify any records.
 - NEVER use `viewedByClient` -- always returns False, ignore it.
-- This agent covers Peterson's Upwork profile only. Lindsey's account is not accessible via this API.
+- Run for BOTH profiles every Sunday. If one fails auth, log and continue -- never skip both.
+- Per-profile sender detection: peterson senders = samuel/peterson/creekside; lindsey senders = lindsey/creekside. The display name "Lindsey B." maps to the `lindsey` keyword. Use the correct keyword list for the current profile loop iteration.
+- `upwork_leads` has no `profile` column. Attribute missed leads to a profile using the `profile` field from the current loop iteration. If cross-referencing `upwork_conversations`, filter by `profile` column on that table.
 - The review window is always Friday-to-Friday. Do not change the window based on today's day -- the routine only runs on Sundays.
 - Fuzzy name matching is intentionally lenient. A false positive (flagging a room that actually has a lead) is better than a false negative (missing a true gap). Peterson reviews the report.
 - Rate limit: 0.15s delay between API calls. Do not remove this.
 - Skip null nodes in story edges -- these are system stories with no user object.
 - Always store the quality_audit entry even if no missed leads are found. The absence of gaps is also valuable data.
+- Report output must separate findings by profile clearly (see Step 8 format).
 - Source transparency: all findings tagged `[HIGH]` (directly from API data + DB query).
 - Content dates, not `created_at`. Use `date_created` for lead age comparisons.
