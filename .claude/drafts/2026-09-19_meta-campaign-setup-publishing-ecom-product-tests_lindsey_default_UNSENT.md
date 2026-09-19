@@ -1,5 +1,5 @@
 # Meta Ads Manager campaign setup + publishing, ecom product testing (3-4 tests/day, ~8 ads each, paid Loom setup test)
-Profile: Lindsey | Style: lindsey_default (strategic + diagnostic content) | UNSENT | Drafted 2026-09-19, v2 claims DB-verified same day
+Profile: Lindsey | Style: lindsey_default (strategic + diagnostic content) | UNSENT | Drafted 2026-09-19, v3 after QC + expert review same day
 
 Screens:
 - Platform: Meta only, in Lindsey's lane. No prior bid found in upwork_jobs (title unknown, keyword match 9/19).
@@ -15,17 +15,19 @@ Claim verification (v2, 9/19):
 - US Pacific = team_members.timezone America/Los_Angeles. 10+ years + built/sold ecom = lindsey-default.md identity.
 - CUT from v1 as unsupported: "I also know what a late launch costs a product test" (no source; her Jybr setup task ran 7 days overdue, so don't invite a speed claim) and "without breaking what's running" (Feb was a 14-campaign transition month, no record either way).
 Still no DB source, left as placeholders: her daily window/capacity, minutes per 8-ad test (no time tracking in clickup_entries), per-test rate (no client-facing per-unit price exists; see pricing flag).
-Nothing attached. QC agents not run.
+Nothing attached. QC + expert review run 9/19 (see v3 note).
+
+v3 (QC FAIL + expert REVISE, 9/19): Loom line rewritten as ONE instance (QC: 'usually' overstated a single brief); Master Spa rewritten to 'by March down to seven, held through May' (QC/expert: 11->14->7 spike, 'it' ambiguous; QC's 'stayed since' rejected, account churned 5/28); opener no longer implies their checklist covers only names/previews (expert #1); ad placement follows the brief, flag only when unclear (expert #2). Turnaround question NOT added (one-question rule). Neither reviewer had DB access.
 
 ---
 
-When a test goes live with the right creative but the wrong optimization event, or a destination link missing its tracking parameters, how do you catch it today: in the screen recording, or in Ads Manager a few days later? That's what decides whether a setup person saves you time. A checklist that only covers names and previews lets the expensive mistakes through.
+When a test goes live with the right creative but the wrong optimization event, or a destination link missing its tracking parameters, does your current check catch it before publishing, or does it show up in Ads Manager a few days later? Those are the errors that make a bad setup look like a bad product.
 
-I also do the second-pair-of-eyes check on campaigns other people have built, usually from a short Loom. That means confirming the objective and UTMs, matching each ad set's budget to the brief, making sure anything meant to stay off is off, checking that captions actually applied in advanced preview, confirming which conversion event is really being used, and clicking through every URL, including filling out the form myself.
+On a recent launch I was the second pair of eyes on campaigns someone else had built, working from a short Loom. That meant confirming the objective and UTMs, matching each ad set's budget to the brief, making sure anything meant to stay off was off, checking that captions applied in advanced preview, confirming which conversion event was really being used, and clicking through every URL, including filling out the form myself.
 
-Over the past year I've set up campaigns for more than a dozen accounts that had to sit ready, not running, until launch was approved. Adding ads to existing campaigns needs one extra check: Meta treats a new ad in a live ad set as a significant edit and restarts learning, so I confirm which ad set you want it in rather than dropping it into whatever is running.
+Over the past year I've set up campaigns for more than a dozen accounts that had to sit ready, not running, until launch was approved. When adding ads to existing campaigns, I put them exactly where your instructions say. Meta treats a new ad in a live ad set as a significant edit and restarts learning, so if the target ad set isn't clear from the brief, I flag that one ad and keep building the rest.
 
-I've also done this inside accounts someone else built. On one ecommerce takeover I inherited 232 active ads across eleven campaigns with spend, on about $15K a month, and brought it down to seven.
+On one ecommerce takeover I inherited 232 active ads across eleven campaigns with spend, on about $15K a month. By March the account was down to seven campaigns with spend, and it held there through May.
 
 To your questions:
 - 10+ years running Meta ads, building new campaigns and adding to existing ones. I also built and sold my own ecommerce business.
