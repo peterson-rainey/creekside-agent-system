@@ -41,3 +41,14 @@ Last sentence: same as the last question.
 - No link: Upwork Help calls pre-contract meeting links circumvention (9/16). If a call is ever needed, use Upwork's native scheduler.
 
 No sign-off. sdr_generation_log not written (contractor_query cannot INSERT).
+
+---
+## CROSS-THREAD NOTE (added Sat 9/19 by the Peterson-thread session)
+- **Correction to "Why this angle and this day":** the Peterson price question was NOT held for Mon 9/21. It went out
+  **Wed 9/16 9:00 AM Central**, 20 minutes after this thread's one-platform message (per the live Peterson thread pasted
+  9/19). The Peterson draft file said UNSENT, which is where the wrong premise came from. Now fixed.
+- **Peterson's next touch is a STATUS question**, drafted for Mon 9/21 morning her time: "Melinda, did you already find
+  someone to manage your Meta and Google ads, or are you still hiring?"
+  (`2026-09-19_melinda-yuni-naise-ai_peterson_FOLLOWUP-status-UNSENT.md`).
+- **So Variation B here must NOT be sent.** It near-duplicates that status question. Variation A (seasonal timing) is fine.
+- If she answers the Peterson status question Monday, re-read before sending anything here Wednesday.

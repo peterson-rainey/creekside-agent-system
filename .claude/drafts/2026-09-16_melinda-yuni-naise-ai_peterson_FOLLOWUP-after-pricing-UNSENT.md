@@ -1,5 +1,5 @@
 # Melinda Yuni / naise.ai — Peterson profile, follow-up after the pricing reply
-**Status: UNSENT.** Drafted Wed 2026-09-16 (~9 AM Central). Routed through sdr-agent, QC'd twice.
+**Status: SENT Wed 9/16 9:00 AM Central** (display Wed 10:00 PM Manila), Variation B verbatim, per the live thread Queenie pasted 9/19. It was NOT held to Mon 9/21 as recommended below. Lindsey's one-platform offer had gone out ~8:40 AM Central, so she got two price-probing messages from two profiles 20 minutes apart. No reply as of Sat 9/19. Drafted Wed 2026-09-16 (~9 AM Central). Routed through sdr-agent, QC'd twice.
 Job "Meta and Google Ads Manager", `upwork_jobs` `76336eda`, CRM `upwork_leads` `2745ce33`, ClickUp `86e337fjf`.
 Last message in thread: OURS, pricing reply sent Mon 9/14 ~10:55 AM Central ("Our fee would be $3,000 a month for
 both Meta and Google at the ad spend you mentioned, plus a one-time $3,000 onboarding fee. And no, none of the fee is
