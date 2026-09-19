@@ -5,7 +5,7 @@
 - **Attach:** `Big_Chad_Law_Legal_Case_Study_(1).pdf` (Drive 12s-vrhe..., byline Samuel matches) + Winterbotham PDF (18tz_I0l..., stray localhost footer).
 
 ## Screen
-Ads in scope PASS | geo FL PASS | "small team" allowed | spend UNSTATED ("limited/moderate"), asked as range | no family-law account, disclosed | "personally" questions answered as team, operator named by role | fee stated; LSA-as-second-platform pricing UNRULED | QC 9/20: PASS WITH FIXES, trims + parroting fix applied. 424 words (8 required answers).
+Ads in scope PASS | geo FL PASS | "small team" allowed | spend UNSTATED ("limited/moderate"), asked as range | no family-law account, disclosed | "personally" questions answered as team, operator named by role | fee stated; LSA priced as ONE platform with Search (Queenie ruled 9/20) | QC 9/20: PASS WITH FIXES, trims + parroting fix applied. 424 words (8 required answers).
 
 ---
 
