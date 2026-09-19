@@ -1,6 +1,6 @@
 ---
 name: upwork-reply-reconciler
-description: Sundays 9am CT. Checks Upwork messages from the past week (Friday to previous Friday) for client replies with no matching ClickUp lead. Reports missed leads via pipeline_alert.
+description: Sundays 9am CT. Checks Upwork messages from the past week (Friday to previous Friday) for client replies with no matching ClickUp lead, across both Peterson and Lindsey profiles. Reports missed leads via pipeline_alert.
 ---
 
 You are the Upwork reply reconciler. Run the following deterministic steps exactly as written.
@@ -103,6 +103,7 @@ window_end_dt = datetime(window_end.year, window_end.month, window_end.day, 23, 
 print(f"=== UPWORK REPLY RECONCILER ===")
 print(f"Run date: {today}")
 print(f"Review window: {window_start} to {window_end}")
+print(f"Profiles: peterson, lindsey")
 print()
 
 # --- Queries ---
@@ -118,25 +119,29 @@ ROOM_STORIES = (
 )
 
 DELAY = 0.15
-OUR_SENDER_KEYWORDS = ["peterson", "samuel", "creekside"]
+PROFILES = ["peterson", "lindsey"]
+OUR_SENDER_KEYWORDS = {
+    "peterson": ["peterson", "samuel", "creekside"],
+    "lindsey":  ["lindsey", "creekside"],
+}
 
 def parse_dt(s):
     if not s:
         return None
     return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
-def is_our_message(sender_name):
+def is_our_message(sender_name, our_keywords):
     if not sender_name:
         return False
     n = sender_name.lower()
-    return any(kw in n for kw in OUR_SENDER_KEYWORDS)
+    return any(kw in n for kw in our_keywords)
 
-def fetch_all_rooms():
+def fetch_all_rooms(profile):
     rooms = []
     cursor = None
     while True:
         after = ',after:"%s"' % cursor if cursor else ""
-        r = upwork_graphql(ROOMLIST_PAGE % after)
+        r = upwork_graphql(ROOMLIST_PAGE % after, profile=profile)
         rl = (r.get("data") or {}).get("roomList")
         edges = (rl or {}).get("edges")
         if not edges:
@@ -151,9 +156,9 @@ def fetch_all_rooms():
         time.sleep(DELAY)
     return rooms
 
-def fetch_client_messages(room_id):
+def fetch_client_messages(room_id, our_keywords, profile):
     try:
-        r = upwork_graphql(ROOM_STORIES % room_id)
+        r = upwork_graphql(ROOM_STORIES % room_id, profile=profile)
         rs = (r.get("data") or {}).get("roomStories")
         if rs is None:
             return None
@@ -168,7 +173,7 @@ def fetch_client_messages(room_id):
             if ts < window_start_dt or ts > window_end_dt:
                 continue
             sender = (n.get("user") or {}).get("name", "")
-            if is_our_message(sender):
+            if is_our_message(sender, our_keywords):
                 continue
             client_msgs.append({
                 "sender": sender,
@@ -202,59 +207,95 @@ try:
                 return True
         return False
 
-    # Step 2: Fetch all rooms
-    print("Fetching all Upwork rooms...")
-    all_rooms = fetch_all_rooms()
-    print(f"  Total rooms fetched: {len(all_rooms)}")
+    # Steps 2-5: per-profile reconciliation loop
+    profile_results = {}
+    for profile in PROFILES:
+        print(f"--- {profile.upper()} PROFILE ---")
+        try:
+            # Step 2: Fetch all rooms
+            print("Fetching all Upwork rooms...")
+            all_rooms = fetch_all_rooms(profile)
+            print(f"  Total rooms fetched: {len(all_rooms)}")
 
-    # Step 3: Pre-filter by window
-    active_rooms = []
-    for room in all_rooms:
-        latest = parse_dt((room.get("latestStory") or {}).get("createdDateTime"))
-        if latest and latest >= window_start_dt:
-            active_rooms.append(room)
-    print(f"  Rooms with activity in window: {len(active_rooms)}")
+            # Step 3: Pre-filter by window
+            active_rooms = []
+            for room in all_rooms:
+                latest = parse_dt((room.get("latestStory") or {}).get("createdDateTime"))
+                if latest and latest >= window_start_dt:
+                    active_rooms.append(room)
+            print(f"  Rooms with activity in window: {len(active_rooms)}")
 
-    # Step 4: Fetch messages and find client replies
-    rooms_with_client_replies = {}
-    skipped = 0
-    for room in active_rooms:
-        room_id = room["id"]
-        room_name = room.get("roomName") or ""
-        msgs = fetch_client_messages(room_id)
-        if msgs is None:
-            skipped += 1
-            continue
-        if msgs:
-            rooms_with_client_replies[room_name] = {
-                "room_id": room_id,
-                "messages": msgs,
+            # Step 4: Fetch messages and find client replies
+            rooms_with_client_replies = {}
+            skipped = 0
+            for room in active_rooms:
+                room_id = room["id"]
+                room_name = room.get("roomName") or ""
+                msgs = fetch_client_messages(room_id, OUR_SENDER_KEYWORDS[profile], profile)
+                if msgs is None:
+                    skipped += 1
+                    continue
+                if msgs:
+                    rooms_with_client_replies[room_name] = {
+                        "room_id": room_id,
+                        "messages": msgs,
+                    }
+
+            print(f"  Rooms with client replies in window: {len(rooms_with_client_replies)}")
+            if skipped:
+                print(f"  Rooms skipped (fetch error): {skipped}")
+
+            # Step 5: Cross-reference
+            p_missed = []
+            matched_count = 0
+            for room_name, data in rooms_with_client_replies.items():
+                if has_matching_lead(room_name):
+                    matched_count += 1
+                else:
+                    msgs = data["messages"]
+                    p_missed.append({
+                        "profile": profile,
+                        "room_name": room_name,
+                        "room_id": data["room_id"],
+                        "client_message_count": len(msgs),
+                        "first_reply_date": msgs[0]["timestamp"][:10],
+                        "last_reply_date": msgs[-1]["timestamp"][:10],
+                        "sample_sender": msgs[0]["sender"],
+                    })
+
+            print(f"  Rooms matched to existing leads: {matched_count}")
+            print(f"  Missed leads: {len(p_missed)}")
+            profile_results[profile] = {
+                "rooms_fetched": len(all_rooms),
+                "active_rooms": len(active_rooms),
+                "client_replies": len(rooms_with_client_replies),
+                "matched": matched_count,
+                "missed": p_missed,
+                "skipped": skipped,
             }
+        except Exception as pe:
+            # One profile failing (e.g. expired token) must not abort the other
+            print(f"  SKIPPED: {pe}")
+            profile_results[profile] = {"error": str(pe)}
+            try:
+                sb_insert("pipeline_alerts", {
+                    "pipeline_name": "upwork-reply-reconciler",
+                    "alert_type": "agent_error",
+                    "message": f"upwork-reply-reconciler: {profile} profile failed: {str(pe)[:300]}",
+                    "severity": "high",
+                    "source": "upwork-reply-reconciler",
+                    "details": json.dumps({"profile": profile, "error": str(pe)[:1000]}),
+                    "acknowledged": False,
+                    "status": "open",
+                }, sk)
+            except Exception:
+                pass
+        print()
 
-    print(f"  Rooms with client replies in window: {len(rooms_with_client_replies)}")
-    if skipped:
-        print(f"  Rooms skipped (fetch error): {skipped}")
-
-    # Step 5: Cross-reference
     missed_leads = []
-    matched_count = 0
-    for room_name, data in rooms_with_client_replies.items():
-        if has_matching_lead(room_name):
-            matched_count += 1
-        else:
-            msgs = data["messages"]
-            missed_leads.append({
-                "room_name": room_name,
-                "room_id": data["room_id"],
-                "client_message_count": len(msgs),
-                "first_reply_date": msgs[0]["timestamp"][:10],
-                "last_reply_date": msgs[-1]["timestamp"][:10],
-                "sample_sender": msgs[0]["sender"],
-            })
-
-    print(f"  Rooms matched to existing leads: {matched_count}")
-    print(f"  Missed leads: {len(missed_leads)}")
-    print()
+    for p in PROFILES:
+        missed_leads.extend(profile_results.get(p, {}).get("missed", []))
+    per_profile_missed = {p: len(profile_results.get(p, {}).get("missed", [])) for p in PROFILES}
 
     # Step 6a: pipeline_alert if missed leads found
     if missed_leads:
@@ -264,6 +305,7 @@ try:
         alert_msg = (
             f"Upwork reply reconciler found {len(missed_leads)} missed lead(s) "
             f"for week of {window_start} to {window_end}. "
+            f"Profiles: peterson={per_profile_missed['peterson']}, lindsey={per_profile_missed['lindsey']}. "
             f"Client replied on Upwork with no ClickUp lead: {names_list}"
         )
         sb_insert("pipeline_alerts", {
@@ -284,28 +326,41 @@ try:
     report_lines = [
         f"# Upwork Reply Reconciliation -- {run_date_str}",
         f"Review window: {window_start} to {window_end}",
-        f"",
-        f"## Summary",
-        f"- Total rooms fetched: {len(all_rooms)}",
-        f"- Rooms with activity in window: {len(active_rooms)}",
-        f"- Rooms with client replies: {len(rooms_with_client_replies)}",
-        f"- Rooms matched to existing leads: {matched_count}",
-        f"- Missed leads: {len(missed_leads)}",
-        f"- Rooms skipped (fetch error): {skipped}",
+        f"Profiles run: {', '.join(PROFILES)}",
         f"",
     ]
-    if missed_leads:
-        report_lines.append("## Missed Leads")
-        for i, m in enumerate(missed_leads, 1):
-            report_lines += [
-                f"{i}. {m['room_name']}",
-                f"   Sender: {m['sample_sender']}",
-                f"   Replies: {m['client_message_count']} message(s), {m['first_reply_date']} to {m['last_reply_date']}",
-                f"   Room ID: {m['room_id']}",
-                "",
-            ]
-    else:
-        report_lines.append("## Result\nNo missed leads. All client replies matched to existing ClickUp leads.")
+    for p in PROFILES:
+        res = profile_results.get(p, {})
+        report_lines.append(f"## {p.capitalize()} Profile")
+        if "error" in res:
+            report_lines += [f"SKIPPED: {res['error']}", ""]
+            continue
+        report_lines += [
+            f"- Total rooms fetched: {res['rooms_fetched']}",
+            f"- Rooms with activity in window: {res['active_rooms']}",
+            f"- Rooms with client replies: {res['client_replies']}",
+            f"- Rooms matched to existing leads: {res['matched']}",
+            f"- Missed leads: {len(res['missed'])}",
+            f"- Rooms skipped (fetch error): {res['skipped']}",
+            f"",
+        ]
+        if res["missed"]:
+            report_lines.append(f"### Missed Leads ({p})")
+            for i, m in enumerate(res["missed"], 1):
+                report_lines += [
+                    f"{i}. {m['room_name']}",
+                    f"   Sender: {m['sample_sender']}",
+                    f"   Replies: {m['client_message_count']} message(s), {m['first_reply_date']} to {m['last_reply_date']}",
+                    f"   Room ID: {m['room_id']}",
+                    "",
+                ]
+        else:
+            report_lines += ["No missed leads.", ""]
+    report_lines.append(
+        f"## Combined Totals\n"
+        f"Total missed leads: {len(missed_leads)} "
+        f"(peterson: {per_profile_missed['peterson']}, lindsey: {per_profile_missed['lindsey']})"
+    )
 
     report_content = "\n".join(report_lines)
 
@@ -370,7 +425,8 @@ Use `mcp__claude_ai_Supabase__execute_sql` for all database queries in Step 0.
 ## Rules
 
 - This runs Sundays only. The window is always Friday-to-Friday (2 days back to 9 days back).
-- Peterson's profile only. Lindsey's Upwork account is not accessible.
+- Runs for BOTH profiles (peterson + lindsey). If one profile's auth fails, it logs a pipeline_alert and continues with the other -- never aborts both.
+- Per-profile sender keywords: peterson = peterson/samuel/creekside; lindsey = lindsey/creekside (display name "Lindsey B.").
 - Do NOT use `viewedByClient` -- always False, meaningless.
 - Rate limit: 0.15s delay between API calls.
 - Skip null nodes in story edges (system stories).
