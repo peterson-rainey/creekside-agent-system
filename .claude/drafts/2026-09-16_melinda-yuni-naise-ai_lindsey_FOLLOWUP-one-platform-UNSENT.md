@@ -1,6 +1,6 @@
 # Melinda Yuni / naise.ai — Lindsey thread, follow-up after the pricing answer
 
-Status: UNSENT. Drafted Wed 2026-09-16 (8:27 AM Central per Postgres; 9:27 PM Singapore). Routed through sdr-agent.
+Status: SENT Wed 2026-09-16 ~8:40 AM Central (Upwork display Wed Sep 16 9:40 PM at GMT+8, her local time), Variation A with 'on Monday'. Lindsey replied 'send' on ClickUp 86e3376y2 at 2026-09-16 15:26 UTC. Drafted Wed 2026-09-16 (8:27 AM Central per Postgres; 9:27 PM Singapore). Routed through sdr-agent.
 Send: Thu 2026-09-17 ~8 AM Central (~9 PM her Thursday), day 3 after the pricing reply. Not the same day as any Peterson-thread message.
 Last message in thread: OURS, Lindsey's pricing reply, Mon 9/14 ~10:53 AM Central (display Mon 11:53 PM, GMT+8 = her time, so "Monday" is correct for her).
 
