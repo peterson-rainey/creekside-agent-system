@@ -1,26 +1,34 @@
 # Meta Ads Manager campaign setup + publishing, ecom product testing (3-4 tests/day, ~8 ads each, paid Loom setup test)
-Profile: Lindsey | Style: lindsey_default (strategic + diagnostic content) | UNSENT | Drafted 2026-09-19
+Profile: Lindsey | Style: lindsey_default (strategic + diagnostic content) | UNSENT | Drafted 2026-09-19, v2 claims DB-verified same day
 
 Screens:
 - Platform: Meta only, in Lindsey's lane. No prior bid found in upwork_jobs (title unknown, keyword match 9/19).
 - ENGAGEMENT ECONOMICS FAIL: execution-only setup seat, optimization explicitly excluded, rate demanded per product test. Nothing to bill as % of spend. IVC hourly carve-out: paid yes, capped yes, gates MANAGEMENT no (gates more setup work), no rate quoted by us no. 2 of 4 fail.
 - Spend, geo: unstated, OPEN. Asked daily test budget in-draft.
 - Capacity: 24-32 ads/day is a real daily load on top of ~13 clients; nothing records her free hours.
-Proof: Master Spa Parts takeover (232 ads, 11 spending campaigns to 7, ~$15K/mo), same figures as the 9/19 perfume draft, unnamed. Learning-reset claim from the 9/16 verified Meta significant-edits note. Nothing attached. QC agents not run.
-Placeholders: [LINDSEY TO CONFIRM daily window], [X] minutes, [RATE].
+
+Claim verification (v2, 9/19):
+- Pre-launch check list = loom_entries adf2efec (recorded 2026-06-04, team brief to Lindsey on a dental client): objective, UTMs, per-ad-set budget vs brief, ad set that must stay off, auto captions in advanced preview, custom conversion event, click every URL, test the form. Every item in the paragraph comes from that Loom.
+- "More than a dozen accounts held until approval" = clickup_entries "Set up campaign. Make sure campaign doesn't run just yet", 15 completed tasks / 14 client_ids, Aug 2025 to Jun 2026, Lindsey assigned.
+- Master Spa Parts: 232 active ads + ~$15K/mo = owner's raw email 1/27/26 (pre-takeover, i.e. what she inherited). Campaigns with spend, meta_insights_daily re-pulled 9/19: Jan 11, Feb 14, Mar 7, Apr 7, May 7. Unnamed, churned, past tense.
+- Learning reset on a new ad = Meta Help, verified 9/16 (reference_meta_creative_testing_significant_edits_verified).
+- US Pacific = team_members.timezone America/Los_Angeles. 10+ years + built/sold ecom = lindsey-default.md identity.
+- CUT from v1 as unsupported: "I also know what a late launch costs a product test" (no source; her Jybr setup task ran 7 days overdue, so don't invite a speed claim) and "without breaking what's running" (Feb was a 14-campaign transition month, no record either way).
+Still no DB source, left as placeholders: her daily window/capacity, minutes per 8-ad test (no time tracking in clickup_entries), per-test rate (no client-facing per-unit price exists; see pricing flag).
+Nothing attached. QC agents not run.
 
 ---
 
 When a test goes live with the right creative but the wrong optimization event, or a destination link missing its tracking parameters, how do you catch it today: in the screen recording, or in Ads Manager a few days later? That's what decides whether a setup person saves you time. A checklist that only covers names and previews lets the expensive mistakes through.
 
-Before I publish, I check the conversion event and pixel on each ad set, open every destination link from the ad preview itself, and compare placements and budget against the brief line by line. When something is missing or doesn't match, I stop and ask rather than guess.
+I also do the second-pair-of-eyes check on campaigns other people have built, usually from a short Loom. That means confirming the objective and UTMs, matching each ad set's budget to the brief, making sure anything meant to stay off is off, checking that captions actually applied in advanced preview, confirming which conversion event is really being used, and clicking through every URL, including filling out the form myself.
 
-Adding ads to existing campaigns needs one extra check. Meta treats a new ad in a live ad set as a significant edit and restarts learning, so I confirm which ad set you want it in before publishing instead of dropping it into whatever is running.
+Over the past year I've set up campaigns for more than a dozen accounts that had to sit ready, not running, until launch was approved. Adding ads to existing campaigns needs one extra check: Meta treats a new ad in a live ad set as a significant edit and restarts learning, so I confirm which ad set you want it in rather than dropping it into whatever is running.
 
-I've done a lot of this inside accounts I didn't build. On one ecommerce takeover I inherited 232 live ads across eleven spending campaigns on about $15K a month and brought it down to seven, so working around live campaigns without breaking what's running is normal for me. Having built and sold my own ecommerce business, I also know what a late launch costs a product test.
+I've also done this inside accounts someone else built. On one ecommerce takeover I inherited 232 active ads across eleven campaigns with spend, on about $15K a month, and brought it down to seven.
 
 To your questions:
-- 10+ years running Meta ads, building new campaigns and adding to existing ones.
+- 10+ years running Meta ads, building new campaigns and adding to existing ones. I also built and sold my own ecommerce business.
 - I'm on US Pacific time. [LINDSEY TO CONFIRM: daily working window and room for this volume]
 - One product test with 8 supplied ads: about [X] minutes once the process is set, [RATE] per product test.
 - Yes, happy to follow a Loom and send back a short screen recording of each finished setup.
