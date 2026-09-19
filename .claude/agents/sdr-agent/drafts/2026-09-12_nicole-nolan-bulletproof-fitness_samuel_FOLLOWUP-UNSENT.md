@@ -3,7 +3,7 @@
 **Profile:** Samuel Rainey
 **Type:** followup, pre-call, post-decline. Drafted at Queenie's request after a HOLD recommendation.
 **Lead record:** upwork_leads b20fed14-249c-44aa-8ad3-6ce5be50adb6 / ClickUp 86e2pgd7k
-**Status:** UNSENT
+**Status:** SENT Sat 2026-09-12 4:33 PM CDT, with light edits (see AS SENT below)
 
 ---
 
@@ -28,3 +28,8 @@ Peterson's last word in the ClickUp thread (Thu 8/20 2:09 PM CDT, shows 8/21 in 
 
 ## QC (run 9/12)
 0 em/en dashes, 0 banned phrases, 0 answer-validating filler, 0 URLs/contact/calendar, 0 pricing/audit/free-work terms, 0 spent claims or proof names, 0 parroted phrases, 0 markdown. Well under the Upwork limit.
+
+## AS SENT (Sat 9/12 4:33 PM CDT; Upwork shows Sun Sep 13 5:33 AM Manila)
+Hey Nicole, does the first order need to make money on its own, or is breaking even enough if the customer comes back and buys again? That answer sets the cap on what you can afford to pay for a new customer, no matter who runs growth.
+
+Edits vs draft: "That one answer caps" became "That answer sets the cap on"; "who's running growth" became "who runs growth". No reply as of Sat 9/19 8:03 AM CDT.
