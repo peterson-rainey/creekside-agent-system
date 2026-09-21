@@ -70,3 +70,9 @@ There's a short video on my profile that walks through how I run accounts like t
 3. **Spend, geo, job type, payment:** check the sidebar. If hourly, never type a rate.
 4. Both of her usual anchors ("10+ years", "built and sold my own e-commerce business") were left out for length and fit.
 5. **The post has 3 screening questions** (from the Samuel session, commit 6e7c46d): account managed + outcomes measured; testing messaging without disrupting live campaigns; how booked-call and sales data change budget. Samuel's answers use "our team" plus the coaching client, so they can't go out under Lindsey. **Lindsey's own answers are now drafted:** `2026-09-21_high-ticket-coaching-webinar-meta-30day_SCREENING-ANSWERS_lindsey_UNSENT.md` (first person, Fusion only, diverged from Samuel's).
+
+## MILESTONE DESCRIPTION (single, 197/200 chars, no amount set here)
+
+First month of hands-on Meta management: tracking checked from ad to CRM, new copy tested in its own campaign, budget shifted on watch time and booked calls, weekly updates and a month-end summary.
+
+"First month", not "30 days": it doesn't agree to a 30-day end and stays consistent with the 90-day minimum that has to come up before any contract. Every item mirrors the Lindsey proposal and answers: the tracking check (says "checked", not built, since it depends on their CRM and webinar tools), new copy in its own test campaign, budget on watch time and booked calls, plus the weekly updates and summary they asked for ("month-end", not "final"). Worded apart from the Samuel milestone (0 shared 3-grams). Amount is Queenie's call: canonical is $1,500 onboarding (audit included) plus % of spend with a $1,500/month minimum; Lindsey's own doc says $3,000/month (unresolved vs the 8/24 $1,000 authorization; on 9/21 Queenie picked canonical when a post required a fee).
