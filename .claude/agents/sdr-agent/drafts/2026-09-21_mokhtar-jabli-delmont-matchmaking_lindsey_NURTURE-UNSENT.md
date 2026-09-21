@@ -45,6 +45,22 @@ Noticed the new videos Delmont started running on the 3rd are sending people to 
 - No banned check-in phrasing, no reference to time elapsed. One anchor to his brief only.
 - No commitments, no free-work offer, no pricing, no causation claim.
 
+## HE REPLIED (Mon 9/21, ~11am CDT, within about an hour of the nurture)
+
+> Where did you see them?
+
+Which nurture version went out is unconfirmed. The reply below works after either one.
+
+### Reply 1 (UNSENT, sdr-agent pick A, comma splice changed to a period)
+
+Meta's Ad Library. It's public and shows every ad a page is running right now. How's the lead quality looking since the videos went live?
+
+- Last question: "How's the lead quality looking since the videos went live?"
+- Last sentence: same.
+- Alternate B (not picked): "Meta's Ad Library, it's public and shows every ad a page is running right now. It lists the start date on each one too, that's where I got the 3rd. How's the lead quality looking since then?"
+- Deliberately says nothing about Lindsey's own feed. We don't know if the ads ever showed there, and he may be asking because he wonders who his ads reach.
+- No call ask. Whether Lindsey takes a call is open (Scott passed in July), so settle it with Cade before his next reply.
+
 ## SEND NOTES
 
 - Send Mon 9/21 or Tue 9/22 (day 60), inside Lindsey's 10am-6pm Central hours. He is LA-based (310 area code).
