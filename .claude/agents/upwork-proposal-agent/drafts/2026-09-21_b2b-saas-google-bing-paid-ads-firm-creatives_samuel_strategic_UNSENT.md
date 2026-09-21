@@ -39,3 +39,9 @@ Image ads come from our creative director, and on B2B they usually earn their ke
 The closest example is a B2B SaaS company selling referral software to home service contractors. In the six months after their seed round, inbound leads and ARR both doubled, and our part was Meta building awareness for a category contractors didn't know existed and Google capturing the search demand that followed. That case study is attached. The creative our team has made mostly carries client branding, so I'd rather walk you through examples on a call than attach them here.
 
 Is anything running on Google or Bing today, and roughly where does monthly spend sit, closer to $5K or $15K?
+
+## MILESTONE DESCRIPTION (single, 198 chars, no price)
+
+Month one: qualified-lead tracking for Google and Bing, Search built on qualifying ad copy, Bing synced from Google with LinkedIn profile bids, launch, first ad test, cost per qualified lead report.
+
+Image ads deliberately left out (creative pricing unruled; post says creatives may cost extra). "Month one" keeps it a spend-running management month, not a pre-launch deliverable. Amount depends on the Bing-as-own-platform ruling.
