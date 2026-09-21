@@ -7,7 +7,7 @@ Not a capital raise and not a securities offering. They source off-market houses
 
 ## SEND ONE PROFILE (Samuel twin finished in a parallel session)
 - Samuel: `.claude/upwork-drafts/2026-09-21_altira-acquisitions-meta-investor-calls-rockville_samuel_strategic-diagnostic_UNSENT.md`, committed 00d5045, 420 words, QC PASS WITH FIXES + expert Strong. Same core finding as this draft (one Lead for every quiz answer, booking signal fires before a time is picked), plus Housing special ad category, week-one plumbing, Victory Land Sales (real estate, inside Housing) and South River. Its file already says: send one profile only.
-- Samuel screening answers exist: `..._samuel_SCREENING-ANSWERS_UNSENT.md`. The job has two screening questions ("Describe your recent experience with similar projects", "How do you use metrics to inform your strategy?"). They were NOT in the text pasted to this session. A Lindsey bid needs its own answers; not drafted here.
+- Samuel screening answers exist: `..._samuel_SCREENING-ANSWERS_UNSENT.md`. Lindsey's are in `2026-09-21_altira-acquisitions-offmarket-investor-calls-meta-reels_lindsey_default_SCREENING-ANSWERS_UNSENT.md` (requested in a follow-up message).
 - Recommendation: Samuel, unless Queenie wants the Lindsey profile on this post. The post prefers real estate / financial / B2B proof, and strict first person leaves Lindsey with no real estate account, while Samuel can cite the Texas land seller as team proof.
 - Divergence tried and dropped: a rebuilt Lindsey body on the quiz finishers who never book (phone callbacks, sizing the test to call capacity) is archived at the bottom. Expert review rated it below this version, and Samuel's screening answers already use the same Fusion CRM-check and call-center facts, so it no longer bought real divergence.
 - Wording overlap with Samuel's final proposal: 8 shared 3-grams, all the client's terms ("cost per booked call", "cost per lead"), "reverse mortgage lender", "$3,000 or", "Unless Calendly or". Shared facts: the funnel finding and South River. Never send both.
@@ -27,7 +27,8 @@ Not a capital raise and not a securities offering. They source off-market houses
 - Fee / rate: none quoted; post asks for none. Her $3,000 floor vs the 8/24 $1,000 authorization is still unresolved.
 - Hours: Lindsey 10am-6pm Central = 11am-7pm Eastern for Rockville. Not in the body.
 - Payment verification, hourly/fixed, proposal count: not in the pasted text. Check the listing before sending.
-- Length: 344 words / 1,880 chars. Over her 200-300 band, under the 350 ceiling (four scope items plus a proof preference).
+- Length: 349 words / 1,905 chars. Over her 200-300 band, under the 350 ceiling (four scope items plus a proof preference).
+- Reporting cadence: the post asks for "weekly reporting". [[reference_client_reporting_cadence_biweekly]] (written 9/21 after the first delivery) says the documented cadence is every two weeks plus a live dashboard, and a faster cadence needs Queenie's OK first. So "Each week you'd see..." became "You'd have a live report to check any day, and I'd track cost per lead against cost per booked call by ad...". If Queenie OKs weekly for this test, swap it back. Samuel's letter and answers also say "weekly report".
 
 ## FACTS
 ### Their funnel (read 2026-09-21 in the in-app browser; public page code, same as any visitor)
@@ -53,17 +54,18 @@ Not a capital raise and not a securities offering. They source off-market houses
 - qc-reviewer-agent re-check: PASS, no fixes.
 - Rebuilt divergent version (archived below): QC PASS WITH FIXES (one blocking: "every one your team books by phone" assumed they already call back), expert Good but below this version. Not used.
 - Final edits after the Samuel session's findings: South River line narrowed to the verified reporting fact; hedge and reporting sentences reworded so they don't match Samuel's text word for word. QC re-check on those three sentences: PASS, no fixes.
+- 2026-09-21 (second pass): weekly-report promise replaced by the live report line (cadence rule above); "actually" cut from the opener to stay under 350. QC on the changed sentence: PASS (same run as the screening answers).
 - DB LOG: skipped, contractor_query cannot INSERT.
 
 ---
 
-Does your Pixel know when an investor actually books a call? On your invest page, it fires a Lead when someone submits their details and another event when the Calendly tab opens, but the booking itself happens on Calendly. Every Lead also looks the same, whether the person picked Under $25K or $150K or more. Unless Calendly or your backend passes Meta something extra, it's learning to find form fills, not booked calls.
+Does your Pixel know when an investor books a call? On your invest page, it fires a Lead when someone submits their details and another event when the Calendly tab opens, but the booking itself happens on Calendly. Every Lead also looks the same, whether the person picked Under $25K or $150K or more. Unless Calendly or your backend passes Meta something extra, it's learning to find form fills, not booked calls.
 
 I've worked this gap before, at a dental implant group I ran on Meta where full-mouth cases averaged in the upper $30Ks and leads went to a call center. From late April to mid-July it brought in 2,558 leads on $64,746.78, about $25 each. I checked their CRM for who booked a consultation, and kept one campaign running even though its leads cost more, because they were booking.
 
 Financial services is in my book too: at a reverse mortgage lender, the lead that counted was a prequalified event fired after the form submission, not the submission itself.
 
-In the test, I'd start by getting the booking itself back to Meta with a tracking specialist I work with, and checking the Calendly hand-off for drop-off. Each week you'd see cost per lead next to cost per booked call by ad, plus the share of applicants who picked $75K or more. I'd build the Reel scripts, shot lists and ad copy around your deal breakdowns, so each Reel runs as an ad and as a post.
+In the test, I'd start by getting the booking itself back to Meta with a tracking specialist I work with, and checking the Calendly hand-off for drop-off. You'd have a live report to check any day, and I'd track cost per lead against cost per booked call by ad, plus the share of applicants picking $75K or more. I'd build the Reel scripts, shot lists and ad copy around your deal breakdowns, so each Reel runs as an ad and as a post.
 
 Roughly what are you planning to spend a month, nearer $3,000 or nearer $15,000? An ad set needs about 50 results in a week to get out of learning, so at the lower end one ad set optimizes on leads and gets judged on booked calls, while the higher end has enough volume to compare the Reels against each other.
 
