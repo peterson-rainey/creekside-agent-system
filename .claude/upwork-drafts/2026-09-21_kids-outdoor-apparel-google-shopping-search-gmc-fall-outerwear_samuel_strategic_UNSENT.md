@@ -1,5 +1,5 @@
 # Kids' outdoor apparel + gear store, Google Ads + Merchant Center takeover, fall/winter outerwear (Samuel, strategic) UNSENT
-Profile: Samuel Rainey (General) | Style: samuel_strategic | Date: 2026-09-21 US Central (Postgres now() 2026-09-21 22:52 UTC) | 349 words / 1,960 chars | No sign-off | ATTACH: nothing
+Profile: Samuel Rainey (General) | Style: samuel_strategic | Date: 2026-09-21 US Central (Postgres now() 2026-09-21 22:52 UTC) | 350 words / 2,015 chars | No sign-off | ATTACH: winterbotham_parham_teeple_CLEAN.pdf (no-attachment version kept below)
 
 ## Job post (as pasted: no title, budget, rate, client location or screening questions)
 > We are looking for an experienced Google Ads Specialist to take over, fix, and optimize campaigns for our online retail store specializing in kids' outdoor apparel and gear. We do not just need a high-level audit; we need a hands-on expert to properly set up our ads and actively drive conversions in the United States market as we head into our busy fall season.
@@ -52,7 +52,31 @@ Profile: Samuel Rainey (General) | Style: samuel_strategic | Date: 2026-09-21 US
 - The ROAS tradeoff moved into the close so it sets up the "which matters more" question.
 - qc-reviewer-agent re-check: PASS. Optional polish applied ("a product that the feed lists").
 
-## PROPOSAL
+## ATTACHMENT (Queenie asked "what case study should I attach?", 2026-09-21)
+- PICK: `.claude/attachments/winterbotham_parham_teeple_CLEAN.pdf`. Re-verified today: %PDF-1.4, 785,596 bytes, sha1 7b245ac2fcc3a845c6a4723677c7f72ce5536b42, 3 pages, 0 link annotations, 0 "localhost", 0 samuel/rainey/peterson, text read in full. Bankruptcy law firm, existing Google account at $86+ per lead with flat volume, restructured into four focused segments, budget reallocated toward the highest-converting markets and keywords, underperformers paused. 229 conversions vs 117 prior period, $50.29 vs $86.09 CPA, $11.5K spend ($1.44K more than prior period).
+- Why: this post is a takeover-and-fix, and it's the only artifact that shows an existing account restructured. It backs the draft's outerwear split (focused campaigns with their own budgets). House rule: on a Google audit/diagnostic post, Winterbotham over Aura. The draft's learning-period line is about phasing the split in, not a consolidation-for-volume argument, so the 9/5 carve-out doesn't apply.
+- Passed over: Aura Displays (the only ecom Shopping PDF: "8-10x" x6 incl. title against ~3x recent non-brand Shopping, "49 Countries" in the title from an 8-day 0.65x test, "exceptional returns from the first week" against the draft's learning-period line, localhost link, account paused since 8/31, built rather than taken over). NYC Notary (search-term + tracking thesis fits, but $12.3K spend with no period, no clean copy on disk). Perfect Parking, Integrity, Big Chad Law, Unrefined (off-thesis or Meta).
+- Soft spots to know: no dates in the PDF (can't answer "when"); white-label account, not in our live data; legal closing CTA; the PDF's "Halved Costs" headline rounds a 42% cut.
+- Tie-in: own paragraph after the team paragraph, before the close, no numbers. Trims elsewhere kept it at 350 words.
+- qc-reviewer-agent re-check on the attachment version: PASS (tie-in matches the PDF, placement implies no Shopping/feed work by the law firm, all six trims clean).
+
+## PROPOSAL (with attachment, send this one if attaching)
+
+Google Shopping doesn't let you pick keywords for your outerwear, only rule searches out. So on a kids' store, the first place I'd look for wasted spend is searches like "snow pants" or "puffer jacket" with no "kids", "toddler", "boys" or "girls" in them. Adults shopping for themselves type those too.
+
+With fall this close, order matters: new Smart Bidding campaigns can take up to around 50 conversions to learn, so the current campaigns keep running while the outerwear ones build up data. Tracking goes first, since new campaigns learn from whatever the account counts as a conversion. Our tracking specialist would check GTM and GA4 and confirm each order reaches Google Ads once, with its value, not again through a GA4 import.
+
+In Merchant Center, US Shopping ads require age group, gender, color and size on kids' clothing, and "toddler" (1 to 5) and "kids" (5 to 13) are separate age groups. A toddler snowsuit filed under "kids" would be mislabeled for the parent searching "toddler snowsuit 3T". Each size goes in as its own item, with stock kept current through a busy fall, since Google disapproves a product that the feed lists in stock but the page shows sold out.
+
+The fall and winter outerwear then gets a custom label and its own Shopping campaign, budget and ROAS target instead of competing with the rest of the catalog. Search gets built by product and age.
+
+I've been in paid ads for six years, and our team runs about a dozen Google Ads accounts, three of them online stores. Day to day, a Google Ads specialist on our team runs the account, and I stay on strategy.
+
+The attached case study shows the same fix on a law firm's existing account: focused campaigns, budget moved to what converted.
+
+One tradeoff: a higher ROAS target keeps Google out of more auctions, and lowering it gradually buys volume. So which matters more this fall: outerwear sold, or its ROAS? And roughly what range does the account spend monthly? What we'd set up first at $5,000 a month looks different at $30,000.
+
+## PROPOSAL, NO-ATTACHMENT VERSION (349 words, send this one if attaching nothing)
 
 Google Shopping doesn't let you pick keywords for your outerwear, only rule searches out. So on a kids' store, the first place I'd look for wasted spend is searches like "snow pants" or "puffer jacket" with no "kids", "toddler", "boys" or "girls" in them. Adults shopping for themselves type those too.
 
