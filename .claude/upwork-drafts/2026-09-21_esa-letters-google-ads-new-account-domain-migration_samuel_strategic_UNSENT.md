@@ -1,0 +1,53 @@
+# ESA letters, 10-year Google Ads account (Search + PMax) migrating to a new domain + new Google Ads account (Samuel, strategic) UNSENT
+Profile: Samuel Rainey (General) | Style: samuel_strategic | Date: 2026-09-21 (Postgres now(), US Central)
+
+## SCREEN
+- Step 0, already drafted / already bid: NO. `upwork_jobs` searched on ESA letter, emotional support, new domain, ten year-old, migrate to a new, import existing campaigns, new Google Ads account; `upwork_leads` searched on ESA / emotional support / migration; draft folders and memory grepped. Nearest miss: 2026-04-07 "Google Ads Migration to New Website with Extensions" (General, not viewed), a different post.
+- Profile: Samuel. Google-only post, outside Lindsey's permitted scope. Style: strategic, as requested.
+- Required items: none formal. The post values campaign-level PPC management and handling the import accurately. No migration case study exists (never claim an account migration or consolidation), so the draft cites only a verified cross-account copy and does not claim a full account move.
+- Vertical: ESA letters. Mental-health proof is a zero (0/28 case_studies, 0 reporting_clients) and pet care is a zero. The post doesn't ask for vertical experience, so no disclosure needed, and the draft makes no vertical claim. Join Piper (GLP-1 telehealth, Google, past tense) considered and left out: not a close match, no live data, PDF not attachable.
+- ESA-specific Google policy: none found. Healthcare/telemedicine certification pages and the Oct 2026 government documents update don't mention ESA letters.
+- Why a new account: the post calls the old account successful, so there's no suspension signal and this isn't the detection-evasion DQ. The closing question asks the reason. If the answer is a suspension or restriction, stop: a new account used to get around enforcement is the same exposure as the account-lending DQ.
+- Spend, geo, payment verification, client history, job type and budget: not in the paste. $5K floor unmeasurable, asked as a relative range. ESA letters are a US housing-law product, so US geo is likely but unconfirmed. Check "About the client" on the job page.
+- Engagement length: "while it learns and normalizes" may mean a short stint, which could collide with the 90-day minimum. Unstated, so left open.
+- Pricing: silent (not asked). If asked, onboarding $1,500 (audit included) plus management as a % of spend on the marginal tiers, $1,500 minimum.
+- Attachment: NONE. No migration case study, no ESA or mental-health proof, Join Piper PDF not attachable.
+- DB log (upwork_proposal_logs INSERT): skipped, contractor_query cannot write.
+
+## VERIFIED 2026-09-21
+- Limited ad serving, Google Ads policy 13889491 and the Aug 2026 update 17344822: factors are account attributes, user activity and reports, account maturity, ad format usage, history of policy compliance, advertiser industry, advertiser verification status. "Individual ads will not be disapproved"; impressions are limited instead. The Aug update extends the policy "to cover all Google Ads", rolling out gradually through 2028. Google reinstates advertisers once they qualify (policy compliance, advertiser verification, clear branding).
+- June 2026 update 17122370: "Pin your domain to the front of the ad title, especially if you're a new advertiser or your brand is less well-known." Also "Clearly display your own brand in your ads and on your landing page."
+- Google Ads Editor Help 38654: "If you paste or import an item with a portfolio bid strategy to a different account, manual CPC bidding replaces the portfolio bid strategy." Performance statistics don't transfer.
+- Cross-account conversion tracking, Help 3030657: account-specific conversions are "Tracked only in one account"; cross-account ones are created in a manager account; an account can't use both kinds.
+- Unfair advantage, policy 15936768: "Trying to show more than one ad for your business, app, or site in a single ad location" is not allowed. Warning at least 7 days before any suspension.
+- Destination mismatch, policy 6368661, example: "Redirects from the final URL that take the user to a different domain".
+- Learning period, Help 13020501: "It can take up to around 50 conversion events or 3 conversion cycles for the bid strategy to calibrate to the new objective, although it can be faster depending on the amount of conversion data present." And: "Conversion data from previous campaigns can help drive faster results by speeding up the initial learning period".
+- Book: 16 Google accounts with spend in the 30 days to 2026-09-20 ($67,021). Three are churned and one spent $10, so about a dozen active: "about a dozen". Search + PMax on lead gen (The Tooth Co, Doctor Laleh) and ecom (Myriad Traders, Tiami, Night Lark).
+- Six years: Samuel's tenure per Queenie 2026-08-12. First person, placed before the team claim (9/16 QC ruling).
+- Veneer copy: ClickUp task 86e14dznn "Copy dental veneer campaigns from Dr. Laleh to the tooth co.", Ade Aderibigbe, closed 2026-05-09. The Tooth Co Google account 1403705303 "Pmax - Veneer" first spend 2026-05-04. No results cited.
+- Found but NOT used: Customer Match on a new account is limited to observation and exclusions until "90 days of Google Ads history and more than USD $50,000 total lifetime spend" (policy 6299717). Left out because customer-list targeting for a mental-health-adjacent service runs into Google's health personalized-ads rules. Keep it for a reply if they ask about remarketing.
+
+## QC + EXPERT REVIEW (2026-09-21, on v2)
+- qc-reviewer-agent: PASS WITH FIXES, no blockers. Accepted: "two catches" was false precision and "settings" isn't on Editor Help 38654, so both are gone ("but not everything around them"). Accepted: "no safe overlap period" overstated, now "no clean way to run both at once". Accepted: "this spring" is now "this past spring". Kept "a new account starts with neither" (QC nit, true by definition). QC cleared the veneer line (reads as team work, no whole-account claim), the six-years / about-a-dozen placement, and both closing questions.
+- expert-review-agent: Good. Accepted: tighten the opener ("the ten years the account has behind it"). Accepted in part: shared negative lists added as a step we take, NOT as a mechanics claim. The expert said lists "don't carry across accounts" citing Help 7519927, but that page only covers manager-account lists shared to client accounts and never says lists fail to copy. Not taken: dropping the spend question (needed for the $5K screen). Not taken: turning the learning period into weeks (Google gives conversions and cycles, not days). Not taken: payment and manager-account linkage (inference, better saved for a reply).
+- Unverified expert claim, not used: Editor copies PMax asset groups across accounts. Help 11830703 doesn't mention cross-account copying.
+- Trims to fund the fixes: cutover sequence shortened, "history of policy compliance" became "policy compliance history". "Is on that list" became "counts too", because the opener no longer names a list. "Speeds it up" became "can speed it up" to match Google's "can help". Final 349 words / 2,113 chars.
+
+## PROPOSAL (final, 349 words / 2,113 chars)
+
+Importing into a new Google Ads account moves your ESA letter campaigns over, but not the ten years the account has behind it. Google's limited ad serving policy, updated in August, weighs account maturity and policy compliance history when deciding whose impressions to limit, and a new account starts with neither.
+
+Advertiser verification counts too, so we'd start it before launch, and every ad would carry your brand with the new domain pinned to the front of the headline, as Google advises new advertisers.
+
+Google Ads Editor moves campaigns, keywords and ads between accounts, but not everything around them. Campaigns on portfolio bid strategies land on manual CPC, and we'd check account-level pieces like shared negative lists against the original. Conversion actions set up in the old account stay there, so Smart Bidding has nothing to optimize toward until our dedicated conversion tracking specialist rebuilds them and confirms they fire on the new domain.
+
+There's also no clean way to run both at once. Two accounts on the same searches means two ads for one business competing for one spot, which Google's unfair advantage policy prohibits, and once the old domain redirects, any old-account ad still running counts as a destination mismatch. So the switch works best as one planned day, old campaigns pausing as the new ones go live, then the redirect.
+
+Google puts Smart Bidding calibration at up to about 50 conversions or three conversion cycles, and says past conversion data can speed it up, which a new account lacks. We'd launch on looser targets than the old account's and tighten as its own conversions build.
+
+I've been in paid ads for six years, and our team runs about a dozen Google Ads accounts right now, Search and PMax across lead generation and ecommerce. The closest recent job was copying a dental practice's veneer campaigns, PMax included, into a second practice's account this past spring.
+
+What's driving the new account rather than pointing the current one at the new domain, which would keep its history? And roughly what does it spend monthly, closer to $5K or $50K?
+
+## ANGLE OWNERSHIP (leak guard for any reply)
+Account age and policy history don't copy (limited ad serving factors); verification and brand-plus-domain pinned headline before launch; Editor portfolio-to-manual-CPC; shared negative lists checked; conversion actions rebuilt by the tracking specialist; no overlap (unfair advantage single ad location, destination mismatch on redirect); one-day switch order; looser launch targets per the 50-conversion / 3-cycle guidance; repoint-the-old-account alternative. Held back for a reply: Customer Match limits on new accounts (90 days + $50K lifetime spend); payment and manager-account linkage if the reason turns out to be enforcement.
