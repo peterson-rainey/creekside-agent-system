@@ -31,11 +31,32 @@ Disposition: screens reported first with a skip recommendation; Queenie chose "D
 - expert-review-agent: Good. Mechanics independently confirmed (Help 13494537; Myriad blend recomputes to ~1.49x). Accepted: soften the Ad Library line from "your July 12 ad" to "lists one ad for the Addorae Page", and split it into its own paragraph after the Google tracking point so the letter doesn't open its diagnostics on the sensitive one. NOT taken: "which is common on a first test ad and isn't a mark against the store" (unverified, and Meta's own help says it may weigh an advertiser's compliance history). Accepted: cut "a second item offered on each product page". NOT taken: raising the spend anchor to $5,000 vs $15,000. $2,000 vs $10,000 splits near the $5K floor, so the answer tells us which side they're on; with a $5K low anchor, a $6K spender would say "closer to $5,000" and we'd learn nothing.
 - Final: 392 words / 2,236 chars.
 
+## ATTACHMENT (resolved 2026-09-21 on Queenie's ask: "what case study should I attach?")
+- ATTACH `.claude/attachments/unrefined_meal_prep_CLEAN.pdf` (sha1 6219bda28665d5d535cbde9890698f9cf50b3354, 1,312,592 bytes, %PDF-1.4, localhost link removed, no Samuel/Peterson/Rainey strings). Send it with the v8 body below, which adds one tie-in sentence. SAMUEL ONLY: never on the Lindsey twin (the account was Trent L.'s, not hers).
+- Why it fits: its story is a second market opened in its own campaigns (Cleveland to Columbus, Meta): Columbus "achieved approximately 2x ROAS in its first month", core Cleveland new-customer campaigns "4x ROAS at $20 CPA". That is this letter's thesis (start in the US, add countries later in their own campaigns). Printed claims sit below live data (9.16x weighted, per memory). Caveats: churned 2026-04-29 ("Below average results"), names the client and founder, local meal prep not ecom gadgets. Past tense in the tie-in.
+- Rejected: Aura Displays (the only Shopify ecom PDF, Google) headlines "scaled Google Ads across 49 countries", a one-week 0.65x test that was paused, which contradicts the one-country-first argument; its 8-10x is stale (~5.4x lifetime non-brand), it has a dead localhost link, and there's been no spend since 8/31. Fitness Superstore (7x/40x, zero live data), Punch Drunk (20x vs ~1.74x live), CI Lifestyle ($25 CPA vs $7.88 live), Duck A Diet (NULL account), ReferPro (B2B SaaS). Myriad Traders and Neue Maison have no case_studies PDF.
+- QC re-check (qc-reviewer-agent): PASS WITH FIXES. Accepted: "shows that sequencing" was ungrammatical, now "shows the same sequencing". NOT taken: labeling Columbus's 2x as "on new customers" (the PDF calls it "Expansion ROAS", never new-customer), and the fallback "Meta's bidding" (the sentence is about Google). Trims to hold 399 words: "on its own" -> "alone", "with a note that" -> "noting", dropped "covering the store review and setup", dropped "term" and the "not which products and countries earn more budget" tail, close reworded.
+
 ## DELIBERATELY OUT
-- Attachment: NONE. Myriad has no case_studies PDF; no home-gadget or décor PDF exists.
 - August Myriad numbers, Myriad Meta numbers (DB stops 7/15), the "Hi Iman" line, the two-email / Merchant Center point, Neue Maison (high-ticket furniture, churned), Aura (paused, $300 AOV), sign-off name, links, names of the Google specialist and tracking specialist (the client is also named Ahmed).
 
-## PROPOSAL (paste-ready)
+## PROPOSAL v8, SEND WITH unrefined_meal_prep_CLEAN.pdf (paste-ready, 399 words / 2,300 chars)
+
+Launching home gadgets and décor in four countries at once splits a new account's sales data four ways, and Meta and Google both bid better once a campaign has a steady run of purchases. So I'd start in the US, add the other three once products sell there, with each country in its own campaigns so its CPA and ROAS stand alone.
+
+On a five-product Shopify store we run on Google and Meta, the UK took about a third of July's non-brand Google spend and returned 0.42x, while the US alone ran 2.00x. Blended, July read 1.50x, which described neither country. The attached case study shows the same sequencing by city: a meal prep brand's second city, in its own Meta campaigns, returned about 2x in month one, against 4x on new customers at home.
+
+Your store runs Google's Shopify app, which by default counts add-to-carts and started checkouts as conversions alongside purchases. Unless someone changed that, Google's CPA and ROAS include carts, and bidding treats a cart like an order. Our tracking specialist would make purchases the only conversion Google bids on.
+
+Meta's public Ad Library lists one ad for the Addorae Page, from July 12, noting the account or Page behind it was later disabled for not following Meta's Advertising Standards. If that still stands, Google goes first while you request a review through Meta Business Support. We wouldn't route Meta through a new account in the meantime.
+
+Your products run $7 to $40, and a cost per purchase that works on a $60 order loses money on a $20 one, so the store review starts with order value: multipacks and sets. Six of your ten products are lights, which sell on video: the room going from plain to glowing in the first second.
+
+Lindsey on our team runs the five-product store's Meta and would run yours, with our Google specialist on Google and me on strategy. We'd like to take this on and can start once access is sorted. We don't bill hourly: management is 20% of ad spend with a $1,500 monthly minimum per platform, plus a one-time $1,500 onboarding per platform. The 90-day minimum is the trial I'd suggest, since a new account's first month mostly shows whether tracking works.
+
+What's your planned monthly spend across both platforms, closer to $2,000 or $10,000? That range decides how soon the other three countries come in.
+
+## PROPOSAL v4, SEND-WITH-NOTHING version (392 words / 2,236 chars)
 
 Launching home gadgets and décor in four countries at once splits a new account's sales data four ways, and Meta and Google both bid better once a campaign has a steady run of purchases. So I'd start in the US, add the other three once products sell there, with each country in its own campaigns so its CPA and ROAS stand alone.
 
