@@ -20,7 +20,10 @@ Profile: Lindsey | Style: lindsey_default (request said "strategic + diagnostic 
 
 ## REVIEW LOG
 - qc-reviewer-agent: PASS WITH FIXES. Applied: split the $100K account from the GHL account, $2,000 -> $3,000 floor, "teach" -> "build", syringe line softened. Fusion line moved to past tense (churned).
-- expert-review-agent: not run.
+- expert-review-agent: Good. Applied: "most edits" -> "many edits"; "how many treatments can run at once" -> "can be advertised at once" (expert misread it as room capacity; it means how many treatment campaigns the budget can feed to ~50 results/week). Not applied: swap a dental proof for aesthetics (Lindsey has no other aesthetics account; beauty book = Laleh only); Meta cosmetic ad-review angle (unverified this session); geo (would parrot the post).
+
+## MILESTONE (188 chars, no price)
+Month 1: Meta lead campaign built and launched in your ad account, leads flowing into GoHighLevel with SMS follow-up and booking tested, bookings sent back to Meta, first team walkthrough.
 - DB LOG: skipped (no DB access; contractor_query cannot INSERT anyway).
 
 ---
@@ -31,6 +34,6 @@ The largest Meta account I run is a cosmetic and aesthetics practice spending ar
 
 On a dental implant practice I ran Meta for, I checked their CRM for who actually booked a consultation, and kept one campaign running even though its leads cost more, because they were booking.
 
-On training, I'd hand things over in the order they run. Your front desk takes the GoHighLevel side first: replying to texts, moving leads through the pipeline, catching no-shows. One detail I'd show early: HighLevel only labels a website lead as Facebook paid traffic when the link's utm_source contains "fb_ad", and it's case-sensitive, so Meta leads can quietly land under the wrong source. Ads Manager comes last, because most edits restart the learning phase, and the hardest habit to build is leaving a campaign alone for a week.
+On training, I'd hand things over in the order they run. Your front desk takes the GoHighLevel side first: replying to texts, moving leads through the pipeline, catching no-shows. One detail I'd show early: HighLevel only labels a website lead as Facebook paid traffic when the link's utm_source contains "fb_ad", and it's case-sensitive, so Meta leads can quietly land under the wrong source. Ads Manager comes last, because many edits restart the learning phase, and the hardest habit to build is leaving a campaign alone for a week.
 
-Is your Meta budget closer to $3,000 or $8,000 a month? That decides how many treatments can run at once. I recorded a short video on my profile about how I work, and on a call I can walk you through the aesthetics account and the GoHighLevel setup.
+Is your Meta budget closer to $3,000 or $8,000 a month? That decides how many treatments can be advertised at once. I recorded a short video on my profile about how I work, and on a call I can walk you through the aesthetics account and the GoHighLevel setup.
