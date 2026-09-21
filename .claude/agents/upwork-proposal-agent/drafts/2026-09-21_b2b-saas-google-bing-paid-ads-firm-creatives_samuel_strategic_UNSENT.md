@@ -20,7 +20,7 @@
 
 - QC v4: FAIL, 2 blockers. (1) ReferPro doubling placed right after the mechanism read causal, fixed by putting the result first and framing our work as "our part". (2) "Sent back to both platforms" sat near the South River Mortgage Microsoft line, whose qualified-lead upload never worked; resolved per the 9/16 OOH precedent by cutting the past-account line and keeping the forward plan. Fix: "dedicated conversion tracking specialist".
 - Expert review v4: Good. Added a reporting line (post lists reporting), cut the CTR restatement, added "companies" to the LinkedIn dimensions.
-- QC re-check on v6: PENDING.
+- QC re-check on v6: PASS. Both blockers resolved, no new ones; QC accepted keeping "both platforms" as a forward plan once the past Microsoft account line was cut (MSCLKID offline import confirmed on Microsoft Learn by expert review).
 
 ## Angle ownership (leak guard for any reply)
 
