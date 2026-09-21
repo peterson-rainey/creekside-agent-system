@@ -1,6 +1,8 @@
 # Upwork Proposal - Fine art photography prints ($210+), Shopify DTC, Meta zero-to-consistent-sales, part-time ongoing
 
-Profile: Lindsey | Style: lindsey_default | Status: UNSENT | Drafted 2026-09-18 (Postgres now())
+Profile: Lindsey | Style: lindsey_default | Status: SENT 2026-09-18 (per upwork_jobs) | Drafted 2026-09-18 (Postgres now())
+
+STATUS 2026-09-21: Went out 9/18 on Lindsey's profile, proposal 2100974693071335425, $75/hr. Not viewed as of 9/21. The sent text isn't stored, so this file may differ from what went out. The post came back 9/21 with a stricter proof rule (named, verifiable brands only, no anonymized examples). Queenie chose SKIP. Do not redraft. If the client messages this bid, handle it as a reply thread.
 
 Screens: no duplicate bid in upwork_jobs. Spend OPEN (unstated, 'resource-constrained' prose, but scale path volunteered; asked as $5K vs $15K). Budget field is an unfilled placeholder; no hourly rate given. Payment verification + geo UNCHECKED. Required 2-3 zero-to-sales stores: NOT answerable cleanly (Neue Maison was inherited, Tiami has zero non-brand results); gap disclosed, own-store anchor used. No attachable Lindsey ecom PDF (Blush Camera PDF is DO-NOT-ATTACH; Fitness Superstore/Birthday Club not hers). Google Shopping review item left unaddressed (Lindsey cannot pitch Google). Proof: Neue Maison tenure spend $105,010 (4/10-8/10/26) re-verified live; product-lane and retargeting lessons from verified memory, no ROAS/CPA cited.
 

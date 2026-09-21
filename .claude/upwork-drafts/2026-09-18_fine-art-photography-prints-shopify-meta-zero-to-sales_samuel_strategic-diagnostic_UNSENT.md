@@ -1,4 +1,5 @@
-# Upwork Proposal - UNSENT
+# Upwork Proposal - SENT 2026-09-18 (per upwork_jobs)
+STATUS 2026-09-21: Went out 9/18 on the General profile, proposal 2100975367484788737, $90/hr. Viewed, no reply. The sent text isn't stored, so this file may differ from what went out. The post came back 9/21 with a stricter proof rule (named, verifiable brands only, no anonymized examples). Queenie chose SKIP. Do not redraft.
 Job: Fine art photography brand, framed/unframed prints $210+, Shopify DTC, Meta Ads zero-to-first-consistent-sales, part-time ongoing, budget field left as template placeholder.
 Profile: Samuel Rainey | Style: strategic-diagnostic | Date: 2026-09-18
 
