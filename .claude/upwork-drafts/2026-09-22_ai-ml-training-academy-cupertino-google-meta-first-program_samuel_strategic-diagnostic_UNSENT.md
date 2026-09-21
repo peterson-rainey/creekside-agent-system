@@ -14,7 +14,7 @@ Profile: Samuel Rainey | Style: samuel_strategic, diagnostic opener | Date: 2026
 - Pricing: pricing-reference.md (20% tier 1, $1,500/platform min, $1,500/platform onboarding). 90-day minimum then month-to-month.
 
 ## OPEN FOR QUEENIE
-1. "billed as each platform launches" is my construction for their milestone ask. Confirm billing can split onboarding by platform.
+1. Milestone billing: "billed as each platform launches" REMOVED at Queenie's ask 2026-09-22. Their milestone request is unanswered in the letter.
 2. Timeline: no launch timeline on record, so the letter gives the dependency (tracking + pages), not a number. Add weeks only if confirmed.
 3. Letter says "setup covers GA4, enhanced conversions and call tracking". Onboarding scope on record = audit included; tracking build inside onboarding assumed. Confirm.
 4. Job page: payment verified, spend, country.
@@ -38,6 +38,6 @@ The usual blind spot is treating the form fill as the win. A grad downloading a 
 
 For the pilot, I'd run two catalog areas rather than four, at no less than $5,000 a month on Google, then shift budget toward whichever turns leads into enrollments cheaper.
 
-Setup is $1,500 per platform, one-time, billed as each platform launches. Management is 20% of spend with a $1,500 per platform monthly minimum. We work on a 90-day minimum, then month-to-month, because a new account's first month mostly shows whether tracking works, not which area deserves more budget. Launch timing mostly depends on how fast tracking and pages are ready.
+Setup is $1,500 per platform, one-time. Management is 20% of spend with a $1,500 per platform monthly minimum. We work on a 90-day minimum, then month-to-month, because a new account's first month mostly shows whether tracking works, not which area deserves more budget. Launch timing mostly depends on how fast tracking and pages are ready.
 
 Happy to walk through it on a call. Is the pilot closer to $5,000 a month or $15,000, and does enrollment happen online or after a call with an advisor?
