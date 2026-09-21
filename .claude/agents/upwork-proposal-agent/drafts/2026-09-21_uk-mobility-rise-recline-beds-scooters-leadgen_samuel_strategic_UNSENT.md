@@ -1,0 +1,11 @@
+With rise & recline chairs and adjustable beds, the enquiry that turns into a home visit and the enquiry Google and Meta find cheapest are often two different people. Both platforms chase whatever you tell them counts, so if a form fill counts, you get form fills, including people who never pick up when your sales team calls back.
+
+So I'd have both learn from your sales team, not the form. On Google that means Search first, with chairs, beds and scooters each going to its own landing page and showing its own cost per home visit. Calls need a Google forwarding number on the call asset, since a call made straight from an ad can't be imported as a conversion without one. Booked visits go back to Google, matched to the click or call, so bidding learns from appointments. One catch: Google's health rules cover disabilities "even when content is oriented toward the user's primary caretaker," which can rule out retargeting and uploaded customer lists, though in-market audiences still work.
+
+Meta comes second, on Instant Forms that ask for a postcode and who the product is for, so your team can screen before calling. At 200+ leads a month, sending back which leads booked a visit lets Meta chase appointments instead of form fills. Meta also bans copy implying the reader has a health condition, so "Struggling to get out of your chair?" is out.
+
+The closest match in our book is a US dental implant practice selling full-mouth cases in the upper $30Ks, where Meta lead forms fed a call team. In under three months the account produced 2,558 leads at $25.31 each. Along the way our team added qualifying questions, accepted a higher cost per lead, and cut spend when the call team needed room. For an asphalt paving company, Search and Performance Max ran from December to mid-April on nearly the same spend: Search leads cost $131, Performance Max $268, despite Performance Max clicks costing about a fifth as much. Our team also ran Meta for a luxury furniture brand and runs Google and Meta for a premium mattress brand, though both sell online.
+
+Our tracking specialist sets up the call tracking and imports, and reporting shows spend, enquiries and cost per booked visit.
+
+How many home visits can your team handle a week, and do they cover the whole UK or set regions?
