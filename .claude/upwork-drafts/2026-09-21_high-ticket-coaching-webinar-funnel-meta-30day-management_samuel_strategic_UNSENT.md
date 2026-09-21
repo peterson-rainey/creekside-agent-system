@@ -58,3 +58,9 @@ I've been in paid ads for six years, and a senior Meta specialist on our team wo
 On the 30 days: a hook launched in week two reaches the final summary before its sales can land. We work on a 90-day minimum, then month to month, which lets month one's tests be judged on customers.
 
 What does the account spend a month, closer to $5K or $30K? Ad sets usually exit learning after about 50 results in the week after a significant edit, so that tells me whether Meta can optimize for booked calls or they just keep score.
+
+## MILESTONE DESCRIPTION (single, 193/200 chars, no amount set here)
+
+Onboarding and month one of Meta management: UTMs checked through to your CRM, creative tests beside live campaigns, budget moved on booked calls and sales, weekly updates by registration week.
+
+"Month one", not "30 days", so it stays consistent with the 90-day minimum in the body without agreeing to a 30-day end. Every item mirrors the proposal: the first-week UTM check, tests that leave working ad sets alone, budget on booked calls and sales, cohort reporting. Amount is Queenie's call. Standard is $1,500 onboarding (audit included) plus % of spend, with a $1,500 minimum. The July twin post was $2,500 fixed for the whole project.
