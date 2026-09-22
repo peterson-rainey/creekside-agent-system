@@ -47,13 +47,14 @@ Compute these six metrics every run and include them in every weekly proposal em
      AND performed_at > NOW() - INTERVAL '30 days';
    ```
 
-4. **Audit-fleet backlog**: Count of open, unaddressed findings from the Monday audit fleet that are more than 7 days old. Target: trending down, never accumulating.
+4. **Audit-fleet backlog**: Count of unacknowledged pipeline_alerts more than 7 days old, split by severity. Target: trending down, never accumulating. (The audit fleet writes findings to `pipeline_alerts` and `agent_knowledge`, never to `action_items` -- the old action_items query structurally always returned 0.)
    ```sql
-   SELECT COUNT(*) AS stale_findings
-   FROM action_items
-   WHERE source_agent IN ('data-quality-audit','dedup-scanner','agent-quality-audit','connectivity-auditor','security-audit')
-     AND status IN ('open','pending_review')
-     AND created_at < NOW() - INTERVAL '7 days';
+   SELECT severity, COUNT(*) AS stale_findings
+   FROM pipeline_alerts
+   WHERE acknowledged = false
+     AND created_at < NOW() - INTERVAL '7 days'
+   GROUP BY severity
+   ORDER BY severity;
    ```
 
 5. **Peterson review load**: Count of brain-steward proposals sent this week (proposals queued in this run) and 3-week rolling approval rate. Target: <= 5 proposals/week. If approval rate is below 50% over the past 3 weeks, this routine is generating noise -- it MUST tighten its own proposal bar and note this explicitly in the email.
@@ -433,7 +434,7 @@ ORDER BY
 LIMIT 20;
 ```
 
-If no contractor sessions are found in the past 7 days, log "0 contractor sessions in window" in the digest and skip the rest of A5.
+If no contractor sessions are found in the past 7 days, first check whether ANY contractor session has ever been attributed: `SELECT COUNT(*) FROM chat_sessions cs JOIN system_users su ON su.id = cs.created_by_user_id WHERE su.role = 'contractor';` If that lifetime count is 0, the metric is structurally unmeasurable (contractor sessions are not being attributed -- they run in Co-work/Chat where the autosave hook never fires, or without a device key). Report A5 as "UNMEASURABLE -- no contractor session has ever been attributed (attribution gap, not a clean week)" in the digest, NOT as "0 contractor sessions". Only report a literal zero when attribution demonstrably works (lifetime count > 0) and this week genuinely had none.
 
 **Step 3: For each session, scan summary and key_decisions for two signal types:**
 
@@ -567,7 +568,7 @@ VALUES ('brain-steward', 'dependency_missing', 'medium',
 
 **Duplicate proposal:** Use `ON CONFLICT DO NOTHING` or check for existing title before inserting. Never fail on a duplicate.
 
-**Contractor session query returns 0 rows:** Log "0 contractor sessions in window" in the digest. Skip A5 gracefully.
+**Contractor session query returns 0 rows:** Run the lifetime-attribution check in A5. If no contractor session has ever been attributed, log "A5 UNMEASURABLE (attribution gap)"; otherwise log "0 contractor sessions in window". Skip the rest of A5 gracefully either way.
 
 ---
 

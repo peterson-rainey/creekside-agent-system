@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-09-19. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-09-21. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
@@ -157,7 +157,8 @@ Key tables: `pipeline_alerts`, `user_pipeline_config`, `cache_section_config`
 - `search_all(query, match_count)` - semantic search via embeddings across 17 tables
 - `keyword_search_all(query, table_filter, limit)` - full-text search across same tables
 - `search_all_expanded(query, count)` - expanded semantic search
-- `logged_search_all()` / `logged_keyword_search()` - same searches but log to `search_analytics` for gap detection
+- Since 2026-09-21, `search_all` and `keyword_search_all` are instrumented wrappers around `search_all_core` / `keyword_search_all_core`: every call logs to `search_analytics` automatically (exception-safe -- a failed log never breaks the search). Do not call `*_core` directly.
+- `logged_search_all()` / `logged_keyword_search()` - same searches with explicit `source_agent` attribution in `search_analytics` (call `*_core` internally, so one log row per search)
 - `list_searchable_tables()` - shows which tables have RAG coverage
 
 ### Client
@@ -165,7 +166,7 @@ Key tables: `pipeline_alerts`, `user_pipeline_config`, `cache_section_config`
 - `get_client_timeline(client_id)` - chronological activity for a client
 - `match_incoming_client(name, source)` - fuzzy name resolution
 - `resolve_client_id(identifier)` - resolve name/ID to client record
-- `find_client(search_term)` - lightweight client search
+- `find_client(search_term)` - lightweight client search; matches `clients.name`, `reporting_clients.client_name`, and `clients.display_names` aliases (e.g. "RIS" -> Retirement Income Solutions, "Practical Survival" -> Myriad Traders)
 - `calculate_client_health_scores()` - refresh health score calculations
 
 ### Content
@@ -293,7 +294,7 @@ Two search modes. Always use BOTH for comprehensive results.
 
 **Keyword search** (`keyword_search_all`): Full-text search across the same 17 tables. Best for exact terms, names, and IDs.
 
-Use `logged_` variants (`logged_search_all`, `logged_keyword_search`) to feed `search_analytics` for gap detection.
+Every `search_all` / `keyword_search_all` call logs to `search_analytics` automatically (since 2026-09-21). Use the `logged_` variants (`logged_search_all`, `logged_keyword_search`) when you want the analytics row to carry a `source_agent` attribution.
 
 **Critical rule:** Summaries are for FINDING records. Raw text (via `get_full_content`) is for ANSWERING questions. Always retrieve the full content before generating a response based on search results.
 
