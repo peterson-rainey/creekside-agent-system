@@ -1,8 +1,11 @@
-# graph8 (AI sales platform), Google Ads + LinkedIn, B2B paid advertising -- Lindsey lindsey_default -- UNSENT
+# graph8 (AI sales platform), Google Ads + LinkedIn, B2B paid advertising -- Lindsey lindsey_default -- SKIPPED
 
 **Date:** 2026-09-23
 **Requested:** "Lindsey's strategic + diagnostic style - write it in lindsey_default" (style pre-resolved in the ask; per 5th-hit rule the mismatch is noted, not re-asked)
 **Profile:** Lindsey | **Style:** lindsey_default | **No sign-off** | **ATTACH: nothing**
+
+## DISPOSITION: SKIPPED (Queenie, 2026-09-23)
+Screen reported with a skip recommendation (platform test HARD FAIL, neither named platform hers, Red flag #4). Queenie: "skip it, go with the Samuel one." The Samuel strategic-diagnostic twin for this same job is the one going forward. This draft is kept for the screen record and the audience-composition angle, which is reusable on any free-tier / PLG product where Lindsey IS in scope.
 
 ## Screens (read before sending)
 
