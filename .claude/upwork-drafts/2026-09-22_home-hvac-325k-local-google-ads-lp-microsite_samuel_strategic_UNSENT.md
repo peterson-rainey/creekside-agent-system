@@ -17,7 +17,10 @@ Profile: Samuel Rainey | Style: strategic | Drafted 2026-09-22 | STATUS: UNSENT 
 - LawnValue (TN home services): LSA 230+ phone / 70+ message leads over twelve months (Nov 2022 - Nov 2023), 3 gdrive PDFs.
 - Mechanics: Google Help 6275629 (call import needs a Google forwarding number), 13020501 (learning ~50 conv / 3 cycles).
 
-## Attachment: NONE recommended
+## Attachment (updated 2026-09-22 on Queenie's ask): urcovered_construction_CLEAN.pdf
+Drive 1onNdpUyrXBZaKw3soT2yOuD4Ah3SSiNU, read in full: 3 pages, 15 -> 60 conversions, $239 CPL down $215 (= $454), Google only,
+no persona/byline strings. Hidden localhost:4321 link on the footer CTA stripped -> .claude/attachments/urcovered_construction_CLEAN.pdf.
+PDF says '300% increase in qualified leads'; body stays on raw counts. Previous reasoning for not attaching Perfect Parking:
 Perfect Parking PDF is a real PDF but carries the $127 12-day CPL (a different slice from the $131 in the body),
 "down from $185" (live match was $173.59), a causal "driven by negative keyword strategy" line and an unverified
 62.8% impression share. Mixing it with the body's slice breaks the one-slice-per-prospect rule.
