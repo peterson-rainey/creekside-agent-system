@@ -1,5 +1,5 @@
 # Media Buyer (Meta/Google Ads), Ongoing ROAS & Campaign Optimization (Samuel, strategic) UNSENT
-Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-23 | No sign-off | ATTACH: none
+Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-23 | No sign-off | ATTACH: .claude/attachments/unrefined_meal_prep_CLEAN.pdf
 
 ## SCREEN
 - Twin check: no match in `.claude/upwork-drafts`, `.claude/drafts`, `drafts/`, `upwork-drafts/`, leads index. `upwork_jobs` NOT checked (no DB tool this session).
@@ -22,11 +22,17 @@ Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-23 | No sign-of
 - qc-reviewer-agent: PASS WITH FIXES. Applied: added the 10% tier above $60K. "Six weeks" loosened to "about six weeks" (window is ~6.4).
 - expert-review-agent: Good. Applied: Google-side tracking line (Enhanced Conversions / offline import tied to the click ID), A/B test method line, retargeting sized against new-customer CAC, CTA range moved off the post's own $10k. NOT applied: "checked daily" (unverified delivery commitment), report-contents clause (length).
 
+## ATTACHMENT (added 2026-09-23 on Queenie's ask)
+- `.claude/attachments/unrefined_meal_prep_CLEAN.pdf`, sha1 6219bda2... re-verified today: 4 pages, 0 link annotations, no localhost, no Samuel/Rainey/Peterson strings, page 1 read.
+- Why: body argues judging budget on new-customer CAC and splitting by market; PDF is new-customer campaigns excluding all past purchasers plus a second city on its own track. Tie-in carries no numbers. No spend figure in the PDF, so no below-$10k anchor.
+- Soft spots: churned 2026-04-29, present tense in the PDF, meal prep not product ecom, Meta only, small spend (~$3.5K), 4x headline sits near a "don't trust platform ROAS" thesis (live 9.16x beats it). Names client + founder.
+- Losers: Aura (Google only, 8-10x headline decayed to ~4x, week-one brag, localhost footer), Fitness Superstore (40x peak, argues against the draft), Big Chad / Perfect Parking / Integrity / URcovered / Winterbotham (off-vertical lead gen). No Myriad Traders PDF exists.
+
 ## PROPOSAL
 
 When Meta and Google both run against the same store, each platform can claim the same order, so the two ROAS numbers added together usually describe more revenue than actually came in. The number worth moving budget on is CAC against new customers in your own backend, with platform ROAS used to rank what's working inside each account.
 
-Averages hide things inside one account too. A survival-gear store our team runs on both Meta and Google spent $27,185 on Meta over about six weeks this summer at 2.32x overall. Split by country, the US returned 3.79x and the UK 0.59x, even though the UK was the cheaper audience to reach, about $27 per thousand impressions against $41. The blended number described neither market.
+A survival-gear store our team runs on both Meta and Google spent $27,185 on Meta over about six weeks this summer at 2.32x overall. Split by country, the US returned 3.79x and the UK 0.59x, even though the UK was the cheaper audience to reach, about $27 per thousand impressions against $41. The blended number described neither market.
 
 On CAPI, the first check is deduplication. The browser Pixel and the server event need to share an event ID, or Meta counts one purchase twice and reported ROAS drifts up while revenue stays flat. On Google, the equivalent is Enhanced Conversions or an offline import tied to the click ID. Then Meta's and GA4's purchase counts get matched against actual store orders, with the GTM and GA4 custom events documented so a site change doesn't quietly break one. Our tracking specialist owns that layer and keeps checking it after setup.
 
@@ -35,5 +41,7 @@ For creative, fatigue shows up as frequency climbing while CTR and cost per purc
 Our Meta and Google specialists run the accounts day to day, with me on strategy. You'd get a report every two weeks plus a live dashboard.
 
 One thing to flag: we don't bill hourly. Setup is $1,500 per platform, one-time, covering the tracking audit and account review. Management is 20% of ad spend with a $1,500 monthly minimum per platform, stepping down to 15% above $30,000 a month and 10% above $60,000.
+
+The attached case study is a meal prep brand our team ran on Meta, with new-customer campaigns kept apart from past buyers and a second city judged on its own.
 
 Happy to get on a quick call. Is combined monthly spend closer to $15,000 or $40,000 right now?
