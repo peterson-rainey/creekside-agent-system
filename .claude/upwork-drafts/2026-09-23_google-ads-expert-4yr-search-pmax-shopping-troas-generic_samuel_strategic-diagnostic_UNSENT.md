@@ -20,7 +20,7 @@ Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Draf
 - Last 30 days: Doctor Laleh $17,176, Tooth Co $9,560, Myriad Traders $9,436, Tiami Sleep $8,603, Perfect Parking $7,011 = five accounts each $7K-$17K.
 
 ## QUEENIE: DECIDE BEFORE SEND
-- Weekly insights were asked for. Body offers the live report only. OK weekly, or keep as is?
+- Weekly insights: RULED by Queenie 9/23, keep the live report, no weekly. Body unchanged.
 - Attachment: none. The Perfect Parking PDF (verified) could go on, but the body uses the Charlottesville test, not the PDF's headline.
 
 ## QC
