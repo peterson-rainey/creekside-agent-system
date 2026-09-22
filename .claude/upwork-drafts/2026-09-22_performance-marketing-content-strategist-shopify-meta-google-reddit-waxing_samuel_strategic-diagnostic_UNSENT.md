@@ -65,7 +65,12 @@ Date note: Postgres Central `now()` = 2026-09-22 17:31. The local harness clock 
 - QC queried the superlative "cheapest CPM in the account". It is backed: the full account pull this session returned four
   campaigns with spend, UK $30.03 vs PS Prospecting Broad CBO $39.96, PS Scaling ProvenAds $44.80, PS WarmRetargeting $49.31.
   QC only had the two campaigns I inlined, hence the flag. No change needed.
-- Final: **4,947 chars, 817 words, zero em dashes, one question, ends on the question.**
+- `qc-reviewer-agent` run 2, second pass (it picked up the revised paragraphs via SendMessage): **PASS WITH FIXES**,
+  four of five already applied. One new and valid: "the two cold channels **are the same**" literally contradicted the
+  5.3x and 5.5x cited one clause earlier. Changed to "land within a point of each other". QC also re-verified every
+  rounding in the brand split (28.74->28.7, 5.31->5.3, 5.47->5.5, $732,637.21->$733K) as correct.
+- **QC loop closed.** Both agents converged; no open findings remain.
+- Final: **4,968 chars, 821 words, zero em dashes, one question, ends on the question.**
 
 ## /tmp COLLISION, 2026-09-22 (why run 1 failed)
 The body was staged in `/tmp/body.txt` and a concurrent session on this machine overwrote it between the edit and the
@@ -93,7 +98,7 @@ Your break-even ROAS is the number to settle before anything launches, and the 1
 
 Rough shape: a product carrying 60% contribution before discount breaks even near 1.7x. Take 15% off the first order and contribution drops from $60 to $45 on a $100 order while the platform only reports $85 of revenue, so break-even moves to about 1.9x. Add returns and the fulfillment tail and it sits near 2.0x. Put management and creative fees inside it, which you asked for and most break-even math leaves out, and it lands closer to 2.3x. A store aiming at 2x and calling it safe is roughly at break-even. Your real margins move all of that. The point is which costs belong inside.
 
-Second thing to settle: what counts as a new customer. Your popup discount, your branded search and your retargeting all bill against buyers who were already coming. On a Shopify store our team ran on Google, the branded Search campaign returned 28.7x over ten months. Unbranded Search returned 5.3x and unbranded Shopping 5.5x. Strip brand out and the two cold channels are the same, and branded search alone produced $733K of the $1.04M that account tracked. Judge the launch on cold traffic with previous purchasers excluded, or month one will look excellent and tell you nothing.
+Second thing to settle: what counts as a new customer. Your popup discount, your branded search and your retargeting all bill against buyers who were already coming. On a Shopify store our team ran on Google, the branded Search campaign returned 28.7x over ten months. Unbranded Search returned 5.3x and unbranded Shopping 5.5x. Strip brand out and the two cold channels land within a point of each other, and branded search alone produced $733K of the $1.04M that account tracked. Judge the launch on cold traffic with previous purchasers excluded, or month one will look excellent and tell you nothing.
 
 Straight on Reddit: it is not on our record. We run Meta and Google. Better to say so than describe experience we cannot show you. A new pixel cannot carry three learning phases at once on one budget anyway. Reddit is the one to hold until Meta has conversion volume, whoever ends up running it.
 
