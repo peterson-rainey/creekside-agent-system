@@ -34,13 +34,13 @@ When Meta and Google both run against the same store, each platform can claim th
 
 A survival-gear store our team runs on both Meta and Google spent $27,185 on Meta over about six weeks this summer at 2.32x overall. Split by country, the US returned 3.79x and the UK 0.59x, even though the UK was the cheaper audience to reach, about $27 per thousand impressions against $41. The blended number described neither market.
 
-On CAPI, the first check is deduplication. The browser Pixel and the server event need to share an event ID, or Meta counts one purchase twice and reported ROAS drifts up while revenue stays flat. On Google, the equivalent is Enhanced Conversions or an offline import tied to the click ID. Then Meta's and GA4's purchase counts get matched against actual store orders, with the GTM and GA4 custom events documented so a site change doesn't quietly break one. Our tracking specialist owns that layer and keeps checking it after setup.
+On CAPI, the first check is deduplication. The browser Pixel and the server event need to share an event ID, or Meta counts one purchase twice and reported ROAS drifts up while revenue stays flat. On Google, the equivalent is Enhanced Conversions or an offline import tied to the click ID. Then Meta's and GA4's purchase counts get matched against actual store orders, with the GTM and GA4 custom events documented so a site change doesn't quietly break one. Our tracking specialist owns that layer.
 
-For creative, fatigue shows up as frequency climbing while CTR and cost per purchase move the wrong way, so briefs come from that signal rather than a calendar. New ads go in two to seven at a time and changes get batched, since adding ads restarts Meta's learning phase. Tests get a fixed budget split and a minimum run time before a winner is called. Retargeting budget gets sized against new-customer CAC, not its own ROAS, because people who would have bought anyway flatter it.
+For creative, fatigue shows up as frequency climbing while CTR and cost per purchase move the wrong way, so briefs come from that signal. New ads go in two to seven at a time and changes get batched, since adding ads restarts Meta's learning phase. Tests get a fixed budget split and a minimum run time before a winner is called. Retargeting budget gets sized against new-customer CAC, not its own ROAS, because people who would have bought anyway flatter it.
 
 Our Meta and Google specialists run the accounts day to day, with me on strategy. You'd get a report every two weeks plus a live dashboard.
 
-One thing to flag: we don't bill hourly. Setup is $1,500 per platform, one-time, covering the tracking audit and account review. Management is 20% of ad spend with a $1,500 monthly minimum per platform, stepping down to 15% above $30,000 a month and 10% above $60,000.
+We don't bill hourly. Setup is $1,500 per platform, one-time, covering the tracking audit and account review. Management is 20% of ad spend with a $1,500 monthly minimum per platform, stepping down to 15% above $30,000 a month and 10% above $60,000.
 
 The attached case study is a meal prep brand our team ran on Meta, with new-customer campaigns kept apart from past buyers and a second city judged on its own.
 
