@@ -67,3 +67,20 @@ Meta's Ad Library. It's public and shows every ad a page is running right now. H
 - "On the 3rd" holds through September. If this slips into October, write "at the start of September" and re-check the Ad Library first. **Response 2 becomes wrong if they add Instant Form ads.**
 - Send on ONE Upwork room only.
 - If he replies: Response 2's content is the natural follow-up to a "still spam" answer. If he wants a call, use the Upwork scheduler (no links) and check with Cade first, because Scott passed and the budget ("up to $5,000/month") sits at the floor.
+
+## HE REPLIED AGAIN (Tue 9/22)
+
+> The matter is reporting leads that are good to meta which we have been doing but still lead quality is not the best
+
+(So the Ad Library reply went out.) Ad Library re-checked 2026-09-22: ~14 active, all Sep 3, every ad with a visible destination links to the website; some summary cards show no destination, hence the hedge.
+
+### Reply 2A (UNSENT, recommended; sdr-agent V2, opener tightened, QC PASS WITH FIXES applied)
+
+One thing to check is timing. Under standard attribution, Meta counts a click for 7 days at most, so a lead your team confirms after that may not get credited to the ad that brought them in. Every ad where I could see a destination sends people to the website instead of an Instant Form, and Meta's conversion leads goal, the one built to learn from CRM stages, only works with Instant Forms right now. How long does it usually take between someone filling out the form and your team confirming they're legit?
+
+### Reply 2B (UNSENT, alternate)
+
+Every ad where I could see a destination sends people to the website, and Meta's conversion leads goal (the one that learns from CRM stages) only works with Instant Forms right now. So with website leads, the question is what the campaigns are actually optimizing for. At roughly 5% good leads, a qualified event is hard to hit at the ~50 results a week an ad set needs to exit learning. Are the campaigns optimizing on the qualified event itself, or still on the form submit?
+
+- No call ask in either: who takes a call is still open with Cade (Scott passed in July).
+- No DB access this session: nothing logged to sdr_generation_log.
