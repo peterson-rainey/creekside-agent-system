@@ -38,8 +38,18 @@ Profile: Lindsey | Style: lindsey_default (diagnostic opener) | Date: 2026-09-23
 **Soft spots:** churned 2026-04-29 and written in present tense, so it is never described as current in the body; meal prep, not a named vertical here (post is industry-agnostic, so no mismatch); small spend.
 **Why it fits:** the body's second half is the exclusion structure, and the PDF's thesis is new-customer campaigns excluding all past purchasers with a second market on its own track. Tie-in carries no numbers.
 
+## REVIEW LOG (2026-09-23, v1 -> v2)
+**qc-reviewer-agent: WARN, one non-blocking flag, APPLIED.** Caught an attachment identity-conflation risk: the body names "a meal prep account I have run since January" (CI Lifestyle, hers) and the attached PDF is Unrefined Meal Prep, a DIFFERENT, non-Lindsey, churned meal-prep brand. Coincidental same-vertical overlap left ownership fully open, which is the riskier read given Unrefined is not hers. Fixed by replacing "Attached a couple of results that show the structure." with "The attached case study is a different brand, same structure." — closes the identity question, stays neutral on operator, claims nothing. QC passed everything else: no before/after CAC claim, no corrupted-ROAS figure, no implied causation, concession reads as boundary not apology, full style-doc compliance.
+
+**expert-review-agent: two substantive catches, both APPLIED; one rejected.**
+- APPLIED (technical overreach): "data that fixing it throws away" was wrong — historical numbers stay visible in Ads Manager, what resets is delivery, so the reads stop being *comparable*. Reworded to "So a creative read taken before the event is right stops being comparable the moment you fix it."
+- APPLIED (the real gap): the draft opened a creative-testing loop and never closed it, and never touched the post's closing want-line ("troubleshoot campaigns when performance drops") — the two most specific asks in the post. Fixed twice: the dental anecdote now pays off into drop-diagnosis ("where I look first when an account dips, since a broken automation reads as ad fatigue until you check it" — hits their automation/Zapier bullet too), and the persona-anchor line now closes the creative loop ("once measurement is settled, variation testing finally tells you something"). That rewrite also removed the unqualified "accounts that improve fastest" performance claim that sat directly beside the disclosed conversion-rate gap.
+- REJECTED: its Andromeda-era claim that 2026 guidance leans away from excluding past purchasers at the targeting level. Sourced to third-party blogs, self-flagged LOW-MEDIUM, "not Meta's primary docs." Outranked by the live-verified structure on an ACTIVE account she operates. Not changed.
+- REJECTED: cutting the profile-video line to buy words. It is a lindsey_default requirement. Words were found elsewhere.
+- Expert also said keep the scope concession untouched; QC agreed. Untouched.
+
 ## WORD COUNT
-300 words, 1663 characters. Within the lindsey_default 200-300 band (350 ceiling) and far under the 5,000-char Upwork limit.
+300 words, 1676 characters. Within the lindsey_default 200-300 band (350 ceiling) and far under the 5,000-char Upwork limit.
 
 ## OPEN FLAGS FOR QUEENIE
 1. **The LP/CRO screen fired and was overridden on scope fraction.** Drafted rather than reported-and-stopped because the post has zero CRO-gated questions and `upwork_jobs` shows this exact shape being applied to repeatedly. Say the word and this becomes a skip.
@@ -51,18 +61,18 @@ Profile: Lindsey | Style: lindsey_default (diagnostic opener) | Date: 2026-09-23
 
 ## PROPOSAL (paste-ready)
 
-Are the Pixel and Conversions API events already settled, or is that part of what the first month is for? The answer sets the sequencing. Changing an ad set's optimization event is one of the edits Meta treats as significant, which sends that ad set back into learning. Creative tested before the event is right gets judged on data that fixing it throws away.
+Are the Pixel and Conversions API events already settled, or is that part of what the first month is for? That sets the sequencing. Changing an ad set's optimization event is an edit Meta treats as significant, which sends it back into learning. So a creative read taken before the event is right stops being comparable the moment you fix it.
 
-The reason I ask is that most accounts I take over arrive in the opposite order: creative done, measurement half built. On a cosmetic dental account I run, I held Facebook spend flat until the CRM pipeline and its automations were confirmed working, then raised it. Slow at the time, and still the part I would keep.
+I ask because most accounts I take over arrive in the opposite order: creative done, measurement half built. On a cosmetic dental account I run, I held Facebook spend flat until the CRM pipeline and automations were confirmed working, then raised it. It is also where I look first when an account dips, since a broken automation reads as ad fatigue until you check it.
 
-Once the event is trusted, the structure around it decides what the number means. A meal prep account I have run since January excludes every past purchaser from prospecting, so the cost per order Meta reports there is a new customer cost, not a blend of new and repeat. Most accounts never split the two, which is how CAC and CPA become one number wearing two labels.
+Once the event is trusted, the structure around it decides what the number means. A meal prep account I have run since January excludes every past purchaser from prospecting, so the cost per order Meta reports is a new customer cost, not a blend of new and repeat. Most never split the two, which is how CAC and CPA become one number wearing two labels.
 
-After ten years and an e-commerce brand I built and sold, the accounts that improve fastest are the ones where measurement got settled first.
+Ten years of this, plus an e-commerce brand I built and sold: once measurement is settled, variation testing finally tells you something.
 
 On scope, mine is Meta and email. Page builds and SEO are not, and no conversion rate portfolio sits behind me. For pages I work with someone who builds them, and I stay on the ad to page match and what the form fires.
 
-Attached a couple of results that show the structure.
+The attached case study is a different brand, same structure.
 
 What monthly range are you working with for Meta? The same structure reads differently at $5,000 than at $50,000.
 
-There is a quick video on my profile that covers how I work through an account.
+There is a short video on my profile covering how I work an account.
