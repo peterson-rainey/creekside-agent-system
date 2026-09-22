@@ -161,6 +161,34 @@ def get_oldest_draft() -> dict | None:
     return draft
 
 
+def write_failure_alert(message: str, severity: str = 'medium'):
+    """File a publish_failure pipeline_alert (once per open alert).
+
+    Before 2026-09-21 the publisher's failure paths only wrote to the local
+    log, which nobody reads -- 5 silent lost publishing days in September.
+    """
+    try:
+        existing = postgrest_get(
+            'pipeline_alerts',
+            'pipeline_name=eq.seo_publisher&alert_type=eq.publish_failure&acknowledged=eq.false&limit=1',
+            select='id',
+        )
+        if existing:
+            log('Open publish_failure alert already exists. Not re-alerting.')
+            return
+        postgrest_post('pipeline_alerts', {
+            'pipeline_name': 'seo_publisher',
+            'alert_type': 'publish_failure',
+            'severity': severity,
+            'source': 'seo_publisher.py',
+            'message': message[:2000],
+            'details': {'occurred_at': datetime.now(timezone.utc).isoformat()},
+        })
+        log('Filed publish_failure pipeline_alert.')
+    except Exception as exc:
+        log(f'WARNING: could not write publish_failure alert: {exc}')
+
+
 def check_queue_health():
     """File a pipeline_alert (once) when the generation queue is fully drained.
 
@@ -463,6 +491,9 @@ def main():
         log(f'SUCCESS: Published "{title}" to creeksidemarketingpros.com/blog/{slug}/')
     else:
         log(f'FAILED: Could not publish "{title}". Draft stays in queue for retry.')
+        write_failure_alert(
+            f'SEO publisher failed to publish "{title}" (slug: {slug}). '
+            f'Draft stays in queue for retry. See ~/logs/seo-publisher.log for the git error.')
 
     log('=== SEO Publisher done ===')
 
@@ -471,5 +502,9 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as exc:
+        import traceback
         log(f'FATAL: Unhandled exception: {exc}')
+        write_failure_alert(
+            f'SEO publisher crashed with unhandled exception: {exc}\n'
+            f'{traceback.format_exc()[-1200:]}')
         sys.exit(1)
