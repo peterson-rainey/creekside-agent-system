@@ -1,6 +1,6 @@
 # AI & Automation consulting + integration business, part-time ads specialist (Samuel, strategic) UNSENT
-Profile: Samuel Rainey (public display name Peterson Rainey) | Style: samuel_strategic | Date: 2026-09-23 (Manila; Postgres now() = 9/22 US Central) | No sign-off | v4 = 349 words / 2,083 chars
-ATTACH: nothing by default (ReferPro PDF optional, see ATTACHMENT)
+Profile: Samuel Rainey (public display name Peterson Rainey) | Style: samuel_strategic | Date: 2026-09-23 (Manila; Postgres now() = 9/22 US Central) | No sign-off | v5 = 354 words / 2,111 chars
+ATTACH: ReferPro_B2B_SaaS_Case_Study.pdf (Drive 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso), chosen on Queenie's "what case study should I attach?" (see ATTACHMENT)
 
 ## TWIN (Lindsey draft of the same job, parallel session)
 - `2026-09-23_ai-automation-consulting-integration-part-time-ads-leadgen_lindsey_default_UNSENT.md` appeared after this session's step-0 grep. QC found it.
@@ -24,9 +24,12 @@ ATTACH: nothing by default (ReferPro PDF optional, see ATTACHMENT)
 - Team: Jordan Tryon, Conversion Tracking Specialist; Google: Ahmed Imran, Ade Aderibigbe; Meta: Lindsey Bouffard. Reporting: every two weeks + live dashboard.
 - Mechanics (verified 9/16): Google offline import tied to the click ID, 90-day limit (63 for enhanced conversions for leads); Meta CAPI carries CRM stages; ~50 results per ad set per week to exit learning (why calls steer budget before they steer bidding).
 
-## ATTACHMENT
-- Default: nothing. QC blocker: the ReferPro PDF (Drive 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso, 197,146 bytes, re-checked today) is bylined "By: Samuel Rainey" while the profile shows Peterson Rainey, and its Google/Meta icons are swapped. Needs an admin re-export.
-- If Queenie attaches it anyway: add "That case study is attached." after "...the searches that followed." Never quote its screenshot numbers or the ARR headline in the body.
+## ATTACHMENT (resolved 2026-09-23 on Queenie's ask: "what case study should I attach?")
+- ATTACH ReferPro_B2B_SaaS_Case_Study.pdf (Drive 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso, application/pdf, 197,146 bytes, unchanged since 2026-07-08, re-checked today). v5 adds "That case study is attached." after the ReferPro sentence, the line QC reviewed in v2.
+- Why: it is the proof the body already describes, the only B2B row, automation sold to service businesses (closest buyer shape to an AI consultancy), both platforms, and page 2 carries real Google + Meta lead screenshots.
+- Soft spots (known, accepted by asking): visible byline "By: Samuel Rainey" vs the Peterson Rainey profile (QC's blocker, reads as a colleague at worst); Google/Meta logos swapped on page 2; headline claims ARR doubled (body credits the funding for part of it); screenshots imply ~$1.5-2K/mo per platform. Never quote its numbers or ARR in the body. Admin re-export still needed.
+- Runners-up: Integrity Naturopathic CLEAN (only byline-free file that fits; page 3 keyword table shows service-intent terms beating broad ones, same idea as the opener; but a local clinic that prints a ~$2,350/mo budget, needs its own tie-in line). Big Chad Law (1) (only file tracking past the lead, $950.83 per case / ~$91 per conversion, fits the qualified-calls point; but PI law, same Samuel byline, came through a partner agency, never "direct client").
+- Losers: Winterbotham CLEAN (consumer-legal CTA, decomposition thesis isn't this draft's argument), Perfect Parking ($127 cherry-pick, residential framing), UrCovered / Unrefined / meal prep (consumer), Aura (Google ecom).
 
 ## OPTIONAL PRICING LINE (only if the job page shows hourly)
 "We don't bill hourly. Setup is $1,500 per platform, one-time, and management is 20% of ad spend with a $1,500 monthly minimum per platform."
@@ -35,7 +38,7 @@ ATTACH: nothing by default (ReferPro PDF optional, see ATTACHMENT)
 - qc-reviewer-agent: PASS WITH FIXES. Blocker 1 (twin): resolved by the Lindsey session's divergence plus the send-one flag. Blocker 2 (attachment byline): attachment line removed. Minor (367 words): tightened to 349 by merging the job-seeker point into the qualified-call sentence instead of cutting it.
 - expert-review-agent: Good. Applied: team line no longer fights the part-time ask; "they decide" -> "we use them to decide"; funding credited for part of the doubling; "trading some volume for buyer intent". Not applied: "Inside that part-time scope" (reads as accepting an hours-based seat, collides with never-bill-hourly); its ReferPro rewrite that dropped "our part" (loses attribution). The reviewer read the Lindsey twin file as this draft (known twin trap).
 
-## PROPOSAL (v4, final)
+## PROPOSAL (v5, final, attach ReferPro PDF)
 
 For an AI and automation consulting business, the word "AI" works against your targeting. Broad AI searches and interests are full of people learning the tools or starting their own automation agency, and they rarely buy integration work. Buyers tend to search the specific integration or workflow plus a hire word, like "Zapier consultant" or "CRM integration services."
 
@@ -47,7 +50,7 @@ Lead generation for a consultancy is best judged on qualified discovery calls, n
 
 On a smaller budget I'd start with Google Search, where intent already exists, and add Meta once both can be funded, since a thin budget split two ways starves both.
 
-The closest example is a B2B software company selling referral automation to home service contractors. Inbound leads doubled in the six months after their seed round, with the funding doing part of that work. Our part was Meta building awareness for a category contractors didn't know existed and Google capturing the searches that followed.
+The closest example is a B2B software company selling referral automation to home service contractors. Inbound leads doubled in the six months after their seed round, with the funding doing part of that work. Our part was Meta building awareness for a category contractors didn't know existed and Google capturing the searches that followed. That case study is attached.
 
 Day to day, our Google and Meta specialists would run the accounts, with me on strategy. You'd have a live dashboard to check any day, plus a report every two weeks.
 
