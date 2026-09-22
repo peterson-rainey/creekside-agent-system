@@ -42,13 +42,36 @@ The ReferPro PDF is Samuel-bylined and its Results pages are CPL screenshots. On
 
 ---
 
-## PROPOSAL (paste-ready)
 
-Which motion are these ads actually meant to feed? Your pricing page opens at free with no credit card and climbs to $99 a month, while the brief asks to connect advertising to meetings, opportunities and revenue. Those are sales-led outcomes sitting on a self-serve price card, and choosing between them before launch decides more than any targeting call will.
+## TWIN COLLISION (caught pre-delivery, 2026-09-23)
+
+A **Samuel strategic-diagnostic draft for this same graph8 job** was created during this session:
+`2026-09-23_graph8-ai-sales-platform-google-linkedin-b2b-paid-ads_samuel_strategic-diagnostic_UNSENT.md`.
+It did not exist at the start of this session, and my first dupe re-grep masked it (exclusion pattern
+`grep -v 2026-09-23_graph8` filtered BOTH files). Caught on the commit file list.
+
+**Samuel's draft runs:** free trial vs enterprise demo cannot share one conversion action; Aura brand
+vs non-brand blended-target drift; Google offline-import 90/63-day windows + click-date reporting;
+MedWriter spend; ReferPro PDF attached; team framing.
+
+**My first Lindsey pass collided with it** (both opened on the free-no-card tier winning the
+optimization contest). **Rewritten onto the audience-composition axis instead**, which Samuel's
+draft never raises and which is the one genuinely Lindsey-owned mechanism here:
+existing free users inside retargeting pools, and lookalike seeds modelling the free tier.
+
+**Residual shared ground, accepted and flagged:** both drafts cite ReferPro, because it is the only
+B2B SaaS row in the book. Samuel ATTACHES the Samuel-bylined PDF and calls it "the attached case
+study"; Lindsey cites the Meta half only, first person, verified (`platform_operator` = Lindsey B.),
+attaches nothing. Both also start from the free tier as a premise, but reach different mechanisms
+and different fixes. **If both go out, a buyer will see two proposals sharing one case study.**
+Queenie's call.
+
+## PROPOSAL (paste-ready)
+Are your existing free users excluded from the ad audiences right now, or can campaigns still reach them? A free tier with no credit card builds a large base of people who already have a workspace, and by default every retargeting pool and every lookalike seed fills up with them.
 
 Straight about the brief first. Google and LinkedIn are the two platforms named and neither one is what I run. Paid social and lifecycle email are my side of this. If those two channels are the whole program, I am not the right hire, and the only reason to keep reading is the word initially.
 
-Here is why the question matters. A free entry point with no card is the cheapest conversion in the account, so it wins every optimization contest it is entered into. Spend drifts toward it because it is the only event carrying real volume, cost per signup looks excellent, and nobody can say for months whether any of it turned into revenue. A self-serve ladder will also quietly re-acquire people who already have a free workspace unless existing users are excluded at the audience level from day one. On a subscription meal-prep brand I run, hard-excluding every prior purchaser is the only reason the acquisition number means anything at all.
+The damage is quiet. Ads re-reach people who signed up months ago, they click because they recognize the name, and the account books conversions it did not create. The seed problem is worse. Build a lookalike off everyone who signed up and you model the free tier, because that is who most signups are, so the audience coming back looks exactly like people who will spend 500 free actions and never pay. On a subscription meal-prep brand I run, the acquisition number only started meaning anything once every prior purchaser was hard-excluded and new-customer campaigns were kept genuinely separate. A free entry point makes that harder rather than easier, because a signup is not a customer and the list has to be split before it is worth anything.
 
 On B2B software, I ran the paid social side of an account selling referral software to home service contractors. The work was building demand for a category those owners did not know existed, while search captured what that demand created. Inbound leads and ARR both doubled across six months, though that window followed a seed round, so the credit is shared. It ran a few thousand a month per platform.
 
