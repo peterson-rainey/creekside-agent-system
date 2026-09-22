@@ -51,7 +51,34 @@ Reconciled explicitly rather than dropped: the restructure is cited as what fixe
 - **No criticism of the incumbent.** They have been there 22 days and may stay. The draft grades method, never the agency.
 
 ## OPEN FOR QUEENIE
-1. **BID AMOUNT (the only real blocker).** This is a true standalone audit and standalone pricing is still **UNRULED** three ways per [[reference_standalone_audit_fee]]: (A) the $1,000-$1,500 band scaled by active campaigns, Queenie 8/25; (B) Peterson's own sends, $90/hr x ~5 hours, roughly $450 (Ahmed 9/9, Southglenn $270 8/27); (C) the May Drive catalog's $499 fixed Google audit. Nothing is typed in the proposal, so this only affects the **Upwork bid field**. If (B), set the contract hour cap and match the bid rate to $90 (Samuel usually bids $73-74).
+1. **BID AMOUNT -- RULED by Queenie 2026-09-22: "$90/hr". APPLIED.** This closes the question
+[[reference_standalone_audit_fee]] has carried as UNRULED since 9/9 (Queenie's own 8/25 $1,000-$1,500 band
+vs Peterson's $90/hr sends vs the $499 Drive catalog). **She chose Peterson's model over her own band.**
+
+**Mechanics to set on the Upwork bid, per the 9/14 note in that file:**
+- **Bid rate $90/hr, NOT Samuel's usual $73-74.** The profile rate and the bid rate differ on this one on purpose. Clears the $40/hr listed-rate floor ([[feedback_upwork_min_hourly_40]]) with room.
+- **Hard hour cap written into the contract.** Condition 1 of the IVC carve-out is a hard limit, not an estimate. Peterson's own 9/9 wording was "around 5 hours" (~$450) and the IVC read was capped at 3. **Suggest capping at 5 (~$450); your call.**
+- **Nothing changes in the proposal body.** No price is typed, matching the 9/11 Montreal audit-shaped call. The $90 lives in the bid field only.
+
+**CAVEAT I am flagging rather than burying -- condition 3 of the hourly carve-out is the soft spot.**
+[[feedback_never_bill_hourly]] permits hourly only for a short, capped, paid test **that gates ongoing
+management**, and its closest negative example is an advisory-only post that failed exactly here: *"Initially
+this is a paid consultation/account audit"* plus *"I am not looking for ... someone to simply take over my
+account."* That file's instruction is to test condition 3 **on the post's own words, not on an optimistic
+qualifier.** Doing that honestly here:
+- Condition 1, capped and short: **PASS, but only if we set the cap.** Action item above.
+- Condition 2, paid: **PASS.**
+- Condition 3, gates management: **AMBIGUOUS, leaning open.** Ours reads *"I'm not necessarily looking for
+  someone to take over the account"* and *"I mainly want an experienced expert"* -- two hedges, and **no
+  sentence anywhere forecloses management**, which is what separates it from the negative example's flat "I am
+  not looking for". Not a clean pass, not a fail.
+- Condition 4, no rate demanded of us: **non-issue.** The post has zero screening questions and never asks for
+  a rate; we are filling a bid field, not answering a rate demand.
+
+So the ruling is defensible on this post, and the one thing that would make it clearly compliant is the hour
+cap, which is ours to set. Worth knowing that if the thread progresses and they restate the no-takeover line
+more firmly, condition 3 flips and the engagement has nothing behind it.
+
 2. **CLOSING BUDGET BRACKET -- RULED by Queenie 2026-09-22: "$5,000 or $15,000". APPLIED.** My draft used $3,000/$10,000 on the reasoning that the buyer volunteered a "relatively small" budget, so a bracket starting above what they just told us reads as not having read the post, and $3K-$10K straddles our own $5K floor. **Overruled in favour of expert review's anchor**: a large, well-known agency rarely takes a sub-$5K account, so the buyer's "small" is relative to that agency's book, not to ours, and the low bracket anchors any later retainer down for nothing. **Generalised rule: when a prospect calls their budget small but is already paying an incumbent agency, bracket the ask ABOVE the $5K floor, not across it.** The incumbent's existence is better evidence of real spend than the adjective is. Saved as [[feedback_budget_bracket_above_floor_when_incumbent_agency]].
 3. **Job page:** spend, client country, listed rate ($40/hr floor screen), payment verification, hourly vs fixed. All unknown from a pasted post.
 4. `upwork_proposal_logs` INSERT skipped -- `contractor_query` cannot write ([[project_contractor_query_no_inserts]]).
