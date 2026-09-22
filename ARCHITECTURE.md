@@ -281,8 +281,8 @@ The `pipeline_alerts` table tracks failures and anomalies. Scheduled agents (~50
 **Scheduled work lives in three places -- check all three when investigating what runs and when:**
 
 1. **Railway scheduled agents** -- `scheduled_agents` table (`SELECT name, cron_expression FROM scheduled_agents`)
-2. **Local routines** -- Peterson's Mac (only when awake). Prompts live in `.claude/routines/*.md` (source of truth); `~/.claude/scheduled-tasks/*/SKILL.md` files are thin pointers. Examples: brain-steward, daily-status-brief, pre-call-prep, gmail-triage.
-3. **Remote triggers** -- claude.ai cloud (`RemoteTrigger list`). Example: SEO blog generator.
+2. **Local routines** -- Peterson's Mac (only when awake). Prompts live in `.claude/routines/*.md` (source of truth); `~/.claude/scheduled-tasks/*/SKILL.md` files are thin pointers. Examples: daily-status-brief, pre-call-prep, gmail-triage. NOTE: local routines do NOT log to `agent_run_history` -- missed runs are invisible.
+3. **Remote triggers** -- claude.ai cloud (`RemoteTrigger list`). Examples: SEO blog generator; brain-steward (`trig_01V7Zd7WrPnipXxyfeV4pCix`, Tue 12:00 UTC, migrated from local 2026-09-21 -- prompt is a pointer to `.claude/routines/brain-steward.md` in the repo checkout, SQL via Peterson's account-scoped Supabase connector, no raw admin key).
 
 **Ad platform connectors (since 2026-08-17):** AdKit MCP (`mcp.adkit.so`) is the primary connector for ALL live Google Ads and Meta operations -- reads and writes. PipeBoard is fully deprecated. Backups: official Meta Ads MCP for Meta reads; dashboard API / Chrome UI for Google reads. See the `ads-connector` skill.
 

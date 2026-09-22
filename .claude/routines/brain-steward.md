@@ -136,7 +136,7 @@ Use `execute_sql` for all database queries.
 ### On Start
 ```sql
 INSERT INTO agent_run_history (agent_name, trigger_type, status, started_at, result_summary)
-VALUES ('brain-steward', 'local_scheduled', 'running', NOW(), 'Starting weekly brain maintenance')
+VALUES ('brain-steward', 'remote_scheduled', 'running', NOW(), 'Starting weekly brain maintenance')
 RETURNING id;
 ```
 Save the returned id as RUN_ID.
@@ -594,4 +594,4 @@ This routine uses:
 - **Git**: For checking agent file status (no writes)
 - **qc-reviewer-agent spawn**: For research idea validation (Agent tool)
 
-This routine is admin-only. It runs on Peterson's Mac as a local scheduled task.
+This routine is admin-only. Since 2026-09-21 it runs as claude.ai remote trigger `trig_01V7Zd7WrPnipXxyfeV4pCix` (Tuesdays 12:00 UTC) with Peterson's account-scoped Supabase MCP connector -- no raw admin key is embedded anywhere. The old local scheduled task (`~/.claude/scheduled-tasks/brain-steward/SKILL.md`) is disabled and exits immediately if fired. Remote execution notes: repo paths refer to the cloud checkout root; never commit or push from the remote run.
