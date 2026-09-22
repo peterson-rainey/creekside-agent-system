@@ -1,6 +1,6 @@
 # graph8 — B2B paid ads (Google Ads + LinkedIn, AI sales platform) — Samuel, strategic + diagnostic — UNSENT
 
-Profile: Samuel Rainey | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-23
+Profile: Samuel Rainey | Style: strategic + diagnostic | Status: APPROVED TO SEND, not yet submitted | Drafted 2026-09-23
 (Postgres `now()` read 2026-09-22 Central at draft time; session date and sibling drafts say 9/23. Noted, not material.)
 
 ## DISPOSITION CONTEXT (found mid-session, important)
@@ -10,6 +10,16 @@ A **Lindsey draft for this same graph8 job already exists** from 05:10 today:
 Queenie already ruled on it: **"skip it, go with the Samuel one."** So this Samuel draft is the
 intended deliverable, not a second competing bid. The Lindsey twin is SKIPPED and is not going out,
 which retires the shared-ReferPro collision that file flags.
+
+## DISPOSITION: APPROVED TO SEND AS-IS (Queenie, 2026-09-23)
+
+Both hard screens were reported with a skip recommendation ($30/hr bottom under the $40 floor; ongoing hourly with no % of spend hook). Queenie chose **"Send as-is"** over skip / rework / route-to-Keith. **Body unchanged** and deliberately silent on rate and on the Meta half.
+
+**Override record:** this is an override of BOTH [[feedback_upwork_min_hourly_40]] (first recorded override of that screen) and [[feedback_never_bill_hourly]] on an ongoing-hourly post with no stated ad budget. Worth carrying: the $40 floor is no longer unoverridden.
+
+**Not sent by this session.** Standing rule is draft-only, deliver in chat, send only when asked; and Chrome is logged out of Upwork, so submitting would require credentials this session must not handle. Queenie submits.
+
+**Live on touch 2:** the post is hourly $30-$69 and our fee model is % of spend. The body says nothing about it, so the rate question arrives unanswered on the first reply. The Bedspoke precedent is the wording to reach for: decline hourly plainly, give a monthly fee tied to ad spend, set once spend is known, and no weekly hours.
 
 ## SIDEBAR CHECK (live, logged OUT, 2026-09-23)
 
