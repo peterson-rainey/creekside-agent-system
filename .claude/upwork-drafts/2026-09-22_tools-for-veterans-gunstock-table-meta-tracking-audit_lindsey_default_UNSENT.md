@@ -29,8 +29,8 @@ Profile: Lindsey | Style: lindsey_default (request said "strategic + diagnostic 
 - expert-review-agent: Needs Work. Applied: attribution window added as a cause; placement added next to geography; a bridge line for the price-band mismatch. NOT applied: cutting the 90-day line (standing rule says offer the real structure when a trial is raised; kept short, flagged below).
 
 ## OPEN FOR QUEENIE
-1. Neue Maison ROAS: live pull needed, or use FALLBACK.
-2. 90-day line vs their "30-day management trial": kept per the no-trial rule; expert review says cut it at first touch. Your call.
+1. Neue Maison ROAS: DROPPED per Queenie 9/22 (fallback applied); furniture example gives price, spend and cost per conversion only.
+2. 90-day line: CUT per Queenie 9/22. Proposal is silent on term; if they raise the 30-day trial later, do NOT agree (90-day minimum stands).
 3. Job page: budget type, payment verified, total spent.
 4. Meta weapons-policy exposure on gunstock creative: unverified.
 5. `upwork_proposal_logs` INSERT skipped (no DB access).
@@ -45,14 +45,12 @@ On accounts I audit, it lands in one of three places. Near $200 usually means ea
 
 Two accounts I ran on Meta:
 
-A luxury furniture brand, average order $500 to $1,300 by month. About $105,000 in spend over four months; the sales campaigns spent $91,500 for 334 conversions, about $274 each, at [X.X]x ROAS. I built and ran the prospecting, retargeting and sale campaigns, and took spend from $25,000 in May to $40,000 in July.
+A luxury furniture brand, average order $500 to $1,300 by month. About $105,000 in spend over four months; the sales campaigns spent $91,500 for 334 conversions, about $274 each. I built and ran the prospecting, retargeting and sale campaigns, and took spend from $25,000 in May to $40,000 in July.
 
 A survival gear store, products $18 to $86. Late June to mid-August: $27,186 in spend, 825 purchases at $32.95 each, 2.32x ROAS. I ran a UK launch alongside the US, and the blend described neither country: the US returned 3.79x, the UK 0.59x. That's why I'd break your history out by geography and placement first.
 
 Neither sits at your price point, but the tracking mechanics are the same at $30 or $1,000.
 
 After 10+ years, and building and selling my own e-commerce business, I judge an account by margin per sale.
-
-For management I work on a 90-day minimum, since a relaunch on repaired tracking spends much of its first month relearning.
 
 What was the monthly spend when the campaign last ran, closer to $2,000 or $10,000? There's a short video on my profile that shows how I work.
