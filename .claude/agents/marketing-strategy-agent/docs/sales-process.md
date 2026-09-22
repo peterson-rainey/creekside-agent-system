@@ -92,5 +92,16 @@ Ram K (prospect with 5 dental offices) after watching YouTube: "I think if anybo
 - No reference handoff process (connecting prospect with existing client in similar niche)
 - Decision-maker authority filter needs to be more explicit in qualifying phase
 
+## Patterns Confirmed in Practice (added 2026-05-01)
+
+### Tracking Validation as Hard Prerequisite Before Scaling
+South River Mortgage: $10K isolated test campaign proposed with tracking validation as a hard prerequisite. Do not propose scaling budgets until attribution is confirmed clean. Campaign-level tracking blocked by application redirect issues — resolve before committing to spend growth. Pattern: scope a contained test, fix tracking, then scale. (Source: South River Mortgage strategy update, 2026-05-01.)
+
+### Campaign Scope/Workflow Boundaries with Clients
+Chris Ideson Meal Prep: Creekside owns campaign creation going forward after onboarding Lindsey as creative/campaign contact. Client-side ad-hoc boosting outside the agreed workflow was flagged as a boundary issue. Pattern: when Creekside takes ownership of campaign creation, document the scope boundary explicitly and flag any client-side ad actions as outside the agreed workflow. (Source: gmail:0692e550, Chris Ideson strategy update, 2026-05-01.)
+
+### Client Proof Points (updated 2026-05-01)
+- The Tooth Co: Connor reported $30K-$40K/month revenue increase since Creekside engagement. 80% phone-call new-patient conversion rate benchmark confirmed. Use in dental/healthcare sales conversations as a revenue-lift proof point with a specific phone conversion metric. (Source: The Tooth Co goals update, 2026-05-01.)
+
 ---
 
