@@ -25,7 +25,7 @@ Deliberate divergence in this draft:
 - **Winterbotham is used against itself** (see below), which the 9/21 draft did not do.
 
 ## VERIFIED LIVE 2026-09-22 (contractor_query)
-- **Winterbotham Parham Teeple**, `case_studies`: industry Legal, platforms `["Google Ads"]`, key_result verbatim: *"Doubled bankruptcy leads (117 to 229) and cut CPA 42% (from $86 to $50.29) through market-specific campaign restructuring in Orange County."* Mechanism is named in the record and in the PDF's strategy section, so "restructured into market specific campaigns, which took it from 117 to 229" is documented, not implied causation ([[feedback_no_implied_causation_juxtaposition]]). White-label account, not in `google_insights_daily`, so **not live-verifiable** -- PDF/case_studies sourced only.
+- **Winterbotham Parham Teeple**, `case_studies`: industry Legal, platforms `["Google Ads"]`, key_result verbatim: *"Doubled bankruptcy leads (117 to 229) and cut CPA 42% (from $86 to $50.29) through market-specific campaign restructuring in Orange County."* Mechanism is named in the record and in the PDF's strategy section, so "restructured into market-specific campaigns, which took it from 117 to 229" is documented, not implied causation ([[feedback_no_implied_causation_juxtaposition]]). White-label account, not in `google_insights_daily`, so **not live-verifiable** -- PDF/case_studies sourced only.
 - **Active Google accounts with spend since 2026-09-10:** 11 (Doctor Laleh, Tiami, Myriad Traders, Perfect Parking, The Tooth Co, Canvas Homes, Vida Dentistry, Nightlark, Integrity Naturopathic, Tilly Mill Auto Center, Outback Peptides at $10.17). Draft says **"eleven"**, not "about a dozen" (9/21's wording), and it is exact.
 - **Attachment re-checked today:** `winterbotham_parham_teeple_CLEAN.pdf`, %PDF-1.4, 3 pages, 785,596 bytes. **0 "localhost" strings** (the old defect is gone in the CLEAN export). One brand string only, the PDF Title metadata *"Winterbotham Parham Teeple Case Study | Creekside Marketing"* -- no Samuel/Rainey/Peterson leak, so no persona risk ([[project_samuel_is_peterson]]).
 - Samuel = six years (memory, confirmed by Queenie 8/12).
@@ -68,12 +68,25 @@ Verdict **Good**. All four Google mechanics independently re-confirmed against c
 ## CRO SCREEN -- CHECKED, DOES NOT FIRE
 [[reference_no_landing_page_cro_case_study]] tests scope fraction plus proof-gated questions ("two CRO-gated questions is the line"). Here the landing page is ONE of eight review bullets, phrased as alignment with targeted searches rather than ownership, and there are ZERO screening questions of any kind. That is the 8/19 NJ home-services override shape (LP one slice of a ~20-item audit, no CRO-gated questions, drafted and handled as ad-to-page intent alignment), not the NextPoint / security-guard skip shape. No skip.
 
+## QC (qc-reviewer-agent, 2026-09-22, on v2) -- PASS, NO BLOCKERS
+Ran without SQL access, so it QC'd against the fact block plus this file's own dated verification log and the standing-rule memory files, and confirmed the committed text matches the pasted draft verbatim. All 12 rules PASS individually, including the two that mattered most: **no implied causation** (the Winterbotham numbers sit beside a mechanism the `case_studies` record itself names, so the causal claim is documented, not implied) and **the decomposition hazard is genuinely reconciled, not left contradicting** ("Structure cuts both ways" primes it, the small-budget stall states the opposite mechanism explicitly, and the paragraph closes without picking a side).
+
+**Nits ACCEPTED and applied in v3:**
+- `$50` -> `$50.29`, and "about ... down to" dropped, so the figure now matches the `case_studies` key_result wording exactly ("from $86 to $50.29").
+- Hyphenation: `market-specific campaigns` (matches the record), `fifteen-minute check`, `three-week one`.
+
+**Nits NOTED, not actioned:**
+- "a team shipping edits every few days ... and call it optimization" is the sharpest line against the no-disparagement rule. It PASSES because it names a pattern, never "your agency" or "they". Kept deliberately -- it is the paragraph's whole payload.
+- Word ceiling headroom is now 6 words. Nothing can be added later without a trim.
+
+**Coverage, independently re-checked:** zero of the buyer's 8 bullets are silent. Six answered directly (structure P5; keywords/match types/search terms/negatives P4; optimizing-vs-drifting P2/P3; ad-to-page alignment P4; wasted budget P4; attention-for-what-you-pay P2). Two carried by the throughline rather than a dedicated sentence: bidding strategy vs budget and data (P1 learning volume -> P5 not enough conversions per piece) and what I would change (method shown, specific changes not committed pre-access). QC called that allocation correct, since those two are the ones that cannot be answered honestly without account access and overclaiming there would itself be the risk.
+
 ## STYLE CHECKS
-No "I" opener. First two sentences built from their nouns (22 days, second opinion, small budget). No em dashes, no bold, no headers, no bullets, no links, no calendar link, no contact info. "Our team" for delivery, no principal in a delivery seat. No sign-off name (9/4 ruling overrides samuel-identity.md's "Samuel" line). **398 words / 2,176 characters**, well inside 5,000 and inside the 400-word multi-question ceiling.
+No "I" opener. First two sentences built from their nouns (22 days, second opinion, small budget). No em dashes, no bold, no headers, no bullets, no links, no calendar link, no contact info. "Our team" for delivery, no principal in a delivery seat. No sign-off name (9/4 ruling overrides samuel-identity.md's "Samuel" line). **394 words / 2,168 characters**, well inside 5,000 and inside the 400-word multi-question ceiling.
 
 ---
 
-## PROPOSAL (v2, post expert review)
+## PROPOSAL (v3, post expert review + QC)
 
 Twenty two days is how long you have been with them, not how old the account is, and that gap decides what a second opinion can honestly tell you. Anything they changed on day one is still resolving: Google sizes a learning period at roughly 50 conversions or three conversion cycles rather than a number of days, and it dates each conversion to the click that produced it, so the newest days are still filling in. Grade them on three weeks of results and you are grading noise.
 
@@ -81,9 +94,9 @@ What is fair to grade is the decisions, and one of them has a much cleaner answe
 
 Busy and good are not the same thing, though. A new bid strategy, a settings change, or keywords and ad groups being added or removed all put the strategy back into learning, so a team shipping edits every few days can hold a small account in permanent reset and call it optimization.
 
-The faster tells sit in the search terms report. Broad match without a negative list built alongside it buys the wrong queries, and ads that do not answer what someone actually typed push relevance and cost the wrong way at once, landing page included. That is a fifteen minute check, not a three week one.
+The faster tells sit in the search terms report. Broad match without a negative list built alongside it buys the wrong queries, and ads that do not answer what someone actually typed push relevance and cost the wrong way at once, landing page included. That is a fifteen-minute check, not a three-week one.
 
-Structure cuts both ways. The case study attached is a law firm whose account was restructured into market specific campaigns, which took it from 117 leads to 229 and cost per lead from about $86 down to $50. On a budget your size that same split is usually what stalls an account instead, because no single piece collects enough conversions to learn on. Which of those you are looking at is most of the review.
+Structure cuts both ways. The case study attached is a law firm whose account was restructured into market specific campaigns, which took it from 117 leads to 229 and cost per lead from $86 to $50.29. On a budget your size that same split is usually what stalls an account instead, because no single piece collects enough conversions to learn on. Which of those you are looking at is most of the review.
 
 Six years on this, a fair amount of it on accounts someone else was running, and eleven Google accounts run through our team now. This would be read only, so nothing moves and the agency keeps running it.
 
