@@ -6,7 +6,7 @@ Profile: Samuel Rainey | Style: samuel_strategic, diagnostic opener | Date: 2026
 - Possible white-label: studio makes the creative, "technical side" only; no "our clients" wording. Close asks whose campaigns these are.
 - Spend + rate UNSTATED, $5K floor unmeasurable; A$ bracket ask in close. Geo AU PASS.
 - No DB tools this session; facts from dated memory records (Tooth Co 9/11, video share 9/4, Fusion 9/21, Laleh 8/27).
-- OPEN: "a senior Meta specialist ... runs accounts at that scale" implies Lindsey gets the account. Confirm before sending.
+- RESOLVED 9/22: Queenie confirmed Lindsey takes the account; staffing line stays as written.
 
 ## QC
 - qc-reviewer-agent: PASS WITH FIXES. Applied: $15K cap added, staffing promise softened. Declined: "same audience" + "aesthetics" (both verified in memory records, facts omitted from QC brief).
