@@ -37,3 +37,17 @@ Our closest work is B2B: a referral software company selling to home service con
 On who does the work: our Meta specialist runs your account hands-on every day, and our tracking specialist builds the Conversions API and CRM feedback. I stay on strategy, and problems reach you before you have to ask.
 
 What does your team record after a call today, and is Meta spend closer to $5,000 or $25,000 a month?
+
+---
+
+## SCREENING ANSWERS (paste-ready, QC PASS)
+
+Hourly-rate demand noted: the IVC carve-out fails (ongoing management, rate asked of us). Queenie asked for the answers directly, so they are drafted with no hourly figure and no hour count, using the canonical % of spend fee.
+
+Q1. How many hours can you dedicate to us for Meta ads management?
+
+There's no fixed hour count on our side, because the hours follow the work. The first weeks run heavy while our tracking specialist wires up the Conversions API and the post-call feedback, and so do weeks when a new creative test launches. Weeks spent reading results and moving budget run lighter. Through all of it, our Meta specialist is in your account every workday. We'd rather commit to what gets done than to a number of hours.
+
+Q2. What is your hourly rate for Meta ads management?
+
+We don't bill Meta management by the hour. It's a flat monthly fee tied to ad spend: 20% of monthly Meta spend with a $1,500 floor, and the percentage steps down on spend above $30,000. There's also a one-time $1,500 onboarding fee covering the audit, tracking build, audiences and campaign build. At $5,000 a month in spend, the fee is $1,500. At $25,000, it's $5,000. The fee only rises when you decide to scale spend.
