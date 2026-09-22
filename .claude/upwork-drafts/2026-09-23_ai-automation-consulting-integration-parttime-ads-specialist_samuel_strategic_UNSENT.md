@@ -1,5 +1,5 @@
 # AI & Automation consulting + integration business, part-time ads specialist (Samuel, strategic) UNSENT
-Profile: Samuel Rainey (public display name Peterson Rainey) | Style: samuel_strategic | Date: 2026-09-23 (Manila; Postgres now() = 9/22 US Central) | No sign-off | v5 = 354 words / 2,111 chars
+Profile: Samuel Rainey (public display name Peterson Rainey) | Style: samuel_strategic | Date: 2026-09-23 (Manila; Postgres now() = 9/22 US Central) | No sign-off | v6 = 359 words / 2,132 chars
 ATTACH: ReferPro_B2B_SaaS_Case_Study.pdf (Drive 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso), chosen on Queenie's "what case study should I attach?" (see ATTACHMENT)
 
 ## TWIN (Lindsey draft of the same job, parallel session)
@@ -15,12 +15,12 @@ ATTACH: ReferPro_B2B_SaaS_Case_Study.pdf (Drive 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cws
 - Spend: unstated, so the $5K floor is unmeasurable. Asked in the close as $5,000 vs $20,000; the "smaller budget" paragraph gives the reason.
 - Geo, payment verification, client history, budget field: not in the paste. Check the job page.
 - White-label: no (their own business). Ads in scope: yes. Platforms unnamed; Google first on a smaller budget, Meta once both can be funded (per the $5K Google + $3K Meta two-platform rule, no number printed).
-- Required items / screening questions: none. 90-day minimum and pricing left out of the body.
+- Screening questions: four, pasted by Queenie after v5. Answered in the companion file `..._screening-answers_samuel_UNSENT.md`; Q1 demands niche proof, answered gap-first. 90-day minimum and pricing left out of the body.
 - Not logged to `upwork_proposal_logs` (contractor_query is SELECT-only).
 
 ## FACTS USED (verified live via contractor_query / Drive metadata this session)
 - ReferPro `case_studies` key_result: "Doubled inbound leads and ARR within 6 months post-seed funding. Used Meta for awareness and Google for demand capture to build full-funnel pipeline." Tense conflicted (clients active 8/31 vs both reporting_clients rows churned 4/9 and 4/18), so the body describes the work only. Product: automated referral system sold to home service contractors, Feb to Jul 2025, after a $2.7M seed. ARR not repeated in the body; the funding gets its share of the credit.
-- Zero AI / automation / IT-services consulting clients (clients swept today). No AI experience claimed. Jybr (our own AI agent product) left out on purpose: it builds AI agents for businesses, so it reads as a competitor to this buyer, and it has zero performance data.
+- NICHE CORRECTED after the screening questions: `clients.industry` is NULL on most rows, so the first sweep missed live AI work. A name/website/reporting_clients sweep finds MedWriter (AI medical scribe, ACTIVE Meta, $10K/mo, $116,468.47 and ZERO recorded conversions over the trailing 12 months, operator Scott C.). Spend and structure citable, results are not. No AI consultancy client exists, which is what the answers disclose. Jybr (our own AI agent product) left out on purpose: it builds AI agents for businesses, so it reads as a competitor to this buyer, and it has zero performance data.
 - Team: Jordan Tryon, Conversion Tracking Specialist; Google: Ahmed Imran, Ade Aderibigbe; Meta: Lindsey Bouffard. Reporting: every two weeks + live dashboard.
 - Mechanics (verified 9/16): Google offline import tied to the click ID, 90-day limit (63 for enhanced conversions for leads); Meta CAPI carries CRM stages; ~50 results per ad set per week to exit learning (why calls steer budget before they steer bidding).
 
@@ -38,7 +38,7 @@ ATTACH: ReferPro_B2B_SaaS_Case_Study.pdf (Drive 1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cws
 - qc-reviewer-agent: PASS WITH FIXES. Blocker 1 (twin): resolved by the Lindsey session's divergence plus the send-one flag. Blocker 2 (attachment byline): attachment line removed. Minor (367 words): tightened to 349 by merging the job-seeker point into the qualified-call sentence instead of cutting it.
 - expert-review-agent: Good. Applied: team line no longer fights the part-time ask; "they decide" -> "we use them to decide"; funding credited for part of the doubling; "trading some volume for buyer intent". Not applied: "Inside that part-time scope" (reads as accepting an hours-based seat, collides with never-bill-hourly); its ReferPro rewrite that dropped "our part" (loses attribution). The reviewer read the Lindsey twin file as this draft (known twin trap).
 
-## PROPOSAL (v5, final, attach ReferPro PDF)
+## PROPOSAL (v6, final, attach ReferPro PDF)
 
 For an AI and automation consulting business, the word "AI" works against your targeting. Broad AI searches and interests are full of people learning the tools or starting their own automation agency, and they rarely buy integration work. Buyers tend to search the specific integration or workflow plus a hire word, like "Zapier consultant" or "CRM integration services."
 
@@ -50,7 +50,7 @@ Lead generation for a consultancy is best judged on qualified discovery calls, n
 
 On a smaller budget I'd start with Google Search, where intent already exists, and add Meta once both can be funded, since a thin budget split two ways starves both.
 
-The closest example is a B2B software company selling referral automation to home service contractors. Inbound leads doubled in the six months after their seed round, with the funding doing part of that work. Our part was Meta building awareness for a category contractors didn't know existed and Google capturing the searches that followed. That case study is attached.
+The closest example I can put numbers to is a B2B software company selling referral automation to home service contractors. Inbound leads doubled in the six months after their seed round, with the funding doing part of that work. Our part was Meta building awareness for a category contractors didn't know existed and Google capturing the searches that followed. That case study is attached.
 
 Day to day, our Google and Meta specialists would run the accounts, with me on strategy. You'd have a live dashboard to check any day, plus a report every two weeks.
 
