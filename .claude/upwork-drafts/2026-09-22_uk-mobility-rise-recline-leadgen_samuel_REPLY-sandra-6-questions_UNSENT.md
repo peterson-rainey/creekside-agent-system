@@ -1,5 +1,5 @@
 # UK mobility (Sandra Opoku), reply to 6 questions, Samuel, UNSENT
-Routed: sdr-agent -> qc-reviewer (PASS WITH FIXES, applied). Shortened 9/22 per Queenie, no new claims. No DB access.
+Routed: sdr-agent -> qc-reviewer (PASS WITH FIXES, applied). Shortened 9/22 per Queenie, no new claims. Routed to Cade 9/22 per Queenie. No DB access.
 
 1. Not me personally. An account manager on our team runs Google and Meta day to day, our tracking specialist handles call tracking, and I stay on strategy.
 
@@ -13,4 +13,6 @@ Routed: sdr-agent -> qc-reviewer (PASS WITH FIXES, applied). Shortened 9/22 per 
 
 6. Week 1: access and call and booking tracking. Weeks 1 to 2: Search and landing pages live. Weeks 2 to 3: Meta live. Day 30: an early read on cost per booked visit by product. Reports every two weeks plus a live dashboard. From you: ad account and website access, where leads land today, and your priority products.
 
-How many home visits a week could your team take on, and across which regions? If a call is easier: https://calendar.app.google/iwVAR8raqiD9a7dx6
+How many home visits a week could your team take on, and across which regions?
+
+Cade, my partner, is who I'd have you book with. My profile video's worth a watch if you haven't. https://calendar.app.google/85PWYBwxqYNq18qe9
