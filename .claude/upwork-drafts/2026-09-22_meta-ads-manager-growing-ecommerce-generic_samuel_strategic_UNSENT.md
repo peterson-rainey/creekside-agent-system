@@ -33,7 +33,7 @@ So the useful cut starts with splitting results the way the money actually moves
 
 Before scaling anything, we'd confirm the Pixel and the Conversions API both send purchases with order value, and that Meta's purchase count roughly matches your store's orders. If those two disagree, every optimization decision after that is built on the wrong number.
 
-Structure stays lean so each ad set gets close to the roughly 50 purchases a week Meta wants before it exits learning. New creative gets tested two to seven ads at a time, and changes get batched, since adding ads or switching bid strategy restarts learning. Our Meta specialist runs the account day to day, with me on strategy, and you get reports every two weeks plus a live dashboard you can check anytime.
+Structure stays lean so each ad set gets close to the 50 or so purchases a week Meta wants before it exits learning. New creative gets tested two to seven ads at a time, and changes get batched, since adding ads or switching bid strategy restarts learning. Our Meta specialist runs the account day to day, with me on strategy, and you get reports every two weeks plus a live dashboard you can check anytime.
 
 Setup is $1,500 one-time, which covers that tracking check and the account build. Management is 20% of ad spend with a $1,500 monthly minimum, on a 90-day minimum, since the first month mostly proves the tracking before there's enough data to move budget with confidence.
 
