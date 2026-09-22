@@ -56,6 +56,16 @@ Date note: Postgres Central `now()` = 2026-09-22 17:31. The local harness clock 
   inference from a stamped memory note, not from this session's data); (3) Blush Camera had no profitability-measurement
   line, added "measured on cost per purchase against margin, not ROAS" (ROAS is barred on that account per memory).
 - QC also flagged "that gap is mostly brand" as an unbacked inference. Already replaced with the verified brand split above.
+- `qc-reviewer-agent` run 2 (body inlined) returned **PASS WITH FIXES**. It reviewed the pre-brand-split text, so several
+  findings were already closed. Three landed and were applied: (4) `$1,845` truncated where `$1,845.88` rounds to **$1,846**;
+  (5) a second present-tense instance on the stopped Aura account, "our team runs on Google" -> "ran on Google";
+  (6) "so that account is past tense" was exposed internal meta-commentary, cut to "Spend stopped at the end of August."
+  QC suggested "the account is now closed" instead; NOT used, because the `clients` row is still `active` and only spend
+  has stopped, so "closed" would overstate.
+- QC queried the superlative "cheapest CPM in the account". It is backed: the full account pull this session returned four
+  campaigns with spend, UK $30.03 vs PS Prospecting Broad CBO $39.96, PS Scaling ProvenAds $44.80, PS WarmRetargeting $49.31.
+  QC only had the two campaigns I inlined, hence the flag. No change needed.
+- Final: **4,947 chars, 817 words, zero em dashes, one question, ends on the question.**
 
 ## /tmp COLLISION, 2026-09-22 (why run 1 failed)
 The body was staged in `/tmp/body.txt` and a concurrent session on this machine overwrote it between the edit and the
@@ -83,13 +93,13 @@ Your break-even ROAS is the number to settle before anything launches, and the 1
 
 Rough shape: a product carrying 60% contribution before discount breaks even near 1.7x. Take 15% off the first order and contribution drops from $60 to $45 on a $100 order while the platform only reports $85 of revenue, so break-even moves to about 1.9x. Add returns and the fulfillment tail and it sits near 2.0x. Put management and creative fees inside it, which you asked for and most break-even math leaves out, and it lands closer to 2.3x. A store aiming at 2x and calling it safe is roughly at break-even. Your real margins move all of that. The point is which costs belong inside.
 
-Second thing to settle: what counts as a new customer. Your popup discount, your branded search and your retargeting all bill against buyers who were already coming. On a Shopify store our team runs on Google, the branded Search campaign returned 28.7x over ten months. Unbranded Search returned 5.3x and unbranded Shopping 5.5x. Strip brand out and the two cold channels are the same, and branded search alone produced $733K of the $1.04M that account tracked. Judge the launch on cold traffic with previous purchasers excluded, or month one will look excellent and tell you nothing.
+Second thing to settle: what counts as a new customer. Your popup discount, your branded search and your retargeting all bill against buyers who were already coming. On a Shopify store our team ran on Google, the branded Search campaign returned 28.7x over ten months. Unbranded Search returned 5.3x and unbranded Shopping 5.5x. Strip brand out and the two cold channels are the same, and branded search alone produced $733K of the $1.04M that account tracked. Judge the launch on cold traffic with previous purchasers excluded, or month one will look excellent and tell you nothing.
 
 Straight on Reddit: it is not on our record. We run Meta and Google. Better to say so than describe experience we cannot show you. A new pixel cannot carry three learning phases at once on one budget anyway. Reddit is the one to hold until Meta has conversion volume, whoever ends up running it.
 
 1. Two ecommerce examples.
 
-Aura Displays, Shopify, Google Ads. November 2025 to August 2026: $82,928 spend, $1,043,575 tracked revenue, 12.6x blended. One of our Google specialists ran it, Merchant Center and feed included. Profitability was read on the unbranded campaigns, 5.3x Search and 5.5x Shopping, not the blended figure. Spend stopped at the end of August, so that account is past tense.
+Aura Displays, Shopify, Google Ads. November 2025 to August 2026: $82,928 spend, $1,043,575 tracked revenue, 12.6x blended. One of our Google specialists ran it, Merchant Center and feed included. Profitability was read on the unbranded campaigns, 5.3x Search and 5.5x Shopping, not the blended figure. Spend stopped at the end of August.
 
 Blush Camera, DTC consumer product, Meta. February to June 2026: $58,298 spend, 623 purchases, $93.58 blended cost per purchase, ranging $68.52 to $120.05 by month. Our Meta lead ran it, measured on cost per purchase against margin, not ROAS. That account has ended.
 
@@ -99,7 +109,7 @@ For a repeat-purchase brand like yours, what makes an acquisition cost trustwort
 
 The gap first: we hold production-ready briefs and angle matrices, but none with a published result attached to that specific plan. What we do have results attached to are structural tests.
 
-Two that changed how we build. Same dental account, same month, near-identical spend: a leads-objective campaign produced 124 conversions at $15.77, while an engagement-objective campaign spending $1,845 produced zero recorded conversions. Creative was not the variable. The objective was. That is why a creative test has to hold objective, placement and audience constant or it measures something else.
+Two that changed how we build. Same dental account, same month, near-identical spend: a leads-objective campaign produced 124 conversions at $15.77, while an engagement-objective campaign spending $1,846 produced zero recorded conversions. Creative was not the variable. The objective was. That is why a creative test has to hold objective, placement and audience constant or it measures something else.
 
 Second, on a survival-gear store: the UK prospecting campaign had the cheapest CPM in the account, $30 against $40 for the main one, and cost $179 per conversion against $17. Cheap media was the trap, and a blended number hid it. We read tests on cost per outcome per segment now, never on CPM or blended ROAS.
 
