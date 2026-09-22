@@ -48,6 +48,20 @@ Date note: Postgres Central `now()` = 2026-09-22 17:31. The local harness clock 
 - Any content-calendar or organic-social claim - 0/130 service-line zero.
 - Any attachment. Aura's PDF is Google-only and case-study PDFs have repeatedly resolved as HTML. Body offers a screen share instead.
 
+## QC
+- `qc-reviewer-agent` run 1 returned FAIL against the CORRUPTED body (see the /tmp collision note below). On re-read it
+  **withdrew that verdict** and returned **PASS WITH FIXES** on the real body. Run 2 was launched with the body inlined.
+- Applied from QC: (1) Aura tense wobble, "operates it" -> "ran it" and "so that account is past tense";
+  (2) the Myriad comparison campaign is unlabelled in the DB, so "for the US" -> "for the main one" (the `US` label was my
+  inference from a stamped memory note, not from this session's data); (3) Blush Camera had no profitability-measurement
+  line, added "measured on cost per purchase against margin, not ROAS" (ROAS is barred on that account per memory).
+- QC also flagged "that gap is mostly brand" as an unbacked inference. Already replaced with the verified brand split above.
+
+## /tmp COLLISION, 2026-09-22 (why run 1 failed)
+The body was staged in `/tmp/body.txt` and a concurrent session on this machine overwrote it between the edit and the
+append. The header survived; the appended body belonged to an unrelated draft. Fixed by rebuilding from the session
+scratchpad and diffing. Recorded as `feedback_assemble_drafts_in_scratchpad_not_tmp`.
+
 ## QUEENIE: DECIDE BEFORE SEND
 - **Upwork bid figure: [QUEENIE: SET FIGURE].** The audit + setup milestone runs pre-spend and has no % instrument.
   Closest precedent is the 2026-09-16 Rocket Bookkeeper ruling you picked: **$1,500 fixed** for a pre-launch review + launch
@@ -55,6 +69,9 @@ Date note: Postgres Central `now()` = 2026-09-22 17:31. The local harness clock 
   Competing unruled options: the $1,000-$1,500 standalone audit band, Peterson's $90/hr x hours, the May 2026 catalog ($499).
 - **Three platforms vs two.** Onboarding is $1,500 PER PLATFORM. We would run Meta + Google = $3,000. Reddit we do not run.
   Body says "per platform" without a total so a second platform is not read as a surprise increase. Confirm that is how you want it.
+- **Client naming is inconsistent by design.** Aura Displays and Blush Camera are named because item 1 demands specific
+  examples; the dental and survival-gear accounts stay anonymous because they are illustrative, not required examples.
+  QC flagged the inconsistency. Confirm you are happy naming those two externally.
 - **Geo and budget both unstated.** Body asks budget as a relative range. Geo is unasked and unresolved; if they answer outside
   US/CA/UK/AU the geo DQ fires after the fact.
 
@@ -64,17 +81,17 @@ PROPOSAL (paste below this line)
 
 Your break-even ROAS is the number to settle before anything launches, and the 15% first-order offer moves it further than most stores expect.
 
-Rough shape: a product carrying 60% contribution before discount breaks even near 1.7x. Take 15% off the first order and contribution drops from $60 to $45 on a $100 order while the platform only reports $85 of revenue, so break-even moves to about 1.9x. Add returns and the fulfillment tail and it sits near 2.0x. Put management and creative fees inside it, which you asked for and most break-even math leaves out, and it lands closer to 2.3x. A store aiming at 2x and calling it safe is roughly at break-even. Your real margins move all of that. The point is which costs belong inside it.
+Rough shape: a product carrying 60% contribution before discount breaks even near 1.7x. Take 15% off the first order and contribution drops from $60 to $45 on a $100 order while the platform only reports $85 of revenue, so break-even moves to about 1.9x. Add returns and the fulfillment tail and it sits near 2.0x. Put management and creative fees inside it, which you asked for and most break-even math leaves out, and it lands closer to 2.3x. A store aiming at 2x and calling it safe is roughly at break-even. Your real margins move all of that. The point is which costs belong inside.
 
 Second thing to settle: what counts as a new customer. Your popup discount, your branded search and your retargeting all bill against buyers who were already coming. On a Shopify store our team runs on Google, the branded Search campaign returned 28.7x over ten months. Unbranded Search returned 5.3x and unbranded Shopping 5.5x. Strip brand out and the two cold channels are the same, and branded search alone produced $733K of the $1.04M that account tracked. Judge the launch on cold traffic with previous purchasers excluded, or month one will look excellent and tell you nothing.
 
-Straight on Reddit: it is not on our record. We run Meta and Google. Better to say that than describe experience we cannot show you. It points the same direction the sequencing does anyway: a new pixel cannot carry three simultaneous learning phases on one budget. Reddit is the one to hold until Meta has conversion volume, whoever ends up running it.
+Straight on Reddit: it is not on our record. We run Meta and Google. Better to say so than describe experience we cannot show you. A new pixel cannot carry three learning phases at once on one budget anyway. Reddit is the one to hold until Meta has conversion volume, whoever ends up running it.
 
 1. Two ecommerce examples.
 
-Aura Displays, Shopify, Google Ads. November 2025 to August 2026: $82,928 spend, $1,043,575 tracked revenue, 12.6x blended. One of our Google specialists operates it, Merchant Center and feed included. Profitability was read on the unbranded campaigns, 5.3x Search and 5.5x Shopping, not the blended figure. Spend stopped at the end of August, so past tense.
+Aura Displays, Shopify, Google Ads. November 2025 to August 2026: $82,928 spend, $1,043,575 tracked revenue, 12.6x blended. One of our Google specialists ran it, Merchant Center and feed included. Profitability was read on the unbranded campaigns, 5.3x Search and 5.5x Shopping, not the blended figure. Spend stopped at the end of August, so that account is past tense.
 
-Blush Camera, DTC consumer product, Meta. February to June 2026: $58,298 spend, 623 purchases, $93.58 blended cost per purchase, ranging $68.52 to $120.05 by month. Our Meta lead ran it. That account has ended.
+Blush Camera, DTC consumer product, Meta. February to June 2026: $58,298 spend, 623 purchases, $93.58 blended cost per purchase, ranging $68.52 to $120.05 by month. Our Meta lead ran it, measured on cost per purchase against margin, not ROAS. That account has ended.
 
 For a repeat-purchase brand like yours, what makes an acquisition cost trustworthy is hard-excluding previous purchasers from acquisition campaigns. We run that on a meal-prep account now. Without it, returning customers quietly fund the CAC you are reading.
 
@@ -84,17 +101,17 @@ The gap first: we hold production-ready briefs and angle matrices, but none with
 
 Two that changed how we build. Same dental account, same month, near-identical spend: a leads-objective campaign produced 124 conversions at $15.77, while an engagement-objective campaign spending $1,845 produced zero recorded conversions. Creative was not the variable. The objective was. That is why a creative test has to hold objective, placement and audience constant or it measures something else.
 
-Second, on a survival-gear store: the UK prospecting campaign had the cheapest CPM in the account, $30 against $40 for the US, and cost $179 per conversion against $17. Cheap media was the trap, and a blended number hid it. We read tests on cost per outcome per segment now, never on CPM or blended ROAS.
+Second, on a survival-gear store: the UK prospecting campaign had the cheapest CPM in the account, $30 against $40 for the main one, and cost $179 per conversion against $17. Cheap media was the trap, and a blended number hid it. We read tests on cost per outcome per segment now, never on CPM or blended ROAS.
 
 3. Audit approach and first 30 days.
 
-Week one is access, billing, restrictions, then the tracking truth test. One real test purchase per channel, then reconcile: does order value match, is currency right, do Pixel and Conversions API dedupe on the same event ID, and does Shopify's order count for that window match what each platform reports. Anything failing goes to your developer as a written spec, and we re-verify after.
+Week one is access, billing, restrictions, then the tracking truth test. One real test purchase per channel, then reconcile: does order value match, is currency right, do Pixel and Conversions API dedupe on the same event ID, and does Shopify's order count match what each platform reports. Anything failing goes to your developer as a written spec, and we re-verify after.
 
-Week two is Merchant Center and feed: disapprovals, product eligibility, inventory and price mismatches against the live store, catalog connection. Then the journey on mobile and desktop, including whether the popup and welcome email actually fire and the 15% actually applies at checkout.
+Week two is Merchant Center and feed: disapprovals, product eligibility, inventory and price mismatches against the live store, catalog links. Then the journey on mobile and desktop, including whether the popup and welcome email actually fire and the 15% actually applies at checkout.
 
 Weeks three and four: break-even and target acquisition cost agreed in writing, then launch in sequence rather than all at once, with written thresholds for raising and stopping spend set before any money moves.
 
-We bill a percentage of ad spend rather than hourly. 20% to start, dropping to 15% then 10% as spend scales, with a $1,500 per platform monthly minimum and a one-time onboarding per platform. The audit and setup milestone is a fixed price, sized once we see how much of the existing build is real. Those fees belong inside the break-even math above.
+We bill a percentage of ad spend rather than hourly. 20% to start, dropping to 15% then 10% as spend scales, with a $1,500 per platform monthly minimum and a one-time onboarding per platform. The audit and setup milestone is a fixed price, sized once we see how much of the existing build is real. Those fees belong inside the break-even math.
 
 Rather than screenshots, we would screen share the accounts so you can pull any date range.
 
