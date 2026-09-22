@@ -21,7 +21,8 @@ Profile: Samuel/Peterson | Style: strategic + diagnostic | Status: UNSENT | Draf
 
 ## QUEENIE: DECIDE BEFORE SEND
 - Weekly insights: RULED by Queenie 9/23, keep the live report, no weekly. Body unchanged.
-- Attachment: none. The Perfect Parking PDF (verified) could go on, but the body uses the Charlottesville test, not the PDF's headline.
+- Attachment: Perfect_Parking_Asphalt_case_study.pdf (verified real PDF, 12-day headline verifies). NEVER aura_displays.pdf: it claims non-brand 8-10x vs the body's 5.3x.
+- 9/23 fix: PMax line no longer says "one market" (only campaign NAMES say Charlottesville, geo never pulled) and "customers" -> "leads" (lead quality not recorded).
 
 ## QC
 - qc-reviewer-agent: PASS WITH FIXES. Applied: opener no longer quotes "maximize ROAS/lower CPA", 16.6x exact, "more than 5x" (5.4x), paragraph 4 trimmed.
@@ -34,7 +35,7 @@ A cost-per-acquisition target and a return target ask Smart Bidding for differen
 
 The bigger trap is brand. On an ecommerce account we ran from November through August, branded search came in at $16.90 per conversion on $0.35 clicks. Unbranded search in the same account cost $104.23 on $1.26 clicks, 5.3x ROAS against 28.7x for brand. Blended, that account looks like a 16.6x ROAS business. Set a tROAS target off the blended number and Smart Bidding hits it the easy way, by buying more of the people who were already searching your name. So brand gets its own campaign and its own target, and non-brand gets judged on its own math.
 
-Performance Max needs the same scrutiny. On a paving contractor we run, a time-matched test in one market had PMax clicks more than 5x cheaper than Search, and it still cost $290 per lead against $131 on Search. Cheap clicks and cheap customers are different things.
+Performance Max needs the same scrutiny. On a paving contractor we run, a Search campaign and a Performance Max campaign ran over the same months at nearly the same spend. PMax clicks were more than 5x cheaper, and it still cost $290 per lead against $131 on Search. Cheap clicks and cheap leads are different things.
 
 How we'd start: audit GTM, GA4 and the conversion actions first. Then split brand from non-brand, work search terms and negatives hard through the first month, and move each campaign to tCPA or tROAS once it has enough conversion history to bid from. Ad copy and bid strategy tests run through Google's experiments, one variable at a time. Landing page tests work the same way once your developer builds the variant, since we don't build pages.
 
