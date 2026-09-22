@@ -58,16 +58,16 @@ the profile-video reference is kept.
 
 ## PROPOSAL
 
-When you look at a competitor's ads, what tells you which ones are actually making them money?
+When you look at a competitor's ads, what tells you which ones are making them money?
 
-I ask because the Ad Library shows every ad they have live and the date each one started, and nothing else. No spend, no sales. The only honest signal is time. An ad still running after six months is one they keep paying for. The batch they launched last week is a test, and copying it copies their guesses.
+I ask because the Ad Library shows every ad they have live and the date it started. No spend, no sales. The only honest signal is time. An ad still running six months later is one they keep paying for. The batch they launched last week is a test, and copying it copies their guesses.
 
-The bigger issue is that creative doesn't travel. One survival gear store I run Meta for sent the same ads and offers to two countries over the same six weeks. One returned 3.79x, the other 0.59x. Blended, they looked like 2.32x. The weaker one was the cheaper traffic, about $27 per thousand impressions against $41. If one store's own ads can't survive crossing a border, a competitor's won't survive crossing into your margins and your offer.
+The bigger issue is that creative doesn't travel. One survival gear store I run Meta for sent the same ads and offers to two countries over the same six weeks. One returned 3.79x, the other 0.59x. Blended, they looked like 2.32x. The weaker one was the cheaper traffic, about $27 per thousand impressions against $41. If a store's own ads can't survive crossing a border, a competitor's won't survive crossing into your margins and your offer.
 
-So I'd copy the angle, not the ad. Take the claim a competitor has kept live longest, rebuild it with your product and your proof, and judge it on cost per order, not on how close it looks. That gets you live in days, and you keep it when their ad changes.
+So I'd copy the angle, not the ad. Take the claim a competitor has kept live longest, rebuild it with your product and proof, and judge it on cost per order, not on how close it looks. That gets you live in days, and you keep it when their ad changes.
 
 I built and sold my own e-commerce business, and across 10+ years in e-commerce, skincare and meal prep I read an account by what it sells. I run Meta, not Google. On my own stores Google sits with a specialist I work with, and I'd do the same here from day one.
 
 You'd get a written update every two weeks on what changed and why, plus a live dashboard.
 
-What does an order need to cost you to be worth running, and is your monthly budget closer to $5,000 or $20,000? There's a short video on my profile that shows how I work.
+What does an order need to cost you to be worth running, and is your monthly budget closer to $5,000 or $20,000? There's a short video on my profile showing how I work.
