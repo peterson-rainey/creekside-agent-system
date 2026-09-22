@@ -1,5 +1,5 @@
 # Meta Ads Manager for a growing e-commerce business (product, spend, geo all unstated) (Samuel, strategic) UNSENT
-Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-22 | No sign-off | ATTACH: nothing
+Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-22 | No sign-off | ATTACH: .claude/attachments/unrefined_meal_prep_CLEAN.pdf
 
 ## SCREEN
 - Twin check: no match for this post in `.claude/upwork-drafts`, `drafts/`, `upwork-drafts/`, leads index. `upwork_jobs` NOT checked (no DB tool this session).
@@ -19,6 +19,12 @@ Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-22 | No sign-of
 - qc-reviewer-agent: PASS WITH FIXES. Applied: opener no longer echoes "growing e-commerce", "data-driven part" line reworded (parroting rule), "six weeks" loosened (window is ~6.4 weeks).
 - expert-review-agent: Good. Applied: 50/week softened to "roughly", setup fee tied to the tracking check + build. NOT applied: creative-sourcing line (who builds new creative, and whether it's scoped separately, is unverified; no fact to back it).
 
+## ATTACHMENT (added 2026-09-22 on Queenie's ask)
+- `.claude/attachments/unrefined_meal_prep_CLEAN.pdf`, sha1 6219bda2... re-verified today: 4 pages, 0 link annotations, 0 localhost / persona strings, text read in full.
+- Why: the body argues splitting results by new vs past buyers and by market; the PDF is new-customer campaigns with all past purchasers excluded plus a second city in its own campaign track. Tie-in carries no numbers (avoids the 4x headline sitting next to the "blended number" point).
+- Soft spots: churned 2026-04-29 ("Below average results"), names the client + founder, operator Trent (never Lindsey), present tense in the PDF, meal-prep not product ecom, small spend (~$3.5K). Never attach on a Lindsey twin.
+- Losers: Aura (Google only, 49-countries headline was a 0.65x test), Punch Drunk (20x vs ~1.7x live), Fitness Superstore / Duck A Diet (no ad account to verify), Blush Camera (do-not-attach), Neue Maison (no PDF, off-canon).
+
 ## OPEN FOR QUEENIE
 1. Job page: budget type, payment verified, country, total spent.
 2. `upwork_proposal_logs` INSERT skipped (no DB access).
@@ -36,5 +42,7 @@ Before scaling anything, we'd confirm the Pixel and the Conversions API both sen
 Structure stays lean so each ad set gets close to the 50 or so purchases a week Meta wants before it exits learning. New creative gets tested two to seven ads at a time, and changes get batched, since adding ads or switching bid strategy restarts learning. Our Meta specialist runs the account day to day, with me on strategy, and you get reports every two weeks plus a live dashboard you can check anytime.
 
 Setup is $1,500 one-time, which covers that tracking check and the account build. Management is 20% of ad spend with a $1,500 monthly minimum, on a 90-day minimum, since the first month mostly proves the tracking before there's enough data to move budget with confidence.
+
+The attached case study is a meal prep brand our team ran on Meta, split the same way: new-customer campaigns with past buyers excluded, and a second city judged in its own campaigns.
 
 Happy to walk through it on a quick call. Is monthly Meta spend closer to $5,000 or $15,000 right now?
