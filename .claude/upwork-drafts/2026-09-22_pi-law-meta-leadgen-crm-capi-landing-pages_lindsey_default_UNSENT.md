@@ -24,7 +24,7 @@ When a lead turns into a case, does that ever make it back to Meta, or is Meta o
 
 2. GoHighLevel is where most of my CRM work sits. On a dental account, I held Facebook spend until the GHL pipeline and automations were confirmed working, then raised it. I haven't personally wired a legal-specific intake platform, so I'd check yours first.
 
-3. I build this with a tracking specialist. The form posts directly into the CRM by API or webhook, not through an email someone retypes. Hidden fields carry the UTMs and Meta's click ID, and Instant Form leads keep their Meta lead ID in the CRM so a case can be matched back later. Every submission also writes to a backup sheet, so a failed Zapier or Make run doesn't cost you the lead. Pixel and Conversions API share one event ID so each lead counts once. Then Meta, the backup and the CRM get checked against each other daily until the numbers line up.
+3. I build this with a tracking specialist. The form posts directly into the CRM by API or webhook, not through an email someone retypes. Hidden fields carry the UTMs and Meta's click ID, and Instant Form leads keep their Meta lead ID in the CRM so a case can be matched back later. Every submission writes to a backup sheet, so a failed Zapier or Make run doesn't cost you the lead. Pixel and Conversions API share one event ID so each lead counts once. Then Meta, the backup and the CRM get checked against each other daily until the numbers line up.
 
 I keep outcome promises and settlement figures out of the copy, then check the rest against your state bar's rules and your counsel's disclaimers.
 
