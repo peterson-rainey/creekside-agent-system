@@ -7,7 +7,7 @@ Disposition: Queenie override "Draft ads + tracking only" (landing-page build ca
   $1,500 floor, ~414% month one with onboarding. Same client was SKIPPED 2026-08-21 (research-only post, same budget).
 - Ads + landing page owned together: fires. Q1 and Q5 are CRO-gated. Carved out per override; body says we do not build pages.
 - Zero-spend milestones: M1 (pages) and M2 (ads + tracking build) are both pre-launch fixed-price. Unpriceable under % of spend.
-- 30-day M3 vs 90-day minimum: body states the 90-day minimum as a data argument, does not agree to 30 days.
+- 30-day M3 vs 90-day minimum: 90-day line REMOVED from body per Queenie 9/23. Body neither agrees to nor contests 30 days.
 - Vertical proof: commercial cleaning = zero. Closest honest analog is Perfect Parking (mixed commercial + residential paving).
 - Geo: Toronto/GTA, Canada, passes.
 
@@ -61,6 +61,6 @@ Chat: fire the conversion too early, on "chat opened", and Google learns to find
 
 5. Ads, tracking and reporting are our team, nothing subcontracted. Pages are yours.
 
-6. No documented pre-launch rejection we can put evidence behind. The one we'd raise here is the math above. Same logic on Milestone 3: 30 days on this budget cleans up search terms and proves the tracking, but it's too few clicks to call a keyword KEEP or PAUSE, which is why we work on a 90-day minimum.
+6. No documented pre-launch rejection we can put evidence behind. The one we'd raise here is the math above.
 
 What click prices is the research showing for the GTA?
