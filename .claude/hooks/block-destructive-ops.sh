@@ -190,13 +190,16 @@ if [ "$IS_SQL" = false ]; then
   PROTECTED_PATTERNS="CLAUDE\.md|\.claude/settings|\.claude/hooks/|\.env|\.zshrc|\.bashrc|\.bash_profile"
 
   # Common write-via-bash patterns: sed -i, cp X dest, cat > dest, tee dest, mv X dest, echo > dest
-  if echo "$CHECK" | grep -qiE "(sed\s+-i|cp\s+|cat\s*>|tee\s+|mv\s+|echo\s.*>|printf\s.*>).*($PROTECTED_PATTERNS)"; then
+  # NOTE: check the RAW command ($CMD), not the quote-stripped $CHECK -- protected
+  # paths are usually double-quoted (this repo path contains spaces), and quote
+  # stripping would remove the path before the pattern could match it.
+  if echo "$CMD" | grep -qiE "(sed\s+-i|cp\s+|cat\s*>|tee\s+|mv\s+|echo\s.*>|printf\s.*>).*($PROTECTED_PATTERNS)"; then
     echo "BLOCKED: Bash command would modify a protected file. Use the Write/Edit tool (which requires user approval via hook)." >&2
     exit 2
   fi
 
   # Also catch: redirecting output to protected files (command > protected_file)
-  if echo "$CHECK" | grep -qiE ">\s*[^|]*($PROTECTED_PATTERNS)"; then
+  if echo "$CMD" | grep -qiE ">\s*[^|]*($PROTECTED_PATTERNS)"; then
     echo "BLOCKED: Output redirect to protected file detected. Protected files require user approval." >&2
     exit 2
   fi

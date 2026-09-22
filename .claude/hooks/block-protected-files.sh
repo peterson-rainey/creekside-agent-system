@@ -5,10 +5,12 @@
 
 INPUT=$(cat)
 TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
-FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+# Collect every file-path-like argument. Write/Edit send file_path; NotebookEdit
+# sends notebook_path; desktop-commander MCP tools send path / source / destination.
+FILES=$(echo "$INPUT" | jq -r '[.tool_input.file_path, .tool_input.path, .tool_input.notebook_path, .tool_input.source, .tool_input.destination] | map(select(type == "string" and . != "")) | .[]' 2>/dev/null)
 
 # Skip if no file path (not a file operation)
-[ -z "$FILE" ] && exit 0
+[ -z "$FILES" ] && exit 0
 
 # ADMIN MODE: if .claude/ADMIN_MODE exists, allow all file writes.
 # Peterson enables it with `touch .claude/ADMIN_MODE`.
@@ -19,12 +21,16 @@ if [ -f "$ADMIN_FLAG" ]; then
   exit 0
 fi
 
+# Check every file argument against the protected list.
+while IFS= read -r FILE; do
+[ -z "$FILE" ] && continue
+
 # --- CLAUDE.md ---
 # Agent table additions are allowed without ADMIN_MODE.
 # The Edit tool sends old_string/new_string — if the edit is ONLY adding a row
 # to the agent table (contains "| `" pattern for a table row and doesn't remove lines),
 # we allow it. All other CLAUDE.md edits still require ADMIN_MODE.
-if echo "$FILE" | grep -qE '/CLAUDE\.md$'; then
+if echo "$FILE" | grep -qE '(^|/)CLAUDE\.md$'; then
   # Check if this is an Edit tool call (has old_string/new_string)
   OLD_STR=$(echo "$INPUT" | jq -r '.tool_input.old_string // empty')
   NEW_STR=$(echo "$INPUT" | jq -r '.tool_input.new_string // empty')
@@ -32,22 +38,19 @@ if echo "$FILE" | grep -qE '/CLAUDE\.md$'; then
   # Allow if: it's an Edit, the new_string contains the old_string (pure addition),
   # and the addition is a table row (starts with "| `")
   if [ -n "$OLD_STR" ] && [ -n "$NEW_STR" ]; then
-    # Check that old_string is fully contained in new_string (only adding, not removing)
-    if echo "$NEW_STR" | grep -qF "$OLD_STR"; then
-      # Extract just the added content by filtering out non-empty OLD_STR lines.
-      # NOTE: Must filter empty lines from OLD_STR patterns first, because
-      # grep -F "" matches every line, which would make ADDED empty and block valid edits.
-      OLD_LINES=$(echo "$OLD_STR" | grep -v '^$' || true)
-      if [ -n "$OLD_LINES" ]; then
-        ADDED=$(echo "$NEW_STR" | grep -vF "$OLD_LINES" || true)
-      else
-        ADDED="$NEW_STR"
-      fi
-      # Allow if added content is only agent table rows (| ` pattern) or empty lines
-      if echo "$ADDED" | grep -qE '^\| `' && ! echo "$ADDED" | grep -qvE '^\| `|^$'; then
-        exit 0
-      fi
-    fi
+    # Multiline-safe containment: old_string must appear VERBATIM inside new_string.
+    # (grep -qF is wrong here -- it treats each line of a multiline pattern as an
+    # independent alternative, letting deletions pass as "pure additions".)
+    case "$NEW_STR" in
+      *"$OLD_STR"*)
+        # Extract added content by removing the exact old block from new_string.
+        ADDED="${NEW_STR/"$OLD_STR"/}"
+        # Allow if added content is only agent table rows (| ` pattern) or empty lines
+        if [ -n "$ADDED" ] && echo "$ADDED" | grep -qE '^\| `' && ! echo "$ADDED" | grep -qvE '^\| `|^$'; then
+          continue
+        fi
+        ;;
+    esac
   fi
 
   echo "BLOCKED: Cannot modify CLAUDE.md — requires ADMIN_MODE." >&2
@@ -88,6 +91,8 @@ if echo "$FILE" | grep -qE '(\.zshrc|\.bashrc|\.bash_profile|\.zprofile)$'; then
   echo "BLOCKED: Cannot modify shell config files — requires explicit user approval." >&2
   exit 2
 fi
+
+done <<< "$FILES"
 
 # All checks passed
 exit 0
