@@ -11,6 +11,30 @@ Queenie already ruled on it: **"skip it, go with the Samuel one."** So this Samu
 intended deliverable, not a second competing bid. The Lindsey twin is SKIPPED and is not going out,
 which retires the shared-ReferPro collision that file flags.
 
+## SIDEBAR CHECK (live, logged OUT, 2026-09-23)
+
+Job: **"Google linkedin facebook ads"**, `~022102496612583807127`. Posted ~48 min before the check.
+Built-in browser hit a Cloudflare bot interstitial and was abandoned rather than worked around; read via Chrome (logged out), tab group torn down after.
+
+**Client (public "About the client" block):** USA, **Miami**. Member since **May 23, 2024**. **$29K total spent, 107 hires, 5 active, 890 hours.** Tech & IT, mid-sized (10-99 people).
+
+**Terms:** **Hourly $30.00 - $69.00.** **More than 30 hrs/week.** 6+ months, ongoing. Expert level. Talent location "Worldwide". Proposals **20 to 50** already, 0 interviewing, 0 invites sent.
+
+**Skills tags:** Facebook, Facebook Advertising, Google Ads, Retargeting, Social Media Marketing (+1 unread).
+
+### Screen outcomes, revised
+
+- **GEO: PASSES.** Client is US (Miami). Ad market is never stated in the post; default read is US. "Worldwide" is the talent-location preference, not the ad market. Not a DQ, but the ad market is unconfirmed.
+- **PAYMENT VERIFICATION: no DQ.** The badge does not render logged out, as the standing rule predicts, so this is the proxy read and not the authoritative badge. $29K spent across 107 hires with 5 active is decisive evidence of a working payment method.
+- **$40/HR FLOOR: FIRES.** Range bottom is **$30/hr**, below the floor. The rule is explicit that the bottom of the band is what gets screened, never the top. No override is recorded on this screen.
+- **HOURLY BILLING: FIRES.** Ongoing hourly engagement. Not the capped paid-test carve-out, and there is no % of spend hook because no ad budget is stated anywhere.
+- **SEAT SHAPE HARDENS.** "More than 30 hrs/week" for "6+ months" ongoing. Still no literal "full time" so that auto-DQ does not fire on the words, but this is the near-FT shape, and it stacks with a sub-floor rate exactly like the 2026-09-02 post that settled the seat rule.
+- **FACEBOOK IS IN SCOPE (new, helps us).** The title and the skills tags carry Facebook, Facebook Advertising and Retargeting; the pasted description named only Google and LinkedIn. Meta is our strongest platform, and this moves the LinkedIn zero from 1 of 2 named platforms to 1 of 3. **The body does not yet use this.**
+
+### Disposition
+
+Two hard screens now fire that were invisible in the pasted description. Queenie's earlier "go with the Samuel one" ruling was made without the rate data. **Reported back for a skip / send / rework decision before anything goes out.** If it goes out, the body should pick up the Meta half and answer the fee model, since the listing is explicitly hourly.
+
 ## SCREENS RUN
 
 - **Duplicate bid: NO external dupe.** `upwork_jobs` 0 rows on `graph8`; 0 rows on the distinctive phrases "product gaps" / "primary workspace". No leads-index entry. Clean first touch. (Internal twin = the SKIPPED Lindsey file above.)
@@ -19,7 +43,7 @@ which retires the shared-ReferPro collision that file flags.
 - **Ads in scope: YES.** No DQ.
 - **LinkedIn Ads: HARD ZERO, re-verified live this session.** 0 of 28 `case_studies`, 0 `reporting_clients`, 0 `clients`. LinkedIn is co-equal with Google in sentence one and sits inside the required list. NOT a clean required-items foreclosure, because the results ask is about "your campaigns" generally rather than LinkedIn results specifically. Conceded plainly AND pivoted to a diagnostic, per `reference_no_linkedin_ads_or_hubspot_proof`. Body does NOT offer to bring on a LinkedIn specialist.
 - **Spend: unstated.** "Within approved spending limits", no number. $5K DQ cannot fire, not cleared either. The close spends its one question on the tracking stage; **ASK THE SPEND RANGE ON REPLY.**
-- **Geo / payment verification / hourly vs fixed / rate: NOT IN THE PASTE.** Check the Upwork sidebar before sending: US/CA/UK/AU, payment verified, $40/hr floor at the BOTTOM of any range.
+- **Geo / payment verification / hourly vs fixed / rate: RESOLVED, see SIDEBAR CHECK above.** Geo passes (US), payment fine by proxy, but the $40/hr floor and the no-hourly rule both FIRE.
 - **Dogfooding duty:** "Use graph8 as your primary workspace" plus the product-gap QA bundle is real non-ads scope. Turned into an advantage in the body (their platform holds the stage definitions) rather than addressed as a duty.
 - **Pricing: not asked, not included.**
 
