@@ -5,7 +5,7 @@
 - **Style:** strategic
 - **Status:** UNSENT
 - **Client:** Lifetime Smiles of OC, Santa Ana CA (Orange County). Dr. Kareem Abraham. lifetimesmilesoc.com
-- **Length:** 387 words / 2,338 chars (limits: 400 words multi-question, 5,000 chars)
+- **Length:** 398 words / 2,384 chars (limits: 400 words multi-question, 5,000 chars)
 - **Prior bids on this job:** none found (`upwork_jobs` + drafts grep + leads index)
 
 ## Screens applied
@@ -74,19 +74,36 @@ Draft handles it with an explicit scope line rather than claiming the capability
    Not asserted without knowing the cause.
 4. Weekly video call is their ask. Draft promises **no reporting cadence** per the 9/23 ruling.
 
+## Second site discovered — cantsleepcenter.com (verified theirs, 2026-09-23)
+
+The job post never mentions it. Found via an unlabelled link on the main site, then loaded and inspected:
+
+- Dr. Abraham named on it; address `720 N. Tustin Ave #102A, Santa Ana CA 92705`; **second location
+  `2111 San Joaquin Hills Rd, Newport Beach`**; local phone `714-543-9413`. Audience skew: "Veterans and
+  Active Military". Scope: snoring, sleep apnea, TMJ.
+- **Carries the SAME Google Ads tag `AW-11256429906` as the main site.**
+- **Has a Meta pixel (`fbq` true) while the main cosmetic-dentistry site has none.** That is backwards
+  relative to their stated goal of more cosmetic and general dentistry patients.
+
+**Why it matters and how the draft hedges it.** One tag spanning both domains means sleep cases and smile
+makeovers plausibly share a conversion pool, which would have Smart Bidding optimising across two very
+different case economics. Conversion *action* configuration is not visible from the page (no GTM container,
+gtag only), so the draft says "likely landing in the same conversion pool", never asserts it as fact.
+Newport Beach also widens the geo beyond the Santa Ana the post implies, which the 30-day answer reflects.
+
 ## DRAFT BODY
 
-Before-and-after photos are the most misunderstood asset in cosmetic dental advertising. Most people will tell you Meta bans them. Meta's health and wellness standard actually permits before-and-after transformation imagery so long as the ad is targeted to 18 and over. What pulls an ad down is a caption promising a specific result in a specific timeframe with no qualifier attached. The library your team is already shooting is usable. It needs a targeting floor and careful copy, not a replacement.
+Before-and-after photos are the most misunderstood asset in cosmetic dental advertising. Most people will tell you Meta bans them. Meta's health and wellness standard actually permits before-and-after transformation imagery as long as the ad targets 18 and over. What pulls an ad down is a caption promising a specific result in a specific timeframe with no qualifier attached. The library your team already shoots is usable as it is.
 
-Google is the other half of that. Cosmetic procedures sit inside Google's health policy for personalized ads, which can rule out remarketing lists, Customer Match and lookalikes. In-market and custom segments still work. Better to know that before a retargeting plan gets written than after.
+Worth knowing on the other side: cosmetic procedures sit inside Google's health policy for personalized ads, which can rule out remarketing, Customer Match and lookalikes. In-market and custom segments still work.
 
-1. Healthcare numbers. Our team runs two dental practices on Google right now. Over the last 90 days, one spent $52,741 and produced 252 patient inquiries at $209 each; the other $39,753 for 194 at $205. Inside the first account Search is the cheapest inquiry at $135 and Demand Gen is $324. Two written case studies are attached: a hair transplant clinic at $134 per inquiry across YouTube Shorts, long-form and Search, and a Sacramento practice holding $14 to $40. Those are all cost per inquiry, not cost per booked appointment. No one can honestly quote you the second number yet, which leads to your site.
+1. Healthcare numbers. Our team runs two dental practices on Google right now. Last 90 days, one spent $52,741 and produced 252 patient inquiries at $209 each; the other $39,753 for 194 at $205. Inside the first account, Search is the cheapest inquiry at $135 and Demand Gen is $324. Two case studies attached: a hair transplant clinic at $134 per inquiry across YouTube Shorts, long-form and Search, and a Sacramento practice holding $14 to $40. Those are all cost per inquiry, not cost per booked appointment. Nobody can honestly quote you the second number yet, which leads to your site.
 
-2. What to change first. Your Schedule Appointment button hands patients to NexHealth on a separate domain, and your Google Ads tag is not on that page. The booking itself is invisible to both platforms. Separately, your Facebook pixel plugin is installed with no pixel configured, so Instagram and Facebook would launch blind. Measurement before creative.
+2. What to change first. Your Schedule Appointment button hands patients to NexHealth on a separate domain that carries none of your tracking, so the booking itself is invisible to Google and Meta. That is the exact number you said you want reported. Alongside that, your sleep center site runs a Meta pixel and your main practice site does not, and both sit under one Google Ads tag, so sleep cases and smile makeovers are likely landing in the same conversion pool despite very different case values.
 
 3. Starting budget. $6,000 to $8,000 a month, weighted to Search first and Meta second. Hold YouTube and Shorts until Search is producing conversion data worth feeding them.
 
-4. First 30 days. Week one, measurement. Weeks two and three, audit and Orange County competitor research. Week four, the written plan and the Search build.
+4. First 30 days. Week one, measurement and separating those conversion actions. Weeks two and three, the audit and competitor research across Santa Ana and Newport Beach. Week four, the written plan and the Search build.
 
 Straight with you on one point: we would own paid and the content direction feeding it. The visual rebrand is not our craft and you would want a designer on it. We are Central time, so your mornings overlap fine.
 
