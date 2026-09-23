@@ -1,3 +1,18 @@
+> **SKIPPED 2026-09-23. DO NOT SEND.**
+>
+> Queenie ruled **"skip it, agency excluded from applying"** on the LockedIn AI post. The ruling is
+> categorical rather than profile-specific: Creekside is an agency, and the post requires "applying as an
+> individual, not an agency or team." This draft's own screening table already recorded that collision
+> ("Queenie's call: Creekside is an agency"), so the ruling lands on it the same way it lands on the Samuel
+> version.
+>
+> Status changed by the Samuel session, which held the ruling. Original content is preserved below
+> unaltered. Reverse this if the call was meant to apply to one profile only.
+>
+> **Two facts in the screening table below are recorded backwards** (Quivr's identity, and which PDF 404s).
+> Corrections are in `2026-09-23_lockedin-ai-saas-interview-copilot-paid-acquisition-lead_SKIPPED.md`.
+> Both files reach the same conclusions; only the reasons were wrong.
+
 # LockedIn AI - SaaS paid acquisition lead (Meta + Google)
 
 **Profile:** Lindsey | **Style:** lindsey_default | **Status:** UNSENT

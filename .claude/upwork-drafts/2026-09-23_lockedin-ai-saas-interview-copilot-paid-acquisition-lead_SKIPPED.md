@@ -1,6 +1,23 @@
-# Upwork Proposal - LockedIn AI (AI interview copilot + mobile mock interviewer, subscription SaaS)
-Profile: Samuel | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-23 (Postgres now(), local clock confirmed in sync today)
-Disposition: **DRAFT ANYWAY, GAPS FIRST** - Queenie's override of two hard stops. Recommended action was SKIP.
+# SKIPPED - LockedIn AI (AI interview copilot + mobile mock interviewer, subscription SaaS)
+Profile: Samuel | Style: strategic + diagnostic | **Status: SKIPPED, DO NOT SEND** | 2026-09-23 (Postgres now())
+
+## DISPOSITION - SKIPPED 2026-09-23
+Recommended action was SKIP on six screens, two of them hard stops. Queenie first chose **"Draft anyway,
+gaps first"**, the draft below was written, and she then ruled **"skip it, agency excluded from applying"**.
+
+**This is the second recorded override-then-skip on a finished draft** (after Bedspoke, 2026-09-16). A
+"draft anyway" on the anti-agency screen is NOT durable. The pattern to carry: on a post that forbids a team,
+the draft can be produced and still lose, because producing it does not change the structure.
+
+**No QC verdict exists for this body.** `qc-reviewer-agent` and `expert-review-agent` were both launched and
+then stopped when the skip landed. The text below is UNREVIEWED. Do not lift it into another proposal without
+running QC first.
+
+**Twin on the same job:** a concurrent session drafted a Lindsey version,
+`2026-09-23_lockedin-ai-interview-copilot-saas-subscription-meta-google_lindsey_default_*`. Queenie's ruling
+is categorical (Creekside is an agency, agencies are excluded from applying), so it applies to both profiles.
+Two factual errors in that twin's screening record are corrected at the bottom of this file.
+
 
 ## SCREENS RUN - SIX FIRED, TWO OF THEM HARD STOPS
 
@@ -103,3 +120,35 @@ Two things to weigh before you shortlist. I cannot hand you a subscription case 
 On the export, the first three cuts I would make: paid subscriptions grouped by the week of the click rather than the week of the report, trial starts separated from trials that survived the first billing event, and refunds stripped at the cohort level instead of netted against whatever month they land in. Accounts rarely arrive read that way, and the keep, cut and scale calls move once they are.
 
 How long is the trial before the first charge, and does the mobile app bill through the App Store or through the same web checkout as the desktop product?
+
+---
+
+## CORRECTIONS TO THE LINDSEY TWIN'S SCREENING RECORD (both verified 2026-09-23)
+
+The twin reached the right dispositions but recorded two facts backwards. Fix these before either record is
+reused.
+
+**1. Quivr's identity. The twin wrote: "Quivr looks like CRM software but is `jtryonconsulting.com`, not
+citable as SaaS." That is wrong, and it re-litigates a question memory already closed.**
+`reference_quivr_lindsey_b2b_saas_meta_proof` exists specifically "so nobody re-litigates Quivr a third
+time." Quivr **IS** a CRM SaaS product, three-to-one on the evidence: `reporting_clients.goals` = "Meta Ads
+for CRM SaaS product", `ad_account_name` = "Quivr CRM Main", contact = steve@quivrcrm.io. The
+`clients.website` value `jtryonconsulting.com` is a **stale field**, not the truth of the name.
+**Quivr is correctly uncitable, but for the numbers, not the name:** $19,388.08 lifetime across 11 campaigns
+against **3 recorded conversions**, with conversions NULL on 10 of the 11 (live, 2026-09-23). Citing the
+wrong reason risks someone later "discovering" it is real SaaS and citing it.
+
+**2. The two PDFs are swapped.** The twin wrote: "ReferPro PDF serves HTML not PDF; Birthday Club PDF 404s."
+Per `reference_case_study_pdf_attachability`, it is the other way round:
+- **ReferPro's `case_studies.download_url` 404s.** A live underscore twin exists
+  (`1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso`) whose **"Results:" block carries no extractable numbers** and whose
+  page 1 names the target market as "Home service contractors."
+- **BDC App / Birthday Club does not 404.** It is a browser print-to-PDF with live `manus.im` URLs and
+  "Opening print dialog" artifacts baked into the page, under a standing rule to **never match it to a B2B or
+  SaaS post.**
+Both conclusions ("attach nothing") stand. The reasons do not.
+
+**3. Unverified number worth flagging before reuse.** The twin's draft states ReferPro ran "roughly $2,000 a
+month across six months." The $2,000 comes from `reporting_clients.monthly_budget`, which is a **budget
+field, not recorded spend**. ReferPro's Meta account holds exactly ONE day of ingested data ($131.62 total).
+The Google side was not checked this session. Do not repeat that figure as spend without verifying it.
