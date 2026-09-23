@@ -80,20 +80,44 @@ your consent banner, Google won't be able to verify user consent choices and thi
 Status surfaces in the conversion diagnostics tab. **Not on the page, so never claim:** any enforcement date,
 any deadline, and any statement that v2 is "mandatory" in those words.
 
-## BODY (3,978 chars, 680 words - inside the 5,000 limit)
+## ATTACHMENTS RULED 2026-09-23 - ALL THREE CANDIDATES READ IN FULL, NOT ID-RESOLVED
+Two files exist for ReferPro, same `(1)`-twin trap as Big Chad Law. Memory's file_ids were stale against
+`gdrive_marketing`; re-pulled live.
+- **ATTACH `winterbotham_parham_teeple.pdf` (18tz_I0lKY_ULzLG8NlspLfSg1H3bqFtv).** Google only. Read in full:
+  229 conversions up from 117, $50.29 CPA down from $86.09, 42% cut, $11.5K spend for $1.44K more, 21% click
+  growth. Its strategy section is literally audit -> restructure into four focused segments -> **geo-specific
+  campaign to test a market, budget reallocated to the winner**, which is this post's core ask plus the
+  US-vs-Europe deliverable. No byline, so no persona leak. Defects: `localhost:4321` footer, and the CTA reads
+  "cut your legal marketing costs while growing your caseload" so consumer-legal shows on a B2B bid.
+  **Decomposition-contradiction handled:** the body keeps the "segmenting is right once volume supports it"
+  clause, so the draft does not argue against the attachment's own thesis.
+- **ATTACH `aura_displays.pdf` (1xKnrCCnakTPNnj8HaDiyEjp1z_ygloFN).** Google only (Search + Shopping + PMax).
+  Read in full: 8-10x non-branded ROAS, 27x branded, $34.56 cost per conversion, 119 peak conversions,
+  **"Expanded from US-only to 49 countries, with localized targeting based on sales-by-country data"** - the
+  post's own "international campaigns (US and Europe)" qualification. No byline. Defects: `localhost:4321`
+  footer, ecommerce CTA on a B2B bid. NOTE the PDF's own budget detail ($200/day branded + $50/day each
+  non-branded, about $9K/mo) sits near the $7,500 `reporting_clients` row and NOT the case_studies "$35K+/mo".
+  Account is PAUSED. Body quotes no spend figure and no Aura number, so nothing to reconcile.
+- **DO NOT ATTACH ReferPro** on this post, despite it being the only B2B-software row. Read `1DSteRZ...` in
+  full: the text layer still ends `Results: / Summary / Feb 1, 2025 - July 27, 2025` with zero numbers, exactly
+  as recorded. Memory says page 2 carries Google + Meta screenshots visible only on a visual render, with the
+  **platform icons swapped**. On a **Google-only** post that means half the artifact is irrelevant and the half
+  that matters is mislabelled. Kept as a named, unattached reference in the body instead.
+- If only ONE is wanted: **Winterbotham**, because the primary ask is audit and restructure and it is the only
+  artifact with a before/after on exactly that.
 
-You listed conversion tracking as an accuracy problem. The bigger one is that a credit card dataset purchase, an API signup and a consulting enquiry are worth very different amounts, and if they all report as one undifferentiated conversion, automated bidding buys whichever is cheapest to get. On a business like yours that is almost never the consulting enquiry. Values on the actions, not just working tags, is the highest leverage item in your list, and it changes what the restructure should look like.
+## BODY (2,756 chars, 467 words - shortened from 3,978 / 680)
 
-That pooling problem does not stop at values. A self serve dataset purchase and a consulting enquiry usually need different campaigns, not just different numbers attached, because one is a cart and the other is a sales cycle and the search terms that produce them barely overlap. Academic buyers are a third pattern again. They rarely buy on a card, they buy on a grant cycle through procurement, so they behave like enquiries rather than purchases and an ecommerce shaped setup will undercount them.
+You listed conversion tracking as an accuracy problem. The bigger one is that a credit card dataset purchase, an API signup and a consulting enquiry are worth very different amounts, and if they all report as one undifferentiated conversion, automated bidding buys whichever is cheapest to get. On your business that is almost never the consulting enquiry. Academic buyers are a fourth pattern, since they come through a grant cycle and procurement rather than a card, so an ecommerce shaped setup undercounts them.
 
-One accuracy item specific to where you sell. For visitors in the EEA, Google requires consent signals to be passed through before your tags can be used for measurement, and before remarketing or personalized advertising work at all. The common failure is holding the Google tags back until someone interacts with the banner, which leaves Google unable to verify the choice and loses data rather than protecting it. Consent mode status shows in the conversion diagnostics tab, and on a European account that is the first screen worth opening.
+Second accuracy item, specific to where you sell. For visitors in the EEA, Google needs consent signals passed through before your tags can be used for measurement, and before remarketing works at all. The common failure is holding the tags back until someone interacts with the banner, which leaves Google unable to verify the choice and loses data rather than protecting it. Consent mode status sits in the conversion diagnostics tab and is the first screen worth opening on a European account.
 
-The US and Europe question has a structural answer before it has a budget answer. Run both in one campaign and they share a single target, so budget flows to whichever market clears that target most easily. That is usually the cheaper market to buy traffic in, which is not the same as the better market to sell in. A Google account in our book ran the same catalog into two countries this July: blended it read 1.50x, which described neither country. One side was 0.42x on roughly a third of the non brand spend, the other was 2.00x. That is a consumer catalog rather than a data license, so the mechanic carries over and the number does not. Worth knowing too that manual bid adjustments are not supported under Target CPA, Target ROAS or Maximize conversions, and Performance Max takes none at all, so on those strategies a geographic split has to be separate campaigns rather than a modifier.
+The US and Europe question is structural before it is budgetary. Run both in one campaign and they share a single target, so budget flows to whichever market clears that target most easily. That is usually the cheaper market to buy traffic in, which is not the same as the better market to sell in. A Google account in our book ran the same catalog into two countries this July: blended it read 1.50x, which described neither country. One side was 0.42x on roughly a third of the non brand spend, the other was 2.00x.
 
-On negatives and match types, your account has a harder version of the usual problem. Lidar also means automotive sensing and phone scanning apps. Building footprint also means construction and architecture. API means everything. Those neighboring industries search far more than your buyers do, so the negative list here is structural rather than hygiene, and it is what decides whether broader match types are usable at all on this account.
+On negatives, your head terms are homonyms. Lidar is also automotive sensing and phone scanning apps, building footprint is also construction, and API is everything. Those neighboring industries search far more than your buyers do, so the negative list here is structural rather than hygiene, and it decides whether broader match types are usable at all.
 
-One ceiling to name early. Splitting by market and by revenue line at the same time can fragment volume below what automated bidding needs, and Google puts learning at up to around 50 conversion events or three conversion cycles. Segmenting is right once volume supports it, and below that threshold it is the thing that stalls an account. So values and consent first, then the market separation, then finer segmentation as volume earns it.
+One ceiling worth naming early. Splitting by market and by revenue line at once can fragment volume below what automated bidding needs. Segmenting is right once volume supports it, and below that it is the thing that stalls an account, so the order matters more than the ambition.
 
-Where our team stands on evidence. The closest match is a B2B software company we ran Google for after its seed round, using search to capture the demand rather than create it. For multi country structure it is a Shopify brand we scaled across 49 countries on Google at 8 to 10x on non branded traffic. We have no geospatial or academic buyer account in the book, so the vertical read here is yours and the account judgment is ours. Six years on Google, most of it in lead generation where the qualified enquiry is what gets paid for.
+We have no geospatial or academic buyer account in the book, so the vertical read is yours and the account judgment is ours. Nearest on the B2B side is a referral software platform we ran Google for after its seed round, search capturing demand rather than creating it. The two attached are the closest structural shapes: a flat account restructured into focused segments with budget moved to the market that was actually working, and a Google build taken from one country to 49.
 
 What is the current monthly ad spend range, and which of the two markets is carrying most of it today?
