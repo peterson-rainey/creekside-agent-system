@@ -1,17 +1,17 @@
 # Upwork Follow-Up - Jules Renesson Philipon / SPIKE (crypto prop firm)
-Profile: Peterson | Type: followup (pre-call) | Status: UNSENT | Drafted 2026-09-23
+Profile: Peterson | Type: followup (pre-call) | Status: OPTION A SENT 2026-09-23 | Drafted 2026-09-23
 Job: "Senior Paid Media Buyer — Crypto Prop Firm (Meta/Google) | High-Risk Finance Expert Wanted" (bid 2026-08-31)
 ClickUp: 86e34ere0 | salesman = Cade | funnel = Booking Link Sent | follow-up due 2026-09-23
 
 ---
 
-## OPTION A - short / easy-to-answer (22 words)
+## OPTION A - short / easy-to-answer (22 words) -- **SENT 2026-09-23 08:50 Central**, verbatim, diffed against the thread
 
 I asked about timing last week, Jules. Separate question: which markets are your Meta and Google ads actually pointed at right now?
 
 ---
 
-## OPTION B - value-carrying (105 words)
+## OPTION B - value-carrying (105 words) -- NOT SENT, superseded by his reply
 
 I asked about timing last week. Setting that aside, here's the constraint that decides how far a media plan goes in this category.
 
@@ -79,3 +79,20 @@ second live thread exists. Never reference or borrow from it.
 **Deliberate omissions:** no pricing, no rate, no hourly figure, no commitments, no free work, no audit
 offer, no calendar link, no email or phone, no off-platform app names, no em dashes, no personal-name
 sign-off.
+
+---
+
+## OUTCOME (2026-09-23)
+
+Option A was SENT verbatim at 9:50 PM Manila (08:50 Central). **Jules replied "Meta" at 11:22 PM
+Manila (10:22 Central), roughly 90 minutes later.** That is his first substantive answer to any question
+we have asked in 19 days; every prior reply was scheduling ("Hi can we speak on a call ?", "yes i let u
+know adap", "when are you available for a call ?", "Ok I'll check").
+
+**He answered the PLATFORM axis, not the MARKETS axis. The geography screen is still open.**
+
+**Empirical result worth carrying: 22 words broke a three-week stall on this thread.** Four longer,
+scheduling-shaped touches (9/8, 9/13, 9/16, 9/19) produced nothing. Short and single-question worked.
+
+Correction to the touch count in the notes above: the 9/8 10:40 PM touch "Got it. Take the time you need."
+was omitted from the original brief. It does not change the recommendation, it adds one outbound touch.
