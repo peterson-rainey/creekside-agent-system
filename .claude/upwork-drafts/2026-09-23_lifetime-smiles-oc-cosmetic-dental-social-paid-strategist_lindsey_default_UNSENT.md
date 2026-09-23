@@ -5,7 +5,7 @@
 - **Style:** `lindsey_default` (requested as "strategic + diagnostic style... write it in lindsey_default")
 - **Status:** UNSENT
 - **Client:** Lifetime Smiles of OC, Santa Ana CA (Orange County). Dr. Kareem Abraham. lifetimesmilesoc.com
-- **Length:** 388 words / 2,230 chars (band 200-300, up to 350 multi-question; overage justified below)
+- **Length:** 473 words / 2,708 chars (band 200-300, up to 350 multi-question; overage justified below. Upwork cap 5,000 chars: clear)
 - **Twin on this job:** Samuel strategic v3, `2026-09-23_..._samuel_strategic_UNSENT.md` (commit db65b9e). UNSENT.
 - **Prior bids on this job:** none (`upwork_jobs` by job_name + client_name, drafts grep, leads index all clean)
 
@@ -68,9 +68,15 @@ against it. Draft leads on impressions/clicks (actual delivered volume) rather t
 - Vida 90-day blended (6/25-9/22): **$15,452.73 / 186 / $83.08**. Blended hides the split, same pattern as the
   recorded Tooth Co pair. Draft cites the blended figure only as scale, never as the headline.
 
-**Fusion Dental** — Meta `act_938570599860690`, CHURNED (last spend 7/15/26), Lindsey was `platform_operator`:
-**419 leads at $20.67 each**, Meta forms into a call center. Draft uses PAST tense and states **no time window**
-(the calendar 90d window contains only ~20 active days; per the active-days rule a "90 days" claim would be wrong).
+**Fusion Dental** — Meta `act_938570599860690`, CHURNED, Lindsey was `platform_operator`. Meta lead forms into
+a call center. **FULL ACCOUNT LIFE 2026-04-21 to 2026-07-15: $64,746.78 / 2,558 leads / $25.31 each.**
+Monthly: Apr $18.74 · May $29.85 · Jun $25.48 · Jul $20.06.
+
+> **QC CAUGHT A PEAK-ENDPOINT ERROR HERE.** The first draft cited **419 leads at $20.67** from a
+> `CURRENT_DATE - 90` window, which catches only the account's final tail and is its second-best month.
+> QC flagged that Fusion's figures have drifted across pull windows in past sessions, so I re-pulled the full
+> life: **2,558 at $25.31**, which reproduces the recorded figure exactly. The honest number is also the
+> stronger one (6x the volume), so the draft now cites it with no window claim.
 
 **Deliberately NOT used:**
 - Doctor Laleh Meta ($286,310/90d, 676 conv, $423.54) — spend is citable but its **CPA is not reliable**; and the
@@ -127,17 +133,50 @@ drafts shipped when trimming would have dropped required answers).
 5. **Dental sleep medicine** is not addressed. It is a second service line with different economics and the
    draft stays on the cosmetic/general goal the post leads with. Raise if you want it covered.
 
+## QC + expert review applied
+
+**QC verdict: FAIL, then all five defects fixed.** Four were real precision errors:
+
+| # | Defect | Fix |
+|---|---|---|
+| 1 | "Which is the one thing..." was a dangling fragment across a paragraph break | "Here's the one thing..." |
+| 2 | Engagement campaign's **6 labelled "leads"** — the DB unit is `conversions`, and a DMs campaign's conversions are not lead-form completions | "6 conversions"; comparison restated as "Ninety against six" so the two units are never multiplied together |
+| 3 | **"reach"** was never verified — only impressions were pulled | "Less than half the impressions" |
+| 4 | Account-level blended "186 leads" — spans campaign types | "186 conversions" |
+| 5 | "no booking can report back... everything else waits on it" overstated what the pixel fix solves | Split: pixel fix is same-day; the off-site booking is named as the separate, harder half |
+
+Defect 5 was raised **independently by both reviewers**, which is why it is treated as certain.
+
+**Expert review verdict: Good.** Accepted 3 of 4:
+- **Branding + content calendar silence** (both reviewers flagged it; "strong eye for upscale branding" is a
+  stated requirement). Added as audit-level *direction*, never design or production. **I rewrote the reviewer's
+  wording, which echoed their own adjectives ("chic and warm") back at them** — parroting the prospect's terms
+  is a flagged pattern.
+- **Dental sleep medicine** — one qualitative clause, no numbers (none verified for that line).
+- **Booking-system gap** — accepted, but I kept the vendor **unnamed**. The reviewer did not know the Samuel
+  twin already names NexHealth prominently; naming it here would duplicate his most distinctive site finding.
+
+**REJECTED — expert review item 3.** It wanted: *"That number is for Meta alone; Search and YouTube carry their
+own separate budgets on top of it."* That is the standalone-capability-disclaimer shape that the 2026-09-23
+AI-automation ruling **already overruled expert review on**, because it raises "then who runs Google". "On Meta
+I would start at" scopes the number in two words without opening that door.
+
+**QC non-blocking note, not actioned:** weeks 3-4 of the 30-day answer are implied rather than enumerated. QC
+called it "thin but acceptable"; spelling it out costs words the draft does not have.
+
 ## DRAFT BODY
 
 When one of your before-and-after posts gets put behind budget, is the objective set to engagement or to leads? That one setting decides whether you get a report full of likes or a report full of patients.
 
-I ask because I run Meta for a veneers practice that had both objectives live at once, launched the same day. Over the same stretch this summer, the engagement campaign delivered 55,242 impressions and 1,533 clicks for $2,139 and produced 6 leads. The forms campaign delivered 24,784 impressions for $3,430 and produced 90 leads at $38.11 each. Less than half the reach, fifteen times the leads. Meta finds people who take the action you optimized for, so an engagement objective finds people who like things.
+I ask because I run Meta for a veneers practice that had both objectives live at once, launched the same day. Over the same stretch this summer, the engagement campaign delivered 55,242 impressions and 1,533 clicks for $2,139 and produced 6 conversions. The forms campaign delivered 24,784 impressions for $3,430 and produced 90 leads at $38.11 each. Less than half the impressions. Ninety against six. Meta finds people who take the action you optimized for, so an engagement objective finds people who like things.
 
-That practice is the closest match to yours I have, cosmetic cases and local patients, and it sits at 186 leads on $15,453 across ninety days. I also ran Meta for a dental group feeding form leads straight into a call center, 419 leads at $20.67 each. Those are leads, not booked appointments. Nobody can honestly quote you a cost per booked appointment until the booking step reports back.
+It is the closest match to yours I have, cosmetic cases and local patients, at 186 conversions on $15,453 across ninety days. I also ran Meta for a dental group feeding form leads into a call center, 2,558 of them at $25.31 each. Those are leads, not booked appointments. Nobody can honestly quote you a cost per booked appointment yet.
 
-Which is the one thing I would change this week. Your site is running the PixelYourSite plugin with no pixel ID in it, so nothing is firing. Every visitor you have already paid for is unattributable, no retargeting audience is building, and no booking can report back. That is a same-day fix and everything else waits on it.
+Here's the one thing I would change this week. Your site is running the PixelYourSite plugin with no pixel ID in it, so nothing is firing. Every visitor you have paid for is unattributable and no retargeting audience is building. That part is a same-day fix. The harder half is that your booking sits on a separate site that reports nothing back, which is the actual reason you are stuck counting leads instead of booked appointments.
 
 Your photos are less of a constraint than people assume. Meta's health and wellness standard permits before-and-after transformation imagery when the ad targets 18 and over. What pulls ads down is promising a specific result in a set timeframe without a qualifier. The library your team already shoots is usable as it stands.
+
+Page structure sits in the same audit, pinned posts, highlights and bio, so the profile holds up for anyone who taps through from an ad. The calendar is where your team feels it: what to shoot and when, timed to what the ads need next, so nothing gets filmed twice. Your sleep side is a different patient, someone chasing a symptom rather than a smile, so it needs its own angle rather than a rerun of the veneer creative.
 
 On Meta I would start at $5,000 to $6,000 a month. First thirty days: pixel and lead events live in week one, account and Orange County competitor teardown in week two, then forms and retargeting built from your existing before-and-afters, with DMs held back until the lead side has enough data to judge.
 
