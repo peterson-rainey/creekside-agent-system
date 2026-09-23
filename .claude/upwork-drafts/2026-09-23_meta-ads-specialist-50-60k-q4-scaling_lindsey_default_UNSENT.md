@@ -17,21 +17,21 @@ Meta Scaling Into Q4
 
 What CPM is the Q4 plan built on, the one you are paying now or a higher one?
 
-I ask because scaling and Q4 each raise CPM on their own, and they land in the same eight weeks. A budget modeled on today's reach buys noticeably less of it by November. The ROAS drop that follows reads like a creative problem when it is a media cost problem, and those two need opposite responses. One you fix, the other you fund.
+I ask because scaling and Q4 each raise CPM on their own, and they land in the same eight weeks. A budget modeled on today's reach buys less of it by November. The ROAS drop that follows reads like a creative problem when it is a media cost problem, and those need opposite responses. One you fix, the other you fund.
 
-On a DTC furniture brand I ran, monthly Meta spend went from about $24K to about $40K the next month. CPM went from $45 to $79 across those two months. The audience and the creative had not gotten worse. The incremental reach just cost more.
+On a DTC furniture brand I ran, monthly spend went from about $24K to about $40K in a month and account CPM went from $45 to $79. Almost none of that was the existing ads getting more expensive. Most of the new budget landed in one new campaign clearing at a much higher CPM, and the one campaign running in both months moved about 7%. The blended number said the account was degrading. Split by campaign, it was not.
 
-Across the Meta accounts our team runs, November and December CPM sat about 25% above October. On the largest account in the book it was closer to 77%. January came back to the October level almost exactly. That reversion is the part most Q4 plans miss. Winners cut in November stay cut, and the auction hands the money back in January to whoever is still running them.
+Across the Meta accounts our team runs, November and December CPM sat about 25% above October, and on the largest account closer to 77%. January came back to the October level almost exactly. That reversion is what most Q4 plans miss. Winners cut in November stay cut, and the auction hands the money back in January to whoever is still running them.
 
 The Meta account I run now is about $99K a month, so $50K to $60K sits inside the range I work in.
 
 Two things I would want in place before the budget goes up:
 
-1. A spend band read on your current winners, so we know which ads hold efficiency at 1.5x their daily budget and which only work at today's. That decides where the Q4 money actually goes, instead of splitting it evenly and finding out in December.
+1. A spend band read on your current winners, so we know which ads hold efficiency at 1.5x their daily budget and which only work at today's. That decides where the Q4 money goes, instead of splitting it evenly and finding out in December.
 
-2. A clean read on retargeting before Q4 rather than during it. On that furniture account retargeting took 16% of the spend and returned about a third of the recorded revenue, which is exactly the split that makes a blended number look healthy while prospecting quietly gets more expensive.
+2. A clean read on retargeting before Q4 rather than during it. On that furniture account retargeting took 16% of the spend and returned about a third of the recorded revenue, the split that makes a blended number look healthy while prospecting gets more expensive.
 
-On fees: $1,500 onboarding for Meta, then 20% of monthly spend to $30K, 15% from $30K to $60K, and 10% above that. At $50K that is $9,000 a month, at $60K it is $10,500, and the rate keeps dropping as you scale. I work on a 90 day minimum.
+On fees: $1,500 onboarding for Meta, then 20% of monthly spend to $30K, 15% from $30K to $60K, and 10% above that. At $50K that is $9,000 a month, at $60K it is $10,500, and the rate keeps dropping as you scale.
 
 What are you selling, and which countries does the spend run in?
 
@@ -58,6 +58,18 @@ There is a short video on my profile that explains how I work.
 - Tenure spend $105,011. `Retargeting | 4/13`: $17,000 spend (16.2%) and $92,142 of ~$292,666 recorded revenue (31.5%). Cited as "16% of the spend" and "about a third of the recorded revenue".
 - **Deliberately NOT cited:** the July 4.17x, any ROAS, any cost per purchase. July's headline is carried by a `July 4th - 50%` sitewide promo ($23,843 of that month's spend). No revenue multiple appears in the body.
 
+**CORRECTED AFTER QC (finding f, implied causation).** The first draft of paragraph three said the CPM rise was existing reach getting more expensive ("The audience and the creative had not gotten worse. The incremental reach just cost more."). **That was wrong and is now cut.** Campaign-level decomposition of Jun vs Jul 2026:
+
+| Campaign | Jun spend / CPM | Jul spend / CPM |
+|---|---|---|
+| `Conversions \| July 4th - 50%` (new in July) | not running | **$23,843 / $84.79** |
+| `Retargeting \| 4/13` (both months) | $4,234 / $50.34 | $7,493 / **$54.05** |
+| `Conversions \| Membership \| 7/22` (new) | not running | $6,141 / $95.35 |
+| `TRADE PROGRAM` | $1,943 / $68.82 | $2,215 / $108.33 |
+| `Conversions \| 30% Off \| 5/13` | $7,846 / $42.02 | ended |
+
+The account CPM nearly doubled mainly as a **mix effect**: a new promo campaign took 59% of July spend at an $84.79 CPM. The only campaign running in both months moved **+7.4%** ($50.34 to $54.05). Non-promo July spend (~$16.5K) was actually *below* June's $23.9K. The body now says this plainly and uses it as the argument, which is both honest and a stronger diagnostic than the original claim.
+
 **Book-wide Meta CPM.** First pass cited the all-in book number (+38%). **Corrected before delivery:** Lux Dental Spa is roughly half of total book spend, so the all-in figure was carried by one account. Re-pulled excluding it:
 
 | | Oct 2025 | Nov 2025 | Dec 2025 | Jan 2026 |
@@ -81,6 +93,14 @@ Body now cites **"about 25% above October"** (ex-Lux, the breadth-supported figu
 3. **Q4 CPM arc is not first-person.** Lindsey was not the operator on Lux through Q4 2025, and Master Spa Parts' Q4 2025 is pre-takeover (Feb 2026), so neither is available as a personal war story. The draft routes around both: her own scaling-cost proof is Neue Maison, which is inside her tenure.
 4. **No attachments.** No artifact was attached or claimed.
 
+## QC (qc-reviewer-agent): PASS WITH FIXES. Both fixes applied.
+
+1. **Finding (f), implied causation: CONFIRMED, was a real error.** Verified independently at campaign level (table above) before acting on it. Paragraph three rewritten from a false mechanism claim into the mix-vs-degradation read the data actually supports.
+2. **Finding (e), the 90-day minimum line: CONFIRMED, cut.** `reference_no_client_trial_90day_minimum.md` records that Queenie cut this line from two first-touch proposals in a row (Tools For Veterans 9/22 `a6cf363`, Shine Tech 9/23 `57391b0`) and that **since 9/23 first-touch proposals leave it out by default.** Today is 9/23. Removed from the fee paragraph. The term still must be raised before any contract, and a trial is still never to be agreed to.
+3. Fee math re-verified against the marginal tiers: PASS. Format rules, tense discipline, no fabricated figures: PASS.
+4. **Finding (a), "our team" pooling:** wording matches sanctioned phrasing; still needs Queenie's per-post confirmation. Flagged above.
+5. **Finding (g), compound closing question:** optional polish only. Kept both clauses since vertical is unknown and needed for any follow-up. QC's note is that geo is the higher-value half if one has to go.
+
 ## Conventions
 
-No em dashes, no sign-off, no name, no links, no contact info, no hourly rate, no commitments pre-signature. 398 words, ~2,100 characters, well inside the 5,000 limit.
+No em dashes, no sign-off, no name, no links, no contact info, no hourly rate, no 90-day line, no commitments pre-signature. 414 words, 2,202 characters, well inside the 5,000 limit.
