@@ -1,4 +1,8 @@
-> **JOB ALREADY RULED SKIP. DO NOT SEND WITHOUT REVERSING THAT RULING.**
+> **SKIPPED 2026-09-23/24. DO NOT SEND.** Queenie confirmed directly in this session:
+> **"skip it they're excluding agencies from applying to this job."** This is the same categorical
+> ruling the parallel Samuel session recorded in `fe95779`, now confirmed first-hand here.
+>
+> **ORIGINAL HEADER BELOW, SUPERSEDED:**
 >
 > Queenie ruled **"skip it, agency excluded from applying"** on LockedIn AI in a parallel session
 > (commit `fe95779`), categorically across both profiles. These answers were drafted in a concurrent
@@ -58,3 +62,20 @@ On the mobile side I would want to confirm how your own reporting handles modele
 4. Taking the last part first, because it is the one that decides this. I work as a contractor through an agency. If your requirement is that no agency sits anywhere behind the work, I do not meet it as worded. If what you need is that one named person does the hands on work in the accounts and is the one answering for it, that I can commit to.
 
 US based, yes, Pacific time zone. Availability [BLANK: real hours/week figure needed before send].
+
+## Post-skip corrections (recorded 2026-09-24, for future reuse of these facts)
+
+Checked against `reference_referpro_b2b_saas_and_trade_audience_inversion`, which is more accurate
+than what this file and the proposal asserted:
+
+1. **The $2,000 is a CONTRACTED OPENING BUDGET, and spend did not stay flat.** The ReferPro case-study
+   PDF records a "Metazation" step up at month 3: **ad spend doubled and PMax was added.** So the honest
+   phrasing is **~$2K/platform at start, roughly double after month 3**, not a flat $2,000 across six
+   months. Answer 1 above still flattens it. That memory notes this same error already "bit me on the
+   first Mckora screening answers" — second occurrence now.
+2. **"No attachments" was too strong.** `case_studies.download_url` is a **stale pointer** (it serves
+   HTML, which is what this session verified twice). The actual `ReferPro B2B SaaS Case Study.pdf` was
+   verified present in `gdrive_marketing` on 2026-08-26 and **IS attachable** by that path. Birthday
+   Club's 404 stands. Check `gdrive_marketing`, not `download_url`, before declaring a PDF unattachable.
+3. Campaign window per the PDF: **Feb 1 2025 to Jul 27 2025**, after a **$2.7M seed** in late 2024.
+   Product is referral automation sold to home service contractors.
