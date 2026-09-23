@@ -1,5 +1,20 @@
 # Upwork nurture: SCENTEMOTION (Jose Hneich), pre-call nurture touch 1
 
+> ## STATUS UPDATE 2026-09-23 — READ BEFORE USING THIS FILE
+>
+> **R1 WAS SENT on 2026-09-21, verbatim, despite the UNSENT/HOLD label below.** Angle 1
+> (outcome curiosity) is therefore SPENT. The filename still says UNSENT because nothing
+> writes back when a held draft goes out. Do not re-send R1 and do not re-draft its angle.
+>
+> **R2 (the Q4 seasonal alternate) is RETIRED UNFIRED. Do not send it, now or later.**
+> Its entire value is a pre-November deadline, so it cannot survive an indefinite hold, and
+> by the next due date it is falsified rather than merely stale. Touch type 8 itself is not
+> spent; a non-calendar platform change can still use the slot.
+>
+> **Next touch: 2026-11-20**, nurture touch 2, touch type 1 (bare status question). Written
+> on the day, not banked here. Thread remains on HOLD while "Jose Hneich is currently
+> restricted from this conversation" is showing. See ClickUp `86e3btcmf`.
+
 - **Profile:** Lindsey | **Type:** nurture, pre-call, touch 1 | **Date:** 2026-09-21 ~10:00 Central (Postgres) | **Status:** UNSENT, HOLD while restricted
 - **Upwork restriction:** the room shows "Jose Hneich is currently restricted from this conversation." Upwork Help (Trust and Safety, article 25205969832083): a restricted account "won't be able to post jobs, submit proposals, or start new contracts", and "they'll be able to resolve the issue themselves." Send only after the notice clears.
 - Timeline (Central): proposal 8/6 (viewed). Jose booked through the Upwork scheduler 8/6, and scheduler errors stacked several slots. 8/7 ~10:30 AM: the Upwork video meeting ended after 2:55 with no connection. Lindsey then pasted a Google Meet invite + dial-in (a pre-contract link, which Upwork Help calls circumvention). 8/7 10:42 AM: Jose, "do you want to send me a new link" = the LAST human message, never answered. 45 days silent as of 9/21.
