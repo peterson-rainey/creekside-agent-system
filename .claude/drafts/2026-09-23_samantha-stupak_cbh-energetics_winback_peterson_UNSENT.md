@@ -7,36 +7,46 @@
 **Trigger:** ClickUp `86e2b4ntp`, status "follow up pre-call", due TODAY. Peterson in-thread: "asap" then "draft a follow up for me".
 **QC:** FAILed v3 on one blocking finding, now fixed (see below). Two non-copy items remain open.
 
-## THE DRAFT
+## THE DRAFT (shortened, 136 words, QC PASS) — SEND THIS ONE
 
 Subject: Four of your 17 live CBH ads point at Instagram, not the site
 
 ```
 Samantha, this is Peterson from Creekside Marketing Pros. Adam introduced us back in June.
 
-I went through all 17 of your live CBH ads in Meta's ad library this week. You're running two
-systems side by side. Most are catalog ads, Shop Now or Learn More, click lands on
-cbhenergetics.com. Four work differently: the button is an Instagram profile visit, and on three
-of those four the next step is commenting a keyword.
+I went through all 17 of your live CBH ads in Meta's ad library. Most are catalog ads that land
+the click on cbhenergetics.com. Four work differently: the button is an Instagram profile visit,
+and on three of those four the next step is commenting a keyword.
 
-Comment-to-DM is a legitimate play and the split may well be deliberate, so this isn't a knock.
-It's a measurement question. On those four, the click never reaches cbhenergetics.com, so nothing
-on your site fires from it. Whatever revenue comes out of that path is hard to separate from the
-catalog ads.
+Comment-to-DM is a legitimate play and the split may well be deliberate. Not a knock. It's a
+measurement question: on those four, the click never reaches cbhenergetics.com, so nothing on your
+site fires from it.
 
 The question I'd put to whoever runs the account now: on those four, what event is Meta optimizing
 toward, and how do you know what those ads sold?
-
-Same theme on the other brand. PetMedella is a working store with no ads in the library, and the
-site loads without a Meta pixel where cbhenergetics.com has one. Public library, public page
-source, nothing more. If paid isn't in the plan there, that explains both. If it is, the same
-question lands there before the first ad does.
 
 No pitch here. If what comes back doesn't sit right, reply here.
 ```
 
 **Final question:** "The question I'd put to whoever runs the account now: on those four, what event is Meta optimizing toward, and how do you know what those ads sold?"
 **Final sentence:** "If what comes back doesn't sit right, reply here."
+
+Shortened on Queenie's instruction from the 215-word version. Cut: the whole PetMedella paragraph
+(prior QC named it as the thing to cut if length had to come down), plus "Shop Now or Learn More",
+"You're running two systems side by side", "this week", and "Whatever revenue comes out of that
+path is hard to separate from the catalog ads". Second QC pass PASSED it: all five hedges survive,
+every number still checks out, and cutting the revenue-separation line actually widened the
+no-implied-causation margin.
+
+## ALTERNATE (215 words, also QC-clean) — only if the PetMedella hook is wanted
+
+Same as above, but with this paragraph restored before "No pitch here", and with "Shop Now or
+Learn More", "You're running two systems side by side" and "this week" back in:
+
+> Same theme on the other brand. PetMedella is a working store with no ads in the library, and the
+> site loads without a Meta pixel where cbhenergetics.com has one. Public library, public page
+> source, nothing more. If paid isn't in the plan there, that explains both. If it is, the same
+> question lands there before the first ad does.
 
 ## QC fix applied
 v3 read "...so nothing on your site fires from it, **and Meta has no purchase signal coming back from that click to optimize toward.**" Cut. It asserted campaign-objective mechanics not in evidence (we have destination and button only, never the objective), and it half-answered the question the very next line asks her.
