@@ -2,7 +2,9 @@
 
 - **Profile:** Samuel | **Style:** strategic-diagnostic | **Date:** 2026-09-23 (Postgres now(); local clock unreliable) | **Status:** UNSENT
 - **Length:** see footer. Under the 5,000-char Upwork ceiling.
-- **Attachment:** NONE. Integrity Naturopathic PDF is the only near-fit and still carries the unstripped localhost dev-link footer; it is also a small local clinic, wrong scale for this post.
+- **Attachment:** NONE, ruled 2026-09-23 after reading both candidates in full.
+  - `aura_displays.pdf` (`1xKnrCCnakTPNnj8HaDiyEjp1z_ygloFN`) is the only ecom + Google + Shopping/Merchant Center case study in the book and covers the exact account cited in the body. DISQUALIFIED twice over: its headline "8-10x non-branded ROAS" is live **5.27x** ($46,566.63 / 450.9 conv / $103.28 CPA, all UNBRANDED campaigns, 2025-11-11..2026-08-31), and its "$34.56 cost per conversion" is live $39.70. Only the 27x branded claim holds (live 28.74x). It also still carries the unstripped `http://localhost:4321/` dev-link footer, its only URI. Attaching it would put 10x and the body's 5.3x about the same account in front of the same reader.
+  - `integrity_naturopathic.pdf` carries the same footer, and is a $2,350/mo local clinic, wrong scale for a $150K/mo post.
 
 ## Screens
 - Spend $150K/mo, far above the $5K floor. No budget ask needed, so the close is one diagnostic question instead.
