@@ -4,6 +4,10 @@ Profile: Samuel | Style: strategic | Status: UNSENT | 349 words | Drafted 2026-0
 
 Screen: ads+funnel/CRO scope fires, but ZERO screening questions (the two-CRO-gated-question line is not met) and spend is unstated. Gap disclosed in body.
 Proof cited: AiW (ACTIVE, Meta only, $256->$123, 41->90 on +5%), Fusion Dental (CHURNED 7/22, capacity framing), Victory Land (CHURNED 6/1, per-county spread only).
+Attachment: ATTACH the Adventures in Wisdom PDF, gdrive_marketing id 1Q4IAix0Gc81lnfeWvRlMJYHwTijeIw-h, 6 pages, Creekside-branded, "Adventures in Wisdom (AIW) Case Study-Creekside Marketing Pros". Verified live 2026-09-24: real %PDF-1.4, 810KB. The case_studies pointer 1qoW2YJOCD_AwOnvAEdGjsh-adzQ_drD0 returns HTTP 200 but is an HTML sign-in wall, the usual false 200.
+Content read in full and reconciles to canonical with zero drift: Jan 2025 $10,503 / 41 apps / $256 CPA, Oct 2025 peak $11,069 / 90 apps / $123 CPA, so 52% CPA cut and 120% application lift on a 5% spend increase, exactly the three figures in the body. No localhost:4321 footer (Jan-2025 batch, not the April-2026 templated batch), no manus.im or print-dialog artifact, no Duct Tape white-label provenance on the page.
+Two attach hazards, neither blocking: (1) the PDF states scope as "Meta Ads management only (no Google Ads, no CRM, no organic)" while the proposal's central pitch is pushing the CRM outcome back as the optimization event, so the one attached artifact disclaims the half being sold; Fusion carries that half and has no attachable PDF. (2) Cover reads "LAST REVIEWED ON 1/6/2025" but the document contains Jan-Oct 2025 data, so the review date precedes its own contents.
+Nothing else is attachable: Fusion Dental and Victory Land Sales are both absent from case_studies, and real estate has no artifact at all. Body deliberately promises no attachment and makes no results-attached reference, so no copy change is needed.
 Open item: post asks for PERSONALLY managed experience; every operator of record is a team member, so the draft answers as "our team" and does not claim personal delivery.
 
 ---
