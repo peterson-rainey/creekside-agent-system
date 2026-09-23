@@ -5,7 +5,7 @@
 - **Style:** strategic
 - **Status:** UNSENT
 - **Client:** Lifetime Smiles of OC, Santa Ana CA (Orange County). Dr. Kareem Abraham. lifetimesmilesoc.com
-- **Length:** 400 words / 2,414 chars (limits: 400 words multi-question, 5,000 chars)
+- **Length:** 396 words / 2,367 chars (limits: 400 words multi-question, 5,000 chars)
 - **Prior bids on this job:** none found (`upwork_jobs` + drafts grep + leads index)
 
 ## Screens applied
@@ -111,20 +111,61 @@ Not taken, for word budget: Google LSA (we do run it for The Tooth Co, acct `338
 wanted) and an Instagram-specific observation (required item 2 reads "Instagram or website"; the website
 findings are stronger).
 
+## QC FAIL and fix (v4) — Root Hair YouTube claim
+
+`qc-reviewer-agent` returned **FAIL** on v2/v3 and it was correct. Independently re-verified this session.
+
+**The blocking issue.** `reference_root_hair_youtube_claim_unciteable.md` (2026-08-25) rules: *"the numbers are
+citable, the YouTube attribution is not ... Never cite it as YouTube proof - it is the single most tempting row
+in the book for a YouTube job and it is the one that would fabricate the credential."* Root Hair has **zero rows
+in `google_campaigns`** (Track Digital white-label), so nothing corroborates the channel. `case_studies` says
+"YouTube + Search"; the sanctioned SDR SOP says "Google Ads" with no YouTube. Standing rule: **SOP wins.**
+
+This post requires YouTube and YouTube Shorts campaigns, so it is exactly the scenario the ruling names.
+
+**Fixes applied in v4:**
+1. Body now cites Root Hair as **Google Ads only** - "690 inquiries at $134 on Google Ads, against procedures
+   worth $8,000 to $15,000" - matching the SOP wording. The $8-15K procedure value is explicitly citable and now
+   anchors the case-value bridge with a real figure instead of a vague gesture.
+2. **`root_hair.pdf` is NOT attached.** Its own cover reads *"How Root Hair Generated 690 Conversions with
+   YouTube + Search Ads"* with *"Campaign Types: YouTube Shorts, Long-Form, Search"* printed on it. Attaching it
+   asserts the banned credential on letterhead. Attachment count in the body dropped from two to one to match.
+3. Week-six line softened to "get tested", not a capability claim - YouTube expertise is a documented gap
+   (portfolio VIDEO channel: 1 account, $495 lifetime, **zero** conversions).
+
+**MEMORY.md index gap, worth fixing:** `reference_root_hair_youtube_claim_unciteable.md` exists on disk but has
+**zero entries in MEMORY.md**, which is why the pre-draft sweep missed it. The aesthetics proof pack mentions
+Root Hair's white-label provenance but not the YouTube ban.
+
+**Second QC catch, independently confirmed:** BOTH PDFs carry `http://localhost:4321/` as a baked-in link
+annotation (April 2026 templated batch). Invisible to `pdftotext`; found via `strings` on the binary. Cosmetic,
+but it is a live broken link in a client-facing file.
+
+**Demand Gen framing checked and cleared.** `reference_demand_gen_youtube_proof.md` says never cite Laleh's DG
+CPA *because it clashes with the $9.58 Search figure in `case_studies`*. This draft never uses $9.58 - it uses
+live Search $135 and live DG $324 from the same pull, so the stated reason for that ban does not arise and the
+two numbers are internally consistent. The draft also uses DG as a **caution** against YouTube, not as a win,
+which matches "disclose the YouTube gap rather than claim it."
+
+**QC items reviewed and not changed:** "conversions" rendered as "patient inquiries" (standard translation for
+local lead-gen dental, flagged not asserted wrong); Integrity's "$14 to $40" has contested history but the more
+recent and repeated verification leans safe and blended $39 sits inside the band; Integrity's $2,350/mo budget
+figure is correctly absent from the body.
+
 ## DRAFT BODY
 
 Before-and-after photos are the most misunderstood asset in cosmetic dental advertising. Most people will tell you Meta bans them. Meta's health and wellness standard actually permits before-and-after transformation imagery as long as the ad targets 18 and over. What pulls an ad down is a caption promising a specific result in a set timeframe without a qualifier. The library your team already shoots is usable as is.
 
-Google is strict elsewhere. Cosmetic procedures and chronic conditions like sleep apnea both sit inside its health policy for personalized ads, which can rule out remarketing, Customer Match and lookalikes. In-market and custom segments still work.
+Google is strict elsewhere. Cosmetic procedures and chronic conditions like sleep apnea sit inside its health policy for personalized ads, which can rule out remarketing, Customer Match and lookalikes. In-market and custom segments still work.
 
-1. Healthcare numbers. Our team runs two dental practices on Google now. In the first, Search brings inquiries in at $135. Blended across every channel it is $209 on $52,741 over ninety days, dragged up by Demand Gen, the YouTube and Discover side, at $324. The second sits at $205 on $39,753. Against the value of one cosmetic case, those are investment numbers, not price tags. Two case studies attached: a hair transplant clinic at $134 per inquiry across YouTube Shorts, long-form and Search, and a Sacramento practice at $14 to $40. All cost per inquiry, not cost per booked appointment. Nobody can honestly quote that second number yet, which leads to your site.
+1. Healthcare numbers. Our team runs two dental practices on Google. In the first, Search brings inquiries in at $135. Blended it is $209 on $52,741 over ninety days, dragged up by Demand Gen, the YouTube and Discover side, at $324. The second sits at $205 on $39,753. We also ran a hair restoration clinic to 690 inquiries at $134 on Google Ads, against procedures worth $8,000 to $15,000, which is how to read any of these: against case value, not as a price tag. A Sacramento practice case study is attached, $14 to $40. All cost per inquiry, not cost per booked appointment. Nobody can honestly quote that second number yet, which leads to your site.
 
-2. What to change first. Your Schedule Appointment button hands patients to NexHealth on a separate domain carrying none of your tracking, so the booking is invisible to both platforms. Your sleep center site also runs a Meta pixel while your main site does not, and both sit under one Google Ads tag, so appliance cases and smile makeovers likely land in a single conversion pool despite very different economics.
+2. What to change first. Your Schedule Appointment button hands patients to NexHealth on a separate domain carrying none of your tracking, so the booking is invisible to both. Your sleep center site also runs a Meta pixel while your main site does not, and both sit under one Google Ads tag, so appliance cases and smile makeovers likely land in one conversion pool despite very different economics.
 
 3. Starting budget. $6,000 to $8,000 a month, weighted to Search, scaling toward $12,000 once tracking is clean and video earns it.
 
-4. First 30 days. Week one, measurement and splitting those conversion actions. Weeks two and three, audit and competitor research across Santa Ana and Newport Beach. Week four, the plan and the Search build. Shorts and long-form come in around week six, once Search is feeding them real data.
+4. First 30 days. Week one, measurement and splitting those conversion actions. Weeks two and three, audit and competitor research across Santa Ana and Newport Beach. Week four, the plan and Search build. Shorts and long-form get tested around week six, once Search feeds them real data.
 
-On brand work, we would own the direction and what your team shoots each month. The visual rebuild belongs with a designer, and the accounts stay yours throughout. We are Central, so your mornings overlap ours.
+On brand work, we would own direction and what your team shoots each month. The visual rebuild belongs with a designer, and the accounts stay yours. We are Central, so your mornings overlap ours.
 
 Happy to jump on a call.
