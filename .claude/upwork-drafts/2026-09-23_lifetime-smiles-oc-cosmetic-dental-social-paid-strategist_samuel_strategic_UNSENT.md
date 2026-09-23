@@ -5,7 +5,7 @@
 - **Style:** strategic
 - **Status:** UNSENT
 - **Client:** Lifetime Smiles of OC, Santa Ana CA (Orange County). Dr. Kareem Abraham. lifetimesmilesoc.com
-- **Length:** 398 words / 2,384 chars (limits: 400 words multi-question, 5,000 chars)
+- **Length:** 400 words / 2,414 chars (limits: 400 words multi-question, 5,000 chars)
 - **Prior bids on this job:** none found (`upwork_jobs` + drafts grep + leads index)
 
 ## Screens applied
@@ -91,20 +91,40 @@ different case economics. Conversion *action* configuration is not visible from 
 gtag only), so the draft says "likely landing in the same conversion pool", never asserts it as fact.
 Newport Beach also widens the geo beyond the Santa Ana the post implies, which the 30-day answer reflects.
 
+## Expert review applied (v3)
+
+Accepted: lead with Search $135 not the blended $209; give YouTube/Shorts a named re-entry (week six) so the
+hold reads as sequencing; reframe branding from "not our craft" to direction-owned / execution-to-a-designer;
+add the dental sleep line, which the v2 draft missed entirely; note the budget scales.
+
+**Rejected on verification grounds:** the reviewer's benchmark figures (dental CPL $68-95, sleep case
+reimbursement $1,700-$4,200) are unverified WebSearch aggregates. No unverifiable number goes in a proposal.
+The case-value bridge is therefore qualitative ("against the value of one cosmetic case").
+
+**Own improvement on the review:** the $324 Demand Gen CPA IS the evidence for holding YouTube and Shorts, so
+items 1 and 3/4 now argue for each other instead of sitting apart. The $12,000 scaling figure is backed by our
+own book, not a benchmark: the comparable cosmetic dentistry account runs ~$17,580/month on Google alone.
+Sleep apnea is folded into the Google health-policy paragraph because chronic conditions are a covered category
+verbatim, so one paragraph now answers both service lines.
+
+Not taken, for word budget: Google LSA (we do run it for The Tooth Co, acct `3381253335`, so it is citable if
+wanted) and an Instagram-specific observation (required item 2 reads "Instagram or website"; the website
+findings are stronger).
+
 ## DRAFT BODY
 
-Before-and-after photos are the most misunderstood asset in cosmetic dental advertising. Most people will tell you Meta bans them. Meta's health and wellness standard actually permits before-and-after transformation imagery as long as the ad targets 18 and over. What pulls an ad down is a caption promising a specific result in a specific timeframe with no qualifier attached. The library your team already shoots is usable as it is.
+Before-and-after photos are the most misunderstood asset in cosmetic dental advertising. Most people will tell you Meta bans them. Meta's health and wellness standard actually permits before-and-after transformation imagery as long as the ad targets 18 and over. What pulls an ad down is a caption promising a specific result in a set timeframe without a qualifier. The library your team already shoots is usable as is.
 
-Worth knowing on the other side: cosmetic procedures sit inside Google's health policy for personalized ads, which can rule out remarketing, Customer Match and lookalikes. In-market and custom segments still work.
+Google is strict elsewhere. Cosmetic procedures and chronic conditions like sleep apnea both sit inside its health policy for personalized ads, which can rule out remarketing, Customer Match and lookalikes. In-market and custom segments still work.
 
-1. Healthcare numbers. Our team runs two dental practices on Google right now. Last 90 days, one spent $52,741 and produced 252 patient inquiries at $209 each; the other $39,753 for 194 at $205. Inside the first account, Search is the cheapest inquiry at $135 and Demand Gen is $324. Two case studies attached: a hair transplant clinic at $134 per inquiry across YouTube Shorts, long-form and Search, and a Sacramento practice holding $14 to $40. Those are all cost per inquiry, not cost per booked appointment. Nobody can honestly quote you the second number yet, which leads to your site.
+1. Healthcare numbers. Our team runs two dental practices on Google now. In the first, Search brings inquiries in at $135. Blended across every channel it is $209 on $52,741 over ninety days, dragged up by Demand Gen, the YouTube and Discover side, at $324. The second sits at $205 on $39,753. Against the value of one cosmetic case, those are investment numbers, not price tags. Two case studies attached: a hair transplant clinic at $134 per inquiry across YouTube Shorts, long-form and Search, and a Sacramento practice at $14 to $40. All cost per inquiry, not cost per booked appointment. Nobody can honestly quote that second number yet, which leads to your site.
 
-2. What to change first. Your Schedule Appointment button hands patients to NexHealth on a separate domain that carries none of your tracking, so the booking itself is invisible to Google and Meta. That is the exact number you said you want reported. Alongside that, your sleep center site runs a Meta pixel and your main practice site does not, and both sit under one Google Ads tag, so sleep cases and smile makeovers are likely landing in the same conversion pool despite very different case values.
+2. What to change first. Your Schedule Appointment button hands patients to NexHealth on a separate domain carrying none of your tracking, so the booking is invisible to both platforms. Your sleep center site also runs a Meta pixel while your main site does not, and both sit under one Google Ads tag, so appliance cases and smile makeovers likely land in a single conversion pool despite very different economics.
 
-3. Starting budget. $6,000 to $8,000 a month, weighted to Search first and Meta second. Hold YouTube and Shorts until Search is producing conversion data worth feeding them.
+3. Starting budget. $6,000 to $8,000 a month, weighted to Search, scaling toward $12,000 once tracking is clean and video earns it.
 
-4. First 30 days. Week one, measurement and separating those conversion actions. Weeks two and three, the audit and competitor research across Santa Ana and Newport Beach. Week four, the written plan and the Search build.
+4. First 30 days. Week one, measurement and splitting those conversion actions. Weeks two and three, audit and competitor research across Santa Ana and Newport Beach. Week four, the plan and the Search build. Shorts and long-form come in around week six, once Search is feeding them real data.
 
-Straight with you on one point: we would own paid and the content direction feeding it. The visual rebrand is not our craft and you would want a designer on it. We are Central time, so your mornings overlap fine.
+On brand work, we would own the direction and what your team shoots each month. The visual rebuild belongs with a designer, and the accounts stay yours throughout. We are Central, so your mornings overlap ours.
 
 Happy to jump on a call.
