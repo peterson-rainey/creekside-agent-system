@@ -1,6 +1,7 @@
 # Upwork REPLY: "TikTok, Meta ads" — new store, day 5 TikTok, call ask
 
 - **Profile:** Lindsey | **Style:** lindsey_default | **Type:** call-ask reply (lead)
+- **SUPERSEDED 2026-09-23** by `2026-09-23_tiktok-meta-new-store-day5_lindsey_default_NEED-MORE-TIME-REPLY_UNSENT.md`. DO NOT SEND. The prospect withdrew the call ask in a later message, so the calendar link in Variant A is now explicitly wrong.
 - **Date:** 2026-09-23 (Postgres `now()`, Wed, 8:46am US Central) | **Status:** UNSENT
 - **Job:** `a669116e-bf51-4b34-a7fc-443c01ae4575` "TikTok, Meta ads", US / Washington state (Pacific)
 - **Proposal sent:** 2026-09-17, `sheet_row_num` 482, 3,594 chars — CONFIRMED SENT (stored cover letter matches the draft; nouns match the job, no +5 row offset issue)
