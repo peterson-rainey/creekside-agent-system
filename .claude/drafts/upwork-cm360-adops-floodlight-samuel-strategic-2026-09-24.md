@@ -53,6 +53,21 @@
 REJECTED from expert review: naming CM360's 28-day/60-day import limits, and adding
 DV360/SA360/CTV angles. Both would assert hands-on CM360 knowledge we just disclaimed.
 
+## Attachment decision: ATTACH NOTHING (ruled 2026-09-24)
+Swept all 28 rows in `case_studies` plus a keyword sweep over summary/key_result/keywords for
+(track|tag|attribut|measur|analytic|GA4|GTM|conversion import|offline|CRM|dashboard|report).
+Two hits, neither a measurement case study: Advanced Med Spa (matched "CPA reduction", INACTIVE)
+and Join Piper (matched "duplicate tracking" as a SYMPTOM diagnosed during a Google Ads rebuild).
+No tracking / attribution / tagging / analytics case study exists in the library.
+Every artifact we own is SMB local lead-gen or small DTC ecom. This buyer licenses CM360 + DV360
++ SA360 and coordinates media planners, creative agencies and third-party publisher vendors.
+Attaching local lead-gen proof after conceding we are not their trafficker reads as compensating,
+and contradicts a proposal whose argument is measurement governance, not results.
+Tempting wrong pick: Root Hair (only video-adjacent row) -- YouTube claim uncitable and the PDF
+cover asserts it. `download_url` says "has url" on all 28 but several are HTML not PDF
+(Polaris, Landmark, LawnValue, ReferPro), Birthday Club 404s, Unrefined carries a localhost link.
+Revisit only if they reply and the scope turns out to include managing Google or Meta media spend.
+
 ## Rule checks
 Under 5,000 chars | no em dashes | no URLs | no contact info | no Samuel/Peterson/Pete named
 book pooled not first-person singular | no certifications claimed | no name sign-off
