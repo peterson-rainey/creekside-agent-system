@@ -1,8 +1,14 @@
 # White Horse Auto Wash (Charleston SC + Virginia): 13 car washes, conversion tracking + PMax restructure + Meta rebuild
-Profile: Lindsey | Style: lindsey_default | Status: UNSENT (QC PASS WITH FIXES applied) | 348 words, 1,918 chars
+Profile: Lindsey | Style: lindsey_default | Status: **SKIPPED** (ruled by Queenie 2026-09-24, after the draft was delivered) | never sent | 348 words, 1,918 chars | body kept as a record
 Companion file: `2026-09-24_white-horse-auto-wash-13-location-carwash-tracking-pmax_samuel_SKIP.md` (same job, **ruled SKIP by Queenie 2026-09-24**, no draft)
 
-## READ FIRST: this job was already ruled SKIP today
+## FINAL RULING: SKIPPED under BOTH profiles
+Queenie read the delivered Lindsey draft, the standing Samuel skip, and the single-platform argument
+below, and ruled **"skip it"**. Nothing was sent under either profile. **The single-platform-floor
+argument did NOT carry**, so do not treat it as a way to reopen a fee-ceiling skip. The body is kept
+below only as a record of what was screened and verified.
+
+## Original READ FIRST: this job was already ruled SKIP today
 A concurrent session screened this exact post and Queenie ruled skip on engagement economics:
 their $1,000-1,500/mo ceiling against a $3,000/mo two-platform floor, with $6,600 x 20% = $1,320
 below even one platform minimum. This draft was produced afterwards on a Lindsey request.
