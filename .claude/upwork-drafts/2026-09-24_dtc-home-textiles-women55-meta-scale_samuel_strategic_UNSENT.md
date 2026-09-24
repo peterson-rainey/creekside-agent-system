@@ -36,3 +36,8 @@ Day 7: Compare new-customer CPA in your attribution tool against Meta, set the o
 The goal for the week is three or four ads carrying the $50k, not one replacement.
 
 When middle of funnel capped at $2M, was it the warm audiences running out, or retargeting CPA climbing while the pools still had room?
+
+## Milestone (192 chars)
+Month 1 Meta Ads: account and attribution audit, testing and scaling structure with cost caps, retargeting by warm audience, weekly creative tests and learnings sessions with your strategists.
+
+No price typed. "Month 1" names the first month of management and does not agree to their trial term; the 90-day minimum still has to be raised before any contract.
