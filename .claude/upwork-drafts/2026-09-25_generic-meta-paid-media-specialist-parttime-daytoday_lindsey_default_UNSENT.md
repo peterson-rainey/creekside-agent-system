@@ -59,7 +59,7 @@ and clicks. REJECTED two QC fixes: it wanted the profile-video closing line cut 
 lindsey_default element) and flagged the e-commerce-exit and ten-years anchors as unsupported (both are her
 documented credibility anchors; QC did not have the style doc).
 
-Length: 317 words / 1,852 characters, of which the 3 headers are 17 words, so 300 words of prose -- exactly at
+Length: 318 words / 1,819 characters, of which the 3 headers are 19 words, so 299 words of prose, just inside
 the lindsey_default ceiling.
 
 FLAG FOR QUEENIE: written strict first person, no pooling. Everything cited is Lindsey's own Meta book.
@@ -67,23 +67,37 @@ Pooling is available per the 9/17 ruling if you want it.
 FLAG FOR QUEENIE: no spend figure anywhere in the post, so her $3,000/month floor is not pre-argued and no
 price appears in the body or the milestone.
 
+Expert review (2026-09-25): Needs work on the first pass, three fixes applied. (1) The proposal argued against
+the client's stated goal without bridging it, so the opener now asks whether the engagement they are buying is
+real interest or cheap inventory and a later line concedes that if exposure genuinely is the purchase, the same
+discipline applies. (2) The meal-prep budget gap ($40/mo vs $1,340/mo) moved to the FRONT of that section: it
+previously read as a finding with the confound hedged in at the end, which is the implied-causation pattern.
+Do not move it back on any later edit. (3) The post's "day to day" and "work independently" requirements were
+unanswered, so the third header is now How I would run it day to day and the body commits to adjusting without
+being chased. REJECTED its rewrite of the opener's jargon: it proposed echoing "reach and engagement numbers"
+verbatim, which breaks the no-parroting rule. Kept the plainer non-jargon opener but wrote it in our own terms.
+Prospecting/retargeting stays in the third section, where it is the method rather than the hook.
+Sophistication note it raised and I am passing on rather than fixing: the CPM-by-objective gap is close to
+101-level for an expert reader. It stays because the post reads as a non-specialist buyer, but if you learn an
+in-house media buyer wrote it, the meal-prep section should lead.
+
 ---
 
-Do you know what a thousand impressions costs you, split between prospecting and retargeting? I ask because impressions and clicks are the two cheapest things to buy on Meta, and their price tells you almost nothing about whether the account is working.
+When engagement climbs, do you know whether you bought real interest or just cheaper impressions? They look identical on a dashboard and only one is worth paying for.
 
-**What the cheap metrics actually cost**
+**Cheap inventory is easy to buy**
 
-On a home goods account I run, an awareness campaign bought about 420,000 impressions in one month for roughly $850, close to $2 per thousand. The conversion campaigns in that same account paid about $34 per thousand, roughly seventeen times more. That account does not have the conversion data to tell me what the cheap impressions were worth, which is the trouble with a top-line number: it moves on command and says nothing about revenue.
+On a home goods account I run, an awareness campaign bought 420,000 impressions in one month for about $850, close to $2 per thousand. The conversion campaigns in that account paid about $34 per thousand, roughly seventeen times more. That account has no conversion data to say what the cheap impressions were worth, which is the trouble with a top-line number: it moves on command and says nothing about revenue. If exposure is genuinely what you are buying, I would still want to know which of it earned anything.
 
 **The campaign that looks worst is often the one paying the bills**
 
-A meal-prep brand I manage makes the point better. Its sales campaign carries the lowest click-through rate in the account, about half a percent, and it produced every tracked purchase across June and July at roughly $5 each. A traffic campaign running beside it held more than double that click-through rate and produced none. That one sat on a small holding budget, so it is not a clean test, but it shows what click-through rate alone will tell you to pause.
+A meal-prep brand I manage shows it. One of its campaigns sits on about $40 a month against $1,340 on the main sales campaign, so nothing there is a clean test. Still, the small one holds more than double the click-through rate, while the sales campaign, at half a percent, produced every tracked purchase across June and July at roughly $5 each. Click-through rate alone would have told me to pause the campaign paying the bills.
 
-**Where I would start on your account**
+**How I would run it day to day**
 
-Before I touch targeting, I check which event each campaign optimizes for and what the account is actually measured on. Then I split reporting by prospecting and retargeting, so a blended CPM stops hiding which half is getting expensive. After ten years of this, and having built and sold my own e-commerce business, I trust the dull accounts, the ones where one number ties back to money.
+Before I touch targeting, I check which event each campaign optimizes for and what the account is measured on. Then I split reporting by prospecting and retargeting, so a blended CPM stops hiding which half got expensive, and I keep adjusting from there without you having to chase me. After ten years of this, and having built and sold my own e-commerce business, I trust dull accounts, the ones where one number ties back to money.
 
-I can take you through either account in more detail here rather than send screenshots. There's a short video on my profile that covers how I work.
+I can take you through either account here instead of screenshots. There's a short video on my profile that covers how I work.
 
 ---
 
