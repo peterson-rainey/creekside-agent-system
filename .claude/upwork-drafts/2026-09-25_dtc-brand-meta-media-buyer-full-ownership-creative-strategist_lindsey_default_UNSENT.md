@@ -47,18 +47,40 @@ REJECTED QC fix: it flagged "built and sold my own e-commerce business" and "ten
 QC only received the numbers table, not docs/lindsey-default.md, which names both as her primary credibility
 anchors and instructs using them naturally. False positive from incomplete context.
 
-Length: 295 words / 1,663 characters.
+Three bold section headers added 2026-09-25 on Queenie's instruction ("keep the bold header going forward"),
+matching the same-day Samuel draft. Header text deliberately does NOT reuse the twin's four headers. The
+diagnostic-question opener stays un-headered so lindsey_default's first-sentence-is-a-question rule holds.
+Note Upwork does not render markdown, so these paste as literal asterisks.
+
+Length: 312 words / 1,772 characters (295 words of prose; the 3 headers add ~17). Over lindsey_default's
+300-word ceiling purely because of the headers Queenie asked for, so the instruction wins over the ceiling.
 
 ---
 
 Do you know what your CPM does between your current daily budget and the one you are scaling toward? It decides whether a rising cost per sale means the ads wore out or the impressions simply got more expensive, and those two look identical in a tracker.
 
+**What that looked like on an account**
+
 I ask because of a consumer camera brand I ran on Meta. In March it spent $10,757 at $68 a sale. In May it spent $19,972 and paid $116. The obvious read is creative fatigue. But CPM over those same two months went from $12.24 to $31.60, so impressions got about 2.6 times more expensive while cost per sale rose 1.7 times. The ads needed fewer impressions per sale in May than they had in March. Sending a creative strategist back for more hooks would have fixed nothing there.
 
+**Before the creative gets blamed**
+
 Before I touch creative on any account, I check the optimization event. On that same brand, purchase-optimized campaigns paid under $60 a sale, while add-to-cart and checkout campaigns over the same weeks paid more than double. The audiences differed, so it was not a controlled test, but a "great creative that won't convert" problem turns out to be a setup problem more often than people expect.
+
+**What belongs in your tracker**
 
 So in your tracker I would want CPM and conversion rate sitting beside cost per purchase, split by prospecting and retargeting. A blended number cannot tell you which lever moved.
 
 I built and sold my own e-commerce business before this, and ten years in, the accounts that scale cleanly are the ones where the buyer and the creative person are reading the same split instead of the same average.
 
 Happy to walk you through this account live rather than attach screenshots. There's a quick video on my profile that covers how I work.
+
+---
+
+## Milestone description (UNSENT)
+
+Month 1 of Meta management: account and tracking audit, testing and scaling structure rebuild, creative test priorities set for your strategist, KPI tracker split by CPM and conversion rate
+
+**189 characters.** Framed as month 1 of ongoing management, not a trial. The post names no trial and no
+budget, so the 90-day minimum is left open rather than pre-argued. Amount NOT set: this is a % of spend call
+for Queenie/Peterson, and the post states no monthly ad spend to price against.
