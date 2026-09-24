@@ -113,10 +113,11 @@ data. The PDF is the only source. This differs from the South River and AiW numb
 were computed live today. Treat the attachment as documented-but-unverified and do not restate its
 numbers as though they were re-checked.
 
-IF ATTACHING, add this line to the body before the closing question (keeps the no-links rule intact):
-  "Attached a bankruptcy law account for reference, same shape of problem, flat volume at $86 a lead
-  restructured down to $50 while leads doubled."
-Body as it stands below does NOT reference an attachment, so send it as-is only if attaching nothing.
+APPLIED 2026-09-24 (Queenie approved): the attachment reference line is now IN the body, placed as its
+own paragraph immediately before the closing questions. It carries no link, which keeps the no-URL rule
+intact. Exact line: "Attached a bankruptcy law account for reference, same shape of problem: flat volume
+at $86 a lead, restructured down to $50 while leads doubled."
+=> SEND WITH THE WINTERBOTHAM PDF ATTACHED. If the attachment is dropped, that line must be removed.
 
 ## QC + expert review
 Ran qc-reviewer-agent and expert-review-agent in parallel. v1 = PASS WITH FIXES (2 blocking).
@@ -146,7 +147,7 @@ Both blocking items fixed, plus the substantive ones:
    is no honest answer beyond the click-ID capture leg on our own funnel. Prepare that before replying.
 3. Spend and geo both unstated. Both handled in-body, neither resolved.
 
-433 words / 2,476 chars. Zero em dashes. Zero links. No sign-off name. Under the 5,000-char ceiling.
+457 words / 2,622 chars. Zero em dashes. Zero links. No sign-off name. Under the 5,000-char ceiling.
 
 ---
 
@@ -161,5 +162,7 @@ Two things straight. We have no fintech platform clients and no education client
 On cadence, a live dashboard plus a structured read every two weeks beats a weekly cycle, because the changes that move things reset learning and need longer than seven days to read.
 
 Financial education also draws scrutiny on income and earnings claims and anything reading as advice, which caps what the landing page can promise too.
+
+Attached a bankruptcy law account for reference, same shape of problem: flat volume at $86 a lead, restructured down to $50 while leads doubled.
 
 Is media spend closer to five figures a month, or well past that? And what marks a lead qualified on your side? Quick call would sort most of it.
