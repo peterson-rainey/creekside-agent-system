@@ -25,6 +25,25 @@ Chars: 4,729 | Attaching: nothing
 - Zero UK clients (verified: clients.target_locations / website .co.uk both empty)
 - No ad-level Meta table, so no controlled creative test can be offered
 
+## TWIN ALERT (added after commit)
+
+A concurrent session drafted this SAME job under Lindsey:
+`2026-09-24_noa-nani-uk-childrens-furniture-bedroom-meta_lindsey_default_UNSENT.md`
+Both are legitimate per the two-profiles-one-job rule. Checked for collision:
+
+- THESIS: distinct. Lindsey argues one blended CPA target hides a 5x price-tier spread. This draft argues the
+  product feed sets the ceiling and a trial period mismeasures a considered purchase. No overlap.
+- HEADERS: no collision. Lindsey uses "One target, two different businesses" / "What the discount months
+  actually cost" / "What I can and cannot show you". This draft uses none of those.
+- SHARED ACCOUNT: both cite Neue Maison genericised. Lindsey uses campaign-level CPA/AOV spread
+  ($104-$527, AOV $460-$2,367). This draft uses month-level weighted ROAS (3.88-20.11) and month-level AOV
+  ($603-$1,810). Different aggregations of the same account, so both hold; campaign-level extremes are
+  legitimately wider than month-level ones.
+- METHOD: both filtered spend>0 AND conversions IS NOT NULL AND roas IS NOT NULL. Consistent.
+- COVERAGE: Neue Maison ROAS figures describe the roas-recorded subset only, not the whole account. Neither
+  draft claims an account total. Master Spa Jan/Apr comparison is spend-matched rather than calendar-matched
+  (Jan 31/31 days, Apr 26/30), which is why purchases are compared at matched spend and the rest are ratios.
+
 ## Body
 
 I read your product feed before writing this, because on a catalogue this size the feed usually sets the ceiling before targeting gets a say.
