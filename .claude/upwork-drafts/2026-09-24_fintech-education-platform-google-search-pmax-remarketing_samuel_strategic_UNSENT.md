@@ -63,12 +63,60 @@ lead volume growth.
    conversions, no conversion-tagging certification. Click-ID CAPTURE is real but it is Creekside's own
    funnel with no performance attached. THIS IS THE LIVE EXPOSURE ON A REPLY - see Open Risk below.
 
-## Attachments: NONE
-AiW PDF is unverifiable (HTTP 200 can return HTML) and is Meta/education anyway. South River's PDF
-asserts "$1,738 Google CPL / 8 pricing-qualified leads per week" and "$10K->$80K/month", which is
-combined Google + Meta and contradicts the platform-reported figures used here. ReferPro has no Google
-data in our tables so its "doubled inbound leads" claim is not live-verifiable. Nothing is attached.
-No links, no URLs, no calendar link, no contact info. No sign-off name.
+## Attachments: RECOMMEND Winterbotham (+ optional UrCovered). Supersedes the v3 "attach nothing".
+All 28 `case_studies` rows reviewed and the candidate files fetched and READ 2026-09-24.
+
+ATTACHABILITY TESTED LIVE (curl, magic bytes, pdftotext):
+- Winterbotham Parham Teeple: HTTP 200, REAL PDF, 794,188 bytes, 3 pages. READ. CLEAN.
+- UrCovered Construction:     HTTP 200, REAL PDF, 746,801 bytes, 3 pages. READ. CLEAN.
+- NYC Notary on Demand:       HTTP 200, REAL PDF, 785,428 bytes, 3 pages. READ. CLEAN.
+- Join Piper:                 HTTP 200, REAL PDF, 644,359 bytes, 3 pages. READ. CLEAN.
+- Perfect Parking / Green Shield: HTTP 200, REAL PDFs (not read, not needed).
+- Adventures in Wisdom:  HTTP 200 but Content-Type text/html, first bytes "<!doctyp" -> NOT A PDF.
+- ReferPro:              HTTP 200 but text/html -> NOT A PDF.
+- Big Chad Law:          HTTP 200 but text/html -> NOT A PDF (stale URL, matches the known "(1)" note).
+All four read PDFs contain ZERO urls, emails, phone numbers, and ZERO persona leaks (no Peterson,
+Rainey, Samuel, or operator names). Creekside Marketing branding only. Safe under the no-contact-info
+rule.
+
+RECOMMENDED: **Winterbotham Parham Teeple** as the single attachment.
+- Google Ads only, which matches a Google-only post.
+- Its COVER carries the exact two metrics the post asked for: "42% CPA REDUCTION" and "2x CONVERSION
+  GROWTH". Body: 117 -> 229 conversions (+96%), CPA $86.09 -> $50.29 (-42%), $11.5K spend (only
+  $1.44K more than prior period).
+- Bankruptcy law = regulated consumer financial distress lead gen. The closest attachable artifact to
+  "compliance-aware copy for financial offerings".
+- Mechanism (segment the account, isolate geo, reallocate budget to the winning segment) is concrete.
+OPTIONAL SECOND (post asks for "1-2"): **UrCovered Construction**. CPL $454 -> $239, lead volume
+15 -> 60 (+300%). Its narrative is the most transferable mechanism in the library for this job: it
+filtered out searchers looking for "barndominium loans", pre-built kits and DIY plans, i.e. free-info
+seekers vs buyers, which is the same intent problem a fintech education funnel has.
+Also attachable if a different angle is wanted: NYC Notary (440 conv, -36% CPA, +67% volume, and its
+copy explicitly covers conversion-tracking attribution) and Join Piper (rebuilt a broken account with
+duplicate tracking, 10x ROAS in 30 days, maps to the post's GA4/GTM requirement).
+
+DO NOT ATTACH, and the reasons matter:
+- **South River Mortgage PDF** is a REAL PDF, and it is the account cited in the body, but it must NOT
+  go out. Its cover asserts "$10K to $80K/month" (that is COMBINED Google + Meta, not Google) and
+  "28 prequalified leads/week at $81 CPL" plus "8 pricing-qualified leads/week" for Google. Those
+  contradict the platform-reported Google figures used in the body ($96.33 -> $28.45). Attaching it
+  hands the client a document that argues against the proposal.
+- **Adventures in Wisdom PDF**: not a PDF at all (HTML), and its `case_studies` row claims
+  "Google Ads, Meta Ads" while the client is META ONLY, so the artifact would imply Google education
+  work we have never done. The body already cites its numbers, correctly labelled Meta.
+- **ReferPro PDF**: not a PDF (HTML), and no ReferPro Google data exists in our tables, so its
+  "doubled inbound leads" claim is not live-verifiable.
+
+CAVEAT ON THE RECOMMENDED FILES: none of Winterbotham, UrCovered, NYC Notary, Join Piper or Green
+Shield appear in `google_ad_accounts` at all, so their figures CANNOT be re-verified against platform
+data. The PDF is the only source. This differs from the South River and AiW numbers in the body, which
+were computed live today. Treat the attachment as documented-but-unverified and do not restate its
+numbers as though they were re-checked.
+
+IF ATTACHING, add this line to the body before the closing question (keeps the no-links rule intact):
+  "Attached a bankruptcy law account for reference, same shape of problem, flat volume at $86 a lead
+  restructured down to $50 while leads doubled."
+Body as it stands below does NOT reference an attachment, so send it as-is only if attaching nothing.
 
 ## QC + expert review
 Ran qc-reviewer-agent and expert-review-agent in parallel. v1 = PASS WITH FIXES (2 blocking).
