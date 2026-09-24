@@ -28,7 +28,7 @@ US. No duplicate draft under either profile; no matching `upwork_jobs` row by jo
 | "consumer electronics Shopify brand, built from zero last November" | Aura Displays, first spend 2025-11-02 (per 09-03 verification) | yes |
 | "average order around $580" | Aura Shopping 180d AOV $583 | yes |
 | "about $7,000 a month through Google" | Aura $37,630 / 155 days = $7,285/mo | yes |
-| "Shopping campaigns did 4.14x across 78 purchases over about five months through August" | Aura SHOPPING 180d: $10,913 cost / $45,226 value / 78 conv, 2026-03-28 to 2026-08-31 (5.1 months) | yes |
+| "unbranded Shopping did 4.14x across 78 purchases over about five months through August" | Aura SHOPPING 180d: $10,913 / $45,226 / 78 conv, 2026-03-28 to 2026-08-31 (5.1 months). Campaign-level check 09-25: BOTH Aura Shopping campaigns are UNBRANDED-designated ("CM - Shop - All Products - UNBRANDED" 4.44x/77, and the "(49 Locs, No USA)" sibling 0.65x/1). No branded Shopping campaign exists in the window, so channel-level IS the unbranded aggregate. | yes |
 | "439 Shopping purchases on $17,018" | Myriad Traders SHOPPING: $17,018 / $37,453 / 439 conv | yes |
 | "a luxury furniture brand that churned" (no date) | Neue Maison, status churned. `clients` has NO churn_date column, so the 09-03 draft's "2026-08-11" could not be re-verified. Timing dropped. | yes, undated |
 | "$1,500 monthly minimum, $1,500 onboarding" | pricing-reference.md; 20% of $3,860 = $772 < $1,500 floor | yes |
@@ -62,7 +62,7 @@ read as exactly the "generic copy-and-paste" he ruled out.
 Bold section headers present, de-colliding from both same-day Samuel twins. No em dashes. No links
 or contact info. "Our team" for delivery, first person for analysis only. No hourly. No trial
 offered (90-day minimum stated plainly). No self-blame, no answer-validating filler, no booking CTA.
-No mechanism-then-number juxtaposition. 4,257 characters / 744 words, under the 5,000 limit.
+No mechanism-then-number juxtaposition. 4,256 characters / 744 words, under the 5,000 limit.
 
 ## Review round 1 (2026-09-25)
 
@@ -71,8 +71,8 @@ No mechanism-then-number juxtaposition. 4,257 characters / 744 words, under the 
 2. "it churned last month" asserted a date that cannot be re-verified (no churn_date column). Timing dropped.
 3. Myriad 2.20x carried no brand/non-brand qualifier while the adjacent Aura figure was labelled
    "unbranded". Resolved harder than QC asked: the underlying query groups by `channel_type =
-   SHOPPING`, which does NOT exclude brand queries, so "unbranded" was unsupported on BOTH accounts.
-   The qualifier is now off both, and Myriad is cited for volume rather than as a ROAS proof point.
+   SHOPPING`, which does not by itself exclude brand queries. Myriad is now cited for volume rather
+   than as a ROAS proof point. See round 2 below for the Aura half, which resolved differently.
 QC also flagged the unbolded "LIGHTING ADS" opener (WARN, non-blocking). Left as plain caps
 deliberately: the client demanded the proposal "start with the words LIGHTING ADS", and bolding a
 line he specified verbatim reads like decoration on his own instruction.
@@ -89,9 +89,20 @@ line he specified verbatim reads like decoration on his own instruction.
 5. APPLIED in part. Myriad's 2.20x multiple removed and recast as volume evidence, which also
    resolves QC defect 3.
 
-**Cross-draft issue for Queenie:** the same-day Crescent Candles draft describes these same two
-accounts as "unbranded Shopping ... 4.4x and 2.4x". That qualifier has the same support problem
-found here. Worth a look before that one is sent.
+## Review round 2 (2026-09-25), campaign-level check
+
+Round 1 stripped "unbranded" from the Aura figure on the assumption that a `channel_type = SHOPPING`
+grouping could not evidence it. Campaign-level query shows otherwise: Aura's only two Shopping
+campaigns are both UNBRANDED-designated, and there is no branded Shopping campaign in the window, so
+the 4.14x channel aggregate IS the unbranded aggregate. The qualifier is restored on Aura. It stays
+off Myriad, whose "Shop - All Products - 24 Jun" carries no unbranded designation.
+
+**Cross-draft, resolved:** the flag raised against the same-day Crescent Candles draft was wrong on
+its stated grounds. That draft sourced "unbranded" from a campaign name, not from a channel grouping.
+It did carry three real defects in the same sentence, now fixed there: the qualifier distributed
+across both stores by grammar, present tense on two PAUSED campaigns, and a cherry-pick of the
+better of Aura's two unbranded campaigns (4.44x) over the 4.14x aggregate. Both live drafts now cite
+the same 4.14x / 78 purchases.
 
 ---
 
@@ -121,7 +132,7 @@ The fix is a margin band in Merchant Center as a custom label, net of freight an
 
 **The lighting answer, in full**
 
-Not lighting. The closest is a consumer electronics Shopify brand, built from zero last November. Average order around $580, about $7,000 a month through Google, running Search, Shopping and Performance Max, with our team on both the Merchant Center feed and the conversion tracking. Its Shopping campaigns did 4.14x across 78 purchases over about five months through August. A second feed account sits at a much lower order value, where the useful part is the volume rather than the multiple, 439 Shopping purchases on $17,018. The nearest thing we have had to your category was a luxury furniture brand that churned, so I will not offer it as proof.
+Not lighting. The closest is a consumer electronics Shopify brand, built from zero last November. Average order around $580, about $7,000 a month through Google, running Search, Shopping and Performance Max, with our team on both the Merchant Center feed and the conversion tracking. Its unbranded Shopping did 4.14x across 78 purchases over about five months through August. A second feed account sits at a much lower order value, where the useful part is the volume rather than the multiple, 439 Shopping purchases on $17,018. The nearest thing we have had to your category was a luxury furniture brand that churned, so I will not offer it as proof.
 
 **Two places our terms may not fit**
 

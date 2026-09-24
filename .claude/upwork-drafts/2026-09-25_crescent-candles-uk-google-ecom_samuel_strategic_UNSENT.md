@@ -37,8 +37,8 @@ No budget stated. No screening questions. Site: crescentcandles.com
 ## Verified claims used (live query 2026-09-25, google_insights_daily trailing 180d)
 | Claim in draft | Source | Verified |
 |---|---|---|
-| unbranded Shopping 4.4x | Aura Displays "CM - Shop - All Products - UNBRANDED", $10,049 / $44,667 = 4.44x, 77 conv, PAUSED, last 2026-08-31 | yes |
-| 2.4x across 424 purchases | Myriad Traders "Shop - All Products - 24 Jun", $15,053 / $36,190 = 2.40x, 424 conv, ENABLED, last 2026-09-23 | yes |
+| unbranded Shopping ran at 4.14x across 78 purchases through August | Aura Displays, BOTH unbranded Shopping campaigns: "CM - Shop - All Products - UNBRANDED" ($10,049 / $44,667, 77 conv) plus "CM - Shop - All Products - UNBRANDED (49 Locs, No USA)" ($864 / $558, 1 conv) = $10,913 / $45,226 = 4.14x, 78 conv. Both PAUSED, last 2026-08-31. Aura has NO branded Shopping campaign in the window, so this is the full unbranded aggregate. | yes |
+| 2.4x across 424 purchases | Myriad Traders "Shop - All Products - 24 Jun", $15,053 / $36,190 = 2.40x, 424 conv, ENABLED, last 2026-09-23. NOT an unbranded-designated campaign, so the "unbranded" qualifier must not reach it. | yes |
 | no candle / home fragrance client | zero rows in `clients` matching candle/fragrance/homeware/home decor/gift/home goods | yes |
 | no UK account | only Europe/London account is wedcuts.com: 0 campaigns, $0 lifetime spend | yes |
 
@@ -47,6 +47,19 @@ No budget stated. No screening questions. Site: crescentcandles.com
 **Attachment decision: DO NOT ATTACH.** The Aura Displays case-study PDF downloads as a real 3-page
 PDF but contains a `http://localhost:4321/` link, the same print-to-PDF defect as the Unrefined file.
 Numbers cited live from the DB instead. No other PDF matches candles or home fragrance.
+
+**Review round 2 (2026-09-25), 3 defects fixed in the proof sentence:**
+1. **"unbranded" distributed across both stores.** The sentence read "one store's unbranded Shopping
+   sits at 4.4x and another at 2.4x", so the qualifier reached Myriad by grammar. Myriad's campaign
+   carries no unbranded designation and no brand split was run. The sentence is now split in two so
+   "unbranded" attaches only to Aura.
+2. **Present tense on a paused campaign.** "sits at 4.4x" implied currently running. Both Aura
+   Shopping campaigns are PAUSED with data ending 2026-08-31. Now past tense and window-named
+   ("ran at ... through August"). Myriad is ENABLED to 2026-09-23, so its present tense is correct
+   and was left alone.
+3. **Cherry-picked campaign.** 4.44x was the better of Aura's TWO unbranded Shopping campaigns; the
+   sibling did 0.65x on $864. Citing only the winner overstates. Now the 4.14x aggregate across
+   both, which is also the figure used in the same-day lighting draft, so the two live drafts agree.
 
 **QC fixes applied:** (1)+(2) tracking claims were asserted present-tense although no `AW-` tag is
 visible, so they are now conditional on tracking going in. (3) "The White Company and Amazon" were
@@ -66,7 +79,7 @@ The fix is structural rather than clever. Give the discovery set its own convers
 
 The harder question is demand. Four candles at £28 means generic scented candle terms put you against national brands and marketplaces bidding the same words, where a single unit order rarely survives the click cost. What looks winnable is the heritage and gifting language, which is genuine intent but seasonal rather than steady. Worth knowing whether you are building toward Ramadan and Eid or trying to hold volume year round, because those are two different accounts.
 
-Being straight about fit, our team has not run candles, home fragrance, or a UK account. The closest work is Shopify ecommerce on Merchant Center feeds, where one store's unbranded Shopping sits at 4.4x and another at 2.4x across 424 purchases.
+Being straight about fit, our team has not run candles, home fragrance, or a UK account. The closest work is Shopify ecommerce on Merchant Center feeds. One store's unbranded Shopping ran at 4.14x across 78 purchases through August. A second store, on a much lower order value, is at 2.4x across 424 purchases.
 
 Are you picturing something closer to £4,000 a month in ad spend or £10,000, and is there a cost per order you need to hit?
 
