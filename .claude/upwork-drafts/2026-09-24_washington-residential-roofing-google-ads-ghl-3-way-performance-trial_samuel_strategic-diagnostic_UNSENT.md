@@ -1,5 +1,5 @@
 # Upwork Proposal - Washington State residential roofing (replacement), Google Ads + GoHighLevel, 3-way paid performance trial
-Profile: Samuel | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-09-24 (DB now 2026-09-24 15:02 UTC)
+Profile: Samuel | Style: strategic + diagnostic | Status: UNSENT, SEND WITH green_shield_pest.pdf ATTACHED (drop the attachment line if the PDF is dropped) | Drafted 2026-09-24 (DB now 2026-09-24 15:02 UTC)
 
 ## SCREENS
 - Duplicate bid: none. upwork_jobs since 8/1 has no WA roofing / "Territory" / performance-trial match (roofing bids: 9/17 MD General, 9/2 Meta NY). No local draft.
@@ -32,7 +32,7 @@ Territory
 
 Two of the ways a roofing lead reaches you can drop out of what Google learns from, even while your CRM counts them. A call placed from the ad's call button never touches the landing page, so your tracking number never sees a click ID, and those calls only import back into Google Ads through a Google forwarding number. And GoHighLevel's built-in Add to Google Ads action only works on forms, surveys, chat, orders and number pool calls, not on a booked appointment or a stage change, so bookings have to go back as an offline import from the click ID saved on the contact. Miss either one and bidding learns from the cheapest lead, not from booked inspections. The unscored first weeks are where both get tested end to end.
 
-1. Not roofing, so that comes first. Our closest current work is a paving and lot striping contractor our team runs on Google today. Its main Search campaign has produced 227 leads at $187 each since last November, converting 9.3% of clicks, while Performance Max in the same account runs $285 per lead at 1.1%. We also ran Google Ads for a pest control company, 79 leads at $92.60 each. Neither has a documented cost per booking, so I won't quote one.
+1. Not roofing, so that comes first. Our closest current work is a paving and lot striping contractor our team runs on Google today. Its main Search campaign has produced 227 leads at $187 each since last November, converting 9.3% of clicks, while Performance Max in the same account runs $285 per lead at 1.1%. We also ran Google Ads for a pest control company, 79 leads at $92.60 each, and that case study is attached. Neither has a documented cost per booking, so I won't quote one.
 
 2. Our team set up GoHighLevel lead tracking for a dental practice running Google and Facebook. Every lead lands in their GoHighLevel, and the pipeline shows which Google leads became booked appointments. Spend was held until the forms, workflows and lead routing were confirmed working. That account doesn't send bookings back into Google Ads yet, so I won't describe that part as done. For your territory: auto-tagging on and the click ID confirmed on the contact record, the number pool on the landing page for website calls, a Google forwarding number on the call asset, then booked appointments and closed jobs imported as separate conversion actions, with job value on closed jobs. Our dedicated tracking specialist builds and tests it.
 
