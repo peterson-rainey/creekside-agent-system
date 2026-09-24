@@ -1,5 +1,5 @@
 # Upwork Proposal - Meta Ads Specialist for U.S. contractors & home service companies (individual freelancer requested)
-Profile: Samuel | Style: strategic | Status: UNSENT, DRAFT-ANYWAY OVERRIDE (gaps first) | Drafted 2026-09-24
+Profile: Samuel | Style: strategic | Status: UNSENT, DRAFT-ANYWAY OVERRIDE (gaps first), SEND WITH LawnValue PDF ATTACHED (drop 'and that case study is attached' from Q1 if the PDF is dropped) | Drafted 2026-09-24
 
 ## SCREENS
 - Anti-agency: FIRES. "individual freelancer rather than an agency or agency team", Q3 "personally manage", Q4 "independently or as part of an agency". Queenie chose "Draft anyway, gaps first" over the recommended skip. Precedent: override on this screen buys a draft, not a decision (Bedspoke 9/16, LockedIn 9/23 both skipped after drafting).
@@ -10,6 +10,10 @@ Profile: Samuel | Style: strategic | Status: UNSENT, DRAFT-ANYWAY OVERRIDE (gaps
 - Duplicate bid: no local draft found. upwork_jobs NOT checked.
 - QC (qc-reviewer-agent, no DB access, reviewed against inlined facts): PASS WITH FIXES, both applied (CPL-omission line reworded so it doesn't read as a tracking miss; 'current' dropped from Q5 since both cited accounts churned). 'Straight answer first' cut.
 
+## ATTACHMENT
+- `LawnValue_Home_Service_Business_Case_Study_(1).pdf`, Drive `164ACwDb78XsjIMLbymJtzOHGBz61T0-E`, re-read in full 2026-09-24: Google + Meta, Nov 2022-Nov 2023, Facebook 100k+ clicks / 1,000+ conversions, Google 11,000+ clicks / 1,200+ conversions, LSA 230+ phone + 70+ message leads, 2,000+ leads total. No localhost footer. LawnValue inactive, past tense.
+- Rejected: Perfect Parking / Green Shield / UrCovered (Google only), Landmark (no Meta split, month-to-month winter pause), Central Florida Awnings (no results), ReferPro (sells TO contractors, Results block not extractable).
+
 ## FACTS USED
 - Meta conversion leads goal: Instant Forms only, 200 leads/mo, stage within 28 days (Meta for Developers, verified 9/16).
 - TX Gutter Expert: city-split campaigns (Cibolo, SA, Austin), financing-offer vs city-led variants, proven-winners Instant Forms campaign split from new-creatives campaign; conversion-objective CPM $47.77 vs blended $39.05, ~$204 of boosted posts (computed live 9/9). Conversions column excludes Instant Form leads, so no CPL.
@@ -19,7 +23,7 @@ Profile: Samuel | Style: strategic | Status: UNSENT, DRAFT-ANYWAY OVERRIDE (gaps
 
 Instant Forms are usually where contractor leads get cheap on Meta, and also where lead quality slips, because the campaign learns from whoever fills out the form rather than from who books the estimate. Meta's conversion leads goal fixes that by optimizing toward the leads your CRM marks as qualified, but it only works on Instant Forms, needs at least 200 leads a month, and wants that qualified stage reached within 28 days. For a single electrician or roofer, that 200 is often the real constraint. So the setup depends on each account's volume. Under it, qualifying questions on the form and a regular check of who actually booked. Over it, CRM stages sent back to Meta so it bids toward the good leads.
 
-1. Most of our home services results are on Google, not Meta. The Meta one was a gutter company in the San Antonio area that our team ran until earlier this month.
+1. Most of our home services results are on Google, but two had real Meta volume. A lawn care company in Tennessee got over 1,000 conversions from Facebook ads in twelve months, alongside its Google campaigns, and that case study is attached. More recently, a gutter company in the San Antonio area that our team ran until earlier this month.
 
 2. On that gutter account, proven Instant Form ads ran in their own campaign, separate from new creative tests, and financing-offer ads were tested against ads naming specific cities, with Cibolo, San Antonio and Austin run as separate campaigns rather than one metro radius. I won't quote a cost per lead from it, since the account's recorded conversions don't include the Instant Form leads. It did show how boosted posts flatter a contractor's reporting: about $200 of boosted posts pulled the blended CPM down to $39.05, while the lead campaigns were really paying $47.77. The second example isn't home services but it's the same local lead problem: Meta Instant Forms feeding a dental implant practice's call center, 2,558 leads at $25.31 each over 90 days. Our team added qualifying questions, accepted a higher cost per lead, and cut spend when the call center needed room.
 
