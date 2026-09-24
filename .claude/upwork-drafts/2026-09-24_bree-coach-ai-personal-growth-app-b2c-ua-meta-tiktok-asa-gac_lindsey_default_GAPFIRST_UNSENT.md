@@ -38,9 +38,10 @@ lindsey_default (L2). Not re-asked.
 - Birthday Club App (canonical case_studies key_result): 2,662 installs, CPI $7.36 -> $3.90 via
   "campaign restructuring and systematic creative testing". $3.90 = BEST campaign; ~$5 blended (13,300/2,662).
   Meta only. Operator NOT Lindsey -> "our team", past tense, never first person.
-  CUT from the draft as unverifiable: "two markets" and the "optimizing for traffic / pointing at a web page"
-  narrative. Those came from 9/16 draft notes citing the source PDF; that PDF is now HTTP 404, so they cannot
-  be re-verified today. Only canonical key_result content survives.
+  "Two markets" (Twin Cities MN, Berrien County MI) and the "optimizing for traffic / pointing at a
+  subdomain instead of the app store" narrative were cut as unverifiable, then RESTORED: both are documented
+  in the rebuilt PDF, sourced from the BDC App case_studies row. qc-reviewer-agent's call that these were
+  invented detail was therefore wrong. The draft says "a subdomain", matching the source, not "a web page".
 - MEAL PREP CPA - CORRECTED. Both accounts have long runs of NULL (not zero) conversions while spend
   continues, so any lifetime spend / lifetime conversions ratio is a 12-month numerator over a 5-month
   denominator. Computed on tracked rows only (spend > 0 AND conversions IS NOT NULL):
@@ -59,19 +60,27 @@ qc-reviewer-agent independently reproduced the artifact ($55.90) and tried to FA
 monthly NULL-vs-zero breakdown disproves it. Any future draft reusing the "five times" contrast is wrong.
 
 ## Attachments
-NONE. Verified by download today:
-- Birthday Club App PDF (1NOKmt8X...): HTTP 404, 1,652-byte HTML error page. Dead. Confirms prior ruling.
-- CI Lifestyle PDF (1Tc13tk4V5a...): live 5-page PDF, but cover asserts "$25 CPA / 14x overall ROAS /
-  4.52x new-customer ROAS". None corroborated in the warehouse.
-- Punch Drunk PDF (1n3bCsJSnZW...): live PDF, cover asserts "20x Peak ROAS / ~$10 new-customer CPA".
-  Live ROAS is ~1.73x. Not attachable.
-Handing a prospect who is explicitly auditing attribution honesty a PDF with uncorroborated ROAS headlines
-is the worst possible mismatch. Attach nothing.
+ATTACH ONE: `.claude/attachments/birthday-club-app-case-study.pdf` (3pp, 131KB).
+REVERSED mid-task. My first ruling was attach-nothing, correct at the time. A concurrent session committed a
+clean rebuild of this PDF in d96a0783, AFTER the Samuel twin was written. Verified by reading it: no contact
+info, no URLs, no manus.im artifact, no print-dialog text, Creekside metadata, churned account not named as
+current. It is the ONLY app-shaped artifact in the book and this is an app job, so the inclusion rule applies.
+NOTE: the Samuel twin still says "Attach nothing (PDF is compromised)". That ruling is now STALE. Someone
+should re-rule the Samuel draft before it goes out.
+STILL DO NOT ATTACH:
+- CI Lifestyle PDF (1Tc13tk4V5a...): live 5pp, but cover asserts "$25 CPA / 14x overall ROAS / 4.52x
+  new-customer ROAS". None corroborated in the warehouse.
+- Punch Drunk PDF (1n3bCsJSnZW...): live, cover asserts "20x Peak ROAS / ~$10 new-customer CPA".
+  Live ROAS ~1.73x. Handing an attribution-auditing prospect an uncorroborated ROAS headline is the worst
+  possible mismatch.
+- The old gdrive Birthday Club copy (1NOKmt8X...): still HTTP 404. Dead.
 
 ## Format deviations (flag at delivery)
-- Results-attached line DROPPED (nothing attachable). Same deviation as the 9/16 app draft.
-- Bold section headers applied per the 9/25 ruling; opener left unbolded.
-- Availability line added (post asked for it); no rate printed.
+- Results-attached line KEPT (the rebuilt app PDF is attachable). No deviation.
+- Bold section headers applied per the 9/25 ruling; opener left unbolded. Headers deliberately do NOT reuse
+  the Samuel twin's: his are "Where we do not clear your bar" and "First 30 days and terms"; mine are
+  "The honest gaps", "The one app our team has run", "What I run every day", "How month one would go".
+- Availability line added (post asked for it); no rate printed, per Lindsey format and the never-hourly rule.
 
 ## Review log
 - qc-reviewer-agent: returned FAIL on the Dallas CPA, asserting ~$55.90. REJECTED after direct check: the
@@ -86,26 +95,33 @@ is the worst possible mismatch. Attach nothing.
   than asserted MMP knowledge; added trial-to-paid to the opening question alongside activation.
 
 ## Word count
-349 (within the 350 multi-question allowance; hard floor 200).
+350, exactly at the multi-question ceiling (hard floor 200). 1,950 chars, far inside the 5,000 Upwork limit.
+
+## Concurrent session
+A parallel session drafted the SAMUEL twin for this same post (fe843b94, shortened ab6a0eb2) and rebuilt the
+Birthday Club PDF (d96a0783). Both profiles bidding one job is allowed. My file was swept into d96a0783 by
+that session's `git add -A` before I could commit it myself.
 
 ---
 
-Do you know what share of people who finish onboarding come back for a second session, and how many of those ever start paying? Those decide which event is safe to optimize toward. Meta wants near 50 conversions a week per ad set to learn, and paid subscriptions will not clear that at your volume, so left alone it settles on registration and fills the app with people who never open it twice.
+What share of people who finish onboarding come back for a second session, and how many of those ever start paying? Meta wants near 50 conversions a week per ad set to learn. Paid subscriptions will not clear that at your volume, so left alone it settles on registration and fills the app with people who never open it twice.
 
-**Where I don't clear your bar**
+**The honest gaps**
 
-Apple Search Ads and Google App Campaigns are not channels I run. Neither is TikTok. I have never configured an MMP or in-app events, nor coordinated that build with a dev team, so on your configured versus coordinated question, the answer is neither. Our team has worked on one consumer app, not three, and it was not mine.
+Apple Search Ads and Google App Campaigns are not channels I run. Neither is TikTok. I have never configured an MMP or in-app events, nor coordinated that build with a dev team, so on your configured versus coordinated question the answer is neither. Our team has worked on one consumer app, not three, and it was not mine.
 
-**The one app account our team has**
+**The one app our team has run**
 
-A restaurant rewards app, Meta install campaigns. Cost per install finished at $3.90 on the best campaign and around $5 blended across 2,662 installs, down from $7.36. Installs is where that story stops.
+A restaurant rewards app in two markets. It had run paid media for a year with no install campaigns, optimizing for traffic and pointing at a subdomain, not the app store. Cost per install finished at $3.90 on the best campaign, around $5 blended across 2,662 installs, down from $7.36. Installs is where that story stops.
 
-**What I actually run**
+**What I run every day**
 
-Meta and Instagram for recurring consumer products, ten years of it, after building and selling my own e-commerce brand. I run two meal prep brands, Portland and Dallas. Across the days their purchase tracking reported cleanly, both sat near $9 to $10 a purchase, on 844 and 815 purchases. On a recurring product, never let a returning buyer count as an acquisition. Otherwise your cost per new customer stops being real. A subscription app has a harder version of that, since a reinstall can look like a new user, and in tools I have not configured myself, that goes quietly wrong.
+Meta and Instagram for recurring consumer products, ten years of it, after building and selling my own e-commerce brand. Across the days purchase tracking reported cleanly, the two meal prep brands I run sat near $9 to $10 a purchase, on 844 and 815. Never let a returning buyer count as an acquisition, or cost per new customer stops being real. A subscription app has a harder version, since a reinstall can look like a new user, and in tools I have not configured myself that goes quietly wrong.
 
-Month one I would want an event agreed that fires often enough for Meta to learn on, well short of paid subscription, and verified clean before spend scales. I work 10 to 6 Central, Monday to Friday.
+**How month one would go**
 
-What monthly range are you looking to test on, and which countries first?
+Agree an event that fires often enough for Meta to learn on, short of paid subscription, and verify it is clean before spend scales. I work 10 to 6 Central, Monday to Friday.
 
-There's a short video on my profile if you want a better sense of how I work.
+App case study attached below. What monthly range are you looking to test on, and which countries first?
+
+There's a short video on my profile if you want a sense of how I work.
