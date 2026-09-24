@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meta Objective Split Case Study | Creekside Marketing</title>
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         color: #0f172a; font-size: 9.1pt; line-height: 1.45; }
+  .page { width: 8.5in; height: 11in; padding: 0.30in 0.52in 0.22in; display: flex; flex-direction: column; }
+  .hero { background: linear-gradient(120deg, #0d2337 0%, #16416a 100%); color: #fff;
+          border-radius: 6px; padding: 15px 22px 17px; }
+  .pill { display: inline-block; border: 1px solid rgba(255,255,255,.45); border-radius: 999px;
+          padding: 4px 13px; font-size: 6.6pt; letter-spacing: .16em; font-weight: 700; color: #cfe6f7; }
+  h1 { font-size: 19pt; line-height: 1.14; margin: 9px 0 7px; font-weight: 700; letter-spacing: -.01em; }
+  h1 .hl { color: #4db3ec; }
+  .sub { color: #bcd4e6; font-size: 9.2pt; line-height: 1.5; margin: 0; max-width: 6.3in; }
+  .meta { display: flex; gap: 26px; flex-wrap: wrap; padding: 9px 4px 9px; font-size: 8.1pt; color: #4b5563;
+          border-bottom: 1px solid #e3e8ee; }
+  .meta b { color: #0f172a; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #e3e8ee; }
+  .tile { text-align: center; padding: 11px 6px 11px; border-right: 1px solid #e3e8ee; }
+  .tile:last-child { border-right: 0; }
+  .tile .n { font-size: 18pt; font-weight: 700; color: #1d8fd1; letter-spacing: -.02em; }
+  .tile .n.dark { color: #0f172a; }
+  .tile .l { font-size: 6.5pt; letter-spacing: .13em; color: #64748b; font-weight: 600; margin-top: 3px; }
+  .eyebrow { font-size: 6.8pt; letter-spacing: .17em; font-weight: 700; color: #1a9fd4; margin: 11px 0 4px; }
+  h2 { font-size: 12.2pt; margin: 0 0 5px; font-weight: 700; letter-spacing: -.01em; }
+  p { margin: 0 0 6px; color: #44505f; }
+  table { width: 100%; border-collapse: collapse; margin: 3px 0 5px; font-size: 8.4pt; }
+  th { text-align: left; font-size: 6.6pt; letter-spacing: .12em; color: #64748b; font-weight: 700;
+       padding: 0 8px 6px; border-bottom: 1px solid #e3e8ee; }
+  th.r, td.r { text-align: right; }
+  td { padding: 6.5px 8px; border-bottom: 1px solid #eef2f6; }
+  td.name { font-weight: 700; color: #0f172a; }
+  tr.blend td { border-bottom: 0; background: #f5f8fb; font-weight: 700; color: #0f172a; }
+  .zero { color: #b4470f; font-weight: 700; }
+  .win { color: #0b9767; font-weight: 700; }
+  .tags { margin: 3px 0 0; }
+  .tag { display: inline-block; background: #f1f5f9; border-radius: 999px; padding: 4px 11px;
+         font-size: 6.9pt; color: #47566a; margin: 0 5px 5px 0; font-weight: 600; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 4px; }
+  .card { border-radius: 5px; padding: 9px 12px; }
+  .card.b { background: #eaf4fb; } .card.g { background: #e9f8f2; }
+  .card .n { font-size: 14.5pt; font-weight: 700; letter-spacing: -.02em; }
+  .card.b .n { color: #1d8fd1; } .card.g .n { color: #0b9767; }
+  .card .t { font-size: 8.2pt; font-weight: 700; margin-top: 1px; }
+  .card .d { font-size: 7.4pt; color: #6b7a8d; margin-top: 3px; line-height: 1.4; }
+  .note { background: #0d2337; color: #cfe0ee; border-radius: 6px; padding: 11px 15px; margin-top: 9px; }
+  .note h3 { color: #fff; font-size: 9.6pt; margin: 0 0 5px; }
+  .note p { color: #b9cfe1; font-size: 7.9pt; margin: 0 0 5px; line-height: 1.5; }
+  .note p:last-child { margin: 0; }
+  .foot { margin-top: 11px; background: #0d2337; color: #fff; border-radius: 6px;
+          padding: 10px 17px; display: flex; justify-content: space-between; align-items: center; }
+  .foot .bm { font-size: 8.4pt; font-weight: 700; letter-spacing: .09em; }
+  .foot .ct { font-size: 8pt; color: #bcd4e6; }
+  .src { font-size: 6.4pt; color: #93a2b3; padding: 6px 2px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="pill">CLIENT CASE STUDY</span>
+    <h1>How <span class="hl">One Objective Setting</span><br>Hid Half a Meta Budget</h1>
+    <p class="sub">Two campaigns, one account, same audience pool, same launch day. One of them
+    bought nearly twice the audience and recorded no enquiries at all. The account-level report
+    showed a single blended number that described neither campaign.</p>
+  </div>
+
+  <div class="meta">
+    <span><b>Client:</b> A local dental practice</span>
+    <span><b>Industry:</b> Healthcare</span>
+    <span><b>Service:</b> Meta Ads</span>
+    <span><b>Window:</b> August 2026, 27 spending days</span>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="n">$15.77</div><div class="l">ACTUAL COST PER ENQUIRY</div></div>
+    <div class="tile"><div class="n dark">$30.65</div><div class="l">WHAT THE ROLLUP REPORTED</div></div>
+    <div class="tile"><div class="n dark">49,760</div><div class="l">IMPRESSIONS, NO ENQUIRIES</div></div>
+    <div class="tile"><div class="n">49%</div><div class="l">OF SPEND ON THE WRONG EVENT</div></div>
+  </div>
+
+  <div class="eyebrow">THE SETUP</div>
+  <h2>One Variable, Held Clean</h2>
+  <p>The account ran two campaigns side by side for the full month. Same account, same audience pool,
+  same launch day, same budget to within a hundred dollars. The only difference between them was the
+  conversion event each one was told to optimize toward. One was set to Engagement. One was set to Leads.</p>
+
+  <div class="eyebrow">THE SPLIT</div>
+  <h2>What Each Objective Actually Bought</h2>
+  <table>
+    <tr><th>CAMPAIGN OBJECTIVE</th><th class="r">SPEND</th><th class="r">IMPRESSIONS</th>
+        <th class="r">CLICKS</th><th class="r">ENQUIRIES</th><th class="r">COST PER ENQUIRY</th></tr>
+    <tr><td class="name">Engagement</td><td class="r">$1,845.88</td><td class="r">49,760</td>
+        <td class="r">1,584</td><td class="r zero">0 recorded</td><td class="r zero">n/a</td></tr>
+    <tr><td class="name">Leads</td><td class="r">$1,955.17</td><td class="r">26,721</td>
+        <td class="r">1,087</td><td class="r win">124</td><td class="r win">$15.77</td></tr>
+    <tr class="blend"><td>Blended, as the account reported it</td><td class="r">$3,801.05</td>
+        <td class="r">76,481</td><td class="r">2,671</td><td class="r">124</td><td class="r">$30.65</td></tr>
+  </table>
+  <div class="tags"><span class="tag">Campaign Objective</span><span class="tag">Conversion Event</span>
+    <span class="tag">Account Diagnostics</span><span class="tag">Meta Ads</span>
+    <span class="tag">Reporting Integrity</span></div>
+
+  <div class="eyebrow">WHY IT MATTERS</div>
+  <h2>The Blended Number Described Neither Campaign</h2>
+  <div class="cards">
+    <div class="card b"><div class="n">1.9x</div><div class="t">More Audience, No Enquiries</div>
+      <div class="d">The Engagement campaign bought nearly twice the impressions and more clicks
+      than the campaign that produced every enquiry in the account.</div></div>
+    <div class="card g"><div class="n">2x</div><div class="t">Overstated Cost Per Enquiry</div>
+      <div class="d">Read from the account rollup alone, enquiries appeared to cost $30.65.
+      The campaign actually producing them was running at $15.77.</div></div>
+  </div>
+
+  <div class="note">
+    <h3>What this case study does not claim</h3>
+    <p>An Engagement objective would not record lead events in the first place, and this account had
+    no call tracking, so we cannot show that the Engagement campaign drove zero phone calls. The
+    defensible finding is that it produced not one recorded enquiry, and that no mechanism existed
+    to prove otherwise. The measurement gap and the performance gap were the same gap.</p>
+    <p>Both campaigns stopped spending at the end of this window, so the figures describe one month
+    and are not presented as a trend.</p>
+  </div>
+
+  <div class="foot">
+    <span class="bm">CREEKSIDE MARKETING</span>
+    <span class="ct">Do you know which conversion event your budget is actually buying?</span>
+  </div>
+
+  <div class="src">Figures pulled from the advertising platform's own reporting for the campaign window
+  described and verified against account records on 24 September 2026. Client identity withheld;
+  this account is active. Across roughly 1,825 Meta campaigns managed by Creekside Marketing, fewer
+  than one in ten runs on an engagement or video objective.</div>
+
+</div>
+</body>
+</html>
