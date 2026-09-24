@@ -80,3 +80,31 @@ Are you tracking what a genuinely new customer costs, separately from the blende
 What does a customer need to cost for this to be worth running?
 
 Answer those and I can tell you which of the two problems above you are actually dealing with, before either of us spends a dollar finding out.
+
+## Milestone description (UNSENT, 199 chars)
+
+Ninety day diagnostic before any rebuild: campaigns split by objective, audience temperature and new against returning, event integrity checked against the money event, findings delivered in writing.
+
+Scoped to what the body actually promises ("Nothing gets rebuilt in week one"), so the milestone buys the
+diagnosis rather than a month of management. No price: the post states no ad spend to price against, and the
+% of spend call is Queenie's and Peterson's. No cadence word, so nothing collides with the two-week client
+reporting standard.
+
+## TWIN ALERT, found 2026-09-24 while generating the milestone
+
+`.claude/upwork-drafts/2026-09-25_generic-meta-paid-media-specialist-parttime-daytoday_lindsey_default_UNSENT.md`
+is the SAME job under Lindsey, written by a concurrent session. It post-dates the dedup grep run for this
+draft, and its own duplicate check says "No Samuel twin", so neither draft saw the other. Checked for
+collision:
+
+- **Numbers: clean.** Lindsey cites Tiami (awareness CPM $1.99 vs sales $34.18, ratio 17.1x) and Chris Ideson
+  meal prep ($5.28). This draft cites the Tooth Co objective pair, the replacement-parts arc and 171/1,825.
+  Zero overlap.
+- **Headers: clean.** Hers are "Cheap inventory is easy to buy", "The campaign that looks worst is often the
+  one paying the bills", "How I would run it day to day". No reuse either way.
+- **Milestone: clean.** Hers is "Month 1 of Meta management: audit of tracking and optimization events,
+  campaign and audience restructure, testing plan set, reporting split by prospecting and retargeting on cost
+  per purchase" (191 chars). This one buys the diagnostic only and shares no phrasing.
+- **THESIS: COLLIDES.** Both drafts argue the same thing, that the account is optimizing toward a cheap
+  interaction instead of the money event. Different accounts and different numbers, but one buyer reading both
+  will see one argument twice. Queenie's call.
