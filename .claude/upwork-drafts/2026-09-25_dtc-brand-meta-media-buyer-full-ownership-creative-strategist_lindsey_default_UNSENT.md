@@ -32,6 +32,13 @@ headline falls below 1.0x against real spend). Offer a live walkthrough instead,
 FLAG FOR QUEENIE: the post requires "a short weekly update". Per the 2026-09-23 ruling on an explicit weekly
 ask, the default is no weekly promise. The draft answers the tracker/KPI requirement by specifying what belongs
 IN the tracker and commits to no cadence. Say the word if you want a weekly line added.
+TWIN BID, SAME JOB: a parallel session drafted a Samuel strategic+diagnostic proposal at
+.claude/drafts/2026-09-25_dtc-brand-meta-mediabuyer-creative-strategist-ownership_samuel_strategic-diagnostic_UNSENT.md
+No numeric overlap (Samuel cites Master Spa Parts + Neue Maison; this cites Blush Camera), but both had
+landed on a near-identical "creative problem vs measurement/auction problem" framing. Reworded this opener
+to drop that collision. Samuel closes on that binary; this one now opens on wear-out vs impression cost.
+Queenie: confirm both profiles are meant to bid this post.
+
 FLAG FOR QUEENIE: written strict first person. Everything in scope is Lindsey's own Meta book, so no pooling
 was needed. Pooling is available per the 9/17 proposal ruling if you want it.
 
@@ -40,11 +47,11 @@ REJECTED QC fix: it flagged "built and sold my own e-commerce business" and "ten
 QC only received the numbers table, not docs/lindsey-default.md, which names both as her primary credibility
 anchors and instructs using them naturally. False positive from incomplete context.
 
-Length: 289 words / 1,632 characters.
+Length: 295 words / 1,663 characters.
 
 ---
 
-Do you know what your CPM does between your current daily budget and the one you are scaling toward? It decides whether a slipping number is a creative problem or an auction problem, and the two look identical in a tracker.
+Do you know what your CPM does between your current daily budget and the one you are scaling toward? It decides whether a rising cost per sale means the ads wore out or the impressions simply got more expensive, and those two look identical in a tracker.
 
 I ask because of a consumer camera brand I ran on Meta. In March it spent $10,757 at $68 a sale. In May it spent $19,972 and paid $116. The obvious read is creative fatigue. But CPM over those same two months went from $12.24 to $31.60, so impressions got about 2.6 times more expensive while cost per sale rose 1.7 times. The ads needed fewer impressions per sale in May than they had in March. Sending a creative strategist back for more hooks would have fixed nothing there.
 
