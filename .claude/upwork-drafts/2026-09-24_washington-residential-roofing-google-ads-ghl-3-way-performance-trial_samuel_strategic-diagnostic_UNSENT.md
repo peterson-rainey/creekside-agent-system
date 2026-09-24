@@ -43,3 +43,10 @@ Two of the ways a roofing lead reaches you can drop out of what Google learns fr
 5. 20% of monthly ad spend with a $1,500 monthly minimum, so the minimum applies until spend passes $7,500. Plus a one-time $1,500 onboarding fee. Between calls you'd also have a live report to check any day.
 
 What monthly ad budget will your territory run on: under $5,000, $5,000 to $10,000, or above that?
+
+
+## MILESTONE DESCRIPTION (single, 184 chars)
+
+Google Ads onboarding for your territory: call and form tracking into GoHighLevel, booked appointment import setup, and Search campaigns split by replacement vs repair, with negatives.
+
+No price typed: standard answer is the $1,500 one-time onboarding quoted in answer 5. Says "import setup", not a proven import, since the offline return leg is a documented zero. No trial wording, no cadence, no duration.
