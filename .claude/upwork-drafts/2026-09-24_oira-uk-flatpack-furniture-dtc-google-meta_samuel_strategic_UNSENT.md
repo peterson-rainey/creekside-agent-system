@@ -27,3 +27,17 @@ How our team would audit your setup:
 5. A short list of fixes ranked by profit impact, before any budget goes up.
 
 Roughly what share of sales comes through the site today versus the marketplaces?
+
+---
+
+## Screening answers (QC PASS WITH FIXES, applied)
+
+**1. Please list any certifications related to this project**
+
+Nothing formal to list. The better measure is current volume: in August our team managed about $277,000 in ad spend across 35 Google and Meta ad accounts. The tracking checks in the proposal, like VAT sitting in conversion values and platform-reported sales that don't match real orders, are the part of this work a badge doesn't test.
+
+**2. Describe your recent experience with similar projects**
+
+The most recent one that maps to yours is a US Shopify store selling survival gear that our team runs on both Google and Meta, which tested the UK alongside the US from late June. On Meta the UK was cheaper to reach (CPM about $27 against $41) but returned 0.59x against 3.79x in the US over the same six weeks, Meta-reported, and the account-level 2.32x hid that gap completely. On Google, July non-brand read 1.50x blended, with the UK at 0.42x and the US at 2.00x. The blended number described neither market, which is why we report by country, campaign type and new versus returning customers before any budget decision.
+
+Before that, the three accounts in the proposal: the replacement parts store on Meta, where cost per conversion went from $34.72 in the month before we took it over to $19.89 by April; the monitor brand on Google, which we built from launch in November 2025 and ran through August 2026 at 5.3x to 5.5x non-brand; and the premium furniture brand on Meta, which ran from April to August this year.
