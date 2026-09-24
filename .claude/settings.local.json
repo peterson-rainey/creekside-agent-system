@@ -410,7 +410,8 @@
       "mcp__ede18d50-b5a3-4303-a965-5ed7d5f0f8f1__clickup_get_threaded_comments",
       "Bash(grep -i \"\\\\.md$\")",
       "Bash(git commit -m ' *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git rm *)"
     ]
   }
 }
