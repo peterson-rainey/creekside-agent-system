@@ -70,7 +70,18 @@ Meta's Ad Library. It's public and shows every ad a page is running right now. H
 - Tue 9/22 10:30am, Lindsey SENT (not drafted in this session): "One thing to check is timing. Under standard attribution, Meta counts a click for 7 days at most, so a lead your team confirms after that may not get credited to the ad that brought them in. Every ad where I could see a destination sends people to the website instead of an Instant Form, and Meta's conversion leads goal, the one built to learn from CRM stages, only works with Instant Forms right now. How long does it usually take between someone filling out the form and your team confirming they're legit?"
 - No reply since. **7-day window and Instant Forms are now BURNED, do not repeat them.**
 
-## FOLLOW-UP, drafted Thu 2026-09-24 ~9am CDT (UNSENT)
+## FOLLOW-UP, drafted Thu 2026-09-24 ~9am CDT
+
+### CHOSEN BY QUEENIE 9/24: the volume version. She sends it herself.
+
+One more on top of Tuesday's note, and this one is about volume rather than timing. Every Delmont ad showing as active in the library now has a September 22 start date, and Meta counts adding an ad as a significant edit that puts the ad set back into learning. It only exits learning after about 50 results in the week following that edit, which is a steep bar when the result you care about is a qualified lead. How many leads a week clear your qualified bar right now?
+
+- Last question: "How many leads a week clear your qualified bar right now?"
+- Last sentence: same.
+- Every Meta claim here is the same verified pair QC cleared (adding an ad is a significant edit; ~50 results in the week following it). It never carried the "long uninterrupted stretch" clause QC struck from the other version, and it adds no new claim.
+- His answer sets up the arithmetic held for the next touch: at ~5% qualified, ~50 results a week means roughly 1,000 raw leads a week.
+
+### NOT CHOSEN (the sdr-agent + QC pick, kept for reference)
 
 Different angle from Tuesday's timing point. Every Delmont ad showing as active in the library now carries a September 22 start date and a new ID, and the September 3 batch is gone from the active list. Meta treats adding an ad as a significant edit, and an ad set only clears learning after about 50 results in the week that follows, so a signal as rare as a qualified lead might not get there before the next edit restarts the clock. Is refreshing the ads a regular habit there, or was this a one-off?
 
@@ -78,7 +89,7 @@ Different angle from Tuesday's timing point. Every Delmont ad showing as active 
 - Last sentence: same.
 - Touch type: platform trigger (#8). Outcome curiosity (#2) and done-for-them observation (#5) are burned.
 - QC PASS WITH FIXES, applied: "needs a long uninterrupted stretch" overstated the rule, which is ~50 results in the week after the last significant edit.
-- Alternate (volume question, not picked): "One more on top of Tuesday's note, and this one is about volume rather than timing. Every Delmont ad showing as active in the library now has a September 22 start date, and Meta counts adding an ad as a significant edit that puts the ad set back into learning. It only exits learning after about 50 results in the week following that edit, which is a steep bar when the result you care about is a qualified lead. How many leads a week clear your qualified bar right now?"
+- sdr-agent and QC both picked this one for its easier either/or question. Queenie overrode that and chose the volume version above.
 - **Held for the next touch:** the arithmetic. At his ~5% good-lead rate, ~50 qualified results a week for one ad set means roughly 1,000 raw leads a week. Use it if he answers with a volume or a "we refresh weekly".
 
 ### Ad Library re-check, live Thu 2026-09-24
