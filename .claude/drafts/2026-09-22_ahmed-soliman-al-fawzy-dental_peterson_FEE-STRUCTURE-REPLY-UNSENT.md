@@ -1,4 +1,4 @@
-**Status: UNSENT.** Drafted 2026-09-22. Upwork thread "Ahmed Soliman" on the Peterson Rainey account. Reply to his Sat 9/19 ~11:07 UTC question on how the fee scales and whether it caps.
+**Status: SENT 2026-09-22 14:59 UTC, RESPONSE 1 verbatim** (Upwork display Tue 9/22 10:59 PM Manila). Diffed against the live thread 2026-09-24: exact match. The GATE below was NOT recorded as cleared, and the send was never posted to Peterson's ClickUp thread. No reply as of 9/24 14:12 UTC. Next: `2026-09-24_ahmed-soliman-al-fawzy-dental_peterson_FOLLOWUP4-UNSENT.md`. Drafted 2026-09-22. Upwork thread "Ahmed Soliman" on the Peterson Rainey account. Reply to his Sat 9/19 ~11:07 UTC question on how the fee scales and whether it caps.
 Routed: sdr-agent, then qc-reviewer-agent. QC: Response 1 PASS; Response 2 PASS WITH FIXES (fix applied below).
 GATE: the lead file says Peterson decides the percentage answer before anyone replies. Get his OK before sending.
 Math (marginal, pricing-reference.md): $7K=$1,500 (min), $8K=$1,600, $10K=$2,000, $60K=$10,500, $15K cap at $105K.
