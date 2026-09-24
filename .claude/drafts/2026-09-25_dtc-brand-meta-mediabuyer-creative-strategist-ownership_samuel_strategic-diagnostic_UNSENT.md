@@ -44,3 +44,14 @@ Is your tracker built on blended numbers, or does it separate new customer cost 
 What does a new customer need to cost for this to be worth scaling?
 
 Answer those and I can tell you whether the account has a creative problem or a measurement problem, which is usually the first thing a new buyer gets wrong.
+
+---
+
+## Milestone description (198 chars, UNSENT)
+
+Month 1 Meta Ads: account and measurement audit, ad set and creative test structure so ad level results are readable, testing priorities set with your creative strategist, tracker and KPI reporting.
+
+No price typed. Spend is unstated in the post and hourly is banned, so the amount is Queenie's call.
+"Month 1" names the first month of management rather than agreeing to any trial term; the 90-day minimum still has to be raised before a contract.
+Deliberately says "tracker and KPI reporting" with NO cadence word. The post asks for a weekly tracker update and a weekly written update, but the standing rule is a two-week client reporting cadence plus a live dashboard, so a weekly written report is not committed here. Raise the cadence in conversation.
+Mirrors the proposal body: "measurement audit" and "so ad level results are readable" carry the multi-ad delivery argument, and "testing priorities set with your creative strategist" carries the learning-phase section.
