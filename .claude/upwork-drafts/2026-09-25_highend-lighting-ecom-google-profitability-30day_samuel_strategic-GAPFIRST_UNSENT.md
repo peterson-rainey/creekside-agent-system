@@ -106,6 +106,17 @@ the same 4.14x / 78 purchases.
 
 ---
 
+## Milestone (198 chars)
+
+Google Ads diagnostic: confirm which conversion actions are primary, reconcile purchase counts and values against Shopify orders, then review Merchant Center feed, campaign overlap and budget split.
+
+Scoped to the diagnostic, not to month 1 of management, matching the proposal body's ordering
+(conversion-count integrity first, then value, then structure). No price, no cadence word, no
+promise of a rebuild, since he explicitly ruled one out. Does not commit to the margin banding,
+which the body presents as conditional on what the audit finds.
+
+---
+
 ## PROPOSAL (paste-ready)
 
 LIGHTING ADS
