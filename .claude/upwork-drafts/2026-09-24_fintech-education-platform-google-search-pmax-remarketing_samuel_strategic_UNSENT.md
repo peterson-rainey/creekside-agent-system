@@ -166,3 +166,28 @@ Financial education also draws scrutiny on income and earnings claims and anythi
 Attached a bankruptcy law account, same shape of problem: flat volume at $86 a lead, restructured to $50 while leads doubled.
 
 Is media spend closer to five figures a month, or well past that? And what marks a lead qualified on your side? Quick call would sort most of it.
+
+---
+
+## MILESTONE DESCRIPTION (single, 199/200 chars, no amount set here)
+
+Month one: conversion actions audited in GA4 and Tag Manager, bidding pointed at your qualified lead not free signups, Search and Performance Max built around it, remarketing live, read at two weeks.
+
+Scoped to what we actually own, and every clause mirrors the proposal:
+- "audited", NOT "built". Zero GA4 property build, zero GTM container ownership, zero server-side GTM
+  and zero enhanced-conversions proof exist, so the milestone never claims a tracking build.
+- "bidding pointed at your qualified lead not free signups" is a bidding configuration, achievable
+  in-platform when their qualified event already fires on site. It deliberately does NOT promise an
+  offline conversion import, which is the documented zero and the live reply exposure on this job.
+- Search and Performance Max are the two channels with real depth in the book.
+- "remarketing live" and nothing more. The body concedes there are no remarketing results worth
+  showing but does offer the build (GA4 audiences into RLSA plus a Demand Gen layer), so committing
+  it live is consistent, and omitting it would read as declining a third of the named scope.
+- "read at two weeks" holds the biweekly cadence. No weekly promise anywhere.
+- "Month one", not "30 days", so it does not agree to a 30-day end and stays consistent with the
+  90-day minimum that has to come up before any contract.
+- No em dashes, no links, no price.
+
+AMOUNT IS QUEENIE'S CALL. No figure typed because ad spend is unstated in the post, so the percentage
+is not computable, and hourly is banned. Canonical standing answer for one platform: $1,500 one-time
+onboarding with the audit included, then % of spend against a $1,500/month minimum.
