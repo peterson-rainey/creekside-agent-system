@@ -5,7 +5,7 @@ Profile: Samuel Rainey | Style: strategic, gap-first | Status: UNSENT | Date: 20
 - WHITE-LABEL / SUBCONTRACTOR: "manage our client's accounts", "fixed fee per client". Auto-DQ normally (~38 skips vs ~9 draft-anyways).
 - NO AGENCIES: post excludes agencies by name. Addressed head-on in the body per override instruction.
 - EMPLOYMENT SEAT: "be part of our company", "long-term position". Literal words "full time" absent, so the hard auto-DQ does not trip.
-- PROOF DEMAND: "record a video, show 2-3 accounts on Facebook that you manage". No screen-recording library exists; live client-account walkthrough declined in words.
+- PROOF DEMAND: "record a video, show 2-3 accounts on Facebook that you manage". No screen-recording library exists. Video paragraph REMOVED at Queenie's direction 2026-09-25; the demand is now left unaddressed in the body rather than declined in words.
 - Not screenable: no ad spend figure, no geo, no rate. $5K/mo floor and US/CA/UK/AU gate neither cleared nor foreclosed.
 
 ## Proof cited (all verified live 2026-09-25 unless noted)
@@ -29,11 +29,9 @@ One limit I will state rather than let you find it. An engagement objective woul
 
 Targeting research fails the same way. A survival gear store on our book ran the US and the UK side by side for six weeks. Blended, the account read 2.32x. Split by country it was 3.79x in the US and 0.59x in the UK, and the UK was the cheaper market to reach, roughly $27 CPMs against $41. Cheaper to reach had nothing to do with cheaper to sell in. Nobody looking at 2.32x goes hunting for that split.
 
-**Two things to screen me on now rather than later**
+**One thing worth being straight about up front**
 
-You asked for a video showing two or three Facebook accounts I manage. I will record an intro and walk through how I build a strategy end to end, but I do not screen-share live ad accounts that belong to other people's clients. Your clients would sit behind the same rule. If the account walkthrough is a hard requirement, screen me out today rather than at week three.
-
-Second, you said no agencies, so you should know exactly what you are getting. I am the strategist who would own the accounts and the client conversations. There is a team behind me on media buying and analytics, and creative direction goes out to your designers, which is the arrangement your post describes. If what you want is one person doing strategy and production with nobody behind them, that is not me.
+You said no agencies, so you should know exactly what you are getting. I am the strategist who would own the accounts and the client conversations. There is a team behind me on media buying and analytics, and creative direction goes out to your designers, which is the arrangement your post describes. If what you want is one person doing strategy and production with nobody behind them, that is not me.
 
 **That the work lands**
 
@@ -51,3 +49,6 @@ What does fixed fee per client mean in practice, and does it move as an account'
 
 ## QC
 qc-reviewer-agent: PASS WITH FIXES (2026-09-25). Fix 1 (constraint 10, implied causation) applied with own wording. Fix 2 (dropped "so past tense on it" meta-commentary) applied. All 15 constraints clear.
+
+## Revision 2026-09-25
+Video paragraph removed at Queenie's direction. Section header changed from "Two things to screen me on now rather than later" to "One thing worth being straight about up front"; "Second," dropped. Agency disclosure retained. 3,199 chars.
