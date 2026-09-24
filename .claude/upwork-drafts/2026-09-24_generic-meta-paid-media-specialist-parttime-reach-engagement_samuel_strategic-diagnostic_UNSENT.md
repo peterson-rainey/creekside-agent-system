@@ -31,15 +31,17 @@ Grepped `.claude/upwork-drafts`, `.claude/drafts`, `drafts`, `upwork-drafts`. No
 
 ## Constraints met
 
-4,352 chars (under 5,000) · 0 em dashes · no price · no links · no contact info · no calendar link · no name sign-off · bold section headers as literal asterisks · book pooled, never first person on another operator's account · role not person on delivery · churned account past tense.
+4,461 chars (under 5,000) · 0 em dashes · no price · no links · no contact info · no calendar link · no name sign-off · bold section headers as literal asterisks · book pooled, never first person on another operator's account · role not person on delivery · churned account past tense.
 
 ## QC
 
 `qc-reviewer-agent`: PASS WITH FIXES. One blocking item, parroting: "Part-time and independent is the normal shape of that" echoed the post's own words. Replaced with "sized to a lighter weekly commitment rather than a full-time seat". Fix applied. Everything else PASS.
 
+Second pass, 2026-09-24: Queenie asked for the opener to be softened because the original first line ("Most Meta accounts that underperform were not lost in the auction") contradicted the brief outright. Opener rewritten, re-QC'd: PASS WITH FIXES on two items, both applied. "run well day to day" lifted the post's own "day-to-day campaign management" phrasing, and "mostly because" hedged. Final opener concedes competence, introduces the second variable rather than negating their framing, and keeps the diagnosis. Body only. No other section touched.
+
 ---
 
-Most Meta accounts that underperform were not lost in the auction. They were lost at the campaign objective, which gets set once during setup and then quietly decides what the algorithm spends your money buying.
+A Meta account can be managed well and still not pay, and when that happens it is rarely the auction. It is usually the campaign objective, which gets set once during setup and then quietly governs what the algorithm spends the budget buying. That is the first thing I look at, because it is the cheapest thing to check.
 
 Here is what that costs, with real numbers off our own book. One account ran two campaigns side by side last August. Same account, same audience pool, same launch day, one set to Engagement and one set to Leads. The Engagement campaign spent $1,845.88 and bought 49,760 impressions and 1,584 clicks, nearly twice the audience of the other one. It recorded not one enquiry. The Leads campaign spent $1,955.17 on roughly half the impressions and produced 124 enquiries at $15.77 each. The account rollup reported $30.65 per enquiry across both, a figure that described neither campaign. Reading that rollup alone you would conclude enquiries cost twice what they actually cost, and you would keep funding the half that was only buying an audience.
 
