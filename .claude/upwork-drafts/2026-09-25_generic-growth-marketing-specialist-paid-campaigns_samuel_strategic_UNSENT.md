@@ -21,7 +21,7 @@ Pull the last ninety days and split every campaign three ways: by objective, by 
 
 **That the fix lands**
 
-A bankruptcy firm on Google went from 117 leads to 229 while cost per acquisition fell from $86 to $50.29, on campaign restructuring by market. A custom home builder moved from 15 leads a month to 60, with cost per lead going from $454 to $239. A landscaping company ran 28 months at a $50.35 average acquisition cost and 298 percent return and opened new markets during it. That last account is no longer with us, so past tense on it.
+A bankruptcy firm on Google went from 117 leads to 229 while cost per acquisition fell from $86 to $50.29, on campaign restructuring by market. A custom home builder moved from 15 leads to 60 over the same window, with cost per lead going from $454 to $239. A landscaping company ran 28 months at a $50.35 average acquisition cost and 298 percent return and opened new markets during it. That last account is no longer with us, so past tense on it.
 
 **Two things worth knowing up front**
 
