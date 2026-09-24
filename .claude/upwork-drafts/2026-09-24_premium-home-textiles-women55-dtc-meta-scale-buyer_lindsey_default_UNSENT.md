@@ -27,3 +27,11 @@ Day 7: session with your strategists on what wore out, hook or offer, and brief 
 On the trial month: I work on a 90-day minimum instead, because a single month in October or November gets judged against Q4 CPMs.
 
 Happy to walk you through these accounts live rather than attach screenshots. There's a quick video on my profile that shows how I work.
+
+---
+
+## Milestone description (UNSENT)
+
+Month 1 of 90-day Meta management: account and attribution audit, testing and cost cap scaling structure, retargeting build, weekly creative tests and learnings sessions with your strategists
+
+**191 characters.** Framed as month 1 of the 90-day minimum, not a trial, to match the proposal's decline. Amount not set: % of spend on ~$2M/mo is a pricing call for Queenie/Peterson.
