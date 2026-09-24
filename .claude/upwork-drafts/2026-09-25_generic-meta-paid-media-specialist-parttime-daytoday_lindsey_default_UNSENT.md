@@ -103,8 +103,9 @@ I can take you through either account here instead of screenshots. There's a sho
 
 ## Milestone description (UNSENT)
 
-Month 1 of Meta management: account and tracking audit, campaign and audience restructure, testing plan set, reporting split by prospecting and retargeting with cost per purchase as headline metric
+Month 1 of Meta management: audit of tracking and optimization events, campaign and audience restructure, testing plan set, reporting split by prospecting and retargeting on cost per purchase
 
-**197 characters.** Framed as month 1 of ongoing management, not a trial. No price (that is a % of spend call
+**191 characters.** Regenerated 2026-09-25 to match the revised body: it now names the optimization-event
+check (the body's first diagnostic step) instead of a generic "account audit". Framed as month 1 of ongoing management, not a trial. No price (that is a % of spend call
 for Queenie/Peterson and the post states no ad spend to price against). No cadence word, so no weekly
 reporting is promised. The 90-day minimum is left open rather than pre-argued, since the post names no trial.
