@@ -37,7 +37,7 @@ Second, you said no agencies, so you should know exactly what you are getting. I
 
 **That the work lands**
 
-A dental implant practice ran Facebook lead forms into a call center and produced 2,558 leads at $25.31 each across about three months on roughly $64,700 in spend. That account is no longer with us, so past tense on it. Across our Facebook book, video view objectives account for 53 of 1,825 campaigns, a little under 3 percent. That is not a preference about video as a format. It is what the first section does to an account once you actually apply it.
+A dental implant practice ran Facebook lead forms into a call center and produced 2,558 leads at $25.31 each across about three months on roughly $64,700 in spend. That account is no longer with us. Across our Facebook book, video view objectives account for 53 of 1,825 campaigns, a little under 3 percent. That is not a preference about video as a format. It is what an account looks like when every objective has to earn its spend.
 
 **Four questions**
 
@@ -48,3 +48,6 @@ What conversion event is each account optimizing toward today, and is that the e
 Who holds the ad accounts and the pixels, you or the clients?
 
 What does fixed fee per client mean in practice, and does it move as an account's spend grows?
+
+## QC
+qc-reviewer-agent: PASS WITH FIXES (2026-09-25). Fix 1 (constraint 10, implied causation) applied with own wording. Fix 2 (dropped "so past tense on it" meta-commentary) applied. All 15 constraints clear.
