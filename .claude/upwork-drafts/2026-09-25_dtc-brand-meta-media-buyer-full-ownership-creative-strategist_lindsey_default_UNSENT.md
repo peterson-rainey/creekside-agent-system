@@ -35,7 +35,12 @@ IN the tracker and commits to no cadence. Say the word if you want a weekly line
 FLAG FOR QUEENIE: written strict first person. Everything in scope is Lindsey's own Meta book, so no pooling
 was needed. Pooling is available per the 9/17 proposal ruling if you want it.
 
-Length: 289 words / 1,634 characters.
+QC: PASS WITH FIXES. Applied: "these accounts" -> "this account" (body cites one brand, plural overclaimed).
+REJECTED QC fix: it flagged "built and sold my own e-commerce business" and "ten years in" as unsupported.
+QC only received the numbers table, not docs/lindsey-default.md, which names both as her primary credibility
+anchors and instructs using them naturally. False positive from incomplete context.
+
+Length: 289 words / 1,632 characters.
 
 ---
 
@@ -49,4 +54,4 @@ So in your tracker I would want CPM and conversion rate sitting beside cost per 
 
 I built and sold my own e-commerce business before this, and ten years in, the accounts that scale cleanly are the ones where the buyer and the creative person are reading the same split instead of the same average.
 
-Happy to walk you through these accounts live rather than attach screenshots. There's a quick video on my profile that covers how I work.
+Happy to walk you through this account live rather than attach screenshots. There's a quick video on my profile that covers how I work.
