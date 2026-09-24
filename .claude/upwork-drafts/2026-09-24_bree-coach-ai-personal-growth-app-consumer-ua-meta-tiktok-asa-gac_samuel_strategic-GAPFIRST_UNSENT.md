@@ -1,6 +1,6 @@
 # Upwork Proposal - Bree Coach (AI personal growth / coaching consumer app, early-stage B2C UA)
 Profile: Samuel Rainey | Style: strategic | Status: UNSENT, GAP-FIRST | Date: 2026-09-24 (US Central, Postgres now(); local clock read 9/25)
-Chars: 4,951 | Em dashes: 0 | Attachments: NONE | Links: none | Price: structure only, no figure
+Chars: 3,474 (shortened on Queenie 9/24; the 4,951-char v1 is in git history at fe843b9) | Em dashes: 0 | Attachments: NONE | Links: none | Price: structure only, no figure
 
 ## SCREEN: recommend SKIP. Drafted gap-first on Queenie's explicit "generate, strategic version".
 Required-items screen fires hard. Of six required items, three are unanswerable from our book:
@@ -63,39 +63,29 @@ Not screened out on: spend (unstated, $5K floor unmeasurable), geo (unstated), w
 - If this converts, a named Meta account manager has to own week-to-week work before signature.
 
 <!-- PROPOSAL START -->
-The funnel you laid out is readable on Android and largely modeled on iOS. That is not a tracking setup problem, it is how Apple's SKAdNetwork hands results to Meta, and it decides your campaign structure before anyone writes an ad.
+The funnel you laid out is readable on Android and largely modeled on iOS. That is not a tracking setup problem, it is how SKAdNetwork hands results to Meta: campaign level aggregation, at least 24 hours late, ad and ad set numbers modeled unless a campaign holds a single ad or a single ad set. Most early app accounts end up killing creative on evidence that was never there.
 
-Under SKAdNetwork, results reach Meta aggregated at the campaign level, at least 24 hours late. Ad set and ad level numbers come from statistical modeling unless the campaign holds a single ad set or a single ad. The 1, 7 and 28 day windows do not apply, and A/B tests run at campaign level only. So a genuinely measured read of one creative means a campaign per ad, while Meta's other guidance pushes the opposite way: combine ad sets, because combining them combines learning, and an ad set needs roughly 50 results in a week to leave the learning phase. Most early app accounts resolve that by accident. A wide structure, modeled numbers read as though they were measured, and creative killed on evidence that was never there.
+So the first thing I would check is not campaign structure. It is whether your app is eligible for Aggregated Event Measurement. Meta has extended AEM to the app promotion objective, and where it is the attribution method you can run app promotion without configuring SKAdNetwork events at all, with near real time reporting and 1 day and 7 day click reporting back. The catch sits exactly where your funnel sits. AEM does not currently support custom event optimization, so whether a first coaching interaction can be a bid target depends on how that event is defined. That is a week one conversation with your developers, not a month two discovery.
 
-Which is why the first thing I would check is not structure. It is whether your app is eligible for Aggregated Event Measurement. Meta has extended AEM to the app promotion objective, and where AEM is the campaign attribution method you can run app promotion without configuring SKAdNetwork events at all: near real time reporting instead of a 24 hour floor, 1 day and 7 day click reporting back, and more app events available for delivery optimization.
-
-The catch sits exactly where your funnel sits. AEM does not currently support custom event optimization. So whether a first coaching interaction or a repeat session can be a bid target at all depends on how those events are defined, which is a decision to make with your developers in week one rather than discover in month two.
-
-The second decision is which event campaigns bid toward. Your list ends at a paid subscription, the event that matters and almost certainly the wrong one to bid on at launch. At roughly 50 results a week per ad set, an early app on disciplined budgets will not produce enough subscriptions to pull an ad set out of learning, so bidding to subscription starves delivery while the report reads like the creative failed. The deepest event that clears volume becomes the bid target and subscription stays the scoring metric.
+The related decision is what campaigns bid toward. Your list ends at a paid subscription, the event that matters and almost certainly the wrong one to bid on at launch. An ad set needs roughly 50 results a week to leave learning and an early app will not produce that many subscriptions, so bidding to subscription starves delivery while the report reads like the creative failed. Bid to the deepest event that clears volume, score on subscription.
 
 **Where we do not clear your bar**
 
-Five of your six questions get a straight answer.
-
-Consumer apps supported: one, not two or three. A restaurant rewards app on Meta, where cost per install went from $7.36 to $3.90 across 2,662 installs after a restructure. It had been optimizing for traffic and pointing at a web page instead of the store listing. That was our team's work rather than mine personally, and the account has since churned.
+Consumer apps: one, not two or three. A restaurant rewards app on Meta, cost per install $7.36 to $3.90 across 2,662 installs after a restructure, on about $2,000 a month. That was our team's work rather than mine, and the account has since churned.
 
 Platforms: Meta is real. TikTok, Apple Search Ads and Google App Campaigns are zero delivered accounts between them.
 
 In-app events and attribution: we have never run an MMP. No AppsFlyer, no Adjust, no conversion value schema shipped. On the distinction you asked for, what we have configured ourselves is web side, pixel and Conversions API and server side event work. Everything above is documented behavior I have read closely, not behavior I have shipped against.
 
-Budgets managed: individual Meta accounts on our book run from about $1,000 a month to $100,000. The app was one of the small ones, roughly $2,000 a month.
+Budgets: Meta accounts on our book run from about $1,000 a month to $100,000, roughly $1.9 million in spend this year, mostly lead generation and ecommerce.
 
 A campaign example past the install: our app numbers stop at the install, so there is not one.
 
-If hands-on early-stage mobile UA with MMP work is the bar, we do not clear it, and that is better said here than on a call. What we do have is about $1.9 million in Meta spend across our book this year, mostly lead generation and ecommerce, and the discipline that comes with it: creative batched into tests large enough to read, and budget and bid changes handled so ad sets stay out of learning.
+If hands-on mobile UA with MMP work is the bar, we do not clear it, and that is better said here than on a call.
 
-**First 30 days**
+**First 30 days and terms**
 
-Week one is measurement rather than spend: which events exist, whether they fire, AEM eligibility, and the bid target agreed with your developers before anything runs. Week two, Meta live, structured so the reads you need are measured rather than modeled. If AEM is not available, Android goes first for the honest creative read, since Android reporting does not depend on SKAdNetwork at all. Weeks three and four, creative tested in batches rather than drip fed, and a first real read of where people stop between install and the first coaching session.
+Week one is measurement rather than spend: which events fire, AEM eligibility, and the bid target agreed with your developers. Week two Meta goes live, structured so the reads you need are measured rather than modeled, Android first if AEM is not available. Weeks three and four, creative tested in batches rather than drip fed, and a first real read of where people stop between install and the first coaching session.
 
-**Availability and terms**
-
-A Meta account manager would run the account week to week with me on structure, so this is a small team rather than a single hire. We can start inside a week.
-
-We do not bill hourly. Management is a percentage of ad spend with a monthly minimum per platform, plus a one time onboarding fee per platform, and the percentage steps down as spend grows. Two things would tell me most: are you on an MMP already, and where is monthly paid spend heading in the first quarter, under $10K, $10K to $30K, or above that?
+A Meta account manager would run it week to week with me on structure, and we can start inside a week. We do not bill hourly: a percentage of ad spend with a monthly minimum per platform, plus one time onboarding per platform, stepping down as spend grows. Two things would tell me most: are you on an MMP already, and where is monthly paid spend heading in the first quarter, under $10K, $10K to $30K, or above that?
 <!-- PROPOSAL END -->
