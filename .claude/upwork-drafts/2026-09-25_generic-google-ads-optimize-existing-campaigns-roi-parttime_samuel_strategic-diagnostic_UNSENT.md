@@ -33,7 +33,15 @@ Profile: Samuel Rainey | Style: strategic + diagnostic | Status: UNSENT | Drafte
 3,850 chars (under the 5,000 ceiling), 651 words, 0 em dashes, no URLs, no contact info, no price, no sign-off. Bold section headers present; opener left un-headered as a cold open.
 
 ## ATTACHMENT
-**Attach nothing.** The two strongest numbers (Aura brand split, Perfect Parking Search vs PMax) are body-text-only. The Aura PDF is barred: it headlines "8-10x non-branded" four times against a live 5.31x, on a paused account. Perfect Parking's PDF is real and attachable but its 12-day $127 CPL window is off-thesis here and would collide with the $131/$268 pair in the body. Winterbotham's PDF carries a dead localhost footer.
+**SEND WITH `winterbotham_parham_teeple_CLEAN.pdf`** (`.claude/attachments/`, 785KB, real 3-page PDF, dev-link footer already stripped, re-read in full this session).
+- Chosen because its CHALLENGE section restates this job post: already running Google Ads, "unsustainable cost per conversion of $86+", flat volume, "campaign structure lacked the optimization needed to improve efficiency". STRATEGY is restructuring rather than added budget. Page 3 carries CAC-to-value math ($1,500-$4,000 case fees against a $50.29 lead) which answers the ROI framing directly.
+- PDF figures match the body to the cent: 117 -> 229 conversions, $86.09 -> $50.29, 42% cut, $11.5K spend, 21% click growth, Orange County, Service: Google Ads.
+- Body now says "That case study is attached." Drop that sentence if the PDF is dropped.
+
+**Deliberately NOT attached:**
+- `integrity_naturopathic_CLEAN.pdf` - real and clean, but it headlines "$14-$40 CPA", "$14 BEST CPA ACHIEVED", "150+ TOTAL CONVERSIONS" and **"$2,350 MONTHLY BUDGET"**, against the body's $1,500/mo and $40.29. Direct budget contradiction plus a headline ~3x better than live. Same failure mode as the Aura PDF. Integrity stays a body cite only.
+- `Perfect_Parking_Asphalt_case_study.pdf` - real and clean, but its $127 CPL headline is a cherry-picked 12-day window that collides with the $131.22 / $268.19 pair the body cites from a different campaign pair in the same account.
+- Aura PDF - barred: headlines "8-10x non-branded" four times against a live 5.31x, on a paused account.
 
 ---
 
@@ -53,7 +61,7 @@ Then two numbers most accounts cannot produce on request. What a genuinely new c
 
 **Where restructuring carried the result**
 
-A bankruptcy firm in Orange County went from 117 leads to 229 while cost per acquisition fell from $86 to $50.29, on campaign restructuring by market rather than added budget. A naturopathic clinic our team runs today had previously run Google Ads on broad wellness terms that brought traffic and few patients. On a $1,500 monthly budget the account has produced 560 conversions in the last twelve months at $40.29 each. Both are lead generation rather than ecommerce, so weight them accordingly if you sell products.
+A bankruptcy firm in Orange County went from 117 leads to 229 while cost per acquisition fell from $86 to $50.29, on campaign restructuring by market rather than added budget. That case study is attached. A naturopathic clinic our team runs today had previously run Google Ads on broad wellness terms that brought traffic and few patients. On a $1,500 monthly budget the account has produced 560 conversions in the last twelve months at $40.29 each. Both are lead generation rather than ecommerce, so weight them accordingly if you sell products.
 
 **One limit, stated early**
 
