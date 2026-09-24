@@ -35,7 +35,7 @@ IN the tracker and commits to no cadence. Say the word if you want a weekly line
 FLAG FOR QUEENIE: written strict first person. Everything in scope is Lindsey's own Meta book, so no pooling
 was needed. Pooling is available per the 9/17 proposal ruling if you want it.
 
-Length: 285 words / 1,614 characters.
+Length: 289 words / 1,634 characters.
 
 ---
 

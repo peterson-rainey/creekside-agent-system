@@ -4,7 +4,7 @@ Screening: Meta named, ads in scope. NO spend named (prose implies scaled DTC ac
 Duplicate check: no existing draft mentions "Ad Growth Guide" or this creative-strategist-management shape; upwork_jobs search on creative strategist / Ad Growth Guide returned no match for this post.
 Proof cited: US replacement parts ecom brand (Master Spa Parts, genericized, no case_studies row, CHURNED, past tense) - Jan $34.72 / CPM $8.10, Feb 14 campaigns, Mar-May 7 campaigns, Apr $19.89 / CPM $8.18, May $22.91. RE-VERIFIED LIVE against meta_insights_daily 2026-09-25. 232 active ads on ~$15K/mo from owner's own 1/27/26 email. NO mechanism claimed (audit changed targeting + creative in the same window). High AOV furniture brand (Neue Maison, genericized, CHURNED, past tense) - ~$105,000 spend over four months, CPM ~$42 -> ~$79. Spend cited only, no per-purchase figure, $105K never paired with $275.
 Methodology cited: Meta multi-ad delivery (Business Help 1000688343301256), significant edits / adding an ad restarts learning (316478108955072), creative test 2-7 versions Highest volume only (1423851372208214). All primary-verified in-app 2026-09-16.
-Constraints: 3,548 chars, 0 em dashes, no bold/markdown, no price, no links, no contact info, no name sign-off, book pooled (never first-person delivery), certifications conceded, both cited accounts past tense, live-account claim left uncounted (reporting_clients ecom subset is ambiguous and Ella Skincare's active row is stale).
+Constraints: 3,578 chars, 0 em dashes, four bold section headers (Queenie asked for them back 9/25; note Upwork does not render markdown, so these paste as literal asterisks - same as the 9/25 growth-marketing draft), no price, no links, no contact info, no name sign-off, book pooled (never first-person delivery), certifications conceded, both cited accounts past tense, live-account claim left uncounted (reporting_clients ecom subset is ambiguous and Ella Skincare's active row is stale).
 QC: self-reviewed against the standing rule set; qc-reviewer-agent not spawned (subagents lack DB access in this workspace).
 
 ---
@@ -19,13 +19,21 @@ The numbers in sequence, then the limit. The month we inherited it ran $34.72 pe
 
 The limit: nothing in that account records why the cost fell. Targeting, creative and structure all moved in the same window. I can show you the sequence and the flat CPM. I cannot hand you a mechanism, and anyone who hands you one on an account like that is guessing.
 
-On setting testing priorities, the Ads Manager detail that decides it: adding a new ad to a live ad set is a significant edit and sends that ad set back into learning. A strategist shipping three new ads a week into a running ad set is restarting the thing you are trying to read, every week. Meta's built in creative test takes two to seven versions and keeps the delivery learnings rather than resetting them, but it runs on Highest volume only, so it is off the table the moment an account is on cost cap or bid cap. That is a real tradeoff and it is better decided on purpose than discovered in month three.
+**On setting testing priorities**
 
-Where our ecommerce Meta work actually sits. The replacement parts brand above is a past client. The largest consumer Meta account on our book was a high AOV furniture brand, roughly $105,000 in spend over four months, where the honest story is that we scaled it into a rising CPM that went from about $42 to $79 over the same window. Also a past client. We do run live ecommerce Meta accounts today, but they are all smaller than that one, so treat the two above as history rather than current form. Google and Meta run as separate operators on our side rather than one generalist stretched across both, which is why the daily monitoring and the creative direction do not compete for the same hours.
+The Ads Manager detail that decides this one: adding a new ad to a live ad set is a significant edit and sends that ad set back into learning. A strategist shipping three new ads a week into a running ad set is restarting the thing you are trying to read, every week. Meta's built in creative test takes two to seven versions and keeps the delivery learnings rather than resetting them, but it runs on Highest volume only, so it is off the table the moment an account is on cost cap or bid cap. That is a real tradeoff and it is better decided on purpose than discovered in month three.
+
+**Where our ecommerce Meta work actually sits**
+
+The replacement parts brand above is a past client. The largest consumer Meta account on our book was a high AOV furniture brand, roughly $105,000 in spend over four months, where the honest story is that we scaled it into a rising CPM that went from about $42 to $79 over the same window. Also a past client. We do run live ecommerce Meta accounts today, but they are all smaller than that one, so treat the two above as history rather than current form. Google and Meta run as separate operators on our side rather than one generalist stretched across both, which is why the daily monitoring and the creative direction do not compete for the same hours.
+
+**One concession**
 
 No platform certifications on our side. Worth saying before you find it.
 
-Four questions, because the answers change where I would start.
+**Four questions**
+
+The answers change where I would start.
 
 How many ads are live at once, and across how many ad sets?
 
