@@ -62,7 +62,7 @@ read as exactly the "generic copy-and-paste" he ruled out.
 Bold section headers present, de-colliding from both same-day Samuel twins. No em dashes. No links
 or contact info. "Our team" for delivery, first person for analysis only. No hourly. No trial
 offered (90-day minimum stated plainly). No self-blame, no answer-validating filler, no booking CTA.
-No mechanism-then-number juxtaposition. 4,256 characters / 744 words, under the 5,000 limit.
+No mechanism-then-number juxtaposition. 4,257 characters / 744 words, under the 5,000 limit.
 
 ## Review round 1 (2026-09-25)
 
