@@ -17,7 +17,7 @@ Profile: Samuel | Style: strategic | Status: UNSENT, DRAFT-ANYWAY OVERRIDE (gaps
 ## FACTS USED
 - Meta conversion leads goal: Instant Forms only, 200 leads/mo, stage within 28 days (Meta for Developers, verified 9/16).
 - TX Gutter Expert: city-split campaigns (Cibolo, SA, Austin), financing-offer vs city-led variants, proven-winners Instant Forms campaign split from new-creatives campaign; conversion-objective CPM $47.77 vs blended $39.05, ~$204 of boosted posts (computed live 9/9). Conversions column excludes Instant Form leads, so no CPL.
-- Fusion Dental: 2,558 leads at $25.31 over 90d through 7/15/26; qualifying questions added, higher CPL accepted, spend cut for call center capacity.
+- Fusion Dental: 2,558 leads at $25.31, 90d window through 7/15/26 but only 78 ACTIVE days (started 4/21), so body says 'in under three months' not 'over 90 days'; qualifying questions added, higher CPL accepted, spend cut for call center capacity.
 
 ---
 
@@ -25,10 +25,27 @@ Instant Forms are usually where contractor leads get cheap on Meta, and also whe
 
 1. Most of our home services results are on Google, but two had real Meta volume. A lawn care company in Tennessee got over 1,000 conversions from Facebook ads in twelve months, alongside its Google campaigns, and that case study is attached. More recently, a gutter company in the San Antonio area that our team ran until earlier this month.
 
-2. On that gutter account, proven Instant Form ads ran in their own campaign, separate from new creative tests, and financing-offer ads were tested against ads naming specific cities, with Cibolo, San Antonio and Austin run as separate campaigns rather than one metro radius. I won't quote a cost per lead from it, since the account's recorded conversions don't include the Instant Form leads. It did show how boosted posts flatter a contractor's reporting: about $200 of boosted posts pulled the blended CPM down to $39.05, while the lead campaigns were really paying $47.77. The second example isn't home services but it's the same local lead problem: Meta Instant Forms feeding a dental implant practice's call center, 2,558 leads at $25.31 each over 90 days. Our team added qualifying questions, accepted a higher cost per lead, and cut spend when the call center needed room.
+2. On that gutter account, proven Instant Form ads ran in their own campaign, separate from new creative tests, and financing-offer ads were tested against ads naming specific cities, with Cibolo, San Antonio and Austin run as separate campaigns rather than one metro radius. I won't quote a cost per lead from it, since the account's recorded conversions don't include the Instant Form leads. It did show how boosted posts flatter a contractor's reporting: about $200 of boosted posts pulled the blended CPM down to $39.05, while the lead campaigns were really paying $47.77. The second example isn't home services but it's the same local lead problem: Meta Instant Forms feeding a dental implant practice's call center, 2,558 leads at $25.31 each in under three months. Our team added qualifying questions, accepted a higher cost per lead, and cut spend when the call center needed room.
 
 3 and 4. Not me personally, and I'd rather say that now. We're a small shop, not a solo freelancer. None of the work leaves our team: one Meta specialist builds and runs each account day to day, our tracking specialist owns the pixel, Conversions API and CRM setup, and I stay on strategy and review. If you need one person doing every part of it, that isn't us.
 
 5. Yes. Once you've shortlisted, I'd check with a client first and then pass their email along.
 
 How many contractor accounts would this start with, and what does a typical one spend on Meta each month: under $5,000, $5,000 to $10,000, or more?
+
+
+## SCREENING QUESTIONS
+
+**1. Which U.S. contractor or home service companies have you personally managed Meta Ads for? Please share 1-2 examples of relevant campaigns and the results achieved. Are you currently working independently or as part of an agency?**
+
+Most of our home services results are on Google, so here are the two with real Meta volume.
+
+A lawn care company in Tennessee, running Google and Facebook together. Over twelve months, Facebook ads drove more than 100,000 clicks and over 1,000 conversions, with Google adding another 1,200 or so. That case study is attached.
+
+A gutter company in the San Antonio area, Meta only, which our team ran until earlier this month. Proven Instant Form ads ran in their own campaign, separate from new creative tests, financing-offer ads were tested against ads naming specific cities, and Cibolo, San Antonio and Austin ran as separate campaigns rather than one metro radius. I won't quote a cost per lead from it, since the account's recorded conversions don't include the Instant Form leads.
+
+Not me personally, and it's part of an agency. We're a small shop, not a solo freelancer: a Meta specialist on our team builds and runs each account day to day, our tracking specialist handles the pixel, Conversions API and CRM setup, and I stay on strategy and review.
+
+**2. Please list any certifications related to this project**
+
+Nothing formal to list. The attached case study and the two accounts above are the better measure of the work.
