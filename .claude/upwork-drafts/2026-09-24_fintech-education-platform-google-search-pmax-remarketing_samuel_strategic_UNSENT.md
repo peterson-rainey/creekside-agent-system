@@ -147,22 +147,22 @@ Both blocking items fixed, plus the substantive ones:
    is no honest answer beyond the click-ID capture leg on our own funnel. Prepare that before replying.
 3. Spend and geo both unstated. Both handled in-body, neither resolved.
 
-457 words / 2,622 chars. Zero em dashes. Zero links. No sign-off name. Under the 5,000-char ceiling.
+423 words / 2,445 chars. Zero em dashes. Zero links. No sign-off name. Under the 5,000-char ceiling.
 
 ---
 
-Fintech education has a CPL trap built in. Free course signups, webinar registrations and account-created events are cheap and abundant, so the moment Smart Bidding optimizes toward one of those, CPL falls and lead quality falls with it. Your two goals pull against each other until the qualified downstream event is what Google actually bids toward. That makes GA4 and GTM the first decision here, not the campaign build. Which event marks a lead your sales side would genuinely work, and does it clear roughly 30 a month so a bid strategy can learn on it? If not, weighting the events you already have is the way in.
+Fintech education has a CPL trap built in. Free course signups, webinar registrations and account-created events are cheap and abundant, so the moment Smart Bidding optimizes toward one of those, CPL falls and lead quality falls with it. The two pull against each other until the qualified downstream event is what Google bids toward. That makes GA4 and GTM the first decision here, not the campaign build. Which event marks a lead your sales side would genuinely work, and does it clear roughly 30 a month so a bid strategy can learn on it? If not, weight the events you already have.
 
-Closest thing we run to your funnel is an online-educator client on the Meta side, a weekly webinar with free registration feeding a follow-up sequence. Optimizing to the application instead of the registration took cost per application from $256 to $123 and moved applications from 41 to 90 a month on about 5 percent more spend. Meta, not Google, so take it as funnel logic rather than a Google case study.
+Closest thing we run to your funnel is an online-educator client on Meta, a weekly webinar with free registration feeding a follow-up sequence. Optimizing to the application instead of the registration took cost per application from $256 to $123 and moved applications from 41 to 90 a month on about 5 percent more spend. Meta, not Google, so funnel logic rather than a Google case study.
 
-On Google the closest account was a US reverse mortgage lender, a CPL-goal account around $60K a month that we ran until it ended in August. Performance Max there went from $31,834 and 330 conversions at $96 each in January to $42,625 and 1,498 conversions at $28 each in July. Worth knowing the months before January recorded a lower cost per conversion still, on flat spend, which is what marked them as a tracking artifact rather than a result. January is the honest baseline. Search on that account went from 17 conversions a month in September to 188 by April at slightly higher CPL, so volume rather than efficiency.
+On Google the closest account was a US reverse mortgage lender, a CPL-goal account around $60K a month, run until it ended in August. Performance Max went from $31,834 and 330 conversions at $96 each in January to $42,625 and 1,498 at $28 in July. The months before January recorded a lower cost per conversion still on flat spend, which marked them as a tracking artifact rather than a result, so January is the honest baseline. Search on the same account went from 17 conversions a month in September to 188 by April at slightly higher CPL, so volume rather than efficiency.
 
-Two things straight. We have no fintech platform clients and no education clients on Google. And remarketing is the thin part of our Google book, with no results there worth putting in front of you. The build is standard, GA4 audiences into RLSA plus a Demand Gen layer, and at lead gen volumes it supports Search rather than carries it.
+Two things straight. We have no fintech platform clients and no education clients on Google. And remarketing is the thin part of our Google book, with no results worth putting in front of you. The build is standard, GA4 audiences into RLSA plus a Demand Gen layer, supporting Search rather than carrying it at lead gen volumes.
 
-On cadence, a live dashboard plus a structured read every two weeks beats a weekly cycle, because the changes that move things reset learning and need longer than seven days to read.
+On cadence, a live dashboard plus a structured read every two weeks beats a weekly cycle, because the changes that matter reset learning.
 
-Financial education also draws scrutiny on income and earnings claims and anything reading as advice, which caps what the landing page can promise too.
+Financial education also draws scrutiny on income and earnings claims and anything reading as advice, which caps what the landing page can promise.
 
-Attached a bankruptcy law account for reference, same shape of problem: flat volume at $86 a lead, restructured down to $50 while leads doubled.
+Attached a bankruptcy law account, same shape of problem: flat volume at $86 a lead, restructured to $50 while leads doubled.
 
 Is media spend closer to five figures a month, or well past that? And what marks a lead qualified on your side? Quick call would sort most of it.
