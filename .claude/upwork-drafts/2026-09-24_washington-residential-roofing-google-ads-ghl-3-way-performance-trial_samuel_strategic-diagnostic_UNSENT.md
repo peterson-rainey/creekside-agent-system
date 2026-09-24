@@ -23,7 +23,8 @@ Profile: Samuel | Style: strategic + diagnostic | Status: UNSENT | Drafted 2026-
 - 556 words / 3,274 chars. Zero em dashes.
 
 ## ATTACHMENT
-- None recommended. Perfect Parking PDF headlines the $127 12-day window (contradicts body). Green Shield PDF is real (764KB) but unread; read it first if attaching.
+- RECOMMENDED: `green_shield_pest.pdf`, Drive `1QGvLfXcC9VWAJwgdlKbo-N5y1ISD6c4U`. Read in full 8/29: Google Ads only, 79 leads @ $92.60 (matches the body's Q1 figure exactly), 465 clicks, 80/20 budget split by service line. Strip the `http://localhost:4321/` footer before sending. Not live-verifiable (no reporting_clients row); white-label origin irrelevant to this buyer.
+- Rejected: Perfect Parking PDF ($127 headline contradicts the body's $187), Landmark (Google + Meta, and it sells a winter pause on month-to-month, bad on a weather-driven trade), UrCovered (adds unverifiable numbers the body doesn't use, $500K+ job values).
 
 ---
 
