@@ -3,7 +3,7 @@
 **Profile:** Lindsey Bouffard (inbound DM to her profile 2026-07-22, no job post)
 **Type:** nurture touch 1, 60-day cycle (last message was Lindsey's, Fri 7/24; 59 days of silence)
 **Lead record:** upwork_leads 6971f142-fcdd-4806-8688-46b91a70c7b7 / ClickUp 86e2ev13k (status lost, loss reason "Ghosted", salesman Cade)
-**Status:** UNSENT. sdr-agent drafted it and qc-reviewer-agent passed it with fixes, all applied.
+**Status:** the filename says UNSENT but the thread is LIVE. Response 1 SENT Mon 9/21 10:36am CDT, the Ad Library answer SENT 9/21 11:13am, and a tracking reply SENT Tue 9/22 10:30am. Only the 9/24 follow-up at the bottom is unsent. See [[reference_unsent_label_is_not_enforcement]].
 
 ---
 
@@ -60,6 +60,29 @@ Meta's Ad Library. It's public and shows every ad a page is running right now. H
 - Alternate B (not picked): "Meta's Ad Library, it's public and shows every ad a page is running right now. It lists the start date on each one too, that's where I got the 3rd. How's the lead quality looking since then?"
 - Deliberately says nothing about Lindsey's own feed. We don't know if the ads ever showed there, and he may be asking because he wonders who his ads reach.
 - No call ask. Whether Lindsey takes a call is open (Scott passed in July), so settle it with Cade before his next reply.
+
+## WHAT WENT OUT AND WHAT CAME BACK (all Central)
+
+- Mon 9/21 10:36am, Lindsey SENT Response 1 above.
+- Mon 9/21 11:02am, Mokhtar: "Where did you see them?"
+- Mon 9/21 11:13am, Lindsey SENT: "Meta's Ad Library. It's public and shows every ad a page is running right now. How's the lead quality looking since the videos went live?"
+- Tue 9/22 10:23am, Mokhtar: "The matter is reporting leads that are good to meta which we have been doing but still lead quality is not the best"
+- Tue 9/22 10:30am, Lindsey SENT (not drafted in this session): "One thing to check is timing. Under standard attribution, Meta counts a click for 7 days at most, so a lead your team confirms after that may not get credited to the ad that brought them in. Every ad where I could see a destination sends people to the website instead of an Instant Form, and Meta's conversion leads goal, the one built to learn from CRM stages, only works with Instant Forms right now. How long does it usually take between someone filling out the form and your team confirming they're legit?"
+- No reply since. **7-day window and Instant Forms are now BURNED, do not repeat them.**
+
+## FOLLOW-UP, drafted Thu 2026-09-24 ~9am CDT (UNSENT)
+
+Different angle from Tuesday's timing point. Every Delmont ad showing as active in the library now carries a September 22 start date and a new ID, and the September 3 batch is gone from the active list. Meta treats adding an ad as a significant edit, and an ad set only clears learning after about 50 results in the week that follows, so a signal as rare as a qualified lead might not get there before the next edit restarts the clock. Is refreshing the ads a regular habit there, or was this a one-off?
+
+- Last question: "Is refreshing the ads a regular habit there, or was this a one-off?"
+- Last sentence: same.
+- Touch type: platform trigger (#8). Outcome curiosity (#2) and done-for-them observation (#5) are burned.
+- QC PASS WITH FIXES, applied: "needs a long uninterrupted stretch" overstated the rule, which is ~50 results in the week after the last significant edit.
+- Alternate (volume question, not picked): "One more on top of Tuesday's note, and this one is about volume rather than timing. Every Delmont ad showing as active in the library now has a September 22 start date, and Meta counts adding an ad as a significant edit that puts the ad set back into learning. It only exits learning after about 50 results in the week following that edit, which is a steep bar when the result you care about is a qualified lead. How many leads a week clear your qualified bar right now?"
+- **Held for the next touch:** the arithmetic. At his ~5% good-lead rate, ~50 qualified results a week for one ad set means roughly 1,000 raw leads a week. Use it if he answers with a volume or a "we refresh weekly".
+
+### Ad Library re-check, live Thu 2026-09-24
+~18 active ads, **every one "Started running on Sep 22, 2026"**, all new library IDs. The ~14 ads that started Sep 3 are gone from the active list. Same creatives and copy, still "Delmont International with toneatam". Every ad with a visible destination still goes to DELMONTINTERNATIONAL.COM ("Learn more"). **Still no Instant Form ads.** Why they relaunched is unknown; claim no cause and take no credit.
 
 ## SEND NOTES
 
