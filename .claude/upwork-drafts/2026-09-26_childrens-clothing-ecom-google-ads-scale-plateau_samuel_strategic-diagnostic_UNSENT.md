@@ -65,3 +65,9 @@ Roughly where does monthly Google spend sit today, closer to $15,000 or $50,000?
 
 ## QC (2026-09-26)
 - qc-reviewer-agent: PASS WITH FIXES. Applied: opener dropped "established" (parroted the post).
+
+## Milestone description (UNSENT, 176 chars)
+
+Google Ads audit and setup: purchase tracking and GA4 checked, brand split from non-brand, Merchant Center feed fixed, budget and ROAS targets set by product with room to scale
+
+Scoped to what the body promises (tracking + GA4 first, brand/non-brand split, feed, budget and tROAS by product). No price, no cadence word.
