@@ -51,3 +51,32 @@ Do any of your stockists run Shopping ads on your products? That decides how muc
 
 ## QC (2026-09-26)
 - qc-reviewer-agent: PASS WITH FIXES. Applied: CPA sentence read as caused by the consolidation (no mechanism recorded), added a no-single-change line. Trimmed the individual-vs-team preamble to stay under 400 words.
+
+## Attachment
+NONE. Aura PDF headline (8-10x, 49 countries, localhost link) contradicts the body's 5.5x; Fitness Superstore 40x fails live; Master Spa Parts has no PDF; Winterbotham is a law firm on an ecom-proof ask. Zero case_studies rows are ecom AND dual-platform.
+
+## SCREENING ANSWERS (UNSENT)
+
+Verified live 2026-09-26: Myriad Traders July 2026 Google $8,134 + Meta $4,643 = $12,777 combined; Meta has no spend Aug/Sep (reason not recorded, not mentioned). Shopping 2.39x Jul 7-Sep 24 (earlier pull). Master Spa Parts = Meta only in reporting_clients. Nightlark/Tiami/Scattered Kind fail (null Meta conversions, sub-1x or tiny Google). No ecom store has ever run both platforms for us at AUD $20K+ combined: PROOF GAP, answered honestly.
+
+Q1.
+Not personally, and not at that combined level on one store. A Meta specialist and a Google specialist on our team run the accounts while I stay on strategy, so the closest fit is split across two stores.
+
+At your spend on Meta: a US replacement parts store we took over at about US$15,600 a month. We inherited 11 campaigns spending, 232 live ads and targeting set to every language. We retired the small overlapping campaigns, consolidated to 7 and built one new sales campaign. Cost per conversion went from $34.72 in the inherited month to $19.89 by April with CPM flat around $8, and sat at $22.91 in May. Targeting and creative changed in the same stretch, so no single change owns that result. We ran Meta only there.
+
+Both platforms at once: a survival gear store where we ran Google and Meta together at about US$12,800 combined in July. Meta there ran through July, and Google Shopping has returned 2.4x since.
+
+Q2.
+Personally, none. Our Meta specialist runs around a dozen accounts and our Google specialist around seven, and I sit across strategy on those.
+
+For an account like yours, the first month runs heavier: checking that each Shopify order reaches Meta and Google once, splitting brand from non-brand, and reading the feed and SKU-level returns. After that it settles into a few check-ins a week rather than one long session, which should sit inside the hours you've planned for, with a written summary every two weeks.
+
+Q3.
+Every ad gets tagged by product, format (static, video, carousel), setting (styled room, close-up detail, lifestyle) and opening hook. That lets us read results by idea instead of by individual ad, so your team hears "styled room scenes are beating flat product shots on cold audiences" rather than "ad 14 did well."
+
+Every two weeks your team gets a short brief: which ideas are winning and on which audience, which ones are wearing out, and what to make next. Wearing out shows up as frequency climbing while click-through falls at a steady CPM. The brief names the product, the format and the specific shot, and the next test is a new idea, not a recolour of the last winner.
+
+Google uses the same work. Performance Max needs lifestyle, product-only and video assets per asset group, and its asset reporting feeds back into the same brief. Your team decides how it looks. We just point at what the numbers say to try next.
+
+## QC screening answers (2026-09-26)
+- qc-reviewer-agent: PASS WITH FIXES. Applied: Q1 no longer implies Meta continued past July; Q2 no longer echoes their 15-25 hour range as our estimate.
