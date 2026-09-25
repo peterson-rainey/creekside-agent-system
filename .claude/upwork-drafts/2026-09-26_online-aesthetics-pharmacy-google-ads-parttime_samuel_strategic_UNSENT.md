@@ -28,9 +28,12 @@ Profile: Samuel Rainey (public profile name Peterson Rainey) | Style: samuel_str
 - Any pharmacy-experience claim: zero pharmacy clients in the book, and the post only calls healthcare/beauty "a plus".
 - Price (not asked), links, contact info, sign-off.
 
-## Attachment: NONE recommended
-- Advanced Med Spa PDF: "Peterson" chart label + "By: Samuel Rainey" byline, no figures. Root Hair PDF: YouTube-framed. Join Piper PDF: blocked. Dr. Laleh PDF: inflated vs canonical.
-- Only sendable healthcare PDF is `.claude/attachments/integrity_naturopathic_CLEAN.pdf`, but it is naturopathy, not beauty, and its headline ($14 best CPA, $2,350/mo) runs well ahead of live ($40.33 over 12 months, ~$1,500/mo budget). Attach only if you want something attached; the body doesn't mention it.
+## Attachment (Queenie asked 2026-09-26): integrity_naturopathic_CLEAN.pdf
+- SEND WITH `.claude/attachments/integrity_naturopathic_CLEAN.pdf` (740KB, real 3-page PDF, re-read in full 2026-09-26: 0 localhost, 0 URLs, 0 "Samuel"/"Peterson" strings, no /Author). Use this CLEAN copy, not the Drive original, which carries a localhost link.
+- Why this one: it's the only sendable healthcare PDF, the client is ACTIVE (operator Ahmed I.), and its story backs the draft's qualified-traffic argument: broad wellness terms "generated traffic but low conversions" until the account was "restructured ... around high-intent, service-focused keywords" with negatives cutting waste.
+- Body line added and checked against the PDF text: "The attached case study is a naturopathic clinic our team runs on Google, restructured around searches for its actual services after broad wellness terms had brought traffic but few conversions." Drop that sentence if the PDF is dropped. Avoided claiming broad terms brought NO inquiries: the PDF's own table shows "medical wellness" with 45 conversions.
+- Caveats: naturopathy is healthcare, not beauty or pharmacy. The headline figures ($14 best CPA, 150+ conversions, $2,350/mo) come from the case-study window; live is $40.33 per conversion over the last 12 months (top of the PDF's $14-$40 range) on a ~$1,500/mo budget. The body quotes no naturopathic numbers, so nothing contradicts the PDF. Don't pair live Integrity numbers with it in follow-ups without that context.
+- Still blocked: Advanced Med Spa (Samuel byline + "Peterson" chart label, no figures, 2023-24), Root Hair (YouTube-framed), Join Piper (platform-row conflict, churned), Dr. Laleh (inflated vs canonical), Polaris (fails live, churned). No newer case-study PDF exists in Drive (latest batch 2026-07-08).
 
 ## QC (2026-09-26)
 - qc-reviewer-agent: PASS WITH FIXES, no blocking issues, twin check clean (no other profile's draft of this job on disk).
@@ -45,7 +48,7 @@ Profile: Samuel Rainey (public profile name Peterson Rainey) | Style: samuel_str
 1. Geo, spend, hourly range, payment verification and client history aren't in the paste, so they're unscreened. Check the job page.
 2. White-label: soft third-person signal only, not a DQ.
 3. Spend bracket "$5,000 or $15,000" follows the shape of your 9/22 ruling. There's no incumbent agency here, so "$3,000 or $10,000" (straddling the floor) is the alternative if you'd rather screen below $5K.
-4. Length: 427 words (411 prose + 16 header words), 2,639 chars. Over the 350-word style target like recent drafts, well under 5,000 chars.
+4. Length (with attachment line): 457 words, 2834 chars. Over the 350-word style target like recent drafts, well under 5,000 chars.
 5. DB log INSERT to `upwork_proposal_logs` skipped (contractor_query can't INSERT).
 6. Last question = last sentence: "Any number I'd suggest only helps if it fits your range, so roughly where does monthly Google spend sit, closer to $5,000 or $15,000?"
 
@@ -65,7 +68,7 @@ Google's personalized ads rules for health cover cosmetic surgery and injections
 
 **Relevant accounts**
 
-Our team runs Google for a dental aesthetics practice today, about $97,500 through the account since April. We rebuilt the Google account of a GLP-1 telehealth company selling prescription medication online, already certified when it came to us, after finding duplicate conversion tracking and brand-only keywords. We also ran a three-location med spa that converted at twice the industry average for the same cost per acquisition, and a hair restoration clinic with $8,000 to $15,000 procedures, where Google brought in 690 patient inquiries at $134 each.
+Our team runs Google for a dental aesthetics practice today, about $97,500 through the account since April. We rebuilt the Google account of a GLP-1 telehealth company selling prescription medication online, already certified when it came to us, after finding duplicate conversion tracking and brand-only keywords. We also ran a three-location med spa that converted at twice the industry average for the same cost per acquisition, and a hair restoration clinic with $8,000 to $15,000 procedures, where Google brought in 690 patient inquiries at $134 each. The attached case study is a naturopathic clinic our team runs on Google, restructured around searches for its actual services after broad wellness terms had brought traffic but few conversions.
 
 Who buys from you today, licensed practitioners, patients with a prescription or both, and in which countries?
 
