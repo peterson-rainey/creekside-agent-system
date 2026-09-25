@@ -26,7 +26,7 @@ QC: PASS (one optional swap, applied: "fills" -> "holds"). Expert review: Good. 
 Length: 335 words (10 header words, 325 prose incl. "Picky,"), 1,845 chars. Over the 300 band, under the 350 ceiling.
 
 FLAGS FOR QUEENIE:
-1. They want a Monday plan and a Friday recap. The letter says live dashboard + a written read every two weeks (standing ruling). Keep, or approve weekly for this one?
+1. RESOLVED by Queenie: "keep the live report, no weekly". They want a Monday plan and a Friday recap; the letter keeps the live dashboard + a written read every two weeks. No text change.
 2. The 90-day minimum is not in the body. Raise it before any contract.
 3. Weekend checks in open cart + 9-5 PT: Lindsey works 8am-4pm PT, Mon-Fri. The letter promises neither. Needs Lindsey's OK if this moves.
 4. Upwork's hourly proposal form still needs a number in the rate box (her usual is $75). The letter itself types no rate.
