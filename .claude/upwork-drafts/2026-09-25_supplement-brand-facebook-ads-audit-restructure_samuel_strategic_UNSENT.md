@@ -46,3 +46,9 @@ Every recommendation ties back to account data, and changes get made in the acco
 We haven't run a supplement account. The closest matches in our book: a meal prep brand, also a repeat-purchase product, running on Meta at about $10 per purchase across the days purchase tracking reported cleanly. And a replacement parts ecommerce brand that came to us with 232 active ads across 11 campaigns. Targeting and creative changed in the same stretch, so structure wasn't the only lever, but it went from 11 campaigns to 6 and cost per purchase moved from $28 in the inherited month to $19 by April, then $21 in May.
 
 Roughly where does monthly Meta spend sit right now, closer to $5,000 or $20,000?
+
+## Milestone description (UNSENT, 184 chars)
+
+Meta audit and cleanup: purchase tracking checked against Shopify, new vs returning customers split, campaigns restructured in the account, testing plan and trust-led creative guidance
+
+Scoped to what the body promises (tracking first, new/returning split, restructure made in the account, one-variable testing, proof-led creative). No price (not ruled), no cadence word.
