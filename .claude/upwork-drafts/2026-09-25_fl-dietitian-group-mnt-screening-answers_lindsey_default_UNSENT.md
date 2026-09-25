@@ -1,7 +1,7 @@
 # Florida RD group practice, screening answers (5), lindsey_default, v2 SHORT per Queenie, UNSENT
 
 Pairs with 02c85d2b Lindsey proposal (edited same commit: "cut in your approved tools" -> "gets cut into", matching Queenie's 197e0d9b fix on Samuel Q4). Twin of Samuel answers a9c19a5e/d699ef20; no shared accounts, numbers, trend or AI tool.
-QC: FAIL on v1 (Q1 cited Vida outcome numbers, banned by memory reference_lindsey_ghl_vida_dentistry_proof). Fixed: Q1 carries no Vida outcomes. Q5 bracket = OPEN, Lindsey's daily AI tools are unrecorded; must be filled before send.
+QC: FAIL on v1 (Q1 cited Vida outcome numbers, banned by memory reference_lindsey_ghl_vida_dentistry_proof). Fixed: Q1 carries no Vida outcomes. Q5 filled: Lindsey uses Claude (Queenie, 9/25).
 Held back (live-verified 9/25, banned by memory, Queenie's call): Vida "Leads | Forms | 7/17" $5,118.58 / 140 conv = $36.56; "Engagement | DMs | 7/17" $2,138.95 / 6 conv.
 Meta restriction facts from Meta help 1402913027039332 / 511197658391698 / 361948878201809 (memory reference_meta_telehealth_policy_facts).
 
@@ -20,4 +20,4 @@ I start with the questions your dietitians hear most, then check what's being sa
 Neither, and I don't have Reels examples. I write the brief for each shoot (hook, question, what's on screen) and the testing plan after.
 
 **5.**
-[CONFIRM WITH LINDSEY: the AI tools she uses day to day, and for what]. On one account, an AI agent drafted the weekly report and queued it for my review. Patient footage, transcripts and captions stay in your approved tools, never AI. Meta can strip URL details and restrict lower-funnel events for health businesses, so I keep page paths and event names neutral and count bookings from your scheduler as the result.
+Claude, mainly for trend research, first drafts of hooks and captions, and pulling reports together. On one account, an AI agent also drafted the weekly report and queued it for my review. Patient footage, transcripts and captions stay in your approved tools, never AI. Meta can strip URL details and restrict lower-funnel events for health businesses, so I keep page paths and event names neutral and count bookings from your scheduler as the result.

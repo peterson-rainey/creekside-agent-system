@@ -20,7 +20,7 @@ The friendliest opener, "what brings you in?", invites details that shouldn't si
 
 Meta is my lane: Business Manager setup, a campaign per offer, creative and audience testing, and planning the hooks, captions and test variations your testimonial footage gets cut into. I don't film, I don't have an editing reel, I don't manage organic posting, and I haven't run LinkedIn, TikTok or X, so physician and HR outreach there needs someone who has.
 
-On AI, one account's weekly report was drafted by an AI agent and queued for my review. Patient footage never goes into an AI tool.
+On AI, I use Claude for research and first drafts, and one account's weekly report was drafted by an AI agent and queued for my review. Patient footage never goes into an AI tool.
 
 **One question**
 
