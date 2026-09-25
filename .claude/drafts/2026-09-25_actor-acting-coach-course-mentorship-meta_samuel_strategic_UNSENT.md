@@ -1,6 +1,6 @@
 # Upwork Proposal - Actor / acting coach, Meta for a $397 course + $5,300-7,300 mentorship application funnel
 Profile: Samuel Rainey | Style: strategic | Status: UNSENT | Date: 2026-09-25
-Screening: SKIPPED earlier today (hourly + stop-start billing). Queenie OVERRODE: "Draft, % of spend". Hourly rate + hour estimates declined in words; 20% of spend, $1,500 min, $1,500 onboarding (review included), 90-day minimum stated. Spend unstated, $5K floor unmeasurable. "Independent freelancer" answered honestly as small team. Weekly update NOT promised (biweekly + live dashboard is our cadence).
+Screening: SKIPPED earlier today (hourly + stop-start billing). Queenie OVERRODE: "Draft, % of spend". Hourly rate + hour estimates declined in words; % of spend model and 90-day minimum stated, NO dollar figures or percentages in body (removed per Queenie). Spend unstated, $5K floor unmeasurable. "Independent freelancer" answered honestly as small team. Weekly update NOT promised (biweekly + live dashboard is our cadence).
 Proof: Adventures in Wisdom, genericized, no number in body; attach PDF 1Q4IAix0Gc81lnfeWvRlMJYHwTijeIw-h with Jan-Oct 2025 window stated. Acting/performing arts = zero, conceded.
 Methodology: ~50 results/week to exit learning (Business Help 112167992830700, verified 9/16).
 QC: self-reviewed; qc-reviewer-agent not spawned (subagents lack DB access in this workspace).
@@ -31,7 +31,7 @@ No acting or performing arts account on our book yet, worth saying up front. The
 
 We are a small team rather than a solo freelancer. One strategist owns your account, and you get a written update every two weeks plus a live dashboard you can check anytime: spend, results, what they mean, and what to test next.
 
-We do not bill by the hour. Management is a monthly fee of 20% of ad spend with a $1,500 minimum, plus a one time $1,500 onboarding fee that covers the full review of what you have run so far. There is a 90 day minimum. Between mentorship rounds, the time goes into the course campaigns and the brief for the next round, so each launch starts from a plan instead of from scratch.
+We do not bill by the hour. Management is a monthly fee based on ad spend, and the full review of what you have run so far is part of onboarding. There is a 90 day minimum. Between mentorship rounds, the time goes into the course campaigns and the brief for the next round, so each launch starts from a plan instead of from scratch.
 
 **Three questions**
 
