@@ -22,7 +22,8 @@ Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-25 (Postgres no
 ## QC
 - qc-reviewer PASS WITH FIXES: applied hedge-before-number, dropped "flat CPM" (Jan $8.16 vs Apr $8.40), header renamed from "Creative and messaging" (parroting), trimmed. Kept "I'd" (Samuel profile is first person; the ban is on naming principals as the worker).
 
-## Attachment: NONE (DTC Meta shelf has zero attachable case studies).
+## Attachment: .claude/attachments/meta_objective_split_case_study.pdf
+Diagnostic, not a vertical claim: a blended rollup ($30.65) hid the campaign actually producing enquiries ($15.77), same shape as the opener. Scanned 9/25: 1 page, zero URIs/http/localhost, no persona or client name, no /Author. Dental client, genericized, active. No DTC/ecom Meta case study is attachable (Unrefined = churned for below-average results, written in present tense).
 
 ## PROPOSAL
 
