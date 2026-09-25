@@ -19,7 +19,7 @@ How are jobs coming in from Meta for the painting and pressure washing accounts?
 
 Heads up on the anxiety subscription box: its site can land in Meta's health and wellness data source category, which covers health-related products as well as providers. If it does, Meta may restrict some mid and lower funnel events, and purchases can be one of them.
 
-Sequencing note: nurture.md's pre-call order is outcome curiosity, exact-niche win, pricing card, then clean breakup. The exact-niche win is unavailable (no same-vertical Meta proof). The pricing card doesn't fit a partner-routed lead. Strict doc order therefore puts the clean breakup at touch 2. Decide at the time. This text doesn't go stale.
+Sequencing note (revised 2026-09-25): this banked observation IS touch 2. nurture.md's pre-call order was outcome curiosity, exact-niche win, pricing card, then clean breakup, and the earlier version of this note flagged that strict doc order forced the breakup into touch 2, since the exact-niche win is unavailable (no same-vertical Meta proof) and the pricing card doesn't fit a partner-routed lead. That dilemma is gone: Queenie ruled 2026-09-24 that a touch must never announce finality, and angle 4 is retired (commits 5bb6ff8 + c80ef86). No breakup to schedule, so this text is the natural touch 2. It doesn't go stale.
 
 ---
 
@@ -35,7 +35,7 @@ Sequencing note: nurture.md's pre-call order is outcome curiosity, exact-niche w
 | Thu 8/13 3:52 PM | Lindsey | "Are all three still on at $750 each?" |
 | Wed 8/19 4:03 PM | Lindsey | Perfect Parking (Google case study) + routed to Brady, his Reclaim link, "$500 to $800 a month" |
 
-As of 9/21: 53 days since his last reply, 33 since our last touch, 4 touches unanswered. Recent-contact check (14 days: Gmail, Upwork, Fathom, sdr_generation_log): clear. Nurture expires 2027-07-30.
+As of 9/21: 53 days since his last reply, 33 since our last touch, 4 touches unanswered. Recent-contact check (14 days: Gmail, Upwork, Fathom, sdr_generation_log): clear. No expiry: the cycle ends only when he tells us to stop (ruling 2026-09-24).
 
 ## Meta facts behind the banked touch (read live on Meta's Business Help Center, 2026-09-21)
 - facebook.com/business/help/1402913027039332: Health and wellness "Is associated with medical conditions or specific health statuses, provider/patient relationships, services for accessing personal health information, or health-related products and services". Categories are assigned "based on the topics related to the data source and the products and/or services provided." A Meta-assigned category can't be modified, only sent back for review.

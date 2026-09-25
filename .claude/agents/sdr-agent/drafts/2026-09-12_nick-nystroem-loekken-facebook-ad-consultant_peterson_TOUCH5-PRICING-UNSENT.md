@@ -53,5 +53,5 @@ Source: `.claude/agents/pricing-update-agent/docs/pricing-reference.md` (current
 2. Spend and geo both still unmeasured (client_country NULL). Either can DQ him after a booking ($5K/mo spend floor; US/CA/UK/AU judged by where ads run).
 3. Posted hourly at $14-$74/hr; our bid was $90/hr. This card moves him to percentage of spend without saying so. If he raises it, handle it on a call and never counter with an hourly rate.
 4. Two profiles on one job: Lindsey bid 2026-08-14 at $75/hr, never viewed, no conversation. Never reference it.
-5. Once this sends, the close-out and the pricing card are both spent. Next contact = 60-day nurture (~2026-11-11). Nurture expires 2027-08-18 (one year from his only reply).
+5. Once this sends, the close-out and the pricing card are both spent. Next contact = 60-day nurture (~2026-11-11). No expiry: the cycle ends only when he tells us to stop (ruling 2026-09-24; the one-year archive rule was removed from nurture.md in commit 5bb6ff8). Note the 8/29 close-out predates that ruling, so it stays on the record but must not be repeated.
 6. upwork_leads row is stale: date_last_contacted 2026-08-22 (actual last outbound 2026-08-29). contractor_query cannot write, and sdr_generation_log was not written.
