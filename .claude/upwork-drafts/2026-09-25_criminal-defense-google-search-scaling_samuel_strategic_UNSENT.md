@@ -9,30 +9,24 @@ Ads in scope PASS | geo unstated, US firm implied | spend unstated, "profitable"
 
 ---
 
-## PROPOSAL
+## PROPOSAL (v2, shortened 9/25)
 
-Once a criminal defense account is working, the next dollar is usually worse than the last one, and the account won't tell you that on its own. Raise the budget and Google spends it one of two ways: paying more for the same searches, or stretching into ones that rarely retain, like "public defender", "free lawyer", arrest records, inmate lookups and expungement questions. Cost per lead can hold steady while case quality slides, because a call from someone looking for free advice counts the same as a felony client ready to retain.
+Once a criminal defense account is working, the next dollar is usually worse than the last. Raise the budget and Google either pays more for the same searches or stretches into ones that rarely retain, like "public defender", "free lawyer" and arrest records. Cost per lead holds while case quality slides, because a free-advice call counts the same as a felony client ready to retain.
 
 **Where I'd look before adding budget**
 
-First, impression share lost to budget versus lost to rank, by campaign. Lost to budget means more money buys more of the same searches at roughly the same price. Lost to rank means more money mostly buys higher CPCs. That split shows which campaigns can take more spend and which can't.
+Impression share lost to budget versus rank, by campaign. Lost to budget, more money buys more of the same searches. Lost to rank, it mostly buys higher CPCs.
 
-Second, what bidding is learning from. If every call and form counts as a conversion, Google treats a misdemeanor inquiry and a federal drug case as the same win. The fix is sending signed cases back from intake against the original click, ideally with a value by charge type, so bidding learns which searches turn into fees. Calls can only be matched this way through a Google forwarding number, so that's part of the setup.
+What bidding learns from. Sending signed cases back from intake against the original click, valued by charge type, teaches Google which searches turn into fees. Calls need a Google forwarding number for this.
 
-Third, geography. Criminal cases follow the courthouse, not the searcher. A parent two states away looking for a DUI lawyer in your county is a real lead, and a presence-only location setting never shows them your ad. I'd keep generic terms on presence-only and run county and courthouse terms on a wider net.
-
-Then auction insights for who's taking share, and the search terms report for which charge types are growing.
+Geography. Criminal cases follow the courthouse, not the searcher. A parent two states away searching for a DUI lawyer in your county never sees a presence-only ad, so county and courthouse terms get a wider net.
 
 **A law firm account we've run**
 
-We haven't run a criminal defense account. The closest is an Arizona personal injury firm, also a high-CPC, call-driven market. Total ad spend across channels was just under $97K from April to early September 2025, roughly $16-18K a month. Google alone produced 619 conversions on $56.6K, about $91 each, and across all channels it came to 102 cases at about $950 per case. That account has since ended.
+We haven't run criminal defense. The closest is an Arizona personal injury firm, also high-CPC and call-driven: just under $97K total ad spend from April to early September 2025, roughly $16-18K a month. Google alone produced 619 conversions at about $91 each, and across all channels it came to 102 cases at about $950 per case. That account has since ended.
 
-We also ran Google for an Orange County bankruptcy firm, restructured by market. Conversions went from 117 to 229 and cost per conversion from $86 to $50, on about $1,400 more spend.
+For an Orange County bankruptcy firm, conversions went from 117 to 229 and cost per conversion from $86 to $50 after a restructure by market. Both case studies are attached.
 
-Both case studies are attached.
-
-**Who does the work**
-
-A dedicated Google Ads operator on our team runs the account day to day, with a tracking specialist handling the signed-case import. Landing page tests get judged on signed cases, not form fills.
+A dedicated Google Ads operator on our team runs the account day to day, with a tracking specialist on the signed-case import.
 
 Roughly where is monthly spend today, closer to $10K or $40K?
