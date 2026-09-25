@@ -1,5 +1,7 @@
 # Upwork FOLLOW-UP, touch 2 — BC two dental practices (Michael Webster), measurement angle
-Profile: Lindsey Bouffard | Style: lindsey_default | Type: follow-up, touch 2 (followup mode) | Status: UNSENT
+
+> SENT 2026-09-18 about 8:56 AM Central (Upwork shows Fri 9/18 9:56 PM Manila). One word changed by the sender: "full-arch patients who SIT past that 90-day mark" (draft said "seat"). Otherwise identical, verified by diff. No reply as of 2026-09-25.
+Profile: Lindsey Bouffard | Style: lindsey_default | Type: follow-up, touch 2 (followup mode) | Status: SENT 2026-09-18
 Drafted 2026-09-18 (Postgres now(), Fri 8:22 AM Central) | sdr-agent -> qc-reviewer-agent round 3 (fixes applied)
 
 ## STATE (verified 2026-09-18)
