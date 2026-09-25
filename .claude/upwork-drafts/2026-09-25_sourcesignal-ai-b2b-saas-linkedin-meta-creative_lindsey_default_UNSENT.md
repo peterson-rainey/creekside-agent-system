@@ -24,3 +24,20 @@ I also built and sold my own e-commerce business, so I write creative the way I 
 I'd optimize toward the free scorecard first, then shift to paid plans once there's enough volume for Meta to learn from.
 
 There's a short video on my profile that walks through how I work.
+
+
+---
+
+## Screening question answers (QC PASS WITH FIXES, both applied; fix 2 reworded to avoid claiming a 6-month tenure)
+
+1. One, and I'd rather give you one real example than pad it to three. I ran the Meta side for a B2B software company selling referral automation to home service contractors, after their seed round. The category was new to the buyer, so Meta's job was building awareness of the problem and warming up the audience that later went looking for a solution. In the first six months, inbound leads roughly doubled across the full program. The rest of my book is e-commerce and local service brands, which is where most of my creative testing reps come from.
+
+2. I can't show you a SaaS video portfolio. The software work above was on the paid side, and I don't have creative from it I can share. The creative I build myself is for e-commerce and local brands, made in Canva. What carries over to SourceSignal is the testing discipline: several hooks on the same core idea, judged on sign-ups rather than views or likes.
+
+3. The first job is getting a buyer to feel the gap before selling the fix, because most of them have never checked what AI says about their brand. The three angles I'd test first:
+- The live check: a screen recording of a buyer question typed into ChatGPT, a competitor recommended, the brand missing, then the scorecard.
+- The founder angle: "Ask ChatGPT for the best tool in your category. Is your brand in the answer?" with the free, no-card scorecard as the offer.
+- The agency angle: SourceSignal as a report agencies can run for every client they manage, aimed at the Agency plan buyer, who has a different reason to pay than a single brand does.
+On LinkedIn, job-title targeting finds the founders and agency owners, so the creative can go straight to the point. On Meta, the targeting is broader and the hook has to filter the audience, so the first three seconds need to name who it's for. Both would optimize to scorecard sign-ups first.
+
+4. Yes. For a product like this, screen recordings are the most convincing raw material there is, since the product is literally the answer on the screen. I edit in Canva, adding captions, hooks and a clean crop for vertical, and I use ChatGPT for script and hook variations. I don't use AI video generators like Runway or HeyGen, and I'd keep the real product footage as the hero anyway.
