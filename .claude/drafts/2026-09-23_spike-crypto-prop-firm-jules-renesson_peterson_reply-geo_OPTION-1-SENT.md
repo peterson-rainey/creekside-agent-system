@@ -1,5 +1,5 @@
 # Upwork Reply - Jules Renesson Philipon / SPIKE (crypto prop firm)
-Profile: Peterson | Type: lead reply (pre-call) | Status: UNSENT | Drafted 2026-09-23 10:25 Central
+Profile: Peterson | Type: lead reply (pre-call) | Status: OPTION 1 SENT | Drafted 2026-09-23 10:25 Central
 ClickUp: 86e34ere0 | salesman = Cade | funnel = Booking Link Sent
 
 ## What we are replying to
@@ -17,11 +17,11 @@ its "combined Meta and Google" wording rather than assuming.
 
 ---
 
-## OPTION 1 (8 words)
+## OPTION 1 (8 words) -- **SENT 2026-09-23 10:36 Central**, verbatim, diffed against the thread
 
 Which countries is Meta delivering into right now?
 
-## OPTION 2 (10 words) -- both agents' pick
+## OPTION 2 (10 words) -- both agents' pick, NOT SENT
 
 Top two or three countries your Meta ads run in?
 
@@ -72,3 +72,20 @@ self-blame, no filler.
 
 **Not done, needs write access:** the `sdr_generation_log` row for this generation. `contractor_query`
 cannot INSERT (42601) and this workspace is in contractor mode, so it is flagged rather than bypassed.
+
+---
+
+## OUTCOME (as of 2026-09-25 08:34 Central)
+
+Option 1 was SENT verbatim, 2026-09-23 11:36 PM Manila = 10:36 Central. Queenie chose Option 1 over the
+Option 2 both agents recommended.
+
+**No reply. Roughly 2 days of silence.**
+
+**The pattern worth carrying:** he answered "Meta" in 90 minutes, then went dead on "which countries".
+He answers a PICK-ONE question instantly ("Meta and Google" -> "Meta") and does not answer an OPEN one
+("which countries" -> nothing). He picks from menus, he does not compose lists. Any further geo ask
+should be shaped as a menu, not as an open question.
+
+Geography now has TWO non-answers on it (wrong axis 9/23, then silence 9/23-9/25). That is itself weak
+evidence the answer may be a market set that fails our US/CA/UK/AU screen.
