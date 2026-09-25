@@ -29,7 +29,7 @@ We watch what's actually running, not just what's trending: the Meta Ad Library 
 Here's how I'd use one current trend. More people are on GLP-1 medications, and a common worry is losing muscle along with fat. A dietitian clip on what to eat to protect muscle while on one fits that well. The wording matters. Meta doesn't allow ads that assert or imply someone's health condition, so "What people on GLP-1s often miss about protein" works where "Are you on a GLP-1?" gets rejected. The ad would end with checking whether insurance covers visits, and your CEO approves it before anything runs.
 
 **4.**
-Neither. Our team doesn't film, and I don't have Reels examples to share. What we can do is write the scripts, hooks and shot lists for your dietitians and a local or remote videographer, then turn the footage into test variations for ads. If filming in-house is a must, you'll want a separate person for that.
+Neither. Our team doesn't film, and I don't have Reels examples to share. What we can do is write the scripts, hooks and shot lists for your dietitians and a local or remote videographer, then plan the ad test variations the footage gets cut into. If filming in-house is a must, you'll want a separate person for that.
 
 **5.**
 Claude is our main AI tool. We use it for research summaries, copy drafts, hook and caption variations, and reporting. We don't use AI to generate people, faces or voices.
