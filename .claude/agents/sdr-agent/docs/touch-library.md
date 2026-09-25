@@ -22,7 +22,7 @@ Infer which touch types have already been used from the conversation history. Ne
 
    On pre-call followup touch 4, pair with a call ask and [calendar link].
 
-4. **Clean breakup** -- "Closing the loop on this one. No need to reply." Soft, no pressure. Final touch.
+4. **Retired for nurture** -- "Closing the loop on this one. No need to reply." Clean-breakup / final-touch framing is banned in nurture (a touch must never announce finality; see nurture.md). Followup mode does not use this touch type either (see followup.md's 4-touch active cadence). Number preserved to avoid breaking the touch type 5 cross-reference in nurture.md.
 
 5. **Done-for-them observation** -- One specific insight from their job post, website, or industry. Deliver the finding directly; never assign homework to them. For a strong version (data-backed prediction + exact-niche proof), use the Byren message in nurture.md as the quality benchmark. The opener must always anchor to something the lead said or implied.
 
