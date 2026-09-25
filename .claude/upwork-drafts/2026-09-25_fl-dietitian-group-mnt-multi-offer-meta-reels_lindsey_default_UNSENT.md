@@ -18,7 +18,7 @@ On a dental practice I run Meta for, message ads produced more conversations tha
 
 **Where I'd be useful, and where I wouldn't**
 
-Meta is my lane: Business Manager setup, a campaign per offer, creative and audience testing, and turning your testimonial footage into hook and caption variations cut in your approved tools. I don't film, I don't have a short-form editing reel, I don't manage organic posting, and I haven't run LinkedIn, TikTok or X, so physician and HR outreach there needs someone who has.
+Meta is my lane: Business Manager setup, a campaign per offer, creative and audience testing, and planning the hooks, captions and test variations your testimonial footage gets cut into. I don't film, I don't have a short-form editing reel, I don't manage organic posting, and I haven't run LinkedIn, TikTok or X, so physician and HR outreach there needs someone who has.
 
 **AI, briefly**
 
