@@ -12,7 +12,7 @@ Profile: Lindsey | Style: lindsey_default (requested "strategic + diagnostic", p
 - Forge $5,701 / 2.36x; Rolo $6,034 / 1.36x; "Conversions | 5/8" (general) $5,264 / 0.08x; Chair $1,111 / 0.40x, 04-27 to 05-08; Retargeting $17,000 / 5.42x. Meta-reported ROAS. Not designed as a test. platform_operator = Lindsey B. (reporting_clients).
 
 ## Attachment: NONE (DTC Meta shelf has zero attachable case studies), results-reference line dropped on purpose.
-## QC: PASS WITH FIXES (closing question too close to the twin, "skepticism" echo), both applied. 344 words incl. headers, inside the 350 multi-item ceiling.
+## QC: PASS WITH FIXES (closing question too close to the twin, "skepticism" echo), both applied. 348 words incl. headers, inside the 350 multi-item ceiling.
 
 ## PROPOSAL
 
