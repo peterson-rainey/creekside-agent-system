@@ -22,7 +22,9 @@ Profile: Samuel Rainey | Style: samuel_strategic-diagnostic | Date: 2026-09-26
 ## Deliberately out
 - Pricing (not asked). Blended Aura ROAS (brand-inflated). Myriad month-over-month lift (UK cut client-directed). No links, no names, no sign-off, no em dashes.
 
-## Attachment: NONE recommended
+## Attachment (Queenie asked 2026-09-26): winterbotham_parham_teeple_CLEAN.pdf
+Re-verified today: %PDF-1.4, sha1 7b245ac2fcc3a845c6a4723677c7f72ce5536b42, 0 localhost/samuel/rainey/peterson hits. Challenge section is 'Flat Performance' on an existing account, restructured into four segments, budget reallocated. Tie-in paragraph added after the examples, no numbers. To send with NO attachment, delete that paragraph.
+Originally: NONE recommended
 The Aura PDF carries a stale "8-10x" title, "49 Countries", and a localhost link. Winterbotham is a law firm and doesn't answer an ecom examples ask.
 
 ## Open for Queenie
@@ -54,6 +56,8 @@ A store selling laptop screen extenders, which we ran on Google for about ten mo
 A survival gear store we built on Google this summer, around $8,500 a month, with Shopping at 2.4x since July.
 
 Both run below where a store your size likely spends, and we haven't run kids' clothing on Google yet.
+
+The attached case study is a law firm, not a store, but it's the same kind of fix on an existing account that had gone flat: campaigns split into focused segments, and budget moved to the ones that converted.
 
 I've been in paid ads for six years. Day to day, a Google Ads specialist on our team runs the account, our tracking specialist handles the tracking work, and I stay on strategy.
 
