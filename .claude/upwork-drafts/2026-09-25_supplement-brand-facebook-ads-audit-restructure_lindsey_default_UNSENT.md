@@ -33,3 +33,7 @@ A written audit with a conversion tracking check (pixel and Conversions API dedu
 There's a short video on my profile on how I run accounts like this.
 
 How is monthly Meta spend split across your products right now, and is the total nearer $5,000 or $15,000?
+
+## MILESTONE DESCRIPTION (178 chars, no amount)
+
+Meta account audit with tracking check (pixel, CAPI, purchase match), product-based campaign rebuild, creative and messaging direction, retargeting and test plan, data-tied notes
