@@ -1,4 +1,4 @@
-# Florida RD group practice, screening answers (5), lindsey_default, UNSENT
+# Florida RD group practice, screening answers (5), lindsey_default, v2 SHORT per Queenie, UNSENT
 
 Pairs with 02c85d2b Lindsey proposal (edited same commit: "cut in your approved tools" -> "gets cut into", matching Queenie's 197e0d9b fix on Samuel Q4). Twin of Samuel answers a9c19a5e/d699ef20; no shared accounts, numbers, trend or AI tool.
 QC: FAIL on v1 (Q1 cited Vida outcome numbers, banned by memory reference_lindsey_ghl_vida_dentistry_proof). Fixed: Q1 carries no Vida outcomes. Q5 bracket = OPEN, Lindsey's daily AI tools are unrecorded; must be filled before send.
@@ -8,16 +8,16 @@ Meta restriction facts from Meta help 1402913027039332 / 511197658391698 / 36194
 ---
 
 **1.**
-A dental practice I run Meta for. From mid-July I ran two campaigns side by side, one to lead forms and one to Messenger and Instagram DMs. The DM side brought in plenty of conversations that were hard to qualify, so I sent the practice a set of qualifying questions and kept spend modest until their CRM flows were confirmed. I can't share this practice's cost per lead or cost per booking. Bookings are logged in their CRM, not by campaign, and that's the number I'd want set up with you from the start.
+A dental practice I run Meta for, with lead forms and DM campaigns side by side. The DMs brought volume that was hard to qualify, so I sent the practice qualifying questions and held spend until their CRM was confirmed. I can't share its cost per lead or booking. Bookings there aren't tracked by campaign, which is the first thing I'd set up with you.
 
 **2.**
-Each offer gets its own campaign and budget, so one offer's results can't hide another's cost. 1:1 therapy is the only campaign optimized toward bookings. The Academy and corporate campaigns don't have to sell 1:1 directly: people who watch that video content or engage with your page become the warm audience for 1:1 ads, with current patients excluded. Physician referrals don't fit Meta well, so I'd keep them out of the ad budget.
+A separate campaign and budget per offer, and only 1:1 optimizes to bookings. People who watch Academy or corporate videos become the warm audience for 1:1 ads, with current patients excluded. Physician referrals I'd keep off Meta.
 
 **3.**
-The best source is already in your practice: the questions your dietitians hear most, with nothing identifying attached. I check those against what's being saved and shared in Reels right now. Example: high-protein versions of everything, from cereal to coffee, have been everywhere. A dietitian reading one of those labels on camera, what it adds and what it leaves out, answers a real question without making any claim about the viewer's health.
+I start with the questions your dietitians hear most, then check what's being saved in Reels. High-protein everything is a good one right now: a dietitian reading a label on camera, what it adds and what it leaves out.
 
 **4.**
-Neither, and I don't have Reels examples to share. My part is the brief before each shoot (the hook, the question the dietitian answers, what needs to be on screen) and the testing plan after. If you need someone filming, that's a separate hire.
+Neither, and I don't have Reels examples. I write the brief for each shoot (hook, question, what's on screen) and the testing plan after.
 
 **5.**
-[CONFIRM WITH LINDSEY: the AI tools she uses day to day, and for what]. On one account, an AI agent drafted the weekly report and queued notes for my review rather than posting them. Patient footage never goes into any AI tool. It stays in the tools you approve, and so do its transcripts and captions. On Meta, a health business can have everything after the domain stripped from its URLs and some lower-funnel events restricted, and event or audience names can't reflect health conditions. So I keep page paths and event names neutral, optimize to the deepest event Meta still allows, and count bookings from your scheduling system as the real result.
+[CONFIRM WITH LINDSEY: the AI tools she uses day to day, and for what]. On one account, an AI agent drafted the weekly report and queued it for my review. Patient footage, transcripts and captions stay in your approved tools, never AI. Meta can strip URL details and restrict lower-funnel events for health businesses, so I keep page paths and event names neutral and count bookings from your scheduler as the result.
