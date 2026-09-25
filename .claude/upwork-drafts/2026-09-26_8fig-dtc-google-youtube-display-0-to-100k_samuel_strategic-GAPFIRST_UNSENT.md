@@ -49,3 +49,9 @@ From zero, the plan is Demand Gen with new-customer bidding turned on and your c
 Our team would run this day to day.
 
 What new-customer CPA ceiling is your Meta side held to today?
+
+## MILESTONE DESCRIPTION (single, 193/200 chars, no amount set here)
+
+Onboarding and month one of YouTube and Display in Demand Gen: tracking checked, new-customer bidding and a matched-geo holdout set up, Meta winners recut and tested, reporting every two weeks.
+
+"Month one", not "30 days", so it stays consistent with the 90-day minimum without agreeing to a 30-day end. Every item mirrors the proposal: new-customer bidding, matched-geo holdout, Meta winners recut, tested at small budgets. "Tracking checked", not built. Reporting is every two weeks (the documented cadence), never weekly. No $100K promise and no timeline. No price typed: the post states no budget or contract type; standard answer is the $1,500 one-time onboarding (audit included) plus % of spend with a $1,500 monthly minimum, Queenie's call before quoting.
