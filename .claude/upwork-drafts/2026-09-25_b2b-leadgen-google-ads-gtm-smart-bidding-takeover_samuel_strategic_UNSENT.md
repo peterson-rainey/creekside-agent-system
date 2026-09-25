@@ -17,7 +17,8 @@ Profile: Samuel Rainey | Style: samuel_strategic | Date: 2026-09-25 (DB now() 20
 - No bid-strategy history exists in our data (`google_campaigns` has no bidding column), so the body makes NO claim of a past Smart Bidding transition result. The transition section is method only.
 - Google mechanics from verified memories: offline import window 90 days, 63 for enhanced conversions for leads; bid strategy change triggers learning; calls from ads attribute via Google forwarding numbers.
 
-## ATTACHMENT (Queenie's call)
+## ATTACHMENT: DECIDED 2026-09-25, SEND WITH ReferPro_B2B_SaaS_Case_Study.pdf (Queenie)
+- NOT fetched: the Drive connector was disconnected this session and no local copy exists. Download from Drive and confirm it opens as a real 2-page PDF (a past download came back as HTML) before uploading to Upwork.
 - Recommended: **ReferPro_B2B_SaaS_Case_Study.pdf** (Drive `1DSteRZ2ngRTa5Uw_UaU5PICa5dS4Cwso`). Only B2B Google+Meta artifact, Samuel byline. KNOWN DEFECT: platform icons swapped on page 2 (Meta logo beside the Google screenshot). Body does not quote its numbers. If you skip it, delete the last sentence of the "Where our work sits" section.
 - Not attached: Winterbotham (consumer legal CTA visible on a B2B bid, and its thesis is segmentation, which isn't this post's argument).
 
