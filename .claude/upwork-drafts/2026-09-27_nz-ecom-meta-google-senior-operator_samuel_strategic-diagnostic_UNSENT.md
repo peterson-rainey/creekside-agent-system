@@ -22,7 +22,7 @@ Profile: Samuel Rainey | Style: samuel_strategic-diagnostic | Date: 2026-09-27
 ## Open for Queenie
 1. Send or skip. The honest "not one person" answer is the likeliest reason this gets passed over. Low-odds application, costs connects only.
 2. Cadence line "steady account work every week" is a commitment. Confirm before sending.
-3. "I'd rather show you statics our creative director has built for clients on a call" assumes we can show some. Confirm we have shareable examples.
+3. RESOLVED 9/27 after the screening-answers QC: the cover letter no longer promises to show client statics on a call (nothing confirms we can). Nobody has asked any client for permission.
 4. Rate, payment verification, client history and budget are not in the paste. Check the job page.
 5. DB log INSERT skipped (contractor_query cannot INSERT).
 6. Held back on purpose: Meta-side country split on the same Myriad store (Lindsey's first-person proof, needs a live pull). Add only if you want Meta-side proof in the body.
@@ -42,7 +42,7 @@ It is a Shopify store selling laptop screen extenders, where we ran Google, and 
 
 **Who does the work, and when**
 
-The work would not sit with one person. Our Google specialist and Meta specialist work inside the accounts, static ads come from our creative director, and I stay on strategy. I'd rather show you statics our creative director has built for clients on a call than attach them here.
+The work would not sit with one person. Our Google specialist and Meta specialist work inside the accounts, static ads come from our creative director, and I stay on strategy. Client statics can't go into a proposal, and whether I can show you any on a call depends on each client's permission.
 
 I'm on US Central time, so your morning lands in my afternoon the day before. Expect steady account work every week, a short written read every two weeks plus a live dashboard, and heavier involvement in the first month.
 
@@ -52,3 +52,49 @@ Is monthly ad spend closer to NZ$15K or NZ$60K, and roughly how does it split be
 - qc-reviewer-agent: PASS WITH FIXES, applied. Aura ramp restarted at December (Nov is a 20-day partial month) and "over the same months" dropped (ROAS kept falling on lower spend Jun-Aug, so no implied scaling causation); branded 26.9x now labelled May-Aug; "several times a week" replaced (only the biweekly read + dashboard is supported); invented "client-branded" reason removed; "half the catalogue" removed; first-person delivery verbs changed to "we" (principals do not do delivery); opener rebuilt on the country-blend point after QC flagged the double-claim half as parroting their thesis, and "Ads Manager" (Meta-only) replaced; Aura stated as Google-only with past-tense dates; NZ/AU "haven't run a store" clause cut (facts only support "no case study"); availability line limited to Samuel's own time zone.
 - Word count: 373 with headers, 357 without. Band is 250-350, up to 400 on multi-question posts (4 asks here). 2,141 characters against the 5,000 cap.
 - Not re-run after fixes. Numbers and banned-token scan re-checked by script.
+- 9/27 later edit: statics sentence changed to "Client statics can't go into a proposal, and whether I can show you any on a call depends on each client's permission." (376 words, 2,155 characters).
+
+## SCREENING ANSWERS (UNSENT)
+
+The client also asked four questions: (1) which ecommerce brand you scaled, with monthly spend, revenue, ROAS before and after, and your personal role; (2) what you personally managed on Meta and Google, where you are strongest, results; (3) static ads you personally made, angles tested, what results said to make next; (4) redacted Meta, Google and Shopify reports supporting one cited result, with dates, spend and sales.
+
+Screen: none of the four is fully answerable. Q1, Q2 and Q3 turn on PERSONAL work and Samuel does no delivery. Q3 asks for statics he made and angle tests we never designed. Q4 needs Shopify sales reports we do not hold and store permission nobody has asked for. Answered honestly, roles named, nothing invented. Expect this to end the application.
+
+Verified live 2026-09-27 (contractor_query):
+- Furniture DTC brand (Meta only; tenure 4/10 to churn 8/11/26; arrived already spending). Meta-attributed revenue = spend x ROAS. Apr 10-29 $12,374 / $36,262 / 2.93x (partial, not used), May (data starts 5/3) $24,861 / $41,096 / 1.65x, Jun $23,871 / $44,034 / 1.84x, Jul $40,389 / $168,244 / 4.17x, Aug 1-10 $3,515 / $3,030 / 0.86x. July: "Conversions | July 4th - 50%" $23,843 / $99,425 (59% of spend); "Retargeting | 4/13" July $7,493 / $59,352 / 7.92x, whole tenure $17,000 / $92,142 / 5.42x; membership campaign whole tenure $7,212 / $2,790 / 0.39x.
+- Same account, whole tenure by campaign: Forge $5,701 -> $13,447 2.36x; Rolo $6,034 -> $8,205 1.36x; Chair $1,111 -> $444 0.40x (4/27-5/8); "Conversions | 5/8" $5,264 -> $424 0.08x (4/27-5/19); "30% Off | 5/13" $16,069 -> $32,212 2.00x; Memorial Day $2,273 -> $8,902 3.92x. Not designed as a test, product/offer level, ad format unknown.
+- Meta DB data for May starts 5/3 on BOTH the furniture account and the parts store, so the DB looks to be missing 5/1-5/2. The answer says "our data starts 3 May" rather than "full month".
+- US replacement parts store (Meta only; taken over 2/3/26; churned 5/28/26): Jan (INHERITED) $15,587.79 / 449 conv / $34.72 / CPM $8.10; Apr 1-29 $13,223.56 / 665 / $19.89 / CPM $8.18. Conversions, not purchases. No mechanism recorded.
+- Google store: Dec $3,662 7.94x, May $7,793 4.17x, Aug $4,735 3.41x, non-branded only, last spend 8/31, reporting status paused.
+- Samuel: six years in paid ads (own tenure, placed before the team claim); "$20 million in spend" is worded as the TEAM having helped manage it. Specialists by role, no names.
+
+Open for Queenie:
+1. Confirm Samuel had no role on the furniture or Google accounts (a sales call, an onboarding, anything). QC flagged that "I work on strategy" sits next to two accounts where his involvement is unrecorded. If he did have a role, state it in Q1.
+2. "Where we're strongest" is worded as a claim the reader can test against these answers. If you would rather not make a strengths claim, cut that sentence.
+3. Removed on QC advice because nothing confirms it: the "tag every ad by product, format, setting and hook" method line. Restore only after the creative director confirms that is how they work.
+
+Q1.
+No store ran on both platforms with us through a documented scaling arc, so I can't give you one brand scaled on both. I can give you two accounts, one per platform. I ran neither: a Meta specialist ran one and a Google specialist ran the other.
+
+Meta, a luxury furniture brand, April to August 2026. It arrived already spending, so there is no clean before month. May (our data starts 3 May): $24,861 spend, $41,096 Meta-reported revenue, 1.65x. June: $23,871, $44,034, 1.84x. July: $40,389, $168,244, 4.17x. Don't read July as cold-customer growth. 59 percent of that spend went to one campaign named for the July 4th sale, and a retargeting campaign returned 7.9x on $7,493 that month. August 1 to 10 returned 0.86x on $3,515, and the account left us on 11 August.
+
+Google, the laptop screen extender store from my proposal, non-branded campaigns only. Its first month was a 20-day partial, so December is the base: about $3,700 at 7.9x. May was about $7,800 at 4.2x and August about $4,700 at 3.4x. Last spend was 31 August and it is now paused.
+
+Every figure is platform-reported. We hold neither store's sales or profit.
+
+Q2.
+Not day to day. Our specialists run the accounts and I work on strategy. I've been in paid ads for six years, and our team has helped manage more than $20 million in spend across Google and Meta.
+
+If I had to name where we're strongest, it's reading below the blended number, and you can test that against these answers: the US-versus-UK split in my proposal, the non-branded Google figures above, and the furniture brand campaign by campaign. One more account, a US replacement parts store on Meta, spent about $15,600 in January, before we took it over, at $34.72 per reported conversion (not confirmed purchases). For April 1 to 29 it was $19.89 on about $13,200, with CPM at $8.10 and $8.18. Targeting and creative both changed in between, and we didn't record which change moved it. The account left us in May.
+
+Q3.
+I don't make statics myself, so I have none of mine to share. Our creative director builds them for clients. Whether we can show any depends on each client's permission, which we haven't asked for.
+
+The only angle read I can show is by product and offer, not by creative, and it wasn't set up as a test. I also can't tell you whether those ads were static or video. On the furniture brand, all Meta-reported: one product line returned 2.4x, another 1.4x, a third 0.4x, and a catch-all campaign 0.08x. The campaign named "30% Off" returned 2.0x, the July 4th campaign 4.2x, and the membership campaign 0.4x. What those numbers support is budget, not creative: more behind the products and offers Meta credited with the most revenue, less behind the rest. They can't tell you which creative won.
+
+Q4.
+Not in full. Shopify reports belong to the store, and we hold none for either account, so I can't show you sales from the store side. What we hold is the platform side, with dates, spend and platform-reported revenue: the furniture brand from mid-April to 10 August 2026 and the Google store from November 2025 to August 2026. Redacted exports would need each store's permission, and we haven't asked either one, so I can't promise them. On a call I can go through the figures in these answers and where they stop being evidence of sales.
+
+## QC screening answers (2026-09-27)
+- qc-reviewer-agent: PASS WITH FIXES, applied. $20M and six-years split so neither reads as personal management; "not day to day at the moment" reworded; "where we're strongest" now points at checkable evidence; campaign names no longer presented as literal offers ("named for the July 4th sale", "named 30% Off"); May labelled "our data starts 3 May" not "full month"; parts-store sentences rebuilt (inherited January, April 1-29 on about $13,200, conversions not purchases, no mechanism recorded, churn disclosed); statics-on-a-call promise removed from BOTH the answer and the cover letter; Q4 "Not in full", no promise of exports, walk-through limited to figures already in the answers; retargeting cited on the July figure; Aug 0.86x, paused status and 20-day partial first month added; "cut the rest fast", "stopped within two weeks" and the unconfirmed tagging method dropped.
+- Lengths: Q1 195, Q2 144, Q3 139, Q4 96 words. Not re-run after fixes. Numbers and banned-token scan re-checked by script.
