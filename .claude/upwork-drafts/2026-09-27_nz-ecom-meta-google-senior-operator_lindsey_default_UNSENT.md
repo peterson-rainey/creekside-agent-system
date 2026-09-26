@@ -3,7 +3,7 @@
 - **Date drafted:** 2026-09-26 Central (Postgres `now()` 13:37 Central); filename uses the 9/27 Manila date so it sorts beside the twin
 - **Profile / style:** Lindsey / `lindsey_default`
 - **Status:** UNSENT
-- **Length:** 305 prose words + 2 bold headers = 315; 1,724 chars (band 200-300, up to 350 on a multi-ask post; Upwork cap 5,000 clear)
+- **Length:** 302 prose words + 2 bold headers = 312; 1706 chars (band 200-300, up to 350 on a multi-ask post; Upwork cap 5,000 clear)
 - **Twin on this job:** `2026-09-27_nz-ecom-meta-google-senior-operator_samuel_strategic-diagnostic_UNSENT.md` (2c572752, plus screening answers added in 305df001 at 02:40, AFTER this session started). **Send ONE profile only.**
 - **Prior bids on this job:** none (`upwork_jobs` by description phrases, `upwork_proposal_logs`, drafts grep, git log). NZ-client bids overall: 19, Lindsey 1 (0 viewed, 0 messaged, 0 won).
 
@@ -59,7 +59,7 @@
 3. **Her own ecommerce business.** Ask Lindsey for what it sold, roughly when, revenue, spend, ROAS, margin and whether paid ads drove it. If she can share it, add it right after the opener paragraph as the profit credential. It is the only route to the "profitability as you scaled" ask.
 4. **What she personally changed between April and May.** No mechanism is recorded. If she can name it, add one sentence.
 5. **Commitments in the draft:** more time in the first month with an audit and test plan; a weekly rhythm; a written summary every other week; a call with the Head of Marketing when a test needs a decision. "On three ecommerce stores, Google sits with a specialist I work alongside" is stated as fact, not an offer, so Ahmed's capacity for this store is not promised.
-6. "Purchase-optimized" and "a sale" rest on campaign names. If Lindsey cannot confirm the events, use "campaigns named for purchases".
+6. The event pair is worded "campaigns named for purchases ... a conversion" because the events are read from campaign names only (fixed 9/27 after screening-answers QC flagged "purchase-optimized ... a sale"). If Lindsey can confirm the optimization events, the stronger wording can come back.
 7. Rate, payment verification, client history and spend are not in the paste. Check the job page.
 8. The four screening questions are not answered here. Say the word and I will draft them for Lindsey.
 9. DB log INSERT to `upwork_proposal_logs` skipped (`contractor_query` cannot INSERT).
@@ -69,6 +69,7 @@
 - Not routed to `upwork-proposal-agent`: it has no database access and none of the standing draft rules, and the last twin draft (39b185a7) was rebuilt in the main session after it ran. Built in the main session from a verified fact pack instead.
 - `qc-reviewer-agent`: PASS WITH FIXES, no blocking issues. Six findings, all applied or investigated: cost-per-conversion coverage (checked, see above), the unconfirmed ad walkthrough and "client-branded" reason, the self-contradicting "only return figure" sentence, the vague opener period, twin wording overlap (header shape, cadence order), campaign-name basis.
 - `expert-review-agent`: Weak as a bid, Good as writing. Applied: dental line cut, walkthrough promise cut, softer Google line, each concession paired with what she would check. Not applied: an explicit hours figure (unknown) and moving the video line above the question (spec order kept).
+- 9/27 later: screening-answers QC flagged "purchase-optimized" and "a sale" (campaign names only); the letter now says "named for purchases ... a conversion". Not re-QC'd.
 - Final v7 was NOT re-run through QC after these fixes; all were QC- or expert-suggested wording plus the "Counting all spend" label. Numbers, banned tokens and twin overlap re-checked by script.
 
 ## PROPOSAL (paste below this line)
@@ -77,7 +78,7 @@ What did the last 20% of your Meta budget buy, compared with the first 20%? I as
 
 **Spend against cost per conversion**
 
-Counting all spend, cost per conversion was about $70 at $11K to $12K a month and $115 to $120 at $20K. The campaigns also differed by event: purchase-optimized ones paid under $60 a sale, while add-to-cart and checkout ones over the same weeks paid more than double, though it wasn't a controlled test. Those are the only return figures I'd stand behind for that store, as I hold no profit data and no ROAS I'd quote. The event split is the first thing I'd check in your account.
+Counting all spend, cost per conversion was about $70 at $11K to $12K a month and $115 to $120 at $20K. Campaigns named for purchases paid under $60 a conversion, while campaigns named for add-to-cart or checkout over the same weeks paid more than double, though it wasn't a controlled test. Those are the only return figures I'd stand behind for that store, as I hold no profit data and no ROAS I'd quote. That split is the first thing I'd check in your account.
 
 **Google, ads and my week**
 
