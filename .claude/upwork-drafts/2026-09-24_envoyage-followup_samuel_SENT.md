@@ -1,4 +1,4 @@
-# Upwork Follow-Up - UNSENT
+# Upwork Follow-Up - SENT 2026-09-24 9:34 AM Central (verified against thread, body identical to draft)
 Job: Envoyage (Flight Centre-backed travel advisor network), US Paid Media Specialist, Google + Meta. Logged in upwork_jobs as "USA only - Paid Media Manager (Meta and Google)", applied 2026-09-18.
 Profile: Samuel Rainey (thread displays "Peterson Rainey") | Date: 2026-09-24 | Type: followup, same-day promise delivery
 
