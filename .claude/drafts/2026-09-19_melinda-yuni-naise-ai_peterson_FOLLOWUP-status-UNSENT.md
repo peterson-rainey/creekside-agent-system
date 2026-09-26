@@ -1,5 +1,5 @@
 # Melinda Yuni / naise.ai — Peterson profile, touch 2 after pricing (status question)
-**Status: UNSENT.** Drafted Sat 2026-09-19 (8:05 AM Central per Postgres). Routed through sdr-agent, QC PASS.
+**Status: SENT Sat 9/19 8:29 AM Central** (display Sat 9:29 PM Manila), recommended body verbatim, confirmed by diffing the live thread against this draft on 9/26. It did NOT wait for Mon 9/21. Lindsey's seasonal message went 8:18 AM Central the same morning, 11 minutes earlier, the second same-morning pair. No reply as of Sat 9/26. Drafted Sat 2026-09-19 (8:05 AM Central per Postgres). Routed through sdr-agent, QC PASS.
 Send: **Mon 9/21 morning her time = Sun 9/20 ~7-8 PM Central**, ONLY if she has not replied on either thread.
 Job "Meta and Google Ads Manager", `upwork_jobs` `76336eda`, CRM `upwork_leads` `2745ce33`, ClickUp `86e337fjf`.
 Last message in thread: OURS, "On the fee I quoted, is the issue the amount, that none of it is tied to performance,
