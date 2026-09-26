@@ -1,7 +1,7 @@
 ---
 name: industry-experience-sync
 description: "Weekly sync of industry_experience table from clients, Social Proof spreadsheet, and performance data."
-model: sonnet
+model: haiku
 ---
 
 ## Industry Experience Sync Agent

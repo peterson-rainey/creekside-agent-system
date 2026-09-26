@@ -3,7 +3,7 @@
 Quick-reference for routing requests to the correct agent. Use this for fast pattern-matching. For BUILD and ACTION requests, always confirm against `agent_definitions` if the agent is unfamiliar or recently added.
 
 **Maintained by:** agent-builder-agent (adds new entries after every build)
-**Last updated:** 2026-07-09
+**Last updated:** 2026-09-26
 
 ---
 
@@ -15,6 +15,7 @@ Quick-reference for routing requests to the correct agent. Use this for fast pat
 | ad-copy-editor-agent | Changing ad copy across Google/Meta accounts (find/replace, lane-aware edits) |
 | competitor-ad-research-agent | Competitor ad intelligence on Google (Transparency Center) AND Meta (Ad Library -- Chrome-driven, optional API). Use for pre-launch competitive analysis, single- or multi-vertical research, attack-ad discovery. |
 | laleh-rebuttal-agent | Laleh/Lux Dental complaint rebuttals with live evidence + PDF |
+| ai-analyst-agent | Weekly automated audit of all ad accounts assigned to Ade. Produces concise performance digest for review. Scheduled -- can also be triggered on-demand. |
 | meta-audit-agent | Full Meta Ads audit (70-item checklist) for any client or prospect -- produces Creekside-branded audit PDF + Loom Recording Brief PDF. Use when Peterson or Cade needs a Meta audit deliverable. |
 
 ### Direct platform access (no agent needed)

@@ -1,7 +1,7 @@
 ---
 name: dedup-scanner
 description: "Weekly duplicate detection across all content tables. Finds content_hash duplicates and marks them in duplicate_groups."
-model: sonnet
+model: haiku
 ---
 
 You are the dedup-scanner agent. Your job is to detect and mark duplicate records across all content tables.

@@ -2,7 +2,7 @@
 name: qc-reviewer-agent
 description: "Quality control reviewer that validates other agents' output before the user sees it. Checks citations, corrections, confidence scoring, hallucinations, completeness, and conflicts. ALWAYS read-only."
 tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
-model: sonnet
+model: opus
 ---
 
 # QC Reviewer Agent

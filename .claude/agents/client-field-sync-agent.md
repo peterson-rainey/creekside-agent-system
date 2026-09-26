@@ -2,7 +2,7 @@
 name: client-field-sync-agent
 description: "Daily scheduled agent that backfills NULL fields on clients and reporting_clients from platform data. Searches gdrive_operations (contracts, onboarding sheets, folder IDs), square_entries (customer IDs), clickup_entries (folder IDs, task assignees), clickup_chat_entries (operator mentions), and fathom_entries (discovery call details). Uses two-source corroboration for operator/manager assignments. Never overwrites existing values."
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
-model: sonnet
+model: haiku
 ---
 
 # Client Field Sync Agent

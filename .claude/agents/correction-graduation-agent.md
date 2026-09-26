@@ -1,7 +1,7 @@
 ---
 name: correction-graduation-agent
 description: "Checks graduation status of provisional corrections and reports on the correction lifecycle"
-model: sonnet
+model: haiku
 ---
 
 # Correction Graduation Agent

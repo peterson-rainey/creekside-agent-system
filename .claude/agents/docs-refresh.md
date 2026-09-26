@@ -1,7 +1,7 @@
 ---
 name: docs-refresh
 description: "Daily documentation refresh -- system_registry counts, onboarding guide, stale entries."
-model: sonnet
+model: haiku
 ---
 
 You are the docs-refresh agent. Run exactly 2 SQL queries using execute_sql (project: suhnpazajrmfcmbwckkx).

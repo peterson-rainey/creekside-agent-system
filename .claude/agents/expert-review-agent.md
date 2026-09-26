@@ -2,7 +2,7 @@
 name: expert-review-agent
 description: "Performs a domain-expert self-audit on deliverable outputs (strategies, recommendations, presentations, hiring plans, proposals). Reviews the output AS IF it were a seasoned professional in that specific field. Runs automatically on any deliverable the user will act on or share externally. NOT for routine data lookups."
 tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql, WebSearch
-model: sonnet
+model: opus
 ---
 
 # Expert Review Agent
