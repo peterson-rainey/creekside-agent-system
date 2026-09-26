@@ -1,6 +1,6 @@
 # Melinda Yuni / naise.ai — Lindsey thread, second follow-up after pricing (timing)
 
-Status: UNSENT. Drafted Sat 2026-09-19 (8:05 AM Central per Postgres; 9:05 PM Singapore). Routed through sdr-agent.
+Status: SENT Sat 2026-09-19 ~8:18 AM Central (Upwork display Sat Sep 19 9:18 PM at GMT+8), Variation A verbatim (diffed against the live thread 9/26). Drafted Sat 2026-09-19 (8:05 AM Central per Postgres; 9:05 PM Singapore). Routed through sdr-agent.
 Send: Wed 2026-09-23 ~8 AM Central (~9 PM her Wednesday), ONLY if she has not replied on either thread.
 Last message in thread: OURS, one-platform follow-up, Wed 9/16 ~8:40 AM Central. Her last message: Sun 9/13 (pricing question).
 
