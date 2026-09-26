@@ -95,6 +95,30 @@ Different angle from Tuesday's timing point. Every Delmont ad showing as active 
 ### Ad Library re-check, live Thu 2026-09-24
 ~18 active ads, **every one "Started running on Sep 22, 2026"**, all new library IDs. The ~14 ads that started Sep 3 are gone from the active list. Same creatives and copy, still "Delmont International with toneatam". Every ad with a visible destination still goes to DELMONTINTERNATIONAL.COM ("Learn more"). **Still no Instant Form ads.** Why they relaunched is unknown; claim no cause and take no credit.
 
+## HE ASKED FOR A CALL (Sat 9/26 ~4:17am CDT)
+
+The 9/24 volume version SENT Thu 9/24 ~10:13am CDT. No answer to it, and no answer to the 9/22 confirmation-lag question either. Then:
+
+> We can do a call and go over this please send the calendar link
+
+### CALL-ASK REPLY, drafted Sat 2026-09-26 ~8:15am CDT (UNSENT)
+
+Yes, a call works. Here's my calendar:
+
+https://calendar.app.google/p4sWgHuykdV5kYHh8
+
+Before then, roughly how many leads a week are clearing your qualified bar right now?
+
+- Last question: "Before then, roughly how many leads a week are clearing your qualified bar right now?"
+- Last sentence: same.
+- Shape is yes + link + ONE question, per [[feedback_call_ask_reply_is_yes_link_one_question]]. Substance is the failure mode, so nothing from 9/22 or 9/24 is re-explained.
+- **Link verified live 9/26**: curl gives HTTP 200, title "30 min with Lindsey", and the short `calendar.app.google/p4sWgHuykdV5kYHh8` form redirects to the long `AcZssZ3k7...` form. One page, two URLs. Short form sent per [[reference_lindsey_has_no_calendar_link]].
+- **Slots on the page 9/26** (read at GMT+8, converted): none this weekend; Mon 9/28 about 9:00am-2:30pm Pacific plus a 5:30pm Pacific slot; Tue 9/29 about 9:00am-2:30pm Pacific. Usable for a US lead. **In July he booked 8:00am Pacific and asked for 30 minutes earlier, and her page opens at 9:00am Pacific.** If he says nothing fits, Lindsey opens an earlier slot rather than us naming times.
+- Alternate (not picked, budget as a relative range): "Yes, that works. My calendar is here, any slot that suits you:\n\nhttps://calendar.app.google/p4sWgHuykdV5kYHh8\n\nOne thing worth knowing before the call: is the monthly budget still in the same range as July, or has it moved since?"
+- QC agent not run on this one: 3 sentences, no factual claims, and the only risk element is the URL, which was verified twice by hand. Self-checked against the persona, link, one-question, no-substance and no-gating rules.
+- **Standing conflict surfaced again:** Upwork Help calls a pre-contract meeting link circumvention, while `company_rules` #21/#37 say paste the real link, and Queenie ruled "just send Lindsey's calendar" on 8/27. Native-scheduler precedent exists on this thread (7/24) but that meeting never connected. Needs Peterson.
+- ClickUp was unreachable this session ("Must join workspace to have access"), so the task could not be re-read for a hold. Last clean read 9/24: no hold, Lindsey salesman, Cade thumbs-up.
+
 ## SEND NOTES
 
 - Send Mon 9/21 or Tue 9/22 (day 60), inside Lindsey's 10am-6pm Central hours. He is LA-based (310 area code).
