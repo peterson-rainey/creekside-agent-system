@@ -159,6 +159,8 @@ Key tables: `pipeline_alerts`, `user_pipeline_config`, `cache_section_config`
 - `search_all_expanded(query, count)` - expanded semantic search
 - Since 2026-09-21, `search_all` and `keyword_search_all` are instrumented wrappers around `search_all_core` / `keyword_search_all_core`: every call logs to `search_analytics` automatically (exception-safe -- a failed log never breaks the search). Do not call `*_core` directly.
 - `logged_search_all()` / `logged_keyword_search()` - same searches with explicit `source_agent` attribution in `search_analytics` (call `*_core` internally, so one log row per search)
+- `hybrid_search_all(embedding, text, count)` - **Reciprocal Rank Fusion** of semantic + keyword search. Calls both `*_core` functions internally, fuses results using RRF formula (`score = 1/(60+rank_sem) + 1/(60+rank_kw)`). Records found by both methods get boosted. Logs to `search_analytics` as type `hybrid_rrf`. Known limitation: gdrive_* tables use different ID columns across methods so may not fully fuse.
+- `logged_hybrid_search()` - hybrid search with `source_agent` attribution
 - `list_searchable_tables()` - shows which tables have RAG coverage
 
 ### Client
@@ -288,13 +290,15 @@ The `pipeline_alerts` table tracks failures and anomalies. Scheduled agents (~50
 
 ## 12. How Search Works
 
-Two search modes. Always use BOTH for comprehensive results.
+Three search modes. `hybrid_search_all` is preferred when you have both the embedding and the text query.
+
+**Hybrid search** (`hybrid_search_all`): Reciprocal Rank Fusion of semantic + keyword search. Fuses both result sets into a single ranked list -- records found by both methods get boosted above single-method results. Best overall retrieval quality.
 
 **Semantic search** (`search_all`): Embedding similarity across 17 tables via the `raw_content` table. Best for conceptual and natural language queries.
 
 **Keyword search** (`keyword_search_all`): Full-text search across the same 17 tables. Best for exact terms, names, and IDs.
 
-Every `search_all` / `keyword_search_all` call logs to `search_analytics` automatically (since 2026-09-21). Use the `logged_` variants (`logged_search_all`, `logged_keyword_search`) when you want the analytics row to carry a `source_agent` attribution.
+All search functions log to `search_analytics` automatically (since 2026-09-21). Use the `logged_` variants (`logged_search_all`, `logged_keyword_search`, `logged_hybrid_search`) when you want the analytics row to carry a `source_agent` attribution.
 
 **Critical rule:** Summaries are for FINDING records. Raw text (via `get_full_content`) is for ANSWERING questions. Always retrieve the full content before generating a response based on search results.
 
@@ -392,9 +396,11 @@ SELECT * FROM system_overview();
 SELECT name, department, description FROM agent_definitions
 WHERE status = 'active' ORDER BY department, name;
 
--- Search (always use both)
-SELECT * FROM logged_search_all('query text', 10);
-SELECT * FROM logged_keyword_search('term', NULL, 20);
+-- Search (hybrid preferred when you have both embedding + text)
+SELECT * FROM hybrid_search_all(embedding, 'query text', 10);
+-- Or individual methods:
+SELECT * FROM logged_search_all(embedding, 10);
+SELECT * FROM logged_keyword_search('term', 20);
 
 -- Full content for answering (after search finds a record)
 SELECT * FROM get_full_content('source_table', 'source_id');
