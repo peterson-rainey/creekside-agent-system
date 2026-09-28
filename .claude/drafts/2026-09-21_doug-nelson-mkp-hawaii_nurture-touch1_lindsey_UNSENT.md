@@ -1,6 +1,7 @@
 # Upwork nurture: Doug Nelson, ManKind Project Hawaii area (volunteer), post-session touch 1
 
-- **Profile:** Lindsey | **Type:** nurture, post-call (degraded, no transcript) | **Date:** 2026-09-21 ~10am Central (Postgres) | **Status:** UNSENT
+- **Profile:** Lindsey | **Type:** nurture, post-call (degraded, no transcript) | **Date:** 2026-09-21 ~10am Central (Postgres)
+- **Status (updated 2026-09-28): the RECOMMENDED variation was SENT 2026-09-21 10:44am Central**, verbatim, confirmed in `upwork_conversations` (story_ad99aafdfbd524283f00296b0d3d9dc8). No reply as of 9/28. The ALTERNATE was never sent and its August bridge is stale. Filename still says UNSENT; ignore it.
 - **Send in ONE room only:** "Doug Nelson, Kinection" (the contract room, where Lindsey's last message sits). Not the "Doug N./Lindsey B. - Marketing Consultation" room.
 - Thread: Doug's consultation ask Sat 7/25; his hourly offer ($75/hr, 2 hrs/wk cap) Sun 7/26, accepted by Lindsey; "booked for next week" Tue 7/28 (his last message, 55 days); Lindsey's WordPress-access check-in Sun 8/9 Central (43 days). No contract-ended event (DB sync 9/19).
 - Session content is unrecorded (no Fathom, no notes). What the WordPress access was for is UNKNOWN.
