@@ -4,4 +4,4 @@ Under 200 chars (milestone rule). Meta only, scope matches the proposal. No pric
 
 ---
 
-Meta build for oncology HCP registrations: verified-user lookalike and exclusions, ad sets split by role, clinical-practice creative, and verified-registration tracking set up. Launch plus first review.
+Meta build for oncology HCP registrations: verified-user lookalike and exclusions, ad sets split by role, clinical-practice creative, and verified-registration tracking. Launch plus first review.
