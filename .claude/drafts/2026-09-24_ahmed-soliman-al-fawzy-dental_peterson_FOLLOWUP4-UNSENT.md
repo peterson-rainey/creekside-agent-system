@@ -1,4 +1,4 @@
-**Status: UNSENT.** Drafted 2026-09-24 (Postgres now(): Thu 14:12 UTC). Upwork thread "Ahmed Soliman" on the Peterson Rainey account. ClickUp 86e1ftjxu ("follow up post-call", due today 9/24). No Peterson hold in any threaded reply.
+**Status: SENT 2026-09-24 14:16 UTC, RESPONSE 1 verbatim** (Upwork display Thu 9/24 10:16 PM Manila). Diffed against the live thread 2026-09-28: exact match. No reply as of 9/28 14:20 UTC. Next: `2026-09-28_ahmed-soliman-al-fawzy-dental_peterson_FOLLOWUP5-UNSENT.md`. Drafted 2026-09-24 (Postgres now(): Thu 14:12 UTC). Upwork thread "Ahmed Soliman" on the Peterson Rainey account. ClickUp 86e1ftjxu ("follow up post-call", due today 9/24). No Peterson hold in any threaded reply.
 
 Mode: post-call follow-up, touch 4. Our 9/22 14:59 UTC fee-scaling reply is the last message and went out verbatim. No reply in two Cairo workdays.
 Purpose: make our own unanswered 9/22 question ("How much are you thinking of adding, and over what timeframe?") easy to answer. Governing ruling 9/22: with an incumbent agency, bracket the budget ask ABOVE the $5,000 floor.
