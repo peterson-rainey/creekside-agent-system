@@ -1,5 +1,5 @@
 # Upwork Nurture Touch 1 - Simone Sparks / AYA Earth Co (Shopify DTC body care, Canada)
-Profile: Lindsey Bouffard | Type: nurture (reply in live thread) | Status: UNSENT | Drafted 2026-09-28 (Postgres now(); Monday, US Central)
+Profile: Lindsey Bouffard | Type: nurture (reply in live thread) | Status: SENT 2026-09-28 | Drafted 2026-09-28 (Postgres now(); Monday, US Central)
 
 ## WHY THIS TOUCH, TODAY
 Lindsey's final message in the sent thread (Aug 28) promised exactly this:
