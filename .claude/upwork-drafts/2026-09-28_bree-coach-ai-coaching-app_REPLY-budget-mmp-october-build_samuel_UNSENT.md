@@ -1,5 +1,9 @@
 # Upwork REPLY - Bree Coach (AI personal growth / coaching consumer app), Marina Aghbalyan
-Profile: Samuel Rainey (persona for Peterson Rainey) | Type: mid-conversation lead reply | Status: UNSENT
+Profile: Samuel Rainey (persona for Peterson Rainey) | Type: mid-conversation lead reply | Status: **PARTIALLY SENT -- closing question ONLY**
+
+> **STATUS CORRECTED 2026-09-28 (Queenie session).** Only the final line of this draft, *"Is the $5,000 the media budget, or media plus management?"*, was actually sent. Verified against `upwork_conversations` room `room_4c26e0b9624f42c03e536b8fe31097a7` (profile `peterson`) plus Queenie's pasted thread. The synced room is stale at 4 messages (through the 9/27 holding message) and does not yet carry the 9/28 exchange.
+> **The 304-word body below was NEVER sent.** The AEM / iOS scoping, the October-build MMP argument, the bid-target reasoning and the one-platform-vs-four argument are all still unspent and remain available for a later message. Do not assume Marina has seen any of it.
+> Marina answered the question: **the $5,000 is media only.** See the 9/28 trust-repair reply file for the live next touch.
 Date: 2026-09-28 Monday (US Central, confirmed via Postgres now() = 08:04 CT; local clock read Sep 28 21:04 PST and is unreliable)
 Words: 304 | Chars: 1,731 (trimmed from 354 on Queenie 9/28) | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none
 
