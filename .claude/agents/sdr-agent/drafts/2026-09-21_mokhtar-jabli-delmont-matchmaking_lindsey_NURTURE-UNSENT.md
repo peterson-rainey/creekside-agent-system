@@ -119,6 +119,31 @@ Before then, roughly how many leads a week are clearing your qualified bar right
 - **Standing conflict surfaced again:** Upwork Help calls a pre-contract meeting link circumvention, while `company_rules` #21/#37 say paste the real link, and Queenie ruled "just send Lindsey's calendar" on 8/27. Native-scheduler precedent exists on this thread (7/24) but that meeting never connected. Needs Peterson.
 - ClickUp was unreachable this session ("Must join workspace to have access"), so the task could not be re-read for a hold. Last clean read 9/24: no hold, Lindsey salesman, Cade thumbs-up.
 
+## WHAT ACTUALLY SHIPPED 9/26, AND THE BOOKING NUDGE (Mon 9/28)
+
+**The 9/26 send differs from the draft above.** What went out Sat 9/26 ~8:16am CDT was:
+
+> Perfect. Here's my calendar link, grab whatever works: https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3k7SIWdQNr-6j7lBi5MqhJyExtzSOTAajqMKJk1ycQQqYhGKadwPXyQThAU4pJU3T9qBuUaYC5
+
+So the LONG form with `/u/0/` went instead of the short form, and **the volume question was dropped**, which means the 9/24 weekly-qualified-volume question is still unasked. Diffed per [[reference_unsent_label_is_not_enforcement]]. The `/u/0/` URL was fetched anonymously on 9/28: HTTP 200, redirects to the canonical page, title "30 min with Lindsey", so it works for him. Prefer the short form next time, but nothing needs correcting with him.
+
+**No booking is confirmed.** On 9/28 nothing in `google_calendar_entries` or `gmail_summaries` mentions him, but those feeds carry Peterson's and Cade's mailboxes, not Lindsey's calendar, and ClickUp was unreachable again ("Resource not found" on the task, "Must join workspace" on search). A booking cannot be ruled out, which is why the nudge asks instead of asserting.
+
+**Page availability, read 9/28 ~9:15am CDT** (GMT+8 render, converted): today Mon 9/28 shows 11:30am-2:30pm Pacific plus 5:30pm Pacific; the 9:00-11:00am Pacific slots visible on Saturday are gone, which could be a booking by anyone or just Google's minimum booking notice. Not attributable to him.
+
+### BOOKING NUDGE, drafted Mon 2026-09-28 ~9:15am CDT (UNSENT)
+
+**Recommended (nudge plus an out):**
+
+Did you get a time picked on the calendar? If nothing on there works for you, tell me what time of day is best and I'll see what I can open.
+
+- Last question: "Did you get a time picked on the calendar?"
+- Last sentence: "If nothing on there works for you, tell me what time of day is best and I'll see what I can open."
+- **Minimal option (bare nudge):** "Did you get a time picked on the calendar?" Last question and last sentence are both that line.
+- sdr-agent wrote the out as "and I'll open a slot". Softened to "I'll see what I can open" because her page opens at 9am Pacific, her hours start at 8am Pacific, and in July he asked for earlier than 8am, which she cannot promise. The softer form stays keepable at any hour he names.
+- No second URL: the live link is the message directly above his silence, and re-sending reads as ignoring him. Never point him "up" at the 7/23 link, which is the Tooth Co sheet.
+- Carries no content by design. [[feedback_followup_must_provide_value]] is released here for the same reason Peterson's bare touch was allowed: this is logistics on a lead who asked for the call himself.
+
 ## SEND NOTES
 
 - Send Mon 9/21 or Tue 9/22 (day 60), inside Lindsey's 10am-6pm Central hours. He is LA-based (310 area code).
