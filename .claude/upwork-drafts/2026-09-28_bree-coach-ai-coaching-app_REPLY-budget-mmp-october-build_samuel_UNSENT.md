@@ -1,7 +1,7 @@
 # Upwork REPLY - Bree Coach (AI personal growth / coaching consumer app), Marina Aghbalyan
 Profile: Samuel Rainey (persona for Peterson Rainey) | Type: mid-conversation lead reply | Status: UNSENT
 Date: 2026-09-28 Monday (US Central, confirmed via Postgres now() = 08:04 CT; local clock read Sep 28 21:04 PST and is unreliable)
-Words: 354 | Chars: 2,025 | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none
+Words: 304 | Chars: 1,731 (trimmed from 354 on Queenie 9/28) | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none
 
 ## Thread state
 - Job: "Performance Media Buyer / Growth Marketer for Consumer AI App". DUAL BID 2026-09-24:
@@ -57,6 +57,10 @@ That is exactly why the closing question exists.
   NOT ADOPTED: argue for TikTok on creative economics (we disclosed zero TikTok, cannot deliver it);
   add "what winning looks like" warmth (would push a reply toward a second proposal).
 
+## Routing
+ROUTED TO CADE 2026-09-28 via ClickUp DM channel 8cqc1ym-20257 (Kenneth Cade MacLean, user 89120814,
+cade@creeksidemarketing1.com; lookups by "Cade" or the creeksidemarketingpros.com address fail).
+
 ## Open flags for Queenie
 - Send ONE profile only. The Lindsey bid on this same job is still live and could draw its own reply.
 - The $5,000 media-vs-all-in answer decides whether this lead clears the $5K floor at all.
@@ -66,17 +70,17 @@ That is exactly why the closing question exists.
 <!-- REPLY START -->
 Hi Marina,
 
-The volume works at $5,000, with one caveat I will come to. That is roughly $1,150 a week reaching the auction. The app account our team ran blended about $5 an install across its life, which at that cost is something like 230 installs a week. It was a restaurant rewards app though, a different category from a coaching product, so read it as a reference point rather than a forecast. Even well below that pace you clear the roughly 50 results a week an ad set needs to leave learning at the install level. A paid subscription will not come close at launch, and the events in between depend on conversion rates only you have.
+The volume works at $5,000, with one caveat below. That is about $1,150 a week in the auction. At the blended $5 install cost our team saw on an app account, roughly 230 installs a week. That was a restaurant rewards app, a different category, so treat it as a reference point, not a forecast. Even well below that you clear the roughly 50 results a week an ad set needs to leave learning. A paid subscription will not, and the events between depend on rates only you have.
 
-So the first bid target is probably neither the subscription nor the raw install. It is the first event that proves intent, a completed registration or a finished onboarding, and you move deeper as volume earns it.
+So the first bid target is neither the subscription nor the raw install. It is the first event that proves intent, a completed registration or finished onboarding, then deeper as volume earns it.
 
-What decides more than the budget is the October build. Whatever you measure with, an MMP or Meta's own SDK, it is code compiled into the app, and the events have to be instrumented in the same release. AppsFlyer's documentation puts the event structure on the marketer, reaching your developers before integration rather than being patched in after. Miss that build and the retrofit is another release cycle, on a user base that already installed without it.
+What decides more than budget is the October build. Whatever you measure with, an MMP or Meta's own SDK, it is code in the app, and the events have to ship in the same release. AppsFlyer's documentation puts the event structure on the marketer, reaching developers before integration, not after. Miss that build and the retrofit is another release cycle, on users who already installed without it.
 
-That bites hardest on iOS, where Aggregated Event Measurement covers iOS 14 and later and Meta still does not support custom event optimization. Whether something like a first coaching interaction can ever be a bid target depends on how the event gets defined, not on how the campaign gets built.
+That bites hardest on iOS, where Aggregated Event Measurement covers iOS 14 and later and still does not support custom event optimization. Whether a first coaching interaction can be a bid target depends on how the event is defined, not how the campaign is built.
 
-Split across four platforms, that same $5,000 leaves none of them enough volume to learn from. One until the data exists is a media argument, not a preference.
+Split across four platforms, that same $5,000 leaves none of them enough to learn from. One until the data exists is a media argument, not a preference.
 
-On pricing at that level, it sits on the per platform minimum rather than the percentage, so the percentage only starts working in your favor as spend climbs.
+On pricing at that level, it sits on the per platform minimum rather than the percentage, which only works in your favor as spend climbs.
 
 Which brings me to the caveat: is the $5,000 the media budget, or media plus management?
 <!-- REPLY END -->
