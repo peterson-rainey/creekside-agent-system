@@ -131,7 +131,9 @@ So the LONG form with `/u/0/` went instead of the short form, and **the volume q
 
 **Page availability, read 9/28 ~9:15am CDT** (GMT+8 render, converted): today Mon 9/28 shows 11:30am-2:30pm Pacific plus 5:30pm Pacific; the 9:00-11:00am Pacific slots visible on Saturday are gone, which could be a booking by anyone or just Google's minimum booking notice. Not attributable to him.
 
-### BOOKING NUDGE, drafted Mon 2026-09-28 ~9:15am CDT (UNSENT)
+### BOOKING NUDGE, drafted Mon 2026-09-28 ~9:15am CDT — **SUPERSEDED, DO NOT SEND**
+
+He booked a few hours later. Sending this now would read as not noticing. Kept only as a record.
 
 **Recommended (nudge plus an out):**
 
@@ -143,6 +145,32 @@ Did you get a time picked on the calendar? If nothing on there works for you, te
 - sdr-agent wrote the out as "and I'll open a slot". Softened to "I'll see what I can open" because her page opens at 9am Pacific, her hours start at 8am Pacific, and in July he asked for earlier than 8am, which she cannot promise. The softer form stays keepable at any hour he names.
 - No second URL: the live link is the message directly above his silence, and re-sending reads as ignoring him. Never point him "up" at the 7/23 link, which is the Tooth Co sheet.
 - Carries no content by design. [[feedback_followup_must_provide_value]] is released here for the same reason Peterson's bare touch was allowed: this is logistics on a lead who asked for the call himself.
+
+## HE BOOKED: CALL TUE 2026-09-29, 1:00pm CENTRAL (11:00am Pacific), 30 min with Lindsey
+
+**Time independently corroborated**, since ClickUp and the calendar feeds still can't see it. Lindsey's booking page on Sat 9/26 listed a 2:00am slot on Wed 30 in its GMT+8 render; on Mon 9/28 that single slot is gone and every neighbouring slot remains. 2:00am Manila Wed 30 converts to **11:00am Pacific / 1:00pm Central on Tue 9/29**, which matches the booking Queenie reported. Postgres confirms today is Mon 2026-09-28 (the local shell reads 9/29 because the Mac runs on Manila time, per [[reference_local_clock_unreliable]]), so "tomorrow" in the copy is correct.
+
+### PRE-CALL WARM-UP, drafted Mon 2026-09-28 ~11:30am CDT (UNSENT, send today)
+
+The volume math is worth sitting with before tomorrow. Run the 50 results a week against the roughly 5% from July and it lands at about 1,000 leads a week, before a qualified lead event has enough behind it to steer delivery. So weekly volume is what decides whether that signal can do anything, separate from how clean the reporting is.
+
+A few things to have in front of you, so tomorrow goes to structure instead of basics:
+
+Monthly revenue
+Leads a week clearing your qualified bar
+Time between a form fill and your side confirming it's real
+Monthly ad spend now, you said up to $5,000 in July, is that still about where it sits?
+
+One line each is plenty.
+
+- Last question: "Monthly ad spend now, you said up to $5,000 in July, is that still about where it sits?"
+- Last sentence: "One line each is plenty."
+- **Revenue is asked bare on its own line**, mandatory per [[feedback_warmup_ask_revenue_and_goals]]. Goals skipped: he spelled out the problem in July. Spend folded in relative to his own July figure rather than withheld.
+- The two questions he never answered (9/22 confirmation lag, 9/24 weekly volume) ride in the prep list instead of being re-asked standalone.
+- Value payload is the 1,000-leads-a-week derivation held back since 9/24. It uses the ~50 results rule as shared ground rather than re-teaching it, and never repeats the 7-day window, Instant Forms or the significant-edit rule.
+- QC PASS WITH FIXES, both applied: **"your 5%" hedged to "the roughly 5% from July"** (July-sourced, self-reported, and they rebuilt the ads 9/22), and the dense opening replaced with "The volume math is worth sitting with before tomorrow."
+- The alternate prose variation FAILED QC: it buried revenue in the last line behind a rationale clause, which breaks the bare-revenue rule.
+- Nothing re-asked that he already told us: stack, cities, income filter, or that they already report good leads to Meta.
 
 ## SEND NOTES
 
