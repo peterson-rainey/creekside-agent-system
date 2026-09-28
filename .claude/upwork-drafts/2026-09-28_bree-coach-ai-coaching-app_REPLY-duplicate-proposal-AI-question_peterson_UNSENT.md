@@ -2,7 +2,7 @@
 Profile: General / renders to her as **"Peterson R."** (files call this the Samuel persona; the display name has
 collapsed to the real name and Marina writes "Hi Peterson") | Type: mid-conversation lead reply | Status: UNSENT
 Date: 2026-09-28 Monday, confirmed via Postgres now() = 09:37 CT. Local shell clock read Sep 28 22:xx and is unreliable.
-Words: 170 | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none | Names: none
+Words: 148 (170 before QC fixes) | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none | Names: none
 
 ## WHAT SHE ACTUALLY ASKED (two things, one message)
 1. "Hi, it's the ad budget."  -> the $5,000 is MEDIA ONLY. Management sits on top.
@@ -66,7 +66,18 @@ disagrees** - see the flag at delivery.
 
 ## REVIEW LOG
 - sdr-agent drafted, 170 words, against a verified fact pack (subagents have no DB access).
-- qc-reviewer-agent: result recorded below.
+- qc-reviewer-agent: **PASS WITH FIXES, 2 required, BOTH APPLIED.** No factual contradictions, no standing-rule
+  violations. Both fixes were tone, and both were aimed at the same risk: polish that reads AI-authored inside a
+  message answering "is this an AI proposal?"
+  (1) Cut a rule-of-three. "so they land on the same case study, the same platform gaps and the same recommendation"
+      -> "which is why they read alike." A rule-of-three is a documented AI tell and self-defeating here.
+  (2) Deleted the aphorism "A proposal mill does not talk itself out of the job." It was a mic-drop flourish on top
+      of an argument that already landed. The paragraph now ends on "we do not clear it", our own admission, which
+      is the humbler and stronger landing.
+  QC also named, without requiring a change, that "Two profiles, one company" may prompt a NEW question about why
+  one company runs two Upwork seller identities bidding one job. That tradeoff is accepted, not fixed.
+  Length after fixes: 148 words, under the 160-230 target I set. Left short deliberately. A long answer to
+  "is this AI?" reads like a machine justifying itself.
 - expert-review-agent NOT run, deliberately. This is a short conversational reply carrying no platform mechanics,
   and expert review has twice produced a wrong AEM objection on this thread from third-party blogs.
 
@@ -80,9 +91,9 @@ disagrees** - see the flag at delivery.
 <!-- REPLY START -->
 Hi Marina,
 
-Two profiles, one company. Both letters were written from the same account history, so they land on the same case study, the same platform gaps and the same recommendation. You are reading one source, not two. You will not get pitched twice. This thread is the one.
+Two profiles, one company. Both letters came from the same account history, which is why they read alike. You are reading one source, not two. You will not get pitched twice. This thread is the one.
 
-We use AI tools to draft, yes. The better test is what that letter actually did: it told you, unprompted, that we fail most of your stated requirements, named the platforms where we have zero delivered accounts, and said that if hands-on mobile UA with an MMP is the bar, we do not clear it. A proposal mill does not talk itself out of the job.
+We use AI tools to draft, yes. The better test is what that letter actually did: it told you, unprompted, that we fail most of your stated requirements, named the platforms where we have zero delivered accounts, and said that if hands-on mobile UA with an MMP is the bar, we do not clear it.
 
 On budget, $5,000 as media works. Management sits on top of the spend, not inside it. At that level the fee lands on our per-platform monthly minimum rather than the percentage of spend, and it improves as spend grows.
 
