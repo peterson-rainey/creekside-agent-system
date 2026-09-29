@@ -1,21 +1,23 @@
-# Axle Board (cyclist balance board) - Google Ads ramp + adjacent - Samuel strategic - UNSENT, not QC'd
+# Axle Board (cyclist balance board) - Google Ads ramp + adjacent - Samuel strategic - UNSENT, QC + expert fixes applied (recheck not run)
 
-A balance board for cyclists has almost no one searching for it by name, so the Google Ads draft you already have is probably being judged against demand that doesn't exist yet. Search can't be the whole plan. It has to catch people who already feel the problem, and other channels have to create the rest of the demand.
+A new category like this has little branded search yet, so the Google Ads draft you already have is probably being judged against demand that doesn't exist. Search can't be the whole plan. It has to catch riders who already feel the problem, and a second channel has to create the rest of the demand.
 
 **Where the search demand actually is**
 
-The queries that carry intent sit around the problem: off-season indoor training, core and balance work for riders, trainer and roller setups, and gifts for cyclists. Most of that traffic is people comparing options, not buyers. So the account needs tight match types and heavy negatives from day one. Otherwise the learning phase gets spent on "bike balance board" clicks from parents shopping for kids' toys.
+The queries that carry intent sit around the problem: off-season indoor training, core and balance work for riders, trainer and roller setups, and gifts for cyclists. Most of that traffic is comparing options, not buying, so the account needs tight match types and heavy negatives from day one, or the learning phase gets spent on kids' balance-toy searches. Your brand name also gets its own exact-match campaign from the start, so any demand the other channels create gets captured. Adjacent trainer and accessory brands can work as keywords, but we'd keep other brands' names out of ad copy to avoid trademark flags.
 
-**How we'd shorten the ramp**
+**The order we'd build in**
 
-First, verify purchase tracking end to end before touching bids. A low-volume product can't afford smart bidding learning from broken or shallow signals. Second, run Shopping or Performance Max alongside Search, with real attention on the product feed, since a new category lives or dies on how the listing reads. Third, use YouTube for a short demo. Nobody understands this product from a static image, and video is how the category becomes obvious. Then shift budget by what the data says, not by a fixed split.
+First, verify purchase tracking end to end before touching bids. A low-volume product can't afford smart bidding learning from broken or shallow signals. Second, Search plus standard Shopping, where you can see exactly which queries convert, with real attention on the Merchant Center feed and titles. Performance Max comes later, once there's enough conversion data, since on a single product it mostly hides the queries a new category needs to see. Third, a short demo video through Demand Gen aimed at cycling and indoor-trainer audiences. Nobody understands this product from a static image. Winter is the indoor-training window, so the timing of that test matters.
+
+**Where we come from**
+
+We run Google for consumer product brands right now, including an outdoor gear store and a high-ticket considered-purchase brand, both alongside Meta. Nothing in cycling specifically, which is why the plan above starts with proving the queries before scaling anything.
 
 **What would help us scope this**
 
-Roughly what monthly ad budget are you planning to start with? Even a range like $3K to $8K is enough. At the low end we'd run Search plus Shopping only and hold video until there's signal. Higher up, it makes sense to test all three at once. Also, do you have any purchase data yet, or is this first-launch traffic?
+What monthly ad budget are you planning, somewhere in the $5K to $15K range or outside it, and what does the board sell for against its cost? That tells us how many sales a month the account needs to learn from and what cost per sale you can absorb. At the lower end we'd run Search and Shopping only and hold video until there's signal.
 
-**How we'd work**
+You'd get a report every two weeks plus a live dashboard, and the setup is built to keep compounding past the first few months rather than resetting each quarter.
 
-You'd get a report every two weeks plus a live dashboard, and calls whenever you want to talk through a decision, not on a fixed schedule.
-
-Curious what the first draft looks like. Happy to walk through what we'd keep and what we'd change on a short call.
+If you can share the draft account, we'll point to the two or three things we'd change first.
