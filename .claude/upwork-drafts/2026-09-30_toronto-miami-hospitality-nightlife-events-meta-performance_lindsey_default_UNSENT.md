@@ -20,7 +20,7 @@ A dental implant practice on Meta lead forms: $64,747 over 90 days, about $21K a
 
 A spa parts retailer I took over in February at about $15K a month: cost per purchase went from $34.72 in the month I inherited to $19.89 by April while CPMs stayed flat.
 
-A dental client in August said leads had dried up. I could see over 50 people had filled out forms, sitting as contacts but never reaching the pipeline, and pointed the client to where they were in Business Manager. The ads were working. The leads just weren't reaching the pipeline.
+A dental client in August said leads had dried up. I could see over 50 people had filled out forms, sitting as contacts but never reaching the pipeline, and pointed the client to where they were in Business Manager. The ads had been working the whole time.
 
 **Gaps**
 
