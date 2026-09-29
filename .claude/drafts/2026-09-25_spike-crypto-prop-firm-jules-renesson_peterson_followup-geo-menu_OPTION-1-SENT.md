@@ -1,5 +1,5 @@
 # Upwork Follow-Up - Jules Renesson Philipon / SPIKE (crypto prop firm)
-Profile: Peterson | Type: followup (pre-call) | Status: UNSENT | Drafted 2026-09-25 08:34 Central
+Profile: Peterson | Type: followup (pre-call) | Status: OPTION 1 SENT | Drafted 2026-09-25 08:34 Central
 ClickUp: 86e34ere0 | salesman = Cade | lead status "in discussion" | funnel "Booking Link Sent"
 
 ## What we are following up on
@@ -15,7 +15,7 @@ third time as an open question.
 
 ---
 
-## OPTION 1 (16 words) -- QC: PASS, ship as-is
+## OPTION 1 (16 words) -- **SENT 2026-09-25 08:52 Central**, verbatim, diffed against the thread
 
 I asked where Meta is delivering, Jules. Mostly US and UK, or mostly Gulf and Asia?
 
@@ -90,3 +90,23 @@ both get_task and get_task_comments as of 2026-09-25, while the Supabase `upwork
 and last synced 2026-09-24 09:16 UTC.
 
 **Not done, needs write access:** the `sdr_generation_log` row. `contractor_query` cannot INSERT (42601).
+
+---
+
+## OUTCOME (as of 2026-09-29 10:19 Central)
+
+Option 1 SENT verbatim 2026-09-25 09:52 PM Manila = 08:52 Central. **No reply. Four days.**
+Lead status also slipped back from "in discussion" to "follow up pre-call" on the 9/26 sync.
+
+**THE PICK-ONE THEORY IS DISCONFIRMED FOR GEOGRAPHY.** The 9/23 draft recorded that he answers menus and
+ignores open questions. The 9/25 message was a clean two-item menu answerable in one word, and he did not
+answer it either. So the shape was never the problem on this axis.
+
+**Geography has now been asked THREE times and answered ZERO times** (9/23 markets, 9/23 countries, 9/25
+pick-one menu). The one question he ever answered instantly was about PLATFORM, which is harmless. Every
+question that would reveal something (spend x2, geography x3, refund mechanics x1) has gone unanswered.
+That is six unanswered substantive questions against two unprompted requests from him for a call.
+
+**Read it plainly: this is a deadlock, not a shape problem.** He wants a call before he qualifies; we want
+qualification before the call. Our gate has now failed six times, and his non-answer on geography is weak
+evidence the honest answer fails the US/CA/UK/AU screen.
