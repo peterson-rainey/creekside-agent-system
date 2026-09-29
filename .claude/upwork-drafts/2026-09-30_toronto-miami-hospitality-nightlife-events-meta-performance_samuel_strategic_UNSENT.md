@@ -1,4 +1,4 @@
-# Toronto + Miami hospitality Meta | Samuel | strategic | UNSENT, QC + expert review applied. Lindsey twin cadb268c exists, SEND ONE. Verified in DB 9/30: PDC $46,073/829 conv (12mo), CI $11,245/1,187 YTD, Meta book $2.59M trailing 12mo.
+# Toronto + Miami hospitality Meta | Samuel | strategic | UNSENT, QC + expert review applied. Lindsey twin cadb268c exists, SEND ONE. 9/30 FIX: PDC + CI numbers REMOVED (PDC pre-tenure + tracking dead since Feb; CI roas/conv corrupt, per reference_food_vertical_proof). Meta book $2.59M trailing 12mo verified. No attachable case study.
 
 ---
 
@@ -8,9 +8,8 @@ A premium room fills Thursday because people booked it Monday. So a Thursday cam
 
 **1. Campaigns**
 Our team runs every account with a dedicated Meta operator, and your account would have one named operator from the kickoff call.
-Punch Drunk Chef, a Dallas food brand, live now: over $46K through Meta in the last twelve months for 829 tracked conversions, expanded from one metro into Frisco, Plano and Denton.
-CI Lifestyle Meals, a local meal business: 1,187 conversions this year at about $9.47 each.
-Birthday Club, a restaurant rewards app: 2,662 installs, with cost per install going from $7.36 to $3.90. That engagement has since ended.
+Birthday Club, a restaurant rewards app on Meta: 2,662 installs, with cost per install going from $7.36 to $3.90. That engagement has since ended.
+Two local meal prep brands, both live on Meta now at roughly $1.5K to $4.5K a month, run on local radius and new-customer acquisition.
 
 **2. Monthly spend**
 About $2.6M on Meta over the trailing twelve months across our book. The largest single account runs near $99K a month.
@@ -19,7 +18,7 @@ About $2.6M on Meta over the trailing twelve months across our book. The largest
 Above. The pattern that matters for you, and the reason we report cost per reservation rather than cost per click: one dental account ran two objectives in the same month. Engagement spent $1,845 and recorded zero conversions. Leads spent $1,955 for 124 leads at $15.77. Only the campaign split showed it.
 
 **4. Hospitality, nightlife, events**
-Food brands and a restaurant rewards app, yes. A dine-in room, a nightclub or a ticketed event, no. What carries over is Meta driving a local, time-bound action, tracked server-side and judged on the real outcome.
+Local food brands and a restaurant rewards app, yes. A dine-in room, a nightclub or a ticketed event, no. What carries over is Meta driving a local, time-bound action, tracked server-side and judged on the real outcome.
 
 **5. Pixel and CAPI**
 Standard on our accounts: Pixel plus server-side events sharing an event ID, with hashed email or phone, so each booking counts once.

@@ -1,5 +1,6 @@
 # Multi-state psychiatric medication management practice, Meta + GoHighLevel patient acquisition
 Profile: Samuel | Style: strategic + diagnostic | Status: UNSENT, QC FAIL -> all 7 fixes applied 9/30 (re-QC not run)
+SKIPPED 9/30 by Queenie: screening answers revealed $50/day Meta budget (~$1,520/mo), below the $5K/mo minimum. Practice named "Pursuit" in the screening questions. Do not send.
 Screens: spend unstated (ask), US multi-state (passes geo), healthcare "strongly preferred" not required (gap disclosed), no hourly typed.
 Dual-bid check against upwork_jobs NOT run (no DB call this session); no existing draft in upwork-drafts matches.
 
