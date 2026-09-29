@@ -14,7 +14,7 @@ The second trap is specific to cycles like yours. Google Ads only accepts an off
 
 **How we'd work together**
 
-I'll be straight on the individual question, since you asked it directly. We're a small shop, not a solo freelancer, and none of the work leaves our team. Our dedicated conversion tracking specialist owns the GA4, GTM and offline import side, a senior Google Ads specialist owns the account, and I stay on the strategy and the reasoning. For a collaborative engagement like this, that means the person explaining a GTM change in a working session is the person who built it.
+One thing worth knowing up front: we're a small shop, not a solo freelancer, and none of the work leaves our team. Our dedicated conversion tracking specialist owns the GA4, GTM and offline import side, a senior Google Ads specialist owns the account, and I stay on the strategy and the reasoning. For a collaborative engagement like this, that means the person explaining a GTM change in a working session is the person who built it.
 
 The format you described is how we'd want to run it anyway:
 
@@ -27,7 +27,7 @@ We'll push back on the current setup where the data says to, and we'll also tell
 
 **Relevant experience**
 
-On the B2B side, we ran paid acquisition for a B2B SaaS company on HubSpot where the work was tying ad clicks to CRM stages rather than form counts, and leads and ARR both doubled within six months. I'll be honest that we don't have a hardware or AV case study to show you. The measurement problem is the same one, though: the ad platform can only optimize to what the CRM tells it.
+On the B2B side, we ran Google for demand capture and Meta for awareness for a B2B SaaS company on HubSpot, and inbound leads and ARR both doubled within six months of their seed round. I'll be honest that we don't have a hardware or AV case study to show you. The measurement problem is the same one, though: the ad platform can only optimize to what the CRM tells it.
 
 **A few questions**
 
@@ -38,8 +38,8 @@ On the B2B side, we ran paid acquisition for a B2B SaaS company on HubSpot where
 Once I know those, I can tell you what the first two weeks would look like.
 
 ---
-SCREENING ANSWERS (UNSENT, not QC'd)
+SCREENING ANSWERS (UNSENT, QC fixes applied)
 
-Q1. Yes. The closest is a B2B SaaS company where we ran Google for demand capture and Meta for awareness, and the work centered on tying clicks to CRM stages instead of form counts. Leads and ARR both doubled within six months. We also run Google for a paving contractor that takes on both residential driveways and commercial lots, where a big part of the job is screening out price shoppers so the leads are worth quoting. I'll be upfront that we haven't worked with a hardware or AV company, so I'd lean on your team for the product and buyer context early on.
+Q1. B2B SaaS is the closest. We ran Google for demand capture and Meta for awareness for a SaaS company on HubSpot, and inbound leads and ARR both doubled within six months of their seed round. We also run Google for a paving contractor that takes on both residential driveways and commercial lots, so lead quality matters more than lead volume. I'll be upfront that we haven't worked with a hardware or AV company, so I'd lean on your team for the product and buyer context early on.
 
-Q2. For that paving contractor, we ran Search and Performance Max side by side in the same new market and compared cost per lead. Search came in at $131 and PMax at $268, which is the kind of gap that stays hidden when both campaigns report into one conversion column. The broader work on that account is qualification: screening out price shoppers so the leads are worth quoting, not just cheap. Over the last 12 months it has run at about $214 per lead on roughly $78K in spend. The metric looks higher than a raw form-fill account would, and that is on purpose.
+Q2. For that paving contractor, we ran Search and Performance Max side by side in the same new market and compared cost per lead. Search came in at $131 and PMax at $268. Over the last 12 months the account has run at about $214 per lead on roughly $78K in spend.
