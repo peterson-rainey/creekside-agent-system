@@ -1,6 +1,6 @@
 # Facebook ads traffic down ~50%, audit + optimize + new ads — Samuel strategic — UNSENT
 
-Status: QC run 9/30 (FAIL on proof line + parroting); all fixes applied, not re-QC'd.
+Status: QC 9/30 FAIL -> fixed; re-QC WARN (no blockers) -> both line edits applied.
 DB: no prior bid on this job in upwork_jobs (either profile). Proof = Laleh Meta spend only (~$99K/mo, citable); "25% lead drop recovery" SOP line unverified, NOT used.
 Attach: nothing.
 
@@ -16,12 +16,12 @@ Frequency and reach by ad set over the last 60 days, CPM trend against the week 
 
 **The new ads**
 
-Fresh creative is probably part of the answer, but the order matters. If delivery is capped by a setting, new ads will inherit the same ceiling. We would fix the constraint first, then launch a small batch built around distinct angles rather than variations of the current winner, so you learn what actually pulls the high-intent leads instead of just refreshing the look. Our team produces the static and video creative and copy.
+Fresh creative is probably part of the answer, but the order matters. If delivery is capped by a setting, new ads will inherit the same ceiling. We would fix the constraint first, then launch a small batch built around distinct angles rather than variations of the current winner, so you learn what actually pulls the leads you want instead of just refreshing the look. Our team produces the static and video creative and copy.
 
 **A tradeoff to flag**
 
 Scaling back to the old volume while keeping lead quality is not guaranteed. Broadening delivery to recover traffic often lets lower-intent people in, so we would recover in steps and watch lead quality at each one.
 
-For scale context, our team runs a cosmetic dentistry account on Meta at roughly $99K a month, so delivery and auction problems at every budget level are familiar ground.
+For scale context, our team runs a cosmetic dentistry account on Meta at roughly $99K a month.
 
 Roughly what range is your monthly Facebook ad spend sitting in right now, under $5K, $5K to $15K, or above that?
