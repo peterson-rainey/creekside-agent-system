@@ -216,6 +216,7 @@ The ads@creeksidemarketingpros.com Claude account is SEPARATE from Peterson's an
 
 **Database enforcement -- contractor_query() for reads, scoped execute_sql for writes:**
 - `contractor_query()` blocks: DDL, writes to protected tables (agent_definitions, system_users, scheduled_agents, system_registry, prompt_config, api_cost_limits), reads on sensitive tables (system_users, vault, env_secrets, cade_secrets, client_api_keys), and function/policy changes.
+- `contractor_query()` also blocks direct reads on: **fathom_entries, gmail_summaries, gchat_summaries, raw_content** (confidential admin conversations). Use search functions instead (they auto-filter confidential records). For full text of a specific record found via search, use `contractor_get_full_content(table_name, record_id)` -- it checks confidential flags before returning content.
 - To see what API keys a client has, use `list_api_keys('client name')` via contractor_query() -- this is the approved proxy through the client_api_keys block.
 - For writes to allowed tables (e.g., agent_knowledge), use execute_sql directly per the routing rules in the Ad platform connectors section above.
 - For the few structured writes (e.g., report mode toggle), use the self-service write functions listed above.
