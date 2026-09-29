@@ -36,3 +36,10 @@ On the B2B side, we ran paid acquisition for a B2B SaaS company on HubSpot where
 3. Typically, how long from first click to an opportunity being created?
 
 Once I know those, I can tell you what the first two weeks would look like.
+
+---
+SCREENING ANSWERS (UNSENT, not QC'd)
+
+Q1. Yes. The closest is a B2B SaaS company where we ran Google for demand capture and Meta for awareness, and the work centered on tying clicks to CRM stages instead of form counts. Leads and ARR both doubled within six months. We also run Google for a paving contractor that sells to commercial property managers as well as homeowners, where the main job is keeping price shoppers out so budget goes to the larger commercial jobs. I'll be upfront that we haven't worked with a hardware or AV company, so I'd lean on your team for the product and buyer context early on.
+
+Q2. For that paving contractor, we split out Search and Performance Max in the same market and compared cost per lead side by side. Search came in at $131 against $268 for PMax. The PMax leads looked fine in the conversion column but skewed toward small residential jobs, so we moved budget toward Search, tightened the keywords and negatives around commercial intent, and set the account up to filter out price-driven inquiries. Over the last 12 months it has run at about $214 per lead on roughly $78K in spend, and the leads it brings in are ones the owner actually wants to quote.
