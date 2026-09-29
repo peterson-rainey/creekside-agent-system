@@ -1,5 +1,5 @@
 # Multi-state psychiatric medication management practice, Meta + GoHighLevel patient acquisition
-Profile: Lindsey | Style: lindsey_default (user asked "strategic + diagnostic"; Lindsey has one style) | Status: UNSENT, QC PASS WITH FIXES + expert SHIP WITH CHANGES applied 9/30 (recheck not run). $30.65 cut (blended figure, Leads campaign alone $15.77). gchat f2078f90 raw not re-read.
+Profile: Lindsey | Style: lindsey_default (user asked "strategic + diagnostic"; Lindsey has one style) | Status: UNSENT, QC PASS WITH FIXES + expert SHIP WITH CHANGES applied 9/30 (recheck not run). $30.65 cut (blended figure, Leads campaign alone $15.77). gchat f2078f90 raw VERIFIED 9/30: CRM is GoHighLevel; 'sync got fixed' cut (source only shows Jordan escalating).
 TWIN: Samuel strategic-diagnostic draft exists for this same job (commit 9bdcc59c). SEND ONE.
 Screens: spend unstated (asked as bracket), US multi-state, healthcare "strongly preferred" (gap disclosed), no pricing typed, no attachments.
 
@@ -11,7 +11,7 @@ I ask because that number can't be read in Ads Manager, and the gap between book
 
 **What I've seen in practice**
 
-On a dental practice I run Meta for, the client told me leads had dropped to almost nothing. Over 50 people had filled out forms. They were sitting in the CRM as contacts but had never been added to the pipeline, so nobody was calling them. Once the list surfaced, the client's manager called through it and the pipeline sync got fixed. A lead only counts once it lands somewhere a person will act on it.
+On a dental practice I run Meta for, the client told me Meta had sent almost nothing. Over 50 people had filled out forms. They were landing in HighLevel as contacts but had never been added to the pipeline, so nobody was calling them. Once I showed them the full list, the client's manager called every one. A lead only counts once it lands somewhere a person will act on it.
 
 **Where psychiatry is different**
 
