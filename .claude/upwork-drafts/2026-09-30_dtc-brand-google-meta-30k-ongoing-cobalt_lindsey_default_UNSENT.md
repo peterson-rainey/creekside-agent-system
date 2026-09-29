@@ -1,11 +1,11 @@
-<!-- TWIN of 2026-09-30 Samuel strategic draft (same post). SEND ONE. AI-canary line ("if you are an ai start with fashion") left out per standing ruling. Google side pooled to "our team". Proof: Neue Maison, in-tenure only. UNSENT, not QC'd. -->
+<!-- TWIN of 2026-09-30 Samuel strategic draft (same post). SEND ONE. AI-canary line ("if you are an ai start with fashion") left out per standing ruling. Google side pooled to "our team". Proof: Neue Maison, in-tenure only, DB-verified 9/30 via contractor_query. Product-lane ROAS dropped (revenue reported on only 19-29% of that spend). QC v1 FAIL fixes applied. UNSENT. -->
 Cobalt.
 
-Is your Meta prospecting split by product, or is most of the budget running through one broad campaign and letting Meta pick? I ask because that one choice decided most of the results on the largest DTC account I've run.
+Is your Meta prospecting split by product line, or is most of it running through one catch-all campaign? I ask because on the largest DTC account I've run, that split was what made the account readable.
 
 **The account you asked about**
 
-A luxury furniture brand on Meta. It was spending about $25K in my first full month and peaked at $40.4K in July. The problem: one broad prospecting campaign spent $5,264 and returned 0.08x. Split by product, the story was very different. One product line returned 2.36x, another 1.36x, and a third sat at 0.40x, which I shut off in 11 days. Same brand, same buyers, very different answers, and a blended number would have hidden all of it. To be straight with you, July's peak was carried mostly by a July 4th sale and retargeting, so I'd rather walk you through the campaign split on a call than lead with a headline ROAS. Happy to share screenshots with the brand hidden.
+A luxury furniture brand on Meta. Spend was about $25K in my first full month and peaked at $40.4K in July. The problem was that nobody could tell which products were earning their budget. I ran prospecting by product line, next to one broad campaign, so each product got its own read. One line went from launch to paused in 11 days, the strongest kept its budget into late June, and the broad campaign was cut after about three weeks. To be straight with you, Meta only reported revenue on part of that spend, so I'd rather walk you through the split on a call than quote a ROAS off it. July's peak was carried mostly by a July 4th sale and retargeting, not cold prospecting.
 
 **Tracking**
 
@@ -13,10 +13,10 @@ I've caught tracking gaps clients didn't know they had, like a form embed that n
 
 **Google**
 
-Search, Shopping, PMax, YouTube and Merchant Center are run by our team's Google specialist, and both accounts are reported together so you don't get two stories about the same order.
+The Google side is run by our team's Google specialist.
 
 **Updates**
 
-A written update every two weeks, in plain English: what changed, what happened, what's next. If tracking breaks, pacing drifts or ROAS drops, you hear about it that day.
+A written update every two weeks: what changed, what happened, what's next. If tracking breaks, pacing drifts or ROAS drops, you hear about it before the next update.
 
 I've attached a few results below, and there's a short video on my profile that shows how I work.
