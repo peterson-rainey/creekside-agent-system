@@ -6,7 +6,7 @@ At $30K a month across Google and Meta, the first thing I'd want to know is whet
 
 A survival gear ecommerce brand, running Google and Meta together. The problem: blended Meta ROAS looked fine at 2.32x, so nobody questioned it. When our team split performance by country over the same six weeks, the US was returning 3.79x and the UK 0.59x. The UK's cheaper CPMs ($27 vs $41 in the US) were pulling budget toward it, and the blend was hiding a market returning 59 cents per dollar spent.
 
-What changed: we brought the split to the owner with the numbers side by side, and they chose to pause the UK. On the Google side, non-brand ROAS went from 1.50x in July to 2.61x in August. Roughly 45% of that lift came from the UK removal, so I wouldn't present it as a pure optimization win. Happy to walk through screenshots on a call with the brand hidden.
+What changed: with the split on the table, the owner made the call to pause the UK and put that budget behind the US. On the Google side, non-brand ROAS went from 1.50x in July to 2.61x in August. Roughly 45% of that lift came from the UK removal, so I wouldn't present it as a pure optimization win. Happy to walk through screenshots on a call with the brand hidden.
 
 **How I'd run your two accounts**
 
