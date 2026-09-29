@@ -1,4 +1,4 @@
-# Axle Board (cyclist balance board) - Google Ads ramp + adjacent - Samuel strategic - UNSENT, QC + expert fixes applied (recheck not run)
+# Axle Board (cyclist balance board) - Google Ads ramp + adjacent - Samuel strategic - UNSENT, QC + expert fixes applied (QC recheck WARN, minor fixes applied)
 
 A new category like this has little branded search yet, so the Google Ads draft you already have is probably being judged against demand that doesn't exist. Search can't be the whole plan. It has to catch riders who already feel the problem, and a second channel has to create the rest of the demand.
 
@@ -8,7 +8,7 @@ The queries that carry intent sit around the problem: off-season indoor training
 
 **The order we'd build in**
 
-First, verify purchase tracking end to end before touching bids. A low-volume product can't afford smart bidding learning from broken or shallow signals. Second, Search plus standard Shopping, where you can see exactly which queries convert, with real attention on the Merchant Center feed and titles. Performance Max comes later, once there's enough conversion data, since on a single product it mostly hides the queries a new category needs to see. Third, a short demo video through Demand Gen aimed at cycling and indoor-trainer audiences. Nobody understands this product from a static image. Winter is the indoor-training window, so the timing of that test matters.
+First, verify purchase tracking end to end before touching bids. A low-volume product can't afford smart bidding learning from broken or shallow signals. Second, Search plus standard Shopping, where you can see exactly which queries convert, with real attention on the Merchant Center feed and titles. Performance Max comes later, once there's enough conversion data, since on a low-volume product it mostly hides the queries a new category needs to see. Third, a short demo video through Demand Gen aimed at cycling and indoor-trainer audiences. A static image is a hard way to show this product. Winter is the indoor-training window, so the timing of that test matters.
 
 **Where we come from**
 
@@ -20,4 +20,4 @@ What monthly ad budget are you planning, somewhere in the $5K to $15K range or o
 
 You'd get a report every two weeks plus a live dashboard, and the setup is built to keep compounding past the first few months rather than resetting each quarter.
 
-If you can share the draft account, we'll point to the two or three things we'd change first.
+If you can share the account, we can tell you what we'd look at first.
