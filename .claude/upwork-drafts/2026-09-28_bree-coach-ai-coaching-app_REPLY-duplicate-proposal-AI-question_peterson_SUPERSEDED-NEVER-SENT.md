@@ -4,6 +4,27 @@ collapsed to the real name and Marina writes "Hi Peterson") | Type: mid-conversa
 Date: 2026-09-28 Monday, confirmed via Postgres now() = 09:37 CT. Local shell clock read Sep 28 22:xx and is unreliable.
 Words: 148 (170 before QC fixes) | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none | Names: none
 
+> # SUPERSEDED 2026-09-30. THIS DRAFT WAS NEVER SENT AND SHOULD NOT BE SENT.
+>
+> Peterson answered Marina himself, in his own words, roughly an hour after this was drafted. What he actually
+> sent, verbatim from the synced room (`room_4c26e0b9624f42c03e536b8fe31097a7`, now 11 messages):
+>
+> 1. **2026-09-28 10:59 PM Manila / ~09:59 CT** - *"No, if you watch my profile video, you'll see that I have a
+>    small agency and one of my other agents is the one doing the other proposal."*
+> 2. Marina: *"Got it. To clarify, what's the agent's name who also applied for the role?"*
+> 3. **Peterson:** *"Lindsey"*
+> 4. **Peterson:** *"See the video for my partner cade who will also be on the call running through price negotiation"*
+> 5. **Peterson, Mon 2026-09-28 11:39 AM CT:** *"Here's Lindsey's calendar, just grab whatever works: <link>"*
+>
+> **He answered "No" to the AI question.** This draft conceded the tool and pivoted to the 4-of-6 disclosure.
+> His answer went the other way and pointed at the profile video instead. He also named Lindsey and named Cade,
+> and pre-announced that Cade would be on the call "running through price negotiation". The dual-bid promise this
+> draft was built around ("you will not get pitched twice") was never made, so the Lindsey bid never needed
+> silencing and that blocking action item is CLOSED, moot.
+>
+> Keep this file for the record. Do not send it, do not mine it for a later touch without re-reading the room
+> first: it answers questions that have since been answered differently.
+
 ## WHAT SHE ACTUALLY ASKED (two things, one message)
 1. "Hi, it's the ad budget."  -> the $5,000 is MEDIA ONLY. Management sits on top.
 2. "Also I noticed you've sent the same proposal as one other person? Is it an AI proposal?"

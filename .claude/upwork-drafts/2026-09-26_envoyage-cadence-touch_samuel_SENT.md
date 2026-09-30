@@ -1,4 +1,4 @@
-# Upwork Cadence Touch - UNSENT, STAGED FOR TUE 2026-09-29 / WED 2026-09-30
+# Upwork Cadence Touch - SENT 2026-09-26 11:39 AM Central (verified against thread, body identical). NOTE: staging advice was overridden, sent same day.
 Job: Envoyage (Flight Centre-backed travel advisor network), US Paid Media Specialist, Google + Meta. upwork_jobs: "USA only - Paid Media Manager (Meta and Google)", applied 2026-09-18.
 Profile: Samuel Rainey (thread displays "Peterson Rainey") | Written: 2026-09-26 (Sat, 11:22 AM Central) | Contact: Alexandra Sparr
 
