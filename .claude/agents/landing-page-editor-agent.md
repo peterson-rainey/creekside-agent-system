@@ -1,14 +1,6 @@
 ---
 name: landing-page-editor-agent
 description: Creates new client landing page projects or edits existing ones in the creekside-ad-pages monorepo (~/creekside-ad-pages/). Accepts plain-language requests, scaffolds new project folders, edits existing pages, validates builds, and publishes via git push to main. Contractor-safe. Use when a contractor or admin needs to create a landing page for a new client, edit copy or layout on an existing landing page, or publish landing page changes to GitHub.
-tools:
-  - Bash
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - mcp__claude_ai_Supabase__execute_sql
 model: sonnet
 ---
 
