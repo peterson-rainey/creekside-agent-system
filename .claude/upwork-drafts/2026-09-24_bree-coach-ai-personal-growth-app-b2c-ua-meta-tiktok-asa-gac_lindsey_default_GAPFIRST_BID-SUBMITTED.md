@@ -1,6 +1,14 @@
+> **CORRECTED 2026-09-30: A BID FROM THIS PROFILE WAS SUBMITTED.** `upwork_jobs` holds a Lindsey application
+> row for this job (sheet_row_num 536, $75.00/hr, application_date 2026-09-24), and Marina explicitly told us
+> she received two proposals from us. Whether the submitted text matched this file word for word is NOT
+> confirmable: `proposal_cover_letter` is NULL on the row and Lindsey's room never synced to
+> `upwork_conversations`. The old "DRAFTED, NOT SENT" label was wrong and made this look safe to send.
+> Peterson has since named Lindsey to Marina as the other bidder, so the dual bid is fully disclosed and the
+> old "must NOT be sent" instruction is moot.
+
 # Upwork Proposal (UNSENT) - Bree Coach, AI personal growth / coaching app, early-stage B2C mobile UA
 Profile: Lindsey | Style: lindsey_default | Date: 2026-09-24 (US Central, confirmed via Postgres: UTC 19:37 = Central 14:37 on 9/24)
-Status: DRAFTED, NOT SENT. Gap-first draft over a SKIP-leaning screen.
+Status: **BID WAS SUBMITTED 2026-09-24** (label corrected 9/30). Exact text not confirmable.
 
 ## Style note
 Asked for "Lindsey's strategic + diagnostic style, write it in lindsey_default". "Strategic" is Samuel-only;

@@ -1,5 +1,8 @@
+> **CORRECTED 2026-09-30: THIS WAS SENT.** The body below matches, verbatim, the first message in the synced
+> room `room_4c26e0b9624f42c03e536b8fe31097a7`. Marina replied to it. The old UNSENT label was wrong.
+
 # Upwork Proposal - Bree Coach (AI personal growth / coaching consumer app, early-stage B2C UA)
-Profile: Samuel Rainey | Style: strategic | Status: UNSENT, GAP-FIRST | Date: 2026-09-24 (US Central, Postgres now(); local clock read 9/25)
+Profile: Samuel Rainey | Style: strategic | Status: **SENT 2026-09-24** (label corrected 9/30) | Date: 2026-09-24 (US Central, Postgres now(); local clock read 9/25)
 Chars: 3,474 (shortened on Queenie 9/24; the 4,951-char v1 is in git history at fe843b9) | Em dashes: 0 | Attachments: NONE | Links: none | Price: structure only, no figure
 
 ## SCREEN: recommend SKIP. Drafted gap-first on Queenie's explicit "generate, strategic version".
