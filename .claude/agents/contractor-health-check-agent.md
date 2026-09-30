@@ -371,7 +371,7 @@ Replace `<json_payload>` with the fully built JSON object. Double all single quo
 
 **Verify save:**
 
-The function returns a uuid on success. Capture it. In Step 11, echo it in the footer:
+The function returns a uuid on success. Capture it. In Step 13, echo it in the footer:
 
 ```
 Results saved to contractor_diagnostics (id: <uuid>).
