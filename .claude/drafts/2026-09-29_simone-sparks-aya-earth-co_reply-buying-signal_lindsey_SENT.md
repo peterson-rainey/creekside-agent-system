@@ -1,5 +1,5 @@
 # Upwork Reply - Simone Sparks / AYA Earth Co (Shopify DTC body care, Canada)
-Profile: Lindsey Bouffard | Type: reply to buying signal | Status: UNSENT | Drafted 2026-09-29
+Profile: Lindsey Bouffard | Type: reply to buying signal | Status: SENT (confirmed verbatim in the live thread) | Drafted 2026-09-29
 
 ## WHAT CHANGED
 The 9/28 nurture was SENT and ANSWERED overnight. Simone has moved on every lever:
