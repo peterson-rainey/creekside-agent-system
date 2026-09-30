@@ -10,6 +10,7 @@ LOG_FILE="$HOME/.creekside-hook.log"
 log_err() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] auto-pull: $*" >> "$LOG_FILE"; }
 
 BRAIN_UPDATED=0
+BRAIN_PULL_FAILED=0
 
 # --- Brain repo (current project dir) ---
 if cd "$CLAUDE_PROJECT_DIR" 2>/dev/null; then
@@ -23,6 +24,7 @@ if cd "$CLAUDE_PROJECT_DIR" 2>/dev/null; then
       fi
     else
       log_err "brain pull failed: $PULL_OUTPUT"
+      BRAIN_PULL_FAILED=1
     fi
   fi
 fi
@@ -52,6 +54,13 @@ fi
 
 if [ $BRAIN_UPDATED -eq 1 ]; then
   echo '{"systemMessage": "Infrastructure updated from git (auto-pull)."}'
+fi
+
+# Loud failure: a silently stale machine caused weeks of degraded output
+# (Queenie, Sep 2026 -- local commits on main made ff-only fail every session).
+# Make the session itself announce the problem instead of burying it in a log.
+if [ $BRAIN_PULL_FAILED -eq 1 ]; then
+  echo '{"systemMessage": "WARNING: auto-pull FAILED -- this machine may be running STALE infrastructure (diverged clone or network issue). Claude: before doing any client or proposal work, run git fetch origin && git rev-list --count origin/main..HEAD in the project repo. If the count is greater than 0, this clone has diverged and cannot self-update. STOP and tell the user to message Peterson in ClickUp with a screenshot of this warning."}'
 fi
 
 exit 0

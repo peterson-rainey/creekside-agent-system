@@ -183,6 +183,13 @@ Anything you put in that file is loaded automatically alongside the shared rules
 
 This file lives on YOUR machine only. It never goes to GitHub, and GitHub pulls never overwrite it.
 
+## Memory & Process Hygiene (prevents silent drift)
+
+- **Never save workflow processes to auto-memory.** Do not store proposal, SDR, report, or any other work processes as memories or shortcuts. Processes live in agents, skills, and the database, and they change often -- a memorized copy silently goes stale and degrades output quality without anyone noticing. Re-derive the process from the current agent/skill every session, every time.
+- **If a remembered workflow conflicts with the current agent or skill, the agent/skill ALWAYS wins.** Discard the memory and update or delete the stale entry.
+- **Never use past outputs as templates for new outputs.** Do not draft new proposals or messages by referencing previous drafts -- each one must be generated fresh through the current agent from current database context. Copies of copies drift.
+- **Never commit to this repo.** Do not save drafts, notes, or working files inside this project folder, and never run git commit here. Local commits block auto-updates and freeze the machine on an old version of the entire system. Save working files to ~/Desktop or ~/Documents instead.
+
 ## API Vault (Klaviyo, Mailchimp, Shopify, etc.)
 
 Peterson stores API keys securely for each client. You never see the raw key -- it stays locked in the database vault. When you need to pull or push data on a platform like Klaviyo, Mailchimp, Shopify, GoHighLevel, HubSpot, SendGrid, or ActiveCampaign:
