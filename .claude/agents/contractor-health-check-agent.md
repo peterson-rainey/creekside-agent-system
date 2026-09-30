@@ -308,7 +308,7 @@ Determine overall status using this exact logic (evaluate conditions in order â€
 
 ---
 
-## Step 10: Write Results to Database
+## Step 12: Write Results to Database
 
 Use the `log_contractor_diagnostic` SECURITY DEFINER function, which is callable by contractors through `contractor_query()`. Direct INSERTs are blocked for contractors â€” this function is the only supported write path.
 
