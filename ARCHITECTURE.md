@@ -1,6 +1,6 @@
 # Creekside Marketing - System Architecture
 
-Last updated: 2026-09-21. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
+Last updated: 2026-09-30. Maintained manually; the weekly `brain-steward` routine checks this file's last-commit age and queues a refresh proposal when it exceeds 60 days.
 
 ## 1. What This Is
 
@@ -270,7 +270,7 @@ Railway runs Python data sync scripts on cron schedules. Each pipeline pulls dat
 
 **Local pipelines (Peterson's Mac, NOT Railway):** Three sync jobs run locally in standalone folders, each with its own README documenting scripts, conventions, and gotchas:
 - `~/gdrive_pipeline/` -- Google Drive shared-drive crawl + Gmail attachment filing (Railway has no Drive pipeline; this is the real one)
-- `~/loom_pipeline/` -- Loom transcript sync via browser scraping (the Railway `pipelines/loom/` script is a health-check stub only)
+- `~/loom_pipeline/` -- Loom transcript sync via browser scraping (the Railway `pipelines/loom/` script is a health-check stub only). **Discovery moved from `recentUserVideos` to `getLooms` on 2026-09-30** after the old GraphQL query silently degraded to ~25 stale videos, making every run report "no new videos" while 15 new videos and 6 historical orphans went un-ingested. `skill/SKILL.md` Step 2b now enforces a plausibility guard (abort if Loom total < 90% of DB row count, or if discovery's newest video predates the cutoff) so a broken discovery query fails loudly instead of looking like a quiet day. See agent_knowledge `086f8b74-56c8-4dca-885a-1b4e3e49876e`.
 - `~/youtube_pipeline/` -- YouTube channel transcript sync (launchd `com.creekside.youtube-sync`, feeds the SEO blog generator)
 
 **Monitoring:**
