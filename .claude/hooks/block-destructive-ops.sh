@@ -183,6 +183,39 @@ if [ -f "$ADMIN_FLAG_2" ]; then
   # NOTE: destructive ops (rm -rf, DROP TABLE, etc.) are STILL blocked above
   exit 0
 fi
+
+# --- BLOCK MANUAL GIT COMMITS TO THE BRAIN REPO (DIVERGENCE PREVENTION) ---
+# Local commits on main break `git pull --ff-only` and silently freeze the
+# machine on stale infrastructure (Queenie, Jun-Sep 2026: 1,318 local commits,
+# 955 behind origin). Hook auto-commits run in their own shell, not through
+# the Bash tool, so they are unaffected. ADMIN_MODE bypasses (exit above).
+# Commits explicitly targeting a DIFFERENT repo (cd / git -C elsewhere) are allowed.
+if [ "$IS_SQL" = false ]; then
+  if echo "$CHECK" | grep -qE '\bgit\s+(-[^ ]+\s+)*(add|commit)\b'; then
+    BRAIN_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+    TOOL_CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
+    IN_BRAIN=1
+    # If the Bash tool's tracked cwd is known and outside this repo, allow.
+    if [ -n "$TOOL_CWD" ] && [ -n "$BRAIN_ROOT" ]; then
+      case "$TOOL_CWD" in
+        "$BRAIN_ROOT"*) IN_BRAIN=1 ;;
+        *) IN_BRAIN=0 ;;
+      esac
+    fi
+    # If the command explicitly cd's or -C's somewhere and never references this
+    # repo's path, treat it as targeting another repo. Check raw $CMD, not $CHECK:
+    # paths are usually quoted and quote-stripping would remove them.
+    if [ $IN_BRAIN -eq 1 ] && [ -n "$BRAIN_ROOT" ]; then
+      if echo "$CMD" | grep -qE '(^|[;&|(]|[[:space:]])(cd|git[[:space:]]+-C)[[:space:]]' && ! echo "$CMD" | grep -qF "$BRAIN_ROOT"; then
+        IN_BRAIN=0
+      fi
+    fi
+    if [ $IN_BRAIN -eq 1 ]; then
+      echo "BLOCKED: Manual git add/commit in this repo. Hooks handle all commits here -- manual local commits break ff-only auto-updates and silently freeze this machine on stale infrastructure. If you are committing to a DIFFERENT repo, cd into it explicitly within the same command." >&2
+      exit 2
+    fi
+  fi
+fi
 # Agents could bypass the Write|Edit hook by using Bash commands (sed, cp, cat >, tee, mv)
 # to modify protected files. Block these patterns too.
 if [ "$IS_SQL" = false ]; then
