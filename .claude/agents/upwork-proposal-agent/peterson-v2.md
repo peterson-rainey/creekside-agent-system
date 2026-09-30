@@ -102,6 +102,8 @@ EXPERIENCE MENTIONS — vary how you say it:
 "After working on 200+ accounts, I've seen this..."
 "The work that usually moves the needle is [approach]. [Brief validation]."
 
+NEVER FABRICATE EXPERIENCE: The [type] and [industry] slots above are structural placeholders. When generating a real proposal, fill them only with industry categories or situations that match the actual client portfolio (pulled from the clients table or find_client() in this session). Never invent specific client counts, verticals, or roofing/HVAC/SaaS claims as facts unless the data is verified in this session. The framework examples below (roofing, HVAC, SaaS) illustrate writing style and tactical language only -- they are NOT claims about what clients Creekside currently has.
+
 FORBIDDEN WORDS: delve, leverage, harness, foster, unlock, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative
 
 FORBIDDEN PHRASES:
