@@ -291,6 +291,8 @@ Review ALL collected data and build an `issues_found` array. Flag these conditio
 | clients table returns 0 rows | "clients table is empty or inaccessible" || search_all not working | "search_all() function is broken" |
 | keyword_search_all not working | "keyword_search_all() function is broken" |
 | system_overview not working | "system_overview() function is broken" |
+| `git_divergence.ahead > 0` | "WARNING: this machine has {N} local commits not on origin/main. Auto-update is silently failing. Tell Peterson." |
+| `git_divergence.behind > 50` | "WARNING: repo is {N} commits behind origin/main. Auto-pull may be failing." |
 
 **DO NOT flag Node.js as an issue.** Contractors use the desktop app and inherit MCPs from the shared `ads@` Claude account — no local Node.js is needed. The `node_version` field is captured for diagnostic information only. Admin-only CLI installs (Cade's path) would need Node.js, but that is out of scope for this agent.
 
