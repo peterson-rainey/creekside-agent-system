@@ -240,28 +240,75 @@ Determine overall status using this exact logic (evaluate conditions in order �
 
 ## Step 10: Write Results to Database
 
-Insert all collected data into the `contractor_diagnostics` table using execute_sql with project_id `suhnpazajrmfcmbwckkx`:
+Use the `log_contractor_diagnostic` SECURITY DEFINER function, which is callable by contractors through `contractor_query()`. Direct INSERTs are blocked for contractors — this function is the only supported write path.
+
+**Build the JSON payload** from all collected data. Every key maps 1:1 to a `contractor_diagnostics` column:
+
+```
+contractor_email        string  (REQUIRED — use "unknown" only if user refused to provide)
+contractor_name         string  (REQUIRED — function raises if missing or empty)
+git_branch              string
+git_last_commit         string  (hash + subject concatenated)
+git_last_commit_date    string  (ISO timestamp)
+git_remote_url          string
+git_clean               boolean
+claude_md_exists        boolean
+claude_md_first_line    string
+hooks_found             array of strings
+hooks_missing           array of strings
+hooks_executable        boolean
+settings_json_exists    boolean
+settings_json_hooks_count  integer
+agent_files_count       integer
+agent_files_list        array of strings  (basenames only)
+user_role_conf_exists   boolean
+user_role_conf_role     string
+user_role_conf_email    string
+supabase_connected      boolean
+supabase_project_id     string  (always "suhnpazajrmfcmbwckkx")
+clients_table_accessible boolean
+clients_row_count       integer
+search_all_works        boolean
+keyword_search_all_works boolean
+system_overview_works   boolean
+platform                string
+shell                   string
+node_version            string
+git_version             string
+issues_found            array of strings
+status                  string  (must be one of: healthy, warning, critical, unknown)
+raw_output              string  (JSON of all raw command outputs — max 50KB)
+```
+
+**Single-quote escaping:** All string values embedded inside the SQL string literal must have any internal single quotes doubled (e.g., `O'Brien` becomes `O''Brien`). Boolean values must be JSON `true`/`false` (lowercase). Arrays must be JSON arrays `["item1","item2"]`.
+
+**Call the function via contractor_query:**
 
 ```sql
-INSERT INTO contractor_diagnostics (
-  contractor_email, contractor_name,
-  git_branch, git_last_commit, git_last_commit_date, git_remote_url, git_clean,
-  claude_md_exists, claude_md_first_line,
-  hooks_found, hooks_missing, hooks_executable,
-  settings_json_exists, settings_json_hooks_count,
-  agent_files_count, agent_files_list,
-  user_role_conf_exists, user_role_conf_role, user_role_conf_email,
-  supabase_connected, supabase_project_id,
-  clients_table_accessible, clients_row_count,
-  search_all_works, keyword_search_all_works, system_overview_works,
-  platform, shell, node_version, git_version,
-  issues_found, status, raw_output
-) VALUES (
-  -- fill in all values from collected data
-  -- use ARRAY['item1', 'item2'] syntax for array fields  -- use true/false for boolean fields
-  -- set supabase_project_id to 'suhnpazajrmfcmbwckkx'
-  -- set raw_output to a JSON string of all raw command outputs
-);
+SELECT contractor_query('SELECT log_contractor_diagnostic(''<json_payload>''::jsonb) AS id')
+```
+
+Replace `<json_payload>` with the fully built JSON object. Double all single quotes within it (the outer `''..''` are the SQL-level escaping for the string literal passed to `contractor_query`).
+
+**Failure handling (MANDATORY):**
+
+- If the call errors, or returns a result but no uuid is present, do NOT proceed silently.
+- Print explicitly: "ERROR: diagnostic could NOT be saved to the database. Error: [error text]"
+- Still print the full human-readable summary (Step 11) — the run data is not lost, it just wasn't persisted.
+
+**Verify save:**
+
+The function returns a uuid on success. Capture it. In Step 11, echo it in the footer:
+
+```
+Results saved to contractor_diagnostics (id: <uuid>).
+```
+
+If no uuid was returned, print:
+
+```
+WARNING: Results could NOT be saved to contractor_diagnostics. Error: <error>
+Peterson cannot view these results remotely until this is resolved.
 ```
 
 ---
