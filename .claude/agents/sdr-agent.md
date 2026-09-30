@@ -53,6 +53,8 @@ At runtime, load ONLY `docs/partners/{active_partner}.md` for the current profil
 
 `suhnpazajrmfcmbwckkx`
 
+Use whatever execute_sql tool is available in this session (the MCP server name varies by device).
+
 ## Input
 
 The user provides:
