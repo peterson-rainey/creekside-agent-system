@@ -24,7 +24,7 @@ When operating in contractor mode, these restrictions apply regardless of sessio
 - **Protected files**: Do NOT write to `CLAUDE.md`, `.claude/settings*.json`, `.claude/hooks/*.sh`, `.claude/roles/*.md`, `.env*`, `.zshrc`. In CLI, hooks block this. In Co-work, you must self-enforce.
 - **No ADMIN_MODE**: Do not create `.claude/ADMIN_MODE`. Only Peterson can do this manually.
 - **No destructive ops**: No `rm -rf`, `git push --force`, `git reset --hard`, `chmod 777`, child Claude CLI processes.
-- **Commit after changes**: In Co-work, auto-commit hooks don't run. Run `git add -A && git commit -m "Co-work: <summary>"` after meaningful file edits.
+- **Never commit to this repo manually**: Hooks handle all commits. Manual local commits break `git pull --ff-only` auto-updates and silently freeze the machine on a stale version (this caused a 3-month divergence in Sep 2026). Save working files to `~/Desktop` or `~/Documents`, never inside this repo.
 - **Agent file sync**: If you edit `.claude/agents/*.md` in Co-work, the DB won't auto-update. Run the `sync-agents` agent to sync (invoking `agent-edit-monitor.sh` bare does nothing -- it requires hook stdin JSON).
 
 ## Hard Routing Overrides (ALL users, ALL session types)
