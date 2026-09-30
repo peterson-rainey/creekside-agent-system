@@ -299,7 +299,7 @@ Review ALL collected data and build an `issues_found` array. Flag these conditio
 Determine overall status using this exact logic (evaluate conditions in order — first match wins):
 
 - `critical` — ANY of: Supabase not connected (DB connectivity failed), CLAUDE.md missing, no hooks found at all, hooks present but not executable
-- `warning` — ANY of: search or keyword_search_all test failed, unknown contractor identity (name/email is "unknown"), 1-3 non-critical issues not covered by `critical`
+- `warning` — ANY of: search or keyword_search_all test failed, unknown contractor identity (name/email is "unknown"), `git_divergence.ahead > 0`, `git_divergence.behind > 50`, 1-3 non-critical issues not covered by `critical`
 - `healthy` — zero issues
 
 **Do NOT escalate to `critical` for:** search test failure alone, unknown identity alone, outdated repo, wrong branch, or missing user-role.conf on its own. These are `warning` conditions.
