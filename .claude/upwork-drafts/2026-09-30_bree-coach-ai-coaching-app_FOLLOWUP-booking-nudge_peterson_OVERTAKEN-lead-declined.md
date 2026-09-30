@@ -4,6 +4,18 @@ Date: 2026-09-30 Wednesday, confirmed via Postgres now() = 11:09 CT. Harness clo
 timestamps read Oct 1. Both are ahead. Postgres governs per the standing rule.
 Words: 61 | Em dashes: 0 | Questions: 1 | Links: none | Attachments: none | Price figures: none
 
+> # OVERTAKEN 2026-09-30 11:35 CT. DO NOT SEND. THE LEAD DECLINED.
+>
+> Roughly 26 minutes after this was drafted, Marina wrote:
+> *"Hi Peterson, we decided to go in a different direction. Thanks for your time."*
+>
+> **Whether this nudge was ever sent is NOT confirmable.** `upwork_conversations` is stale (synced
+> 2026-09-29T09:37Z, still 11 messages ending at the calendar link), so the room shows neither this nudge nor
+> her decline. Her wording reads as a decision on the whole opportunity rather than an answer to a booking
+> question, which points to it never going out, but that is inference, not proof.
+>
+> Either way the touch is moot. See the loss reply drafted the same day.
+
 ## WHY THIS TOUCH, AND WHY 2 DAYS IS NOT PUSHY
 Last message on the thread is Peterson's calendar link, **Mon 2026-09-28 11:39 AM Central**
 (`upwork_conversations` room `room_4c26e0b9624f42c03e536b8fe31097a7`, complete at 11 messages, verified 9/30).
