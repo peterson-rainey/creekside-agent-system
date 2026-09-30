@@ -289,6 +289,7 @@ Replace `<json_payload>` with the fully built JSON object. Double all single quo
 **Failure handling (MANDATORY):**
 
 - If the call errors, or returns a result but no uuid is present, do NOT proceed silently.
+- **Exception — rate limit:** If the error text contains "rate limited", this is NOT a failure. A diagnostic for this contractor was already saved within the last 5 minutes; tell the user their previous result is still current and to wait 5 minutes if they need a fresh save. Skip the error message below and proceed normally to Step 11.
 - Print explicitly: "ERROR: diagnostic could NOT be saved to the database. Error: [error text]"
 - Still print the full human-readable summary (Step 11) — the run data is not lost, it just wasn't persisted.
 
