@@ -30,12 +30,36 @@ Read the file `.claude/user-role.conf` in the project root. Extract:
 - `role` — should be "contractor"
 - `email` — the contractor's email
 
-If the file does not exist, record this as an issue and set `contractor_email` to "unknown" and `contractor_name` to "unknown".
+**If the file does not exist, OR if either `role` or `email` is empty/missing/`unknown`:**
 
-If the file exists, look up the contractor name:
+Ask the user before continuing:
+
+> "Your `.claude/user-role.conf` file is missing or has incomplete identity values. Please provide your name and email so the diagnostic can be saved correctly.
+> - What is your full name?
+> - What is your email address (your personal work email, not the shared ads@ account)?"
+
+Wait for the response. Use the values they provide as `contractor_name` and `contractor_email` throughout the run.
+
+After the run completes and the diagnostic is saved, offer to write a corrected file:
+
+> "Would you like me to write a corrected `.claude/user-role.conf` with these values? This will fix the identity issue for future runs. Just say yes to confirm."
+
+If they confirm, write the file with exactly these two lines (no others):
+```
+email=<their_email>
+role=contractor
+```
+
+Do NOT write the file without explicit user confirmation.
+
+If the user cannot or will not provide their name/email, use "unknown" for both and note this as a warning issue.
+
+If the file exists and both values are present and non-empty (and not the literal string "unknown"), proceed normally and look up the contractor name:
 ```sql
 SELECT name FROM system_users WHERE email = '<extracted_email>';
 ```
+
+If the DB lookup returns a name, use it as `contractor_name`. If no match, use the email local-part (everything before @) as a fallback name.
 ---
 
 ## Step 2: Check Git / Repo State
