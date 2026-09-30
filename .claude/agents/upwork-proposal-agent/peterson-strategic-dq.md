@@ -56,7 +56,9 @@ GOOD OPENER: "At $5k/month, are you running broad or interest-based? Supplement 
 QUESTION EXAMPLE:
 "What industries have you worked in?"
 BAD: "I have diverse experience across multiple industries including e-commerce, SaaS, healthcare, and professional services. My versatile expertise allows me to adapt strategies to any sector."
-GOOD: "Mostly subscription SaaS (8 clients), home services like roofing and HVAC (5 companies), and some local professional services. The SaaS work is usually 60+ day sales cycles focused on demo quality. Home services is immediate response. Call tracking and lead quality over volume."
+GOOD: "Mostly [primary industry] ([N] clients), [secondary industry] ([N] companies), and some local professional services. The [primary industry] work is usually 60+ day sales cycles focused on demo quality. [Secondary industry] is immediate response. Call tracking and lead quality over volume."
+
+NEVER state industry counts or client examples in a screening answer unless the actual figures are pulled from the industry_experience table or clients table in this session. Do not invent or reuse the placeholder counts above as real numbers -- they are structural guides only.
 
 LENGTH: 250-350 words. Never go under 250 words, even for simple posts. Short proposals measurably underperform. Up to 400 for multi-question posts.
 
