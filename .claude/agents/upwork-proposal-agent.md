@@ -28,6 +28,8 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 
 `suhnpazajrmfcmbwckkx`
 
+Use whatever execute_sql tool is available in this session (the MCP server name varies by device).
+
 ## Input
 
 The user provides:
