@@ -400,4 +400,4 @@ Use these remediation suggestions:
 | settings.json missing | Re-clone the repo or copy from a working setup |
 | user-role.conf missing | Create `.claude/user-role.conf` with `role=contractor` and `email=YOUR_PERSONAL_EMAIL` (not the shared ads@ email — use your own registered email) |
 | Supabase not connected | 1) Confirm you are signed into `ads@creeksidemarketingpros.com` at https://claude.ai (not your personal Claude account). 2) Fully quit Claude Code (Cmd+Q on Mac / close + quit tray on Windows) and reopen — MCPs only load at app startup. 3) If still broken after that, re-run the contractor installer. Do NOT attempt a manual MCP config — contractors inherit MCPs from the shared account, local config is not needed. |
-| search_all broken | Report to Peterson — this is a database function issue |
+| search_all / keyword_search_all broken | Report to Peterson — this is a database function issue, not a local setup problem |
