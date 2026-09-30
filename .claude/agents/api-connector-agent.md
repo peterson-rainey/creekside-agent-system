@@ -1,12 +1,6 @@
 ---
 name: api-connector-agent
 description: Universal API connector for contractors. Calls the api-proxy Supabase Edge Function to interact with third-party platforms (Klaviyo, Mailchimp, Shopify, GoHighLevel, HubSpot, SendGrid, ActiveCampaign, OpenAI Ads) using vault-stored keys without exposing raw credentials. Use when a contractor asks to pull data from or push data to any of these platforms for a client.
-tools:
-  - WebFetch
-  - mcp__claude_ai_Supabase__execute_sql
-  - Read
-  - Grep
-  - Glob
 model: sonnet
 ---
 
