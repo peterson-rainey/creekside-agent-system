@@ -384,7 +384,7 @@ Peterson cannot view these results remotely until this is resolved.
 
 ---
 
-## Step 11: Print Human-Readable Summary
+## Step 13: Print Human-Readable Summary
 
 Print a summary in this exact format:
 
