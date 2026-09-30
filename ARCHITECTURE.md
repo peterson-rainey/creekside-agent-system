@@ -151,6 +151,8 @@ Pipeline health alerts, user pipeline config, cache configuration and versioning
 
 Key tables: `pipeline_alerts`, `user_pipeline_config`, `cache_section_config`
 
+Contractor telemetry (added 2026-09-30 after the Queenie stale-environment incident): `machine_heartbeats` (one row per session start per machine, 10-min rate limit) and `contractor_diagnostics` (health-check results). Both are written ONLY through SECURITY DEFINER functions — contractor machines have no service-role key, so these are the zero-secret write paths. RLS enabled with no policies: anon can execute the functions but cannot read/update/delete the tables.
+
 ## 7. Key Database Functions
 
 ### Search
@@ -184,6 +186,8 @@ Key tables: `pipeline_alerts`, `user_pipeline_config`, `cache_section_config`
 - `validate_new_entry(type, name)` - prevent duplicate creation
 - `validate_new_knowledge(type, title, tags)` - prevent duplicate knowledge entries
 - `docs_refresh_full()` - refresh all documentation caches
+- `log_session_heartbeat(machine_label, ...)` - SECURITY DEFINER, anon-callable via PostgREST RPC. Zero-secret machine heartbeat write path (used by `session-heartbeat.sh`). Validates + rate-limits (10 min/machine) server-side; returns NULL when suppressed
+- `log_contractor_diagnostic(jsonb)` - SECURITY DEFINER. The ONLY way contractors can save health-check results: `contractor_query()` wraps SQL in a SELECT subquery so direct INSERTs are impossible, but `SELECT log_contractor_diagnostic(...)` passes through legally. Validates contractor_name, status enum, 50KB raw_output cap
 
 ### Maintenance
 - `auto_link_client_ids()` / `auto_link_*()` - link orphaned records to client IDs
@@ -230,6 +234,7 @@ Hooks are shell scripts that fire at specific lifecycle points. They enforce saf
 
 | Hook | Trigger | Purpose |
 |------|---------|---------|
+| `session-heartbeat.sh` | SessionStart | Zero-secret machine heartbeat to `machine_heartbeats` via anon-key RPC (curl only, no jq/secrets — works on contractor machines) |
 | `auto-pull.sh` | SessionStart | Git pull latest from GitHub |
 | `session-init.sh` | SessionStart | Identify user, load startup guide, symlink contractor skills |
 | `load-config.sh` | SessionStart | Verify DB connectivity, count active agents |
