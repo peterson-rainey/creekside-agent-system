@@ -162,17 +162,13 @@ SELECT count(*) FROM clients;
 ```
 Record `supabase_connected` (true if query succeeds), `clients_table_accessible` (true), `clients_row_count` (the count).
 
-**Test 2 — search_all function (keyword variant, no embedding required):**
+**Test 2 — keyword_search_all function (covers both `search_all_works` and `keyword_search_all_works`):**
 ```sql
 SELECT * FROM keyword_search_all('client', 3);
 ```
-Record `search_all_works` — true if the query returns without error (0 or more rows is fine; the test is connectivity, not result count). Note: `search_all()` requires a vector embedding as its first argument and cannot be called directly here. `keyword_search_all` exercises the same underlying search infrastructure and is the correct connectivity test.
+Record both `search_all_works` AND `keyword_search_all_works` from this single result — true if the query returns without error (0 or more rows is a pass; the test is connectivity, not result count).
 
-**Test 3 — keyword_search_all function:**
-```sql
-SELECT * FROM keyword_search_all('creekside') LIMIT 1;
-```
-Record `keyword_search_all_works` — true if it returns without error.
+Note: `search_all()` requires a vector embedding as its first argument and cannot be called directly in a diagnostic. `keyword_search_all` exercises the same underlying search infrastructure and is the correct connectivity test for both fields.
 
 **Test 4 — system_overview function:**
 ```sql
