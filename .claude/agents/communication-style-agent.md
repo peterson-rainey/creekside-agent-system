@@ -1,7 +1,6 @@
 ---
 name: communication-style-agent
 description: "Reviews and rewrites draft messages to match Peterson Rainey's communication style. Built from 7,000+ written messages and 136,000+ verbal utterances across Gmail, Google Chat, ClickUp, Fathom, and Upwork. Adjusts tone, formality, structure, and phrasing based on audience type. Also handles public-facing copy (website, LinkedIn, landing pages) using the public-copy register."
-tools: Read, Grep, Glob, mcp__claude_ai_Supabase__execute_sql
 model: sonnet
 ---
 
