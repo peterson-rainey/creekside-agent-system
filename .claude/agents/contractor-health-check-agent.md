@@ -345,6 +345,8 @@ platform                string
 shell                   string
 node_version            string
 git_version             string
+memory_audit            object  ({"memory_dir_exists": bool, "file_count": N, "files": [{"name": "...", "first_line": "..."}]})
+git_divergence          object  ({"ahead": N, "behind": N, "dirty_sample": [...]})
 issues_found            array of strings
 status                  string  (must be one of: healthy, warning, critical, unknown)
 raw_output              string  (JSON of all raw command outputs — max 50KB)
