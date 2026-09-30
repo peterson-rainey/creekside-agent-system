@@ -196,7 +196,80 @@ Record:
 
 ---
 
-## Step 9: Compile Issues List
+## Step 9: Memory Audit
+
+Determine the project's auto-memory directory. The slug is derived from the absolute project path by replacing every `/` with `-`. For example, `/Users/x/proj` becomes `-Users-x-proj`.
+
+```bash
+ls ~/.claude/projects/
+```
+
+Match the slug that corresponds to the current project path (run `pwd` to confirm the path if needed). Then check whether a `memory/` subdirectory exists:
+
+```bash
+ls ~/.claude/projects/<slug>/memory/ 2>/dev/null
+```
+
+If the directory exists, for each file found (including `MEMORY.md`), capture the filename and the first line of the file. Cap at 30 files.
+
+```bash
+head -1 ~/.claude/projects/<slug>/memory/<filename>
+```
+
+Record as `memory_audit`:
+
+```json
+{
+  "memory_dir_exists": true,
+  "file_count": N,
+  "files": [
+    {"name": "MEMORY.md", "first_line": "# Memory Index"},
+    {"name": "some-other-file.md", "first_line": "# ..."}
+  ]
+}
+```
+
+If the directory does not exist, record:
+
+```json
+{"memory_dir_exists": false, "file_count": 0, "files": []}
+```
+
+---
+
+## Step 10: Git Divergence Check
+
+Run `git fetch origin` first (best effort -- if network fails, skip fetch but continue with the remaining commands).
+
+```bash
+git fetch origin 2>/dev/null || true
+git rev-list --count origin/main..HEAD
+git rev-list --count HEAD..origin/main
+git status --porcelain | head -5
+```
+
+Record as `git_divergence`:
+
+```json
+{
+  "ahead": N,
+  "behind": N,
+  "dirty_sample": ["M .claude/agents/foo.md", "?? scratch.txt"]
+}
+```
+
+Where:
+- `ahead` = number of local commits NOT on `origin/main` (this is the red flag)
+- `behind` = number of commits on `origin/main` not yet on local
+- `dirty_sample` = lines from `git status --porcelain`, empty array if clean
+
+**If `ahead > 0`:** this machine has local commits that are NOT pushed to origin. Auto-pull's `--ff-only` will fail silently on every session, meaning the contractor never receives updates. Flag loudly in the summary.
+
+**If `behind > 50`:** the repo is severely out of date.
+
+---
+
+## Step 11: Compile Issues List
 
 Review ALL collected data and build an `issues_found` array. Flag these conditions:
 
