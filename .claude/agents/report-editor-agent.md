@@ -1,7 +1,6 @@
 ---
 name: report-editor-agent
 description: "Lets non-technical contractors edit client report files in the creekside-dashboard repo using plain language. Parses the request, looks up the client in reporting_clients, reads the custom TSX report file, applies the change, validates with tsc, and pushes to a preview branch so the contractor can review it before going live. Supports iterating on changes until the contractor is satisfied, then merges to production. Requires: client name, platform (google|meta), and a description of the change."
-tools: Read, Edit, Bash, mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables
 model: sonnet
 ---
 
