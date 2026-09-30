@@ -1,5 +1,5 @@
 # Upwork Follow-Up - Simone Sparks / AYA Earth Co (Shopify DTC body care, Alliston ON)
-Profile: Lindsey Bouffard | Type: followup (value touch, live-store observation) | Status: UNSENT | Drafted 2026-10-01
+Profile: Lindsey Bouffard | Type: followup (value touch, live-store observation) | Status: SENT (her reply answers its closing question) | Drafted 2026-09-30 (Postgres Central; harness clock showed 10-01, Manila)
 
 ## WHY THIS TOUCH EXISTS
 The 9/29 reply was SENT and is UNANSWERED (~3 days). A plain follow-up at 3 days would be TOO EARLY:
