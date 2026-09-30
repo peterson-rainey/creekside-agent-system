@@ -1,7 +1,7 @@
 # Upwork nurture: Adam Haile (Scioto Mile Capital), Lindsey thread, touch 2
 
-- **Profile:** Lindsey | **Type:** nurture, pre-call, touch 2 | **Drafted:** 2026-09-23 ~08:20 Central (Postgres-verified) | **Status:** UNSENT
-- **RECOMMENDED SEND: hold until Mon 2026-09-28 at the earliest.** Touch 1 went out Mon 9/21 ~10:34 AM Central and is still unanswered. Touch 2 today would land at ~46 hours. Both sdr-agent and qc-reviewer-agent independently called the 2-day gap a nag; QC's ruling (f) was "hold until roughly 9/28 or later". The `upwork_leads` due_date of 2026-09-23 09:00 UTC looks auto-set (+2 days from last contact), matching the ClickBot nudge pattern in the Samuel room, not a considered cadence decision.
+- **Profile:** Lindsey | **Type:** nurture, pre-call, touch 2 | **Drafted:** 2026-09-23 ~08:20 Central (Postgres-verified) | **Status:** RESPONSE A SENT 2026-09-23 ~08:43 Central (diff-confirmed verbatim against the live thread and `upwork_conversations` lindsey room). RESPONSE B never sent; its angle was rebuilt as touch 3.
+- **HOLD WAS OVERRIDDEN.** Response A went out 9/23 ~08:43 CT, ~20 min after delivery. Original note follows for the record: hold until Mon 2026-09-28 at the earliest. Touch 1 went out Mon 9/21 ~10:34 AM Central and is still unanswered. Touch 2 today would land at ~46 hours. Both sdr-agent and qc-reviewer-agent independently called the 2-day gap a nag; QC's ruling (f) was "hold until roughly 9/28 or later". The `upwork_leads` due_date of 2026-09-23 09:00 UTC looks auto-set (+2 days from last contact), matching the ClickBot nudge pattern in the Samuel room, not a considered cadence decision.
 - **QC:** sdr-agent drafted both. qc-reviewer-agent: **A = PASS, ship as-is. B = FAIL**, two surgical defects, both fixed below and reflected in the body.
 
 ## Thread state (verified 2026-09-23)
@@ -18,7 +18,7 @@ Samuel/General bid the same job 2026-07-24 @ $90/hr (`upwork_jobs` 5502fc94, she
 
 Ban list for this thread: spend and any spend ask, "experiment", expansion/scaling/new industries/segments, campaigns vs ad sets, Jay/Scott/Keith/partner/profile video/any link, **any mortgage mention** (even though a mortgage account is in Lindsey's own 7/27 proposal), CAPI/CRM-feedback/lookalike-seed/match-rate, "co-founder", "small specialist team". Also no re-ask of Lindsey's own 7/28 tracking question, and no Creekside/"our team"/"we"/agency framing. QC diffed both drafts against the Samuel room and found **no leak**.
 
-## RESPONSE A: RECOMMENDED (test-dilution observation, QC PASS as written)
+## RESPONSE A: SENT 2026-09-23 (test-dilution observation) — angle is SPENT
 
 Hi Adam, I asked whether the Meta lead gen role is still open or already filled. If it's filled, the first round of tests should be due for a verdict by now. That's where plans like this tend to stall.
 
@@ -29,7 +29,7 @@ Qualified leads are usually the scarcest thing in lead gen, and running a lot of
 - This is the body banked as RESPONSE 2 on 9/21, with the stale July-invite bridge rewritten to bridge from touch 1. sdr-agent also cut "from your 30-day plan" (parroting) and "and segments" (ban-list echo) from the banked version. QC confirmed both cuts and ruled the surviving "weekly report" phrase fair use, not parroting.
 - **QC ruling (a):** closing on a statement is acceptable, not a defect. Re-asking touch 1's 2-day-old unanswered question would be a nag; any other ask becomes homework.
 
-## RESPONSE B: ALTERNATE (lead-quality decay, QC fixes applied)
+## RESPONSE B: NOT SENT — rebuilt as touch 3 in `2026-09-30_adam-haile_..._nurture-touch3_lindsey_UNSENT.md` (bridge moved to touch 2, QC round-2 fixes applied). Do not send the version below.
 
 Hi Adam, I asked whether you filled the Meta lead gen role. Here's the failure I'd watch for on any Meta lead gen account:
 
