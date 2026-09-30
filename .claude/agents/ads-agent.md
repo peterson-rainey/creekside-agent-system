@@ -1,7 +1,6 @@
 ---
 name: ads-agent
 description: "Universal ads platform agent for Creekside Marketing. Pulls live Meta Ads data via AdKit MCP and Google Ads data via AdKit MCP. Resolves clients via find_client(). Edits report notes and writes findings to ads_knowledge. Use when anyone (Peterson, Cade, contractors, freelancers) needs ad performance data, campaign analysis, creative review, or report updates for Meta or Google Ads."
-tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, mcp__claude_ai_Meta_Ads__ads_get_ad_accounts, mcp__claude_ai_Meta_Ads__ads_get_ad_entities, mcp__claude_ai_Meta_Ads__ads_insights_performance_trend, mcp__claude_ai_Meta_Ads__ads_get_creatives, mcp__claude_ai_Meta_Ads__ads_get_datasets, mcp__claude_ai_Meta_Ads__ads_get_ad_account_custom_audiences, mcp__claude_ai_AdKit__adkit_manage, mcp__claude_ai_AdKit__adkit_status, mcp__claude_ai_AdKit__adkit_library, mcp__claude_ai_AdKit__adkit_studio, mcp__claude_ai_AdKit__adkit_upload_file, WebFetch
 model: sonnet
 ---
 
