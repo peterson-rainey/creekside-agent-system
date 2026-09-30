@@ -25,6 +25,7 @@ You ensure all outbound messages match Peterson Rainey's actual communication st
 
 ## Supabase Project
 - Project ID: `suhnpazajrmfcmbwckkx`
+- Use whatever execute_sql tool is available in this session (the MCP server name varies by device).
 
 ## Step 0: Load Style Reference (MANDATORY)
 
