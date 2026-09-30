@@ -38,3 +38,17 @@ There's a quick video on my profile that shows how I run accounts like this.
 - expert-review: lookalike mechanics fixed (small source list, geo = delivery filter), post-selection rule added, US spelling, budget bracket raised. Recheck not run.
 - No results-attached line: nothing attachable verified (Drive connector disconnected; Laleh PDF do-not-attach; Fusion/Tooth Co have no PDF).
 - 331 words / 1,925 chars.
+
+## SCREENING ANSWERS (QC applied: fixes 1-5 + Answer 2 plainer version; recheck not run)
+
+**1. Describe your recent experience with similar projects**
+Right now I run Meta for a cosmetic dentistry practice spending just under $100K a month, promoting veneers and smile makeovers through Instagram message campaigns. It's the closest match to your setup: an expensive, considered purchase.
+
+I also ran lead forms for a dental implant practice with cases in the upper $30Ks. Over 90 days through mid-July it brought in 2,558 leads at $25.31 each. We added qualifying questions to those forms and accepted a higher cost per lead to keep quality up.
+
+On a local practice in August, the client told me leads had dropped off over the previous few days. I could see over 50 people had filled out forms, so I pointed them to where the leads were sitting in Business Manager, and the client said they'd have someone call them all right away.
+
+None of these are landscaping, but lead handling matters even more at your price point, where one missed inquiry can cost you a $100K+ project.
+
+**2. Please list any certifications related to this project**
+I don't hold any certifications. The account work above is the better measure, and I'm happy to walk you through how those campaigns are structured on a call.
