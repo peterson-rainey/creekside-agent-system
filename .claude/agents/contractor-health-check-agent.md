@@ -375,8 +375,14 @@ Git: {git_version}
   No issues found. Environment is healthy.
 
 ============================================
-Results saved to contractor_diagnostics table.
+{If save succeeded:}
+Results saved to contractor_diagnostics (id: <uuid>).
 Peterson can view these results remotely.
+
+{If save failed:}
+WARNING: Results could NOT be saved to contractor_diagnostics.
+Error: <error text>
+Peterson cannot view these results remotely until this is resolved.
 ============================================
 ```
 
