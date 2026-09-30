@@ -438,6 +438,22 @@ Shell: {shell}
 Node: {node_version}
 Git: {git_version}
 
+--- Memory Audit ---
+[PASS] or [WARN] Memory dir: {exists or not found}
+{If exists:} {count} file(s) found
+{List each file as:}  - {filename}: {first_line}
+
+--- Git Divergence ---
+[PASS] or [WARN] Ahead of origin/main: {N} commit(s)
+[PASS] or [WARN] Behind origin/main: {N} commit(s)
+{If ahead > 0:}
+  WARNING: this machine has {N} local commits not on origin/main.
+  Auto-update is silently failing. Tell Peterson.
+{If behind > 50:}
+  WARNING: repo is {N} commits behind origin/main. Auto-pull may be failing.
+{If dirty_sample is non-empty:}
+  Dirty files: {dirty_sample lines}
+
 ============================================
   ISSUES ({count})
 ============================================{For each issue, print:}
