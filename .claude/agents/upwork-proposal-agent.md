@@ -236,7 +236,7 @@ Validation:
 
 All lines must read PASS before proceeding to Step 4. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
 
-### Step 5: Log to Database
+### Step 4: Log to Database
 
 ```sql
 INSERT INTO upwork_proposal_logs (mode, job_description, generated_proposal, fit_flags)
