@@ -244,7 +244,7 @@ VALUES (
   '{mode}',
   '{job_description}',
   '{generated_proposal}',
-  '{fit_flags_json}'::jsonb
+  '[]'::jsonb
 );
 ```
 
