@@ -177,8 +177,8 @@ python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-propo
 # python3 "...validate_proposal.py" "$TMPFILE" --style strategic_exp
 # Peterson v2:
 # python3 "...validate_proposal.py" "$TMPFILE" --style v2
-# Lindsey:
-# python3 "...validate_proposal.py" "$TMPFILE" --profile lindsey --style lindsey_default
+# Lindsey (use the assigned variant as --style):
+# python3 "...validate_proposal.py" "$TMPFILE" --profile lindsey --style lindsey_short_ecom_a
 EXIT_CODE=$?
 rm -f "$TMPFILE"
 ```
