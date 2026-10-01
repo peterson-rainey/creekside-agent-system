@@ -220,7 +220,7 @@ Perform each check by re-reading the final proposal text for the relevant patter
 - Word count: Count the words in the final proposal and apply the word-count check defined in the style file. The check must state the actual counted number, the applicable limit or range, and PASS or FAIL. If over cap, trim and re-run all checks. If under minimum, expand and re-run all checks.
 - Forbidden words and phrases (required whenever the script did NOT run): Scan the final text for the WARN-tier lists above -- forbidden words, banned phrases, fluff openers, formal transitions, and (lindsey profile only) Lindsey persona phrases. Replace any hit with plain language. When the script DID run, resolve every WARN it reported instead.
 
-**Validation checklist (required output):** After completing all checks, include the following block in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself). Fill in each line with the actual result:
+**Validation checklist (required output):** After completing all checks, include the following block in the non-proposal section of your response (NEVER inside the proposal text itself). Fill in each line with the actual result:
 
 Validation:
 - Validator: [PASS (run N of 3, exit 0) -- copy the actual verdict line from the script output here. Self-asserting PASS without a script run is prohibited.]
@@ -231,13 +231,10 @@ Validation:
 - Subject line scan: [PASS / FAIL]
 - Sign-off scan: [PASS / FAIL]
 - Placeholder scan: [PASS / FAIL]
-- Below-minimum budget scan: [PASS / FAIL]
 - Forbidden words/phrases scan: [PASS / FAIL]
-- Agency disclosure: [PASS / FAIL / N/A -- no flag requiring disclosure]
-- Number/math sanity check: [PASS / FAIL / N/A -- no figures in proposal]
 - Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
 
-All lines must read PASS before proceeding to Step 5. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
+All lines must read PASS before proceeding to Step 4. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
 
 ### Step 5: Log to Database
 
