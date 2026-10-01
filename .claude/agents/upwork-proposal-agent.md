@@ -186,7 +186,7 @@ Maximum 3 total validator runs. If still not PASS after 3 attempts, present the 
 
 This script is deterministic. Do NOT skip it, override its verdict, or self-validate instead. The script is the authority on BLOCK/WARN patterns.
 
-**The proposal presented in Step 6 MUST be byte-identical to the exact text that produced the final PASS verdict.** If any edit is made after a PASS -- for any reason, including cleanup, rephrasing, or manual checks -- the validator must be re-run before output. Self-asserting PASS without having run the script is prohibited.
+**The proposal presented in Step 5 MUST be byte-identical to the exact text that produced the final PASS verdict.** If any edit is made after a PASS -- for any reason, including cleanup, rephrasing, or manual checks -- the validator must be re-run before output. Self-asserting PASS without having run the script is prohibited.
 
 **What the script catches:**
 
