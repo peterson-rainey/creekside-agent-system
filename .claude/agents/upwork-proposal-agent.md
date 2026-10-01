@@ -1,6 +1,6 @@
 ---
 name: upwork-proposal-agent
-description: "Generates Upwork proposals for Peterson Rainey or Lindsey (Creekside Marketing). Accepts a job description, optional profile (peterson/lindsey), and optional proposal style. Runs fit screening, matches case studies from the database, then generates a ready-to-paste proposal."
+description: "Generates Upwork proposals for Peterson Rainey or Lindsey (Creekside Marketing). Accepts a job description, optional profile (peterson/lindsey), and optional proposal style. Matches case studies from the database, then generates a ready-to-paste proposal. Fit check is a separate agent (proposal-fit-check-agent)."
 model: sonnet
 status: active
 ---
