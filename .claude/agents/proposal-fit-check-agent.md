@@ -7,7 +7,7 @@ tools:
   - Grep
   - Glob
   - mcp__claude_ai_Supabase__execute_sql
-status: draft
+status: active
 ---
 
 # Proposal Fit Check Agent
