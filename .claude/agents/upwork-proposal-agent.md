@@ -211,18 +211,14 @@ WARN (reported but NOT auto-stripped -- agent decides):
 - Formal transitions (report-only, sentence-start capitalized): "Additionally,", "Furthermore,", "Moreover,", "That said,"
 - Lindsey persona violations (report-only, --profile lindsey only): "our team", "my team", "Creekside", "our agency", "as an agency"
 
-**Manual checks the script does not cover** (still required before Step 5):
+**Manual checks the script does not cover** (still required before Step 4):
 
-Perform each check by re-reading the final proposal text for the relevant patterns AFTER the script step. If any edit is made after a check, re-run all checks. Never proceed to Step 5 alongside a failed check.
+Perform each check by re-reading the final proposal text for the relevant patterns AFTER the script step. If any edit is made after a check, re-run all checks. Never proceed to Step 4 alongside a failed check.
 
-- Below-minimum ad budget endorsement: Does the proposal validate, endorse, or accept any client-stated ad budget below $3,000/month per platform? This includes direct endorsements, feasibility claims ("it can work," "similar budgets," "tight but doable"), and citing a sub-$3k case study as evidence a sub-minimum budget is viable. If yes, rewrite: acknowledge the stated budget, state that meaningful results start at $3,000/month, frame it as a constraint not a plan.
-- Performance or results guarantees: Any language promising outcomes, guaranteeing ROI, offering pay-for-performance, commission, or rev-share. Remove entirely.
 - Subject line or email headers: Any "Subject:" line or email-style header. Remove entirely.
 - Missing sign-off (Peterson proposals): Proposal must end with two blank lines followed by "Peterson". If absent, add it.
 - Word count: Count the words in the final proposal and apply the word-count check defined in the style file. The check must state the actual counted number, the applicable limit or range, and PASS or FAIL. If over cap, trim and re-run all checks. If under minimum, expand and re-run all checks.
 - Forbidden words and phrases (required whenever the script did NOT run): Scan the final text for the WARN-tier lists above -- forbidden words, banned phrases, fluff openers, formal transitions, and (lindsey profile only) Lindsey persona phrases. Replace any hit with plain language. When the script DID run, resolve every WARN it reported instead.
-- Agency disclosure: If the fit check raised the FULL-TIME EMPLOYEE ROLE flag (or any fit rule that mandates disclosure), the proposal MUST contain an explicit sentence disclosing the agency/contractor model per fit-check.md rule 3. If the flag fired and the sentence is missing, add it and re-run all checks. If no such flag fired, this check is N/A.
-- Number/math sanity check: Identify every number in the final proposal: dollar figures, percentages, ROAS, lead counts, timeframes, budget recommendations. For each number: (a) verify any arithmetic implied by the surrounding sentence actually holds -- a stated CPA must equal spend divided by leads, percentage improvements must be consistent with the before/after figures cited, per-platform budgets must sum to any stated total; (b) verify the figure traces to a real source available in this run -- the job description, the matched case study data from Step 1, or the style/context files. A number with no traceable source or with arithmetic that does not hold is a FAIL: correct it or remove it, then re-run all checks.
 
 **Validation checklist (required output):** After completing all checks, include the following block in the non-proposal section of your response (alongside fit check results -- NEVER inside the proposal text itself). Fill in each line with the actual result:
 
