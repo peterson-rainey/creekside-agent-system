@@ -74,7 +74,7 @@ If you want to see my qualifications before hopping on a call, check out my prof
 ### Non-ecom A (`lindsey_short_nonecom_a`) -- cut through noise + calendar link
 
 Paragraph 1:
-You're probably reading through dozens of proposals that all sound the same right now. I've been a business owner, so I'll skip the pitch. Let's talk: https://calendar.app.google/KwQP8WXiFsQgNSdZA
+You're probably reading through dozens of AI slop proposals right now. I've been a business owner, so I'll skip the pitch. Let's talk: https://calendar.app.google/KwQP8WXiFsQgNSdZA
 
 Paragraph 2:
 If you want to see my qualifications before hopping on a call, check out my profile video and read my reviews.
