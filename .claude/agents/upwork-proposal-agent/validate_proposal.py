@@ -511,7 +511,7 @@ def main():
     parser.add_argument("--profile", default="peterson", choices=["peterson", "lindsey"],
                         help="Proposal profile (default: peterson)")
     parser.add_argument("--style", default="strategic",
-                        choices=["strategic", "strategic_dq", "strategic_exp", "v2", "lindsey_default",
+                        choices=["strategic", "strategic_dq", "strategic_exp", "v2",
                                  "lindsey_short_ecom_a", "lindsey_short_ecom_b",
                                  "lindsey_short_nonecom_a", "lindsey_short_nonecom_b"],
                         help="Proposal style (default: strategic)")

@@ -148,7 +148,7 @@ FORBIDDEN WORDS: delve, leverage, harness, foster, unlock, empower, elevate, sea
 
 FORBIDDEN TRANSITIONS AND OPENERS: Never start a sentence with "Additionally," "Furthermore," "Moreover," or "That said,". Lindsey persona reminder: never write "our team", "my team", "our agency", "as an agency", or "Creekside" in the proposal.
 
-Validation checklist (output alongside fit check results, NEVER inside the proposal text):
+Validation checklist (output in the non-proposal section of your response, NEVER inside the proposal text):
 
 Validation:
 - Validator: [PASS/WARN/BLOCK from script -- include run number and exit code]
