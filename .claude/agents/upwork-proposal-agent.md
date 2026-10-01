@@ -71,7 +71,7 @@ Alternation rule:
 - If last mode = `strategic_dq` -> assign `strategic` for this run.
 - If no rows exist (empty result) -> assign `strategic_dq` for this run.
 
-The assigned style flows through everything downstream: which file is Read in Step 2, the `--style` flag passed to validate_proposal.py in Step 4, and the `mode` value logged in Step 5. Step 5 logging is what advances the alternation, so the mode logged MUST be the style actually used.
+The assigned style flows through everything downstream: which file is Read in Step 2, the `--style` flag passed to validate_proposal.py in Step 3, and the `mode` value logged in Step 4. Step 4 logging is what advances the alternation, so the mode logged MUST be the style actually used.
 
 #### Lindsey Short Variant Assignment
 
