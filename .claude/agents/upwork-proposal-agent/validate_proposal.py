@@ -138,8 +138,10 @@ def check_report_only_warns(text, profile="peterson", style="strategic"):
                             "strategic_dq style requires a diagnostic question in the opening"))
 
     # 0b. Opens with "I" -- proposals should never start with the word "I".
+    # Skip for lindsey_short styles: e-com variants intentionally open with "I built..."
+    is_lindsey_short = style.startswith("lindsey_short_")
     first_line = next((ln for ln in text.splitlines() if ln.strip()), "")
-    if re.match(r'^I\b', first_line.strip()):
+    if not is_lindsey_short and re.match(r'^I\b', first_line.strip()):
         issues.append(("opens_with_I",
                         "proposal opens with 'I' -- open with a diagnostic question or their business"))
 
@@ -509,7 +511,9 @@ def main():
     parser.add_argument("--profile", default="peterson", choices=["peterson", "lindsey"],
                         help="Proposal profile (default: peterson)")
     parser.add_argument("--style", default="strategic",
-                        choices=["strategic", "strategic_dq", "strategic_exp", "v2", "lindsey_default"],
+                        choices=["strategic", "strategic_dq", "strategic_exp", "v2", "lindsey_default",
+                                 "lindsey_short_ecom_a", "lindsey_short_ecom_b",
+                                 "lindsey_short_nonecom_a", "lindsey_short_nonecom_b"],
                         help="Proposal style (default: strategic)")
     args = parser.parse_args()
 
