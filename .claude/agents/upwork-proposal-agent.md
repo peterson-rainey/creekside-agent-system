@@ -144,19 +144,7 @@ Read the file, then generate the proposal following its rules plus the Formattin
 
 Include the case study enrichment from Step 1 if applicable. If profile is `lindsey`, apply the Lindsey Case Study Override from `lindsey.md` to re-rank results before using them.
 
-Generate the proposal FIRST, before performing the fit check. The fit check must not influence the proposal content.
-
-### Step 3: Fit Check
-
-After the proposal is fully generated, Read the fit check rules file:
-
-`fit-check.md`
-
-DO NOT read this file before Step 2 is complete. The fit check must not influence the proposal.
-
-Apply the rules from that file to analyze the job description for red and yellow flags. If the profile is Lindsey, also apply the Lindsey overrides at the bottom of that file. This is a separate analysis that must not retroactively change the proposal generated in Step 2.
-
-### Step 4: Validate Output (loop until PASS)
+### Step 3: Validate Output (loop until PASS)
 
 Run the deterministic validation script. This step is mandatory. Output is pasted directly into Upwork with no human review. Loop until the validator returns PASS.
 
