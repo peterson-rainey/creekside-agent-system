@@ -21,7 +21,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
   peterson-strategic-exp.md                                # Peterson: Strategic + Experience style
   peterson-v2.md                                           # Peterson: V2 Full System style
   lindsey.md                                               # Lindsey: profile, identity, style
-  fit-check.md                                             # Fit check rules (loaded AFTER proposal)
+  fit-check.md                                             # Fit check rules (used by proposal-fit-check-agent)
 ```
 
 ## Supabase Project
