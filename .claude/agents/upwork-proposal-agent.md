@@ -49,9 +49,13 @@ If the user does not specify a profile, default to `peterson`. If the user does 
 
 All paths are: `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/`
 
-### Step 0: Variant Assignment (Peterson A/B test)
+### Step 0: Variant Assignment
 
-**Applies only when:** profile = `peterson` AND the user did NOT explicitly specify a style. Skip this step entirely if profile is `lindsey` or if the user named a style.
+Skip this step entirely if the user explicitly specifies a style. The user's explicit style overrides all A/B assignment logic.
+
+#### Peterson A/B test
+
+**Applies when:** profile = `peterson` AND the user did NOT explicitly specify a style.
 
 Query the most recent Peterson A/B log entry to determine which variant to use next:
 
@@ -69,7 +73,40 @@ Alternation rule:
 
 The assigned style flows through everything downstream: which file is Read in Step 2, the `--style` flag passed to validate_proposal.py in Step 4, and the `mode` value logged in Step 5. Step 5 logging is what advances the alternation, so the mode logged MUST be the style actually used.
 
-If the user explicitly specifies any style, that overrides the A/B assignment entirely -- do not run this query.
+#### Lindsey Short Variant Assignment
+
+**Applies when:** profile = `lindsey` AND the user did NOT explicitly specify a style.
+
+**1. Detect job type** from the job description (case-insensitive keyword scan):
+
+E-com keywords: e-commerce, ecommerce, e-com, ecom, Shopify, WooCommerce, DTC, direct-to-consumer, online store, product sales, Magento, BigCommerce, online retail, dropshipping, product-based, Etsy, Amazon seller, online shop
+
+If ANY keyword is present: `job_type = ecom`. Otherwise: `job_type = nonecom`.
+
+**2. Query the rotation** for the detected job type:
+
+E-com rotation:
+```sql
+SELECT mode FROM upwork_proposal_logs
+WHERE mode IN ('lindsey_short_ecom_a', 'lindsey_short_ecom_b')
+ORDER BY created_at DESC
+LIMIT 1;
+```
+
+Non-ecom rotation:
+```sql
+SELECT mode FROM upwork_proposal_logs
+WHERE mode IN ('lindsey_short_nonecom_a', 'lindsey_short_nonecom_b')
+ORDER BY created_at DESC
+LIMIT 1;
+```
+
+**3. Alternation rule:**
+- Last mode was `_a` -> assign `_b` for this run.
+- Last mode was `_b` -> assign `_a` for this run.
+- No rows exist (empty result) -> assign `_a` for this run.
+
+The assigned variant flows through Step 2 (which variant template to use from `lindsey.md`), Step 4 (the `--style` flag), and Step 5 (the `mode` value logged). Each job type's rotation advances independently.
 
 ### Step 1: Gather Case Study Context
 
