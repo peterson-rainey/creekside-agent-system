@@ -135,7 +135,10 @@ Based on the profile and style, Read ONLY the relevant file:
 | `peterson` | `strategic_dq` | `peterson-strategic-dq.md` |
 | `peterson` | `strategic_exp` | `peterson-strategic-exp.md` |
 | `peterson` | `v2` | `peterson-v2.md` |
-| `lindsey` | `lindsey_default` | `lindsey.md` |
+| `lindsey` | `lindsey_short_ecom_a` | `lindsey.md` |
+| `lindsey` | `lindsey_short_ecom_b` | `lindsey.md` |
+| `lindsey` | `lindsey_short_nonecom_a` | `lindsey.md` |
+| `lindsey` | `lindsey_short_nonecom_b` | `lindsey.md` |
 
 Read the file, then generate the proposal following its rules plus the Formatting Rules and Budget Rules below. If profile is `peterson`, also apply the Peterson Identity Rules below. If profile is `lindsey`, the identity rules are in `lindsey.md`.
 
