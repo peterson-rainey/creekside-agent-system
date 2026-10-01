@@ -106,7 +106,7 @@ LIMIT 1;
 - Last mode was `_b` -> assign `_a` for this run.
 - No rows exist (empty result) -> assign `_a` for this run.
 
-The assigned variant flows through Step 2 (which variant template to use from `lindsey.md`), Step 4 (the `--style` flag), and Step 5 (the `mode` value logged). Each job type's rotation advances independently.
+The assigned variant flows through Step 2 (which variant template to use from `lindsey.md`), Step 3 (the `--style` flag), and Step 4 (the `mode` value logged). Each job type's rotation advances independently.
 
 ### Step 1: Gather Case Study Context
 
