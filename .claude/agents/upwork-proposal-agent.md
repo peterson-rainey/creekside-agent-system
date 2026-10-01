@@ -204,7 +204,7 @@ WARN (auto-fixed by script):
 WARN (reported but NOT auto-stripped -- agent decides):
 - Diagnostic question missing (strategic_dq style only): first 200 chars must contain a "?" -- the diagnostic question opener
 - Opens with "I": proposal must not start with the word "I"
-- Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 5.
+- Bullet lists: flagged because bullets are allowed ONLY when the job post itself uses them. The script cannot see the JD. If the JD used bullets, keep them in the proposal. If not, remove them before Step 4.
 - Forbidden words (report-only): delve, leverage, harness, foster, empower, elevate, seamlessly, robust, pivotal, comprehensive, cutting-edge, game-changing, transformative, unlock
 - Banned phrases (report-only): "feel free to", "moving forward", "I'd be happy to" / "Id be happy to"
 - Fluff openers (report-only, START of proposal only): "Good question", "Great question", "Thanks for the detail", "Quick question", "One question", "Before anything"
