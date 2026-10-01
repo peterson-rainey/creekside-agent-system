@@ -151,7 +151,7 @@ Pipeline health alerts, user pipeline config, cache configuration and versioning
 
 Key tables: `pipeline_alerts`, `user_pipeline_config`, `cache_section_config`
 
-Contractor telemetry (added 2026-09-30 after the Queenie stale-environment incident): `machine_heartbeats` (one row per session start per machine, 10-min rate limit) and `contractor_diagnostics` (health-check results). Both are written ONLY through SECURITY DEFINER functions — contractor machines have no service-role key, so these are the zero-secret write paths. RLS enabled with no policies: anon can execute the functions but cannot read/update/delete the tables.
+Contractor telemetry (added 2026-09-30 after the Queenie stale-environment incident): `machine_heartbeats` (one row per session start per machine, 10-min rate limit) and `contractor_diagnostics` (health-check results). Both are written ONLY through SECURITY DEFINER functions — contractor machines have no service-role key, so these are the zero-secret write paths. RLS enabled with no policies: anon can execute the functions but cannot read/update/delete the tables. Fleet monitoring (added 2026-10-01): the Railway `machine-staleness-monitor` agent (ai_dispatcher, weekdays 13:15 UTC) reads `machine_heartbeats` and emails Peterson only when a machine is >3 days behind the fleet's newest commit, off `main`, dark for 7+ days (contractor), or an active `system_users` row has no heartbeat at all; the local daily-status-brief runs the same checks as a second, Mac-dependent layer.
 
 ## 7. Key Database Functions
 
@@ -239,7 +239,7 @@ Hooks are shell scripts that fire at specific lifecycle points. They enforce saf
 | `session-init.sh` | SessionStart | Identify user, load startup guide, symlink contractor skills |
 | `load-config.sh` | SessionStart | Verify DB connectivity, count active agents |
 | `block-protected-files.sh` | PreToolUse | Block edits to CLAUDE.md, hooks, settings without ADMIN_MODE |
-| `block-destructive-ops.sh` | PreToolUse | Block DROP, TRUNCATE, DELETE without WHERE, rm -rf, force push |
+| `block-destructive-ops.sh` | PreToolUse | Block DROP, TRUNCATE, DELETE without WHERE, rm -rf, force push. Since 2026-10-01 also blocks manual `git add`/`git commit` inside this repo (local commits break ff-only auto-pull -- the Queenie divergence); other repos and ADMIN_MODE unaffected |
 | `enforce-contractor-scope.sh` | PreToolUse | Block contractor writes to system tables |
 | `killswitch-check.sh` | PreToolUse | Freeze all ops if KILLSWITCH.md exists |
 | `agent-edit-monitor.sh` | PostToolUse | Auto-commit agent/skill file edits, push to GitHub, sync prompt to DB |
