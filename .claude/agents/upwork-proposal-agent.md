@@ -139,8 +139,8 @@ Read ONLY the relevant file:
 
 | Profile | Style | Read this file | Notes |
 |---------|-------|---------------|-------|
-| `peterson` | `strategic` | `peterson-strategic.md` | Arm A (A/B rotation) |
-| `peterson` | `strategic_dq` | `peterson-strategic-dq.md` | User-specifiable only, not in A/B rotation |
+| `peterson` | `strategic` | `peterson-strategic.md` | Default |
+| `peterson` | `strategic_dq` | `peterson-strategic-dq.md` | User-specifiable only |
 | `peterson` | `strategic_exp` | `peterson-strategic-exp.md` | User-specifiable only |
 | `peterson` | `v2` | `peterson-v2.md` | User-specifiable only |
 | `lindsey` | `lindsey_short_ecom_a` | `lindsey.md` | Arm A ecom |
