@@ -191,6 +191,20 @@ Read the file, then generate the proposal following its rules plus the Formattin
 
 Include the case study enrichment from Step 1 if applicable. If profile is `lindsey`, apply the Lindsey Case Study Override from `lindsey.md` to re-rank results before using them.
 
+**DIRECT PRICING QUESTIONS (reminder -- enforced at checklist):** If the job description or any screening question asks about pricing, rates, fees, or hourly rate, the proposal body or the relevant screening answer MUST contain an explicit pricing-handling sentence. Acceptable: defer pricing to a discovery call, or state Creekside works on a flat monthly retainer. Never quote an hourly rate. Never leave a direct pricing question unanswered. See Budget Rules for the full rule. This is enforced by a mandatory checklist line in Step 3.
+
+**GENERATION ORDER when screening questions exist (mandatory -- structural, not advisory):**
+
+When the job posting includes screening questions or additional Q&A fields, execute these three sub-steps in order BEFORE producing any final output:
+
+1. **Draft all screening answers first.** Write every screening answer completely. Record every example, number, client reference, case study citation, specific figure, and framing angle used across all answers.
+
+2. **Write the proposal body second.** Every example, number, client reference, specific figure, and framing angle already used in ANY screening answer is now OFF-LIMITS for the proposal body. The body must use different material -- different client examples, different results, different angles. If the only available material was already used in the answers, describe the same domain from a different angle (different insight, different mechanism, different client type) rather than repeating it.
+
+3. **Run an explicit dedup pass.** After both are drafted, compare them side by side. If any example, number, or specific point appears in both, cut it from the weaker side (usually the body, since answers were written first). Replace the cut content with fresh material or remove it. This pass is required regardless of how confident you are that the material is distinct.
+
+When no screening questions exist, skip this ordering constraint and write the proposal body directly.
+
 ### Step 3: Validate Output (loop until PASS)
 
 **If style = `strategic_legacy`: this step is handled inside the legacy pipeline (step 4 of legacy-2026-07-08/agent-prompt.md). Skip this step and go to Step 4 (Log to Database) when the legacy pipeline has finished its own validation.**
