@@ -16,8 +16,8 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 ```
 .claude/agents/upwork-proposal-agent.md                    # This file (core: routing, shared rules, flow)
 .claude/agents/upwork-proposal-agent/
-  peterson-strategic.md                                    # Peterson: Strategic style (Arm A -- current)
-  peterson-strategic-dq.md                                 # Peterson: Strategic + Diagnostic Question style (user-specifiable, not in A/B rotation)
+  peterson-strategic.md                                    # Peterson: Strategic style (default)
+  peterson-strategic-dq.md                                 # Peterson: Strategic + Diagnostic Question style (user-specifiable)
   peterson-strategic-exp.md                                # Peterson: Strategic + Experience style
   peterson-v2.md                                           # Peterson: V2 Full System style
   lindsey.md                                               # Lindsey: profile, identity, style
