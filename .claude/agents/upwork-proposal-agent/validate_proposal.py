@@ -465,6 +465,52 @@ def check_and_fix_warns(text, profile="peterson"):
             # trailing whitespace before the sign-off.
             fixed = fixed.rstrip() + '\n\nPeterson'
 
+        # --- check d: signoff_one_blank_line ---
+        # The sign-off requires exactly TWO blank lines before "Peterson"
+        # (i.e., \n\n\nPeterson at the end). The existing signoff_spacing check
+        # catches zero blank lines; this check catches exactly one blank line.
+        # Only fires when ends_with_peterson is True and no other sign-off issue
+        # fired (signoff_prefix, signoff_spacing, missing_signoff already fired).
+        # We re-read `fixed` (which may have been updated by check a/b/c above).
+        if ends_with_peterson and not any(
+            cat in ("signoff_prefix", "signoff_spacing", "missing_signoff")
+            for cat, _ in issues
+        ):
+            tail_check = fixed.rstrip()
+            # Two blank lines = three newlines: \n\n\nPeterson
+            # One blank line = two newlines: \n\nPeterson (no third \n)
+            has_two_blank_lines = bool(re.search(r'\n\n\nPeterson\s*$', tail_check))
+            has_one_blank_line = bool(re.search(r'\n\nPeterson\s*$', tail_check))
+            if has_one_blank_line and not has_two_blank_lines:
+                issues.append(("signoff_one_blank_line",
+                                "sign-off has only one blank line before 'Peterson'; "
+                                "required: exactly two blank lines (\\n\\n\\nPeterson)"))
+                # Auto-fix: replace the single-blank-line ending with two blank lines.
+                body = re.sub(r'\n\nPeterson\s*$', '', tail_check)
+                fixed = body.rstrip() + '\n\n\nPeterson'
+
+        # --- check e: signoff_duplicate ---
+        # "Peterson" as a sign-off line (line consisting solely of "Peterson",
+        # optionally with trailing whitespace) must appear EXACTLY ONCE.
+        # Lines where "Peterson" is part of flowing prose (e.g., "Peterson Rainey
+        # is based in Nashville") are NOT counted -- only lines where the entire
+        # line is "Peterson" (plus optional trailing whitespace).
+        # Skip for profile != peterson (already inside the `if profile == "peterson"` block).
+        signoff_line_count = sum(
+            1 for line in fixed.splitlines()
+            if re.fullmatch(r'Peterson\s*', line)
+        )
+        if signoff_line_count > 1:
+            issues.append(("signoff_duplicate",
+                            f"sign-off line 'Peterson' appears {signoff_line_count} times; "
+                            "must appear exactly once"))
+            # Auto-fix: remove all sign-off lines, then re-append once at the end.
+            body = re.sub(r'\nPeterson\s*$', '', fixed.rstrip())
+            # Also strip any mid-document standalone Peterson lines
+            body = re.sub(r'^Peterson\s*$', '', body, flags=re.MULTILINE)
+            body = re.sub(r'\n{3,}', '\n\n', body)
+            fixed = body.rstrip() + '\n\nPeterson'
+
     # Clean up double spaces and excess blank lines from removals.
     # NOTE: We do NOT run the general \n{3,} collapse or strip() after sign-off fixes
     # because they would destroy the carefully placed \n\nPeterson ending.
