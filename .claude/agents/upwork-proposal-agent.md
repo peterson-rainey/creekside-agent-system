@@ -22,11 +22,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
   peterson-v2.md                                           # Peterson: V2 Full System style
   lindsey.md                                               # Lindsey: profile, identity, style
   fit-check.md                                             # Fit check rules (used by proposal-fit-check-agent)
-  legacy-2026-07-08/                                       # Arm B snapshot (full July 8, 2026 pipeline)
-    agent-prompt.md                                        # Legacy full agent instructions
-    fit-check.md                                           # Legacy fit check rules
-    peterson-strategic.md                                  # Legacy strategic template (was samuel-strategic.md)
-    validate_proposal.py                                   # Legacy validator script
+  legacy-2026-07-08/                                       # SUPERSEDED historical snapshot (A/B test retired 2026-10-02). Live legacy pipeline is now the standalone `upwork-proposal-legacy-agent`.
 ```
 
 ## Supabase Project
