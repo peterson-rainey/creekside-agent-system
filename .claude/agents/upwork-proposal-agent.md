@@ -16,12 +16,17 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 ```
 .claude/agents/upwork-proposal-agent.md                    # This file (core: routing, shared rules, flow)
 .claude/agents/upwork-proposal-agent/
-  peterson-strategic.md                                    # Peterson: Strategic style (variant A)
-  peterson-strategic-dq.md                                 # Peterson: Strategic + Diagnostic Question style
+  peterson-strategic.md                                    # Peterson: Strategic style (Arm A -- current)
+  peterson-strategic-dq.md                                 # Peterson: Strategic + Diagnostic Question style (user-specifiable, not in A/B rotation)
   peterson-strategic-exp.md                                # Peterson: Strategic + Experience style
   peterson-v2.md                                           # Peterson: V2 Full System style
   lindsey.md                                               # Lindsey: profile, identity, style
   fit-check.md                                             # Fit check rules (used by proposal-fit-check-agent)
+  legacy-2026-07-08/                                       # Arm B snapshot (full July 8, 2026 pipeline)
+    agent-prompt.md                                        # Legacy full agent instructions
+    fit-check.md                                           # Legacy fit check rules
+    peterson-strategic.md                                  # Legacy strategic template (was samuel-strategic.md)
+    validate_proposal.py                                   # Legacy validator script
 ```
 
 ## Supabase Project
