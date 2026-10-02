@@ -3,7 +3,7 @@
 Deterministic Upwork proposal validator.
 
 Usage:
-    python3 validate_proposal.py <proposal_file> [--profile peterson|lindsey] [--style strategic|strategic_dq|strategic_exp|v2|lindsey_default]
+    python3 validate_proposal.py <proposal_file> [--profile peterson|lindsey] [--style strategic|strategic_dq|strategic_exp|v2|lindsey_short_ecom_a|lindsey_short_ecom_b|lindsey_short_nonecom_a|lindsey_short_nonecom_b]
     echo "proposal text" | python3 validate_proposal.py [--profile peterson|lindsey] [--style strategic]
 
 Exit codes:
@@ -509,7 +509,7 @@ def check_and_fix_warns(text, profile="peterson"):
             # Also strip any mid-document standalone Peterson lines
             body = re.sub(r'^Peterson\s*$', '', body, flags=re.MULTILINE)
             body = re.sub(r'\n{3,}', '\n\n', body)
-            fixed = body.rstrip() + '\n\nPeterson'
+            fixed = body.rstrip() + '\n\n\nPeterson'
 
     # Clean up double spaces and excess blank lines from removals.
     # NOTE: We do NOT run the general \n{3,} collapse or strip() after sign-off fixes
@@ -577,7 +577,7 @@ def main():
 
     if not text:
         print("VERDICT: BLOCK")
-        print("ISSUES: empty_proposal", file=sys.stderr)
+        print("ISSUES: empty_proposal")
         sys.exit(2)
 
     verdict, block_issues, warn_issues, fixed_text = validate(text, profile=args.profile, style=args.style)
