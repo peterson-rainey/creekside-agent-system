@@ -30,7 +30,7 @@ RED FLAGS — reason about each of these, don't just look for trigger words:
 
 7. SETUP ONLY WITH EXPLICIT HANDOFF: The posting unmistakably states they ONLY want help with initial setup AND explicitly says they will take over management themselves afterward. They must clearly reject ongoing management. A job that just mentions "set up" or "launch" without excluding ongoing work is NOT a red flag. Ambiguity about whether work continues is normal and is a sales opportunity.
 
-9. UNSUPPORTED REGION: Flag as yellow (not red) if EITHER of these apply: (a) The client is based outside of English-speaking countries (US, Canada, UK, Ireland, Australia, New Zealand, South Africa, etc.) AND outside of Europe. (b) The client is in Europe but the campaign explicitly targets a non-English-speaking audience. Do NOT flag European clients who want to run English-language campaigns or who don't specify the language of their campaigns.
+8. UNSUPPORTED REGION: Flag as yellow (not red) if EITHER of these apply: (a) The client is based outside of English-speaking countries (US, Canada, UK, Ireland, Australia, New Zealand, South Africa, etc.) AND outside of Europe. (b) The client is in Europe but the campaign explicitly targets a non-English-speaking audience. Do NOT flag European clients who want to run English-language campaigns or who don't specify the language of their campaigns.
 
 YELLOW FLAGS — reason about each of these:
 
