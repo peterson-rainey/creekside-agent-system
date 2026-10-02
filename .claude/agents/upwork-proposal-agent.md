@@ -297,7 +297,7 @@ Validation:
 - Sign-off scan: [PASS / FAIL]
 - Placeholder scan: [PASS / FAIL]
 - Forbidden words/phrases scan: [PASS / FAIL]
-- Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
+- Word count: [actual count] words total ([body] body + [answers] answers when screening questions exist) ([applicable limit]): [PASS / FAIL]
 - Pricing question handled: [PASS / FAIL / N/A -- state whether JD or screening questions asked about pricing, rates, or fees. If yes, confirm the proposal or relevant answer contains an explicit pricing-handling sentence (defer to call or flat retainer stated). If JD/questions did not ask about pricing, mark N/A.]
 - Body/answers dedup: [PASS / FAIL / N/A -- if screening questions were present, confirm no example, number, or specific point appears in both the proposal body and any answer. If no screening questions, mark N/A.]
 
