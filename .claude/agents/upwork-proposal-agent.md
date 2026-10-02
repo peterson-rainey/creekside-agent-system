@@ -311,12 +311,13 @@ Specifically:
 - If the proposal cited a specific client type or result, do not reuse that same example in screening answers. Use a different client type, a different result, or a different angle on the same domain.
 - If the proposal used a particular framing (e.g., "the gap between X and Y"), do not reuse that framing.
 - Screening answers are complementary, not redundant. Think of the proposal and screening answers as two parts of one package: together they should cover more ground than either would alone.
+- After drafting all screening answers, compare them against the proposal body. If any point, example, or framing appears in both, cut it from whichever side is weaker.
 
 STILL REQUIRED:
 - Answer the question directly. Do not dodge to avoid repetition.
 - Be specific and concrete, not generic. The anti-duplication rule does not license vague answers.
 - Keep each answer to 2-4 sentences unless the question genuinely warrants more.
-- All Formatting Rules below still apply: zero em-dashes, zero bold, plain prose.
+- All Formatting Rules apply to ALL client-visible output -- proposal body AND screening question answers equally. This means: zero em-dashes (including " -- "), zero bold, plain prose, no forbidden words, no hourly rates in any form. Do not treat screening answers as exempt from formatting rules.
 - Peterson keeps his identity and voice rules. Lindsey keeps hers (no sign-off name, Meta/email scope only).
 
 ## Formatting Rules
