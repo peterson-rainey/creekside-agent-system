@@ -181,8 +181,10 @@ TMPFILE=$(mktemp /tmp/proposal_XXXXXX.txt)
 cat > "$TMPFILE" << 'PROPOSAL_EOF'
 <paste proposal text here>
 PROPOSAL_EOF
-# Peterson strategic (use whichever style was assigned by Step 0 or specified by user):
+# Peterson strategic (Arm A):
 python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/validate_proposal.py" "$TMPFILE" --style strategic
+# Peterson strategic_legacy (Arm B) -- uses the LEGACY validator in legacy-2026-07-08/:
+# python3 "/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/legacy-2026-07-08/validate_proposal.py" "$TMPFILE" --style strategic
 # Peterson strategic_dq:
 # python3 "...validate_proposal.py" "$TMPFILE" --style strategic_dq
 # Peterson strategic_exp:
