@@ -41,12 +41,20 @@ Hourly Railway pipeline that surfaces pre-screened Upwork jobs for Queenie. She 
 
 ## Recency Tiers (sort order)
 
-1. < 2 hours -- FRESH (green)
-2. 24-72 hours -- SWEET SPOT (blue)
-3. 2-24 hours -- RECENT (amber)
-4. 72+ hours -- OLDER (gray)
+Strictly freshest-first. There is NO 24-72h "sweet spot" -- the 3,741-application analysis showed proposal count decides outcomes, not posting age.
 
-Within each tier, sorted by priority score descending.
+1. < 2 hours -- FRESH (green)
+2. 2-24 hours -- TODAY (blue)
+3. 24-72 hours -- 1-3 DAYS (amber)
+4. 3-7 days -- OLDER (gray); jobs older than 7 days are hidden
+
+Tiers are recomputed at render time in app.py from `posted_at` (the stored `recency_tier` goes stale between runs). Within each tier, sorted by priority score descending.
+
+## Manual checks Queenie still does in the Upwork UI
+
+The API cannot see these, so they stay manual before applying:
+- Bid-range panel: skip if avg bid < $40/hr or lowest bid < $10/hr
+- Payment Method panel must say Verified (the API boolean is not reliable)
 
 ## Database
 
