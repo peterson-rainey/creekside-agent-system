@@ -89,8 +89,9 @@ When Step 0 assigns `strategic_legacy`, execute the FULL legacy pipeline END-TO-
 1. Read `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/legacy-2026-07-08/agent-prompt.md` for the complete legacy execution instructions.
 2. Follow those instructions exactly, including: legacy case study lookup (Step 1), legacy proposal generation reading `legacy-2026-07-08/peterson-strategic.md` (Step 2), legacy fit check reading `legacy-2026-07-08/fit-check.md` (Step 3), and legacy validation running `legacy-2026-07-08/validate_proposal.py` with `--style strategic` (Step 4).
 3. Path redirect note: the legacy agent-prompt.md references old file paths (`samuel-strategic.md`, `fit-check.md`). Use the copies in `legacy-2026-07-08/` for all four files. This is already noted in the preamble of that file.
-4. After the legacy pipeline completes, skip to Step 4 (Log to Database) of THIS dispatcher using `mode = 'strategic_legacy'`.
-5. In Step 5 (Present Output), include the one-line variant statement: "Style: strategic_legacy (A/B-assigned)".
+4. **STOP after legacy Step 4 (Validate Output).** Do NOT execute legacy Step 5 (its own DB log INSERT) or any later steps in the legacy file. The legacy file contains its own Step 5 log INSERT, but executing it would cause a double-write that corrupts the A/B alternation. The dispatcher's Step 4 below is the ONLY log write for this run.
+5. After the legacy pipeline's Step 4 completes, skip to Step 4 (Log to Database) of THIS dispatcher using `mode = 'strategic_legacy'`. Carry the fit_flags JSON array produced by the legacy fit check (legacy Step 3) forward for use in Step 4.
+6. In Step 5 (Present Output), include the one-line variant statement: "Style: strategic_legacy (A/B-assigned)".
 
 The ONLY parts of the current dispatcher that apply during a `strategic_legacy` run are: Step 0 itself (variant assignment), Step 4 (logging with `mode = 'strategic_legacy'`), and the Step 5 variant statement.
 
