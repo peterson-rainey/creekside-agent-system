@@ -276,7 +276,7 @@ VALUES (
 
 Present in this order:
 
-1. **Variant**: State the style used and how it was assigned. Examples: "Style: strategic_legacy (A/B-assigned)" or "Style: strategic (user-specified)". For Lindsey, state: "Profile: lindsey". One line only -- never inside the proposal text.
+1. **Variant**: State the style used and how it was assigned. Examples: "Style: strategic (default)" or "Style: strategic_exp (user-specified)" or "Style: lindsey_short_ecom_a (A/B-assigned)". For Lindsey, state: "Profile: lindsey". One line only -- never inside the proposal text.
 
 2. **Case Studies to Attach**: List each matched case study with: client name, industry, platforms, key result, and download URL. If none matched, say "No case study matches."
 
