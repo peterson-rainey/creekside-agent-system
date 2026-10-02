@@ -342,15 +342,12 @@ Examples of prohibited responses to "What is your peak monthly spend managed?":
 
 Acceptable response: "Peak single-account monthly spend I've personally managed is $85K (South River Mortgage, Google Ads). Total portfolio at peak was over $300K/month across all clients."
 
-ANTI-DUPLICATION (mandatory):
-Before writing any screening answer, take stock of the proposal you just generated: what points did you make, what angles did you use, what examples or stories did you tell, what specific phrases or statistics appeared? Write that inventory mentally. Then make every screening answer cover DIFFERENT material.
+ANTI-DUPLICATION (mandatory -- structural, not advisory):
+When screening questions are present, the generation order defined in Step 2 is the enforcement mechanism: answers are drafted first, body second, dedup pass third. That sequencing is what makes this rule work -- do not reverse the order or write both simultaneously.
 
-Specifically:
-- If the proposal opened with a diagnostic hook about tracking setup, do not repeat tracking setup in screening answers.
-- If the proposal cited a specific client type or result, do not reuse that same example in screening answers. Use a different client type, a different result, or a different angle on the same domain.
-- If the proposal used a particular framing (e.g., "the gap between X and Y"), do not reuse that framing.
-- Screening answers are complementary, not redundant. Think of the proposal and screening answers as two parts of one package: together they should cover more ground than either would alone.
-- After drafting all screening answers, compare them against the proposal body. If any point, example, or framing appears in both, cut it from whichever side is weaker.
+The constraint in plain terms: every example, number, client reference, specific figure, and framing angle used in any screening answer is off-limits for the proposal body. The body must use different material. If "$20K/month personal injury" appeared in answer Q2, it cannot appear in the proposal body. If case-type segmentation reasoning was used in Q3, that framing cannot reappear in the body.
+
+Screening answers and the proposal body are two parts of one package: together they should cover more ground than either would alone. Redundancy wastes the package.
 
 STILL REQUIRED:
 - Answer the question directly. Do not dodge to avoid repetition.
