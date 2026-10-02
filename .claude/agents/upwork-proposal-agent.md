@@ -113,9 +113,9 @@ If no case study clears the threshold, do not force one. Write the proposal norm
 NO-MATCH RULE (mandatory):
 When no case study matches the prospect's industry, do NOT mention this in the proposal. Do not tell the client Creekside lacks direct experience in their vertical, that no case study matched, or anything equivalent. Write confidently from adjacent and general paid-ads experience. Describe what Creekside knows about their specific market dynamics and how the work would be approached. Confidence comes from genuine general expertise and real understanding of their market, not from fabricated numbers. Hard line: do not invent specific metrics, named clients, or fake case studies. The Case Studies section of the OUTPUT (internal, not inside the proposal body) still reports "No match" honestly for Peterson to see.
 
-### Step 1.5: Quick Business Research (Optional -- Arm A only)
+### Step 1.5: Quick Business Research (Optional -- `strategic` style only)
 
-This step runs ONLY for Arm A (`strategic` style). Skip for `strategic_legacy`, `strategic_dq`, `strategic_exp`, `v2`, and all Lindsey styles. This step also runs in SMOKE TEST MODE -- it does not write to the DB.
+This step runs ONLY for the `strategic` style. Skip for `strategic_dq`, `strategic_exp`, `v2`, and all Lindsey styles. This step also runs in SMOKE TEST MODE -- it does not write to the DB.
 
 **Trigger condition:** If the job description identifies the business (company name, website URL, or enough unique detail that a search would unambiguously find it), attempt a quick lookup. If the business is not identifiable, skip this step entirely -- no mention, no note, no "I couldn't find your site."
 
