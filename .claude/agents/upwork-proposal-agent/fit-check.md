@@ -22,7 +22,7 @@ RED FLAGS — reason about each of these, don't just look for trigger words:
 
 3. AD BUDGET TOO SMALL: If a specific monthly ad budget is mentioned and it is under $3,000/month, that is a red flag. Between $3,000-$5,000/month is a yellow flag (workable but below Creekside's preferred starting point). Only flag this if a number is explicitly stated.
 
-5. WRONG SERVICE ENTIRELY: The job has zero mention of Google Ads, Meta Ads, Bing Ads, TikTok Ads, programmatic advertising, PPC, SEM, pay-per-click, paid search, or paid media, and is exclusively about services Creekside does not offer (e.g., SEO only, email marketing only, organic social only, web development only). Only flag as red if none of Creekside's ad platforms or generic ad industry terms are mentioned at all. (Note: "PPC", "SEM", "pay-per-click", "paid search", and "paid media" all count as mentioning Creekside's platforms. A job that says "PPC" IS a Google Ads / Bing Ads job.)
+4. WRONG SERVICE ENTIRELY: The job has zero mention of Google Ads, Meta Ads, Bing Ads, TikTok Ads, programmatic advertising, PPC, SEM, pay-per-click, paid search, or paid media, and is exclusively about services Creekside does not offer (e.g., SEO only, email marketing only, organic social only, web development only). Only flag as red if none of Creekside's ad platforms or generic ad industry terms are mentioned at all. (Note: "PPC", "SEM", "pay-per-click", "paid search", and "paid media" all count as mentioning Creekside's platforms. A job that says "PPC" IS a Google Ads / Bing Ads job.)
 
 6. TRAINING ONLY: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them? Reason about the intent — are they trying to build internal capability, or do they want ongoing management?
 
