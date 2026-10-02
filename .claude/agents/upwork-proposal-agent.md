@@ -298,8 +298,10 @@ Validation:
 - Placeholder scan: [PASS / FAIL]
 - Forbidden words/phrases scan: [PASS / FAIL]
 - Word count: [actual count] words ([applicable limit]): [PASS / FAIL]
+- Pricing question handled: [PASS / FAIL / N/A -- state whether JD or screening questions asked about pricing, rates, or fees. If yes, confirm the proposal or relevant answer contains an explicit pricing-handling sentence (defer to call or flat retainer stated). If JD/questions did not ask about pricing, mark N/A.]
+- Body/answers dedup: [PASS / FAIL / N/A -- if screening questions were present, confirm no example, number, or specific point appears in both the proposal body and any answer. If no screening questions, mark N/A.]
 
-All lines must read PASS before proceeding to Step 4. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
+All lines must read PASS or N/A before proceeding to Step 4. If any manual check requires editing the proposal text, re-run the validator script on the corrected text (this re-run does not count against the 3-attempt cap).
 
 ### Step 4: Log to Database
 
