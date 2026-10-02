@@ -1,5 +1,12 @@
 # Arm B (strategic_legacy) vs Byte-Exact July 8 2026 (commit b1e757d)
 
+> **RETIRED 2026-10-02.** The Peterson A/B test is over: `strategic_legacy` was removed from
+> upwork-proposal-agent (Peterson now always defaults to `strategic`). The legacy pipeline was
+> rebuilt as the standalone `upwork-proposal-legacy-agent`, extracted byte-for-byte from
+> b1e757d (literal em-dash glyphs preserved, unlike the snapshot below) with only the
+> Samuel->Peterson rename and path redirects. The `legacy-2026-07-08/` folder and this doc
+> remain as historical record of the A/B era.
+
 Comparison run 2026-10-02 at Peterson's request. Verified via `git show b1e757d:<path>` diffed
 against each file in `.claude/agents/upwork-proposal-agent/legacy-2026-07-08/`.
 Decision: snapshot stays as-is (NOT restored to byte-exact). This doc is the record of every
