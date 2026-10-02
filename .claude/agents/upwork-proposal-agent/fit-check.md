@@ -26,7 +26,7 @@ RED FLAGS — reason about each of these, don't just look for trigger words:
 
 5. TRAINING ONLY: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them? Reason about the intent — are they trying to build internal capability, or do they want ongoing management?
 
-7. CONVERSION TRACKING ONLY: Is the entire scope of the job limited to setting up, fixing, or auditing conversion tracking with no ad management implied? If the engagement is purely a tracking task, it is not a fit.
+6. CONVERSION TRACKING ONLY: Is the entire scope of the job limited to setting up, fixing, or auditing conversion tracking with no ad management implied? If the engagement is purely a tracking task, it is not a fit.
 
 8. SETUP ONLY WITH EXPLICIT HANDOFF: The posting unmistakably states they ONLY want help with initial setup AND explicitly says they will take over management themselves afterward. They must clearly reject ongoing management. A job that just mentions "set up" or "launch" without excluding ongoing work is NOT a red flag. Ambiguity about whether work continues is normal and is a sales opportunity.
 
