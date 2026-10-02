@@ -63,8 +63,8 @@ Table: `upwork_job_queue` -- upsert on `job_posting_uid`. Key columns: `dismisse
 ## Deployment
 
 - **finder.py**: Railway scheduled agent, `0 * * * *` (hourly)
-- **app.py**: Railway always-on Flask service
-- **Env vars**: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY, UPWORK_CLIENT_ID/SECRET (both profiles)
+- **app.py**: Railway always-on service (Python stdlib http.server)
+- **Env vars**: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY (finder aborts without it -- Pass 2 is required), UPWORK_CLIENT_ID/SECRET (both profiles), QUEUE_KEY (optional shared secret; if set, page requires `?key=`)
 
 ## Debugging
 
