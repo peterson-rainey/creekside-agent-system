@@ -24,7 +24,7 @@ RED FLAGS — reason about each of these, don't just look for trigger words:
 
 4. WRONG SERVICE ENTIRELY: The job has zero mention of Google Ads, Meta Ads, Bing Ads, TikTok Ads, programmatic advertising, PPC, SEM, pay-per-click, paid search, or paid media, and is exclusively about services Creekside does not offer (e.g., SEO only, email marketing only, organic social only, web development only). Only flag as red if none of Creekside's ad platforms or generic ad industry terms are mentioned at all. (Note: "PPC", "SEM", "pay-per-click", "paid search", and "paid media" all count as mentioning Creekside's platforms. A job that says "PPC" IS a Google Ads / Bing Ads job.)
 
-6. TRAINING ONLY: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them? Reason about the intent — are they trying to build internal capability, or do they want ongoing management?
+5. TRAINING ONLY: Is the client looking to be taught how to run ads themselves rather than hiring someone to run them? Reason about the intent — are they trying to build internal capability, or do they want ongoing management?
 
 7. CONVERSION TRACKING ONLY: Is the entire scope of the job limited to setting up, fixing, or auditing conversion tracking with no ad management implied? If the engagement is purely a tracking task, it is not a fit.
 
