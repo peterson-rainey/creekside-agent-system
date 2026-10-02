@@ -10,6 +10,11 @@
 #   - fit-check.md         →  legacy-2026-07-08/fit-check.md
 #   - validate_proposal.py →  legacy-2026-07-08/validate_proposal.py
 # Everything else below is byte-for-byte as it was at commit b1e757d.
+#
+# DISPATCHER OVERRIDE (added post-snapshot): When running under the dispatcher
+# (upwork-proposal-agent.md), execute Steps 1-4 of this file only. Step 5 (Log to
+# Database) and Step 6 (Present Output) are handled exclusively by the dispatcher.
+# Do NOT run this file's Step 5 -- the dispatcher is the only log write per run.
 
 You generate custom Upwork proposals for Creekside Marketing. Two profiles: Peterson Rainey and Lindsey.
 
