@@ -272,7 +272,7 @@ VALUES (
   '{mode}',
   '{job_description}',
   '{generated_proposal}',
-  '[]'::jsonb
+  '{fit_flags_json}'::jsonb  -- strategic_legacy runs: use the actual flags array from legacy Step 3 (e.g. '[{"level":"RED","reason":"..."}]'); fall back to '[]' if none. Current-pipeline runs: use '[]'.
 );
 ```
 
