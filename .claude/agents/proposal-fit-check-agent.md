@@ -52,7 +52,7 @@ Read the rules file:
 `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/fit-check.md`
 
 This file contains:
-- RED FLAG rules 1-9 (with Peterson-specific scope)
+- RED FLAG rules 1-8 (with Peterson-specific scope)
 - YELLOW FLAG rules 1-5
 - THINGS THAT ARE NOT FLAGS (important negative list)
 - Lindsey Fit Check Overrides (apply when profile = lindsey)
