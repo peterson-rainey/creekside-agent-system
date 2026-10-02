@@ -20,7 +20,7 @@ Hourly Railway pipeline that surfaces pre-screened Upwork jobs for Queenie. She 
     finder.py
         -> marketplaceJobPostingsSearch GraphQL (both peterson + lindsey profiles)
         -> Dedup: already-applied from upwork_jobs + dismissed from upwork_job_queue
-        -> Pass 1: Quantitative hard skips (deterministic, no LLM)
+        -> Pass 1: Deterministic hard skips, no LLM (quantitative rules + ads-vocabulary keyword gate derived from 6,125 applied jobs)
         -> Pass 2: Qualitative DQ (Claude Haiku)
         -> Score + tier surviving jobs
         -> Upsert to upwork_job_queue table
