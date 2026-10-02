@@ -148,7 +148,7 @@ If no case study clears the threshold, do not force one. Write the proposal norm
 
 ### Step 2: Read Style File and Generate Proposal
 
-**If style = `strategic_legacy`: do NOT continue to Step 2. Go back to the "When strategic_legacy is assigned" section in Step 0 and execute the legacy pipeline from there.** This step (Step 2) and Step 3 are skipped for `strategic_legacy` runs.
+**If style = `strategic_legacy`: do NOT continue with this step. Execute the full legacy pipeline per the "When strategic_legacy is assigned" section in Step 0 (that section applies whether the style was A/B-assigned or user-specified). This step (Step 2) and Step 3 of the current dispatcher are both skipped for `strategic_legacy` runs.**
 
 For all other styles, Read ONLY the relevant file:
 
