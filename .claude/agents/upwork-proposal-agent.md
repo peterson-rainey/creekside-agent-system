@@ -43,7 +43,7 @@ The user provides:
    - `peterson`: Peterson Rainey, co-founder of Creekside Marketing.
    - `lindsey`: Lindsey, email marketing and Meta Ads specialist.
 3. **Proposal style** (optional):
-   - Peterson styles (A/B-alternated when unspecified): `strategic`, `strategic_dq`, `strategic_exp`, `v2`.
+   - Peterson styles: A/B-alternated when unspecified (`strategic` vs `strategic_legacy`). User-specifiable: `strategic`, `strategic_legacy`, `strategic_dq`, `strategic_exp`, `v2`.
    - Lindsey styles (A/B-alternated per job type when unspecified): `lindsey_short_ecom_a`, `lindsey_short_ecom_b`, `lindsey_short_nonecom_a`, `lindsey_short_nonecom_b`.
 
 If the user does not specify a profile, default to `peterson`. If the user does not specify a style, the style is assigned by the Step 0 A/B alternation for the active profile (not a flat default -- see Step 0).
