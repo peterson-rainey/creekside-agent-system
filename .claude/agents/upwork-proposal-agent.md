@@ -54,42 +54,9 @@ All paths are: `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwor
 
 Skip this step entirely if the user explicitly specifies a style. The user's explicit style overrides all A/B assignment logic.
 
-#### Peterson A/B test
+#### Peterson
 
-**Applies when:** profile = `peterson` AND the user did NOT explicitly specify a style.
-
-This is an active A/B test comparing two full pipeline behaviors:
-- **Arm A (`strategic`)**: current agent pipeline using `peterson-strategic.md`.
-- **Arm B (`strategic_legacy`)**: full July 8, 2026 pipeline snapshot in `legacy-2026-07-08/`. When assigned, the agent MUST follow the legacy instruction set END-TO-END (see "When strategic_legacy is assigned" section below). `strategic_dq` is no longer in the rotation but remains user-specifiable.
-
-Query the most recent Peterson A/B log entry to determine which variant to use next:
-
-```sql
-SELECT mode FROM upwork_proposal_logs
-WHERE mode IN ('strategic', 'strategic_legacy')
-ORDER BY created_at DESC
-LIMIT 1;
-```
-
-Alternation rule:
-- If last mode = `strategic` -> assign `strategic_legacy` for this run.
-- If last mode = `strategic_legacy` -> assign `strategic` for this run.
-- If no rows exist (empty result) -> assign `strategic_legacy` for this run.
-
-The assigned style flows through everything downstream: which pipeline is executed in Steps 1-3, and the `mode` value logged in Step 4. Step 4 logging is what advances the alternation, so the mode logged MUST be the style actually used.
-
-#### When `strategic_legacy` is assigned
-
-When Step 0 assigns `strategic_legacy`, execute the FULL legacy pipeline END-TO-END. The current agent's Steps 1-3 are bypassed for this run. Follow these steps instead:
-
-1. Read `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-agent/legacy-2026-07-08/agent-prompt.md` for the complete legacy execution instructions.
-2. Follow those instructions exactly, including: legacy case study lookup (Step 1), legacy proposal generation reading `legacy-2026-07-08/peterson-strategic.md` (Step 2), legacy fit check reading `legacy-2026-07-08/fit-check.md` (Step 3), and legacy validation running `legacy-2026-07-08/validate_proposal.py` with `--style strategic` (Step 4).
-3. Path redirect note: the legacy agent-prompt.md references old file paths (`samuel-strategic.md`, `fit-check.md`). Use the copies in `legacy-2026-07-08/` for all four files. This is already noted in the preamble of that file.
-4. **STOP after legacy Step 4 (Validate Output).** Do NOT execute legacy Step 5 (its own DB log INSERT) or any later steps in the legacy file. The legacy file contains its own Step 5 log INSERT, but executing it would cause a double-write that corrupts the A/B alternation. The dispatcher's Step 4 below is the ONLY log write for this run.
-5. After the legacy pipeline's Step 4 completes, skip to Step 4 (Log to Database) of THIS dispatcher using `mode = 'strategic_legacy'`. Carry the fit_flags JSON array produced by the legacy fit check (legacy Step 3) forward for use in Step 4.
-6. In Step 5 (Present Output), include the one-line variant statement: "Style: strategic_legacy (A/B-assigned)".
-
-The ONLY parts of the current dispatcher that apply during a `strategic_legacy` run are: Step 0 itself (variant assignment), Step 4 (logging with `mode = 'strategic_legacy'`), and the Step 5 variant statement. EVERY other section of this file is VOID for the run -- explicitly including: ABSOLUTE FORMATTING RULES, Peterson Identity Rules, CANONICAL FACTS, PERSONAL COMMITMENT ESCALATION, Confidence Rules, the NO-MATCH RULE, Budget Rules, Step 1.5 research, the GENERATION ORDER block, and the validation checklist format. Do not blend, borrow, or "improve" the legacy output with any rule from this file, even where the legacy instructions are silent on something this file covers. The `legacy-2026-07-08/` files are the SOLE authority for fit check, generation, screening answers, and validation on a `strategic_legacy` run. Preserving authentic July 8 behavior, including its imperfections, is the entire point of Arm B.
+No variant assignment. Profile `peterson` with no explicit style always runs `strategic`. (The former Peterson A/B test against the July 8, 2026 legacy pipeline was retired 2026-10-02; that pipeline now lives in the standalone `upwork-proposal-legacy-agent` and is never invoked from here. If asked to run style `strategic_legacy`, tell the user to invoke `upwork-proposal-legacy-agent` instead.)
 
 #### Lindsey Short Variant Assignment
 
