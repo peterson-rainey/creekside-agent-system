@@ -148,12 +148,13 @@ If no case study clears the threshold, do not force one. Write the proposal norm
 
 ### Step 2: Read Style File and Generate Proposal
 
-Based on the profile and style, Read ONLY the relevant file:
+**If style = `strategic_legacy`: do NOT continue to Step 2. Go back to the "When strategic_legacy is assigned" section in Step 0 and execute the legacy pipeline from there.** This step (Step 2) and Step 3 are skipped for `strategic_legacy` runs.
+
+For all other styles, Read ONLY the relevant file:
 
 | Profile | Style | Read this file | Notes |
 |---------|-------|---------------|-------|
 | `peterson` | `strategic` | `peterson-strategic.md` | Arm A (A/B rotation) |
-| `peterson` | `strategic_legacy` | `legacy-2026-07-08/agent-prompt.md` | Arm B -- triggers full legacy pipeline (see Step 0) |
 | `peterson` | `strategic_dq` | `peterson-strategic-dq.md` | User-specifiable only, not in A/B rotation |
 | `peterson` | `strategic_exp` | `peterson-strategic-exp.md` | User-specifiable only |
 | `peterson` | `v2` | `peterson-v2.md` | User-specifiable only |
@@ -161,8 +162,6 @@ Based on the profile and style, Read ONLY the relevant file:
 | `lindsey` | `lindsey_short_ecom_b` | `lindsey.md` | Arm B ecom |
 | `lindsey` | `lindsey_short_nonecom_a` | `lindsey.md` | Arm A non-ecom |
 | `lindsey` | `lindsey_short_nonecom_b` | `lindsey.md` | Arm B non-ecom |
-
-Note: when `strategic_legacy` is assigned, do NOT use Step 2 of this dispatcher. Instead execute the full legacy pipeline per the "When strategic_legacy is assigned" instructions in Step 0.
 
 Read the file, then generate the proposal following its rules plus the Formatting Rules and Budget Rules below. If profile is `peterson`, also apply the Peterson Identity Rules below. If profile is `lindsey`, the identity rules are in `lindsey.md`.
 
