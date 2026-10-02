@@ -513,15 +513,20 @@ def check_and_fix_warns(text, profile="peterson"):
 
     # Clean up double spaces and excess blank lines from removals.
     # NOTE: We do NOT run the general \n{3,} collapse or strip() after sign-off fixes
-    # because they would destroy the carefully placed \n\nPeterson ending.
-    # Instead, only clean the body portion (everything before the final Peterson
-    # if a peterson sign-off was added/fixed), or the whole text for non-peterson profiles.
-    if profile == "peterson" and fixed.endswith('\n\nPeterson'):
-        body = fixed[:-len('\n\nPeterson')]
+    # because they would destroy the carefully placed sign-off ending.
+    # Two valid endings are possible for peterson proposals:
+    #   \n\nPeterson  -- one blank line (existing checks a/b/c produce this)
+    #   \n\n\nPeterson -- two blank lines (check d produces this; spec-correct form)
+    # In both cases, clean only the body portion and preserve the ending verbatim.
+    if profile == "peterson" and re.search(r'\n\n+Peterson$', fixed):
+        # Determine the exact ending suffix to preserve.
+        m_ending = re.search(r'(\n\n+Peterson)$', fixed)
+        ending = m_ending.group(1)
+        body = fixed[:-len(ending)]
         body = re.sub(r'  +', ' ', body)
         body = re.sub(r'\n{3,}', '\n\n', body)
         body = body.strip()
-        fixed = body + '\n\nPeterson'
+        fixed = body + ending
     else:
         fixed = re.sub(r'  +', ' ', fixed)
         fixed = re.sub(r'\n{3,}', '\n\n', fixed)
