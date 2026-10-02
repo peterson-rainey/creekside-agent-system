@@ -135,9 +135,7 @@ This step runs ONLY for the `strategic` style. Skip for `strategic_dq`, `strateg
 
 ### Step 2: Read Style File and Generate Proposal
 
-**If style = `strategic_legacy`: do NOT continue with this step. Execute the full legacy pipeline per the "When strategic_legacy is assigned" section in Step 0 (that section applies whether the style was A/B-assigned or user-specified). This step (Step 2) and Step 3 of the current dispatcher are both skipped for `strategic_legacy` runs.**
-
-For all other styles, Read ONLY the relevant file:
+Read ONLY the relevant file:
 
 | Profile | Style | Read this file | Notes |
 |---------|-------|---------------|-------|
