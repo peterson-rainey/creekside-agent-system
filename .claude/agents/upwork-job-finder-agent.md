@@ -24,8 +24,8 @@ Hourly Railway pipeline that surfaces pre-screened Upwork jobs for Queenie. She 
         -> Pass 2: Qualitative DQ (Claude Haiku)
         -> Score + tier surviving jobs
         -> Upsert to upwork_job_queue table
-    app.py (long-lived Flask process)
-        -> GET /  -> ranked HTML job list
+    app.py (long-lived stdlib http.server process -- no Flask, no dependencies)
+        -> GET /  -> ranked HTML job list (optional ?key= auth via QUEUE_KEY env)
         -> POST /dismiss  -> marks job dismissed, hides immediately
 ```
 
