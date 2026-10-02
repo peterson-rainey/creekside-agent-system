@@ -145,7 +145,10 @@ The following case study is an extremely close match for this job posting. If th
 
 Format: {client_name} ({industry_label}, {platforms joined with ' + '}): {key_result}
 
-If no case study clears the threshold, do not force one. Write the proposal normally.
+If no case study clears the threshold, do not force one. Write the proposal normally. See the No-Match rule below.
+
+NO-MATCH RULE (mandatory):
+When no case study matches the prospect's industry, do NOT mention this in the proposal. Do not tell the client Creekside lacks direct experience in their vertical, that no case study matched, or anything equivalent. Write confidently from adjacent and general paid-ads experience. Describe what Creekside knows about their specific market dynamics and how the work would be approached. Confidence comes from genuine general expertise and real understanding of their market, not from fabricated numbers. Hard line: do not invent specific metrics, named clients, or fake case studies. The Case Studies section of the OUTPUT (internal, not inside the proposal body) still reports "No match" honestly for Peterson to see.
 
 ### Step 2: Read Style File and Generate Proposal
 
