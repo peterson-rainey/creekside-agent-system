@@ -20,9 +20,9 @@ Hourly Railway pipeline that surfaces pre-screened Upwork jobs for Queenie. She 
     finder.py
         -> marketplaceJobPostingsSearch GraphQL (both peterson + lindsey profiles)
         -> Dedup: already-applied from upwork_jobs + dismissed from upwork_job_queue
-        -> Pass 1: Deterministic hard skips, no LLM (quantitative rules + ads-vocabulary keyword gate derived from 6,125 applied jobs)
-        -> Pass 2: Qualitative DQ (Claude Haiku)
-        -> Score + tier surviving jobs
+        -> Pass 1: Deterministic hard skips, no LLM (quantitative rules + ads-vocabulary keyword gate derived from 6,125 applied jobs + client-country allowlist (English-speaking + Europe) + uploader/lister execution-role kill)
+        -> Pass 2: Qualitative DQ (Claude Haiku; includes competing-agency, execution-only-role, and tiny-gig rules)
+        -> Score + tier surviving jobs + profile_fit (peterson = default, lindsey = email marketing in scope, both = Meta/paid social/Shopify/ecom signals)
         -> Upsert to upwork_job_queue table
     app.py (long-lived stdlib http.server process -- no Flask, no dependencies)
         -> GET /  -> ranked HTML job list (optional ?key= auth via QUEUE_KEY env)
