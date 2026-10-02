@@ -168,9 +168,7 @@ When no screening questions exist, skip this ordering constraint and write the p
 
 ### Step 3: Validate Output (loop until PASS)
 
-**If style = `strategic_legacy`: this step is handled inside the legacy pipeline (step 4 of legacy-2026-07-08/agent-prompt.md). Skip this step and go to Step 4 (Log to Database) when the legacy pipeline has finished its own validation.**
-
-For all other styles: run the deterministic validation script. This step is mandatory. Output is pasted directly into Upwork with no human review. Loop until the validator returns PASS.
+Run the deterministic validation script. This step is mandatory. Output is pasted directly into Upwork with no human review. Loop until the validator returns PASS.
 
 **Script:** `.claude/agents/upwork-proposal-agent/validate_proposal.py`
 
