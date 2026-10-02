@@ -58,7 +58,7 @@ The API cannot see these, so they stay manual before applying:
 
 ## Database
 
-Table: `upwork_job_queue` -- upsert on `job_posting_uid`. Key columns: `dismissed` (bool), `dq_reason` (NULL = passed), `recency_tier` (1-4), `priority_score`, `flags` (text[]).
+Table: `upwork_job_queue` -- upsert on `job_posting_uid`. Key columns: `dismissed` (bool), `dq_reason` (NULL = passed), `recency_tier` (1-4), `priority_score`, `flags` (text[]), `profile_fit` ('peterson'/'lindsey'/'both' -- shown as the Fit badge; `profile` is just which search found it, not a fit signal).
 
 ## Deployment
 
