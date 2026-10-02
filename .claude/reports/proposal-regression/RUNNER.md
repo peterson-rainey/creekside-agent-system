@@ -21,12 +21,12 @@ This document explains how to run the proposal regression test suite. All scenar
 
 ## SMOKE TEST MODE
 
-When running any scenario for testing, the agent MUST skip the database logging step (Step 5 in its execution flow). This prevents polluting the `upwork_proposal_logs` A/B alternation counters and audit trail with synthetic runs.
+When running any scenario for testing, the agent MUST skip the database logging step (the "Log to Database" step -- refer to it by name, not number; dispatcher restructuring has renumbered it before). This prevents polluting the `upwork_proposal_logs` A/B alternation counters and audit trail with synthetic runs.
 
 **Instructions to give the agent at the top of every test invocation:**
 
 ```
-SMOKE TEST MODE: You are running a regression scenario. Skip Step 5 (do NOT insert into upwork_proposal_logs). All other steps run normally including validate_proposal.py. Write your full output to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc, then return only "DONE <RUNID>".
+SMOKE TEST MODE: You are running a regression scenario. Skip the "Log to Database" step by name, whatever its current step number (do NOT insert into upwork_proposal_logs). All other steps run normally including validate_proposal.py. Write your full output to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc, then return only "DONE <RUNID>".
 ```
 
 Set RUNID as: `<scenario_id>_<YYYYMMDD>` (e.g., `B01_20260818`) or append `_a`, `_b`, `_c` for [3x] runs.
@@ -48,7 +48,7 @@ This directory is ephemeral (cleared on reboot). Judgments should be saved to pe
 1. Spawn `upwork-proposal-agent` using the Agent tool with the SMOKE TEST MODE header prepended to the prompt.
 2. Include this header at the top of the prompt:
    ```
-   SMOKE TEST MODE: Skip Step 5. Write full output to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc. Return only "DONE <RUNID>".
+   SMOKE TEST MODE: Skip the "Log to Database" step (no upwork_proposal_logs insert). Write full output to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc. Return only "DONE <RUNID>".
    ```
 3. Paste the INPUT from the scenario.
 4. Add the profile and style if specified (e.g., "Profile: peterson, Style: strategic_dq").
@@ -58,7 +58,7 @@ This directory is ephemeral (cleared on reboot). Judgments should be saved to pe
 
 **Example invocation for B01:**
 ```
-SMOKE TEST MODE: Skip Step 5. Write full output to /tmp/proposal_regression/outputs/run_B01_20260818.md via Bash heredoc. Return only "DONE B01_20260818".
+SMOKE TEST MODE: Skip the "Log to Database" step (no upwork_proposal_logs insert). Write full output to /tmp/proposal_regression/outputs/run_B01_20260818.md via Bash heredoc. Return only "DONE B01_20260818".
 
 [paste B01 INPUT from scenarios/baseline.md]
 ```

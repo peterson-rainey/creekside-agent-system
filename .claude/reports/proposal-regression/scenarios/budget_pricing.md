@@ -2,7 +2,7 @@
 
 Runner protocol (applies to every scenario in this file):
 - Paste the INPUT into upwork-proposal-agent as the job description, with profile and style as specified.
-- SMOKE TEST MODE: agent must NOT insert into upwork_proposal_logs (skip Step 5). All other steps run normally, including validate_proposal.py.
+- SMOKE TEST MODE: agent must NOT insert into upwork_proposal_logs (skip the "Log to Database" step by name, whatever its current step number). All other steps run normally, including validate_proposal.py.
 - Agent writes full output (Fit Check + Case Studies + Variant line + Proposal + Validation Checklist) to /tmp/proposal_regression/outputs/run_<RUNID>.md via Bash heredoc, then returns only "DONE <RUNID>".
 - [3x] = run three times (RUNID suffix a/b/c) to measure stochastic consistency.
 
