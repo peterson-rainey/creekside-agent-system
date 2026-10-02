@@ -93,7 +93,7 @@ When Step 0 assigns `strategic_legacy`, execute the FULL legacy pipeline END-TO-
 5. After the legacy pipeline's Step 4 completes, skip to Step 4 (Log to Database) of THIS dispatcher using `mode = 'strategic_legacy'`. Carry the fit_flags JSON array produced by the legacy fit check (legacy Step 3) forward for use in Step 4.
 6. In Step 5 (Present Output), include the one-line variant statement: "Style: strategic_legacy (A/B-assigned)".
 
-The ONLY parts of the current dispatcher that apply during a `strategic_legacy` run are: Step 0 itself (variant assignment), Step 4 (logging with `mode = 'strategic_legacy'`), and the Step 5 variant statement.
+The ONLY parts of the current dispatcher that apply during a `strategic_legacy` run are: Step 0 itself (variant assignment), Step 4 (logging with `mode = 'strategic_legacy'`), and the Step 5 variant statement. EVERY other section of this file is VOID for the run -- explicitly including: ABSOLUTE FORMATTING RULES, Peterson Identity Rules, CANONICAL FACTS, PERSONAL COMMITMENT ESCALATION, Confidence Rules, the NO-MATCH RULE, Budget Rules, Step 1.5 research, the GENERATION ORDER block, and the validation checklist format. Do not blend, borrow, or "improve" the legacy output with any rule from this file, even where the legacy instructions are silent on something this file covers. The `legacy-2026-07-08/` files are the SOLE authority for fit check, generation, screening answers, and validation on a `strategic_legacy` run. Preserving authentic July 8 behavior, including its imperfections, is the entire point of Arm B.
 
 #### Lindsey Short Variant Assignment
 
