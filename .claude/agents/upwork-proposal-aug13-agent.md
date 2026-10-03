@@ -15,7 +15,7 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 ## Directory Structure
 
 ```
-.claude/agents/upwork-proposal-agent.md                    # This file (core: routing, shared rules, flow)
+.claude/agents/upwork-proposal-aug13-agent.md              # This file (core: routing, shared rules, flow)
 .claude/agents/upwork-proposal-aug13-agent/
   peterson-strategic.md                                      # Peterson: Strategic style (variant A)
   peterson-strategic-dq.md                                   # Peterson: Strategic + Diagnostic Question style
