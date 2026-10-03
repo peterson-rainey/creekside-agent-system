@@ -42,6 +42,15 @@ Routing is wired into contractor sessions: `.claude/roles/contractor.md` fast-pa
 
 Spawn the agent by name with the full job description, exactly as you would the normal proposal agent. Each historical agent is self-contained (own folder under `.claude/agents/`). Every run must be in a FRESH Claude session if any proposal agent file was edited that session (agent prompts are cached at session start).
 
+## Recording in the tracker spreadsheet
+
+Column J (`Script`) in both Upwork tracker sheets has dropdown options matching the log modes exactly (added 2026-10-03). After submitting each proposal on Upwork:
+
+- Peterson sheet: select the mode of the arm that generated it -- `strategic_jul01`, `strategic_jul10`, `strategic_aug13`, or `strategic` (current agent). The session states which arm ran; record exactly that.
+- Lindsey sheet: select the variant the lindsey-proposal-agent reports -- `lindsey_short_ecom_a`, `lindsey_short_ecom_b`, `lindsey_short_nonecom_a`, or `lindsey_short_nonecom_b`.
+
+Never type a value freehand; always pick from the dropdown so the sheet joins cleanly against `upwork_proposal_logs.mode`.
+
 ## Sample size and readout
 
 - Target: 30+ submitted proposals PER ARM before comparing reply rates.
