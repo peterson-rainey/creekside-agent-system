@@ -44,27 +44,9 @@ Profile is always `peterson`, style is always `strategic`.
 
 All paths are: `/Users/petersonrainey/C-Code - Rag database/.claude/agents/upwork-proposal-aug13-agent/`
 
-### Step 0: Variant Assignment (Peterson A/B test)
+### Step 0: Variant Assignment (RETIRED -- FOUR-WAY TEST LOCK 2026-10-03)
 
-**Applies only when:** profile = `peterson` AND the user did NOT explicitly specify a style. Skip this step entirely if profile is `lindsey` or if the user named a style.
-
-Query the most recent Peterson A/B log entry to determine which variant to use next:
-
-```sql
-SELECT mode FROM upwork_proposal_logs
-WHERE mode IN ('strategic', 'strategic_dq')
-ORDER BY created_at DESC
-LIMIT 1;
-```
-
-Alternation rule:
-- If last mode = `strategic` -> assign `strategic_dq` for this run.
-- If last mode = `strategic_dq` -> assign `strategic` for this run.
-- If no rows exist (empty result) -> assign `strategic_dq` for this run.
-
-The assigned style flows through everything downstream: which file is Read in Step 2, the `--style` flag passed to validate_proposal.py in Step 4, and the `mode` value logged in Step 5. Step 5 logging is what advances the alternation, so the mode logged MUST be the style actually used.
-
-If the user explicitly specifies any style, that overrides the A/B assignment entirely -- do not run this query.
+The strategic vs strategic_dq A/B alternation that lived here in the August 13, 2026 version is DISABLED for the four-way historical test. Do not query the rotation. Every run uses style `strategic` (read `peterson-strategic.md` in Step 2, pass `--style strategic` in Step 4). Proceed directly to Step 1.
 
 ### Step 1: Gather Case Study Context
 
