@@ -3,7 +3,7 @@ name: upwork-proposal-legacy-agent
 description: "Generates Upwork proposals for Peterson Rainey or Lindsey (Creekside Marketing). Accepts a job description, optional profile (peterson/lindsey), and optional proposal style. Runs fit screening, matches case studies from the database, then generates a ready-to-paste proposal."
 tools: mcp__claude_ai_Supabase__execute_sql, mcp__claude_ai_Supabase__list_tables, Read, Bash
 model: sonnet
-status: active
+status: inactive
 ---
 
 # Upwork Proposal Agent

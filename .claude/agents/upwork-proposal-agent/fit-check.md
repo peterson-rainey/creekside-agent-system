@@ -76,12 +76,3 @@ IMPORTANT:
 - Be concise. Each reason should be 1-2 sentences that explain your reasoning, not just name the rule.
 - If no flags are found, return an empty list. Many jobs will have zero flags. That is normal and expected.
 
-## Lindsey Fit Check Overrides
-
-When profile is Lindsey, apply these overrides to the rules above:
-
-Red flag #4 (Wrong Service): ZERO mention of Meta Ads, Facebook Ads, Instagram Ads, paid social, email marketing, Klaviyo, Shopify, or e-commerce. Google-Ads-only jobs (no Meta/email) = red flag for Lindsey.
-
-Additional yellow flag: Google Ads is the sole focus with no Meta/email/social component. Fit risk, not auto-reject.
-
-NOT flags: Meta/Facebook/Instagram/paid social jobs. Email/Klaviyo/Mailchimp. Shopify/e-commerce/DTC. Any of Lindsey's industries. Ad creative/copy. Creative/SEO/web agencies seeking Meta specialist.
