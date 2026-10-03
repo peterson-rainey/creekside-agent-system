@@ -33,14 +33,10 @@ This agent is structured as a mini-app. The core prompt (this file) handles rout
 
 The user provides:
 1. **Job description** (required): The full Upwork job posting text.
-2. **Profile** (optional, default: `peterson`):
-   - `peterson`: Peterson Rainey, co-founder of Creekside Marketing.
-   - `lindsey`: Lindsey, email marketing and Meta Ads specialist.
-3. **Proposal style** (optional):
-   - Peterson styles (A/B-alternated when unspecified): `strategic`, `strategic_dq`, `strategic_exp`, `v2`.
-   - Lindsey: Always `lindsey_default`. No other styles.
+2. **Profile**: `peterson` only. [FOUR-WAY TEST LOCK 2026-10-03: the `lindsey` profile is INACTIVE in this historical test agent. If a Lindsey proposal is requested, stop and direct the user to `lindsey-proposal-agent`. `lindsey.md` is retained on disk for snapshot fidelity only.]
+3. **Proposal style**: `strategic` only. [FOUR-WAY TEST LOCK 2026-10-03: the strategic vs strategic_dq A/B rotation that was live in the August 13, 2026 version is DISABLED. `strategic_dq`, `strategic_exp`, and `v2` are INACTIVE; their files are retained for snapshot fidelity only. If the user requests another style, stop and tell them this test arm only produces strategic.]
 
-If the user does not specify a profile, default to `peterson`. If the user does not specify a style for Peterson, the style is assigned by the Step 0 A/B alternation (not a flat default -- see Step 0).
+Profile is always `peterson`, style is always `strategic`.
 
 ---
 
