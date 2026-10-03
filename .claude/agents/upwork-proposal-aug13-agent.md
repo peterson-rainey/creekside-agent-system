@@ -212,7 +212,7 @@ Present in this order:
 
 2. **Matched Case Studies**: List each matched case study with: client name, industry, platforms, key result, and download URL. If none matched, say "No case study matches."
 
-3. **Variant**: State the style used and how it was assigned. Examples: "Style: strategic_dq (A/B-assigned)" or "Style: strategic (user-specified)". For Lindsey, state: "Profile: lindsey". Include this in the non-proposal section alongside fit check results, never inside the proposal text.
+3. **Variant**: State the style used. Always "Style: strategic (four-way test lock, logged as strategic_aug13)". Include this in the non-proposal section alongside fit check results, never inside the proposal text.
 
 4. **Proposal**: Output the raw proposal text exactly as it should be pasted into Upwork. No commentary, no explanation, no markdown formatting around it. The proposal must be COMPLETE with zero placeholders, brackets, or fill-in-the-blank slots. Use whatever information is available from the job post and database. If a detail is missing, write around it naturally.
 
