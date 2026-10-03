@@ -19,11 +19,12 @@ All arms: Peterson profile, strategic style only. Historical arms have their era
 
 ## Assignment rule (mechanical round-robin -- no cherry-picking)
 
-1. Take Peterson-profile jobs in the ORDER you decide to apply to them.
-2. Assign arms in strict rotation: jul01 -> jul10 -> aug13 -> current -> jul01 -> ...
-3. Do NOT skip an arm because the job "feels like" a better fit for another version. If a job is worth applying to, it gets whatever arm is next in rotation.
-4. If a run fails mid-way (tool error, agent crash), re-run the SAME job on the SAME arm. Do not advance the rotation on failures.
-5. Track nothing manually: each arm logs its own mode to `upwork_proposal_logs`, so rotation compliance is auditable with:
+Arm selection is automated. For every Peterson-profile job:
+
+1. Run `SELECT * FROM next_proposal_arm();` -- it returns the agent to spawn (lowest proposal count since 2026-10-03, ties broken jul01 -> jul10 -> aug13 -> current).
+2. Spawn exactly that agent. Do NOT pick an arm yourself or skip one because the job "feels like" a better fit for another version. If a job is worth applying to, it gets whatever arm the function returns.
+3. If a run fails mid-way (tool error, agent crash), just re-run `next_proposal_arm()` for the same job -- the failed run never logged, so it returns the same arm. Do not advance manually.
+4. Track nothing by hand: each arm logs its own mode to `upwork_proposal_logs`, so rotation compliance is auditable with:
 
 ```sql
 SELECT mode, count(*), max(created_at)
@@ -33,7 +34,9 @@ WHERE mode IN ('strategic_jul01','strategic_jul10','strategic_aug13','strategic'
 GROUP BY mode ORDER BY mode;
 ```
 
-To find whatever arm is next, check which mode has the lowest count (ties broken by rotation order jul01 -> jul10 -> aug13 -> current).
+Compliance check: the four counts should NEVER differ by more than 1. A gap of 2+ means rotation was broken -- flag it to Peterson and identify which runs went out of turn via `created_at` order.
+
+Routing is wired into contractor sessions: `.claude/roles/contractor.md` fast-path table sends every Peterson proposal request through `next_proposal_arm()` automatically (added 2026-10-03).
 
 ## How to run an arm
 
