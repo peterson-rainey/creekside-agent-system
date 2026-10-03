@@ -3,7 +3,7 @@
 Quick-reference for routing requests to the correct agent. Use this for fast pattern-matching. For BUILD and ACTION requests, always confirm against `agent_definitions` if the agent is unfamiliar or recently added.
 
 **Maintained by:** agent-builder-agent (adds new entries after every build)
-**Last updated:** 2026-09-26
+**Last updated:** 2026-10-03
 
 ---
 
@@ -65,8 +65,12 @@ Full reference (API keys, auth, troubleshooting): `SELECT content FROM agent_kno
 | sales-call-helper-agent | Live call support -- talking points, objection handling, pricing |
 | proposal-generator-agent | Formal .docx proposals, retainer quotes, audit reports -- fetches live Google Doc template and customizes for the specific lead; outputs .docx + email draft |
 | proposal-fit-check-agent | Screen a job posting for RED/YELLOW flags before applying. Contractor-safe -- Queenie runs this standalone. Optional profile (peterson/lindsey). Returns APPLY / APPLY WITH CAUTION / DO NOT APPLY. Does NOT generate a proposal. |
-| upwork-proposal-agent | Quick Upwork proposals from a job posting. Supports two profiles: `peterson` (Google/Meta/multi-platform, 4 styles, default `strategic`) and `lindsey` (Meta Ads + email specialist, default style). Paste a job description, specify profile, get a ready-to-send proposal. Case study matching included. Fit check is now a separate agent (proposal-fit-check-agent). |
-| upwork-proposal-legacy-agent | Standalone byte-for-byte July 8, 2026 proposal pipeline snapshot (Samuel renamed to Peterson). Invoke directly when Peterson explicitly wants a legacy-style proposal. Replaced the retired Arm B / strategic_legacy A/B rotation (2026-10-02). |
+| upwork-proposal-agent | Quick Upwork proposals from a job posting -- PETERSON profile only (Google/Meta/multi-platform, always `strategic`, logs mode `strategic`). The CURRENT arm of the four-way proposal test. Lindsey proposals route to lindsey-proposal-agent. Case study matching included. Fit check is now a separate agent (proposal-fit-check-agent). |
+| lindsey-proposal-agent | Lindsey (Meta Ads + email specialist) Upwork proposals. Simplified standalone pipeline: 4-variant ecom/non-ecom A/B rotation, case study matching with Lindsey override, DB logging. No fit check, no validator, no QC layer. |
+| upwork-proposal-jul01-agent | FOUR-WAY TEST ARM. Byte-exact July 1, 2026 proposal pipeline (commit 83195d1), Peterson/strategic only, logs mode `strategic_jul01`. Only invoke as part of the four-way historical test rotation. |
+| upwork-proposal-jul10-agent | FOUR-WAY TEST ARM. Byte-exact July 10, 2026 proposal pipeline (commit e399da7, includes validate_proposal.py), Peterson/strategic only, logs mode `strategic_jul10`. Only invoke as part of the four-way historical test rotation. |
+| upwork-proposal-aug13-agent | FOUR-WAY TEST ARM. Byte-exact August 13, 2026 proposal pipeline (commit 80f81af, strategic_dq A/B disabled), Peterson/strategic only, logs mode `strategic_aug13`. Only invoke as part of the four-way historical test rotation. |
+| upwork-proposal-legacy-agent | INACTIVE (deactivated 2026-10-03, superseded by the four-way test arms). Byte-for-byte July 8, 2026 snapshot retained on disk. Do not spawn. |
 | sdr-agent | Upwork conversation responses (and SDR responses generally as scope expands). Supports two profiles: `peterson` (default) and `lindsey` (Meta/email specialist persona). Handles lead, followup, nurture, and warmup types. Validates for pricing leaks, banned phrases, timeline commitments, sign-off names. Alias: upwork-sdr-agent. |
 | sdr-feedback-miner-agent | Mine ClickUp feedback Peterson gave Queenie on lead responses to generate a prioritized sdr-agent improvement digest. Use when: "what feedback have I given Queenie?", "I want to improve the SDR agent", or before any sdr-agent edit session. Read-only -- never applies changes. |
 | case-study-builder-agent | Client case studies for proposals/social proof |
