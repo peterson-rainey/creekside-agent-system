@@ -102,7 +102,7 @@ If any violations found, rewrite those sentences.
 ```sql
 INSERT INTO upwork_proposal_logs (mode, job_description, generated_proposal, fit_flags)
 VALUES (
-  '{mode}',
+  'strategic_jul01',  -- FOUR-WAY TEST LOCK: this agent ALWAYS logs mode 'strategic_jul01'
   '{job_description}',
   '{generated_proposal}',
   '{fit_flags_json}'::jsonb
