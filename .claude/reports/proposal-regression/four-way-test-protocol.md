@@ -50,7 +50,7 @@ Spawn the agent by name with the full job description, exactly as you would the 
 
 ## Known validity caveats (accepted by Peterson)
 
-1. **Shared live retrieval:** all four arms call the same `match_proposal_context` Supabase function, which is NOT snapshotted and is currently degraded (relevance scores collapsed; often 0-1 proof points vs 2-4 historically). This affects all arms equally but means no arm fully reproduces its era's case-study quality.
+1. **Shared live retrieval:** all four arms call the same `match_proposal_context` Supabase function, which is NOT snapshotted. Diagnosed 2026-10-03: retrieval is NOT degraded -- case-study matching works and the data has been effectively static all year, so it is constant across eras and arms. Two known data gaps exist (79% NULL `industry_experience.result_statement`; generic jobs inherently score low on keyword matching) but both were equally true in July. Peterson deferred fixing them; if the NULL backfill ever happens, it must land BEFORE the test starts or not until after it ends -- never mid-test.
 2. **Model drift:** all arms run on today's Claude model, not the model active in July/August.
 3. **Market drift:** running arms concurrently (round-robin) controls for this; that is why the rotation rule is strict.
 4. **July 1 arm has no validator script** (validate_proposal.py did not exist yet). That is authentic to the era, not a bug.
